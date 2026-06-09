@@ -11,7 +11,7 @@ Designed as a browser-native local-first application, the terminal combines aged
 The terminal is set up to run directly in the browser without any server requirements. Once deployed on GitHub Pages, it can be accessed at:
 
 ```
-https://<your-github-username>.github.io/shadow-of-the-demon-lord-character/
+https://matthewaroy.github.io/shadow-of-the-demon-lord-character/
 ```
 
 ### How to Enable GitHub Pages:
