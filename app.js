@@ -8,6 +8,8 @@ let state = {
   level: 1,
   ancestry: "human",
   novicePath: "warrior",
+  expertPath: "none",
+  masterPath: "none",
   power: 0,
   attributes: {
     str: 10,
@@ -19,6 +21,7 @@ let state = {
   damage: 0,
   insanity: 0,
   corruption: 0,
+  defenseMod: 0,
   professions: "",
   notes: "",
   inventory: [], // items: { id, name, type, specs, equipped }
@@ -75,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(data => {
       rules = data;
       setupAncestryOptions();
+      setupPathOptions();
       loadSavedState();
       setupEventListeners();
       
@@ -95,10 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
         castings_matrix: { power_levels: { "0": [1], "1": [2,1], "2": [3,2,1], "3": [4,2,1,1] } },
         ancestries: { human: { name: "Human", base_attributes: { str:10, agi:10, int:10, wil:10 }, health:10, traits: "Languages: Common Tongue." } },
         novice_paths: { none: { name: "Level 0", health_bonus: 0, power_bonus: 0 }, warrior: { name: "Warrior", health_bonus: 5, power_bonus:0 } },
+        expert_paths: { none: { name: "No Expert Path", health_bonus: 0, power_bonus: 0, description: "Select expert path.", features: "None" } },
+        master_paths: { none: { name: "No Master Path", health_bonus: 0, power_bonus: 0, description: "Select master path.", features: "None" } },
         armory_catalog: [],
         spells_sample: []
       };
       setupAncestryOptions();
+      setupPathOptions();
       setupEventListeners();
       startWizard();
     });
@@ -113,6 +120,42 @@ function setupAncestryOptions() {
     option.value = key;
     option.textContent = rules.ancestries[key].name;
     select.appendChild(option);
+  });
+}
+
+function setupPathOptions() {
+  const expertSelect = document.getElementById("char-expert-path");
+  const masterSelect = document.getElementById("char-master-path");
+  
+  if (!expertSelect || !masterSelect) return;
+  
+  expertSelect.innerHTML = "";
+  masterSelect.innerHTML = "";
+  
+  const expertKeys = Object.keys(rules.expert_paths || {}).sort((a, b) => {
+    if (a === "none") return -1;
+    if (b === "none") return 1;
+    return rules.expert_paths[a].name.localeCompare(rules.expert_paths[b].name);
+  });
+  
+  expertKeys.forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = rules.expert_paths[key].name;
+    expertSelect.appendChild(option);
+  });
+  
+  const masterKeys = Object.keys(rules.master_paths || {}).sort((a, b) => {
+    if (a === "none") return -1;
+    if (b === "none") return 1;
+    return rules.master_paths[a].name.localeCompare(rules.master_paths[b].name);
+  });
+  
+  masterKeys.forEach(key => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = rules.master_paths[key].name;
+    masterSelect.appendChild(option);
   });
 }
 
@@ -205,17 +248,63 @@ function setupEventListeners() {
   document.getElementById("wizard-spell-tradition-filter").addEventListener("change", filterWizardSpellLibrary);
 
   document.getElementById("char-novice-path").addEventListener("change", (e) => {
-    state.novicePath = e.target.value;
-    const path = rules.novice_paths[state.novicePath];
-    if (path) {
-      state.healthMod = path.health_bonus;
-      state.power = path.power_bonus;
-    } else {
-      state.healthMod = 0;
-      state.power = 0;
-    }
+    const oldPathKey = state.novicePath || "none";
+    const newPathKey = e.target.value;
+    state.novicePath = newPathKey;
+    
+    const oldPath = rules.novice_paths[oldPathKey];
+    const newPath = rules.novice_paths[newPathKey];
+    
+    const oldHpBonus = oldPath ? (oldPath.health_bonus || 0) : 0;
+    const newHpBonus = newPath ? (newPath.health_bonus || 0) : 0;
+    state.healthMod = (state.healthMod || 0) + (newHpBonus - oldHpBonus);
+    
+    const oldPowerBonus = oldPath ? (oldPath.power_bonus || 0) : 0;
+    const newPowerBonus = newPath ? (newPath.power_bonus || 0) : 0;
+    state.power = Math.max(0, Math.min(10, (state.power || 0) + (newPowerBonus - oldPowerBonus)));
+    
     recalculateSheet();
-    addLogEntry("SYSTEM", `Novice Path altered to ${path ? path.name : 'None'}. Health and Power adjusted.`);
+    addLogEntry("SYSTEM", `Novice Path altered to ${newPath ? newPath.name : 'None'}.`);
+  });
+
+  document.getElementById("char-expert-path").addEventListener("change", (e) => {
+    const oldPathKey = state.expertPath || "none";
+    const newPathKey = e.target.value;
+    state.expertPath = newPathKey;
+    
+    const oldPath = rules.expert_paths[oldPathKey];
+    const newPath = rules.expert_paths[newPathKey];
+    
+    const oldHpBonus = oldPath ? (oldPath.health_bonus || 0) : 0;
+    const newHpBonus = newPath ? (newPath.health_bonus || 0) : 0;
+    state.healthMod = (state.healthMod || 0) + (newHpBonus - oldHpBonus);
+    
+    const oldPowerBonus = oldPath ? (oldPath.power_bonus || 0) : 0;
+    const newPowerBonus = newPath ? (newPath.power_bonus || 0) : 0;
+    state.power = Math.max(0, Math.min(10, (state.power || 0) + (newPowerBonus - oldPowerBonus)));
+    
+    recalculateSheet();
+    addLogEntry("SYSTEM", `Expert Path altered to ${newPath ? newPath.name : 'None'}.`);
+  });
+
+  document.getElementById("char-master-path").addEventListener("change", (e) => {
+    const oldPathKey = state.masterPath || "none";
+    const newPathKey = e.target.value;
+    state.masterPath = newPathKey;
+    
+    const oldPath = rules.master_paths[oldPathKey];
+    const newPath = rules.master_paths[newPathKey];
+    
+    const oldHpBonus = oldPath ? (oldPath.health_bonus || 0) : 0;
+    const newHpBonus = newPath ? (newPath.health_bonus || 0) : 0;
+    state.healthMod = (state.healthMod || 0) + (newHpBonus - oldHpBonus);
+    
+    const oldPowerBonus = oldPath ? (oldPath.power_bonus || 0) : 0;
+    const newPowerBonus = newPath ? (newPath.power_bonus || 0) : 0;
+    state.power = Math.max(0, Math.min(10, (state.power || 0) + (newPowerBonus - oldPowerBonus)));
+    
+    recalculateSheet();
+    addLogEntry("SYSTEM", `Master Path altered to ${newPath ? newPath.name : 'None'}.`);
   });
 }
 
@@ -325,6 +414,8 @@ function recalculateSheet() {
   document.getElementById("char-name").value = state.name;
   document.getElementById("char-level").value = state.level;
   document.getElementById("char-novice-path").value = state.novicePath || "none";
+  document.getElementById("char-expert-path").value = state.expertPath || "none";
+  document.getElementById("char-master-path").value = state.masterPath || "none";
   document.getElementById("char-power").value = state.power;
   document.getElementById("char-professions").value = state.professions;
   document.getElementById("char-notes").value = state.notes;
@@ -1791,6 +1882,8 @@ function finalizeWizardCharacter() {
   state.ancestry = wizardState.ancestry;
   state.level = wizardState.level;
   state.novicePath = wizardState.novicePath;
+  state.expertPath = "none";
+  state.masterPath = "none";
   state.power = path.power_bonus;
   
   // Final attributes (base + boosts)
@@ -1892,6 +1985,30 @@ function renderQuickTalents(ancData) {
       <p style="font-size:11px; line-height:1.4; color:var(--text-secondary);">${path.features}</p>
     `;
     container.appendChild(pathDiv);
+  }
+
+  // 3. Expert Path Features
+  const expertPathData = rules.expert_paths[state.expertPath];
+  if (expertPathData && state.expertPath !== "none") {
+    const expertDiv = document.createElement("div");
+    expertDiv.style.marginBottom = "12px";
+    expertDiv.innerHTML = `
+      <strong style="color:var(--color-trim-bright); font-family:var(--font-header); display:block; margin-bottom:4px; font-size:11px;">${expertPathData.name} Expert Path:</strong>
+      <p style="font-size:11px; line-height:1.4; color:var(--text-secondary);">${expertPathData.features}</p>
+    `;
+    container.appendChild(expertDiv);
+  }
+  
+  // 4. Master Path Features
+  const masterPathData = rules.master_paths[state.masterPath];
+  if (masterPathData && state.masterPath !== "none") {
+    const masterDiv = document.createElement("div");
+    masterDiv.style.marginBottom = "12px";
+    masterDiv.innerHTML = `
+      <strong style="color:var(--color-trim-bright); font-family:var(--font-header); display:block; margin-bottom:4px; font-size:11px;">${masterPathData.name} Master Path:</strong>
+      <p style="font-size:11px; line-height:1.4; color:var(--text-secondary);">${masterPathData.features}</p>
+    `;
+    container.appendChild(masterDiv);
   }
 }
 
