@@ -229,18 +229,39 @@ def parse_magic(text):
         result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
                               "traditions": [m.group(1), m.group(2)]}]
         return result
+    # Constrained to three traditions: "discover the X, Y, or Z tradition,
+    # or learn one spell from one of those traditions"
+    m = re.search(r"discover the (\w+), (\w+), or (\w+) tradition,? or (?:you )?learn", t, re.I)
+    if m and all(g.capitalize() in TRADITIONS for g in m.groups()):
+        result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
+                              "traditions": [g.capitalize() for g in m.groups()]}]
+        return result
     # Tradition-constrained variants: "discover the X tradition or learn one X spell"
     m = re.search(r"discover the (\w+) tradition or learn (?:one|a) (\w+) spell", t)
     if m and m.group(1) in TRADITIONS:
         result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
                               "traditions": [m.group(1)]}]
         return result
+    # "You discover two traditions and learn one spell."
+    m = re.search(r"discover (one|two|three) traditions? and learn (one|two) spells?", t, re.I)
+    if m:
+        result["choices"] = [
+            {"pick": NUMBER_WORDS[m.group(1)], "options": ["discover_tradition"]},
+            {"pick": NUMBER_WORDS[m.group(2)], "options": ["learn_spell"]},
+        ]
+        return result
+    # "discover a new tradition other than a dark magic tradition or learn
+    # one spell other than a dark magic spell"
+    if re.search(r"discover a new tradition other than a dark magic tradition or (?:you )?learn", t, re.I):
+        result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
+                              "exclude_dark": True}]
+        return result
     m = re.search(r"[Mm]ake (one|two|three|four) choices?", t)
     if m:
         result["choices"] = [{"pick": NUMBER_WORDS[m.group(1)],
                               "options": ["discover_tradition", "learn_spell"]}]
         return result
-    if re.search(r"discover (?:a|one) tradition or learn (?:one|a) spell", t):
+    if re.search(r"discover (?:a|one|a new|another) tradition or (?:you )?learn (?:one|a) spell", t):
         result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"]}]
         return result
     m = re.search(r"discover the (\w+) tradition", t)

@@ -258,7 +258,13 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
+       ],
+       "traditions": [
+        "Enchantment",
+        "Fey",
+        "Illusion"
        ]
       }
      ]
@@ -773,7 +779,13 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
+       ],
+       "traditions": [
+        "Life",
+        "Nature",
+        "Primal"
        ]
       }
      ]
@@ -1212,6 +1224,12 @@
      "raw": "You discover two traditions and learn one spell.",
      "choices": [
       {
+       "pick": 2,
+       "options": [
+        "discover_tradition"
+       ]
+      },
+      {
        "pick": 1,
        "options": [
         "learn_spell"
@@ -1332,8 +1350,10 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
-       ]
+       ],
+       "exclude_dark": true
       }
      ]
     },
@@ -2544,6 +2564,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -2570,6 +2591,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -2613,6 +2635,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -2740,6 +2763,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -2756,6 +2780,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -2779,6 +2804,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -2820,7 +2846,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ]
       }
      ]
@@ -3407,6 +3434,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -3433,6 +3461,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -3460,6 +3489,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -3594,6 +3624,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -3620,6 +3651,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -3643,6 +3675,7 @@
       {
        "pick": 1,
        "options": [
+        "discover_tradition",
         "learn_spell"
        ]
       }
@@ -7395,7 +7428,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ]
       }
      ]
@@ -8179,7 +8213,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ]
       }
      ]
@@ -9084,7 +9119,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ]
       }
      ]
@@ -9503,7 +9539,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ]
       }
      ]
@@ -10368,7 +10405,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ]
       }
      ]

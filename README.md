@@ -1,62 +1,84 @@
 # Shadow of the Demon Lord: Ledger of the Damned
 
-A gritty, dark gothic fantasy single-page character terminal and management sheet for the *Shadow of the Demon Lord* tabletop roleplaying game.
-
-Designed as a browser-native local-first application, the terminal combines aged parchment aesthetics, bronze double-borders, and blood-red highlights with deep rules automation, custom dice mechanics, and import/export capabilities.
-
----
+A dark gothic character manager for the *Shadow of the Demon Lord* tabletop
+roleplaying game — a browser-native, local-first single-page app with a real
+rules engine underneath.
 
 ## ⛧ Live Access (GitHub Pages)
-
-The terminal is set up to run directly in the browser without any server requirements. Once deployed on GitHub Pages, it can be accessed at:
 
 ```
 https://matthewaroy.github.io/shadow-of-the-demon-lord-character/
 ```
 
-### How to Enable GitHub Pages:
-1. Go to your repository settings page on GitHub.
-2. In the left sidebar under the **Code and automation** section, click **Pages**.
-3. Under **Build and deployment**, set the **Source** to **Deploy from a branch**.
-4. Set the branch to `main` (or `master`) and select `/ (root)` as the folder.
-5. Click **Save**. Within a few minutes, the terminal will be live at your repository's custom pages URL.
+The previous version remains available at `/legacy/`.
 
----
+### How to Enable GitHub Pages
+1. Repository settings → **Pages**.
+2. **Build and deployment** → Source: **Deploy from a branch**.
+3. Branch `main`, folder `/ (root)`, then **Save**.
 
-## ⛧ Features & Architecture
+## ⛧ What V2 Does
 
-* **Occult Pentagram Vitals Console**: An interactive 14-node pentagram star visualizing Strength, Intellect, Willpower, Health, Agility, Level, Size, Speed, Defense, Perception, Insanity, Power, Healing Rate, Corruption, and a central Damage tracker.
-* **Challenge Roll Automation**: Click on any attribute node (STR, AGI, INT, WIL) or the Perception node to roll a `1d20` check with automated modifier math, boon/bane inclusions, and logging.
-* **Level & Stat Modifiers**: Enable "Stat Adjusters" to make on-the-fly modifications to core parameters. Includes automated Priest path divine protection (+1 Defense if unarmored).
-* **6-Step Onboarding Character Creator**: Full fullscreen wizard guide to strain selection, path alignments, initial attribute boosts, background generation, starting gear allocations, and initial grimoire spell choices.
-* **Expanded Spells Catalog**: Features **238 spells (Ranks 0–3)** spanning 42 magic traditions across all reference books.
-* **Expert & Master Paths Selection**: Integrates all 41 Expert Paths and 123 Master Paths with automated Health, Power, and Talent/Feature listings.
-* **Armory Registry & Gear Encumbrance**: Equipping heavy gear automatically calculates Agility penalties and half-speed reductions if Strength requirements aren't met.
-* **Local-First State Sync**: No cloud login required. Your hero is preserved automatically via `localStorage` and can be exported/imported as a custom `.json` save file.
+V2 models a character as **a sequence of decisions**, replayed by a rules
+engine — not a pile of manually-entered numbers.
 
----
+* **Choice-driven builder.** Every rule that says "choose" becomes a card in
+  the decision queue: attribute increases, tradition discoveries, spell
+  picks, roguery talents, ancestry level 4 benefits, languages and
+  professions. The Magician's level 1 "discover one tradition, then make
+  three choices" yields exactly four picks — and **Cantrip** correctly grants
+  a second rank 0 spell with every discovery.
+* **Per-level advancement.** Novice paths grant benefits at levels 1/2/5/8,
+  expert at 3/6/9, master at 7/10, ancestry at 4 — including the optional
+  **second expert path** at level 7 (with the either-path level 9 choice).
+* **Real constraints.** Priests discover only their religion's traditions;
+  Druids choose among Life/Nature/Primal; Magisters can't pick dark magic;
+  spell rank is capped by Power; dark traditions inflict Corruption on
+  discovery.
+* **1,120 spells** (ranks 0–10) and **42 traditions** parsed from the Core
+  Rulebook, Occult Philosophy, and Terrible Beauty, with **165 expert and
+  master paths** carrying their full per-level benefits.
+* **Derived stats with provenance** — every point of Health, Power, and
+  Defense knows where it came from.
+* **Castings tracker** using the real (non-linear) castings table, a spell
+  browser with learnable-now filtering, an armory with encumbrance warnings,
+  and SotDL boon/bane dice with a roll ledger.
+* **Local-first roster.** Multiple characters in localStorage with JSON
+  export/import. No server, no build step — vanilla ES modules.
 
 ## ⛧ Local Development
 
-The terminal uses a lightweight local static server for local play testing.
-
-### Commands:
 ```bash
-# Install local dependencies
 npm install
-
-# Start the local development server (runs serve on port 3000)
-npm run dev
+npm run dev     # serves on http://localhost:3000
 ```
 
-Open `http://localhost:3000` in your browser.
+## ⛧ Data Pipeline
 
----
+The ruleset under `data/` is generated from the rulebook PDFs (kept locally
+in the repo root, gitignored) by the scripts in `scripts/`:
+
+```bash
+python3 scripts/extract_text.py      # PDFs -> normalized text (fixes broken ligatures)
+python3 scripts/parse_spells.py      # -> data/spells.json
+python3 scripts/parse_paths.py       # -> data/paths.json
+python3 scripts/parse_traditions.py  # -> data/traditions.json
+python3 scripts/parse_equipment.py   # -> data/equipment.json
+```
+
+`data/curated.json` is hand-written from the rulebook text: ancestries with
+structured creation rules and level 4 choices, the four novice paths as full
+effect lists, the castings matrix, the advancement table, religions, roguery
+talents, professions, and starting wealth.
+
+The design of the effects/decisions engine is documented in
+[docs/superpowers/specs/2026-06-11-v2-character-manager-design.md](docs/superpowers/specs/2026-06-11-v2-character-manager-design.md).
 
 ## ⛧ Reference Materials
-This application incorporates metrics, traits, and casting formulas derived from:
-* *Shadow of the Demon Lord Core Rulebook*
-* *Occult Philosophy Magic Supplement*
-* *Terrible Beauty Faerie Guide*
 
-*Shadow of the Demon Lord is © Schwalb Entertainment. This is an unofficial character sheet tool.*
+* *Shadow of the Demon Lord Core Rulebook*
+* *Occult Philosophy*
+* *Terrible Beauty*
+
+*Shadow of the Demon Lord is © Schwalb Entertainment. This is an unofficial
+character tool.*
