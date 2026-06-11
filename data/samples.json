@@ -1,0 +1,303 @@
+[
+ {
+  "version": 2,
+  "name": "Fiona of the Tower Arcane",
+  "ancestry": "Human",
+  "level": 1,
+  "novicePath": "Magician",
+  "expertPath": null,
+  "masterMode": "master",
+  "masterPath": null,
+  "secondExpertPath": null,
+  "religion": null,
+  "attributeSwap": null,
+  "sizeChoice": null,
+  "decisions": {
+   "creation[Human]:0:attr:0": {
+    "attrs": [
+     "intellect"
+    ]
+   },
+   "novice[Magician]:1:0:0": {
+    "attrs": [
+     "intellect",
+     "will"
+    ]
+   },
+   "novice[Magician]:1:2:0": {
+    "text": "Magic"
+   },
+   "novice[Magician]:1:3:0": {
+    "kind": "discover",
+    "tradition": "Fire"
+   },
+   "novice[Magician]:1:3:0:cantrip": {
+    "spell": "Flame Missile",
+    "tradition": "Fire"
+   },
+   "novice[Magician]:1:3:0:rank0": {
+    "spell": "Control Flame",
+    "tradition": "Fire"
+   },
+   "novice[Magician]:1:4:0": {
+    "kind": "discover",
+    "tradition": "Enchantment"
+   },
+   "novice[Magician]:1:4:0:cantrip": {
+    "spell": "Bewitch",
+    "tradition": "Enchantment"
+   },
+   "novice[Magician]:1:4:0:rank0": {
+    "spell": "Distraction",
+    "tradition": "Enchantment"
+   },
+   "novice[Magician]:1:4:1": {
+    "kind": "learn",
+    "spell": "Choking Smoke",
+    "tradition": "Fire"
+   },
+   "novice[Magician]:1:4:2": {
+    "kind": "learn",
+    "spell": "Convincing Word",
+    "tradition": "Enchantment"
+   }
+  },
+  "exchanges": [],
+  "damage": 0,
+  "expended": {},
+  "inventory": [],
+  "coins": "",
+  "notes": "Sample build — studied at a great institution of magic (Magician Training 4). High Intellect per the path guidance; flame and charm magic."
+ },
+ {
+  "version": 2,
+  "name": "Cormac, Voice of the Old Faith",
+  "ancestry": "Human",
+  "level": 3,
+  "novicePath": "Priest",
+  "expertPath": "Druid",
+  "masterMode": "master",
+  "masterPath": null,
+  "secondExpertPath": null,
+  "religion": "Old Faith",
+  "attributeSwap": null,
+  "sizeChoice": null,
+  "decisions": {
+   "creation[Human]:0:attr:0": {
+    "attrs": [
+     "will"
+    ]
+   },
+   "novice[Priest]:1:0:0": {
+    "attrs": [
+     "strength",
+     "will"
+    ]
+   },
+   "novice[Priest]:1:2:0": {
+    "text": "Initiate of the Old Faith"
+   },
+   "novice[Priest]:1:3:0": {
+    "kind": "discover",
+    "tradition": "Life"
+   },
+   "novice[Priest]:1:3:0:rank0": {
+    "spell": "Death Ward",
+    "tradition": "Life"
+   },
+   "novice[Priest]:1:4:0": {
+    "kind": "discover",
+    "tradition": "Nature"
+   },
+   "novice[Priest]:1:4:0:rank0": {
+    "spell": "Falling Leaves",
+    "tradition": "Nature"
+   },
+   "novice[Priest]:1:4:1": {
+    "kind": "learn",
+    "spell": "Destroy Death",
+    "tradition": "Life"
+   },
+   "novice[Priest]:2:1:0": {
+    "kind": "learn",
+    "spell": "Life Sense",
+    "tradition": "Life"
+   },
+   "novice[Priest]:2:1:1": {
+    "kind": "learn",
+    "spell": "Minor Healing",
+    "tradition": "Life"
+   },
+   "expert[Druid]:3:0:0": {
+    "attrs": [
+     "strength",
+     "agility"
+    ]
+   },
+   "expert[Druid]:3:2:0": {
+    "text": "Nature"
+   },
+   "expert[Druid]:3:3:0": {
+    "kind": "discover",
+    "tradition": "Primal"
+   },
+   "expert[Druid]:3:3:0:rank0": {
+    "spell": "Beast Within",
+    "tradition": "Primal"
+   }
+  },
+  "exchanges": [],
+  "damage": 0,
+  "expended": {},
+  "inventory": [],
+  "coins": "",
+  "notes": "Sample build — initiated into the Old Faith (Priest Training 2), walking the Druid's path. Traditions limited to his religion: Life, Nature, Primal."
+ },
+ {
+  "version": 2,
+  "name": "Grin, Guild Knife",
+  "ancestry": "Goblin",
+  "level": 2,
+  "novicePath": "Rogue",
+  "expertPath": null,
+  "masterMode": "master",
+  "masterPath": null,
+  "secondExpertPath": null,
+  "religion": null,
+  "attributeSwap": null,
+  "sizeChoice": null,
+  "decisions": {
+   "novice[Rogue]:1:0:0": {
+    "attrs": [
+     "agility",
+     "intellect"
+    ]
+   },
+   "novice[Rogue]:1:2:0": {
+    "text": "Pickpocket"
+   },
+   "novice[Rogue]:2:2:0": {
+    "talent": "Magic"
+   },
+   "novice[Rogue]-rt2:2:1:0": {
+    "kind": "discover",
+    "tradition": "Shadow"
+   },
+   "novice[Rogue]-rt2:2:1:0:rank0": {
+    "spell": "Darkling’s Raiment",
+    "tradition": "Shadow"
+   },
+   "novice[Rogue]-rt2:2:2:0": {
+    "kind": "discover",
+    "tradition": "Illusion"
+   },
+   "novice[Rogue]-rt2:2:2:0:rank0": {
+    "spell": "Clamor",
+    "tradition": "Illusion"
+   },
+   "novice[Rogue]-rt2:2:2:1": {
+    "kind": "learn",
+    "spell": "Conceal Object",
+    "tradition": "Illusion"
+   }
+  },
+  "exchanges": [],
+  "damage": 0,
+  "expended": {},
+  "inventory": [],
+  "coins": "",
+  "notes": "Sample build — guild-trained cutpurse (Rogue Training 2) who dabbles in magic: the Magic roguery talent grants Power and shadow tricks."
+ },
+ {
+  "version": 2,
+  "name": "Torga Stonejaw",
+  "ancestry": "Dwarf",
+  "level": 4,
+  "novicePath": "Warrior",
+  "expertPath": null,
+  "masterMode": "master",
+  "masterPath": null,
+  "secondExpertPath": null,
+  "religion": null,
+  "attributeSwap": null,
+  "sizeChoice": null,
+  "decisions": {
+   "novice[Warrior]:1:0:0": {
+    "attrs": [
+     "strength",
+     "agility"
+    ]
+   },
+   "novice[Warrior]:1:2:0": {
+    "text": "Militia member"
+   },
+   "ancestry4[Dwarf]:4:1:0": {
+    "option": 1
+   }
+  },
+  "exchanges": [],
+  "damage": 0,
+  "expended": {},
+  "inventory": [],
+  "coins": "",
+  "notes": "Sample build — militia veteran (Warrior Training 3). Takes Shake it Off at level 4; no magic at all."
+ },
+ {
+  "version": 2,
+  "name": "Walter the Unyielding",
+  "ancestry": "Human",
+  "level": 7,
+  "novicePath": "Warrior",
+  "expertPath": "Fighter",
+  "masterMode": "master",
+  "masterPath": "Dreadnaught",
+  "secondExpertPath": null,
+  "religion": null,
+  "attributeSwap": null,
+  "sizeChoice": null,
+  "decisions": {
+   "creation[Human]:0:attr:0": {
+    "attrs": [
+     "strength"
+    ]
+   },
+   "novice[Warrior]:1:0:0": {
+    "attrs": [
+     "agility",
+     "strength"
+    ]
+   },
+   "novice[Warrior]:1:2:0": {
+    "text": "Mercenary"
+   },
+   "expert[Fighter]:3:0:0": {
+    "attrs": [
+     "will",
+     "strength"
+    ]
+   },
+   "expert[Fighter]:3:2:0": {
+    "text": "Officer"
+   },
+   "ancestry4[Human]:4:1:0": {
+    "option": 1
+   },
+   "master[Dreadnaught]:7:0:0": {
+    "attrs": [
+     "agility",
+     "will",
+     "strength"
+    ]
+   },
+   "master[Dreadnaught]:7:2:0": {
+    "text": "Common Tongue"
+   }
+  },
+  "exchanges": [],
+  "damage": 0,
+  "expended": {},
+  "inventory": [],
+  "coins": "",
+  "notes": "Sample build — pit fighter turned iron-clad wall (Warrior Training 1). Tests the full novice → expert → master spine with Determined at level 4."
+ }
+]

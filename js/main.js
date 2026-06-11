@@ -89,6 +89,31 @@ async function boot() {
   });
 
   onChange(renderRoster);
+  setupSamples();
+}
+
+async function setupSamples() {
+  const sel = document.getElementById("sample-select");
+  try {
+    const samples = await fetch("data/samples.json").then((r) => (r.ok ? r.json() : []));
+    if (!samples.length) { sel.hidden = true; return; }
+    for (let i = 0; i < samples.length; i++) {
+      const o = document.createElement("option");
+      o.value = String(i);
+      o.textContent = `${samples[i].name} — L${samples[i].level}`;
+      sel.appendChild(o);
+    }
+    sel.addEventListener("change", () => {
+      if (sel.value === "") return;
+      const sample = samples[parseInt(sel.value, 10)];
+      importCharacter(JSON.stringify(sample));
+      sel.value = "";
+      renderRoster();
+      renderCurrent();
+    });
+  } catch {
+    sel.hidden = true;
+  }
 }
 
 boot();

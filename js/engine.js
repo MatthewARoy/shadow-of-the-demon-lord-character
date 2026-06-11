@@ -25,6 +25,7 @@ export function newCharacter(name = "Unnamed Soul") {
     attributeSwap: null,          // {from, to} once, at creation
     sizeChoice: null,
     decisions: {},                // slotId -> resolution
+    exchanges: [],                // [{drop:{name,tradition}, gain:{name,tradition}}]
     damage: 0,
     expended: {},                 // spell key -> castings used
     inventory: [],                // {id, name, qty, equipped, weapon?, armor?, notes}
@@ -245,8 +246,11 @@ export function compute(char) {
   out.health += out.attributes.strength;
   out.healingRate = Math.max(1, Math.floor(out.health / (c.healing_divisor || 4)));
   out.perception = out.attributes.intellect + out.perceptionBonus;
-  out.defense = (out.defenseFixed ?? out.attributes.agility) + out.defenseBonus;
+  // Maximum Defense: a creature's Defense cannot exceed 25.
+  out.defense = Math.min(25, (out.defenseFixed ?? out.attributes.agility) + out.defenseBonus);
   out.speed = c.speed + out.speedBonus;
+
+  applyExchanges(out, char);
 
   out.modifiers = Object.fromEntries(ATTRS.map((a) => [a, out.attributes[a] - 10]));
 
@@ -500,7 +504,36 @@ function learnSpellFromResolution(out, char, id, res, ctx, opts = {}) {
     return true;
   }
   out.spells.push({ name: spell.name, tradition: spell.tradition, source: ctx.label, level: ctx.level, slotId: id });
+  noteDarkLearning(out, spell, ctx.label);
   return true;
+}
+
+// Exchanging spells: whenever you learn a new spell you may also forget a
+// known spell and learn a different one whose rank is no higher than your
+// Power (Occult Philosophy's updated wording of the core rule).
+function applyExchanges(out, char) {
+  for (const ex of char.exchanges || []) {
+    const dropIdx = out.spells.findIndex((s) => s.name === ex.drop.name && s.tradition === ex.drop.tradition);
+    const gain = findSpell(ex.gain.name, ex.gain.tradition);
+    const discovered = out.discovered.some((d) => d.tradition === ex.gain.tradition);
+    const known = out.spells.some((s) => s.name === ex.gain.name && s.tradition === ex.gain.tradition);
+    if (dropIdx === -1 || !gain || !discovered || known || gain.rank > out.power) {
+      out.notes.push({ text: `Exchange of “${ex.drop.name}” for “${ex.gain.name}” is no longer legal — remove it in the Spells tab.`, level: null });
+      continue;
+    }
+    const old = out.spells[dropIdx];
+    out.spells[dropIdx] = { name: gain.name, tradition: gain.tradition, source: `Exchanged for ${old.name} (${old.source})`, level: old.level, exchanged: true };
+    noteDarkLearning(out, gain, "spell exchange");
+  }
+}
+
+// Learning a dark magic spell calls for a d6 roll against the number of
+// dark spells known; the app can't roll it for the table, so leave a note.
+function noteDarkLearning(out, spell, label) {
+  const trad = rules.traditionByName.get(spell.tradition);
+  if (!trad?.dark) return;
+  const darkCount = out.spells.filter((s) => rules.traditionByName.get(s.tradition)?.dark).length + 1;
+  out.notes.push({ text: `Learned the dark magic spell “${spell.name}” (${label}): roll a d6 — on less than ${darkCount} (your dark spells known), gain 1 Corruption. Each dark spell grants 1 boon on rolls to avoid Insanity.`, level: null });
 }
 
 function countPriorPicks(char, out, currentSlotId, talentName) {

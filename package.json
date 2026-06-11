@@ -4,7 +4,8 @@
   "description": "Character Terminal for Shadow of the Demon Lord TTRPG",
   "main": "index.html",
   "scripts": {
-    "dev": "npx -y serve -l 3000"
+    "dev": "npx -y serve -l 3000",
+    "test": "node scripts/build_samples.mjs"
   },
   "keywords": [
     "sotdl",
@@ -13,5 +14,6 @@
     "character-sheet"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module"
 }

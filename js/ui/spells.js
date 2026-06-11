@@ -51,6 +51,8 @@ export function renderSpells(el) {
   wire(el, char, computed);
 }
 
+let exchangeOpen = null; // spell key whose exchange picker is showing
+
 function learnedPanel(char, computed) {
   if (!computed.spells.length) {
     return `<div class="panel"><h2 class="rubric">Grimoire</h2>
@@ -67,15 +69,44 @@ function learnedPanel(char, computed) {
     return `
       <h3 class="small dim" style="font-family:var(--caps);letter-spacing:.1em;margin:14px 0 8px">RANK ${rank} — ${spells[0].castings} casting${spells[0].castings !== 1 ? "s" : ""} each</h3>
       <div class="spell-grid">
-        ${spells.map((s) => spellCard(s.data, { learned: true, char, computed, castings: s.castings, source: s.source })).join("")}
+        ${spells.map((s) => spellCard(s.data, { learned: true, char, computed, castings: s.castings, source: s.source, spellRec: s })).join("")}
       </div>`;
   }).join("");
   return `
   <div class="panel">
     <h2 class="rubric">Grimoire <span class="count">${computed.spells.length} learned · Power ${computed.power}</span></h2>
     ${sections}
-    <p class="small dim" style="margin-bottom:0">Castings refresh on a rest. The rulebook also allows exchanging a known spell when you learn a new one — unmake the spell choice in the Build tab to swap.</p>
+    ${exchangesList(char)}
+    <p class="small dim" style="margin-bottom:0">Castings refresh on a rest. Whenever you learn a new spell you may also exchange a known spell for another of rank ≤ your Power — use ⇄ on a spell above.</p>
   </div>`;
+}
+
+function exchangesList(char) {
+  if (!char.exchanges?.length) return "";
+  return `<div class="chip-row" style="margin-top:12px">
+    ${char.exchanges.map((ex, i) =>
+      `<button class="chip" data-unexchange="${i}" title="Undo this exchange">⇄ ${esc(ex.drop.name)} → ${esc(ex.gain.name)} ✕</button>`).join("")}
+  </div>`;
+}
+
+function exchangePicker(char, computed, rec) {
+  const known = new Set(computed.spells.map((s) => spellKey(s.name, s.tradition)));
+  const discovered = new Set(computed.discovered.map((d) => d.tradition));
+  const pool = rules.spells.filter((s) =>
+    !s.path_spell && discovered.has(s.tradition) && s.rank <= computed.power &&
+    !known.has(spellKey(s.name, s.tradition)));
+  if (!pool.length) return `<p class="small blood">Nothing legal to exchange into.</p>`;
+  const byTrad = new Map();
+  for (const s of pool) {
+    if (!byTrad.has(s.tradition)) byTrad.set(s.tradition, []);
+    byTrad.get(s.tradition).push(s);
+  }
+  return `<select data-exchange-gain="${esc(rec.name)}|${esc(rec.tradition)}" style="max-width:100%">
+    <option value="">forget ${esc(rec.name)}, learn…</option>
+    ${[...byTrad.keys()].sort().map((t) => `<optgroup label="${esc(t)}">
+      ${byTrad.get(t).map((s) => `<option value="${esc(s.name)}|${esc(s.tradition)}">${esc(s.name)} · rank ${s.rank}</option>`).join("")}
+    </optgroup>`).join("")}
+  </select>`;
 }
 
 function renderResults(el, char, computed) {
@@ -126,6 +157,13 @@ export function spellCard(s, opts = {}) {
   const attackBtn = s.attack
     ? `<button class="btn btn-small" data-cast-roll="${esc(s.name)}|${esc(s.tradition)}" title="Roll ${esc(s.attack.attribute)} attack${s.attack.damage ? `, then ${esc(s.attack.damage)} damage` : ""}">⚔ ${esc(s.attack.attribute)} roll</button>`
     : "";
+  // Only slot-learned spells can be exchanged (path grants like Sense Magic
+  // come from talents, not learning).
+  const canExchange = opts.spellRec && (opts.spellRec.slotId || opts.spellRec.exchanged);
+  const key = spellKey(s.name, s.tradition);
+  const exchangeBtn = canExchange
+    ? `<button class="btn btn-small" data-exchange-open="${esc(key)}" title="Exchange this spell for another (rank ≤ Power)">⇄</button>`
+    : "";
   return `
   <div class="spell-card ${opts.learned ? "learned" : ""}">
     <div class="spell-head">
@@ -138,9 +176,10 @@ export function spellCard(s, opts = {}) {
     </div>
     ${meta.length ? `<div class="spell-meta">${meta.join(" &nbsp;·&nbsp; ")}</div>` : ""}
     <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
+    ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
     <div class="spell-foot">
       ${castingsRow || `<span class="small dim">${s.source === "core" ? "Core" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty"} · p.${s.page}</span>`}
-      ${attackBtn}
+      <span>${exchangeBtn} ${attackBtn}</span>
     </div>
   </div>`;
 }
@@ -175,6 +214,19 @@ function wire(el, char, computed) {
     const desc = e.target.closest(".spell-desc");
     if (desc) { desc.classList.toggle("clamp"); return; }
 
+    const exOpen = e.target.closest("[data-exchange-open]");
+    if (exOpen) {
+      exchangeOpen = exchangeOpen === exOpen.dataset.exchangeOpen ? null : exOpen.dataset.exchangeOpen;
+      renderSpells(el);
+      return;
+    }
+    const unex = e.target.closest("[data-unexchange]");
+    if (unex) {
+      c.exchanges.splice(parseInt(unex.dataset.unexchange, 10), 1);
+      save(); renderSpells(el);
+      return;
+    }
+
     const pip = e.target.closest("[data-pip]");
     if (pip) {
       const key = pip.dataset.pip;
@@ -200,4 +252,19 @@ function wire(el, char, computed) {
       }
     }
   });
+
+  el.addEventListener("change", (e) => {
+    const c = active();
+    if (!c) return;
+    const gain = e.target.closest("[data-exchange-gain]");
+    if (gain && e.target.value) {
+      const [dropName, dropTrad] = gain.dataset.exchangeGain.split("|");
+      const [gainName, gainTrad] = e.target.value.split("|");
+      c.exchanges = c.exchanges || [];
+      c.exchanges.push({ drop: { name: dropName, tradition: dropTrad }, gain: { name: gainName, tradition: gainTrad } });
+      exchangeOpen = null;
+      save(); renderSpells(el);
+    }
+  });
 }
+

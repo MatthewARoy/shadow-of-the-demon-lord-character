@@ -66,14 +66,19 @@ function identityPanel(char, computed) {
         <select id="b-size">${c.size_options.map((s) => `<option ${s === (char.sizeChoice || c.size) ? "selected" : ""}>${s}</option>`).join("")}</select>
       </div>` : ""}
       ${c.no_attribute_swap ? "" : `
-      <div class="field" style="flex:1 1 260px">
-        <label>attribute adjustment (once: +1 / −1)</label>
-        <div class="chip-row" id="b-swap">
-          <button class="chip ${!char.attributeSwap ? "on" : ""}" data-swap="">none</button>
-          ${ATTRS.flatMap((to) => ATTRS.filter((f) => f !== to).map((from) =>
-            `<button class="chip ${char.attributeSwap?.from === from && char.attributeSwap?.to === to ? "on" : ""}"
-              data-swap="${from}:${to}">+${to.slice(0, 3)} −${from.slice(0, 3)}</button>`)).join("")}
-        </div>
+      <div class="field">
+        <label>adjust: +1 to</label>
+        <select id="b-swap-up">
+          <option value="">—</option>
+          ${ATTRS.map((a) => `<option value="${a}" ${char.attributeSwap?.to === a ? "selected" : ""}>${a}</option>`).join("")}
+        </select>
+      </div>
+      <div class="field">
+        <label>and −1 from</label>
+        <select id="b-swap-down">
+          <option value="">—</option>
+          ${ATTRS.filter((a) => a !== char.attributeSwap?.to).map((a) => `<option value="${a}" ${char.attributeSwap?.from === a ? "selected" : ""}>${a}</option>`).join("")}
+        </select>
       </div>`}
     </div>
     <p class="small dim">${esc(c.languages_professions)}</p>
@@ -251,19 +256,38 @@ function hasCantrip(computed, level) {
 function magicPickCard(char, computed, p) {
   const traditions = legalTraditionsFor(char, computed, p);
   const spells = legalSpellsFor(char, computed, p);
+  const cantrip = hasCantrip(computed, p.level);
   return card(p,
-    `<select data-magic-pick>
-      <option value="">choose…</option>
-      <optgroup label="— Discover a tradition (grants rank 0 spell${hasCantrip(computed, p.level) ? " ×2 via Cantrip" : ""}) —">
+    `<div class="field" style="flex:1 1 180px">
+      <label>discover a tradition${cantrip ? " (rank 0 spell ×2 via Cantrip)" : " (grants a rank 0 spell)"}</label>
+      <select data-magic-discover>
+        <option value="">—</option>
         ${traditions.map((t) => {
           const trad = rules.traditionByName.get(t);
-          return `<option value="d:${esc(t)}">Discover ${esc(t)}${trad?.dark ? " ☠" : ""}</option>`;
+          return `<option value="${esc(t)}">${esc(t)}${trad?.dark ? " ☠" : ""} (${trad?.attribute})</option>`;
         }).join("")}
-      </optgroup>
-      <optgroup label="— Learn a spell (rank ≤ ${p.maxRank}) —">
-        ${spells.map((s) => `<option value="l:${esc(s.name)}|${esc(s.tradition)}">${esc(s.name)} · ${esc(s.tradition)} ${s.rank}</option>`).join("")}
-      </optgroup>
-    </select>`);
+      </select>
+    </div>
+    <div class="field" style="flex:1 1 200px">
+      <label>…or go deeper: learn a spell (rank ≤ ${p.maxRank})</label>
+      <select data-magic-learn ${spells.length ? "" : "disabled"}>
+        <option value="">—</option>
+        ${spellOptionGroups(spells)}
+      </select>
+    </div>`);
+}
+
+// Group spell options by tradition so long lists stay scannable.
+function spellOptionGroups(spells) {
+  const byTrad = new Map();
+  for (const s of spells) {
+    if (!byTrad.has(s.tradition)) byTrad.set(s.tradition, []);
+    byTrad.get(s.tradition).push(s);
+  }
+  return [...byTrad.keys()].sort().map((t) =>
+    `<optgroup label="${esc(t)}">
+      ${byTrad.get(t).map((s) => `<option value="${esc(s.name)}|${esc(s.tradition)}">${esc(s.name)} · rank ${s.rank} ${s.type === "Attack" ? "⚔" : "✧"}</option>`).join("")}
+    </optgroup>`).join("");
 }
 
 function learnCard(char, computed, p) {
@@ -272,7 +296,7 @@ function learnCard(char, computed, p) {
     spells.length
       ? `<select data-learn>
           <option value="">choose a spell…</option>
-          ${spells.map((s) => `<option value="${esc(s.name)}|${esc(s.tradition)}">${esc(s.name)} · ${esc(s.tradition)} ${s.rank} ${s.type === "Attack" ? "⚔" : "✧"}</option>`).join("")}
+          ${spellOptionGroups(spells)}
         </select>`
       : `<p class="desc blood">No legal spells — discover a tradition first${p.traditions ? ` (requires ${p.traditions.join(" or ")})` : ""}.</p>`,
     p.maxRank === 0 ? `<p class="desc dim small">Rank 0 spells of ${esc((p.traditions || []).join(", "))}.</p>` : "");
@@ -346,12 +370,16 @@ function wireControls(el) {
   el.querySelector("#b-mode-master")?.addEventListener("click", () => { char.masterMode = "master"; rerender(); });
   el.querySelector("#b-mode-second")?.addEventListener("click", () => { char.masterMode = "second-expert"; rerender(); });
 
-  el.querySelector("#b-swap")?.addEventListener("click", (e) => {
-    const v = e.target.closest("[data-swap]")?.dataset.swap;
-    if (v === undefined) return;
-    char.attributeSwap = v ? { from: v.split(":")[0], to: v.split(":")[1] } : null;
+  const updateSwap = () => {
+    const to = el.querySelector("#b-swap-up")?.value || "";
+    const from = el.querySelector("#b-swap-down")?.value || "";
+    // Keep partial picks so choosing one dropdown survives the re-render;
+    // the engine only applies the swap once both sides are set.
+    char.attributeSwap = to || from ? { from, to } : null;
     rerender();
-  });
+  };
+  el.querySelector("#b-swap-up")?.addEventListener("change", updateSwap);
+  el.querySelector("#b-swap-down")?.addEventListener("change", updateSwap);
 }
 
 // Delegated listeners live on the persistent panel element — attach exactly
@@ -410,13 +438,12 @@ function wireDelegated(el) {
     if (e.target.matches("[data-discover]") && e.target.value) {
       char.decisions[id] = { kind: "discover", tradition: e.target.value };
       save(); renderBuilder(el);
-    } else if (e.target.matches("[data-magic-pick]") && e.target.value) {
-      const v = e.target.value;
-      if (v.startsWith("d:")) char.decisions[id] = { kind: "discover", tradition: v.slice(2) };
-      else {
-        const [name, tradition] = v.slice(2).split("|");
-        char.decisions[id] = { kind: "learn", spell: name, tradition };
-      }
+    } else if (e.target.matches("[data-magic-discover]") && e.target.value) {
+      char.decisions[id] = { kind: "discover", tradition: e.target.value };
+      save(); renderBuilder(el);
+    } else if (e.target.matches("[data-magic-learn]") && e.target.value) {
+      const [name, tradition] = e.target.value.split("|");
+      char.decisions[id] = { kind: "learn", spell: name, tradition };
       save(); renderBuilder(el);
     } else if (e.target.matches("[data-learn]") && e.target.value) {
       const [name, tradition] = e.target.value.split("|");
