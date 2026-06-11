@@ -2,3 +2,5 @@
 node_modules/
 .DS_Store
 .gemini/
+scripts/cache/
+__pycache__/

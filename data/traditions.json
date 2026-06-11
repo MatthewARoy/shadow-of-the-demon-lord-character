@@ -1,0 +1,296 @@
+[
+ {
+  "name": "Air",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "One of the four fundamental forces of creation, Air magic, sometimes called Aeromancy, has practitioners the world over. Most who come to the art do so by seeking out congress with the mad genies and listening for the words of power that will give them command over the winds and sky. Other users of Air magic might learn the techniques from a magical institution such as the Tower Arcane, or could have been born with the ability—a gift that awaits discovery from within. Air magic does not yield its secrets easily; one must struggle to harness its power, to form the mystic words and phrases that produce the desired effects. In time, students of Aeromancy learn to manipulate the air around them, assailing their foes with punishing blasts of wind or soaring to the clouds themselves."
+ },
+ {
+  "name": "Alchemy",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "occult",
+  "description": "One of the most scholarly of the magical traditions, Alchemy stands at the crossroads of science and the supernatural. The methods at the heart of the tradition become known through observation and experimentation, all in an effort to understand the fundamental properties of things. Not content with the limitations of science for affecting change in the world, the pioneers of the tradition supplemented their work by harnessing magical energies to expedite their experiments and to produce unusual concoctions. All the early alchemical work sought to achieve major objectives: turn base metals into gold, restore life to the dead, and tease out the secrets of immortality. Over the centuries, students of the tradition have enjoyed some success in achieving their objectives, and the most powerful spells can do all these things and more. Such knowledge has come with a terrible price, however. Many alchemists poisoned themselves by handling toxic chemicals, created abominations that eventually tore them to pieces, or simply vanished in explosions when they used the wrong formula. The inherent secrecy in the art of alchemy combined with its well-deserved reputation for being a dangerous tradition to explore have made alchemists unpopular throughout the Empire, even though well-moneyed nobles enlist their services from time to time. Thus, most alchemists have withdrawn from the Empire to settle in Lij, where knowledge is valued and people have the freedom to push against the boundaries of what magic can do."
+ },
+ {
+  "name": "Alteration",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "A versatile tradition of magic, Alteration spells work by augmenting a target’s existing capabilities or by bestowing onto it new ones. Such spells can confer the ability to breathe underwater, to climb like a cockroach up any surface, or make incredible leaps. Although sometimes overlooked by those seeking flashier spells, Alteration magic provides its users with a large toolset from which they can draw to handle a variety of challenges and complications. Studying Alteration magic can sometimes have unintended consequences. Legends tell of masters of this art who reflect the nature of the magic in their form and appearance, as blemishes fade or distinguishing features vanish. Others display minor physical changes, shifting skin coloration or facial features so that they no longer resemble who they once were, or more profound effects such as the appearance of scales, fur, and other visible features."
+ },
+ {
+  "name": "Arcana",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "One of magic’s purest forms, the Arcana tradition offers reliable attacks, means for unraveling enemy spells, and a bevy of protective effects to help casters stay alive."
+ },
+ {
+  "name": "Battle",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "Battle magic stands apart from other traditions in that it exists solely to enhance the user’s ability to fight and, ultimately, triumph over one’s enemies. Nearly all battle spells involve seizing magical energy and channeling it to empower strikes and amplify the caster’s fighting techniques to surpass what should be possible with a weapon. Battle Madness Students of Battle magic sometimes find their tempers fraying and their patience weakening until they seem on the cusp of losing control. When the trauma becomes too great and the stress of their situation fractures their minds to the point of breaking, they become afflicted by battle madness. If you know at least one spell from the Battle tradition, whenever you would go mad, you instead suffer battle madness. While gripped by battle madness, you must take a fast turn each round and use an action to attack the creature nearest to you, making a charge if necessary. You regard all creatures as your foes, and you must determine your target at random if you have more than one potential target for your attack. At the end of each round, roll a d6. On a roll of 5 or higher, your battle madness ends and you reduce your Insanity total as normal."
+ },
+ {
+  "name": "Celestial",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "Celestial magic is often associated with the Cult of the New God, as the devotees of the faith use it to eradicate the scourge of undead and demons from the world, but the tradition has much older roots. The faeries saw Celestial magic as sacred, the pure distillation of magical energy that could chase away the dark and burn those hateful things that live in it. Certain faerie lords and ladies made a study of the tradition and put it to good use in the devastating wars against the trolls. In addition to followers of the New God, many wizards, sorcerers, and other users of magic wield Celestial power. Some discover the tradition after searching the stars for their secrets, while others master the arcane formulas to turn magical energy into luminous energy."
+ },
+ {
+  "name": "Chaos",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "One of the most dangerous traditions of magic, the powers of Chaos appeal to those in the grip of madness, nihilists who care nothing for the consequences of their actions, and the thoroughly wicked who delight in wreaking havoc. For all its perils, the tradition offers insights into the workings of magic by allowing casters to apprehend the energy in its purest, rawest form, and thus some come to this tradition in search of that greater understanding. Chaos magic works by releasing a burst of raw, magical energy and then using a loose framework to direct the energy into some useful or semi-useful effect. Although it can be unpredictable, Chaos magic’s appeal comes from how it can boost other magic and thus surpass what would normally be possible. No wonder, then, that the tradition is favored by sorcerers. Chaos and Order Chaos and Order do not play well together. Chaos spells are never affected by effects created by Order spells, and vice versa. For example, if you cast the chaos shield spell, described here, in an area affected by a consistency spell (Demon Lord’s Companion 2, page 40), you would still roll the d6 after resolving the attack, ignoring the effect of the Order spell on the area."
+ },
+ {
+  "name": "Conjuration",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "Conjuration magic taps into the same creative forces that genies used in ancient times to fashion reality from unformed substance. In a small way, casters of Conjuration spells become as gods, able to create objects and creatures out of thin air. Although this tradition’s spells offer great versatility, the effects usually last for a short time, almost as if reality were fighting back against the spell’s creations. The oldest writings on the theories of Conjuration magic and the first attempts at mastering the form are contained in the vaults of the Tower Arcane. For this reason, the tradition is often thought to have originated with wizards and their ilk, though the techniques have found their way into other societies of magic users. Cultists, for example, might use Conjuration spells to show proof that their strange gods exist, while war casters use these spells to create a weapon in a pinch or bring reinforcements when the tide turns against them."
+ },
+ {
+  "name": "Curse",
+  "attribute": "Intellect",
+  "dark": true,
+  "source": "core",
+  "description": "The Curse tradition originated in ancient faerie magic that has since been corrupted. Though it is possible for some users of the tradition to use its spells for good, such as by punishing evildoers or meting out justice, most students of the tradition exult in the power it offers and the misery it creates. As a result, nearly all who deal in Curse magic are as vile as the spells themselves, outsiders living on the fringes of settlements or alone in the wilderness. Creatures cursed by Curse spells can remove the effect by using any method that would end a spell or magical effect. Also, a caster can always lift a curse that the caster placed on a creature he or she can see and that is within medium range by using an action to do so."
+ },
+ {
+  "name": "Death",
+  "attribute": "Will",
+  "dark": true,
+  "source": "occult",
+  "description": "The antithesis of Life magic, Death magic exists solely to end lives and send the souls to whatever fate awaits them in the afterlife. Most Death spells work by weakening the essential vitality that keeps a creature alive. Those who succumb to the magic find their life force ebbing, a chill spreading through their limbs, and a growing darkness around the periphery of their vision, until they collapse, their bodies reduced to crude meat. The magic leaves its mark on its victims, making them appear pale, drained, and withered. The avenues for discovering this tradition lead down shadowed roads that leave the souls of the students sullied with corruption as their mastery improves. The greatest repositories for the tradition are thought to lie in the black pyramids protruding from the shifting sands of the Desolation, though teachers can be found throughout the Nine Cities and in the Pirate Isles. The easiest and safest way to discover the tradition is to become an acolyte of Father Death. Devotees of the grim deity sometimes discover this tradition without risk to their souls."
+ },
+ {
+  "name": "Demonology",
+  "attribute": "Intellect",
+  "dark": true,
+  "source": "occult",
+  "description": "Although Forbidden magic is foul, to be sure, the Demonology tradition is downright dangerous— not just to the caster, but the whole world, since its spells punch holes in reality to apprehend power from the Void itself. Spells from this tradition are always perilous to cast and usually have consequences that last far beyond when the magic fades. Even devoted servants of the Demon Lord cast these spells with some trepidation, for they know that by doing so, they bring the world closer to its end. Dark Speech: Casting a Demonology spell without using Dark Speech to utter aloud its words of power is perilous by itself. If you cast a Demonology spell without speaking in Dark Speech, you gain 1 Insanity and take 1d6 damage. Blood Sacrifices: All Demonology spells require blood to be spilled by a sacrificial dagger for the magic to have any effect. Each spell description indicates the damage required to energize the spell and assumes you take the damage. You must take this damage, and you cannot reduce it. However, if you can reach a willing, defenseless, or unconscious creature when you cast a Demonology spell, you can deal the damage to that creature instead. That damage must be taken and cannot be reduced. Possession from Corruption: Demonology magic invites attention from the Void. Each time you learn a Demonology spell, you are at risk of having a demon enter your body. The Game Master secretly rolls a d6. If the number is lower than your Corruption score, you become possessed by a demon. While you are possessed, each point of Corruption you gain during play grants you 1 boon on attack rolls and challenge rolls until you complete a rest. In addition, whenever you go mad, you gain 1 Corruption and become compelled by the demon instead of suffering the normal effects of madness. At the end of each round, roll a d6. On a 6, you remove the compelled affliction."
+ },
+ {
+  "name": "Destruction",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "Destruction is a tradition of dark repute, one feared and used with great caution. Unlike other traditions whose spells cause harm to their casters, no wards have proven effective at keeping the self-harm at bay, and thus people who study the tradition call on its power only in times of great need. Damage taken from casting a Destruction spell cannot be reduced by any means."
+ },
+ {
+  "name": "Divination",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "One of the oldest traditions known to mortals, practiced by both religious and secular folk, Divination spells use magic to reveal secrets, to anticipate the future and see into the past. Those affiliated with religions tend to believe that the answers to their questions come from their gods and the servants of those gods. Secular users of the tradition believe they are peering at the fabric of reality, examining patterns and probabilities to divine the most likely events that might or did transpire. Students of Divination magic sometimes find themselves afflicted with strange dreams, glimpses of things to come and events that have already transpired. Usually, these visions make no sense, but their significance is later revealed when the students cast their spells. Some diviners keep books in which they make extensive notes about the visions they experience."
+ },
+ {
+  "name": "Earth",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "Earth magic leaves an indelible mark on its users, causing people who study the tradition to increasingly appear to be made from the element they command. It’s believed that this transformation is a consequence of learning the secret names of earth, stone, sand, and similar materials—names that, when spoken aloud, allow a caster to shape those substances and produce them from nothing. Discovering the Earth tradition often results from communing with mad genies in places dominated by a form of earth, such as deep underground or in the depths of desert wastes. Genies impart their wisdom only with great reluctance, and thus many students make offerings of blood, jewels, and other treasures to entice the unruly entities into parting with the secret names they seek knowledge of."
+ },
+ {
+  "name": "Enchantment",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "Enchantment magic twists minds and emotions, making creatures behave in ways they otherwise would not. Most Enchantment spells imbue other creatures with feelings of goodwill and loyalty to the caster, making them amenable to the caster’s suggestions and commands. Others warp the mind, deceive the senses, or inspire dark emotions such as anguish, fury, and despair."
+ },
+ {
+  "name": "Fey",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "terrible",
+  "description": "The magic of the Fey tradition once belonged exclusively to the immortal faeries, but the secrets have slipped out and spread into the world, usually through the efforts of mischievous goblins. Many Fey spells manipulate their targets by twisting emotions and perceptions to lead others into danger. The more powerful spells of the tradition can summon faerie allies, reveal secrets, and imprison powerful enemies. Discovering the Fey tradition usually involves having some amount of interaction with a faerie. Goblins, imps, hags, and similar creatures might impart the secrets of the tradition to a worthy student. It might also be possible to discover the tradition by examining faerie writings or visiting places of great import to the fey folk. Iron Abhorrence You cannot cast Fey spells while you are in contact with iron or an alloy of iron. In addition, when you attack with a Fey spell, you make the attack roll with 1 bane if the target is wearing iron or an iron alloy, and the target makes any challenge roll to resist the attack with 1 boon."
+ },
+ {
+  "name": "Fire",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "Of all the elemental traditions, Fire magic holds the most appeal to those who would harness one of the fundamental forces of nature and use it for destructive ends. A tradition infamous for its ruinous power, Fire magic ignites flames and grants total mastery over their shape and form. Wherever users of Fire magic go, they leave ashes and cinders in their wake. Most users come by the secrets of Fire magic by learning the words of power from a genie. Such words might be picked out from the crackle of a flame or the roar of an inferno, or written in tongues of fire as they waver and dance. Other adherents, especially those coming to magic from formal institutions, might learn the essentials of the tradition from books and scrolls. A rare few display an innate ability to master fire, possibly as a result of some latent psychic talent. Fire Spells in Underwater Environments As one might expect, fire spells have limited effectiveness when used on targets under water or, if the caster is able to speak while underwater, when cast in such environments. The flames might cause water to steam or even boil, but unless the fire created has a persistent effect, targets immersed in liquid take half damage from Fire spells."
+ },
+ {
+  "name": "Forbidden",
+  "attribute": "Intellect",
+  "dark": true,
+  "source": "core",
+  "description": "Spells from the Forbidden tradition exist to make the world worse, to subject its targets to torments unspeakable, disgusting, and profoundly wrong. Consisting of spells conjured from the most unhinged minds and refined by the truly macabre, Forbidden magic offers dread power to those with the willingness to accept the ravages that its unholy knowledge can inflict on the body. Most people who discover the Forbidden tradition do so out of hatred, despair, or madness, falsely believing the secrets of the tradition will alleviate their suffering. Devils, in particular, love to share the Forbidden tradition with mortals, for no other strain of magic is more dependable when it comes to delivering the souls of its practitioners into their eager hands. Other practitioners might stumble across spells from the tradition in dark tomes filled with dreadful knowledge that no mortal was meant to learn. Dark Recovery: To regain expended castings of Forbidden spells you have learned, you must sacrifice a creature to the dark powers at some point after you complete a rest."
+ },
+ {
+  "name": "Illusion",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "Anything is possible with Illusion magic—or, rather, anything seems possible. A tradition steeped in artifice and subterfuge, Illusion spells fool the senses, causing creatures to see, hear, smell, taste, and feel things that aren’t real. The potency of Illusion magic is such that although it traffics in the unreal, people affected by the spells perceive the illusions as if they were real, often to their detriment. Some people deride students of the tradition, calling them fantasists, fakers, and swindlers, but few can help but marvel at the wonders they can create with a wave of the hand. Illusionists can create a monster from threads of magic or use those same spells to create walls of fire or steel-clad henchmen, or to conceal a yawning pit. They can alter the cut and color of their clothing with a gesture, or conceal the taste of poison that darkens the king’s cup. They create their own realities, and that’s just the way they like it. The Illusion tradition most likely has its origin with the faeries, since those immortals often make use of such spells to deceive and mislead their foes. Its utility and flexibility has caused it to spread across the continent, and magic-users of all walks and backgrounds benefit from discovering it and learning its spells."
+ },
+ {
+  "name": "Invocation",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "occult",
+  "description": "An ancient and rarely seen tradition, Invocation magic encompasses the art of calling forth the essence of a powerful being and temporarily binding it to the caster’s physical form. As a result of these bindings, the casters usually assume the physical qualities of the beings they call upon, often becoming strange and monstrous in appearance, and sometimes also in mind. The daemons bound by Invocation spells are not akin to the demons of the Void; they are echoes of significant people, gods, and monsters, all of whom have left an impression on the world. Typically, the more significant the impression, the more powerful the spell needed to capture the daemon’s essence. Invocation Talisman: To cast an Invocation spell, you must have a talisman associated with it. When you learn an Invocation spell, you also acquire one copy of the necessary talisman and the knowledge of how to create the device yourself. If you lose your talisman, you can make a new one. A talisman for a rank 0 spell costs 5 ss in special materials, and talismans for spells of a higher rank cost 1 gc per rank of the spell. Variant Rule: Talismans The normal rules for the Invocation tradition require a caster to possess the talisman associated with the spell in order to cast it. Although this helps to set the tradition apart from other kinds of magic, the talisman itself does nothing other than enable the casting of the spell, which might make it seem arbitrary. As a variant rule, you can make the talisman optional but give it a game benefit. The caster still receives a talisman upon learning a spell, but in this variant the caster can expend the talisman when the spell is cast. If the caster does this, the talisman disappears and he or she makes the roll to resist gaining Insanity from the spell’s Aftereffect with 1 boon. The caster can replace an expended talisman for the normal cost, or simply cast the spell without possessing or using a talisman whenever he or she desires. Growing Madness: Each time you learn an Invocation spell, you gain 1 Insanity. You cannot remove Insanity gained in this way. If your Insanity total from learning spells ever equals your Will score, you become permanently defenseless. One Invocation at a Time: If you cast an Invocation spell while you’re under the effect of another Invocation spell, the older effect ends immediately."
+ },
+ {
+  "name": "Life",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "The Life tradition stands in opposition to death. Students of Life magic work to alleviate suffering, heal the injured, and fight disease, poison, and the other afflictions that trouble the living. As one might expect, the tradition is popular among the servants of the gods, especially those devoted to the New God or the Old Faith. Such magic allows the representatives of the divine to bring aid and comfort to those in need and to demonstrate the mercy of their patrons. Although Life magic has a strong presence among the faithful, practitioners can be found the world over in the ranks of those who pledge their lives to protecting the innocent and fighting back against the horrors that would snuff out life or make it not worth living. The most famous organization to advance the cause is, of course, the House of Healing. That institution has trained many a person, from devoted priests to secular agents, in the healing arts."
+ },
+ {
+  "name": "Madness",
+  "attribute": "Intellect",
+  "dark": true,
+  "source": "occult",
+  "description": "The Madness tradition taps into forces beyond mortal reckoning, reaching into dimensions and realities beyond those that are known and drawing forth energy to spawn horrors that bend and break the mind. Spells from this tradition tax the minds of those who know them, and students find that the longer they look into the secrets of the tradition, the weaker their grip on reality becomes. Most who pursue this dark art eventually lose their minds, and thus a great many of the fearless pioneers who assembled the spells and secrets of the tradition have been sealed away in vaults to keep them from harm and protect others from the unspeakable secrets they reveal. Yet no secret stays hidden forever. Mind Fractures: Each time you learn a spell from the Madness tradition, you must make a Will challenge roll with a number of banes equal to the number of Madness spells you have learned so far. On a failure, you gain 1 Insanity. Mitigating the Madness The Madness tradition forces users to peer into dark places and grapple with mind-blasting truths. As a result, most students of Madness wrestle with their sanity, always struggling to cling to whatever shreds of it they have left until their minds finally buckle and break. Afterward, as users grow more and more accustomed to the horrors of their art, they learn to keep their wits about them even while gibbering, frothing, and clawing at their own bodies. Whenever you roll a d6 to end the effects of a particular form of madness, you add a bonus to the roll equal to the rank of the highest-rank Madness spell you have learned."
+ },
+ {
+  "name": "Metal",
+  "attribute": "Will",
+  "dark": false,
+  "source": "occult",
+  "description": "The dwarfs, gnomes, and molekin, when they were driven out of their subterranean homes, brought with them to the surface world the secrets of Metal magic. This tradition offers spells and knowledge useful for combating mortal enemies, whether they be wicked faeries or foul demons loosed from the Void. Although the tradition has been slow to spread, students of the forge, warriors, and others who depend on metal weapons and armor have benefited greatly from expanding their study into this “new” area of magical power. Although Metal overlaps somewhat with the Earth tradition, they differ in focus. Where Earth magic compels the soil and sand to obey the magic, Metal creates metallic objects out of unrefined ore dragged up from the depths. Metal magic shapes iron and similar materials into useful forms or destroys the material, rendering it useless. Although the two traditions have important differences, many users of Earth magic also dabble in Metal magic, and vice versa."
+ },
+ {
+  "name": "Nature",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "Among the oldest of the traditions known to the people of Urth, Nature magic originated with the faeries, who first learned to use the magic that envelops reality to change the natural world to suit their needs. These faeries passed on their lore to the First People, and the knowledge would serve as the basis of the Old Faith. Druids believe that because Nature magic derives from the world itself, calling on its power requires one to be in good standing with the world spirit. They preach that callous disregard for the natural order of things, wanton destruction of the natural world, and other acts contrary to the preservation of nature can lead to angering the world spirit, which might result in the world withholding its power from those perpetrators or even some worse fate. Of course, these cautionary sermons might be nothing more than stories to ensure that students of the tradition cleave to the principles of the Old Faith. Other practitioners of the tradition face no repercussions when they use Nature spells for dubious or malevolent ends. The elder druids know, however, that their time is coming, and that their magic will fail them when it is needed most."
+ },
+ {
+  "name": "Necromancy",
+  "attribute": "Intellect",
+  "dark": true,
+  "source": "core",
+  "description": "The tradition of Necromancy was established for the purpose of subverting the cycle of birth, death, and rebirth to enable mortals to extend their existence beyond their normal life span—in direct defiance of the will of Father Death. The original makers of this magic sought the secrets of longevity and wanted to safeguard their sense of selves from the ennui and dissolution experienced in the Underworld. It was their efforts at teasing out the secrets of life and death that introduced the undead to the world. Many Necromancy spells awaken corpses and bind them to the will of their makers so they become as slaves. Students of the tradition tend to surround themselves with unliving servants and lie low in dark, gloomy places where they have easy access to the bodies and body parts they need to conduct their foul experiments. Control Limits: Many Necromancy spells enable you to control undead by causing them to become compelled when you create them. The maximum number of undead you can have compelled with Necromancy spells is equal to your Power score. If you create a new undead that exceeds your limit, you remove the compelled affliction from the undead you have controlled for the longest time. Blood Magic Tombs of the Desolation introduced Blood as a minor tradition. If you have discovered the Necromancy tradition, you count as if you had discovered the Blood tradition for the purpose of learning new spells. Creating Undead From animated corpses to grave thralls, nearly all undead exist because a necromancer somewhere discovered the means of creating them. One could conclude that there exists a Necromancy spell for almost every undead creature and that could be the case in your games. Although some such spells already exist, as noted in the Spell Index, creating spells for all the undead would be an endless process, since new forms of undead appear all the time. You can, with the help of your GM, create certain spells you want to add to the game by using the following guidelines. The Undead Creation table gives the minimum rank a spell must be for it to create an undead creature of a particular Difficulty. Because Difficulty is a flexible concept, geared more toward expressing how a creature interacts with player characters, the GM might decide that some undead require spells of higher rank than the table indicates, if spells for creating those creatures even exist at all. The table also shows you how many creatures the created undead counts as for the purpose of how many undead you can control. Undead Creation Difficulty Minimum Spell Rank Counts as 1 creature 1 or 2"
+ },
+ {
+  "name": "Order",
+  "attribute": "Will",
+  "dark": false,
+  "source": "occult",
+  "description": "When the genies took substance from the Divine and used it to shape reality, they used words of power to give form to the formless. The Order tradition traces its origin to these ancient words of power and makes use of them to strengthen or restore the bindings that hold reality together. Many Order spells serve to rid randomness and chaos from the world, so that certain actions produce expected outcomes, and to chase off any of the uncertainty that comes from unforeseen circumstances. Other Order spells allow the caster to impose his or her will on the world, reshaping the environment or restricting creatures’ movements and behaviors. Some of the most powerful forms of Order magic can drag substances and creatures forth to be subject to the caster’s will. Order and Chaos Order and Chaos do not play well together. Order spells are never affected by effects created by Chaos spells, and vice versa. For example, a creature under the effects of the imposed predictability spell (see Demon Lord’s Companion 2) who is also under the effect of the chaos boon spell could not alter the outcome of the chaos die granted by the later spell."
+ },
+ {
+  "name": "Primal",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "Believed to have been revealed to mortals by the faerie folk they first encountered, Primal magic taps into the beast within all living things, drawing forth one’s innate wildness to grant strength and durability in the face of adversity. Primal spells can call animals from nature and recruit them to service, or can impart bestial traits to their casters and those they touch, helping the recipients become fearless and more powerful. Primal magic has many practitioners among those who practice the Old Faith, especially those who feel an affinity for the Horned Lord. Students of this tradition tend to wear their magical knowledge in the flesh. Many are wild, hairy, vicious, and filthy from running naked through the wilderness. Others, having studied the tradition, manifest peculiar changes, their eyes shifting color to match those found in animals, nails lengthening into crooked claws, or hair becoming a thick mane that hangs down past their shoulders."
+ },
+ {
+  "name": "Protection",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "One of the most widely practiced forms of magic, the Protection tradition serves the interests of those who need to safeguard places, people, and objects of import. Protection magic is commonly wielded by those of a secular bent, but anyone who relies on magical power is likely to find a use for the spells of this tradition because of the safety and security they provide."
+ },
+ {
+  "name": "Rune",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "The use of Rune magic normally requires the caster to inscribe a symbol on a surface, whereupon the act of drawing channels the magic through the caster’s implement and binds it to the rune. The magic from the rune permeates the object on which it is drawn, sometimes conferring magical properties on it or creating distortions in the area around it. Most Rune spells involve the act of writing or divining the meaning from writing. Students of Rune magic often carry quills and pots of ink, so they can always inscribe a rune when needed. Often, their quills serve as their implements, enabling them to properly channel their power into the spells they cast. Other casters, especially those favoring combat-oriented runes, might use their weapons or even their armor as their implements. Some masters of rune magic discover faint writing appearing just under their skin. The writing is in a familiar script, but the meaning is never clear and resists translation. Persistent Rune In Pursuit of Power, a supplement from the Paths of Power series, presents a collection of talents that magicians can choose in place of the talents gained from the path. To make the most use of the Rune tradition, consider swapping out the Cantrip talent for the Rune Focus talent, which is described here. Rune Focus (Cantrip) You learn one rank 0 Rune spell and gain the Persistent Rune talent. Persistent Rune When you cast a Rune spell that has a duration of 1 minute, you can use a triggered action to extend the duration to 10 minutes. You can use this talent a number of times equal to 1 + your Power score, regaining expended uses when you complete a rest."
+ },
+ {
+  "name": "Shadow",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "Shadow magic offers its users control over darkness, allowing them to shape shadows, create darkness, and banish the light from the world. The reputation of the tradition is sullied by its darkest practitioners—many magicians consider Shadow a dangerous tradition to study, regarding it as a stepping stone toward the darker arts. Even as gloomy and unnerving as its spells can be, Shadow magic lacks the intrinsic evil of such traditions as Necromancy or Curse. Its spells can be a boon to anyone who wants to avoid attention or move safely through dark places."
+ },
+ {
+  "name": "Song",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "Perhaps there is magic in music. Who hasn’t been moved by a beautiful melody or felt sorrow from hearing a mournful dirge? The Song tradition draws upon music’s innate power and weaves magic through each note played or sung, stirring the emotions in those who hear it. A tradition focused on sound in all its forms, much of its spells take the form of magical melodies that one can sing or play, enabling performers to produce magical effects through their performances. More powerful manifestations of Song magic go beyond these modest melodies, with many spells offerings ways to create and manipulate sound, from cacophonous blasts of sonic energy to droning monotones that put listeners into fugue states. Many users of Song magic discover the tradition by accident. After beginning life as performers, they find their songs and stories affecting listeners more strongly than they should be able to, evidence of the awakening magical ability coming to the fore through the user’s music. Others who would learn Song magic seek out apprenticeship with a bard, one of those legendary minstrels who have achieved mastery of the tradition."
+ },
+ {
+  "name": "Soul",
+  "attribute": "Will",
+  "dark": false,
+  "source": "occult",
+  "description": "Most living things have souls. From the beasts in the fields to the fish swimming in the ocean, as well as in people of nearly all kinds, the soul within the flesh defines the essential essence of the individual’s character and nature. Souls also bear a record of one’s mortal life—pristine and unsullied for those who walk in light and goodness, but blackened and filthy in those who embrace the darkness. A mortal creature’s soul survives death, descending into the Underworld or Hell for souls burdened by corruption, and in time returns to the world to inhabit a new body. For an immortal creature, death marks the end of existence. The soul lingers inside the flesh, dissipating as the body decays until that essence passes from the world altogether. Within the essential essence of souls lies power that few ever realize, let alone harness. By calling upon this force, one can surpass the limits of the body and perform astonishing acts that any would deem impossible. Before scholars codified the various ways one can use magic to harness the soul’s power, mastery of Soul magic was confined to the few mystics, madmen, and wisdoms who had, by one means or another, taken the first steps on the road to becoming something more. Now, the tradition encompasses those discoveries made by pioneers of the art and offers various ways its students might follow in their steps. Any magic capable of harvesting energy from one’s soul can put that soul into peril—and the destruction of even a single soul diminishes the world in an irreparable way, since all the souls currently in existence are all that will ever be. For this reason, masters of Soul magic never impart their knowledge of the tradition lightly. Souls or No Souls: Many Soul spells affect only creatures that have souls. Creatures that lack souls include demons, elementals, genies, some constructs, and some undead such as animated corpses, but not sentient undead such as barrow wights, boneguards, and the like. Transcendent Mind: Mastering Soul magic requires an ordered mind, one free from self-doubt, anxiety, or delusion. The more a student learns to call upon its power, the greater his or her ability to withstand the horrors of the world. Each time you learn a Soul spell, increase the maximum amount of Insanity you can gain by 1. For example, if you have a Will of 11 and you learn two Soul spells, your maximum Insanity becomes 13."
+ },
+ {
+  "name": "Spiritualism",
+  "attribute": "Will",
+  "dark": false,
+  "source": "occult",
+  "description": "The Spiritualism tradition finds its roots in the First People, who called forth the spirits of animals and of their ancestors to acquire their wisdom and their power. Although others, including mediums, seers, and necromancers, make use of this tradition, it remains most often found among the devotees of the Horned King and the shamans of the Woad tribes. Treating with the Underworld comes with a price. Students of the tradition find themselves beset by spectral voices, half-glimpsed faces and bodies, and other manifestations or suggestions of spiritual activity. Often, these minor spirits follow the caster with interest and sometimes make themselves known through faint knockings in the walls, temperature changes, and foul odors. Such events might convey a spirit’s displeasure, a warning, or a need to communicate."
+ },
+ {
+  "name": "Storm",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "With ties to Air and Water magic, the Storm tradition grants control over the weather such that users of these spells can call down rain, loose bolts of lightning, and unleash the most brutal storms imaginable to scour the landscape. Like other elemental traditions, most people come to Storm magic after having learned its secret name from a genie, perhaps heard in the midst of a raging hurricane or echoing in one’s ears after being struck by lightning. A few of its adherents discover the tradition through research and study, but they must have the strength of will to focus the magic and call forth the power of the storms."
+ },
+ {
+  "name": "Technomancy",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "Bridging the gap between magic and technology, Technomancy spells create all kinds of mechanical wonders by assembling devices from the scraps technomancers pick up along the way. Without magic, these bizarre devices could not function, but the infusion of unnatural power allows the most unhinged ideas of mad science to take a shape and assume a function."
+ },
+ {
+  "name": "Telekinesis",
+  "attribute": "Will",
+  "dark": false,
+  "source": "occult",
+  "description": "One of the few traditions that has almost universally arisen from natural talent rather than formal training, Telekinesis magic grants its user the ability to move and manipulate objects and creatures by thought alone. Whether crushing a foe in a mental grip or erecting an impassable barrier of telekinetic force, spells from this tradition allow the caster to create invisible force from the mind and use that force to change his or her environment. Telekinesis is a psychic tradition (Demon Lord’s Companion, page 33). When you discover it, you gain access to the Focus Mind talent. Focus Mind You can use an action to focus your mind. Make an Intellect or Will challenge roll. On a success, your mind becomes focused for 1 minute, or until you become dazed, stunned, or unconscious. While your mind is focused, you can cast any spell you have learned from a psychic tradition without needing to speak or wield an implement. In addition, when you cast psychic spells while your mind is focused, you can expend a second casting of the spell to cast it using a triggered action on your turn instead of using an action."
+ },
+ {
+  "name": "Telepathy",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "occult",
+  "description": "The mind’s potential has no limits. One must merely surmount the barriers of self-restraint, doubt, and fear in order to use one’s own thoughts to affect change in the world. The Telepathy tradition, like Telekinesis, most often attracts those who have some psychic ability, and the spells of the tradition represent the capabilities one acquires from apprehending the mind’s power. Telepathy is a psychic tradition (Demon Lord’s Companion, page 33). When you discover it, you gain access to the Focus Mind talent. Focus Mind You can use an action to focus your mind. Make an Intellect or Will challenge roll. On a success, your mind becomes focused for 1 minute, or until you become dazed, stunned, or unconscious. While your mind is focused, you can cast any spell you have learned from a psychic tradition without needing to speak or wield an implement. In addition, when you cast psychic spells while your mind is focused, you can expend a second casting of the spell to cast it using a Triggered action on your turn instead of using an action."
+ },
+ {
+  "name": "Teleportation",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "Reality has numerous gaps, soft places that make possible instant transport from one place to another. Teleportation magic finds these openings and stretches them wide enough to allow casters and other people to move through them. These gaps do have a perilous aspect, however, as evidenced by Teleportation spells that enable casters to manipulate them so as to separate limbs from bodies and even destroy objects in a similar fashion. For all its destructive potential, the Teleportation tradition is commonly learned by scholars of magic such as wizards, who use the spells primarily to expedite travel, to reach places ordinarily forbidden to them, and to slip away from danger unscathed."
+ },
+ {
+  "name": "Theurgy",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "A tradition born from the faith of believers, Theurgy magic captures the essence of the divine and uses it to work miracles in the world. Theurgy spells can bolster and aid others, filling them with the spirit of the divine so they can accomplish their objectives, and it can also smite the enemies of the gods, shattering their defenses with the full weight of divine displeasure."
+ },
+ {
+  "name": "Time",
+  "attribute": "Intellect",
+  "dark": false,
+  "source": "core",
+  "description": "The greatest practitioners of Time magic, called chronomancers, move between temporal moments to step back into the past or ahead into the future. The ability to move through time and manipulate its passage lures many would-be masters to pit their minds against the complexities of the Time tradition, but most of them find themselves unable to free their intellects from the shackles of mundanity— which is required to truly apprehend reality from the perspective that this tradition demands. Only those who are a little off-kilter and perhaps slightly deranged seem able to understand how to use magic as it applies to the fourth dimension. Time magic exacts a price from its practitioners. Anyone who would master this tradition must fray their own timeline so they can move more easily backward and forward through it. The result of this fraying sometimes causes casters to flicker in and out of view while they sleep or appear older or younger from one moment to the next."
+ },
+ {
+  "name": "Transformation",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "The magic of the Transformation tradition enables casters to change not only their outward appearance but their very nature. Transformation spells can turn the caster into a different kind of creature—perhaps a mouse or a ferocious lion, an eagle or a steed, or any number of other physical forms. The magic works by relaxing the form imposed on the caster’s substance so that the caster can flow from one shape into another and back again. Assuming Different Forms When you want to assume the form of a different creature by casting a Transformation spell, the following rules apply to you after you assume the new form. • Everything you are wearing or holding is subsumed into the new form. • You cannot speak unless the new form is capable of speaking. • You use the new form’s Strength, Agility, characteristics, traits, and talents in place of your own. You retain your normal Intellect and Will. • Any damage you had in your normal form does not apply to your new form. • You can use a triggered action on your turn to switch between any forms you are capable of assuming, including your normal form. • If you use an action to cast a spell that lets you assume a different form, you can also use one of the new form’s attack options upon assuming the new form. • If you would become incapacitated while in the new form, the spell ends, and any damage in excess of that form’s Health then applies to the Health score of your normal form, which might cause you to become incapacitated in your normal form."
+ },
+ {
+  "name": "Water",
+  "attribute": "Will",
+  "dark": false,
+  "source": "core",
+  "description": "Spells of the Water tradition grant command and control over liquids and ice, allowing users to blast enemies with jagged shards of ice or entrap foes in giant, undulating orbs of water. Water magic also has restorative qualities for easing suffering and repairing injuries, though not to the same extent as the assistance offered by Life magic. As with other elemental traditions, the surest path to discovering Water magic is to learn the secret name of water, usually from a genie or a similar being. A genie might reveal the word in the way sunlight dapples the water, or conceal the name in the laughter of a bubbling stream. The tradition is studied at most great institutions of magic, especially those near the coast, where plenty of material exists on which to practice the art."
+ }
+]

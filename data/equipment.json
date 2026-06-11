@@ -1,0 +1,1038 @@
+{
+ "weapons": [
+  {
+   "name": "Axe",
+   "category": "Basic Melee Weapons",
+   "damage": "1d6+1",
+   "hands": "One",
+   "properties": "",
+   "price": "1 ss",
+   "availability": "C"
+  },
+  {
+   "name": "Club",
+   "category": "Basic Melee Weapons",
+   "damage": "1d6",
+   "hands": "One",
+   "properties": "",
+   "price": "5 cp",
+   "availability": "C"
+  },
+  {
+   "name": "Dagger or knife",
+   "category": "Basic Melee Weapons",
+   "damage": "1d3",
+   "hands": "Off",
+   "properties": "Finesse, thrown, range (short)",
+   "price": "5 cp",
+   "availability": "C"
+  },
+  {
+   "name": "Dart",
+   "category": "Basic Melee Weapons",
+   "damage": "1",
+   "hands": "Off",
+   "properties": "Finesse, thrown, range (short)",
+   "price": "1 cp",
+   "availability": "C"
+  },
+  {
+   "name": "Hammer or hatchet",
+   "category": "Basic Melee Weapons",
+   "damage": "1d3",
+   "hands": "Off",
+   "properties": "Thrown, range (short)",
+   "price": "1 ss",
+   "availability": "C"
+  },
+  {
+   "name": "Javelin",
+   "category": "Basic Melee Weapons",
+   "damage": "1d3",
+   "hands": "One",
+   "properties": "Finesse, thrown, range (medium)",
+   "price": "1 ss",
+   "availability": "C"
+  },
+  {
+   "name": "Sickle or spear",
+   "category": "Basic Melee Weapons",
+   "damage": "1d6",
+   "hands": "One",
+   "properties": "Finesse",
+   "price": "1 ss",
+   "availability": "C"
+  },
+  {
+   "name": "Staff",
+   "category": "Basic Melee Weapons",
+   "damage": "1d6+1",
+   "hands": "Two",
+   "properties": "Finesse",
+   "price": "5 cp",
+   "availability": "C"
+  },
+  {
+   "name": "Unarmed strike",
+   "category": "Basic Melee Weapons",
+   "damage": "1",
+   "hands": "Off",
+   "properties": "Finesse",
+   "price": "—",
+   "availability": "—"
+  },
+  {
+   "name": "Blowgun",
+   "category": "Ranged Weapons",
+   "damage": "1d3",
+   "hands": "One",
+   "properties": "Range (medium), uses needles",
+   "price": "1 ss",
+   "availability": "U"
+  },
+  {
+   "name": "Bow",
+   "category": "Ranged Weapons",
+   "damage": "1d6",
+   "hands": "Two",
+   "properties": "Range (long), uses arrows",
+   "price": "5 ss",
+   "availability": "C"
+  },
+  {
+   "name": "Crossbow",
+   "category": "Ranged Weapons",
+   "damage": "2d6",
+   "hands": "Two",
+   "properties": "Range (long), reload, uses bolts",
+   "price": "1 gc",
+   "availability": "C"
+  },
+  {
+   "name": "Hand crossbow",
+   "category": "Ranged Weapons",
+   "damage": "1d6",
+   "hands": "Off",
+   "properties": "Range (short), reload, uses bolts",
+   "price": "2 gc",
+   "availability": "R"
+  },
+  {
+   "name": "Longbow",
+   "category": "Ranged Weapons",
+   "damage": "1d6+1",
+   "hands": "Two",
+   "properties": "Size 1, range (long), uses arrows",
+   "price": "1 gc",
+   "availability": "U",
+   "requirement": "Strength 9"
+  },
+  {
+   "name": "Pistol",
+   "category": "Ranged Weapons",
+   "damage": "2d6",
+   "hands": "Off",
+   "properties": "Misfire, range (medium), reload, uses bullets",
+   "price": "5 gc",
+   "availability": "E"
+  },
+  {
+   "name": "Rifle",
+   "category": "Ranged Weapons",
+   "damage": "3d6",
+   "hands": "Two",
+   "properties": "Misfire, range (long), reload, uses bullets",
+   "price": "10 gc",
+   "availability": "E"
+  },
+  {
+   "name": "Sling",
+   "category": "Ranged Weapons",
+   "damage": "1d3",
+   "hands": "Off",
+   "properties": "Range (medium), uses stones",
+   "price": "5 cp",
+   "availability": "C"
+  },
+  {
+   "name": "Small shield",
+   "category": "Shields",
+   "damage": "1",
+   "hands": "Off",
+   "properties": "Defensive +1",
+   "price": "5 cp",
+   "availability": "C",
+   "requirement": "Strength 9"
+  },
+  {
+   "name": "Large shield",
+   "category": "Shields",
+   "damage": "1d3",
+   "hands": "Off",
+   "properties": "Size 1, Defensive +2",
+   "price": "1 ss",
+   "availability": "C",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Battleaxe, flail, morning star, pick, or sword",
+   "category": "Military Melee Weapons",
+   "damage": "1d6+2",
+   "hands": "One",
+   "properties": "",
+   "price": "5 ss",
+   "availability": "U",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Glaive, halberd, or poleaxe",
+   "category": "Military Melee Weapons",
+   "damage": "1d6+2",
+   "hands": "Two",
+   "properties": "Reach + 1",
+   "price": "1 gc",
+   "availability": "U",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Lance",
+   "category": "Military Melee Weapons",
+   "damage": "1d6+1",
+   "hands": "Two",
+   "properties": "One hand while mounted, reach + 2",
+   "price": "5 ss",
+   "availability": "U",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Mace",
+   "category": "Military Melee Weapons",
+   "damage": "1d6",
+   "hands": "Off",
+   "properties": "",
+   "price": "5 ss",
+   "availability": "C",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Bastard sword or warhammer",
+   "category": "Military Melee Weapons",
+   "damage": "2d6",
+   "hands": "Two",
+   "properties": "Cumbersome",
+   "price": "1 gc",
+   "availability": "R",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Pike",
+   "category": "Military Melee Weapons",
+   "damage": "1d6",
+   "hands": "Two",
+   "properties": "Size 1, reach + 2",
+   "price": "5 ss",
+   "availability": "U",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Spear",
+   "category": "Military Melee Weapons",
+   "damage": "1d6",
+   "hands": "One",
+   "properties": "Finesse, thrown, range (short)",
+   "price": "1 ss",
+   "availability": "C",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Trident",
+   "category": "Military Melee Weapons",
+   "damage": "1d6",
+   "hands": "One",
+   "properties": "Thrown, range (short)",
+   "price": "5 ss",
+   "availability": "U",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Chain, cutlass, long knife, scourge, or small sword",
+   "category": "Swift Melee Weapons",
+   "damage": "1d6",
+   "hands": "Off",
+   "properties": "Finesse",
+   "price": "5 ss",
+   "availability": "U",
+   "requirement": "Strength or Agility 11"
+  },
+  {
+   "name": "Rapier, saber, or scimitar",
+   "category": "Swift Melee Weapons",
+   "damage": "1d6+1",
+   "hands": "One",
+   "properties": "Finesse",
+   "price": "1 gc",
+   "availability": "U",
+   "requirement": "Strength or Agility 11"
+  },
+  {
+   "name": "Whip",
+   "category": "Swift Melee Weapons",
+   "damage": "1d3",
+   "hands": "Off",
+   "properties": "Finesse, reach + 1",
+   "price": "5 ss",
+   "availability": "U",
+   "requirement": "Strength or Agility 11"
+  },
+  {
+   "name": "Bastard sword or warhammer",
+   "category": "Heavy Melee Weapons",
+   "damage": "2d6",
+   "hands": "One",
+   "properties": "Cumbersome",
+   "price": "1 gc",
+   "availability": "R",
+   "requirement": "Strength 13"
+  },
+  {
+   "name": "Greataxe, greatsword or maul",
+   "category": "Heavy Melee Weapons",
+   "damage": "3d6",
+   "hands": "Two",
+   "properties": "Cumbersome",
+   "price": "2 gc",
+   "availability": "R",
+   "requirement": "Strength 13"
+  }
+ ],
+ "armor": [
+  {
+   "name": "Clothing",
+   "type": "Clothing",
+   "defense": "Agility",
+   "price": "Varies",
+   "availability": "C"
+  },
+  {
+   "name": "Soft Leather",
+   "type": "Clothing",
+   "defense": "Agility+1",
+   "price": "2 ss",
+   "availability": "C"
+  },
+  {
+   "name": "Hard Leather",
+   "type": "Light Armor",
+   "defense": "Agility+2",
+   "price": "5 ss",
+   "availability": "C",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Brigandine",
+   "type": "Light Armor",
+   "defense": "13",
+   "price": "5 ss",
+   "availability": "C",
+   "requirement": "Strength 11"
+  },
+  {
+   "name": "Mail",
+   "type": "Medium Armor",
+   "defense": "15",
+   "price": "1 gc",
+   "availability": "U",
+   "requirement": "Strength 13"
+  },
+  {
+   "name": "Scale",
+   "type": "Medium Armor",
+   "defense": "16",
+   "price": "2 gc",
+   "availability": "U",
+   "requirement": "Strength 13"
+  },
+  {
+   "name": "Plate and Mail",
+   "type": "Heavy Armor",
+   "defense": "17",
+   "price": "5 gc",
+   "availability": "R",
+   "requirement": "Strength 15"
+  },
+  {
+   "name": "Full Plate",
+   "type": "Heavy Armor",
+   "defense": "18",
+   "price": "25 gc",
+   "availability": "E",
+   "requirement": "Strength 15"
+  }
+ ],
+ "gear": [
+  {
+   "name": "Belt",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Cap",
+   "price": "5 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Cap, fine",
+   "price": "1 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Cloak",
+   "price": "5 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Clothing, basic",
+   "price": "5 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Clothing, cold weather",
+   "price": "8 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Clothing, courtier’s",
+   "price": "5 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Clothing, entertainer’s",
+   "price": "7 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Clothing, noble’s",
+   "price": "5 gc",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Clothing, royal",
+   "price": "25 gc",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Coat, winter",
+   "price": "1 ss",
+   "availability": "Common"
+  },
+  {
+   "name": "Costume, elaborate",
+   "price": "5 ss+",
+   "availability": "Rare"
+  },
+  {
+   "name": "Costume, simple",
+   "price": "5 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Dress, basic",
+   "price": "5 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Dress, fancy",
+   "price": "5 ss+",
+   "availability": "Rare"
+  },
+  {
+   "name": "Gloves, fine",
+   "price": "1 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Gloves, work",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Handbag",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Hat, lady’s",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Hose, silk",
+   "price": "8 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Jacket, light",
+   "price": "5 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Jewelry",
+   "price": "1 ss+",
+   "availability": "Rare to exotic"
+  },
+  {
+   "name": "Shirt",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Shirt, fine",
+   "price": "1 ss+",
+   "availability": "Rare"
+  },
+  {
+   "name": "Shoes, fine",
+   "price": "2 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Shoes, leather",
+   "price": "2 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Spectacles",
+   "price": "5 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Suit, secondhand",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Suit, tailored",
+   "price": "4 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Topcoat",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Top hat",
+   "price": "8 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Trousers, basic",
+   "price": "2 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Trousers, fine",
+   "price": "2 ss+",
+   "availability": "Rare"
+  },
+  {
+   "name": "Uniform",
+   "price": "5 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Vest",
+   "price": "3 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Vestments",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Work coveralls",
+   "price": "3 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Adventurer’s pack",
+   "price": "1 ss",
+   "availability": "Common"
+  },
+  {
+   "name": "Backpack",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Barrel",
+   "price": "2 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Bedroll",
+   "price": "2 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Blanket",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Box, metal",
+   "price": "5 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Candle",
+   "price": "1 bit",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Cards, deck",
+   "price": "3 bits",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Case, scroll",
+   "price": "2 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Chest, wooden",
+   "price": "4 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Cigars, box",
+   "price": "1 cp+",
+   "availability": "Common"
+  },
+  {
+   "name": "Cutlery set",
+   "price": "5 bits",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Dice",
+   "price": "2 bits",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Flask",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Grapnel",
+   "price": "1 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Hammer and 10 pitons",
+   "price": "1 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Lantern",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Lantern, spotlight",
+   "price": "5 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Manacles",
+   "price": "5 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Map",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Matches",
+   "price": "1 cp",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Mirror, small silver",
+   "price": "1 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Oil, flask",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Pipe",
+   "price": "2 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Pipe tobacco",
+   "price": "1 cp+",
+   "availability": "Common"
+  },
+  {
+   "name": "Pole, 10-foot",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Pouch",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Pot, cooking",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Quiver or case for bolts",
+   "price": "5 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Rations (1 week)",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Rope, coil (20 yards)",
+   "price": "1 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Sack",
+   "price": "5 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Spike, large iron",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Tent, 2-person",
+   "price": "5 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Tinderbox",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Torch",
+   "price": "5 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Waterskin",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Alchemist’s kit",
+   "price": "5 ss",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Block and tackle",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Book, printed or tome",
+   "price": "1 gc",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Crowbar",
+   "price": "2 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Crystal ball",
+   "price": "1 gc",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Disguise kit (6 uses)",
+   "price": "5 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Garrote",
+   "price": "1 bit",
+   "availability": "Common"
+  },
+  {
+   "name": "Healer’s kit (6 uses)",
+   "price": "5 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Holly and mistletoe",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Holy symbol",
+   "price": "5 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Holy water",
+   "price": "3 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Hourglass",
+   "price": "1 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Implement of magic",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Knuckledusters",
+   "price": "1 ss",
+   "availability": "Common"
+  },
+  {
+   "name": "Lock picks",
+   "price": "1 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Magnifying glass",
+   "price": "1 ss",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Musical instrument",
+   "price": "1 ss+",
+   "availability": "Rare"
+  },
+  {
+   "name": "Navigator’s instruments",
+   "price": "2 ss",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Net",
+   "price": "5 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Poison",
+   "price": "5 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Spyglass",
+   "price": "100 gc",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Tool kit",
+   "price": "1 ss",
+   "availability": "Common"
+  },
+  {
+   "name": "Torturer’s tools",
+   "price": "2 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Writing kit",
+   "price": "1 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Accommodations",
+   "price": "1 cp+/night",
+   "availability": "Common"
+  },
+  {
+   "name": "Ale, pint",
+   "price": "2 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Beer, pint",
+   "price": "1 bit",
+   "availability": "Common"
+  },
+  {
+   "name": "Feed",
+   "price": "4 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Mead, pint",
+   "price": "4 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Wine, common",
+   "price": "4 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Wine, good",
+   "price": "2d6 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Wine, fine",
+   "price": "2d6 ss",
+   "availability": "Rare"
+  },
+  {
+   "name": "Meal, light",
+   "price": "3 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Meal, common",
+   "price": "5 bits",
+   "availability": "Common"
+  },
+  {
+   "name": "Meal, fine",
+   "price": "5 cp",
+   "availability": "Rare"
+  },
+  {
+   "name": "Opium",
+   "price": "5 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Rotgut",
+   "price": "2 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Spirits, common",
+   "price": "5 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Spirits, fine",
+   "price": "1 ss",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Bit and bridle",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Dog (small animal)",
+   "price": "5 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Harness",
+   "price": "1 cp",
+   "availability": "Common"
+  },
+  {
+   "name": "Hawk (tiny animal, flier)",
+   "price": "1 ss",
+   "availability": "Exotic"
+  },
+  {
+   "name": "Horse, mule, or pony",
+   "price": "2 ss",
+   "availability": "Common"
+  },
+  {
+   "name": "Saddle",
+   "price": "5 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Saddle bag",
+   "price": "2 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Saddle blanket",
+   "price": "1 cp",
+   "availability": "Uncommon"
+  },
+  {
+   "name": "Warhorse",
+   "price": "10 gc",
+   "availability": "Rare"
+  },
+  {
+   "name": "Potion of Alertness",
+   "price": "5 ss",
+   "availability": "Rare",
+   "category": "Potion"
+  },
+  {
+   "name": "Potion of Antitoxin",
+   "price": "5 ss",
+   "availability": "Rare",
+   "category": "Potion"
+  },
+  {
+   "name": "Potion of Fire Resistance",
+   "price": "5 ss",
+   "availability": "Rare",
+   "category": "Potion"
+  },
+  {
+   "name": "Potion of Fleeting Youth",
+   "price": "1 gc",
+   "availability": "Exotic",
+   "category": "Potion"
+  },
+  {
+   "name": "Potion of Growth",
+   "price": "5 ss",
+   "availability": "Exotic",
+   "category": "Potion"
+  },
+  {
+   "name": "Potion of Healing",
+   "price": "2 ss",
+   "availability": "Uncommon",
+   "category": "Potion"
+  },
+  {
+   "name": "Potion of Invisibility",
+   "price": "1 gc",
+   "availability": "Exotic",
+   "category": "Potion"
+  },
+  {
+   "name": "Potion of Panacea",
+   "price": "10 gc",
+   "availability": "Exotic",
+   "category": "Potion"
+  },
+  {
+   "name": "Potion of Seeing",
+   "price": "5 ss",
+   "availability": "Exotic",
+   "category": "Potion"
+  }
+ ]
+}

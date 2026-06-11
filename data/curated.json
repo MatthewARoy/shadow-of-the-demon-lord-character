@@ -1,0 +1,573 @@
+{
+  "version": "2.0.0",
+  "comment": "Hand-curated SotDL core rules data, verified against the rulebook text. Effects use the V2 choice-engine vocabulary; see docs for the schema.",
+
+  "castings": [
+    [1],
+    [2, 1],
+    [3, 2, 1],
+    [4, 2, 1, 1],
+    [5, 2, 2, 1, 1],
+    [6, 3, 2, 2, 1, 1],
+    [7, 3, 2, 2, 2, 1, 1],
+    [8, 3, 2, 2, 2, 1, 1, 1],
+    [9, 3, 3, 2, 2, 2, 1, 1, 1],
+    [10, 3, 3, 3, 2, 2, 1, 1, 1, 1],
+    [11, 3, 3, 3, 3, 2, 1, 1, 1, 1, 1]
+  ],
+
+  "advancement": [
+    { "level": 1, "gain": "novice", "note": "Choose a novice path and gain its level 1 benefits." },
+    { "level": 2, "gain": "novice", "note": "Novice path level 2 benefits." },
+    { "level": 3, "gain": "expert", "note": "Choose an expert path and gain its level 3 benefits." },
+    { "level": 4, "gain": "ancestry", "note": "Ancestry level 4 benefits." },
+    { "level": 5, "gain": "novice", "note": "Novice path level 5 benefits." },
+    { "level": 6, "gain": "expert", "note": "Expert path level 6 benefits." },
+    { "level": 7, "gain": "master", "note": "Choose a master path (or a second expert path) and gain its benefits." },
+    { "level": 8, "gain": "novice", "note": "Novice path level 8 benefits." },
+    { "level": 9, "gain": "expert", "note": "Expert path level 9 benefits." },
+    { "level": 10, "gain": "master", "note": "Master path level 10 benefits (or second expert path level 6 benefits)." }
+  ],
+
+  "second_expert_path": {
+    "note": "At level 7 you may choose a second expert path instead of a master path. Level 7: gain the second path's level 3 benefits. Level 9: gain the level 9 benefits from either of your expert paths. Level 10: gain the second path's level 6 benefits.",
+    "duplicate_talent_options": [
+      "Increase one attribute of your choice by 1 and add one profession",
+      "Discover a tradition",
+      "Learn one spell"
+    ]
+  },
+
+  "attribute_rules": {
+    "creation_swap": "You can increase one attribute score by 1 by decreasing another by 1. You can make this adjustment only once.",
+    "modifier": "Attribute modifier equals score minus 10."
+  },
+
+  "magic_rules": {
+    "discovery_grants_rank0": true,
+    "learn_max_rank": "power",
+    "dark_discovery_corruption": 1,
+    "dark_learn_note": "Each time you learn a dark magic spell, roll a d6; if the roll is less than the total number of dark magic spells you know, gain 1 Corruption. Each dark magic spell grants 1 boon on rolls to avoid Insanity.",
+    "exchange_note": "Whenever you learn a new spell, you may also exchange a previously learned spell for another of the same or lower rank."
+  },
+
+  "languages": [
+    "Common Tongue", "Dark Speech", "Dwarfish", "Elvish", "High Archaic", "Trollish", "Secret Language"
+  ],
+
+  "professions": {
+    "academic": ["Architecture", "Astrology", "Engineering", "Etiquette & customs", "Folklore", "Geography", "Heraldry", "History", "Law", "Literature", "Magic", "Medicine", "Navigation", "Occult", "Philosophy", "Politics", "Nature", "Religion", "Science", "War"],
+    "common": ["Animal trainer", "Apothecary or healer", "Artisan", "Artist", "Boatman or ferryman", "Butcher", "Cook", "Drover or herder", "Entertainer", "Farmer", "Fisher or whaler", "Groom", "Laborer", "Merchant", "Miner", "Musician", "Sailor", "Servant or valet", "Shopkeeper", "Teamster"],
+    "criminal": ["Agitator", "Beggar", "Burglar", "Carouser or rake", "Charlatan", "Cultist", "Fence", "Forger", "Gambler", "Grave robber", "Informant", "Murderer", "Pickpocket", "Pirate", "Prostitute", "Rebel", "Saboteur", "Spy", "Thug", "Urchin"],
+    "martial": ["Constable", "Detective", "Guard", "Jailer", "Officer", "Marine", "Mercenary", "Militia member", "Patroller", "Peasant conscript", "Slave", "Soldier", "Squire", "Torturer"],
+    "religious": ["Devotee", "Evangelist", "Fanatic", "Heretic", "Initiate of the Old Faith", "Minister", "Acolyte of the New God", "Inquisitor's Henchman", "Pilgrim", "Street Preacher", "Temple Ward"],
+    "wilderness": ["Bandit", "Barbarian", "Exile", "Gatherer", "Guide", "Hermit", "Hunter", "Nomad", "Pioneer", "Poacher", "Prospector", "Outlaw", "Refugee", "Spelunker", "Tracker", "Trapper", "Woodcutter"]
+  },
+
+  "wealth": [
+    { "roll": "3-4", "lifestyle": "Destitute", "equipment": "A club or sling with 20 stones, rags, and a pouch containing 1d6 bits." },
+    { "roll": "5-8", "lifestyle": "Poor", "equipment": "A staff or club or sling with 20 stones, patched basic clothing, a sack, bread, a waterskin, a tinderbox, a candle, and a pouch containing 2d6 bits." },
+    { "roll": "9-13", "lifestyle": "Getting By", "equipment": "A dagger, a staff or club or sling with 20 stones, basic clothing, a backpack, a week of rations, a waterskin, a tinderbox, 2 torches, and a pouch containing 1d6 cp." },
+    { "roll": "14-16", "lifestyle": "Comfortable", "equipment": "A dagger, a staff or club or sling with 20 stones, fine clothing, a backpack, a cloak, a week of rations, a waterskin, a coil of rope, a tinderbox, 2 torches, a healing potion, and a pouch containing 2d6 cp. Plus one of: small shield; rank 0 incantation scroll; healer's kit, tool kit, or writing kit." },
+    { "roll": "17", "lifestyle": "Wealthy", "equipment": "A dagger, courtier's clothing, a cloak, a backpack, a week of rations, a waterskin, a coil of rope, a tinderbox, a lantern, 2 flasks of oil, a healing potion, and a pouch containing 1d6 ss. Plus one of: shield; rank 0 incantation scroll; healer's kit, tool kit, or writing kit." },
+    { "roll": "18", "lifestyle": "Rich", "equipment": "A dagger, noble's clothing, a cloak, a week of rations, a waterskin, a healing potion, and a pouch containing 2d6 ss. You also have a personal servant, a guard, and three horses with saddles." }
+  ],
+
+  "religions": {
+    "Cult of the New God": ["Celestial", "Life", "Theurgy"],
+    "Dwarfen Ancestors": ["Battle", "Earth", "Life"],
+    "Old Faith": ["Life", "Nature", "Primal"],
+    "Witchcraft": ["Curse", "Enchantment", "Life"]
+  },
+
+  "ancestries": [
+    {
+      "name": "Human",
+      "source": "core",
+      "description": "Determination, resourcefulness, and sheer numbers helped humanity become the most widespread people in the world.",
+      "creation": {
+        "attributes": { "strength": 10, "agility": 10, "intellect": 10, "will": 10 },
+        "attribute_choice": { "count": 1, "amount": 1 },
+        "perception_bonus": 0,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "size_options": ["1/2", "1"],
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue, and you can either speak one additional language or add a random profession.",
+        "traits": []
+      },
+      "level4": {
+        "characteristics": { "health": 5 },
+        "choice": {
+          "name": "Level 4 Human Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Determined", "effects": [{ "type": "talent", "name": "Determined", "text": "When you roll a 1 on the die from a boon, you can reroll the die and choose to use the new number." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Changeling",
+      "source": "core",
+      "description": "Faerie doubles left in place of stolen mortal children, changelings can steal the appearance of others.",
+      "creation": {
+        "attributes": { "strength": 9, "agility": 10, "intellect": 10, "will": 10 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue.",
+        "traits": [
+          { "name": "Immune", "text": "Damage from disease; charmed, diseased." },
+          { "name": "Iron Vulnerability", "text": "You are impaired while in contact with iron." },
+          { "name": "Shadowsight", "text": "You see into areas obscured by shadows as if those areas were lit." },
+          { "name": "Steal Identity", "text": "You can use an action to alter your appearance to match that of a target living creature you can see within short range. The target must be Size 1 or 1/2 and have a humanoid shape of flesh and blood. The effect lasts until you use this talent again. If you become incapacitated or touch an object made from iron, you immediately revert to your normal appearance." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 4 },
+        "choice": {
+          "name": "Level 4 Changeling Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Doppelganger's Advantage", "effects": [{ "type": "talent", "name": "Doppelganger's Advantage", "text": "You can use a triggered action on your turn to use Steal Identity. As well, when you steal a creature's identity, your attack rolls against that creature are made with 1 boon while you have that creature's appearance." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Clockwork",
+      "source": "core",
+      "description": "Mechanical bodies housing souls pulled from the Underworld, wound by keys and built for purposes long forgotten.",
+      "creation": {
+        "attributes": { "strength": 9, "agility": 8, "intellect": 9, "will": 9 },
+        "perception_bonus": 0,
+        "defense": 13,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 8,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue.",
+        "traits": [
+          { "name": "Immune", "text": "Damage from disease and poison; asleep, diseased, fatigued, poisoned." },
+          { "name": "Key", "text": "You have a key somewhere on your body that you cannot reach. If the key is turning, you count as a creature; if it stops, you count as an object. Your key stops turning when you become incapacitated or at the end of any round in which you got a 0 or less on an attack or challenge roll. Another creature can use an action to wind your key to start it turning again." },
+          { "name": "Mechanical Body", "text": "You do not eat, drink, breathe, or sleep, and you are unaffected by hot and cold environments." },
+          { "name": "Repairing Damage", "text": "You only heal damage from talents, spells, or repairs; resting alone does not heal you. A creature can use an action with a tool kit to repair you, healing damage equal to your healing rate." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 5 },
+        "choice": {
+          "name": "Level 4 Clockwork Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Grind the Gears", "effects": [{ "type": "talent", "name": "Grind the Gears", "text": "You can increase the number of actions you can use on your turn by one. When you finish your turn, roll a d6. If you roll an odd number, you become an object at the end of the round." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Dwarf",
+      "source": "core",
+      "description": "Proud, stubborn folk of the mountain halls, renowned for craft, grudges, and iron constitutions.",
+      "creation": {
+        "attributes": { "strength": 10, "agility": 9, "intellect": 10, "will": 10 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 4,
+        "healing_divisor": 4,
+        "size": "1/2",
+        "speed": 8,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue, and you speak, read, and write Dwarfish.",
+        "traits": [
+          { "name": "Darksight", "text": "You can see in areas obscured by shadows or darkness within medium range as if those areas were lit. Beyond this distance, you treat darkness as shadows and shadows as lit." },
+          { "name": "Hated Creature", "text": "Choose a hated creature type. Your hatred grants 1 boon on attack rolls made against creatures you hate." },
+          { "name": "Robust Constitution", "text": "You take half damage from poison. You make challenge rolls with 1 boon to avoid or remove the poisoned affliction." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 6 },
+        "choice": {
+          "name": "Level 4 Dwarf Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Shake it Off", "effects": [{ "type": "talent", "name": "Shake it Off", "text": "You can use an action to heal damage equal to your healing rate and remove one of the following afflictions: fatigued, impaired, or poisoned. Once you use this talent, you cannot use it again until after you complete a rest." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Goblin",
+      "source": "core",
+      "description": "Exiled faeries living on civilization's fringes — ugly, irreverent, and surprisingly hard to kill.",
+      "creation": {
+        "attributes": { "strength": 8, "agility": 12, "intellect": 10, "will": 9 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1/2",
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue and Elvish.",
+        "traits": [
+          { "name": "Immune", "text": "Damage from disease; charmed, diseased." },
+          { "name": "Iron Vulnerability", "text": "You are impaired while you are in contact with iron." },
+          { "name": "Shadowsight", "text": "You see in areas obscured by shadows as if those areas were lit." },
+          { "name": "Sneaky", "text": "When you roll to become hidden or move silently, you make the Agility challenge roll with 1 boon." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 4 },
+        "choice": {
+          "name": "Level 4 Goblin Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Spring Away", "effects": [{ "type": "talent", "name": "Spring Away", "text": "When a creature you can see gets a failure on an attack roll against your Defense or Agility, you can use a triggered action to move up to half your Speed without triggering free attacks." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Orc",
+      "source": "core",
+      "description": "Bred for war by the Empire's sorcerers and newly freed from bondage, orcs carry rage and corruption in their blood.",
+      "creation": {
+        "attributes": { "strength": 11, "agility": 10, "intellect": 9, "will": 9 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 12,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 1,
+        "languages_professions": "You speak the Common Tongue and Dark Speech.",
+        "traits": [
+          { "name": "Shadowsight", "text": "You see in areas obscured by shadows as if those areas were lit." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 6 },
+        "choice": {
+          "name": "Level 4 Orc Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Rising Fury", "effects": [{ "type": "talent", "name": "Rising Fury", "text": "When you take damage, you make your next attack roll before the end of the next round with 1 boon." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Elf",
+      "source": "terrible",
+      "description": "Ancient, beautiful, and perilous faeries of the hidden kingdoms, untouched by age but vulnerable to iron.",
+      "creation": {
+        "attributes": { "strength": 9, "agility": 10, "intellect": 10, "will": 9 },
+        "attribute_choice": { "count": 2, "amount": 1 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 12,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue and High Archaic. You also speak, read, and write Elvish.",
+        "traits": [
+          { "name": "Immune", "text": "Damage from disease; charmed, diseased." },
+          { "name": "Shadowsight", "text": "You see into areas obscured by shadows as if those areas were lit." },
+          { "name": "Spell Defense", "text": "You take half damage from spells and you make any challenge roll to resist a spell with 1 boon. A creature attacking you with a spell makes the attack roll with 1 bane." },
+          { "name": "Bewitching Presence", "text": "You make attack rolls in social situations with 1 boon. Lost while in contact with iron and for 1 minute afterward." },
+          { "name": "Iron Vulnerability", "text": "You are impaired while in contact with iron. Contact also suppresses Spell Defense for the duration and 1 minute afterward." }
+        ]
+      },
+      "level4": {
+        "characteristics": {},
+        "choice": {
+          "name": "Level 4 Elf Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Health +4", "effects": [{ "type": "characteristics", "health": 4 }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Hobgoblin",
+      "source": "terrible",
+      "description": "Grim faerie soldiers shaped by endless war, prone to terrifying battle frenzies.",
+      "creation": {
+        "attributes": { "strength": 11, "agility": 10, "intellect": 9, "will": 11 },
+        "no_attribute_swap": true,
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 10,
+        "power": 0,
+        "insanity": { "roll": "1d3" },
+        "corruption": 0,
+        "languages_professions": "You speak Elvish, and you have the soldier profession.",
+        "traits": [
+          { "name": "Immune", "text": "Damage from disease; charmed, diseased." },
+          { "name": "Iron Vulnerability", "text": "You are impaired while you are in contact with iron." },
+          { "name": "Shadowsight", "text": "You see into areas obscured by shadows as if those areas were lit." },
+          { "name": "Frenzy", "text": "In combat, roll a d6 at the end of each round if you are neither incapacitated nor subject to this trait. On a 6, you become frenzied for 1 minute: immune to frightened, your attacks deal 1d6 extra damage, and all creatures that attack you make their attack rolls with 1 boon." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 5 },
+        "choice": {
+          "name": "Level 4 Hobgoblin Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Control Frenzy", "effects": [{ "type": "talent", "name": "Control Frenzy", "text": "While you are subject to your Frenzy trait, you can use a triggered action on your turn to make a Will challenge roll. On a success, the Frenzy effect ends and you lose that trait for 1 minute." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pixie",
+      "source": "terrible",
+      "description": "Tiny, glowing tricksters, invisible to most adults and barely there at all.",
+      "creation": {
+        "attributes": { "strength": 5, "agility": 12, "intellect": 10, "will": 8 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1/8",
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "flags": ["half_path_health"],
+        "languages_professions": "You speak Elvish.",
+        "traits": [
+          { "name": "Immune", "text": "Damage from disease; charmed, diseased." },
+          { "name": "Flutter", "text": "You can move by flying, but if you fly higher than 5 yards above the ground, you fall." },
+          { "name": "Naturally Invisible", "text": "You are invisible to most creatures aside from other pixies, animals, demons, faeries, monsters, children, creatures with Intellect 7 or lower, and creatures with 5+ Insanity. Lost from noon to 1pm, midnight to 1am, at dawn and dusk, and for 1 hour after contact with iron." },
+          { "name": "Glow", "text": "You can use an action to become visible and illuminate the area within 2 yards of you, until you use an action to become invisible once more." },
+          { "name": "Shadowsight", "text": "You see into areas obscured by shadows as if those areas were lit." },
+          { "name": "Iron Vulnerability", "text": "You are impaired while in contact with iron." },
+          { "name": "Wee", "text": "Your weapon attacks deal half damage. Whenever you increase Health from a path, you increase your Health score by half the given amount." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 2 },
+        "choice": {
+          "name": "Level 4 Pixie Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Dilate", "effects": [{ "type": "talent", "name": "Dilate", "text": "You can use an action to increase your Size to 1/2 until you use an action to return to normal. While dilated you lose Flutter, Naturally Invisible, and Glow, but gain +5 Strength, a Health bonus equal to 2 per group level, and your weapon attacks deal normal damage." }] }
+          ]
+        }
+      }
+    }
+  ],
+
+  "novice_paths": [
+    {
+      "name": "Warrior",
+      "description": "Trained in the use of weapons and armor, warriors depend on toughness and combat skills to keep them alive. You need a high Strength or Agility to excel as a warrior.",
+      "key_attributes": ["Strength", "Agility"],
+      "levels": {
+        "1": {
+          "effects": [
+            { "type": "attribute_choice", "count": 2, "amount": 1 },
+            { "type": "characteristics", "health": 5 },
+            { "type": "lang_prof", "text": "You add one common, martial, or wilderness profession.", "count": 1, "suggest": ["common", "martial", "wilderness"] },
+            { "type": "talent", "name": "Catch Your Breath", "text": "You can use an action or a triggered action on your turn to heal damage equal to your healing rate. Once you use this talent, you cannot use it again until after you complete a rest." },
+            { "type": "talent", "name": "Weapon Training", "text": "When attacking with a weapon, you make the attack roll with 1 boon." }
+          ]
+        },
+        "2": {
+          "effects": [
+            { "type": "characteristics", "health": 5 },
+            { "type": "talent", "name": "Combat Prowess", "text": "Your attacks with weapons deal 1d6 extra damage." },
+            { "type": "talent", "name": "Forceful Strike", "text": "When the total of your attack roll is 20 or higher and exceeds the target number by at least 5, the attack deals 1d6 extra damage." }
+          ]
+        },
+        "5": {
+          "effects": [
+            { "type": "characteristics", "health": 5, "defense": 1 },
+            { "type": "talent", "name": "Combat Expertise", "text": "When you use an action to attack with a weapon, you either deal 1d6 extra damage with that attack or make another attack against a different target at any point before the end of your turn." }
+          ]
+        },
+        "8": {
+          "effects": [
+            { "type": "characteristics", "health": 5 },
+            { "type": "talent", "name": "Grit", "text": "You can use Catch Your Breath twice between each rest." },
+            { "type": "talent", "name": "Combat Mastery", "text": "When you use an action to attack with a weapon, you either deal 1d6 extra damage or make another attack against a different target. Cumulative with Combat Expertise; each attack needs a different target." }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Rogue",
+      "description": "Rogues always have a trick up their sleeves, relying on ingenuity, cunning, and good fortune. If you have a high Agility or Intellect, you will do well as a rogue.",
+      "key_attributes": ["Agility", "Intellect"],
+      "levels": {
+        "1": {
+          "effects": [
+            { "type": "attribute_choice", "count": 2, "amount": 1 },
+            { "type": "characteristics", "health": 3 },
+            { "type": "lang_prof", "text": "You either add one language to the list of languages you can speak or add one common, criminal, or wilderness profession.", "count": 1, "suggest": ["common", "criminal", "wilderness"] },
+            { "type": "talent", "name": "Nimble Recovery", "text": "You can use an action to heal damage equal to your healing rate and then move up to half your Speed without triggering free attacks. Once you use this talent, you cannot use it again until after you complete a rest." },
+            { "type": "talent", "name": "Trickery", "text": "Once per round, you can make an attack roll or challenge roll with 1 boon. If you attack with 1 boon from this talent, your attack deals 1d6 extra damage." }
+          ]
+        },
+        "2": {
+          "effects": [
+            { "type": "characteristics", "health": 3 },
+            { "type": "talent", "name": "Exploit Opportunity", "text": "Once per round, when the total of your attack roll is 20 or higher and exceeds the target number by at least 5, you can take another turn at any point before the end of the round." },
+            { "type": "talent_choice", "pool": "roguery", "count": 1 }
+          ]
+        },
+        "5": {
+          "effects": [
+            { "type": "characteristics", "health": 3 },
+            { "type": "talent", "name": "Dirty Tricks", "text": "Your attacks deal 1d6 extra damage when you make an attack roll with 1 boon." },
+            { "type": "talent", "name": "Rogue Cunning", "text": "You can use Trickery twice per round." }
+          ]
+        },
+        "8": {
+          "effects": [
+            { "type": "characteristics", "health": 3 },
+            { "type": "talent_choice", "pool": "roguery", "count": 1 }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Priest",
+      "description": "Priests derive magical power from pledging service to a supernatural being, working magic through rite and prayer. A high Strength and Will help you excel as a priest.",
+      "key_attributes": ["Strength", "Will"],
+      "requires_religion": true,
+      "levels": {
+        "1": {
+          "effects": [
+            { "type": "attribute_choice", "count": 2, "amount": 1 },
+            { "type": "characteristics", "health": 4, "power": 1 },
+            { "type": "lang_prof", "text": "You either read one language you can speak or add a language to the list of languages you can speak. Also, add one religious profession.", "count": 1, "suggest": ["religious"] },
+            { "type": "discover_tradition", "constraint": "religion" },
+            { "type": "magic_picks", "count": 2, "options": ["discover", "learn"], "constraint": "religion" },
+            { "type": "talent", "name": "Shared Recovery", "text": "You can use an action to heal damage equal to your healing rate. Then choose one creature other than you within short range; the target also heals damage equal to its healing rate. Once you use this talent, you cannot use it again until after you complete a rest." }
+          ]
+        },
+        "2": {
+          "effects": [
+            { "type": "characteristics", "health": 4 },
+            { "type": "magic_picks", "count": 2, "options": ["discover", "learn"], "constraint": "religion" },
+            { "type": "talent", "name": "Prayer", "text": "When a creature within short range of you makes an attack roll or challenge roll, you can use a triggered action to grant 1 boon on the triggering roll." }
+          ]
+        },
+        "5": {
+          "effects": [
+            { "type": "characteristics", "health": 4, "power": 1 },
+            { "type": "learn_spell", "count": 1 },
+            { "type": "talent", "name": "Divine Strike", "text": "When you use Prayer to grant a creature 1 boon on an attack roll, the creature's attacks with weapons deal 1d6 extra damage." }
+          ]
+        },
+        "8": {
+          "effects": [
+            { "type": "characteristics", "health": 4 },
+            { "type": "learn_spell", "count": 1 },
+            { "type": "talent", "name": "Inspiring Prayer", "text": "When you use Prayer on a creature other than yourself, you make attack rolls and challenge rolls with 1 boon for 1 round." },
+            { "type": "talent", "name": "Improved Shared Recovery", "text": "You can use Shared Recovery twice." }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Magician",
+      "description": "Magicians strive to reach the heights of magical power, freely choosing their traditions to display a wide range of capabilities. You need a high Intellect or Will to excel as a magician.",
+      "key_attributes": ["Intellect", "Will"],
+      "levels": {
+        "1": {
+          "effects": [
+            { "type": "attribute_choice", "count": 2, "amount": 1 },
+            { "type": "characteristics", "health": 2, "power": 1 },
+            { "type": "lang_prof", "text": "You read all the languages you know how to speak. In addition, you add one academic area of knowledge of your choice.", "count": 1, "suggest": ["academic"] },
+            { "type": "discover_tradition" },
+            { "type": "magic_picks", "count": 3, "options": ["discover", "learn"] },
+            { "type": "hook_cantrip", "name": "Cantrip", "text": "Whenever you discover a tradition, you learn an extra rank 0 spell from that tradition." },
+            { "type": "grant_spell", "spell": "Sense Magic" }
+          ]
+        },
+        "2": {
+          "effects": [
+            { "type": "characteristics", "health": 2 },
+            { "type": "magic_picks", "count": 2, "options": ["discover", "learn"] },
+            { "type": "talent", "name": "Spell Recovery", "text": "You can use an action to heal damage equal to your healing rate and regain one casting you expended of a spell you learned. Once you use this talent, you cannot use it again until after you complete a rest." }
+          ]
+        },
+        "5": {
+          "effects": [
+            { "type": "characteristics", "health": 2, "power": 1 },
+            { "type": "magic_picks", "count": 1, "options": ["discover", "learn"] },
+            { "type": "talent", "name": "Counterspell", "text": "When a creature you can see attacks you with a spell, you can use a triggered action to counter it. The triggering creature makes the attack roll with 1 bane and you make the challenge roll to resist it with 1 boon." }
+          ]
+        },
+        "8": {
+          "effects": [
+            { "type": "characteristics", "health": 2 },
+            { "type": "magic_picks", "count": 1, "options": ["discover", "learn"] },
+            { "type": "talent", "name": "Improved Spell Recovery", "text": "When you use Spell Recovery, you regain two castings instead of one." }
+          ]
+        }
+      }
+    }
+  ],
+
+  "roguery_talents": [
+    { "name": "Backstab", "text": "Once per round, when you attack with a basic or swift weapon and you make the attack roll with at least 1 boon, the attack deals 1d6 extra damage. Second pick: the extra damage increases to 2d6.", "effects": [] },
+    { "name": "Magic", "text": "Increase your Power by 1 and discover one tradition. Then make two choices: discover another tradition or learn one spell. Second pick: increase your Power by 1 and discover a tradition or learn one spell.", "effects": [
+      { "type": "characteristics", "power": 1 },
+      { "type": "discover_tradition" },
+      { "type": "magic_picks", "count": 2, "options": ["discover", "learn"] }
+    ], "second_pick_effects": [
+      { "type": "characteristics", "power": 1 },
+      { "type": "magic_picks", "count": 1, "options": ["discover", "learn"] }
+    ] },
+    { "name": "Skirmish", "text": "You can use an action to move up to half your Speed without triggering free attacks. During the move, you can make an attack with 1 bane that deals 1d6 extra damage. Second pick: move up to your full Speed instead.", "effects": [] },
+    { "name": "Subterfuge", "text": "You can use an action to make an Intellect attack roll against the Intellect of one creature within short range that can hear and understand you. On a success, the target is charmed for 1 round or until you attack it. On a failure, it becomes immune until it completes a rest. Second pick: roll with 1 boon and affect creatures that don't understand you.", "effects": [] },
+    { "name": "Threats", "text": "You can use an action or triggered action to make an Intellect attack roll against the Will of one creature within short range that can hear and see you. On a success, the target is frightened for 1 round. On a failure, it becomes immune until it completes a rest. Second pick: your weapon attacks deal 1d6 extra damage to targets frightened this way.", "effects": [] }
+  ],
+
+  "path_overrides": {
+    "Troll Hunter": {
+      "levels": {
+        "10": {
+          "talents": [
+            { "name": "Giant Evasion", "text": "Creatures of Size 2 or larger make attack rolls against you with 1 bane." },
+            { "name": "Troll Slayer", "text": "Your attacks against Size 2 and larger creatures deal 1d6 extra damage. Against trolls, your attacks deal 2d6 extra damage instead." }
+          ]
+        }
+      }
+    }
+  }
+}
