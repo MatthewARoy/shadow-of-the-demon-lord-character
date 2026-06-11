@@ -536,3 +536,16 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
   main { padding: 0; max-width: none; }
   .paper { box-shadow: none; }
 }
+
+/* Rules lookup ----------------------------------------------- */
+mark {
+  background: rgba(176, 141, 79, .28);
+  color: var(--bronze-bright);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+.lk-body { font-size: 14px; margin: 2px 0 0; cursor: pointer; }
+.lk-body.lk-clamp {
+  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;
+  overflow: hidden;
+}

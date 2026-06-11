@@ -7,6 +7,7 @@ import { renderSheet } from "./ui/sheet.js";
 import { renderSpells } from "./ui/spells.js";
 import { renderGear } from "./ui/gear.js";
 import { renderDice } from "./ui/dice.js";
+import { renderLookup } from "./ui/lookup.js";
 
 const tabs = {
   build: renderBuilder,
@@ -14,6 +15,7 @@ const tabs = {
   spells: renderSpells,
   gear: renderGear,
   dice: renderDice,
+  lookup: renderLookup,
 };
 
 let current = "build";
