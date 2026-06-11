@@ -387,3 +387,152 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
   .masthead h1 { font-size: 24px; }
   .tab { padding: 12px 12px 9px; font-size: 13px; }
 }
+
+/* ============================================================
+   The Paper Sheet — parchment character sheet styled after the
+   official SotDL sheet: red ink frames, inverted pentagram.
+   ============================================================ */
+
+.paper {
+  --paper-bg: #e9e0cd;
+  --paper-bg-2: #ded2b8;
+  --ink-red: #8e1f1f;
+  --ink-red-soft: rgba(142, 31, 31, .55);
+  --ink-dark: #2b2118;
+  --ink-faint: #6b5d4c;
+  background:
+    radial-gradient(ellipse 60% 40% at 18% 8%, rgba(142,31,31,.05), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 85% 90%, rgba(110,80,40,.10), transparent 60%),
+    radial-gradient(ellipse 120% 100% at 50% 50%, var(--paper-bg), var(--paper-bg-2));
+  color: var(--ink-dark);
+  border-radius: 3px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.65), inset 0 0 80px rgba(120,90,50,.18);
+  padding: 22px 24px 26px;
+  position: relative;
+  font-family: var(--body);
+}
+.paper::after { /* paper grain */
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 3px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .18 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+.paper * { position: relative; z-index: 1; }
+
+/* hand-drawn red ink boxes */
+.ink-box {
+  border: 2px solid var(--ink-red-soft);
+  border-radius: 255px 12px 225px 12px / 12px 225px 12px 255px;
+  padding: 10px 14px;
+  background: rgba(255, 252, 244, .25);
+}
+.ink-label {
+  font-family: var(--display); font-size: 13px; letter-spacing: .1em;
+  color: var(--ink-red); text-transform: uppercase;
+  display: block; margin-bottom: 4px;
+}
+.paper .ink-value { font-family: var(--caps); font-size: 16px; color: var(--ink-dark); }
+.paper .ink-small { font-size: 13px; color: var(--ink-faint); }
+
+.paper-grid {
+  display: grid; gap: 14px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    "identity paths professions"
+    "talents pentagram magic"
+    "weapons weapons equipment";
+}
+.pg-identity { grid-area: identity; }
+.pg-paths { grid-area: paths; }
+.pg-professions { grid-area: professions; }
+.pg-talents { grid-area: talents; }
+.pg-pentagram { grid-area: pentagram; }
+.pg-magic { grid-area: magic; }
+.pg-weapons { grid-area: weapons; }
+.pg-equipment { grid-area: equipment; }
+@media (max-width: 1080px) {
+  .paper-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "identity paths"
+      "pentagram pentagram"
+      "talents magic"
+      "professions equipment"
+      "weapons weapons";
+  }
+}
+@media (max-width: 680px) {
+  .paper-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "identity" "paths" "pentagram" "talents" "magic" "professions" "weapons" "equipment";
+  }
+}
+
+/* the pentagram console */
+.pentagram-wrap {
+  position: relative; width: 100%; aspect-ratio: 1;
+  max-width: 480px; margin: 0 auto;
+}
+.pentagram-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pent-node {
+  position: absolute; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 2.5px solid var(--ink-red-soft); border-radius: 50%;
+  background: radial-gradient(circle at 38% 30%, rgba(255,253,247,.95), rgba(233,224,205,.92));
+  box-shadow: 0 2px 8px rgba(60,40,20,.25), inset 0 0 12px rgba(142,31,31,.07);
+  text-align: center; line-height: 1;
+}
+.pent-node .pn-label {
+  position: absolute; top: -17px; left: 50%; transform: translateX(-50%);
+  font-family: var(--display); font-size: 10.5px; letter-spacing: .08em;
+  color: var(--ink-red); white-space: nowrap; text-transform: uppercase;
+}
+.pent-node .pn-value { font-family: var(--display); color: var(--ink-dark); }
+.pent-node .pn-sub { font-family: var(--caps); font-size: 10px; color: var(--ink-faint); }
+.pent-node.pn-large { width: 24%; height: 24%; }
+.pent-node.pn-large .pn-value { font-size: clamp(20px, 4.2vw, 30px); }
+.pent-node.pn-med { width: 17%; height: 17%; }
+.pent-node.pn-med .pn-value { font-size: clamp(16px, 3.2vw, 24px); }
+.pent-node.pn-small { width: 12%; height: 12%; }
+.pent-node.pn-small .pn-value { font-size: clamp(12px, 2.2vw, 16px); }
+.pent-node.pn-mod { width: 9%; height: 9%; border-width: 1.5px; background: rgba(255,253,247,.85); }
+.pent-node.pn-mod .pn-value { font-size: clamp(10px, 1.8vw, 13px); font-family: var(--caps); }
+.pent-node.rollable { cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.pent-node.rollable:hover {
+  transform: translate(-50%, -50%) scale(1.07);
+  box-shadow: 0 0 16px rgba(142,31,31,.45);
+  border-color: var(--ink-red);
+}
+.pent-node.pn-damage { border-color: var(--ink-red); cursor: pointer; }
+.pent-node.pn-damage .pn-value { color: var(--ink-red); }
+
+.paper .talent-ink { margin-bottom: 8px; font-size: 13.5px; }
+.paper .talent-ink b { font-family: var(--caps); color: var(--ink-red); font-weight: 700; }
+.paper .talent-ink span { color: var(--ink-dark); }
+
+.paper table.ink-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.paper table.ink-table th {
+  font-family: var(--display); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-red); text-align: left; padding: 3px 8px;
+  border-bottom: 1.5px solid var(--ink-red-soft);
+}
+.paper table.ink-table td { padding: 4px 8px; border-bottom: 1px solid rgba(142,31,31,.18); color: var(--ink-dark); }
+
+.paper .btn-ink {
+  font-family: var(--caps); font-size: 12px; padding: 2px 10px;
+  background: transparent; color: var(--ink-red);
+  border: 1.5px solid var(--ink-red-soft); border-radius: 20px; cursor: pointer;
+}
+.paper .btn-ink:hover { background: rgba(142,31,31,.1); border-color: var(--ink-red); }
+
+.paper textarea.ink-area {
+  width: 100%; background: transparent; border: none; resize: vertical;
+  color: var(--ink-dark); font-family: var(--fell); font-size: 14.5px; font-style: italic;
+}
+.paper textarea.ink-area:focus { outline: 1px dashed var(--ink-red-soft); }
+
+@media print {
+  .masthead, nav.tabs, .colophon, .roll-toast, .vignette, .sigil, .sheet-below { display: none !important; }
+  body { background: white; }
+  body::after { display: none; }
+  main { padding: 0; max-width: none; }
+  .paper { box-shadow: none; }
+}
