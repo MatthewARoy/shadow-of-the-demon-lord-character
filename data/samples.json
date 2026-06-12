@@ -13,10 +13,19 @@
   "attributeSwap": null,
   "sizeChoice": null,
   "decisions": {
+   "creation:prof:0": {
+    "text": "Scribe"
+   },
+   "creation:prof:1": {
+    "text": "Astrologer"
+   },
    "creation[Human]:0:attr:0": {
     "attrs": [
      "intellect"
     ]
+   },
+   "creation[Human]:0:lang:0": {
+    "text": "High Archaic"
    },
    "novice[Magician]:1:0:0": {
     "attrs": [
@@ -85,10 +94,19 @@
   "attributeSwap": null,
   "sizeChoice": null,
   "decisions": {
+   "creation:prof:0": {
+    "text": "Farmer"
+   },
+   "creation:prof:1": {
+    "text": "Herbalist"
+   },
    "creation[Human]:0:attr:0": {
     "attrs": [
      "will"
     ]
+   },
+   "creation[Human]:0:lang:0": {
+    "text": "Dwarfish"
    },
    "novice[Priest]:1:0:0": {
     "attrs": [
@@ -171,6 +189,12 @@
   "attributeSwap": null,
   "sizeChoice": null,
   "decisions": {
+   "creation:prof:0": {
+    "text": "Thief"
+   },
+   "creation:prof:1": {
+    "text": "Smuggler"
+   },
    "novice[Rogue]:1:0:0": {
     "attrs": [
      "agility",
@@ -228,6 +252,12 @@
   "attributeSwap": null,
   "sizeChoice": null,
   "decisions": {
+   "creation:prof:0": {
+    "text": "Miner"
+   },
+   "creation:prof:1": {
+    "text": "Brewer"
+   },
    "novice[Warrior]:1:0:0": {
     "attrs": [
      "strength",
@@ -264,10 +294,19 @@
   "attributeSwap": null,
   "sizeChoice": null,
   "decisions": {
+   "creation:prof:0": {
+    "text": "Pit fighter"
+   },
+   "creation:prof:1": {
+    "text": "Laborer"
+   },
    "creation[Human]:0:attr:0": {
     "attrs": [
      "strength"
     ]
+   },
+   "creation[Human]:0:lang:0": {
+    "text": "Dark Speech"
    },
    "novice[Warrior]:1:0:0": {
     "attrs": [
