@@ -188,7 +188,7 @@ function castingsPips(s, opts) {
   const key = spellKey(s.name, s.tradition);
   const used = opts.char.expended[key] || 0;
   const pips = Array.from({ length: opts.castings }, (_, i) =>
-    `<span class="cast-pip ${i < used ? "spent" : ""}" data-pip="${esc(key)}" data-i="${i}" title="${i < used ? "Expended — click to restore" : "Click to expend a casting"}"></span>`);
+    `<span class="cast-pip ${i < used ? "spent" : ""}" data-pip="${esc(key)}" data-i="${i}" title="${i < used ? "Expended — click to restore one casting" : "Click to expend one casting"}"></span>`);
   return `<span class="castings">${pips.join("")}</span>`;
 }
 
@@ -232,7 +232,8 @@ function wire(el, char, computed) {
       const key = pip.dataset.pip;
       const i = parseInt(pip.dataset.i, 10);
       const used = c.expended[key] || 0;
-      c.expended[key] = i < used ? i : i + 1;
+      // Toggle exactly one casting: spent pip restores one, unspent expends one.
+      c.expended[key] = Math.max(0, i < used ? used - 1 : used + 1);
       save(); renderSpells(el);
       return;
     }
