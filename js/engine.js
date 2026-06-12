@@ -27,6 +27,8 @@ export function newCharacter(name = "Unnamed Soul") {
     decisions: {},                // slotId -> resolution
     exchanges: [],                // [{drop:{name,tradition}, gain:{name,tradition}}]
     damage: 0,
+    insanityAdjust: 0,            // gameplay marks beyond computed effects
+    corruptionAdjust: 0,
     expended: {},                 // spell key -> castings used
     inventory: [],                // {id, name, qty, equipped, weapon?, armor?, notes}
     coins: "",
@@ -251,6 +253,16 @@ export function compute(char) {
   out.speed = c.speed + out.speedBonus;
 
   applyExchanges(out, char);
+
+  // Insanity and Corruption marked during play, on top of build effects.
+  out.insanityBase = out.insanity;
+  out.corruptionBase = out.corruption;
+  const insAdj = char.insanityAdjust || 0;
+  const corAdj = char.corruptionAdjust || 0;
+  if (insAdj) out.provenance.insanity.push({ source: "Marked in play", level: null, amount: insAdj });
+  if (corAdj) out.provenance.corruption.push({ source: "Marked in play", level: null, amount: corAdj });
+  out.insanity = Math.max(0, out.insanity + insAdj);
+  out.corruption = Math.max(0, out.corruption + corAdj);
 
   out.modifiers = Object.fromEntries(ATTRS.map((a) => [a, out.attributes[a] - 10]));
 

@@ -81,6 +81,12 @@ export function renderSheet(el) {
           <button class="btn-ink" data-dmg="1">+ damage</button>
           <button class="btn-ink" data-heal title="Heal your healing rate">heal ${computed.healingRate}</button>
         </div>
+        <div style="display:flex;justify-content:center;gap:8px;margin-top:6px;flex-wrap:wrap">
+          <button class="btn-ink" data-adj="insanityAdjust:-1" title="Remove a point of Insanity (quirks, recovery)">− insanity</button>
+          <button class="btn-ink" data-adj="insanityAdjust:1" title="Mark Insanity gained in play">+ insanity</button>
+          <button class="btn-ink" data-adj="corruptionAdjust:-1" title="Remove a point of Corruption">− corruption</button>
+          <button class="btn-ink" data-adj="corruptionAdjust:1" title="Mark Corruption gained in play">+ corruption</button>
+        </div>
         ${incapacitated ? `<p style="text-align:center;color:var(--ink-red);font-family:var(--caps);margin:6px 0 0">Incapacitated — roll a fate die each round.</p>` : ""}
         ${computed.insanityNote ? `<p class="ink-small" style="text-align:center;margin:4px 0 0">Insanity * plus ${esc(computed.insanityNote)}</p>` : ""}
       </div>
@@ -122,6 +128,7 @@ export function renderSheet(el) {
         ${provBlock("Defense", computed.provenance.defense, computed.defenseFixed != null ? [{ source: "Fixed (ancestry)", amount: computed.defenseFixed }] : [{ source: "Agility score", amount: computed.attributes.agility }])}
         ${provBlock("Speed", computed.provenance.speed, [{ source: "Ancestry base", amount: computed.ancestry.creation.speed }])}
         ${provBlock("Corruption", computed.provenance.corruption)}
+        ${provBlock("Insanity", computed.provenance.insanity)}
         <p class="small dim" style="margin-bottom:0">Use your browser's print function for a paper copy — the dark chrome stays behind.</p>
       </div>
       <div class="panel">
@@ -240,6 +247,12 @@ function wireSheet(el, char, computed) {
     char.damage = Math.max(0, char.damage - computed.healingRate);
     save(); renderSheet(el);
   });
+  el.querySelectorAll("[data-adj]").forEach((b) => b.addEventListener("click", () => {
+    const [field, delta] = b.dataset.adj.split(":");
+    const base = field === "insanityAdjust" ? computed.insanityBase : computed.corruptionBase;
+    char[field] = Math.max(-base, (char[field] || 0) + parseInt(delta, 10));
+    save(); renderSheet(el);
+  }));
   el.querySelectorAll("[data-weapon-roll]").forEach((b) => b.addEventListener("click", () => {
     const it = char.inventory.find((x) => x.id === b.dataset.weaponRoll);
     if (!it) return;
