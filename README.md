@@ -10,8 +10,6 @@ rules engine underneath.
 https://matthewaroy.github.io/shadow-of-the-demon-lord-character/
 ```
 
-The previous version remains available at `/legacy/`.
-
 ### How to Enable GitHub Pages
 1. Repository settings → **Pages**.
 2. **Build and deployment** → Source: **Deploy from a branch**.

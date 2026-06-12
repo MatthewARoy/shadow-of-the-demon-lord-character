@@ -121,7 +121,6 @@ nav.tabs {
 }
 .tab:hover { color: var(--bronze); }
 .tab.active { color: var(--bronze-bright); border-bottom-color: var(--blood); }
-.tab-link { margin-left: auto; font-size: 12px; align-self: center; }
 
 main { padding: 26px 34px 60px; max-width: 1440px; margin: 0 auto; }
 .tab-panel { display: none; animation: rise .25s ease; }
