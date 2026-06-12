@@ -356,11 +356,14 @@ table.ledger tr:hover td { background: rgba(176,141,79,.04); }
 /* Roll toast ------------------------------------------------- */
 .roll-toast {
   position: fixed; bottom: 26px; right: 26px; z-index: 60;
+  display: flex; flex-direction: column-reverse; gap: 10px;
+  max-width: 320px;
+}
+.roll-toast .toast {
   border: 1px solid var(--bronze); border-radius: 6px; padding: 14px 20px;
   background: linear-gradient(180deg, #241b13, #14100c);
   box-shadow: 0 8px 40px rgba(0,0,0,.7), 0 0 24px rgba(176,141,79,.2);
   animation: toast-in .2s ease;
-  max-width: 320px;
 }
 @keyframes toast-in { from { opacity: 0; transform: translateY(12px); } }
 .roll-toast .total { font-family: var(--display); font-size: 36px; color: var(--parchment); }

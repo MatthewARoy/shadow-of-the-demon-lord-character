@@ -251,7 +251,7 @@ function wireSheet(el, char, computed) {
     showToast(rollD20(`${it.name} attack`, weaponModifier(it, computed)));
     if (it.damage && it.damage !== "—") {
       const dmg = rollDamage(it.damage, `${it.name} damage`);
-      if (dmg) setTimeout(() => showToast(dmg), 900);
+      if (dmg) showToast(dmg);
     }
   }));
   el.querySelector("#sheet-notes")?.addEventListener("change", (e) => { char.notes = e.target.value; save(); });

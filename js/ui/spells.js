@@ -248,7 +248,7 @@ function wire(el, char, computed) {
       showToast(entry);
       if (spell.attack.damage) {
         const dmg = rollDamage(spell.attack.damage, `${spell.name} damage`);
-        if (dmg) setTimeout(() => showToast(dmg), 900);
+        if (dmg) showToast(dmg);
       }
     }
   });
