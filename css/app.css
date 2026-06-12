@@ -542,6 +542,22 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
   .paper { box-shadow: none; }
 }
 
+/* Creature stat blocks ---------------------------------------- */
+.statblock {
+  border: 1px solid var(--line-bright); border-radius: 4px;
+  padding: 10px 12px; margin: 6px 0 8px;
+  background: rgba(176,141,79,.05); font-size: 13px;
+}
+.statblock .sb-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.statblock .sb-head b { font-family: var(--caps); letter-spacing: .04em; }
+.statblock .sb-diff { color: var(--bronze-bright); font-size: 12px; }
+.statblock .sb-line { color: var(--text-dim); font-size: 12.5px; }
+.statblock .sb-section {
+  font-family: var(--display); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--bronze); margin-top: 8px;
+}
+.statblock .sb-item { margin: 3px 0; font-size: 12.5px; }
+
 /* Rules lookup ----------------------------------------------- */
 mark {
   background: rgba(176, 141, 79, .28);

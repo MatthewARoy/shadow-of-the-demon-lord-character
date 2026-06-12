@@ -6,6 +6,7 @@ import { compute } from "../engine.js";
 import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
+import { statBlockHtml } from "./statblock.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -52,6 +53,7 @@ export function renderSpells(el) {
 }
 
 let exchangeOpen = null; // spell key whose exchange picker is showing
+let creatureOpen = null; // `${spellKey}::${creatureName}` currently expanded
 
 function learnedPanel(char, computed) {
   if (!computed.spells.length) {
@@ -170,6 +172,10 @@ export function spellCard(s, opts = {}) {
     : opts.spellRec?.slotId
       ? `<button class="btn btn-small" data-exchange-open="${esc(key)}" title="Exchange this spell for another (rank ≤ Power)">⇄</button>`
       : "";
+  const summons = rules.summonsBySpell.get(key) || [];
+  const summonBtns = summons.map((cr) =>
+    `<button class="chip ${creatureOpen === key + "::" + cr.name ? "on" : ""}" data-creature="${esc(key)}::${esc(cr.name)}" title="View the ${esc(cr.name)} stat block (${cr.book === "core" ? "Core" : "Occult Philosophy"} p.${cr.page})">☠ ${esc(cr.name)}</button>`).join(" ");
+  const openCreature = summons.find((cr) => creatureOpen === key + "::" + cr.name);
   return `
   <div class="spell-card ${opts.learned ? "learned" : ""}">
     <div class="spell-head">
@@ -182,6 +188,8 @@ export function spellCard(s, opts = {}) {
     </div>
     ${meta.length ? `<div class="spell-meta">${meta.join(" &nbsp;·&nbsp; ")}</div>` : ""}
     <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
+    ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
+    ${openCreature ? statBlockHtml(openCreature) : ""}
     ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
     <div class="spell-foot">
       ${castingsRow || `<span class="small dim">${s.source === "core" ? "Core" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty"} · p.${s.page}</span>`}
@@ -220,6 +228,12 @@ function wire(el, char, computed) {
     const desc = e.target.closest(".spell-desc");
     if (desc) { desc.classList.toggle("clamp"); return; }
 
+    const crBtn = e.target.closest("[data-creature]");
+    if (crBtn) {
+      creatureOpen = creatureOpen === crBtn.dataset.creature ? null : crBtn.dataset.creature;
+      renderSpells(el);
+      return;
+    }
     const exOpen = e.target.closest("[data-exchange-open]");
     if (exOpen) {
       exchangeOpen = exchangeOpen === exOpen.dataset.exchangeOpen ? null : exOpen.dataset.exchangeOpen;
