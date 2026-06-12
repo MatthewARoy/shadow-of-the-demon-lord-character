@@ -74,7 +74,8 @@ function learnedPanel(char, computed) {
   }).join("");
   return `
   <div class="panel">
-    <h2 class="rubric">Grimoire <span class="count">${computed.spells.length} learned · Power ${computed.power}</span></h2>
+    <h2 class="rubric">Grimoire <span class="count">${computed.spells.length} learned · Power ${computed.power}</span>
+      <button class="btn btn-small" data-rest style="float:right" title="Complete a rest: heal your healing rate and regain all expended castings">☾ rest</button></h2>
     ${sections}
     ${exchangesList(char)}
     <p class="small dim" style="margin-bottom:0">Castings refresh on a rest. Whenever you learn a new spell you may also exchange a known spell for another of rank ≤ your Power — use ⇄ on a spell above.</p>
@@ -229,6 +230,17 @@ function wire(el, char, computed) {
     if (unex) {
       c.exchanges.splice(parseInt(unex.dataset.unexchange, 10), 1);
       save(); renderSpells(el);
+      return;
+    }
+
+    const rest = e.target.closest("[data-rest]");
+    if (rest) {
+      const comp = compute(c);
+      const healed = Math.min(c.damage, comp.healingRate);
+      c.damage -= healed;
+      c.expended = {};
+      save(); renderSpells(el);
+      showToast({ total: "☾", label: "Rest completed", detail: `Healed ${healed} damage and regained all castings.` });
       return;
     }
 

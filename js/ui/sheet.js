@@ -80,6 +80,7 @@ export function renderSheet(el) {
           <button class="btn-ink" data-dmg="-1">− damage</button>
           <button class="btn-ink" data-dmg="1">+ damage</button>
           <button class="btn-ink" data-heal title="Heal your healing rate">heal ${computed.healingRate}</button>
+          <button class="btn-ink" data-rest title="Complete a rest (8 hours): heal your healing rate and regain all expended castings">rest</button>
         </div>
         <div style="display:flex;justify-content:center;gap:8px;margin-top:6px;flex-wrap:wrap">
           <button class="btn-ink" data-adj="insanityAdjust:-1" title="Remove a point of Insanity (quirks, recovery)">− insanity</button>
@@ -246,6 +247,13 @@ function wireSheet(el, char, computed) {
   el.querySelector("[data-heal]")?.addEventListener("click", () => {
     char.damage = Math.max(0, char.damage - computed.healingRate);
     save(); renderSheet(el);
+  });
+  el.querySelector("[data-rest]")?.addEventListener("click", () => {
+    const healed = Math.min(char.damage, computed.healingRate);
+    char.damage -= healed;
+    char.expended = {};
+    save(); renderSheet(el);
+    showToast({ total: "☾", label: "Rest completed", detail: `Healed ${healed} damage and regained all castings. A full 24-hour rest heals double — press heal once more.` });
   });
   el.querySelectorAll("[data-adj]").forEach((b) => b.addEventListener("click", () => {
     const [field, delta] = b.dataset.adj.split(":");
