@@ -157,13 +157,18 @@ export function spellCard(s, opts = {}) {
   const attackBtn = s.attack
     ? `<button class="btn btn-small" data-cast-roll="${esc(s.name)}|${esc(s.tradition)}" title="Roll ${esc(s.attack.attribute)} attack${s.attack.damage ? `, then ${esc(s.attack.damage)} damage` : ""}">⚔ ${esc(s.attack.attribute)} roll</button>`
     : "";
-  // Only slot-learned spells can be exchanged (path grants like Sense Magic
-  // come from talents, not learning).
-  const canExchange = opts.spellRec && (opts.spellRec.slotId || opts.spellRec.exchanged);
   const key = spellKey(s.name, s.tradition);
-  const exchangeBtn = canExchange
-    ? `<button class="btn btn-small" data-exchange-open="${esc(key)}" title="Exchange this spell for another (rank ≤ Power)">⇄</button>`
-    : "";
+  // An exchanged-in spell carries its undo right on the card; slot-learned
+  // spells offer the exchange picker (path grants like Sense Magic come from
+  // talents, not learning, and offer neither).
+  const exIdx = opts.spellRec?.exchanged && opts.char
+    ? (opts.char.exchanges || []).findIndex((ex) => ex.gain.name === s.name && ex.gain.tradition === s.tradition)
+    : -1;
+  const exchangeBtn = exIdx !== -1
+    ? `<button class="btn btn-small" data-unexchange="${exIdx}" title="Undo this exchange — forget ${esc(s.name)}, relearn ${esc(opts.char.exchanges[exIdx].drop.name)}">⇄ undo</button>`
+    : opts.spellRec?.slotId
+      ? `<button class="btn btn-small" data-exchange-open="${esc(key)}" title="Exchange this spell for another (rank ≤ Power)">⇄</button>`
+      : "";
   return `
   <div class="spell-card ${opts.learned ? "learned" : ""}">
     <div class="spell-head">
