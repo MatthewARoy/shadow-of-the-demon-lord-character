@@ -156,7 +156,7 @@ function pentagram(char, computed, incapacitated) {
   }
   nodes.push(node("pn-med", STAR.health, "Health", computed.health));
   nodes.push(node("pn-mod", { x: 50, y: 73.5 }, "Healing", computed.healingRate));
-  nodes.push(node(`pn-large pn-damage`, { x: 50, y: 47 }, "Damage", char.damage, incapacitated ? "DOWN" : null, `data-dmg-node="1"`, "Click +1 damage · shift-click −1"));
+  nodes.push(node(`pn-large pn-damage`, { x: 50, y: 50 }, "Damage", char.damage, incapacitated ? "DOWN" : null));
   // satellites, mirroring the paper sheet's outer circles
   nodes.push(node("pn-small", { x: 10.5, y: 25 }, "Size", computed.size));
   nodes.push(node("pn-small", { x: 5.5, y: 41 }, "Speed", computed.speed));
@@ -172,7 +172,6 @@ function pentagram(char, computed, incapacitated) {
       <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(142,31,31,.5)" stroke-width="1.1"/>
       <circle cx="50" cy="50" r="42.5" fill="none" stroke="rgba(142,31,31,.35)" stroke-width=".55"/>
       <path d="${path}" fill="rgba(142,31,31,.04)" stroke="rgba(142,31,31,.55)" stroke-width="1.1" stroke-linejoin="round"/>
-      <text x="50" y="53.5" text-anchor="middle" font-size="13" fill="rgba(142,31,31,.16)" font-family="serif">☠</text>
     </svg>
     ${nodes.join("")}
   </div>`;
@@ -232,10 +231,6 @@ function wireSheet(el, char, computed) {
   }));
   el.querySelector("[data-roll-perception]")?.addEventListener("click", () => {
     showToast(rollD20("Perception challenge", computed.perception - 10));
-  });
-  el.querySelector("[data-dmg-node]")?.addEventListener("click", (e) => {
-    char.damage = Math.max(0, Math.min(computed.health, char.damage + (e.shiftKey ? -1 : 1)));
-    save(); renderSheet(el);
   });
   el.querySelectorAll("[data-dmg]").forEach((b) => b.addEventListener("click", () => {
     char.damage = Math.max(0, Math.min(computed.health, char.damage + parseInt(b.dataset.dmg, 10)));
