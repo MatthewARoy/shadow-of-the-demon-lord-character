@@ -78,7 +78,7 @@ header.masthead, nav.tabs, main, footer { position: relative; z-index: 1; }
 .masthead h1 .amp { font-family: var(--fell); font-style: italic; font-size: 22px; color: var(--text-dim); letter-spacing: 0; }
 .subtitle { margin: 2px 0 0; font-family: var(--fell); font-style: italic; color: var(--text-dim); font-size: 14px; }
 
-.roster-bar { display: flex; gap: 8px; align-items: center; }
+.roster-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .roster-bar select {
   min-width: 180px; max-width: 260px;
 }
@@ -387,7 +387,11 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
 @media (max-width: 720px) {
   .masthead, nav.tabs, main { padding-left: 16px; padding-right: 16px; }
   .masthead h1 { font-size: 24px; }
-  .tab { padding: 12px 12px 9px; font-size: 13px; }
+  .roster-bar { width: 100%; }
+  .roster-bar select { min-width: 0; flex: 1 1 140px; }
+  nav.tabs { overflow-x: auto; scrollbar-width: none; }
+  nav.tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 0 0 auto; padding: 12px 12px 9px; font-size: 13px; white-space: nowrap; }
 }
 
 /* ============================================================
