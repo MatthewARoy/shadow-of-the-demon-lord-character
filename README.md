@@ -10,8 +10,6 @@ rules engine underneath.
 https://matthewaroy.github.io/shadow-of-the-demon-lord-character/
 ```
 
-The previous version remains available at `/legacy/`.
-
 ### How to Enable GitHub Pages
 1. Repository settings → **Pages**.
 2. **Build and deployment** → Source: **Deploy from a branch**.
@@ -43,6 +41,14 @@ engine — not a pile of manually-entered numbers.
 * **Castings tracker** using the real (non-linear) castings table, a spell
   browser with learnable-now filtering, an armory with encumbrance warnings,
   and SotDL boon/bane dice with a roll ledger.
+* **Summoned-creature stat blocks.** Conjuration and summoning spells carry
+  their referenced creatures ("compelled small monster", "Shadow, page 246")
+  as inline expandable stat blocks parsed from the bestiaries.
+* **Play tracking.** Damage with healing rate, rest (heal + refresh
+  castings), and Insanity/Corruption marked during play — all on the
+  parchment sheet, with provenance.
+* **Level 0 backgrounds.** Two starting professions per the core rules, with
+  dice-roll randomization, each tradeable for a spoken or written language.
 * **Local-first roster.** Multiple characters in localStorage with JSON
   export/import. No server, no build step — vanilla ES modules.
 
@@ -64,6 +70,8 @@ python3 scripts/parse_spells.py      # -> data/spells.json
 python3 scripts/parse_paths.py       # -> data/paths.json
 python3 scripts/parse_traditions.py  # -> data/traditions.json
 python3 scripts/parse_equipment.py   # -> data/equipment.json
+python3 scripts/parse_creatures.py   # -> data/creatures.json
+python3 scripts/parse_rules_index.py # -> data/rules-index.json
 ```
 
 `data/curated.json` is hand-written from the rulebook text: ancestries with

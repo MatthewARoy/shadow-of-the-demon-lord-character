@@ -1,0 +1,185 @@
+#!/usr/bin/env python3
+"""Parse creature stat blocks from the SotDL rulebook texts.
+
+Spell descriptions reference creatures by printed page ("Shadow, page 246",
+"see page 136"); this script walks scripts/cache/{core,occult}.txt, finds
+every NAME + DIFFICULTY stat block, and emits data/creatures.json with
+printed page numbers so the app can resolve those references.
+
+Stat block shape in the text (sections optional):
+    NAME            (all caps, DIFFICULTY on the following line)
+    DIFFICULTY 50
+    Size 1 horrifying faerie (devil)
+    Perception 13 (+3); truesight
+    Defense 11; Health 53; Insanity —; Corruption 7
+    Strength 13 (+3), Agility 11 (+1), Intellect 11 (+1), Will 13 (+3)
+    Speed 10; flier (swoop)
+    <trait lines>
+    ATTACK OPTIONS / SPECIAL ATTACKS / SPECIAL ACTIONS /
+    END OF THE ROUND / MAGIC
+"""
+import json
+import os
+import re
+
+CACHE = os.path.join(os.path.dirname(__file__), "cache")
+OUT = os.path.join(os.path.dirname(__file__), "..", "data", "creatures.json")
+BOOKS = ["core", "occult"]
+
+SECTIONS = {
+    "ATTACK OPTIONS": "attack_options",
+    "SPECIAL ATTACKS": "special_attacks",
+    "SPECIAL ACTIONS": "special_actions",
+    "END OF THE ROUND": "end_of_round",
+    "MAGIC": "magic",
+}
+STAT_LINE = re.compile(
+    r"^(Size |Perception \d|Defense |Strength [\d+–-]|Speed [\d+–-])")
+PAGE_MARK = re.compile(r"^===PAGE (\d+)===$")
+DIFF = re.compile(r"^DIFFICULTY ([\d,]+|STEP)\s*$")
+# A stat block name: an all-caps line (allowing digits, commas, apostrophes,
+# hyphens) — "LASH CRAWLER", "MOB OF MEDIUM MONSTERS", "VAPOR, KILLING".
+NAME = re.compile(r"^[A-Z][A-Z0-9 ,'’\-]{2,40}\s*$")
+FOOTER_NUM = re.compile(r"^\d{1,3}$")
+# Prose header of the next creature: a short Title Case line.
+PROSE_HEADER = re.compile(r"^[A-Z][a-z’']+( [A-Za-z’'][a-z’']+){0,3}$")
+
+
+def printed_offset(lines):
+    """Median (pdf page − printed footer number) over the whole book."""
+    offsets = []
+    page = None
+    for ln in lines:
+        m = PAGE_MARK.match(ln)
+        if m:
+            page = int(m.group(1))
+        elif page and FOOTER_NUM.match(ln.strip()):
+            n = int(ln.strip())
+            if 0 < page - n < 6:           # plausible footer, not dice text
+                offsets.append(page - n)
+    offsets.sort()
+    return offsets[len(offsets) // 2] if offsets else 0
+
+
+def parse_book(book):
+    path = os.path.join(CACHE, f"{book}.txt")
+    with open(path) as f:
+        lines = [ln.rstrip() for ln in f]
+    off = printed_offset(lines)
+    creatures = []
+    pdf_page = 0
+    i = 0
+    while i < len(lines):
+        ln = lines[i].strip()
+        m = PAGE_MARK.match(ln)
+        if m:
+            pdf_page = int(m.group(1))
+            i += 1
+            continue
+        # A block starts at a NAME line whose next non-blank line is DIFFICULTY.
+        name = None
+        if NAME.match(ln) and ln not in SECTIONS:
+            j = i + 1
+            while j < len(lines) and not lines[j].strip():
+                j += 1
+            if j < len(lines) and DIFF.match(lines[j].strip()):
+                name = ln.strip()
+                diff = DIFF.match(lines[j].strip()).group(1)
+                i = j + 1
+        if name is None:
+            i += 1
+            continue
+        cr = {"name": title_case(name), "book": book, "page": pdf_page - off,
+              "difficulty": diff, "descriptor": None, "perception": None,
+              "defense_line": None, "attributes": None, "speed": None,
+              "traits": [], "attack_options": [], "special_attacks": [],
+              "special_actions": [], "end_of_round": [], "magic": []}
+        section = None     # None => stat header area, then traits
+        items = cr["traits"]
+        while i < len(lines):
+            raw = lines[i]
+            s = raw.strip()
+            i += 1
+            if not s:
+                continue
+            if PAGE_MARK.match(s):
+                pdf_page = int(PAGE_MARK.match(s).group(1))
+                continue
+            if FOOTER_NUM.match(s) or s in ("Bestiary", "Creatures of Magic"):
+                continue                    # page furniture
+            if s in SECTIONS:
+                section = SECTIONS[s]
+                items = cr[section]
+                continue
+            # Next stat block begins → step back and close this one.
+            nxt = lines[i].strip() if i < len(lines) else ""
+            if NAME.match(s) and s not in SECTIONS and DIFF.match(nxt):
+                i -= 1
+                break
+            if DIFF.match(s):               # name on the line before last
+                i -= 2
+                break
+            if section is None:
+                if s.startswith("Size "):
+                    cr["descriptor"] = s[5:]
+                elif s.startswith("Perception "):
+                    cr["perception"] = s[11:]
+                elif s.startswith("Defense "):
+                    cr["defense_line"] = s
+                elif s.startswith("Strength "):
+                    cr["attributes"] = s
+                elif s.startswith("Speed "):
+                    cr["speed"] = s[6:]
+                    section = "traits"
+                elif cr["descriptor"] is None and not STAT_LINE.match(s):
+                    cr["descriptor"] = s    # template blocks lead with prose
+                else:
+                    append_item(cr["traits"], s, True)
+                continue
+            # Prose header of the next creature ends the block: a short
+            # Title Case line followed by a long prose line.
+            if (len(s) <= 32 and not STAT_LINE.match(s)
+                    and PROSE_HEADER.match(s)
+                    and i < len(lines) and len(lines[i].strip()) > 40):
+                i -= 1
+                break
+            append_item(items, s, new_item_start(s))
+        creatures.append(cr)
+    return creatures
+
+
+def new_item_start(s):
+    """Heuristic: items open with a Title Case name run ("Radiant Sword
+    (melee) …", "Two Attacks The angel…")."""
+    return re.match(
+        r"^[A-Z][a-zA-Z’']*( [A-Z][a-zA-Z’']*){0,4}( \(|—| [A-Z]| \+|\d)",
+        s) is not None
+
+
+def append_item(items, s, start_new):
+    if start_new or not items:
+        items.append(s)
+    else:
+        items[-1] += " " + s
+
+
+def title_case(name):
+    small = {"of", "the", "a", "an", "and", "or"}
+    words = name.lower().split()
+    return " ".join(w if w in small and k else w.capitalize()
+                    for k, w in enumerate(words))
+
+
+def main():
+    out = []
+    for book in BOOKS:
+        got = parse_book(book)
+        print(f"{book}: {len(got)} stat blocks")
+        out.extend(got)
+    with open(OUT, "w") as f:
+        json.dump(out, f, indent=1, ensure_ascii=False)
+    print(f"wrote {len(out)} -> {OUT}")
+
+
+if __name__ == "__main__":
+    main()

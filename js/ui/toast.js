@@ -1,17 +1,23 @@
-// Roll result toast.
+// Roll result toasts — stacked so consecutive rolls (attack, then damage)
+// each stay readable for their full lifetime.
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-let timer = null;
+const LIFETIME = 4000;
 
 export function showToast(entry) {
   const box = document.getElementById("roll-toast");
   if (!box) return;
-  box.innerHTML = `
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.innerHTML = `
     <span class="total">${entry.total}</span>
     <b>${esc(entry.label)}</b>
     <div class="detail">${esc(entry.detail)}${entry.crit ? " — a natural 20!" : ""}${entry.fumble ? " — a natural 1…" : ""}</div>`;
+  box.appendChild(t);
   box.hidden = false;
-  clearTimeout(timer);
-  timer = setTimeout(() => { box.hidden = true; }, 3200);
+  setTimeout(() => {
+    t.remove();
+    if (!box.children.length) box.hidden = true;
+  }, LIFETIME);
 }

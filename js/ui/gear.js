@@ -199,7 +199,7 @@ function wire(el, char, computed) {
       showToast(entry);
       if (it.damage && it.damage !== "—") {
         const dmg = rollDamage(it.damage, `${it.name} damage`);
-        if (dmg) setTimeout(() => showToast(dmg), 900);
+        if (dmg) showToast(dmg);
       }
     }
   });

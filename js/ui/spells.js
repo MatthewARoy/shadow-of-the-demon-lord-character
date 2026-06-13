@@ -6,6 +6,7 @@ import { compute } from "../engine.js";
 import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
+import { statBlockHtml } from "./statblock.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -52,6 +53,7 @@ export function renderSpells(el) {
 }
 
 let exchangeOpen = null; // spell key whose exchange picker is showing
+let creatureOpen = null; // `${spellKey}::${creatureName}` currently expanded
 
 function learnedPanel(char, computed) {
   if (!computed.spells.length) {
@@ -74,7 +76,8 @@ function learnedPanel(char, computed) {
   }).join("");
   return `
   <div class="panel">
-    <h2 class="rubric">Grimoire <span class="count">${computed.spells.length} learned · Power ${computed.power}</span></h2>
+    <h2 class="rubric">Grimoire <span class="count">${computed.spells.length} learned · Power ${computed.power}</span>
+      <button class="btn btn-small" data-rest style="float:right" title="Complete a rest: heal your healing rate and regain all expended castings">☾ rest</button></h2>
     ${sections}
     ${exchangesList(char)}
     <p class="small dim" style="margin-bottom:0">Castings refresh on a rest. Whenever you learn a new spell you may also exchange a known spell for another of rank ≤ your Power — use ⇄ on a spell above.</p>
@@ -157,13 +160,22 @@ export function spellCard(s, opts = {}) {
   const attackBtn = s.attack
     ? `<button class="btn btn-small" data-cast-roll="${esc(s.name)}|${esc(s.tradition)}" title="Roll ${esc(s.attack.attribute)} attack${s.attack.damage ? `, then ${esc(s.attack.damage)} damage` : ""}">⚔ ${esc(s.attack.attribute)} roll</button>`
     : "";
-  // Only slot-learned spells can be exchanged (path grants like Sense Magic
-  // come from talents, not learning).
-  const canExchange = opts.spellRec && (opts.spellRec.slotId || opts.spellRec.exchanged);
   const key = spellKey(s.name, s.tradition);
-  const exchangeBtn = canExchange
-    ? `<button class="btn btn-small" data-exchange-open="${esc(key)}" title="Exchange this spell for another (rank ≤ Power)">⇄</button>`
-    : "";
+  // An exchanged-in spell carries its undo right on the card; slot-learned
+  // spells offer the exchange picker (path grants like Sense Magic come from
+  // talents, not learning, and offer neither).
+  const exIdx = opts.spellRec?.exchanged && opts.char
+    ? (opts.char.exchanges || []).findIndex((ex) => ex.gain.name === s.name && ex.gain.tradition === s.tradition)
+    : -1;
+  const exchangeBtn = exIdx !== -1
+    ? `<button class="btn btn-small" data-unexchange="${exIdx}" title="Undo this exchange — forget ${esc(s.name)}, relearn ${esc(opts.char.exchanges[exIdx].drop.name)}">⇄ undo</button>`
+    : opts.spellRec?.slotId
+      ? `<button class="btn btn-small" data-exchange-open="${esc(key)}" title="Exchange this spell for another (rank ≤ Power)">⇄</button>`
+      : "";
+  const summons = rules.summonsBySpell.get(key) || [];
+  const summonBtns = summons.map((cr) =>
+    `<button class="chip ${creatureOpen === key + "::" + cr.name ? "on" : ""}" data-creature="${esc(key)}::${esc(cr.name)}" title="View the ${esc(cr.name)} stat block (${cr.book === "core" ? "Core" : "Occult Philosophy"} p.${cr.page})">☠ ${esc(cr.name)}</button>`).join(" ");
+  const openCreature = summons.find((cr) => creatureOpen === key + "::" + cr.name);
   return `
   <div class="spell-card ${opts.learned ? "learned" : ""}">
     <div class="spell-head">
@@ -176,6 +188,8 @@ export function spellCard(s, opts = {}) {
     </div>
     ${meta.length ? `<div class="spell-meta">${meta.join(" &nbsp;·&nbsp; ")}</div>` : ""}
     <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
+    ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
+    ${openCreature ? statBlockHtml(openCreature) : ""}
     ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
     <div class="spell-foot">
       ${castingsRow || `<span class="small dim">${s.source === "core" ? "Core" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty"} · p.${s.page}</span>`}
@@ -188,7 +202,7 @@ function castingsPips(s, opts) {
   const key = spellKey(s.name, s.tradition);
   const used = opts.char.expended[key] || 0;
   const pips = Array.from({ length: opts.castings }, (_, i) =>
-    `<span class="cast-pip ${i < used ? "spent" : ""}" data-pip="${esc(key)}" data-i="${i}" title="${i < used ? "Expended — click to restore" : "Click to expend a casting"}"></span>`);
+    `<span class="cast-pip ${i < used ? "spent" : ""}" data-pip="${esc(key)}" data-i="${i}" title="${i < used ? "Expended — click to restore one casting" : "Click to expend one casting"}"></span>`);
   return `<span class="castings">${pips.join("")}</span>`;
 }
 
@@ -214,6 +228,12 @@ function wire(el, char, computed) {
     const desc = e.target.closest(".spell-desc");
     if (desc) { desc.classList.toggle("clamp"); return; }
 
+    const crBtn = e.target.closest("[data-creature]");
+    if (crBtn) {
+      creatureOpen = creatureOpen === crBtn.dataset.creature ? null : crBtn.dataset.creature;
+      renderSpells(el);
+      return;
+    }
     const exOpen = e.target.closest("[data-exchange-open]");
     if (exOpen) {
       exchangeOpen = exchangeOpen === exOpen.dataset.exchangeOpen ? null : exOpen.dataset.exchangeOpen;
@@ -227,12 +247,24 @@ function wire(el, char, computed) {
       return;
     }
 
+    const rest = e.target.closest("[data-rest]");
+    if (rest) {
+      const comp = compute(c);
+      const healed = Math.min(c.damage, comp.healingRate);
+      c.damage -= healed;
+      c.expended = {};
+      save(); renderSpells(el);
+      showToast({ total: "☾", label: "Rest completed", detail: `Healed ${healed} damage and regained all castings.` });
+      return;
+    }
+
     const pip = e.target.closest("[data-pip]");
     if (pip) {
       const key = pip.dataset.pip;
       const i = parseInt(pip.dataset.i, 10);
       const used = c.expended[key] || 0;
-      c.expended[key] = i < used ? i : i + 1;
+      // Toggle exactly one casting: spent pip restores one, unspent expends one.
+      c.expended[key] = Math.max(0, i < used ? used - 1 : used + 1);
       save(); renderSpells(el);
       return;
     }
@@ -248,7 +280,7 @@ function wire(el, char, computed) {
       showToast(entry);
       if (spell.attack.damage) {
         const dmg = rollDamage(spell.attack.damage, `${spell.name} damage`);
-        if (dmg) setTimeout(() => showToast(dmg), 900);
+        if (dmg) showToast(dmg);
       }
     }
   });

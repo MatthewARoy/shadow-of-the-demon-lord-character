@@ -80,6 +80,13 @@ export function renderSheet(el) {
           <button class="btn-ink" data-dmg="-1">− damage</button>
           <button class="btn-ink" data-dmg="1">+ damage</button>
           <button class="btn-ink" data-heal title="Heal your healing rate">heal ${computed.healingRate}</button>
+          <button class="btn-ink" data-rest title="Complete a rest (8 hours): heal your healing rate and regain all expended castings">rest</button>
+        </div>
+        <div style="display:flex;justify-content:center;gap:8px;margin-top:6px;flex-wrap:wrap">
+          <button class="btn-ink" data-adj="insanityAdjust:-1" title="Remove a point of Insanity (quirks, recovery)">− insanity</button>
+          <button class="btn-ink" data-adj="insanityAdjust:1" title="Mark Insanity gained in play">+ insanity</button>
+          <button class="btn-ink" data-adj="corruptionAdjust:-1" title="Remove a point of Corruption">− corruption</button>
+          <button class="btn-ink" data-adj="corruptionAdjust:1" title="Mark Corruption gained in play">+ corruption</button>
         </div>
         ${incapacitated ? `<p style="text-align:center;color:var(--ink-red);font-family:var(--caps);margin:6px 0 0">Incapacitated — roll a fate die each round.</p>` : ""}
         ${computed.insanityNote ? `<p class="ink-small" style="text-align:center;margin:4px 0 0">Insanity * plus ${esc(computed.insanityNote)}</p>` : ""}
@@ -122,6 +129,7 @@ export function renderSheet(el) {
         ${provBlock("Defense", computed.provenance.defense, computed.defenseFixed != null ? [{ source: "Fixed (ancestry)", amount: computed.defenseFixed }] : [{ source: "Agility score", amount: computed.attributes.agility }])}
         ${provBlock("Speed", computed.provenance.speed, [{ source: "Ancestry base", amount: computed.ancestry.creation.speed }])}
         ${provBlock("Corruption", computed.provenance.corruption)}
+        ${provBlock("Insanity", computed.provenance.insanity)}
         <p class="small dim" style="margin-bottom:0">Use your browser's print function for a paper copy — the dark chrome stays behind.</p>
       </div>
       <div class="panel">
@@ -156,7 +164,7 @@ function pentagram(char, computed, incapacitated) {
   }
   nodes.push(node("pn-med", STAR.health, "Health", computed.health));
   nodes.push(node("pn-mod", { x: 50, y: 73.5 }, "Healing", computed.healingRate));
-  nodes.push(node(`pn-large pn-damage`, { x: 50, y: 47 }, "Damage", char.damage, incapacitated ? "DOWN" : null, `data-dmg-node="1"`, "Click +1 damage · shift-click −1"));
+  nodes.push(node(`pn-large pn-damage`, { x: 50, y: 50 }, "Damage", char.damage, incapacitated ? "DOWN" : null));
   // satellites, mirroring the paper sheet's outer circles
   nodes.push(node("pn-small", { x: 10.5, y: 25 }, "Size", computed.size));
   nodes.push(node("pn-small", { x: 5.5, y: 41 }, "Speed", computed.speed));
@@ -172,7 +180,6 @@ function pentagram(char, computed, incapacitated) {
       <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(142,31,31,.5)" stroke-width="1.1"/>
       <circle cx="50" cy="50" r="42.5" fill="none" stroke="rgba(142,31,31,.35)" stroke-width=".55"/>
       <path d="${path}" fill="rgba(142,31,31,.04)" stroke="rgba(142,31,31,.55)" stroke-width="1.1" stroke-linejoin="round"/>
-      <text x="50" y="53.5" text-anchor="middle" font-size="13" fill="rgba(142,31,31,.16)" font-family="serif">☠</text>
     </svg>
     ${nodes.join("")}
   </div>`;
@@ -233,10 +240,6 @@ function wireSheet(el, char, computed) {
   el.querySelector("[data-roll-perception]")?.addEventListener("click", () => {
     showToast(rollD20("Perception challenge", computed.perception - 10));
   });
-  el.querySelector("[data-dmg-node]")?.addEventListener("click", (e) => {
-    char.damage = Math.max(0, Math.min(computed.health, char.damage + (e.shiftKey ? -1 : 1)));
-    save(); renderSheet(el);
-  });
   el.querySelectorAll("[data-dmg]").forEach((b) => b.addEventListener("click", () => {
     char.damage = Math.max(0, Math.min(computed.health, char.damage + parseInt(b.dataset.dmg, 10)));
     save(); renderSheet(el);
@@ -245,13 +248,26 @@ function wireSheet(el, char, computed) {
     char.damage = Math.max(0, char.damage - computed.healingRate);
     save(); renderSheet(el);
   });
+  el.querySelector("[data-rest]")?.addEventListener("click", () => {
+    const healed = Math.min(char.damage, computed.healingRate);
+    char.damage -= healed;
+    char.expended = {};
+    save(); renderSheet(el);
+    showToast({ total: "☾", label: "Rest completed", detail: `Healed ${healed} damage and regained all castings. A full 24-hour rest heals double — press heal once more.` });
+  });
+  el.querySelectorAll("[data-adj]").forEach((b) => b.addEventListener("click", () => {
+    const [field, delta] = b.dataset.adj.split(":");
+    const base = field === "insanityAdjust" ? computed.insanityBase : computed.corruptionBase;
+    char[field] = Math.max(-base, (char[field] || 0) + parseInt(delta, 10));
+    save(); renderSheet(el);
+  }));
   el.querySelectorAll("[data-weapon-roll]").forEach((b) => b.addEventListener("click", () => {
     const it = char.inventory.find((x) => x.id === b.dataset.weaponRoll);
     if (!it) return;
     showToast(rollD20(`${it.name} attack`, weaponModifier(it, computed)));
     if (it.damage && it.damage !== "—") {
       const dmg = rollDamage(it.damage, `${it.name} damage`);
-      if (dmg) setTimeout(() => showToast(dmg), 900);
+      if (dmg) showToast(dmg);
     }
   }));
   el.querySelector("#sheet-notes")?.addEventListener("change", (e) => { char.notes = e.target.value; save(); });

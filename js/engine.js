@@ -27,6 +27,8 @@ export function newCharacter(name = "Unnamed Soul") {
     decisions: {},                // slotId -> resolution
     exchanges: [],                // [{drop:{name,tradition}, gain:{name,tradition}}]
     damage: 0,
+    insanityAdjust: 0,            // gameplay marks beyond computed effects
+    corruptionAdjust: 0,
     expended: {},                 // spell key -> castings used
     inventory: [],                // {id, name, qty, equipped, weapon?, armor?, notes}
     coins: "",
@@ -214,6 +216,39 @@ export function compute(char) {
     }
   }
 
+  // --- creation: two starting professions (core p.23). Each may be traded
+  // for speaking another language, or reading one you speak. Slot ids omit
+  // the ancestry on purpose: your background survives re-ancestry.
+  for (let pick = 0; pick < 2; pick++) {
+    const slotId = `creation:prof:${pick}`;
+    const res = char.decisions[slotId];
+    if (res?.text) {
+      out.languagesProfessions.push({ text: "", source: "Background", value: res.text });
+    } else {
+      out.pending.push({
+        id: slotId, kind: "lang_prof", title: `Starting Profession (${pick + 1} of 2)`,
+        desc: "You begin with two professions — choose any you like, or roll. You can trade a profession out to speak another language, or to read a language you already speak.",
+        suggest: ["academic", "common", "criminal", "martial", "religious", "wilderness"],
+        rollable: true, origin: "Background", level: 0,
+      });
+    }
+  }
+  // Ancestries that offer "either … or …" in their language line (Human's
+  // extra language / random profession) get a creation slot for the choice.
+  if (/either/i.test(c.languages_professions || "")) {
+    const slotId = `creation[${ancestry.name}]:0:lang:0`;
+    const res = char.decisions[slotId];
+    if (res?.text) {
+      out.languagesProfessions.push({ text: "", source: `${ancestry.name} (choice)`, value: res.text });
+    } else {
+      out.pending.push({
+        id: slotId, kind: "lang_prof", title: "Ancestry Language or Profession",
+        desc: c.languages_professions, suggest: ["academic", "common", "criminal", "martial", "religious", "wilderness"],
+        rollable: true, origin: ancestry.name, level: 0,
+      });
+    }
+  }
+
   addHealthSource(out, `${ancestry.name}`, null, c.health_bonus || 0);
 
   // --- hooks gained at any level (cantrip), discovered before replay
@@ -251,6 +286,16 @@ export function compute(char) {
   out.speed = c.speed + out.speedBonus;
 
   applyExchanges(out, char);
+
+  // Insanity and Corruption marked during play, on top of build effects.
+  out.insanityBase = out.insanity;
+  out.corruptionBase = out.corruption;
+  const insAdj = char.insanityAdjust || 0;
+  const corAdj = char.corruptionAdjust || 0;
+  if (insAdj) out.provenance.insanity.push({ source: "Marked in play", level: null, amount: insAdj });
+  if (corAdj) out.provenance.corruption.push({ source: "Marked in play", level: null, amount: corAdj });
+  out.insanity = Math.max(0, out.insanity + insAdj);
+  out.corruption = Math.max(0, out.corruption + corAdj);
 
   out.modifiers = Object.fromEntries(ATTRS.map((a) => [a, out.attributes[a] - 10]));
 
@@ -590,7 +635,7 @@ export function legalSpellsFor(char, computed, slot) {
 // is reverted. Only the "active" decisions are shown for undo in the UI.
 export function activeDecisionIds(char, computed) {
   const ids = new Set();
-  const prefixes = [`creation[${char.ancestry}]`];
+  const prefixes = [`creation[${char.ancestry}]`, "creation:prof"];
   for (const { source, level } of computed.plan || []) {
     if (source && !source.missing) prefixes.push(`${source.key}:${level}`);
   }

@@ -321,6 +321,7 @@ function langProfCard(p) {
   return card(p,
     `<input type="text" data-langprof placeholder="e.g. ${esc(suggestions[0] || "Common Tongue")}" list="lp-${esc(p.id)}" style="flex:1">
      <datalist id="lp-${esc(p.id)}">${suggestions.map((s) => `<option value="${esc(s)}">`).join("")}</datalist>
+     ${p.rollable ? `<button class="btn btn-small" data-langprof-roll title="Let the dice decide: d6 for the profession type, then its table">🎲</button>` : ""}
      <button class="btn btn-small btn-resolve" data-langprof-save>Inscribe</button>`,
     `<p class="desc dim small">${esc(p.desc)}</p>`);
 }
@@ -417,6 +418,14 @@ function wireDelegated(el) {
     if (optBtn) {
       char.decisions[id] = { option: parseInt(optBtn.dataset.option, 10) };
       rerender();
+      return;
+    }
+    if (e.target.closest("[data-langprof-roll]")) {
+      const input = slotEl.querySelector("[data-langprof]");
+      const cats = Object.keys(rules.curated.professions);
+      const cat = cats[Math.floor(Math.random() * cats.length)];
+      const pool = rules.curated.professions[cat];
+      input.value = pool[Math.floor(Math.random() * pool.length)];
       return;
     }
     if (e.target.closest("[data-langprof-save]")) {
