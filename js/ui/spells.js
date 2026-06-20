@@ -59,6 +59,7 @@ export function renderSpells(el) {
       </div>
       ${categoryBar()}
       ${buildBar()}
+      ${comboBar()}
       <div class="spell-grid" id="sp-results"></div>
       <p class="small dim" id="sp-more"></p>
     </div>`;
@@ -185,6 +186,60 @@ function buildBar() {
   return `<details class="cat-bar" ${active ? "open" : ""}>
     <summary class="cat-summary">Build lens ${active ? `(${active} active)` : "— filter by role, build archetype & tempo (AI-labeled)"}${coverage} ${clear}</summary>
     ${groups}
+  </details>`;
+}
+
+// Combos: what stacks with what, from scripts/detect_combos.py. The detector
+// groups spells by fight-goal and lever and ranks the pairings; this panel
+// renders them with a synergy badge and the why. Each member spell is a button
+// that searches the Archive for it, so a combo is a jump-off to the cards.
+const COMBO_TYPE = {
+  compounding: { label: "compounds", title: "Different levers on one goal — they multiply, dodging each other's diminishing returns." },
+  additive:    { label: "stacks",    title: "Flat bonuses that add together — pile them on." },
+  diminishing: { label: "diminishes", title: "Same roll-lever: boons/banes pool to the highest die, so extra sources barely help." },
+};
+
+function comboMember(m) {
+  const mag = m.magnitude ? ` <span class="dim">${esc(m.magnitude)}</span>` : "";
+  return `<button class="chip combo-member" data-find="${esc(m.name)}" title="Find ${esc(m.name)} (${esc(m.tradition)}, rank ${m.rank}) in the Archive">${esc(m.name)}${mag}</button>`;
+}
+
+function comboBar() {
+  const data = rules.combos;
+  if (!data?.combos?.length) return "";
+  const byGoal = new Map();
+  for (const c of data.combos) {
+    if (!byGoal.has(c.goal)) byGoal.set(c.goal, []);
+    byGoal.get(c.goal).push(c);
+  }
+  const sections = [...byGoal.entries()].map(([goal, list]) => {
+    const g = data.goals[goal] || { label: goal, desc: "" };
+    const rows = list.map((c) => {
+      const t = COMBO_TYPE[c.type] || { label: c.type, title: "" };
+      const flags = [
+        c.all_precastable ? `<span class="combo-flag precast" title="Every piece lasts minutes+, so you can cast them before the fight — no action cost once combat starts">pre-cast</span>` : "",
+        c.fragile ? `<span class="combo-flag fragile" title="Needs 2+ concentration spells up at once — taking damage forces a challenge roll to keep each">fragile</span>` : "",
+      ].join("");
+      const more = Object.entries(c.alternatives || {})
+        .map(([lever, n]) => n > 1 ? `${n} ${esc(lever)}` : null).filter(Boolean).join(" · ");
+      return `<div class="combo-row">
+        <div class="combo-head">
+          <span class="combo-type ${esc(c.type)}" title="${esc(t.title)}">${esc(t.label)}</span>
+          ${c.members.map(comboMember).join("")}
+          ${flags}
+        </div>
+        <p class="combo-why">${esc(c.rationale)}${more ? ` <span class="dim">— ${more} to choose from</span>` : ""}</p>
+      </div>`;
+    }).join("");
+    return `<div class="combo-goal">
+      <div class="cat-facet">${esc(g.label)} <span class="small dim">${esc(g.desc)}</span></div>
+      ${rows}
+    </div>`;
+  }).join("");
+  const n = data.combos.length;
+  return `<details class="cat-bar combo-bar">
+    <summary class="cat-summary">Combos — what stacks with what <span class="small dim">(${n} synergies; cross-lever combos compound, same roll-lever diminishes)</span></summary>
+    ${sections}
   </details>`;
 }
 
@@ -349,6 +404,20 @@ function wire(el, char, computed) {
   el.addEventListener("click", (e) => {
     const c = active();
     if (!c) return;
+    const find = e.target.closest("[data-find]");
+    if (find) {
+      e.preventDefault();
+      // Jump from a combo to its spell: clear filters that would hide it, set
+      // the search to its name, and scroll the results into view.
+      filters.q = find.dataset.find;
+      filters.tradition = filters.rank = filters.type = filters.source = "";
+      filters.role = filters.archetype = filters.tempo = "";
+      filters.tags.clear();
+      filters.learnable = false;
+      renderSpells(el);
+      el.querySelector("#sp-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
     const tagChip = e.target.closest("[data-tag]");
     if (tagChip) {
       const t = tagChip.dataset.tag;

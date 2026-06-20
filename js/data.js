@@ -5,6 +5,7 @@ export const rules = {
   spells: [],
   spellTags: { facets: [], tags: [] },  // theorycrafting taxonomy (data/spell-tags.json)
   enrichment: {},                       // spellKey -> LLM labels (data/spell-enrichment.json)
+  combos: null,                         // detected spell synergies (data/spell-combos.json)
   paths: [],
   traditions: [],
   equipment: { weapons: [], armor: [], gear: [] },
@@ -41,6 +42,11 @@ export async function loadRules() {
   rules.enrichment = await fetch("data/spell-enrichment.json")
     .then((r) => (r.ok ? r.json() : {}))
     .catch(() => ({}));
+  // Optional combo detector output (scripts/detect_combos.py). Absent -> the
+  // Archive simply shows no Combos panel.
+  rules.combos = await fetch("data/spell-combos.json")
+    .then((r) => (r.ok ? r.json() : null))
+    .catch(() => null);
   rules.paths = paths;
   rules.traditions = traditions;
   rules.equipment = equipment;
