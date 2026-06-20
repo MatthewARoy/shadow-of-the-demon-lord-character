@@ -3,6 +3,7 @@
 export const rules = {
   curated: null,
   spells: [],
+  spellTags: { facets: [], tags: [] },  // theorycrafting taxonomy (data/spell-tags.json)
   paths: [],
   traditions: [],
   equipment: { weapons: [], armor: [], gear: [] },
@@ -29,6 +30,11 @@ export async function loadRules() {
   );
   rules.curated = curated;
   rules.spells = spells;
+  // The spell-tags taxonomy is optional: if the tagger has not been run the
+  // browser simply shows no category chips rather than failing to load.
+  rules.spellTags = await fetch("data/spell-tags.json")
+    .then((r) => (r.ok ? r.json() : { facets: [], tags: [] }))
+    .catch(() => ({ facets: [], tags: [] }));
   rules.paths = paths;
   rules.traditions = traditions;
   rules.equipment = equipment;

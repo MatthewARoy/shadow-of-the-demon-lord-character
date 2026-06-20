@@ -67,6 +67,7 @@ in the repo root, gitignored) by the scripts in `scripts/`:
 ```bash
 python3 scripts/extract_text.py      # PDFs -> normalized text (fixes broken ligatures)
 python3 scripts/parse_spells.py      # -> data/spells.json
+python3 scripts/tag_spells.py        # -> adds theorycrafting `tags`, writes data/spell-tags.json
 python3 scripts/parse_paths.py       # -> data/paths.json
 python3 scripts/parse_traditions.py  # -> data/traditions.json
 python3 scripts/parse_equipment.py   # -> data/equipment.json

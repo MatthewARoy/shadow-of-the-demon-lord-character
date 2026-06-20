@@ -10,7 +10,7 @@ import { statBlockHtml } from "./statblock.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-const filters = { q: "", tradition: "", rank: "", type: "", source: "", learnable: false };
+const filters = { q: "", tradition: "", rank: "", type: "", source: "", learnable: false, tags: new Set() };
 
 export function renderSpells(el) {
   const char = active();
@@ -44,6 +44,7 @@ export function renderSpells(el) {
         </select>
         <button class="chip ${filters.learnable ? "on" : ""}" id="sp-learnable" title="Spells you could legally learn now">learnable now</button>
       </div>
+      ${categoryBar()}
       <div class="spell-grid" id="sp-results"></div>
       <p class="small dim" id="sp-more"></p>
     </div>`;
@@ -112,6 +113,33 @@ function exchangePicker(char, computed, rec) {
   </select>`;
 }
 
+// Theorycrafting categories: chips grouped by facet, drawn from the tagger's
+// taxonomy sidecar. Selecting several narrows the pool to spells carrying ALL
+// of them (e.g. "area" + "control" = every AoE lockdown spell).
+function categoryBar() {
+  const taxo = rules.spellTags;
+  if (!taxo?.tags?.length) return "";
+  const byFacet = new Map();
+  for (const t of taxo.tags) {
+    if (!byFacet.has(t.facet)) byFacet.set(t.facet, []);
+    byFacet.get(t.facet).push(t);
+  }
+  const groups = (taxo.facets.length ? taxo.facets : [...byFacet.keys()])
+    .filter((f) => byFacet.has(f))
+    .map((facet) => `
+      <div class="cat-group">
+        <span class="cat-facet">${esc(facet)}</span>
+        ${byFacet.get(facet).map((t) =>
+          `<button class="chip cat ${filters.tags.has(t.id) ? "on" : ""}" data-tag="${esc(t.id)}" title="${esc(t.label)} · ${t.count} spells">${esc(t.label)}</button>`).join("")}
+      </div>`).join("");
+  const clear = filters.tags.size
+    ? `<button class="chip cat-clear" data-tag-clear title="Clear category filters">✕ clear ${filters.tags.size}</button>` : "";
+  return `<details class="cat-bar" ${filters.tags.size ? "open" : ""}>
+    <summary class="cat-summary">Categories ${filters.tags.size ? `(${filters.tags.size} active)` : "— filter by mechanical effect for theorycrafting"} ${clear}</summary>
+    ${groups}
+  </details>`;
+}
+
 function renderResults(el, char, computed) {
   const box = el.querySelector("#sp-results");
   const more = el.querySelector("#sp-more");
@@ -123,6 +151,10 @@ function renderResults(el, char, computed) {
     if (filters.rank !== "" && s.rank !== parseInt(filters.rank, 10)) return false;
     if (filters.type && s.type !== filters.type) return false;
     if (filters.source && s.source !== filters.source) return false;
+    if (filters.tags.size) {
+      const have = new Set(s.tags || []);
+      for (const t of filters.tags) if (!have.has(t)) return false;
+    }
     if (learnableKeys && !learnableKeys.has(spellKey(s.name, s.tradition))) return false;
     if (q && !s.name.toLowerCase().includes(q) && !s.description.toLowerCase().includes(q)) return false;
     return true;
@@ -146,6 +178,23 @@ function legalNowKeys(char, computed) {
     if (!known.has(k)) keys.add(k);
   }
   return keys;
+}
+
+// id -> human label, built once from the taxonomy sidecar.
+let tagLabelMap = null;
+function tagLabel(id) {
+  if (!tagLabelMap) {
+    tagLabelMap = new Map((rules.spellTags?.tags || []).map((t) => [t.id, t.label]));
+  }
+  return tagLabelMap.get(id) || id;
+}
+
+// Category chips on a card — clicking one adds it to the active filter, so a
+// spell's tags double as a jump-off point for finding its synergy partners.
+function tagChips(s) {
+  if (!s.tags?.length) return "";
+  return `<div class="spell-cats">${s.tags.map((t) =>
+    `<button class="cat-tag ${filters.tags.has(t) ? "on" : ""}" data-tag="${esc(t)}" title="Filter by: ${esc(tagLabel(t))}">${esc(tagLabel(t))}</button>`).join("")}</div>`;
 }
 
 export function spellCard(s, opts = {}) {
@@ -187,6 +236,7 @@ export function spellCard(s, opts = {}) {
       </span>
     </div>
     ${meta.length ? `<div class="spell-meta">${meta.join(" &nbsp;·&nbsp; ")}</div>` : ""}
+    ${tagChips(s)}
     <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
     ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
     ${openCreature ? statBlockHtml(openCreature) : ""}
@@ -225,6 +275,20 @@ function wire(el, char, computed) {
   el.addEventListener("click", (e) => {
     const c = active();
     if (!c) return;
+    const tagChip = e.target.closest("[data-tag]");
+    if (tagChip) {
+      const t = tagChip.dataset.tag;
+      filters.tags.has(t) ? filters.tags.delete(t) : filters.tags.add(t);
+      renderSpells(el);
+      return;
+    }
+    if (e.target.closest("[data-tag-clear]")) {
+      e.preventDefault();
+      filters.tags.clear();
+      renderSpells(el);
+      return;
+    }
+
     const desc = e.target.closest(".spell-desc");
     if (desc) { desc.classList.toggle("clamp"); return; }
 

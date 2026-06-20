@@ -236,6 +236,32 @@ h2.rubric .count { font-family: var(--caps); font-size: 13px; color: var(--text-
 .chip.dark:hover, .chip.dark.on { border-color: var(--blood-bright); color: var(--blood-bright); background: rgba(142,31,31,.15); }
 .chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
 
+/* Spell categories (theorycrafting) -------------------------- */
+.cat-bar { margin: -4px 0 14px; border: 1px solid var(--line); border-radius: 6px; background: rgba(176,141,79,.04); }
+.cat-summary {
+  font-family: var(--caps); font-size: 12.5px; letter-spacing: .04em;
+  color: var(--text-dim); padding: 8px 12px; cursor: pointer; user-select: none;
+}
+.cat-summary:hover { color: var(--bronze-bright); }
+.cat-bar[open] .cat-summary { border-bottom: 1px solid var(--line); color: var(--text); }
+.cat-group { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px 12px; border-bottom: 1px solid rgba(176,141,79,.06); }
+.cat-group:last-child { border-bottom: none; }
+.cat-facet {
+  font-family: var(--caps); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--bronze); min-width: 64px; opacity: .8;
+}
+.chip.cat { font-size: 11.5px; padding: 1px 9px; }
+.cat-clear { margin-left: 8px; border-color: #5c2424 !important; color: var(--blood-bright) !important; }
+/* Per-card category tags */
+.spell-cats { display: flex; flex-wrap: wrap; gap: 4px; margin: 2px 0 6px; }
+.cat-tag {
+  font-family: var(--caps); font-size: 10.5px; letter-spacing: .02em;
+  border: 1px solid var(--line); border-radius: 3px; padding: 0 6px;
+  color: var(--text-dim); background: transparent; cursor: pointer; transition: all .12s;
+}
+.cat-tag:hover { border-color: var(--bronze); color: var(--bronze-bright); }
+.cat-tag.on { border-color: var(--bronze); color: var(--bronze-bright); background: rgba(176,141,79,.18); }
+
 /* Sheet ------------------------------------------------------ */
 .attr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
 .attr-card {
