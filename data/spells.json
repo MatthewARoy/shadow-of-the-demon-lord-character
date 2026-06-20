@@ -121,6 +121,7 @@
   "source": "occult",
   "page": 14,
   "tags": [
+   "sustained",
    "area"
   ]
  },
@@ -177,7 +178,8 @@
   "page": 14,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -209,6 +211,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -373,6 +376,7 @@
    "auto-damage",
    "debuff-rolls",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -605,6 +609,7 @@
    "damage",
    "auto-damage",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -639,7 +644,8 @@
    "damage",
    "auto-damage",
    "insanity",
-   "transform"
+   "transform",
+   "sustained"
   ]
  },
  {
@@ -827,7 +833,8 @@
   "source": "occult",
   "page": 21,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -862,7 +869,8 @@
   "tags": [
    "damage",
    "control",
-   "transform"
+   "transform",
+   "sustained"
   ]
  },
  {
@@ -895,7 +903,8 @@
   "page": 21,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -936,7 +945,8 @@
   "page": 117,
   "tags": [
    "debuff-rolls",
-   "defense-buff"
+   "defense-buff",
+   "sustained"
   ]
  },
  {
@@ -969,7 +979,8 @@
   "source": "occult",
   "page": 21,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -1038,7 +1049,8 @@
   "page": 21,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -1073,7 +1085,8 @@
   "page": 22,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -1121,7 +1134,8 @@
   "tags": [
    "damage",
    "buff-attack",
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -1153,7 +1167,8 @@
   "source": "occult",
   "page": 22,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -1220,6 +1235,7 @@
    "transform",
    "corruption",
    "self-risk",
+   "permanent",
    "area"
   ]
  },
@@ -1277,7 +1293,9 @@
   "description": "Choose one of the following effects. You create a harmless effect in an open space within short range. Some possible uses are given below. • Choose one object. The object can be worn or carried by another creature. The object becomes clean, changes color, or becomes dirty. • You light or extinguish a candle, lantern, or torch. • Choose one object. You can cause a symbol to appear on the object and remain until you complete a rest. • Choose one object. You cause the object to become warmer or cooler. • Choose one edible or drinkable object. You season or spice the object in any way you choose. • Choose any number of Size 1/8 or smaller objects. You cause them to move together and form into a tidy stack in an open space you choose. • Create another sort of minor effect that cannot harm, distract, or hamper another creature, subject to the GM’s approval. This might be a burst of sparkles, a puff of smoke, a light wind, the sounds of singing or music, or a strong odor.",
   "source": "occult",
   "page": 23,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Magic Dart",
@@ -1536,6 +1554,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -1622,7 +1641,8 @@
    "auto-damage",
    "debuff-rolls",
    "sacrifice",
-   "self-risk"
+   "self-risk",
+   "permanent"
   ]
  },
  {
@@ -1772,7 +1792,8 @@
    "auto-damage",
    "buff-attack",
    "action-economy",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -1809,7 +1830,8 @@
   "source": "core",
   "page": 119,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -2034,7 +2056,8 @@
    "auto-damage",
    "control",
    "fly",
-   "triggered"
+   "triggered",
+   "sustained"
   ]
  },
  {
@@ -2048,7 +2071,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "triggered"
+   "triggered",
+   "sustained"
   ]
  },
  {
@@ -2065,7 +2089,8 @@
    "damage",
    "auto-damage",
    "fly",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -2135,7 +2160,8 @@
   "page": 120,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -2177,7 +2203,8 @@
   "tags": [
    "debuff-rolls",
    "control",
-   "triggered"
+   "triggered",
+   "sustained"
   ]
  },
  {
@@ -2194,7 +2221,8 @@
   "source": "core",
   "page": 120,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -2221,7 +2249,8 @@
   "source": "core",
   "page": 120,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -2256,7 +2285,8 @@
   "page": 27,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -2321,7 +2351,8 @@
   "source": "core",
   "page": 121,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -2349,6 +2380,7 @@
   "page": 27,
   "tags": [
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -2398,6 +2430,7 @@
    "damage",
    "auto-damage",
    "summon",
+   "sustained",
    "area"
   ]
  },
@@ -2433,6 +2466,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -2465,7 +2499,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -2496,6 +2531,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -2598,6 +2634,7 @@
    "damage",
    "auto-damage",
    "control",
+   "permanent",
    "area"
   ]
  },
@@ -2638,6 +2675,7 @@
   "source": "occult",
   "page": 30,
   "tags": [
+   "sustained",
    "area"
   ]
  },
@@ -2715,6 +2753,7 @@
   "tags": [
    "debuff-rolls",
    "insanity",
+   "sustained",
    "area"
   ]
  },
@@ -2734,7 +2773,8 @@
   "tags": [
    "damage",
    "fear",
-   "transform"
+   "transform",
+   "sustained"
   ]
  },
  {
@@ -2814,7 +2854,8 @@
   "page": 30,
   "tags": [
    "damage",
-   "auto-damage"
+   "auto-damage",
+   "sustained"
   ]
  },
  {
@@ -2846,7 +2887,8 @@
   "source": "occult",
   "page": 31,
   "tags": [
-   "buff-attack"
+   "buff-attack",
+   "sustained"
   ]
  },
  {
@@ -3047,6 +3089,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -3134,8 +3177,6 @@
   "source": "occult",
   "page": 33,
   "tags": [
-   "damage",
-   "auto-damage",
    "control",
    "summon",
    "sacrifice",
@@ -3448,6 +3489,7 @@
    "protection",
    "sacrifice",
    "self-risk",
+   "permanent",
    "area"
   ]
  },
@@ -3536,7 +3578,9 @@
   },
   "source": "occult",
   "page": 36,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Hex",
@@ -3553,7 +3597,8 @@
   "page": 123,
   "tags": [
    "buff-attack",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -3572,7 +3617,8 @@
   "page": 123,
   "tags": [
    "damage",
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -3588,7 +3634,9 @@
   },
   "source": "occult",
   "page": 36,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Frighten",
@@ -3604,7 +3652,8 @@
   "source": "core",
   "page": 123,
   "tags": [
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -3621,7 +3670,8 @@
   "source": "core",
   "page": 123,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -3639,7 +3689,8 @@
   "page": 36,
   "tags": [
    "control",
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -3657,7 +3708,8 @@
   "source": "core",
   "page": 123,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -3693,7 +3745,8 @@
   "source": "occult",
   "page": 37,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -3709,7 +3762,9 @@
   },
   "source": "occult",
   "page": 37,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Vulnerability",
@@ -3727,7 +3782,8 @@
   "tags": [
    "buff-attack",
    "buff-challenge",
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -3744,7 +3800,8 @@
   "source": "core",
   "page": 124,
   "tags": [
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -3762,7 +3819,8 @@
   "page": 37,
   "tags": [
    "buff-attack",
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -3791,6 +3849,7 @@
   "page": 124,
   "tags": [
    "fear",
+   "sustained",
    "area"
   ]
  },
@@ -3811,7 +3870,8 @@
   "tags": [
    "damage",
    "debuff-rolls",
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -3844,7 +3904,9 @@
   },
   "source": "occult",
   "page": 37,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Sicken",
@@ -3856,7 +3918,8 @@
   "source": "occult",
   "page": 37,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -3914,7 +3977,8 @@
   "page": 124,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -3933,6 +3997,7 @@
    "debuff-rolls",
    "control",
    "fear",
+   "sustained",
    "area"
   ]
  },
@@ -3950,6 +4015,7 @@
    "auto-damage",
    "insanity",
    "sacrifice",
+   "sustained",
    "area"
   ]
  },
@@ -3968,7 +4034,8 @@
   "source": "occult",
   "page": 38,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -4046,7 +4113,8 @@
   "source": "occult",
   "page": 39,
   "tags": [
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -4096,7 +4164,8 @@
   "source": "occult",
   "page": 39,
   "tags": [
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -4181,7 +4250,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -4220,6 +4290,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -4348,6 +4419,7 @@
    "control",
    "summon",
    "self-risk",
+   "permanent",
    "area"
   ]
  },
@@ -4365,6 +4437,7 @@
    "auto-damage",
    "control",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -4403,7 +4476,8 @@
   "tags": [
    "damage",
    "insanity",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -4418,6 +4492,7 @@
    "damage",
    "auto-damage",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -4439,7 +4514,8 @@
    "damage",
    "mind-control",
    "sacrifice",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -4613,7 +4689,8 @@
    "defense-buff",
    "protection",
    "movement",
-   "self-risk"
+   "self-risk",
+   "permanent"
   ]
  },
  {
@@ -4665,6 +4742,7 @@
    "damage",
    "auto-damage",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -4680,7 +4758,8 @@
    "damage",
    "auto-damage",
    "corruption",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -4723,7 +4802,8 @@
   "page": 124,
   "tags": [
    "damage",
-   "auto-damage"
+   "auto-damage",
+   "sustained"
   ]
  },
  {
@@ -4759,7 +4839,8 @@
   "page": 125,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -4779,7 +4860,8 @@
   "tags": [
    "damage",
    "fear",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -4817,7 +4899,8 @@
   "tags": [
    "damage",
    "control",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -4882,7 +4965,8 @@
   "source": "core",
   "page": 125,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -4955,7 +5039,8 @@
   "page": 125,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -5041,6 +5126,7 @@
    "auto-damage",
    "control",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -5096,7 +5182,8 @@
   "tags": [
    "damage",
    "control",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -5130,6 +5217,7 @@
    "auto-damage",
    "control",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -5281,7 +5369,8 @@
   "page": 47,
   "tags": [
    "debuff-rolls",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -5681,7 +5770,8 @@
   "page": 49,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -5818,7 +5908,8 @@
   "source": "occult",
   "page": 49,
   "tags": [
-   "transform"
+   "transform",
+   "sustained"
   ]
  },
  {
@@ -6087,7 +6178,8 @@
   "source": "occult",
   "page": 51,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6105,7 +6197,8 @@
   "page": 51,
   "tags": [
    "buff-attack",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -6136,7 +6229,8 @@
   "source": "occult",
   "page": 51,
   "tags": [
-   "buff-attack"
+   "buff-attack",
+   "sustained"
   ]
  },
  {
@@ -6155,7 +6249,8 @@
   "page": 128,
   "tags": [
    "damage",
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6172,7 +6267,8 @@
   "source": "core",
   "page": 128,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6186,7 +6282,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -6203,7 +6300,8 @@
   "source": "core",
   "page": 128,
   "tags": [
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -6237,7 +6335,8 @@
   "page": 128,
   "tags": [
    "damage",
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6256,7 +6355,8 @@
   "tags": [
    "damage",
    "buff-attack",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -6284,7 +6384,8 @@
   "page": 22,
   "tags": [
    "control",
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6302,7 +6403,8 @@
   "page": 128,
   "tags": [
    "control",
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -6315,7 +6417,8 @@
   "source": "occult",
   "page": 51,
   "tags": [
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -6355,7 +6458,8 @@
   "tags": [
    "buff-attack",
    "debuff-rolls",
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -6368,7 +6472,8 @@
   "source": "core",
   "page": 128,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6386,7 +6491,8 @@
   "page": 51,
   "tags": [
    "control",
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6400,6 +6506,7 @@
   "page": 51,
   "tags": [
    "debuff-rolls",
+   "sustained",
    "area"
   ]
  },
@@ -6414,7 +6521,8 @@
   "page": 52,
   "tags": [
    "debuff-rolls",
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -6432,7 +6540,8 @@
   "page": 128,
   "tags": [
    "buff-attack",
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6484,7 +6593,8 @@
   "source": "occult",
   "page": 52,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6504,7 +6614,8 @@
   "tags": [
    "damage",
    "control",
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -6556,7 +6667,8 @@
   "source": "occult",
   "page": 52,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "permanent"
   ]
  },
  {
@@ -6574,7 +6686,8 @@
    "fear",
    "mind-control",
    "cure",
-   "summon"
+   "summon",
+   "sustained"
   ]
  },
  {
@@ -6591,7 +6704,8 @@
   "source": "terrible",
   "page": 20,
   "tags": [
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -6609,7 +6723,8 @@
   "source": "occult",
   "page": 53,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -6621,7 +6736,9 @@
   "description": "You touch the target, causing it to become Size 1/8 or half its Size, whichever is smaller. The object remains at this Size until you use an action to restore it to its normal Size.",
   "source": "terrible",
   "page": 20,
-  "tags": []
+  "tags": [
+   "permanent"
+  ]
  },
  {
   "name": "Trip",
@@ -6638,7 +6755,8 @@
   "source": "occult",
   "page": 53,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -6776,6 +6894,7 @@
   "page": 20,
   "tags": [
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -6791,7 +6910,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -6826,7 +6946,8 @@
   "source": "terrible",
   "page": 21,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -6874,7 +6995,8 @@
   "source": "terrible",
   "page": 21,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -6922,7 +7044,8 @@
   "tags": [
    "debuff-rolls",
    "control",
-   "transform"
+   "transform",
+   "sustained"
   ]
  },
  {
@@ -6951,7 +7074,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "transform"
+   "transform",
+   "permanent"
   ]
  },
  {
@@ -6998,6 +7122,7 @@
    "control",
    "teleport",
    "sacrifice",
+   "sustained",
    "area"
   ]
  },
@@ -7608,7 +7733,9 @@
   },
   "source": "core",
   "page": 129,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Hateful Defecation",
@@ -7627,6 +7754,7 @@
   "tags": [
    "damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -7646,7 +7774,8 @@
   "page": 130,
   "tags": [
    "damage",
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -7719,7 +7848,8 @@
   "source": "occult",
   "page": 60,
   "tags": [
-   "transform"
+   "transform",
+   "sustained"
   ]
  },
  {
@@ -7740,7 +7870,8 @@
    "damage",
    "debuff-rolls",
    "control",
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -7780,7 +7911,8 @@
   "tags": [
    "damage",
    "control",
-   "concentration"
+   "concentration",
+   "permanent"
   ]
  },
  {
@@ -7837,7 +7969,8 @@
   "page": 60,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -7874,7 +8007,8 @@
   "page": 131,
   "tags": [
    "control",
-   "insanity"
+   "insanity",
+   "permanent"
   ]
  },
  {
@@ -7889,7 +8023,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -7903,7 +8038,8 @@
   "source": "occult",
   "page": 60,
   "tags": [
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -7962,7 +8098,8 @@
    "insanity",
    "action-economy",
    "movement",
-   "concealment"
+   "concealment",
+   "permanent"
   ]
  },
  {
@@ -8055,7 +8192,8 @@
    "auto-damage",
    "control",
    "insanity",
-   "summon"
+   "summon",
+   "sustained"
   ]
  },
  {
@@ -8151,7 +8289,8 @@
   "tags": [
    "buff-attack",
    "debuff-rolls",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -8163,7 +8302,9 @@
   "description": "You fill the target’s mind with false belief about its capabilities. Choose one of the following effects: • You enable the target to speak, read, or write a language it does not know or gain a profession it does not have. The effect lasts for 1 hour. • The target becomes impaired for 1 minute.",
   "source": "occult",
   "page": 62,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Figment",
@@ -8220,7 +8361,8 @@
   "source": "core",
   "page": 132,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -8358,7 +8500,8 @@
   "page": 63,
   "tags": [
    "buff-attack",
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -8391,6 +8534,7 @@
    "auto-damage",
    "sacrifice",
    "sustained",
+   "permanent",
    "area"
   ]
  },
@@ -8426,7 +8570,9 @@
   },
   "source": "occult",
   "page": 63,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Illusory Double",
@@ -8708,7 +8854,8 @@
   "tags": [
    "damage",
    "insanity",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -9042,8 +9189,6 @@
   "source": "occult",
   "page": 70,
   "tags": [
-   "damage",
-   "auto-damage",
    "heal",
    "sustained"
   ]
@@ -9186,6 +9331,7 @@
   "tags": [
    "damage",
    "auto-damage",
+   "sustained",
    "area"
   ]
  },
@@ -9264,7 +9410,8 @@
    "damage",
    "auto-damage",
    "heal",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -9344,6 +9491,7 @@
    "auto-damage",
    "heal",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -9365,7 +9513,8 @@
    "damage",
    "control",
    "insanity",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -9379,8 +9528,6 @@
   "source": "occult",
   "page": 71,
   "tags": [
-   "damage",
-   "auto-damage",
    "heal",
    "cure",
    "self-risk",
@@ -9418,6 +9565,7 @@
    "auto-damage",
    "heal",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -9434,7 +9582,8 @@
    "damage",
    "auto-damage",
    "heal",
-   "cure"
+   "cure",
+   "permanent"
   ]
  },
  {
@@ -9749,7 +9898,8 @@
   "tags": [
    "control",
    "insanity",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -9823,6 +9973,7 @@
   "tags": [
    "insanity",
    "self-risk",
+   "permanent",
    "area"
   ]
  },
@@ -10165,7 +10316,8 @@
   "source": "occult",
   "page": 78,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -10183,7 +10335,8 @@
    "auto-damage",
    "control",
    "transform",
-   "sustained"
+   "sustained",
+   "permanent"
   ]
  },
  {
@@ -10287,7 +10440,8 @@
   "source": "core",
   "page": 135,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -10367,7 +10521,8 @@
    "damage",
    "auto-damage",
    "buff-attack",
-   "defense-buff"
+   "defense-buff",
+   "sustained"
   ]
  },
  {
@@ -10466,7 +10621,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -10519,7 +10675,8 @@
    "cure",
    "summon",
    "sacrifice",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -10625,6 +10782,7 @@
   "page": 80,
   "tags": [
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -10677,7 +10835,8 @@
   "source": "occult",
   "page": 81,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -10696,7 +10855,8 @@
   "page": 136,
   "tags": [
    "damage",
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -10754,6 +10914,7 @@
   "page": 81,
   "tags": [
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -10889,6 +11050,7 @@
    "auto-damage",
    "control",
    "insanity",
+   "sustained",
    "area"
   ]
  },
@@ -10963,7 +11125,6 @@
   "source": "occult",
   "page": 82,
   "tags": [
-   "damage",
    "insanity",
    "heal",
    "sustained"
@@ -10979,10 +11140,9 @@
   "source": "occult",
   "page": 82,
   "tags": [
-   "damage",
-   "auto-damage",
    "heal",
    "sacrifice",
+   "sustained",
    "area"
   ]
  },
@@ -11018,7 +11178,8 @@
   "page": 82,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "permanent"
   ]
  },
  {
@@ -11031,8 +11192,6 @@
   "source": "occult",
   "page": 82,
   "tags": [
-   "damage",
-   "auto-damage",
    "heal",
    "sacrifice",
    "area"
@@ -11089,7 +11248,8 @@
   "page": 83,
   "tags": [
    "heal",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -11106,6 +11266,7 @@
    "heal",
    "sacrifice",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -11138,7 +11299,8 @@
   "source": "occult",
   "page": 84,
   "tags": [
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -11182,7 +11344,8 @@
   "source": "occult",
   "page": 84,
   "tags": [
-   "triggered"
+   "triggered",
+   "sustained"
   ]
  },
  {
@@ -11231,7 +11394,8 @@
   "source": "occult",
   "page": 85,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -11265,7 +11429,8 @@
   "tags": [
    "control",
    "heal",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -11300,7 +11465,8 @@
    "damage",
    "control",
    "teleport",
-   "summon"
+   "summon",
+   "sustained"
   ]
  },
  {
@@ -11385,7 +11551,8 @@
   "page": 86,
   "tags": [
    "protection",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -11512,7 +11679,8 @@
   "page": 137,
   "tags": [
    "mind-control",
-   "sustained"
+   "sustained",
+   "permanent"
   ]
  },
  {
@@ -11545,6 +11713,7 @@
    "debuff-rolls",
    "control",
    "fear",
+   "sustained",
    "area"
   ]
  },
@@ -11910,7 +12079,8 @@
    "divination",
    "transform",
    "self-risk",
-   "sustained"
+   "sustained",
+   "permanent"
   ]
  },
  {
@@ -12002,7 +12172,8 @@
   "source": "occult",
   "page": 90,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -12254,6 +12425,7 @@
   "tags": [
    "control",
    "fly",
+   "sustained",
    "area"
   ]
  },
@@ -12298,7 +12470,8 @@
   "source": "terrible",
   "page": 23,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -12536,7 +12709,9 @@
   },
   "source": "occult",
   "page": 93,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Runic Shield",
@@ -12568,7 +12743,8 @@
   "source": "occult",
   "page": 93,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -12931,7 +13107,8 @@
   "tags": [
    "buff-attack",
    "debuff-rolls",
-   "concealment"
+   "concealment",
+   "sustained"
   ]
  },
  {
@@ -12963,7 +13140,8 @@
   "source": "occult",
   "page": 96,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -13026,7 +13204,8 @@
   "page": 140,
   "tags": [
    "damage",
-   "debuff-rolls"
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -13156,6 +13335,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -13369,7 +13549,9 @@
   },
   "source": "occult",
   "page": 99,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Project Voice",
@@ -13425,6 +13607,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -13542,7 +13725,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "heal"
+   "heal",
+   "sustained"
   ]
  },
  {
@@ -13734,7 +13918,8 @@
   "page": 100,
   "tags": [
    "heal",
-   "summon"
+   "summon",
+   "sustained"
   ]
  },
  {
@@ -13821,7 +14006,8 @@
    "damage",
    "auto-damage",
    "heal",
-   "cure"
+   "cure",
+   "sustained"
   ]
  },
  {
@@ -13941,7 +14127,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -14128,7 +14315,8 @@
    "auto-damage",
    "buff-attack",
    "teleport",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -14192,7 +14380,8 @@
   "source": "occult",
   "page": 105,
   "tags": [
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -14319,7 +14508,8 @@
   "tags": [
    "damage",
    "debuff-rolls",
-   "summon"
+   "summon",
+   "sustained"
   ]
  },
  {
@@ -14359,7 +14549,8 @@
   "page": 106,
   "tags": [
    "mind-control",
-   "summon"
+   "summon",
+   "permanent"
   ]
  },
  {
@@ -14501,7 +14692,8 @@
   "page": 142,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -14608,7 +14800,8 @@
    "damage",
    "auto-damage",
    "control",
-   "sacrifice"
+   "sacrifice",
+   "sustained"
   ]
  },
  {
@@ -14727,6 +14920,7 @@
   "page": 108,
   "tags": [
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -14814,6 +15008,7 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -14885,7 +15080,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -15003,7 +15199,8 @@
   "page": 143,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -15020,7 +15217,8 @@
   "source": "occult",
   "page": 111,
   "tags": [
-   "concealment"
+   "concealment",
+   "sustained"
   ]
  },
  {
@@ -15126,7 +15324,8 @@
   "page": 111,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -15343,7 +15542,8 @@
    "damage",
    "auto-damage",
    "defense-buff",
-   "sustained"
+   "sustained",
+   "permanent"
   ]
  },
  {
@@ -15525,7 +15725,8 @@
   "source": "occult",
   "page": 115,
   "tags": [
-   "damage"
+   "damage",
+   "sustained"
   ]
  },
  {
@@ -15648,7 +15849,8 @@
   "page": 116,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -15748,6 +15950,7 @@
    "auto-damage",
    "control",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -15845,7 +16048,8 @@
    "debuff-rolls",
    "control",
    "fear",
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -15863,7 +16067,8 @@
   "page": 117,
   "tags": [
    "buff-attack",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -15897,7 +16102,8 @@
   "source": "occult",
   "page": 117,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -15915,7 +16121,8 @@
   "page": 117,
   "tags": [
    "control",
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -15928,7 +16135,8 @@
   "source": "occult",
   "page": 118,
   "tags": [
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -15955,7 +16163,9 @@
   "description": "Upon casting this spell, you must concentrate for 1 hour, during which time your mind enters the target’s mind. If the target moves out of range before you finish, this casting of the spell is expended. If you finish the casting, you reduce the target’s Insanity total by 1d6 or remove one quirk from the target. If you’re using the variant Insanity rules in Unhinge the Mind or Poisoned Pages, you can instead allow a target suffering from long-term madness to make a Will challenge roll. If the target gets a success, the target moves down two stages (minimum stage 0).",
   "source": "occult",
   "page": 118,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Wipe the Mind",
@@ -15970,7 +16180,9 @@
   },
   "source": "occult",
   "page": 118,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Brain Damage",
@@ -16002,7 +16214,8 @@
   "source": "occult",
   "page": 118,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "sustained"
   ]
  },
  {
@@ -16124,7 +16337,8 @@
   "page": 119,
   "tags": [
    "damage",
-   "teleport"
+   "teleport",
+   "permanent"
   ]
  },
  {
@@ -16248,7 +16462,8 @@
   "tags": [
    "damage",
    "protection",
-   "teleport"
+   "teleport",
+   "sustained"
   ]
  },
  {
@@ -16282,7 +16497,8 @@
   "tags": [
    "damage",
    "control",
-   "teleport"
+   "teleport",
+   "sustained"
   ]
  },
  {
@@ -16320,7 +16536,8 @@
   "tags": [
    "damage",
    "control",
-   "protection"
+   "protection",
+   "sustained"
   ]
  },
  {
@@ -16417,7 +16634,8 @@
   "source": "occult",
   "page": 120,
   "tags": [
-   "insanity"
+   "insanity",
+   "sustained"
   ]
  },
  {
@@ -16453,7 +16671,8 @@
    "control",
    "teleport",
    "sacrifice",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -16533,7 +16752,9 @@
   "description": "You and each target must link hands while you concentrate for 1 minute, during which time you visualize another reality (such as the world revealed in the Godless supplement). If you have been to that reality before, you can fix that reality in your mind. Otherwise, you envision a new reality to which you would travel. When you finish, you must make an Intellect challenge roll with 5 banes. On a success, you and each target vanish from this reality, instantly whisked to the reality you envisioned or a different one if the reality you envisioned does not exist, as the GM decides. On a failure, you and each target disappear into the Void and are never seen again.",
   "source": "occult",
   "page": 120,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Temple of Faith",
@@ -16596,7 +16817,8 @@
   "page": 145,
   "tags": [
    "control",
-   "fear"
+   "fear",
+   "sustained"
   ]
  },
  {
@@ -16611,7 +16833,8 @@
    "damage",
    "auto-damage",
    "buff-attack",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -16653,6 +16876,7 @@
   "source": "core",
   "page": 146,
   "tags": [
+   "sustained",
    "area"
   ]
  },
@@ -16830,7 +17054,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -16906,7 +17131,8 @@
   "tags": [
    "damage",
    "control",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -16935,7 +17161,8 @@
   "source": "occult",
   "page": 122,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "permanent"
   ]
  },
  {
@@ -16997,7 +17224,8 @@
    "auto-damage",
    "control",
    "cure",
-   "self-risk"
+   "self-risk",
+   "sustained"
   ]
  },
  {
@@ -17065,7 +17293,8 @@
   "source": "occult",
   "page": 125,
   "tags": [
-   "triggered"
+   "triggered",
+   "sustained"
   ]
  },
  {
@@ -17082,7 +17311,8 @@
   "source": "core",
   "page": 146,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -17124,7 +17354,8 @@
    "action-economy",
    "movement",
    "self-risk",
-   "triggered"
+   "triggered",
+   "sustained"
   ]
  },
  {
@@ -17140,7 +17371,9 @@
   },
   "source": "core",
   "page": 146,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Rewrite Moment",
@@ -17165,7 +17398,8 @@
   "source": "core",
   "page": 146,
   "tags": [
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -17181,7 +17415,9 @@
   },
   "source": "occult",
   "page": 125,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Precognition",
@@ -17249,6 +17485,7 @@
   "source": "core",
   "page": 147,
   "tags": [
+   "action-economy",
    "sustained"
   ]
  },
@@ -17263,6 +17500,7 @@
   "page": 147,
   "tags": [
    "control",
+   "sustained",
    "area"
   ]
  },
@@ -17280,6 +17518,7 @@
    "buff-attack",
    "buff-challenge",
    "debuff-rolls",
+   "action-economy",
    "sustained",
    "area"
   ]
@@ -17293,7 +17532,9 @@
   "description": "You attempt to knot each target’s timeline so that the creature does not exist in the present. Each target must get a success on an Intellect challenge roll with 1 bane or disappear, removed from existence for 1 minute. While removed from existence, the target is insensate, cannot use actions or triggered actions, and cannot move. When the effect ends for a target, it returns to the space from which it disappeared or the nearest open space of its choice.",
   "source": "occult",
   "page": 126,
-  "tags": []
+  "tags": [
+   "sustained"
+  ]
  },
  {
   "name": "Excellent Adventure",
@@ -17323,7 +17564,8 @@
   "tags": [
    "damage",
    "control",
-   "action-economy"
+   "action-economy",
+   "sustained"
   ]
  },
  {
@@ -17353,7 +17595,8 @@
   "page": 126,
   "tags": [
    "self-risk",
-   "triggered"
+   "triggered",
+   "sustained"
   ]
  },
  {
@@ -17400,7 +17643,8 @@
    "damage",
    "control",
    "protection",
-   "summon"
+   "summon",
+   "sustained"
   ]
  },
  {
@@ -17419,6 +17663,7 @@
    "buff-attack",
    "buff-challenge",
    "control",
+   "action-economy",
    "movement",
    "sustained"
   ]
@@ -17484,6 +17729,7 @@
    "damage",
    "auto-damage",
    "self-risk",
+   "sustained",
    "area"
   ]
  },
@@ -17600,7 +17846,8 @@
    "auto-damage",
    "fly",
    "movement",
-   "transform"
+   "transform",
+   "sustained"
   ]
  },
  {
@@ -17897,7 +18144,8 @@
   "page": 148,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "sustained"
   ]
  },
  {
@@ -17989,6 +18237,7 @@
   "tags": [
    "damage",
    "auto-damage",
+   "sustained",
    "area"
   ]
  },
@@ -18019,8 +18268,6 @@
   "source": "core",
   "page": 149,
   "tags": [
-   "damage",
-   "auto-damage",
    "heal-support",
    "sustained",
    "area"
@@ -18130,6 +18377,7 @@
    "auto-damage",
    "heal",
    "cure",
+   "sustained",
    "area"
   ]
  },
@@ -18162,6 +18410,7 @@
   "page": 149,
   "tags": [
    "control",
+   "sustained",
    "area"
   ]
  },

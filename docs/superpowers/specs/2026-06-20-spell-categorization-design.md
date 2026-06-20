@@ -130,14 +130,32 @@ Design choices that make a 1,120-spell model run practical and safe:
 The `tag_add`/`tag_remove` audit closes the loop with the rule tagger: where the
 model and the regex disagree (`enrich_spells.py --audit`), the high-confidence
 calls become `spell-tag-overrides.json` entries or sharper rules. The model is a
-*second reviewer*, not the source of truth — most of its 1,000+ suggestions
-reflect looser semantics than our deliberately precise mechanical tags (it adds
-`triggered` to reactive-*feeling* spells that aren't literally Triggered-cast),
-so they are a prioritized review queue, not an auto-apply. The first full run's
-clearest systematic signal — `damage`/`auto-damage` removed from ~160 spells —
-turned out to be a real bug: defensive "takes no/half damage **from** all
-sources" was matching the damage rule (Glide, Resistance, Flame Ward). That one
-the model was right about, and it became the sharper `_DAMAGE` pattern.
+*second reviewer*, not the source of truth — many of its suggestions reflect
+looser semantics than our deliberately precise mechanical tags, so they are a
+prioritized review queue, not an auto-apply.
+
+The prompt hands the model the **precise definition of every tag** (`TAG_GLOSS`)
+so it audits against our meanings, not its own intuition — the main noise source
+in the first pass. Re-running the whole corpus against the corrected tags is the
+audit-in-detail step, and each pass has surfaced real, *systematic* bugs (not
+one-offs) that became sharper rules:
+
+- **Defensive mitigation read as damage** — "takes no/half damage **from** all
+  sources" (Glide, Resistance, Flame Ward). Fixed by enumerating the *dealing*
+  phrasings in `_DAMAGE`.
+- **Healing dice read as damage** — "heal 3d6 damage" (Animate Huge Corpse,
+  House of Healing) matched the bare-dice clause; excluded with a heal lookbehind.
+- **Inline durations missed** — `sustained`/`permanent` read the parsed Duration
+  *field*, but ~220 spells state the duration in prose ("for 1 minute", "until
+  the spell ends") with no field. The timing tags now also read inline duration.
+  (Shrink Object's permanence — "until you use an action to restore it" — is the
+  same class.)
+
+What the model is *not* the authority on: definitional boundaries it reads more
+loosely than we tag — e.g. it would strip `auto-damage` from save-for-half
+spells (our definition keeps them) and add `control` for knockback/forced
+movement (our `control` is named afflictions only). Those are left as deliberate
+taxonomy choices.
 
 The **build lens** in the Archive (`js/ui/spells.js`) surfaces all of this: a
 collapsible bar filters by role / archetype / tempo (single-select, only showing

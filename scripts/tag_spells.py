@@ -94,7 +94,9 @@ RULES = []
 # class (Glide, Resistance, Flame Ward were all mislabeled `damage`).
 _DAMAGE = re.compile(
     r"deals?\b[^.]{0,45}\bdamage\b|dealing[^.]{0,45}\bdamage\b|inflicts?\b[^.]{0,45}\bdamage\b|"
-    r"\b\d+d\d+(?:\s*\+\s*\d+)? (?:extra )?damage\b|"
+    # Bare "Nd6 damage" counts as dealing damage — unless it's healing dice
+    # ("heal 3d6 damage"), which the audit flagged (Animate Huge Corpse).
+    r"(?<!heal )(?<!heals )(?<!healing )\b\d+d\d+(?:\s*\+\s*\d+)? (?:extra )?damage\b|"
     r"tak(?:es?|ing) (?:\d+(?:d\d+)?|that|the|this|any|its) (?:extra )?damage|"
     r"tak(?:es?|ing) damage equal to|tak(?:es?|ing) half the damage|tak(?:es?|ing) the attack|"
     r"for \d+d\d+(?:\s*\+\s*\d+)? damage|damage equal to its|"
@@ -149,11 +151,14 @@ RULES += [
     # always reference "the affliction" (singular, the one just applied).
     ("cure", "support", rx(r"remove (?:one of |any of )?(?:the )?following (?:affliction|benefit)|remove one curse|cured? of\b|\brid (?:it|them|the target|yourself|itself) of\b|cleanse\w*|resist or remove|remov\w+[^.]{0,45}\bafflictions\b")),
     ("defense-buff", "support", rx(r"bonus to Defense|Defense (?:score )?(?:becomes|increases?)|\+\d[^.]{0,12}Defense|Health (?:score )?increases? by|bonus to Health")),
-    # Action economy — the Borrowed Time bucket: extra actions/turns, or
-    # granting an ally a triggered action/attack. Pure Speed lives under
-    # `movement`; a spell merely being cast as a triggered action is `triggered`,
-    # not action economy, so that clause is intentionally excluded.
-    ("action-economy", "support", rx(r"extra (?:action|turn|attack)|additional (?:action|turn|attack)|increase the number of actions|(?:take|gain|get)s? (?:an|one|another)\b[^.]{0,14}\bturn|(?:you|target|creature|ally|it|they) can use a triggered action to make[^.]{0,15}attack|grant[^.]{0,25}triggered action|\bacts? (?:again|twice|an additional)\b")),
+    # Action economy — the Borrowed Time bucket: extra actions/turns/rounds, or
+    # granting an ally a triggered action/attack. Includes SotDL's core bonus-
+    # turn idiom — "a fast turn and a slow turn" (you normally take one OR the
+    # other), used by Accelerate/Time Dilation — and "extra round" (Halt Time).
+    # Pure Speed lives under `movement`; a spell merely cast as a triggered
+    # action is `triggered`; a bare "take a turn" is usually a per-turn trigger
+    # (Cloud of Missiles), so none of those count here.
+    ("action-economy", "support", rx(r"extra (?:action|turn|attack|round)|additional (?:action|turn|attack)|increase the number of actions|fast turn and a slow turn|(?:take|gain|get)s? (?:an|one|another)\b[^.]{0,14}\bturn|(?:you|target|creature|ally|it|they) can use a triggered action to make[^.]{0,15}attack|grant[^.]{0,25}triggered action|\bacts? (?:again|twice|an additional)\b")),
     # Defensive damage mitigation. The key tell is "takes half damage FROM"
     # (a granted resistance) vs. the offensive save-for-half "taking half the
     # damage on a success", which is a damage spell and is deliberately excluded.
@@ -198,17 +203,39 @@ def _dur(*needles):
         return any(n in dur for n in needles)
     return f
 
+# Permanence is sometimes a Duration field ("Permanent") and sometimes only
+# stated in prose: an effect that persists until actively undone ("until you
+# use an action to restore it" — Shrink Object) or one declared permanent.
+_PERM_PROSE = re.compile(
+    r"\bpermanent(?:ly)?\b|becomes? permanent|"
+    r"until you (?:use an action to )?(?:restore|dismiss|end|reverse|release|undo|cancel) (?:it|the|this|its)|"
+    r"until (?:it is |the \w+ is )?(?:dispelled|removed)", re.I)
+
+def _permanent(d, s):
+    return "permanent" in (s.get("duration") or "").lower() or bool(_PERM_PROSE.search(d))
+
+# A timed duration stated inline in the description, for the many spells whose
+# Duration field the parser didn't capture (the audit's biggest "missing"
+# signal was `sustained`). "for the duration" implies a (missing) timed field.
+_INLINE_DUR = re.compile(
+    r"\bfor (?:1|one|\d+|the next) (?:minute|hour|round|day)|for the duration|"
+    r"lasts? (?:for )?(?:1|one|\d+) (?:minute|hour|round|day)|"
+    r"until (?:the (?:start|end) of|you complete a rest|the end of the (?:round|encounter)|the spell ends)", re.I)
+
 def _sustained(d, s):
     dur = (s.get("duration") or "").lower()
-    if not dur or dur == "permanent" or "concentration" in dur:
-        return False
-    return bool(re.search(r"minute|hour|round|rest|day", dur))
+    if dur:
+        if dur == "permanent" or "concentration" in dur:
+            return False
+        return bool(re.search(r"minute|hour|round|rest|day", dur))
+    # No Duration field: read a timed duration from the prose, unless permanent.
+    return bool(_INLINE_DUR.search(d)) and not _PERM_PROSE.search(d)
 
 RULES += [
     ("triggered", "timing", _is_triggered),
     ("concentration", "timing", _dur("concentration")),
     ("sustained", "timing", _sustained),
-    ("permanent", "timing", _dur("permanent")),
+    ("permanent", "timing", _permanent),
     ("area", "timing", lambda d, s: bool(s.get("area")) or bool(re.search(r"\b(?:sphere|cube|cone|line|cylinder)\b[^.]{0,30}(?:radius|yard|long|tall)|each (?:creature|target|enemy) (?:in|within) (?:the area|range|\d+ yard)", d))),
 ]
 

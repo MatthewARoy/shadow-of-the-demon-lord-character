@@ -10,7 +10,7 @@ import { statBlockHtml } from "./statblock.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-const filters = { q: "", tradition: "", rank: "", type: "", source: "", learnable: false, tags: new Set(), role: "", archetype: "", tempo: "" };
+const filters = { q: "", tradition: "", rank: "", type: "", source: "", learnable: false, wishlist: false, tags: new Set(), role: "", archetype: "", tempo: "" };
 
 const enrichFor = (s) => rules.enrichment?.[spellKey(s.name, s.tradition)];
 
@@ -32,6 +32,7 @@ export function renderSpells(el) {
 
   el.innerHTML = `
     ${learnedPanel(char, computed)}
+    ${studiesPanel(char, computed)}
     <div class="panel">
       <h2 class="rubric">The Archive <span class="count">${rules.spells.length} spells across ${rules.traditions.length} traditions</span></h2>
       <div class="filter-bar">
@@ -56,6 +57,7 @@ export function renderSpells(el) {
           <option value="terrible" ${filters.source === "terrible" ? "selected" : ""}>Terrible Beauty</option>
         </select>
         <button class="chip ${filters.learnable ? "on" : ""}" id="sp-learnable" title="Spells you could legally learn now">learnable now</button>
+        <button class="chip ${filters.wishlist ? "on" : ""}" id="sp-wishlist" title="Only spells on your Future Studies list">★ studies</button>
       </div>
       ${categoryBar()}
       ${buildBar()}
@@ -104,6 +106,53 @@ function exchangesList(char) {
   return `<div class="chip-row" style="margin-top:12px">
     ${char.exchanges.map((ex, i) =>
       `<button class="chip" data-unexchange="${i}" title="Undo this exchange">⇄ ${esc(ex.drop.name)} → ${esc(ex.gain.name)} ✕</button>`).join("")}
+  </div>`;
+}
+
+// What stands between you and a wishlisted spell, given your current build.
+function studyStatus(s, char, computed, known, discovered) {
+  const k = spellKey(s.name, s.tradition);
+  if (known.has(k)) return { cls: "learned", label: "learned ✓" };
+  const reasons = [];
+  if (!discovered.has(s.tradition)) reasons.push(`discover ${esc(s.tradition)}`);
+  if (s.rank > computed.power) reasons.push(`Power ${s.rank} (have ${computed.power})`);
+  if (!reasons.length) return { cls: "ready", label: "ready to learn" };
+  return { cls: "blocked", label: "needs " + reasons.join(" · ") };
+}
+
+// Future Studies: the spells you've starred to pick up as you level. Grouped by
+// rank, each row shows whether it's learnable now or what's still gating it, so
+// the list doubles as a level-up shopping plan.
+function studiesPanel(char, computed) {
+  const wish = (char.wishlist || []).map((k) => rules.spellByKey.get(k)).filter(Boolean);
+  if (!wish.length) {
+    return `<div class="panel"><h2 class="rubric">Future Studies</h2>
+      <p class="empty">No spells marked yet. Tap ☆ on any spell in the Archive to plan what to learn as you level up.</p></div>`;
+  }
+  const known = new Set(computed.spells.map((s) => spellKey(s.name, s.tradition)));
+  const discovered = new Set(computed.discovered.map((d) => d.tradition));
+  const ready = wish.filter((s) => studyStatus(s, char, computed, known, discovered).cls === "ready").length;
+  const byRank = new Map();
+  for (const s of wish.sort((a, b) => a.rank - b.rank || a.name.localeCompare(b.name))) {
+    if (!byRank.has(s.rank)) byRank.set(s.rank, []);
+    byRank.get(s.rank).push(s);
+  }
+  const rows = [...byRank.keys()].sort((a, b) => a - b).map((rank) => `
+    <h3 class="small dim" style="font-family:var(--caps);letter-spacing:.1em;margin:12px 0 6px">RANK ${rank}</h3>
+    ${byRank.get(rank).map((s) => {
+      const st = studyStatus(s, char, computed, known, discovered);
+      const trad = rules.traditionByName.get(s.tradition);
+      return `<div class="study-row ${st.cls}">
+        <button class="study-btn on" data-study="${esc(spellKey(s.name, s.tradition))}" title="Remove from Future Studies">★</button>
+        <span class="study-name">${esc(s.name)}</span>
+        <span class="tag ${trad ? trad.attribute.toLowerCase() : ""}">${esc(s.tradition)}${trad?.dark ? " ☠" : ""}</span>
+        <span class="study-status ${st.cls}">${st.label}</span>
+      </div>`;
+    }).join("")}`).join("");
+  const readyNote = ready ? ` · <span class="study-status ready">${ready} ready to learn</span>` : "";
+  return `<div class="panel">
+    <h2 class="rubric">Future Studies <span class="count">${wish.length} spell${wish.length !== 1 ? "s" : ""} planned${readyNote}</span></h2>
+    ${rows}
   </div>`;
 }
 
@@ -193,8 +242,10 @@ function renderResults(el, char, computed) {
   const more = el.querySelector("#sp-more");
   let pool = rules.spells;
   const learnableKeys = filters.learnable ? legalNowKeys(char, computed) : null;
+  const wishKeys = filters.wishlist ? new Set(char.wishlist || []) : null;
   const q = filters.q.trim().toLowerCase();
   pool = pool.filter((s) => {
+    if (wishKeys && !wishKeys.has(spellKey(s.name, s.tradition))) return false;
     if (filters.tradition && s.tradition !== filters.tradition) return false;
     if (filters.rank !== "" && s.rank !== parseInt(filters.rank, 10)) return false;
     if (filters.type && s.type !== filters.type) return false;
@@ -317,9 +368,15 @@ export function spellCard(s, opts = {}) {
     ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
     <div class="spell-foot">
       ${castingsRow || `<span class="small dim">${s.source === "core" ? "Core" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty"} · p.${s.page}</span>`}
-      <span>${exchangeBtn} ${attackBtn}</span>
+      <span>${opts.learned ? "" : studyBtn(s, opts.char)} ${exchangeBtn} ${attackBtn}</span>
     </div>
   </div>`;
+}
+
+// Star toggle: add/remove a spell from the character's Future Studies list.
+function studyBtn(s, char) {
+  const on = (char?.wishlist || []).includes(spellKey(s.name, s.tradition));
+  return `<button class="study-btn ${on ? "on" : ""}" data-study="${esc(spellKey(s.name, s.tradition))}" title="${on ? "Remove from Future Studies" : "Mark as interested — add to Future Studies"}">${on ? "★" : "☆"}</button>`;
 }
 
 function castingsPips(s, opts) {
@@ -340,6 +397,11 @@ function wire(el, char, computed) {
   el.querySelector("#sp-learnable").addEventListener("click", (e) => {
     filters.learnable = !filters.learnable;
     e.target.classList.toggle("on", filters.learnable);
+    rerun();
+  });
+  el.querySelector("#sp-wishlist").addEventListener("click", (e) => {
+    filters.wishlist = !filters.wishlist;
+    e.target.classList.toggle("on", filters.wishlist);
     rerun();
   });
 
@@ -373,6 +435,16 @@ function wire(el, char, computed) {
     if (e.target.closest("[data-lens-clear]")) {
       e.preventDefault();
       filters.role = filters.archetype = filters.tempo = "";
+      renderSpells(el);
+      return;
+    }
+    const study = e.target.closest("[data-study]");
+    if (study) {
+      const key = study.dataset.study;
+      c.wishlist = c.wishlist || [];
+      const i = c.wishlist.indexOf(key);
+      i === -1 ? c.wishlist.push(key) : c.wishlist.splice(i, 1);
+      save();
       renderSpells(el);
       return;
     }

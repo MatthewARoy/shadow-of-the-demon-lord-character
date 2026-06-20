@@ -48,6 +48,44 @@ TARGETING = ["self", "ally", "allies", "one-enemy", "several-enemies", "area-ene
              "area-mixed", "object", "point", "battlefield"]
 TEMPO = ["burst", "sustained", "setup", "reaction", "ritual", "passive"]
 
+# What each mechanical tag means in THIS taxonomy, so the model audits tags by
+# our definitions rather than its own intuition (the noise source in v1). A tag
+# is a precise *mechanical* fact, not a vibe — e.g. `triggered` means the spell
+# literally begins "Triggered", not merely that it feels reactive.
+TAG_GLOSS = {
+    "damage": "spell deals damage to a target (not healing dice, not damage it prevents)",
+    "auto-damage": "deals damage with no attack roll to dodge (a challenge-roll-for-half still counts)",
+    "buff-attack": "grants boons to attack rolls, to you or an ally (not the spell's own single cast roll)",
+    "buff-challenge": "grants boons to challenge rolls, to you or an ally",
+    "reroll": "lets a roll be made twice / rerolled / an extra die kept",
+    "debuff-rolls": "imposes banes on a target's attack or challenge rolls",
+    "control": "applies a movement/action-denying affliction (stunned, immobilized, slowed, prone, grabbed, dazed, blinded, deafened, asleep)",
+    "fear": "applies frightened/horrified or forces fleeing",
+    "mind-control": "charms, compels, or dominates a target's actions (not summoning a 'compelled' monster)",
+    "insanity": "inflicts Insanity/madness on a target (self-Insanity is self-risk, not this)",
+    "heal": "restores Health to a creature on cast",
+    "heal-support": "amplifies or enables healing without a direct on-cast heal",
+    "cure": "removes an existing affliction/condition from a creature",
+    "defense-buff": "raises Defense or Health",
+    "action-economy": "grants extra actions/turns/rounds or an extra attack (NOT merely being cast as a triggered action)",
+    "protection": "grants damage immunity / resistance / reduction to a creature",
+    "teleport": "teleports a creature",
+    "fly": "grants flight to a creature (not a flying projectile)",
+    "movement": "boosts Speed or grants special movement (ignore terrain, move without provoking, etc.)",
+    "summon": "conjures or creates a creature that acts",
+    "concealment": "makes a creature invisible / obscured / hidden",
+    "divination": "detects, senses, scrys, or reveals information",
+    "transform": "changes a creature's or object's form or size",
+    "sacrifice": "has a Sacrifice option",
+    "corruption": "the CASTER gains Corruption",
+    "self-risk": "carries a drawback/risk to the caster (self-damage, self-Insanity, an aftereffect save)",
+    "triggered": "can be cast as a triggered (reactive) action — description begins 'Triggered'",
+    "concentration": "duration requires concentration",
+    "sustained": "has a timed duration (minutes / hours / rounds)",
+    "permanent": "effect is permanent or lasts until actively undone",
+    "area": "affects an area or multiple targets in a zone",
+}
+
 BATCH = 12
 MODEL = "sonnet"
 
@@ -71,6 +109,7 @@ def build_prompt(batch, tag_vocab):
             "rank": s["rank"], "area": s.get("area", ""), "duration": s.get("duration", ""),
             "description": s["description"], "current_tags": s.get("tags", []),
         })
+    gloss = "\n".join(f"  - {t}: {TAG_GLOSS.get(t, '')}" for t in tag_vocab)
     return f"""You are labeling spells from the tabletop RPG Shadow of the Demon Lord for character-build theorycrafting. Judge each spell on intent and role, not just keywords.
 
 For each spell, produce a JSON object with EXACTLY these fields:
@@ -80,10 +119,15 @@ For each spell, produce a JSON object with EXACTLY these fields:
 - "targeting": who the spell affects. One of: {TARGETING}
 - "tempo": how it fits the action economy / when you use it. One of: {TEMPO}
 - "synergy": ONE concise sentence (<=160 chars) on how a build uses it or what it combos with. No fluff.
-- "tag_add": mechanical tags that clearly apply but are missing from current_tags. Only from this vocabulary: {tag_vocab}. Usually [].
-- "tag_remove": tags in current_tags that are clearly WRONG for this spell. Only values present in that spell's current_tags. Usually [].
+- "tag_add": mechanical tags that clearly apply per the DEFINITIONS below but are missing from current_tags. Only tags from the list. Usually [].
+- "tag_remove": tags in current_tags that are WRONG per the DEFINITIONS below. Only values present in that spell's current_tags. Usually [].
 
-Hard rules: use ONLY the allowed enum values; never invent values. Be precise and terse. The current_tags come from a regex tagger that is good at mechanics but sometimes misreads prose — flag real errors only, do not nitpick.
+The current_tags come from a regex tagger; the tags mean EXACTLY this (audit against these definitions, not your own intuition — a tag is a precise mechanical fact):
+{gloss}
+
+Audit carefully and literally: only add a tag if the spell's text clearly satisfies its definition; only remove a tag if the text clearly does NOT. Do not flag a tag just because it isn't the spell's *main* point (a damage spell that also imposes banes keeps both). When unsure, leave the tags as they are.
+
+Hard rules: use ONLY the allowed enum/tag values; never invent values. Be precise and terse.
 
 Output ONLY a JSON array of objects, one per spell, in the same order. No prose, no markdown fences.
 
