@@ -149,11 +149,14 @@ RULES += [
     # always reference "the affliction" (singular, the one just applied).
     ("cure", "support", rx(r"remove (?:one of |any of )?(?:the )?following (?:affliction|benefit)|remove one curse|cured? of\b|\brid (?:it|them|the target|yourself|itself) of\b|cleanse\w*|resist or remove|remov\w+[^.]{0,45}\bafflictions\b")),
     ("defense-buff", "support", rx(r"bonus to Defense|Defense (?:score )?(?:becomes|increases?)|\+\d[^.]{0,12}Defense|Health (?:score )?increases? by|bonus to Health")),
-    # Action economy — the Borrowed Time bucket: extra actions/turns, or
-    # granting an ally a triggered action/attack. Pure Speed lives under
-    # `movement`; a spell merely being cast as a triggered action is `triggered`,
-    # not action economy, so that clause is intentionally excluded.
-    ("action-economy", "support", rx(r"extra (?:action|turn|attack)|additional (?:action|turn|attack)|increase the number of actions|(?:take|gain|get)s? (?:an|one|another)\b[^.]{0,14}\bturn|(?:you|target|creature|ally|it|they) can use a triggered action to make[^.]{0,15}attack|grant[^.]{0,25}triggered action|\bacts? (?:again|twice|an additional)\b")),
+    # Action economy — the Borrowed Time bucket: extra actions/turns/rounds, or
+    # granting an ally a triggered action/attack. Includes SotDL's core bonus-
+    # turn idiom — "a fast turn and a slow turn" (you normally take one OR the
+    # other), used by Accelerate/Time Dilation — and "extra round" (Halt Time).
+    # Pure Speed lives under `movement`; a spell merely cast as a triggered
+    # action is `triggered`; a bare "take a turn" is usually a per-turn trigger
+    # (Cloud of Missiles), so none of those count here.
+    ("action-economy", "support", rx(r"extra (?:action|turn|attack|round)|additional (?:action|turn|attack)|increase the number of actions|fast turn and a slow turn|(?:take|gain|get)s? (?:an|one|another)\b[^.]{0,14}\bturn|(?:you|target|creature|ally|it|they) can use a triggered action to make[^.]{0,15}attack|grant[^.]{0,25}triggered action|\bacts? (?:again|twice|an additional)\b")),
     # Defensive damage mitigation. The key tell is "takes half damage FROM"
     # (a granted resistance) vs. the offensive save-for-half "taking half the
     # damage on a success", which is a damage spell and is deliberately excluded.

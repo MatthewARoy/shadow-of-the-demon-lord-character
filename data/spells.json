@@ -17249,6 +17249,7 @@
   "source": "core",
   "page": 147,
   "tags": [
+   "action-economy",
    "sustained"
   ]
  },
@@ -17280,6 +17281,7 @@
    "buff-attack",
    "buff-challenge",
    "debuff-rolls",
+   "action-economy",
    "sustained",
    "area"
   ]
@@ -17419,6 +17421,7 @@
    "buff-attack",
    "buff-challenge",
    "control",
+   "action-economy",
    "movement",
    "sustained"
   ]
