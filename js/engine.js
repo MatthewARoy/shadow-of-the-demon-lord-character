@@ -26,6 +26,7 @@ export function newCharacter(name = "Unnamed Soul") {
     sizeChoice: null,
     decisions: {},                // slotId -> resolution
     exchanges: [],                // [{drop:{name,tradition}, gain:{name,tradition}}]
+    wishlist: [],                 // spell keys ("name|tradition") flagged for Future Studies
     damage: 0,
     insanityAdjust: 0,            // gameplay marks beyond computed effects
     corruptionAdjust: 0,
