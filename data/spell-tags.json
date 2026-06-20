@@ -13,13 +13,13 @@
    "id": "damage",
    "facet": "offense",
    "label": "Damage",
-   "count": 570
+   "count": 543
   },
   {
    "id": "auto-damage",
    "facet": "offense",
    "label": "Auto-damage (no attack roll)",
-   "count": 415
+   "count": 400
   },
   {
    "id": "buff-attack",

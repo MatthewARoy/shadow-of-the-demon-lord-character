@@ -86,9 +86,19 @@ def rx(pattern):
 RULES = []
 
 # ---- OFFENSE -------------------------------------------------------------
-# Deals damage to a target. Anchored on "takes/deals ... damage" so healing
-# dice ("heals 1d3 damage") and damage *reduction* clauses don't count.
-_DAMAGE = re.compile(r"\b(?:takes?|dealing|deals?|inflicts?)\b[^.]{0,45}\bdamage\b|\bdamage\b[^.]{0,20}\bto (?:everything|each|all|the target)", re.I)
+# Deals damage to a target. Enumerates the *dealing* phrasings ("deals N
+# damage", "takes 2d6 [extra] damage", "takes damage equal to", "for 1d6
+# damage") rather than a bare "takes…damage", so healing dice ("heals 1d3
+# damage") and — crucially — defensive mitigation ("takes no/half damage from
+# all sources") do not read as a damage spell. The LLM tag audit surfaced this
+# class (Glide, Resistance, Flame Ward were all mislabeled `damage`).
+_DAMAGE = re.compile(
+    r"deals?\b[^.]{0,45}\bdamage\b|dealing[^.]{0,45}\bdamage\b|inflicts?\b[^.]{0,45}\bdamage\b|"
+    r"\b\d+d\d+(?:\s*\+\s*\d+)? (?:extra )?damage\b|"
+    r"tak(?:es?|ing) (?:\d+(?:d\d+)?|that|the|this|any|its) (?:extra )?damage|"
+    r"tak(?:es?|ing) damage equal to|tak(?:es?|ing) half the damage|tak(?:es?|ing) the attack|"
+    r"for \d+d\d+(?:\s*\+\s*\d+)? damage|damage equal to its|"
+    r"\bdamage\b[^.]{0,20}\bto (?:everything|each|all|the target)", re.I)
 RULES += [
     ("damage", "offense", lambda d, s: bool(_DAMAGE.search(d))),
     # Damage with no attack roll — reliable/save-for-half. Needs the new damage

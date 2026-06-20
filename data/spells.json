@@ -106,8 +106,6 @@
   "source": "core",
   "page": 116,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "triggered",
    "sustained"
@@ -141,6 +139,7 @@
   "source": "occult",
   "page": 14,
   "tags": [
+   "damage",
    "debuff-rolls",
    "defense-buff",
    "sustained"
@@ -256,8 +255,6 @@
   "source": "occult",
   "page": 14,
   "tags": [
-   "damage",
-   "auto-damage",
    "debuff-rolls",
    "sustained"
   ]
@@ -492,8 +489,6 @@
   "source": "occult",
   "page": 17,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "sustained"
   ]
@@ -641,6 +636,8 @@
   "source": "occult",
   "page": 18,
   "tags": [
+   "damage",
+   "auto-damage",
    "insanity",
    "transform"
   ]
@@ -952,6 +949,8 @@
   "source": "occult",
   "page": 21,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "sacrifice"
   ]
@@ -1053,8 +1052,6 @@
   "source": "occult",
   "page": 22,
   "tags": [
-   "damage",
-   "auto-damage",
    "defense-buff",
    "sustained"
   ]
@@ -1138,8 +1135,6 @@
   "source": "occult",
   "page": 22,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "sustained"
   ]
@@ -1257,8 +1252,6 @@
   "source": "core",
   "page": 118,
   "tags": [
-   "damage",
-   "auto-damage",
    "sustained"
   ]
  },
@@ -1816,8 +1809,6 @@
   "source": "core",
   "page": 119,
   "tags": [
-   "damage",
-   "auto-damage",
    "control"
   ]
  },
@@ -1965,8 +1956,6 @@
   "source": "occult",
   "page": 25,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "sustained"
   ]
@@ -3145,6 +3134,8 @@
   "source": "occult",
   "page": 33,
   "tags": [
+   "damage",
+   "auto-damage",
    "control",
    "summon",
    "sacrifice",
@@ -3368,6 +3359,8 @@
   "source": "occult",
   "page": 34,
   "tags": [
+   "damage",
+   "auto-damage",
    "control",
    "sustained",
    "area"
@@ -3559,7 +3552,6 @@
   "source": "core",
   "page": 123,
   "tags": [
-   "damage",
    "buff-attack",
    "control"
   ]
@@ -3833,8 +3825,6 @@
   "source": "core",
   "page": 124,
   "tags": [
-   "damage",
-   "auto-damage",
    "fear",
    "transform",
    "sustained"
@@ -4106,7 +4096,6 @@
   "source": "occult",
   "page": 39,
   "tags": [
-   "damage",
    "debuff-rolls"
   ]
  },
@@ -5480,8 +5469,6 @@
   "source": "occult",
   "page": 48,
   "tags": [
-   "damage",
-   "auto-damage",
    "triggered"
   ]
  },
@@ -5845,8 +5832,6 @@
   "source": "core",
   "page": 127,
   "tags": [
-   "damage",
-   "auto-damage",
    "control",
    "sustained",
    "area"
@@ -5981,6 +5966,8 @@
   "source": "occult",
   "page": 50,
   "tags": [
+   "damage",
+   "auto-damage",
    "control",
    "area"
   ]
@@ -5996,8 +5983,6 @@
   "source": "occult",
   "page": 50,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "permanent",
    "area"
@@ -6119,7 +6104,6 @@
   "source": "occult",
   "page": 51,
   "tags": [
-   "damage",
    "buff-attack",
    "control"
   ]
@@ -6152,7 +6136,6 @@
   "source": "occult",
   "page": 51,
   "tags": [
-   "damage",
    "buff-attack"
   ]
  },
@@ -6300,8 +6283,6 @@
   "source": "terrible",
   "page": 22,
   "tags": [
-   "damage",
-   "auto-damage",
    "control",
    "mind-control"
   ]
@@ -6320,7 +6301,6 @@
   "source": "core",
   "page": 128,
   "tags": [
-   "damage",
    "control",
    "fear"
   ]
@@ -6451,7 +6431,6 @@
   "source": "core",
   "page": 128,
   "tags": [
-   "damage",
    "buff-attack",
    "mind-control"
   ]
@@ -6505,8 +6484,6 @@
   "source": "occult",
   "page": 52,
   "tags": [
-   "damage",
-   "auto-damage",
    "mind-control"
   ]
  },
@@ -6544,7 +6521,6 @@
   "source": "occult",
   "page": 52,
   "tags": [
-   "damage",
    "buff-attack",
    "mind-control",
    "insanity"
@@ -6675,8 +6651,6 @@
   "source": "terrible",
   "page": 20,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "area"
   ]
@@ -6691,8 +6665,6 @@
   "source": "terrible",
   "page": 20,
   "tags": [
-   "damage",
-   "auto-damage",
    "concealment",
    "sustained"
   ]
@@ -6739,8 +6711,6 @@
   "source": "terrible",
   "page": 20,
   "tags": [
-   "damage",
-   "auto-damage",
    "summon",
    "concentration"
   ]
@@ -6805,8 +6775,6 @@
   "source": "terrible",
   "page": 20,
   "tags": [
-   "damage",
-   "auto-damage",
    "control",
    "area"
   ]
@@ -6821,6 +6789,8 @@
   "source": "terrible",
   "page": 20,
   "tags": [
+   "damage",
+   "auto-damage",
    "fear"
   ]
  },
@@ -6994,8 +6964,6 @@
   "source": "occult",
   "page": 54,
   "tags": [
-   "damage",
-   "auto-damage",
    "control"
   ]
  },
@@ -7214,8 +7182,6 @@
   "source": "core",
   "page": 129,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "sustained"
   ]
@@ -8014,7 +7980,6 @@
   "source": "occult",
   "page": 61,
   "tags": [
-   "damage",
    "control",
    "sustained"
   ]
@@ -8050,8 +8015,6 @@
   "source": "occult",
   "page": 61,
   "tags": [
-   "damage",
-   "auto-damage",
    "buff-attack",
    "buff-challenge",
    "debuff-rolls",
@@ -8257,7 +8220,6 @@
   "source": "core",
   "page": 132,
   "tags": [
-   "damage",
    "control"
   ]
  },
@@ -8542,8 +8504,6 @@
   "source": "occult",
   "page": 63,
   "tags": [
-   "damage",
-   "auto-damage",
    "debuff-rolls",
    "control",
    "sustained"
@@ -8861,7 +8821,6 @@
   "source": "occult",
   "page": 68,
   "tags": [
-   "damage",
    "buff-challenge",
    "debuff-rolls",
    "protection",
@@ -8922,8 +8881,6 @@
   "source": "occult",
   "page": 68,
   "tags": [
-   "damage",
-   "auto-damage",
    "buff-challenge",
    "debuff-rolls",
    "protection",
@@ -9085,6 +9042,8 @@
   "source": "occult",
   "page": 70,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "sustained"
   ]
@@ -9146,6 +9105,8 @@
   "source": "core",
   "page": 134,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal"
   ]
  },
@@ -9160,8 +9121,6 @@
   "source": "occult",
   "page": 70,
   "tags": [
-   "damage",
-   "auto-damage",
    "reroll",
    "debuff-rolls",
    "cure",
@@ -9193,6 +9152,8 @@
   "source": "occult",
   "page": 70,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "defense-buff",
    "sustained"
@@ -9208,6 +9169,8 @@
   "source": "core",
   "page": 134,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal"
   ]
  },
@@ -9253,6 +9216,8 @@
   "source": "core",
   "page": 134,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "cure"
   ]
@@ -9280,6 +9245,8 @@
   "source": "occult",
   "page": 71,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "area"
   ]
@@ -9294,6 +9261,8 @@
   "source": "occult",
   "page": 71,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "sacrifice"
   ]
@@ -9371,6 +9340,8 @@
   "source": "occult",
   "page": 71,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "self-risk",
    "area"
@@ -9408,6 +9379,8 @@
   "source": "occult",
   "page": 71,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "cure",
    "self-risk",
@@ -10076,8 +10049,6 @@
   "source": "occult",
   "page": 76,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "permanent",
    "area"
@@ -10194,7 +10165,6 @@
   "source": "occult",
   "page": 78,
   "tags": [
-   "damage",
    "control"
   ]
  },
@@ -10378,6 +10348,8 @@
   "source": "core",
   "page": 135,
   "tags": [
+   "damage",
+   "auto-damage",
    "sustained",
    "area"
   ]
@@ -10392,6 +10364,8 @@
   "source": "terrible",
   "page": 22,
   "tags": [
+   "damage",
+   "auto-damage",
    "buff-attack",
    "defense-buff"
   ]
@@ -10453,6 +10427,8 @@
   "source": "occult",
   "page": 79,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "teleport",
    "sustained",
@@ -11003,6 +10979,8 @@
   "source": "occult",
   "page": 82,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "sacrifice",
    "area"
@@ -11053,6 +11031,8 @@
   "source": "occult",
   "page": 82,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "sacrifice",
    "area"
@@ -11091,7 +11071,6 @@
   "source": "occult",
   "page": 83,
   "tags": [
-   "damage",
    "control",
    "protection",
    "concealment",
@@ -11266,8 +11245,6 @@
   "source": "occult",
   "page": 85,
   "tags": [
-   "damage",
-   "auto-damage",
    "sustained"
   ]
  },
@@ -12037,8 +12014,6 @@
   "source": "core",
   "page": 138,
   "tags": [
-   "damage",
-   "auto-damage",
    "movement"
   ]
  },
@@ -12227,8 +12202,6 @@
   "source": "occult",
   "page": 90,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "sustained"
   ]
@@ -12400,6 +12373,8 @@
   "source": "occult",
   "page": 92,
   "tags": [
+   "damage",
+   "auto-damage",
    "control",
    "sustained"
   ]
@@ -12432,8 +12407,6 @@
   "source": "occult",
   "page": 92,
   "tags": [
-   "damage",
-   "auto-damage",
    "heal",
    "protection"
   ]
@@ -12563,9 +12536,7 @@
   },
   "source": "occult",
   "page": 93,
-  "tags": [
-   "damage"
-  ]
+  "tags": []
  },
  {
   "name": "Runic Shield",
@@ -13424,8 +13395,6 @@
   "source": "core",
   "page": 141,
   "tags": [
-   "damage",
-   "auto-damage",
    "mind-control",
    "sustained"
   ]
@@ -13571,6 +13540,8 @@
   "source": "core",
   "page": 142,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal"
   ]
  },
@@ -13683,8 +13654,6 @@
   "source": "occult",
   "page": 99,
   "tags": [
-   "damage",
-   "auto-damage",
    "insanity"
   ]
  },
@@ -13749,8 +13718,6 @@
   "source": "occult",
   "page": 100,
   "tags": [
-   "damage",
-   "auto-damage",
    "mind-control",
    "concentration",
    "area"
@@ -13781,8 +13748,6 @@
   "source": "occult",
   "page": 100,
   "tags": [
-   "damage",
-   "auto-damage",
    "control",
    "insanity",
    "sacrifice",
@@ -13853,6 +13818,8 @@
   "source": "occult",
   "page": 101,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "cure"
   ]
@@ -14009,8 +13976,6 @@
   "source": "occult",
   "page": 103,
   "tags": [
-   "damage",
-   "auto-damage",
    "control",
    "fear",
    "protection",
@@ -14103,8 +14068,6 @@
   "source": "occult",
   "page": 103,
   "tags": [
-   "damage",
-   "auto-damage",
    "control",
    "defense-buff",
    "protection",
@@ -14258,8 +14221,6 @@
   "source": "occult",
   "page": 105,
   "tags": [
-   "damage",
-   "auto-damage",
    "sustained"
   ]
  },
@@ -14694,8 +14655,6 @@
   "source": "occult",
   "page": 108,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "movement",
    "sacrifice",
@@ -15023,7 +14982,10 @@
   "description": "You touch the target, removing 1d6 damage from it.",
   "source": "core",
   "page": 143,
-  "tags": []
+  "tags": [
+   "damage",
+   "auto-damage"
+  ]
  },
  {
   "name": "Magic Wrench",
@@ -15530,8 +15492,6 @@
   "source": "occult",
   "page": 115,
   "tags": [
-   "damage",
-   "auto-damage",
    "sustained"
   ]
  },
@@ -15753,8 +15713,6 @@
   "source": "occult",
   "page": 116,
   "tags": [
-   "damage",
-   "auto-damage",
    "control"
   ]
  },
@@ -17277,8 +17235,6 @@
   "source": "occult",
   "page": 125,
   "tags": [
-   "damage",
-   "auto-damage",
    "triggered"
   ]
  },
@@ -17381,8 +17337,6 @@
   "source": "core",
   "page": 147,
   "tags": [
-   "damage",
-   "auto-damage",
    "debuff-rolls",
    "control",
    "sustained",
@@ -17495,6 +17449,8 @@
   "source": "occult",
   "page": 127,
   "tags": [
+   "damage",
+   "auto-damage",
    "insanity",
    "self-risk",
    "area"
@@ -17525,6 +17481,8 @@
   "source": "occult",
   "page": 127,
   "tags": [
+   "damage",
+   "auto-damage",
    "self-risk",
    "area"
   ]
@@ -17904,8 +17862,6 @@
   "source": "occult",
   "page": 129,
   "tags": [
-   "damage",
-   "auto-damage",
    "transform",
    "sustained",
    "area"
@@ -18063,6 +18019,8 @@
   "source": "core",
   "page": 149,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal-support",
    "sustained",
    "area"
@@ -18095,8 +18053,6 @@
   "source": "occult",
   "page": 130,
   "tags": [
-   "damage",
-   "auto-damage",
    "protection",
    "concealment",
    "sustained",
@@ -18170,6 +18126,8 @@
   "source": "occult",
   "page": 130,
   "tags": [
+   "damage",
+   "auto-damage",
    "heal",
    "cure",
    "area"

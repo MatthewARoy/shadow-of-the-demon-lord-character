@@ -130,7 +130,14 @@ Design choices that make a 1,120-spell model run practical and safe:
 The `tag_add`/`tag_remove` audit closes the loop with the rule tagger: where the
 model and the regex disagree (`enrich_spells.py --audit`), the high-confidence
 calls become `spell-tag-overrides.json` entries or sharper rules. The model is a
-*second reviewer*, not the source of truth.
+*second reviewer*, not the source of truth — most of its 1,000+ suggestions
+reflect looser semantics than our deliberately precise mechanical tags (it adds
+`triggered` to reactive-*feeling* spells that aren't literally Triggered-cast),
+so they are a prioritized review queue, not an auto-apply. The first full run's
+clearest systematic signal — `damage`/`auto-damage` removed from ~160 spells —
+turned out to be a real bug: defensive "takes no/half damage **from** all
+sources" was matching the damage rule (Glide, Resistance, Flame Ward). That one
+the model was right about, and it became the sharper `_DAMAGE` pattern.
 
 The **build lens** in the Archive (`js/ui/spells.js`) surfaces all of this: a
 collapsible bar filters by role / archetype / tempo (single-select, only showing
