@@ -300,6 +300,23 @@ h2.rubric .count { font-family: var(--caps); font-size: 13px; color: var(--text-
 .combo-flag.fragile { color: var(--blood-bright); border-color: #5c2424; }
 .combo-why { margin: 4px 0 0; font-size: 12px; color: var(--text-dim); line-height: 1.4; }
 
+/* Effectiveness scores (score_spells.py) -------------------- */
+.spell-scores { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 6px; }
+.score-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 11px; padding: 1px 7px; border-radius: 3px;
+  border: 1px solid var(--line-bright); color: var(--text); background: rgba(176,141,79,.05);
+}
+.score-badge b { font-weight: 700; color: var(--bronze-bright); }
+.score-badge .dim { font-size: 10px; }
+.score-badge.damage { border-color: #5c2424; }
+.score-badge.heal { border-color: #3f6e48; }
+.score-badge.mitigation { border-color: var(--bronze); }
+.score-flag {
+  font-family: var(--caps); font-size: 8.5px; letter-spacing: .05em; text-transform: uppercase;
+  border: 1px solid var(--line); border-radius: 2px; padding: 0 3px; color: var(--text-dim); margin-left: 2px;
+}
+
 /* Sheet ------------------------------------------------------ */
 .attr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
 .attr-card {

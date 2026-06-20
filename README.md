@@ -70,6 +70,7 @@ python3 scripts/parse_spells.py      # -> data/spells.json
 python3 scripts/tag_spells.py        # -> adds theorycrafting `tags` (+ data/spell-tags.json); applies data/spell-tag-overrides.json
 python3 scripts/enrich_spells.py     # -> data/spell-enrichment.json (LLM build-lens labels via claude -p; resumable, shardable)
 python3 scripts/detect_combos.py     # -> data/spell-combos.json (which spells stack, by fight-goal/lever, with effectiveness scoring)
+python3 scripts/score_spells.py      # -> data/spell-scores.json (per-spell damage/heal/mitigation efficiency as rank-cohort percentiles)
 python3 scripts/parse_paths.py       # -> data/paths.json
 python3 scripts/parse_traditions.py  # -> data/traditions.json
 python3 scripts/parse_equipment.py   # -> data/equipment.json

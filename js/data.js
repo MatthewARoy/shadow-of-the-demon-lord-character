@@ -6,6 +6,7 @@ export const rules = {
   spellTags: { facets: [], tags: [] },  // theorycrafting taxonomy (data/spell-tags.json)
   enrichment: {},                       // spellKey -> LLM labels (data/spell-enrichment.json)
   combos: null,                         // detected spell synergies (data/spell-combos.json)
+  scores: {},                           // spellKey -> effectiveness scores (data/spell-scores.json)
   paths: [],
   traditions: [],
   equipment: { weapons: [], armor: [], gear: [] },
@@ -47,6 +48,11 @@ export async function loadRules() {
   rules.combos = await fetch("data/spell-combos.json")
     .then((r) => (r.ok ? r.json() : null))
     .catch(() => null);
+  // Optional per-spell effectiveness scores (scripts/score_spells.py). Absent ->
+  // cards simply show no efficiency badge.
+  rules.scores = await fetch("data/spell-scores.json")
+    .then((r) => (r.ok ? r.json() : { spells: {} }))
+    .catch(() => ({ spells: {} }));
   rules.paths = paths;
   rules.traditions = traditions;
   rules.equipment = equipment;

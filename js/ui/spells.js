@@ -307,6 +307,36 @@ function tagChips(s) {
     `<button class="cat-tag ${filters.tags.has(t) ? "on" : ""}" data-tag="${esc(t)}" title="Filter by: ${esc(tagLabel(t))}">${esc(tagLabel(t))}</button>`).join("")}</div>`;
 }
 
+// Effectiveness badges (score_spells.py): expected output + where it sits among
+// same-rank, same-kind peers (percentile), with reliability/area as flags.
+const SCORE_ICON = { damage: "⚔", heal: "✚", mitigation: "🛡" };
+const UNIT_LABEL = {
+  damage: "avg dmg", health: "HP", "healing-rate": "× rate",
+  "%damage": "% reduced", "damage-reduced": "less/hit", "temp-health": "HP buffer",
+};
+function scoreBadge(s) {
+  const recs = rules.scores?.spells?.[spellKey(s.name, s.tradition)];
+  if (!recs?.length) return "";
+  const badges = recs.map((sc) => {
+    const icon = SCORE_ICON[sc.kind] || "•";
+    const pct = sc.percentile != null && sc.cohort_n > 2
+      ? `<b>${ordinal(Math.round(sc.percentile * 100))}</b> pct` : "";
+    const val = sc.value != null
+      ? `${sc.unit === "healing-rate" ? sc.value + "×" : sc.value} <span class="dim">${UNIT_LABEL[sc.unit] || sc.unit}</span>`
+      : `<span class="dim">see text</span>`;
+    const flags = Object.entries(sc.flags || {}).filter(([, on]) => on)
+      .map(([f]) => `<span class="score-flag">${f}</span>`).join("");
+    const tip = `Rank ${sc.rank} ${sc.kind}: ${sc.expr || ""}` +
+      (pct ? ` — better than ${Math.round(sc.percentile * 100)}% of rank-${sc.rank} ${sc.kind} spells (n=${sc.cohort_n})` : ` (only ${sc.cohort_n} at this rank)`);
+    return `<span class="score-badge ${sc.kind}" title="${esc(tip)}">${icon} ${val}${pct ? " · " + pct : ""}${flags}</span>`;
+  }).join("");
+  return `<div class="spell-scores">${badges}</div>`;
+}
+function ordinal(n) {
+  const s = ["th", "st", "nd", "rd"], v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
 // AI build-lens block: role/build/tempo as click-to-filter badges plus the
 // one-line synergy note. Only shown for spells the enrichment pass has reached.
 function enrichBlock(s) {
@@ -365,6 +395,7 @@ export function spellCard(s, opts = {}) {
     </div>
     ${meta.length ? `<div class="spell-meta">${meta.join(" &nbsp;·&nbsp; ")}</div>` : ""}
     ${tagChips(s)}
+    ${scoreBadge(s)}
     ${enrichBlock(s)}
     <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
     ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
