@@ -1220,6 +1220,7 @@
    "transform",
    "corruption",
    "self-risk",
+   "permanent",
    "area"
   ]
  },
@@ -1622,7 +1623,8 @@
    "auto-damage",
    "debuff-rolls",
    "sacrifice",
-   "self-risk"
+   "self-risk",
+   "permanent"
   ]
  },
  {
@@ -2598,6 +2600,7 @@
    "damage",
    "auto-damage",
    "control",
+   "permanent",
    "area"
   ]
  },
@@ -3448,6 +3451,7 @@
    "protection",
    "sacrifice",
    "self-risk",
+   "permanent",
    "area"
   ]
  },
@@ -4348,6 +4352,7 @@
    "control",
    "summon",
    "self-risk",
+   "permanent",
    "area"
   ]
  },
@@ -4613,7 +4618,8 @@
    "defense-buff",
    "protection",
    "movement",
-   "self-risk"
+   "self-risk",
+   "permanent"
   ]
  },
  {
@@ -6556,7 +6562,8 @@
   "source": "occult",
   "page": 52,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "permanent"
   ]
  },
  {
@@ -6621,7 +6628,9 @@
   "description": "You touch the target, causing it to become Size 1/8 or half its Size, whichever is smaller. The object remains at this Size until you use an action to restore it to its normal Size.",
   "source": "terrible",
   "page": 20,
-  "tags": []
+  "tags": [
+   "permanent"
+  ]
  },
  {
   "name": "Trip",
@@ -6951,7 +6960,8 @@
   "tags": [
    "damage",
    "auto-damage",
-   "transform"
+   "transform",
+   "permanent"
   ]
  },
  {
@@ -7780,7 +7790,8 @@
   "tags": [
    "damage",
    "control",
-   "concentration"
+   "concentration",
+   "permanent"
   ]
  },
  {
@@ -7874,7 +7885,8 @@
   "page": 131,
   "tags": [
    "control",
-   "insanity"
+   "insanity",
+   "permanent"
   ]
  },
  {
@@ -7962,7 +7974,8 @@
    "insanity",
    "action-economy",
    "movement",
-   "concealment"
+   "concealment",
+   "permanent"
   ]
  },
  {
@@ -8391,6 +8404,7 @@
    "auto-damage",
    "sacrifice",
    "sustained",
+   "permanent",
    "area"
   ]
  },
@@ -9434,7 +9448,8 @@
    "damage",
    "auto-damage",
    "heal",
-   "cure"
+   "cure",
+   "permanent"
   ]
  },
  {
@@ -9823,6 +9838,7 @@
   "tags": [
    "insanity",
    "self-risk",
+   "permanent",
    "area"
   ]
  },
@@ -10183,7 +10199,8 @@
    "auto-damage",
    "control",
    "transform",
-   "sustained"
+   "sustained",
+   "permanent"
   ]
  },
  {
@@ -11018,7 +11035,8 @@
   "page": 82,
   "tags": [
    "damage",
-   "control"
+   "control",
+   "permanent"
   ]
  },
  {
@@ -11512,7 +11530,8 @@
   "page": 137,
   "tags": [
    "mind-control",
-   "sustained"
+   "sustained",
+   "permanent"
   ]
  },
  {
@@ -11910,7 +11929,8 @@
    "divination",
    "transform",
    "self-risk",
-   "sustained"
+   "sustained",
+   "permanent"
   ]
  },
  {
@@ -14359,7 +14379,8 @@
   "page": 106,
   "tags": [
    "mind-control",
-   "summon"
+   "summon",
+   "permanent"
   ]
  },
  {
@@ -15343,7 +15364,8 @@
    "damage",
    "auto-damage",
    "defense-buff",
-   "sustained"
+   "sustained",
+   "permanent"
   ]
  },
  {
@@ -16124,7 +16146,8 @@
   "page": 119,
   "tags": [
    "damage",
-   "teleport"
+   "teleport",
+   "permanent"
   ]
  },
  {
@@ -16935,7 +16958,8 @@
   "source": "occult",
   "page": 122,
   "tags": [
-   "mind-control"
+   "mind-control",
+   "permanent"
   ]
  },
  {

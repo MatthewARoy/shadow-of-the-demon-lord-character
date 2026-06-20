@@ -201,6 +201,17 @@ def _dur(*needles):
         return any(n in dur for n in needles)
     return f
 
+# Permanence is sometimes a Duration field ("Permanent") and sometimes only
+# stated in prose: an effect that persists until actively undone ("until you
+# use an action to restore it" — Shrink Object) or one declared permanent.
+_PERM_PROSE = re.compile(
+    r"\bpermanent(?:ly)?\b|becomes? permanent|"
+    r"until you (?:use an action to )?(?:restore|dismiss|end|reverse|release|undo|cancel) (?:it|the|this|its)|"
+    r"until (?:it is |the \w+ is )?(?:dispelled|removed)", re.I)
+
+def _permanent(d, s):
+    return "permanent" in (s.get("duration") or "").lower() or bool(_PERM_PROSE.search(d))
+
 def _sustained(d, s):
     dur = (s.get("duration") or "").lower()
     if not dur or dur == "permanent" or "concentration" in dur:
@@ -211,7 +222,7 @@ RULES += [
     ("triggered", "timing", _is_triggered),
     ("concentration", "timing", _dur("concentration")),
     ("sustained", "timing", _sustained),
-    ("permanent", "timing", _dur("permanent")),
+    ("permanent", "timing", _permanent),
     ("area", "timing", lambda d, s: bool(s.get("area")) or bool(re.search(r"\b(?:sphere|cube|cone|line|cylinder)\b[^.]{0,30}(?:radius|yard|long|tall)|each (?:creature|target|enemy) (?:in|within) (?:the area|range|\d+ yard)", d))),
 ]
 
