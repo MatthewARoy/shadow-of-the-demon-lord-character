@@ -262,6 +262,19 @@ h2.rubric .count { font-family: var(--caps); font-size: 13px; color: var(--text-
 .cat-tag:hover { border-color: var(--bronze); color: var(--bronze-bright); }
 .cat-tag.on { border-color: var(--bronze); color: var(--bronze-bright); background: rgba(176,141,79,.18); }
 
+/* AI build-lens (role / archetype / tempo + synergy) --------- */
+.spell-lens { margin: 4px 0 7px; padding: 6px 8px; border-left: 2px solid rgba(176,141,79,.35); background: rgba(176,141,79,.04); border-radius: 0 4px 4px 0; }
+.lens-badges { display: flex; flex-wrap: wrap; gap: 4px; }
+.lens-badge {
+  font-family: var(--caps); font-size: 10px; letter-spacing: .04em; text-transform: uppercase;
+  border: 1px solid var(--line-bright); border-radius: 3px; padding: 0 6px; cursor: pointer;
+  background: transparent; color: var(--text-dim); transition: all .12s;
+}
+.lens-badge:hover { border-color: var(--bronze); color: var(--bronze-bright); }
+.lens-badge.role { color: var(--bronze-bright); border-color: var(--bronze); background: rgba(176,141,79,.12); }
+.lens-badge.tempo { font-style: normal; opacity: .85; }
+.lens-synergy { margin: 5px 0 0; font-size: 12px; font-style: italic; color: var(--text); line-height: 1.4; }
+
 /* Sheet ------------------------------------------------------ */
 .attr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
 .attr-card {

@@ -1,0 +1,164 @@
+{
+ "buffeting winds|air": {
+  "archetypes": [
+   "controller",
+   "support"
+  ],
+  "role": "control",
+  "synergy": "1-minute chokepoint that stacks difficult terrain with severe ranged-attack banes and grounds flyers; locks down entire engagement zones.",
+  "tag_add": [
+   "control"
+  ],
+  "tag_remove": [],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
+ },
+ "evoke gale|air": {
+  "archetypes": [
+   "controller",
+   "support"
+  ],
+  "role": "control",
+  "synergy": "Cone knockback scatters clustered enemies and strips fog or gas, removing enemy concealment and disrupting tight formations.",
+  "tag_add": [
+   "control"
+  ],
+  "tag_remove": [],
+  "targeting": "area-enemy",
+  "tempo": "burst"
+ },
+ "explosive exhalation|air": {
+  "archetypes": [
+   "controller",
+   "blaster"
+  ],
+  "role": "control",
+  "synergy": "Stun on success lets allies pile on with boon attacks the same round; secondary damage makes it efficient even on a miss of the stun.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "one-enemy",
+  "tempo": "burst"
+ },
+ "flense|air": {
+  "archetypes": [
+   "blaster",
+   "nuker"
+  ],
+  "role": "damage",
+  "synergy": "Execute finisher that instakills incapacitated targets; pair with Health-reduction debuffs to trigger the threshold on tougher foes.",
+  "tag_add": [],
+  "tag_remove": [
+   "control"
+  ],
+  "targeting": "one-enemy",
+  "tempo": "burst"
+ },
+ "glide|air": {
+  "archetypes": [
+   "support",
+   "healer"
+  ],
+  "role": "protection",
+  "synergy": "Hold in reserve whenever allies risk falling; pairs naturally with knockback spells or verticality-heavy terrain to nullify fall lethality.",
+  "tag_add": [],
+  "tag_remove": [
+   "damage",
+   "auto-damage"
+  ],
+  "targeting": "ally",
+  "tempo": "reaction"
+ },
+ "heat wave|air": {
+  "archetypes": [
+   "debuffer",
+   "controller"
+  ],
+  "role": "debuff",
+  "synergy": "Fatigued condition forces banes on attack rolls across a group; softens multiple enemies at once before a sustained fight.",
+  "tag_add": [
+   "debuff-rolls"
+  ],
+  "tag_remove": [],
+  "targeting": "area-enemy",
+  "tempo": "burst"
+ },
+ "shimmering wall|air": {
+  "archetypes": [
+   "support",
+   "controller",
+   "tank"
+  ],
+  "role": "protection",
+  "synergy": "Position allies behind the line to impose 2 banes on incoming ranged attacks; stack with other ranged-denial effects for a hard firing lane.",
+  "tag_add": [
+   "protection"
+  ],
+  "tag_remove": [],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
+ },
+ "still the air|air": {
+  "archetypes": [
+   "controller",
+   "support"
+  ],
+  "role": "control",
+  "synergy": "Silence enemy spellcasters or block sound-based spells entirely; 1-hour duration supports pre-encounter prep before ambushes or sieges.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "area-mixed",
+  "tempo": "setup"
+ },
+ "stir the air|air": {
+  "archetypes": [
+   "skirmisher",
+   "tank",
+   "duelist"
+  ],
+  "role": "protection",
+  "synergy": "Soft ranged-deterrent for melee builds that also clears smoke or fog while moving, denying enemies obscurement cover.",
+  "tag_add": [
+   "protection"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "uplifting step|air": {
+  "archetypes": [
+   "skirmisher",
+   "duelist"
+  ],
+  "role": "mobility",
+  "synergy": "Lets melee builds bypass difficult terrain and environmental gaps to stay on top of kiting targets or reach backline enemies.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "wind blast|air": {
+  "archetypes": [
+   "controller",
+   "skirmisher"
+  ],
+  "role": "control",
+  "synergy": "Knockback plus prone on a crit; push enemies off ledges, break formations, or create separation to protect fragile allies.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "one-enemy",
+  "tempo": "burst"
+ },
+ "wind disk|air": {
+  "archetypes": [
+   "tank",
+   "duelist",
+   "support"
+  ],
+  "role": "protection",
+  "synergy": "Defense bonus plus ranged-bane aura; Shield Disk extends coverage to nearby allies, making it a versatile anchor for Will-based tanks.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ }
+}

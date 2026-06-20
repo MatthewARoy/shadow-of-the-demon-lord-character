@@ -29,12 +29,11 @@ the JSON.** Not a runtime LLM call. Reasons specific to this codebase:
    reviewer can read a rule and know exactly which spells it catches. Tags are
    diffable in git.
 
-**Where an LLM still helps (optional, not built):** a *one-time enrichment*
-pass for the genuinely fuzzy buckets a regex can't judge — "is this a
-defensive or offensive use of fear?", thematic combo hints — whose output is
+**Where an LLM still helps (now built — see "LLM enrichment" below):** a
+*one-time enrichment* pass for the judgment a regex can't make — primary role,
+which build archetypes want a spell, tempo, combo hints — whose output is
 **reviewed and committed to JSON**, so it stays free and deterministic at
-runtime. That layers cleanly on top of what's here and is the right place to
-spend a model, not the per-query path.
+runtime. It layers on top of the rule tags rather than replacing them.
 
 ## What was built
 
@@ -101,11 +100,52 @@ Current entries cover, e.g., heals that target a summoned demon (Minor Demon),
 and cures phrased exactly like a self-escape (Exorcism). The tagger reports how
 many spells were touched by overrides each run.
 
+## LLM enrichment (build lens)
+
+`scripts/enrich_spells.py` is the one-time pass that adds the *judgment* layer
+on top of the mechanical tags. For each spell it asks `claude -p` for:
+
+- `role` — one primary mechanical role (enum of 14)
+- `archetypes` — 0–3 build archetypes that want the spell (blaster, controller,
+  healer, summoner, skirmisher, enabler, …)
+- `targeting` — self / ally / one-enemy / area-enemy / … 
+- `tempo` — burst / sustained / setup / reaction / ritual / passive
+- `synergy` — one terse sentence of build/combo guidance
+- `tag_add` / `tag_remove` — the model's audit of the regex tags, constrained to
+  the existing vocabulary
+
+Design choices that make a 1,120-spell model run practical and safe:
+
+- **Offline, committed, deterministic at runtime.** Output lands in
+  `data/spell-enrichment.json`; the browser only ever reads that file. No API
+  key or model call in the app.
+- **Resumable + crash-safe.** Each spell is cached by `name|tradition`; a run
+  skips what's already done and flushes after every batch.
+- **Parallel, race-free.** `--shard I/N` lets several workers run at once, each
+  writing its own `.enrich-shard-*` file; `--merge` folds them in. Four shards
+  turn a ~2-hour serial run into ~35 minutes.
+- **Schema-validated.** Every field is coerced to its enum on the way in;
+  off-list values from the model are dropped, never trusted blindly.
+
+The `tag_add`/`tag_remove` audit closes the loop with the rule tagger: where the
+model and the regex disagree (`enrich_spells.py --audit`), the high-confidence
+calls become `spell-tag-overrides.json` entries or sharper rules. The model is a
+*second reviewer*, not the source of truth.
+
+The **build lens** in the Archive (`js/ui/spells.js`) surfaces all of this: a
+collapsible bar filters by role / archetype / tempo (single-select, only showing
+values present in the data, with a "labeled N/total" coverage note), and each
+card shows its role/build/tempo as click-to-filter badges plus the synergy line.
+It composes with the mechanical-tag filters — e.g. archetype `controller` +
+tag `area` + tag `triggered` finds reactive AoE lockdown for a control build.
+
 ## Extending it
 
 Add or tune a `(tag, facet, matcher)` rule in `tag_spells.py`, give it a label
 in `TAG_LABELS`, re-run. The UI picks up the new chip automatically from the
-sidecar — no front-end change. Workflow: `--report` for the distribution,
+sidecar — no front-end change. To re-enrich after wording or schema changes,
+delete the relevant keys from `data/spell-enrichment.json` (or the whole file)
+and re-run `enrich_spells.py`. Workflow: `--report` for the distribution,
 `--audit <tag> [<tag>…]` to dump a tag's hits with the matching description so
 you can eyeball precision, then a per-spell override only for the true
 one-offs.
