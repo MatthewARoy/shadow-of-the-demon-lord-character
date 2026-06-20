@@ -1,0 +1,199 @@
+{
+ "facets": [
+  "offense",
+  "control",
+  "support",
+  "mobility",
+  "utility",
+  "cost",
+  "timing"
+ ],
+ "tags": [
+  {
+   "id": "damage",
+   "facet": "offense",
+   "label": "Damage",
+   "count": 543
+  },
+  {
+   "id": "auto-damage",
+   "facet": "offense",
+   "label": "Auto-damage (no attack roll)",
+   "count": 400
+  },
+  {
+   "id": "buff-attack",
+   "facet": "support",
+   "label": "Buff: attack rolls",
+   "count": 86
+  },
+  {
+   "id": "buff-challenge",
+   "facet": "support",
+   "label": "Buff: challenge rolls",
+   "count": 69
+  },
+  {
+   "id": "reroll",
+   "facet": "support",
+   "label": "Reroll / roll twice",
+   "count": 6
+  },
+  {
+   "id": "debuff-rolls",
+   "facet": "control",
+   "label": "Debuff: imposes banes",
+   "count": 122
+  },
+  {
+   "id": "control",
+   "facet": "control",
+   "label": "Control (stun/immobilize/etc.)",
+   "count": 333
+  },
+  {
+   "id": "fear",
+   "facet": "control",
+   "label": "Fear",
+   "count": 38
+  },
+  {
+   "id": "mind-control",
+   "facet": "control",
+   "label": "Mind control",
+   "count": 55
+  },
+  {
+   "id": "insanity",
+   "facet": "control",
+   "label": "Inflicts Insanity",
+   "count": 54
+  },
+  {
+   "id": "heal",
+   "facet": "support",
+   "label": "Healing",
+   "count": 62
+  },
+  {
+   "id": "heal-support",
+   "facet": "support",
+   "label": "Healing support / amplifier",
+   "count": 3
+  },
+  {
+   "id": "cure",
+   "facet": "support",
+   "label": "Cure / remove condition",
+   "count": 18
+  },
+  {
+   "id": "defense-buff",
+   "facet": "support",
+   "label": "Defense / Health buff",
+   "count": 53
+  },
+  {
+   "id": "action-economy",
+   "facet": "support",
+   "label": "Action economy",
+   "count": 6
+  },
+  {
+   "id": "protection",
+   "facet": "support",
+   "label": "Damage protection",
+   "count": 64
+  },
+  {
+   "id": "teleport",
+   "facet": "mobility",
+   "label": "Teleport",
+   "count": 46
+  },
+  {
+   "id": "fly",
+   "facet": "mobility",
+   "label": "Flight",
+   "count": 30
+  },
+  {
+   "id": "movement",
+   "facet": "mobility",
+   "label": "Movement",
+   "count": 47
+  },
+  {
+   "id": "summon",
+   "facet": "utility",
+   "label": "Summon / conjure",
+   "count": 37
+  },
+  {
+   "id": "concealment",
+   "facet": "utility",
+   "label": "Concealment / invisibility",
+   "count": 40
+  },
+  {
+   "id": "divination",
+   "facet": "utility",
+   "label": "Divination / detection",
+   "count": 18
+  },
+  {
+   "id": "transform",
+   "facet": "utility",
+   "label": "Transformation",
+   "count": 64
+  },
+  {
+   "id": "sacrifice",
+   "facet": "cost",
+   "label": "Sacrifice cost",
+   "count": 95
+  },
+  {
+   "id": "corruption",
+   "facet": "cost",
+   "label": "Corruption cost",
+   "count": 7
+  },
+  {
+   "id": "self-risk",
+   "facet": "cost",
+   "label": "Self-risk / drawback",
+   "count": 150
+  },
+  {
+   "id": "triggered",
+   "facet": "timing",
+   "label": "Triggered (reactive)",
+   "count": 20
+  },
+  {
+   "id": "concentration",
+   "facet": "timing",
+   "label": "Concentration",
+   "count": 68
+  },
+  {
+   "id": "sustained",
+   "facet": "timing",
+   "label": "Sustained duration",
+   "count": 543
+  },
+  {
+   "id": "permanent",
+   "facet": "timing",
+   "label": "Permanent",
+   "count": 18
+  },
+  {
+   "id": "area",
+   "facet": "timing",
+   "label": "Area effect",
+   "count": 357
+  }
+ ]
+}

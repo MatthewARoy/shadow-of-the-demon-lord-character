@@ -3,6 +3,8 @@
 export const rules = {
   curated: null,
   spells: [],
+  spellTags: { facets: [], tags: [] },  // theorycrafting taxonomy (data/spell-tags.json)
+  enrichment: {},                       // spellKey -> LLM labels (data/spell-enrichment.json)
   paths: [],
   traditions: [],
   equipment: { weapons: [], armor: [], gear: [] },
@@ -29,6 +31,16 @@ export async function loadRules() {
   );
   rules.curated = curated;
   rules.spells = spells;
+  // The spell-tags taxonomy is optional: if the tagger has not been run the
+  // browser simply shows no category chips rather than failing to load.
+  rules.spellTags = await fetch("data/spell-tags.json")
+    .then((r) => (r.ok ? r.json() : { facets: [], tags: [] }))
+    .catch(() => ({ facets: [], tags: [] }));
+  // Optional LLM enrichment (role/archetype/tempo/synergy). Absent or partial
+  // is fine — the browser only decorates the spells it has labels for.
+  rules.enrichment = await fetch("data/spell-enrichment.json")
+    .then((r) => (r.ok ? r.json() : {}))
+    .catch(() => ({}));
   rules.paths = paths;
   rules.traditions = traditions;
   rules.equipment = equipment;

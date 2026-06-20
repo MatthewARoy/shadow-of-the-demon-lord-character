@@ -10,7 +10,20 @@ import { statBlockHtml } from "./statblock.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-const filters = { q: "", tradition: "", rank: "", type: "", source: "", learnable: false };
+const filters = { q: "", tradition: "", rank: "", type: "", source: "", learnable: false, tags: new Set(), role: "", archetype: "", tempo: "" };
+
+const enrichFor = (s) => rules.enrichment?.[spellKey(s.name, s.tradition)];
+
+// Human labels for the LLM build-lens dimensions.
+const LENS_LABEL = {
+  role: "Role", archetype: "Build", tempo: "Tempo",
+  blaster: "Blaster", controller: "Controller", debuffer: "Debuffer", healer: "Healer",
+  support: "Support", summoner: "Summoner", skirmisher: "Skirmisher", tank: "Tank",
+  face: "Face", enabler: "Enabler", nuker: "Nuker", duelist: "Duelist",
+  burst: "Burst", sustained: "Sustained", setup: "Setup", reaction: "Reaction",
+  ritual: "Ritual", passive: "Passive",
+};
+const lensLabel = (v) => LENS_LABEL[v] || (v ? v[0].toUpperCase() + v.slice(1) : v);
 
 export function renderSpells(el) {
   const char = active();
@@ -44,6 +57,8 @@ export function renderSpells(el) {
         </select>
         <button class="chip ${filters.learnable ? "on" : ""}" id="sp-learnable" title="Spells you could legally learn now">learnable now</button>
       </div>
+      ${categoryBar()}
+      ${buildBar()}
       <div class="spell-grid" id="sp-results"></div>
       <p class="small dim" id="sp-more"></p>
     </div>`;
@@ -112,6 +127,67 @@ function exchangePicker(char, computed, rec) {
   </select>`;
 }
 
+// Theorycrafting categories: chips grouped by facet, drawn from the tagger's
+// taxonomy sidecar. Selecting several narrows the pool to spells carrying ALL
+// of them (e.g. "area" + "control" = every AoE lockdown spell).
+function categoryBar() {
+  const taxo = rules.spellTags;
+  if (!taxo?.tags?.length) return "";
+  const byFacet = new Map();
+  for (const t of taxo.tags) {
+    if (!byFacet.has(t.facet)) byFacet.set(t.facet, []);
+    byFacet.get(t.facet).push(t);
+  }
+  const groups = (taxo.facets.length ? taxo.facets : [...byFacet.keys()])
+    .filter((f) => byFacet.has(f))
+    .map((facet) => `
+      <div class="cat-group">
+        <span class="cat-facet">${esc(facet)}</span>
+        ${byFacet.get(facet).map((t) =>
+          `<button class="chip cat ${filters.tags.has(t.id) ? "on" : ""}" data-tag="${esc(t.id)}" title="${esc(t.label)} · ${t.count} spells">${esc(t.label)}</button>`).join("")}
+      </div>`).join("");
+  const clear = filters.tags.size
+    ? `<button class="chip cat-clear" data-tag-clear title="Clear category filters">✕ clear ${filters.tags.size}</button>` : "";
+  return `<details class="cat-bar" ${filters.tags.size ? "open" : ""}>
+    <summary class="cat-summary">Categories ${filters.tags.size ? `(${filters.tags.size} active)` : "— filter by mechanical effect for theorycrafting"} ${clear}</summary>
+    ${groups}
+  </details>`;
+}
+
+// Build lens: filter by the LLM's judgment labels — primary role, the build
+// archetype that wants the spell, and tempo. Each is single-select (click an
+// active chip to clear). Only values actually present in the enrichment are
+// shown, so it stays sensible even while a run is only partway done.
+function buildBar() {
+  const enr = rules.enrichment || {};
+  const keys = Object.keys(enr);
+  if (!keys.length) return "";
+  const tally = (pick) => {
+    const m = new Map();
+    for (const k of keys) for (const v of pick(enr[k])) m.set(v, (m.get(v) || 0) + 1);
+    return [...m.entries()].sort((a, b) => b[1] - a[1]);
+  };
+  const dims = [
+    ["role", filters.role, tally((e) => (e.role ? [e.role] : []))],
+    ["archetype", filters.archetype, tally((e) => e.archetypes || [])],
+    ["tempo", filters.tempo, tally((e) => (e.tempo ? [e.tempo] : []))],
+  ];
+  const groups = dims.map(([dim, active, vals]) => `
+      <div class="cat-group">
+        <span class="cat-facet">${esc(LENS_LABEL[dim])}</span>
+        ${vals.map(([v, n]) =>
+          `<button class="chip cat ${active === v ? "on" : ""}" data-lens="${dim}:${esc(v)}" title="${n} spells">${esc(lensLabel(v))}</button>`).join("")}
+      </div>`).join("");
+  const active = [filters.role, filters.archetype, filters.tempo].filter(Boolean).length;
+  const clear = active ? `<button class="chip cat-clear" data-lens-clear>✕ clear ${active}</button>` : "";
+  const coverage = keys.length < rules.spells.length
+    ? `<span class="small dim"> · ${keys.length}/${rules.spells.length} labeled</span>` : "";
+  return `<details class="cat-bar" ${active ? "open" : ""}>
+    <summary class="cat-summary">Build lens ${active ? `(${active} active)` : "— filter by role, build archetype & tempo (AI-labeled)"}${coverage} ${clear}</summary>
+    ${groups}
+  </details>`;
+}
+
 function renderResults(el, char, computed) {
   const box = el.querySelector("#sp-results");
   const more = el.querySelector("#sp-more");
@@ -123,6 +199,17 @@ function renderResults(el, char, computed) {
     if (filters.rank !== "" && s.rank !== parseInt(filters.rank, 10)) return false;
     if (filters.type && s.type !== filters.type) return false;
     if (filters.source && s.source !== filters.source) return false;
+    if (filters.tags.size) {
+      const have = new Set(s.tags || []);
+      for (const t of filters.tags) if (!have.has(t)) return false;
+    }
+    if (filters.role || filters.archetype || filters.tempo) {
+      const e = enrichFor(s);
+      if (!e) return false;
+      if (filters.role && e.role !== filters.role) return false;
+      if (filters.archetype && !(e.archetypes || []).includes(filters.archetype)) return false;
+      if (filters.tempo && e.tempo !== filters.tempo) return false;
+    }
     if (learnableKeys && !learnableKeys.has(spellKey(s.name, s.tradition))) return false;
     if (q && !s.name.toLowerCase().includes(q) && !s.description.toLowerCase().includes(q)) return false;
     return true;
@@ -146,6 +233,41 @@ function legalNowKeys(char, computed) {
     if (!known.has(k)) keys.add(k);
   }
   return keys;
+}
+
+// id -> human label, built once from the taxonomy sidecar.
+let tagLabelMap = null;
+function tagLabel(id) {
+  if (!tagLabelMap) {
+    tagLabelMap = new Map((rules.spellTags?.tags || []).map((t) => [t.id, t.label]));
+  }
+  return tagLabelMap.get(id) || id;
+}
+
+// Category chips on a card — clicking one adds it to the active filter, so a
+// spell's tags double as a jump-off point for finding its synergy partners.
+function tagChips(s) {
+  if (!s.tags?.length) return "";
+  return `<div class="spell-cats">${s.tags.map((t) =>
+    `<button class="cat-tag ${filters.tags.has(t) ? "on" : ""}" data-tag="${esc(t)}" title="Filter by: ${esc(tagLabel(t))}">${esc(tagLabel(t))}</button>`).join("")}</div>`;
+}
+
+// AI build-lens block: role/build/tempo as click-to-filter badges plus the
+// one-line synergy note. Only shown for spells the enrichment pass has reached.
+function enrichBlock(s) {
+  const e = enrichFor(s);
+  if (!e) return "";
+  const badge = (dim, v) =>
+    `<button class="lens-badge ${dim}" data-lens="${dim}:${esc(v)}" title="Filter by ${esc(LENS_LABEL[dim])}: ${esc(lensLabel(v))}">${esc(lensLabel(v))}</button>`;
+  const badges = [
+    e.role ? badge("role", e.role) : "",
+    ...(e.archetypes || []).map((a) => badge("archetype", a)),
+    e.tempo ? badge("tempo", e.tempo) : "",
+  ].join("");
+  return `<div class="spell-lens">
+    <div class="lens-badges">${badges}</div>
+    ${e.synergy ? `<p class="lens-synergy">${esc(e.synergy)}</p>` : ""}
+  </div>`;
 }
 
 export function spellCard(s, opts = {}) {
@@ -187,6 +309,8 @@ export function spellCard(s, opts = {}) {
       </span>
     </div>
     ${meta.length ? `<div class="spell-meta">${meta.join(" &nbsp;·&nbsp; ")}</div>` : ""}
+    ${tagChips(s)}
+    ${enrichBlock(s)}
     <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
     ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
     ${openCreature ? statBlockHtml(openCreature) : ""}
@@ -225,6 +349,34 @@ function wire(el, char, computed) {
   el.addEventListener("click", (e) => {
     const c = active();
     if (!c) return;
+    const tagChip = e.target.closest("[data-tag]");
+    if (tagChip) {
+      const t = tagChip.dataset.tag;
+      filters.tags.has(t) ? filters.tags.delete(t) : filters.tags.add(t);
+      renderSpells(el);
+      return;
+    }
+    if (e.target.closest("[data-tag-clear]")) {
+      e.preventDefault();
+      filters.tags.clear();
+      renderSpells(el);
+      return;
+    }
+    const lens = e.target.closest("[data-lens]");
+    if (lens) {
+      e.preventDefault();
+      const [dim, val] = lens.dataset.lens.split(":");
+      filters[dim] = filters[dim] === val ? "" : val;  // single-select toggle
+      renderSpells(el);
+      return;
+    }
+    if (e.target.closest("[data-lens-clear]")) {
+      e.preventDefault();
+      filters.role = filters.archetype = filters.tempo = "";
+      renderSpells(el);
+      return;
+    }
+
     const desc = e.target.closest(".spell-desc");
     if (desc) { desc.classList.toggle("clamp"); return; }
 

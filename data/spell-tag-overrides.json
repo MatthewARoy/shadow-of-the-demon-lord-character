@@ -1,0 +1,14 @@
+{
+ "$schema": "Hand-curated tag overrides for genuine exceptions the rules in scripts/tag_spells.py cannot fairly resolve. Key is \"name|tradition\" (lowercased). Each entry may set add[], remove[], and a note. Overrides are applied after the rules and always win. Keys starting with $ or _ are ignored.",
+ "$example": { "add": ["heal"], "remove": ["damage"], "note": "why" },
+
+ "minor demon|demonology": { "remove": ["heal"], "note": "the 'heals 3d6' option heals a summoned demon, not an ally — not a healing tool" },
+ "bestow mark of darkness|demonology": { "remove": ["heal"], "note": "'heal 3d6' targets a demon; spell is a Corruption/curse effect" },
+ "conjure servant|conjuration": { "remove": ["heal"], "note": "'heal 1d6' repairs the conjured servant; this is a utility summon" },
+ "conjure steeds|conjuration": { "remove": ["mind-control"], "note": "'become compelled by any creature that damages them' is a summon drawback, not the caster controlling a target" },
+
+ "exorcism|exorcist": { "add": ["cure"], "note": "removes charmed/compelled/frightened from a target; phrased like a self-escape ('remove the affliction from it') so the rule misses it" },
+ "purge the unclean|theurgy": { "add": ["cure"], "note": "dedicated cleanse — repeats a roll to remove afflictions; escape-style phrasing" },
+ "introspective trance|soul": { "add": ["cure"], "note": "self heal + remove diseased/poisoned; escape-style phrasing" },
+ "song of slumber|song": { "remove": ["cure"], "note": "'removes these afflictions' is the sleep it inflicted ending, not a cure" }
+}

@@ -4,3 +4,4 @@ node_modules/
 .gemini/
 scripts/cache/
 __pycache__/
+data/.enrich-shard-*.json
