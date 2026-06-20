@@ -94,7 +94,9 @@ RULES = []
 # class (Glide, Resistance, Flame Ward were all mislabeled `damage`).
 _DAMAGE = re.compile(
     r"deals?\b[^.]{0,45}\bdamage\b|dealing[^.]{0,45}\bdamage\b|inflicts?\b[^.]{0,45}\bdamage\b|"
-    r"\b\d+d\d+(?:\s*\+\s*\d+)? (?:extra )?damage\b|"
+    # Bare "Nd6 damage" counts as dealing damage — unless it's healing dice
+    # ("heal 3d6 damage"), which the audit flagged (Animate Huge Corpse).
+    r"(?<!heal )(?<!heals )(?<!healing )\b\d+d\d+(?:\s*\+\s*\d+)? (?:extra )?damage\b|"
     r"tak(?:es?|ing) (?:\d+(?:d\d+)?|that|the|this|any|its) (?:extra )?damage|"
     r"tak(?:es?|ing) damage equal to|tak(?:es?|ing) half the damage|tak(?:es?|ing) the attack|"
     r"for \d+d\d+(?:\s*\+\s*\d+)? damage|damage equal to its|"
@@ -212,11 +214,22 @@ _PERM_PROSE = re.compile(
 def _permanent(d, s):
     return "permanent" in (s.get("duration") or "").lower() or bool(_PERM_PROSE.search(d))
 
+# A timed duration stated inline in the description, for the many spells whose
+# Duration field the parser didn't capture (the audit's biggest "missing"
+# signal was `sustained`). "for the duration" implies a (missing) timed field.
+_INLINE_DUR = re.compile(
+    r"\bfor (?:1|one|\d+|the next) (?:minute|hour|round|day)|for the duration|"
+    r"lasts? (?:for )?(?:1|one|\d+) (?:minute|hour|round|day)|"
+    r"until (?:the (?:start|end) of|you complete a rest|the end of the (?:round|encounter)|the spell ends)", re.I)
+
 def _sustained(d, s):
     dur = (s.get("duration") or "").lower()
-    if not dur or dur == "permanent" or "concentration" in dur:
-        return False
-    return bool(re.search(r"minute|hour|round|rest|day", dur))
+    if dur:
+        if dur == "permanent" or "concentration" in dur:
+            return False
+        return bool(re.search(r"minute|hour|round|rest|day", dur))
+    # No Duration field: read a timed duration from the prose, unless permanent.
+    return bool(_INLINE_DUR.search(d)) and not _PERM_PROSE.search(d)
 
 RULES += [
     ("triggered", "timing", _is_triggered),

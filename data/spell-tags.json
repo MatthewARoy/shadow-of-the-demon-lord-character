@@ -13,13 +13,13 @@
    "id": "damage",
    "facet": "offense",
    "label": "Damage",
-   "count": 543
+   "count": 536
   },
   {
    "id": "auto-damage",
    "facet": "offense",
    "label": "Auto-damage (no attack roll)",
-   "count": 400
+   "count": 394
   },
   {
    "id": "buff-attack",
@@ -181,7 +181,7 @@
    "id": "sustained",
    "facet": "timing",
    "label": "Sustained duration",
-   "count": 543
+   "count": 762
   },
   {
    "id": "permanent",
