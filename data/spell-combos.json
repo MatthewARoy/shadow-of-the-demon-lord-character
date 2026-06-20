@@ -9,11 +9,25 @@
      "additive": true
     },
     "attacker-banes": {
-     "label": "Banes on attacks vs you",
+     "label": "Banes on enemies' attacks against you",
      "additive": false
     },
     "concealment": {
      "label": "Concealment / hard to target",
+     "additive": true
+    }
+   }
+  },
+  "resist": {
+   "label": "Shrug off effects",
+   "desc": "Beat the spells, conditions and afflictions aimed at you. These make YOU roll to resist, so boons on your challenge rolls help — and cures clean up what lands.",
+   "levers": {
+    "resist-boons": {
+     "label": "Boons on your challenge rolls",
+     "additive": false
+    },
+    "cure": {
+     "label": "Cure / remove conditions",
      "additive": true
     }
    }
@@ -41,11 +55,11 @@
    "desc": "Raise your own attack accuracy, or soften a target so it's easier to hit.",
    "levers": {
     "self-attack-boons": {
-     "label": "Boons on your attacks",
+     "label": "Boons on your attack rolls",
      "additive": false
     },
     "target-softening": {
-     "label": "Boons vs / control on the target",
+     "label": "Boons on attacks against the target",
      "additive": false
     }
    }
@@ -62,10 +76,10 @@
   },
   "suppress-enemy": {
    "label": "Blunt the enemy",
-   "desc": "Cut an enemy's offense: banes on its rolls, or deny its actions outright.",
+   "desc": "Cut an enemy's offense: banes on its own rolls, or deny its actions outright.",
    "levers": {
     "target-banes": {
-     "label": "Banes on its rolls",
+     "label": "Banes on the target's rolls",
      "additive": false
     },
     "control": {
@@ -98,7 +112,7 @@
      "tradition": "Air",
      "rank": 0,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     }
@@ -111,7 +125,7 @@
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
-   "rationale": "Raise Defense + Banes on attacks vs you: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns."
+   "rationale": "Raise Defense + Banes on enemies' attacks against you: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns."
   },
   {
    "goal": "evade",
@@ -163,7 +177,7 @@
      "tradition": "Life",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -185,7 +199,44 @@
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
-   "rationale": "Banes on attacks vs you + Concealment / hard to target: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns."
+   "rationale": "Banes on enemies' attacks against you + Concealment / hard to target: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns."
+  },
+  {
+   "goal": "resist",
+   "type": "compounding",
+   "levers": [
+    "resist-boons",
+    "cure"
+   ],
+   "members": [
+    {
+     "name": "Life Surge",
+     "tradition": "Life",
+     "rank": 1,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Augmented Vitality",
+     "tradition": "Life",
+     "rank": 2,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    }
+   ],
+   "alternatives": {
+    "resist-boons": 35,
+    "cure": 18
+   },
+   "score": 110,
+   "fragile": false,
+   "all_precastable": true,
+   "same_tradition": true,
+   "rationale": "Boons on your challenge rolls + Cure / remove conditions: two different levers on “shrug off effects”, so they compound instead of fighting each other's diminishing returns."
   },
   {
    "goal": "mitigate",
@@ -333,7 +384,7 @@
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
-   "rationale": "Banes on its rolls + Stun / immobilize / slow: two different levers on “blunt the enemy”, so they compound instead of fighting each other's diminishing returns."
+   "rationale": "Banes on the target's rolls + Stun / immobilize / slow: two different levers on “blunt the enemy”, so they compound instead of fighting each other's diminishing returns."
   },
   {
    "goal": "boost-damage",
@@ -508,6 +559,49 @@
    "fragile": false,
    "all_precastable": true,
    "rationale": "Multiple sources of concealment / hard to target. These are flat bonuses, so they add up — pile them on."
+  },
+  {
+   "goal": "resist",
+   "type": "additive",
+   "levers": [
+    "cure"
+   ],
+   "members": [
+    {
+     "name": "House of Healing",
+     "tradition": "Life",
+     "rank": 7,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Query the Void",
+     "tradition": "Demonology",
+     "rank": 4,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Quiet the Soul",
+     "tradition": "Soul",
+     "rank": 4,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    }
+   ],
+   "alternatives": {
+    "cure": 18
+   },
+   "score": 80,
+   "fragile": false,
+   "all_precastable": true,
+   "rationale": "Multiple sources of cure / remove conditions. These are flat bonuses, so they add up — pile them on."
   },
   {
    "goal": "mitigate",
@@ -736,7 +830,7 @@
      "tradition": "Soul",
      "rank": 10,
      "lever": "attacker-banes",
-     "magnitude": "5 bane(s) vs you",
+     "magnitude": "5 bane(s) on their attack",
      "duration": "permanent",
      "precast": true
     },
@@ -745,7 +839,7 @@
      "tradition": "Invocation",
      "rank": 9,
      "lever": "attacker-banes",
-     "magnitude": "3 bane(s) vs you",
+     "magnitude": "3 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -754,7 +848,7 @@
      "tradition": "Invocation",
      "rank": 6,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     }
@@ -765,7 +859,50 @@
    "score": 45,
    "fragile": false,
    "all_precastable": true,
-   "rationale": "Multiple sources of banes on attacks vs you. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
+   "rationale": "Multiple sources of banes on enemies' attacks against you. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
+  },
+  {
+   "goal": "resist",
+   "type": "diminishing",
+   "levers": [
+    "resist-boons"
+   ],
+   "members": [
+    {
+     "name": "Enlightenment",
+     "tradition": "Soul",
+     "rank": 10,
+     "lever": "resist-boons",
+     "magnitude": "3 boon(s) to resist",
+     "duration": "permanent",
+     "precast": true
+    },
+    {
+     "name": "Desecrate",
+     "tradition": "Forbidden",
+     "rank": 7,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Hero Spirit",
+     "tradition": "Spiritualism",
+     "rank": 7,
+     "lever": "resist-boons",
+     "magnitude": "3 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    }
+   ],
+   "alternatives": {
+    "resist-boons": 35
+   },
+   "score": 45,
+   "fragile": false,
+   "all_precastable": true,
+   "rationale": "Multiple sources of boons on your challenge rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
   },
   {
    "goal": "land-hits",
@@ -808,7 +945,7 @@
    "score": 45,
    "fragile": false,
    "all_precastable": true,
-   "rationale": "Multiple sources of boons on your attacks. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
+   "rationale": "Multiple sources of boons on your attack rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
   },
   {
    "goal": "suppress-enemy",
@@ -851,7 +988,7 @@
    "score": 45,
    "fragile": false,
    "all_precastable": true,
-   "rationale": "Multiple sources of banes on its rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
+   "rationale": "Multiple sources of banes on the target's rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
   }
  ],
  "rosters": {
@@ -1062,7 +1199,7 @@
      "tradition": "Air",
      "rank": 0,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1071,7 +1208,7 @@
      "tradition": "Air",
      "rank": 3,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1080,7 +1217,7 @@
      "tradition": "Alteration",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "instant",
      "precast": false
     },
@@ -1089,7 +1226,7 @@
      "tradition": "Arcana",
      "rank": 1,
      "lever": "attacker-banes",
-     "magnitude": "3 bane(s) vs you",
+     "magnitude": "3 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1098,7 +1235,7 @@
      "tradition": "Chaos",
      "rank": 0,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1107,7 +1244,7 @@
      "tradition": "Curse",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "instant",
      "precast": false
     },
@@ -1116,7 +1253,7 @@
      "tradition": "Curse",
      "rank": 5,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "instant",
      "precast": false
     },
@@ -1125,7 +1262,7 @@
      "tradition": "Demonology",
      "rank": 0,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1134,7 +1271,7 @@
      "tradition": "Demonology",
      "rank": 6,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "instant",
      "precast": false
     },
@@ -1143,7 +1280,7 @@
      "tradition": "Divination",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1152,7 +1289,7 @@
      "tradition": "Divination",
      "rank": 3,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1161,7 +1298,7 @@
      "tradition": "Divination",
      "rank": 4,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1170,7 +1307,7 @@
      "tradition": "Divination",
      "rank": 5,
      "lever": "attacker-banes",
-     "magnitude": "5 bane(s) vs you",
+     "magnitude": "5 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1179,7 +1316,7 @@
      "tradition": "Enchantment",
      "rank": 0,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1188,7 +1325,7 @@
      "tradition": "Enchantment",
      "rank": 3,
      "lever": "attacker-banes",
-     "magnitude": "3 bane(s) vs you",
+     "magnitude": "3 bane(s) on their attack",
      "duration": "instant",
      "precast": false
     },
@@ -1197,7 +1334,7 @@
      "tradition": "Forbidden",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "instant",
      "precast": false
     },
@@ -1206,7 +1343,7 @@
      "tradition": "Illusion",
      "rank": 4,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1215,7 +1352,7 @@
      "tradition": "Invocation",
      "rank": 3,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1224,7 +1361,7 @@
      "tradition": "Invocation",
      "rank": 6,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1233,7 +1370,7 @@
      "tradition": "Invocation",
      "rank": 9,
      "lever": "attacker-banes",
-     "magnitude": "3 bane(s) vs you",
+     "magnitude": "3 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1242,7 +1379,7 @@
      "tradition": "Life",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1251,7 +1388,7 @@
      "tradition": "Madness",
      "rank": 1,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1260,7 +1397,7 @@
      "tradition": "Protection",
      "rank": 4,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1269,7 +1406,7 @@
      "tradition": "Shadow",
      "rank": 0,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "instant",
      "precast": false
     },
@@ -1278,7 +1415,7 @@
      "tradition": "Song",
      "rank": 4,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "concentration",
      "precast": false
     },
@@ -1287,7 +1424,7 @@
      "tradition": "Song",
      "rank": 8,
      "lever": "attacker-banes",
-     "magnitude": "4 bane(s) vs you",
+     "magnitude": "4 bane(s) on their attack",
      "duration": "concentration",
      "precast": false
     },
@@ -1296,7 +1433,7 @@
      "tradition": "Soul",
      "rank": 10,
      "lever": "attacker-banes",
-     "magnitude": "5 bane(s) vs you",
+     "magnitude": "5 bane(s) on their attack",
      "duration": "permanent",
      "precast": true
     },
@@ -1305,7 +1442,7 @@
      "tradition": "Telepathy",
      "rank": 0,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1314,7 +1451,7 @@
      "tradition": "Telepathy",
      "rank": 1,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1323,7 +1460,7 @@
      "tradition": "Telepathy",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1332,7 +1469,7 @@
      "tradition": "Teleportation",
      "rank": 0,
      "lever": "attacker-banes",
-     "magnitude": "3 bane(s) vs you",
+     "magnitude": "3 bane(s) on their attack",
      "duration": "round",
      "precast": false
     },
@@ -1341,7 +1478,7 @@
      "tradition": "Theurgy",
      "rank": 1,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1350,7 +1487,7 @@
      "tradition": "Theurgy",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1359,7 +1496,7 @@
      "tradition": "Time",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "1 bane(s) vs you",
+     "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1368,7 +1505,7 @@
      "tradition": "Time",
      "rank": 2,
      "lever": "attacker-banes",
-     "magnitude": "2 bane(s) vs you",
+     "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     },
@@ -1377,7 +1514,7 @@
      "tradition": "Time",
      "rank": 3,
      "lever": "attacker-banes",
-     "magnitude": "3 bane(s) vs you",
+     "magnitude": "3 bane(s) on their attack",
      "duration": "sustained",
      "precast": true
     }
@@ -1750,6 +1887,489 @@
      "lever": "concealment",
      "magnitude": "concealment",
      "duration": "concentration",
+     "precast": false
+    }
+   ]
+  },
+  "resist": {
+   "resist-boons": [
+    {
+     "name": "Unlock Potential",
+     "tradition": "Alteration",
+     "rank": 0,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "round",
+     "precast": false
+    },
+    {
+     "name": "Alter Size",
+     "tradition": "Alteration",
+     "rank": 3,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Block Magic",
+     "tradition": "Arcana",
+     "rank": 3,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "See the Future",
+     "tradition": "Divination",
+     "rank": 3,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Mind Library",
+     "tradition": "Divination",
+     "rank": 6,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Awaken Passion",
+     "tradition": "Enchantment",
+     "rank": 2,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "concentration",
+     "precast": false
+    },
+    {
+     "name": "Zeal",
+     "tradition": "Enchantment",
+     "rank": 5,
+     "lever": "resist-boons",
+     "magnitude": "3 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Awaken the Hero",
+     "tradition": "Enchantment",
+     "rank": 6,
+     "lever": "resist-boons",
+     "magnitude": "3 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Desecrate",
+     "tradition": "Forbidden",
+     "rank": 7,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "The Dwarf Lord",
+     "tradition": "Invocation",
+     "rank": 1,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Life Surge",
+     "tradition": "Life",
+     "rank": 1,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Invigorate",
+     "tradition": "Life",
+     "rank": 5,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Form of the Oak Guardian",
+     "tradition": "Nature",
+     "rank": 5,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Seasons Passage",
+     "tradition": "Nature",
+     "rank": 6,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Well of Dark Power",
+     "tradition": "Necromancy",
+     "rank": 3,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Strength From Order",
+     "tradition": "Order",
+     "rank": 6,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Resilient Beast",
+     "tradition": "Primal",
+     "rank": 3,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Vigilance",
+     "tradition": "Protection",
+     "rank": 2,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Protection From Spells",
+     "tradition": "Protection",
+     "rank": 3,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Rune of Might",
+     "tradition": "Rune",
+     "rank": 3,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Rune of Power",
+     "tradition": "Rune",
+     "rank": 5,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Nightfall",
+     "tradition": "Shadow",
+     "rank": 6,
+     "lever": "resist-boons",
+     "magnitude": "3 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Song of Heroes",
+     "tradition": "Song",
+     "rank": 5,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Heavenly Choir",
+     "tradition": "Song",
+     "rank": 8,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "concentration",
+     "precast": false
+    },
+    {
+     "name": "Enlightenment",
+     "tradition": "Soul",
+     "rank": 10,
+     "lever": "resist-boons",
+     "magnitude": "3 boon(s) to resist",
+     "duration": "permanent",
+     "precast": true
+    },
+    {
+     "name": "Hero Spirit",
+     "tradition": "Spiritualism",
+     "rank": 7,
+     "lever": "resist-boons",
+     "magnitude": "3 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Empty Mind",
+     "tradition": "Telepathy",
+     "rank": 0,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Blessing",
+     "tradition": "Theurgy",
+     "rank": 1,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Omen",
+     "tradition": "Theurgy",
+     "rank": 1,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "concentration",
+     "precast": false
+    },
+    {
+     "name": "Anoint the Faithful",
+     "tradition": "Theurgy",
+     "rank": 4,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Holy Ground",
+     "tradition": "Theurgy",
+     "rank": 6,
+     "lever": "resist-boons",
+     "magnitude": "3 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Time Dilation",
+     "tradition": "Time",
+     "rank": 6,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Devolve",
+     "tradition": "Transformation",
+     "rank": 1,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Hulk",
+     "tradition": "Transformation",
+     "rank": 4,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Watery Form",
+     "tradition": "Water",
+     "rank": 4,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true
+    }
+   ],
+   "cure": [
+    {
+     "name": "Query the Void",
+     "tradition": "Demonology",
+     "rank": 4,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Exorcism",
+     "tradition": "Exorcist",
+     "rank": 1,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Cure",
+     "tradition": "Life",
+     "rank": 1,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Augmented Vitality",
+     "tradition": "Life",
+     "rank": 2,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Greater Cure",
+     "tradition": "Life",
+     "rank": 3,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "End Suffering",
+     "tradition": "Life",
+     "rank": 5,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "House of Healing",
+     "tradition": "Life",
+     "rank": 7,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Second Life",
+     "tradition": "Life",
+     "rank": 10,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Reincarnation",
+     "tradition": "Nature",
+     "rank": 5,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Remove Curse",
+     "tradition": "Protection",
+     "rank": 5,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Refuge",
+     "tradition": "Protection",
+     "rank": 9,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Rousing Ballad",
+     "tradition": "Song",
+     "rank": 2,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Music of the Spheres",
+     "tradition": "Song",
+     "rank": 10,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Introspective Trance",
+     "tradition": "Soul",
+     "rank": 3,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Quiet the Soul",
+     "tradition": "Soul",
+     "rank": 4,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Purge the Unclean",
+     "tradition": "Theurgy",
+     "rank": 7,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Miracle",
+     "tradition": "Theurgy",
+     "rank": 9,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Restorative Waters",
+     "tradition": "Water",
+     "rank": 3,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
      "precast": false
     }
    ]
@@ -8930,9 +9550,10 @@
   }
  },
  "notes": {
+  "direction": "A boon adds a d6 and helps the roller; a bane subtracts a d6 and hurts the roller. Offence vs defence is about whose roll carries it: defence = banes on the enemy's attack against you, or boons on your own challenge rolls (to resist effects); offence = boons on your attack rolls, or banes on the target's rolls.",
   "boons_banes": "Boons and banes on one roll pool together and only the single highest d6 applies (E[max]: 1d6=3.5, 2d6=4.47, 3d6=4.96). Stacking the same roll-lever diminishes fast.",
   "flat_bonuses": "Flat Defense bonuses and extra-damage dice add together, so stacking the same flat lever is linear and worth it.",
-  "compounding": "The strongest combos pair different levers toward one goal (e.g. raise Defense AND impose banes on attacks against you): each avoids the other's diminishing returns.",
+  "compounding": "The strongest combos pair different levers toward one goal (e.g. raise Defense AND impose banes on the enemy's attack against you): each avoids the other's diminishing returns.",
   "precast": "Minute+/hour buffs can be cast before the fight, so they cost no action economy once combat starts. Holding 2+ concentration spells is fragile: taking damage forces a challenge roll to keep each."
  }
 }

@@ -27,11 +27,29 @@ things depending on the lever:
 The consequence is the whole heuristic. Stacking the *same roll-lever* (more
 banes, more boons) **diminishes**. Stacking the *same flat lever* (Defense,
 extra damage) is **linear** and good. And combining *different levers toward one
-goal* **compounds**: raise your Defense *and* impose banes on attacks against you
-and you lift the to-hit threshold while lowering the attacker's roll — two
-independent reductions of the same hit chance, neither hitting the other's
+goal* **compounds**: raise your Defense *and* impose banes on the enemy's attack
+against you and you lift the to-hit threshold while lowering the attacker's roll
+— two independent reductions of the same hit chance, neither hitting the other's
 diminishing wall. That last case is the request's own example ("banes +
 increased defense"), and it is the detector's highest-scored shape.
+
+### Boon/bane direction
+
+A **boon adds a d6** and always helps the roller; a **bane subtracts a d6** and
+always hurts the roller. Whether a roll-lever is *offence* or *defence* therefore
+depends entirely on **whose roll carries it**, not on the word boon/bane:
+
+| | boon (adds d6) | bane (subtracts d6) |
+|--|--|--|
+| **on YOUR roll** | offence — boons on your *attack* rolls (hit more); **defence — boons on your *challenge* rolls (resist effects)** | drawback (avoid) |
+| **on the ENEMY's roll** | helps them (avoid) | **defence — banes on their *attack* against you**; offence — banes on the target's rolls (they fail) |
+
+The detector keys on the roll's owner. The bane-side of defence (banes on the
+enemy's attack) and the boon-side of defence (boons on your challenge rolls) are
+mirror images: one goal is `evade` (don't get hit by attacks, which you don't
+roll against), the other is `resist` (beat the spells/conditions you *do* roll
+against). An earlier cut conflated these by treating every boon as offensive
+accuracy; `buff-challenge` (69 spells) now feeds the `resist` goal.
 
 ## Model: goals, levers, atoms
 
@@ -41,11 +59,12 @@ push it:
 
 | goal | levers | additive? |
 |------|--------|-----------|
-| **evade** (don't get hit) | raise Defense · banes on attacks vs you · concealment | Def/conceal add; banes pool |
+| **evade** (don't get hit) | raise Defense · banes on the enemy's attack against you · concealment | Def/conceal add; banes pool |
+| **resist** (shrug off effects) | boons on your challenge rolls · cure/remove conditions | boons pool; cure adds |
 | **mitigate** (take less when hit) | reduce incoming damage · extra/temp Health · in-fight heal | add |
-| **land-hits** (your accuracy) | boons on your attacks · soften the target | pool |
+| **land-hits** (your accuracy) | boons on your attack rolls · soften the target | pool |
 | **boost-damage** | extra weapon/unarmed damage | add |
-| **suppress-enemy** | banes on its rolls · stun/immobilize/slow | banes pool; control denies actions |
+| **suppress-enemy** | banes on the target's rolls · stun/immobilize/slow | banes pool; control denies actions |
 
 Plus the **unarmed/natural-weapon** sub-axis the request named first: a brawler's
 extra-damage buffs (Beast Within, Stone Gauntlet, Impervious, the Primal "Favor"

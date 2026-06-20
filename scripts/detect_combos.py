@@ -57,6 +57,15 @@ OUT = ROOT / "data" / "spell-combos.json"
 # --------------------------------------------------------------------------- #
 # Goals and levers: the synergy taxonomy.
 #
+# Boon/bane direction. A boon ADDS a d6 and always helps the roller; a bane
+# SUBTRACTS a d6 and always hurts the roller. So whether a roll-lever is offence
+# or defence depends entirely on *whose roll* carries it:
+#   - DEFENCE: banes on the enemy's attack roll against you (they hit less), OR
+#              boons on YOUR OWN challenge rolls (you resist effects).
+#   - OFFENCE: boons on YOUR attack rolls (you hit more), OR
+#              banes on the TARGET's rolls (they fail).
+# The detector keys on the roll's owner, not on the word boon/bane.
+#
 # additive=True  -> flat bonuses that sum; stacking the same lever is GOOD.
 # additive=False -> boon/bane roll-levers that pool to the highest die;
 #                   stacking the same lever DIMINISHES, so prefer a cross-lever.
@@ -67,8 +76,17 @@ GOALS = {
         "desc": "Make enemy attacks against you (or an ally) miss more often.",
         "levers": {
             "defense":        {"label": "Raise Defense",            "additive": True},
-            "attacker-banes": {"label": "Banes on attacks vs you",  "additive": False},
+            "attacker-banes": {"label": "Banes on enemies' attacks against you", "additive": False},
             "concealment":    {"label": "Concealment / hard to target", "additive": True},
+        },
+    },
+    "resist": {
+        "label": "Shrug off effects",
+        "desc": "Beat the spells, conditions and afflictions aimed at you. These make YOU roll "
+                "to resist, so boons on your challenge rolls help — and cures clean up what lands.",
+        "levers": {
+            "resist-boons": {"label": "Boons on your challenge rolls", "additive": False},
+            "cure":         {"label": "Cure / remove conditions",      "additive": True},
         },
     },
     "mitigate": {
@@ -84,8 +102,8 @@ GOALS = {
         "label": "Land your attacks",
         "desc": "Raise your own attack accuracy, or soften a target so it's easier to hit.",
         "levers": {
-            "self-attack-boons": {"label": "Boons on your attacks",      "additive": False},
-            "target-softening":  {"label": "Boons vs / control on the target", "additive": False},
+            "self-attack-boons": {"label": "Boons on your attack rolls", "additive": False},
+            "target-softening":  {"label": "Boons on attacks against the target", "additive": False},
         },
     },
     "boost-damage": {
@@ -97,9 +115,9 @@ GOALS = {
     },
     "suppress-enemy": {
         "label": "Blunt the enemy",
-        "desc": "Cut an enemy's offense: banes on its rolls, or deny its actions outright.",
+        "desc": "Cut an enemy's offense: banes on its own rolls, or deny its actions outright.",
         "levers": {
-            "target-banes": {"label": "Banes on its rolls", "additive": False},
+            "target-banes": {"label": "Banes on the target's rolls", "additive": False},
             "control":      {"label": "Stun / immobilize / slow", "additive": True},
         },
     },
@@ -128,8 +146,10 @@ def first_dice(rx, text):
 #
 # Lever membership is *gated on the reviewed tags* from tag_spells.py (so we
 # inherit that pass's accuracy review and its per-spell overrides) and the regex
-# then supplies what the tags don't: the bane direction tags can't tell apart
-# (banes ON you vs. banes ON the target), the Defense/Health magnitude, and the
+# then supplies what the tags don't: the roll's owner — which the boon/bane tags
+# can't tell apart but which decides offence vs defence (banes on the enemy's
+# attack against you vs. banes on the target's own rolls; boons on your attack
+# vs. boons on your challenge roll) — plus the Defense/Health magnitude and the
 # extra-damage/unarmed split. If a spell is missing tags entirely (tagger not
 # run, or vocabulary reworked elsewhere) the regex still stands on its own.
 # Patterns are anchored on SotDL's standardized phrasing.
@@ -151,12 +171,13 @@ def atom_defense(d):
 
 
 def atom_attacker_banes(d):
-    # Defensive: banes on attack rolls made AGAINST you / the target.
+    # Defensive: banes land on the ENEMY's attack roll when it attacks you/the
+    # warded target, so the attacker hits less. (The bane is on their roll.)
     if re.search(r"\battack rolls? (?:made )?against\b[^.]*?\b(\d+)\s*banes?", d) or \
        re.search(r"(\d+)\s*banes? on attack rolls? (?:made )?against", d) or \
        re.search(r"attacks? against (?:you|the target|it|them)[^.]*?with (\d+) banes?", d):
         n = nums(r"(\d+)\s*banes?", d)
-        return ("attacker-banes", f"{max(n)} bane(s) vs you" if n else "banes vs you")
+        return ("attacker-banes", f"{max(n)} bane(s) on their attack" if n else "banes on their attack")
     return None
 
 
@@ -199,6 +220,18 @@ def atom_self_boons(d):
     if re.search(r"(\d+)\s*boons? on (?:your )?attack rolls", d):
         n = nums(r"(\d+)\s*boons?", d)
         return ("self-attack-boons", f"{max(n)} boon(s) to hit" if n else "boons to hit")
+    return None
+
+
+def atom_self_challenge_boons(d):
+    # Defensive: boons on YOUR OWN challenge rolls. In SotDL you don't roll to
+    # avoid an attack, but you do roll challenge rolls to resist spells,
+    # conditions and afflictions — so boons here are a defensive (resist) lever,
+    # the boon-side mirror of "banes on the enemy's attack".
+    if re.search(r"challenge rolls? (?:made )?with (\d+) boons?", d) or \
+       re.search(r"(\d+)\s*boons? on (?:your |its |the target['’]?s? )?(?:.{0,20} )?challenge rolls", d):
+        n = nums(r"(\d+)\s*boons?", d)
+        return ("resist-boons", f"{max(n)} boon(s) to resist" if n else "boons to resist")
     return None
 
 
@@ -289,13 +322,21 @@ def effects(spell):
         if r:
             add("evade", *r)
     if has(tags, "debuff-rolls"):
-        r = atom_attacker_banes(d)   # defensive: banes on attacks vs you
+        r = atom_attacker_banes(d)   # defensive: banes on the enemy's attack
         if r:
             add("evade", *r)
     if has(tags, "concealment"):
         r = atom_concealment(d, tags)
         if r:
             add("evade", *r)
+
+    # resist (boons on YOUR challenge rolls = the boon-side of defence) --------
+    if has(tags, "buff-challenge"):
+        r = atom_self_challenge_boons(d)
+        if r:
+            add("resist", *r)
+    if "cure" in tags:
+        add("resist", "cure", "cure")
 
     # mitigate ----------------------------------------------------------------
     # protection/heal map 1:1 to reviewed tags; trust them directly (the regex is
@@ -526,14 +567,19 @@ def build(spells):
         "combos": combos,
         "rosters": rosters,
         "notes": {
+            "direction": "A boon adds a d6 and helps the roller; a bane subtracts a d6 and "
+                         "hurts the roller. Offence vs defence is about whose roll carries it: "
+                         "defence = banes on the enemy's attack against you, or boons on your own "
+                         "challenge rolls (to resist effects); offence = boons on your attack "
+                         "rolls, or banes on the target's rolls.",
             "boons_banes": "Boons and banes on one roll pool together and only the single "
                            "highest d6 applies (E[max]: 1d6=3.5, 2d6=4.47, 3d6=4.96). Stacking "
                            "the same roll-lever diminishes fast.",
             "flat_bonuses": "Flat Defense bonuses and extra-damage dice add together, so "
                             "stacking the same flat lever is linear and worth it.",
             "compounding": "The strongest combos pair different levers toward one goal (e.g. "
-                           "raise Defense AND impose banes on attacks against you): each avoids "
-                           "the other's diminishing returns.",
+                           "raise Defense AND impose banes on the enemy's attack against you): "
+                           "each avoids the other's diminishing returns.",
             "precast": "Minute+/hour buffs can be cast before the fight, so they cost no action "
                        "economy once combat starts. Holding 2+ concentration spells is fragile: "
                        "taking damage forces a challenge roll to keep each.",
