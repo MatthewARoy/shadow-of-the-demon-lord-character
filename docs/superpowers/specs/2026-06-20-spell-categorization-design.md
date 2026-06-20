@@ -44,7 +44,7 @@ spend a model, not the per-query path.
   `duration`/`area`/`type`). It writes a `tags: [...]` array onto every spell
   in `data/spells.json` and a taxonomy sidecar `data/spell-tags.json`
   (facets, labels, counts) that the UI reads to build its filter chips.
-- **29 tags across 7 facets:** offense, control, support, mobility, utility,
+- **31 tags across 7 facets:** offense, control, support, mobility, utility,
   cost, timing. The buckets the request named map to `buff-attack`,
   `buff-challenge`, `reroll`, `debuff-rolls`, and `action-economy` (Borrowed
   Time lands `action-economy` + `triggered` + `self-risk`).
@@ -55,18 +55,66 @@ spend a model, not the per-query path.
   a jump-off to its synergy partners. Filtering is plain client-side set
   intersection over the in-memory spell list — instant, no network.
 
+## Accuracy review
+
+A full pass over every tag's hits surfaced — and fixed — five recurring ways a
+naive keyword match misreads SotDL's prose. Each fix is a sharper rule, so it
+scales to all 1,120 spells rather than patching one entry:
+
+1. **Mention ≠ effect.** "until it heals any damage" is a *trigger*, not a
+   heal. Effect tags now anchor on the rulebook's actual phrasing ("heals
+   damage equal to", "takes/deals … damage") instead of a bare verb. This is
+   what fixed the original Stone-Blades-as-a-healer problem.
+2. **Inflict vs. negate.** A condition word is `control` only when *applied*
+   ("becomes stunned"); inside a removal/immunity clause ("is no longer
+   stunned", "removing the … afflictions") it feeds `cure`/`protection`. A
+   shared `cond_applied`/`NEGATE` helper enforces this.
+3. **Self vs. target.** "*you* become stunned" is a self-risk drawback, not
+   control over a target — so Borrowed Time no longer reads as a control
+   spell. `cond_applied` skips caster-subject occurrences.
+4. **Overloaded words.** "compelled small monster" is a *summon*, not mind
+   control; "a dart flies from your hand" is a projectile, not flight; "takes
+   half the damage **from** all sources" is defensive resistance while "taking
+   half the damage on a success" is the offensive save-for-half. Rules now
+   anchor on the surrounding grammar that disambiguates these.
+5. **Either-order phrasing.** Boons/banes are stated both "1 boon on attack
+   rolls" and "makes attack rolls with 1 boon"; the reverse form (which the
+   first cut missed entirely) is matched, but only in the *plural* "rolls" so a
+   spell's own single cast roll ("Make an attack roll with 2 boons") isn't
+   mistaken for a granted buff.
+
+Net effect on the noisier buckets: `heal` 81→62 (genuine healers; demon/object
+heals excluded), `protection` 169→64 (save-for-half removed), `mind-control`
+96→55 (summons removed), `cure` precision restored, and the roll buffs/debuffs
+re-discovered the dominant "makes … rolls with N boons/banes" phrasing. 33 of
+1,120 spells remain untagged — these are genuinely uncategorizable utility
+(Mend repairs objects, Produce Water, Legerdemain), deliberately not force-fit.
+
+## Per-spell overrides
+
+`data/spell-tag-overrides.json` is the hand-curated escape hatch for the
+genuine exceptions no fair rule can resolve — applied last, always winning.
+Keyed by `"name|tradition"`, each entry carries `add[]`, `remove[]`, and a
+`note` explaining why. It is deliberately small (single digits): if many
+spells need the same override, that is a signal to fix the *rule* instead.
+Current entries cover, e.g., heals that target a summoned demon (Minor Demon),
+and cures phrased exactly like a self-escape (Exorcism). The tagger reports how
+many spells were touched by overrides each run.
+
 ## Extending it
 
 Add or tune a `(tag, facet, matcher)` rule in `tag_spells.py`, give it a label
-in `TAG_LABELS`, re-run the script. The UI picks up the new chip automatically
-from the sidecar — no front-end change needed. Run `--report` to eyeball the
-distribution before committing.
+in `TAG_LABELS`, re-run. The UI picks up the new chip automatically from the
+sidecar — no front-end change. Workflow: `--report` for the distribution,
+`--audit <tag> [<tag>…]` to dump a tag's hits with the matching description so
+you can eyeball precision, then a per-spell override only for the true
+one-offs.
 
 ## Known limits
 
-Keyword rules trade a little precision for transparency: a tag clause inside a
-spell's *drawback* sentence can over-match (e.g. a spell whose only "stunned"
-is its own self-risk also gets `control`). The fix when a bucket matters is a
-tighter, more anchored pattern — not a model. This is the lever the optional
-LLM enrichment pass would pull for the few buckets where intent, not wording,
-is what separates the hits.
+Keyword rules trade a sliver of recall for transparency and determinism: where
+intent rather than wording separates the hits (is this fear used offensively or
+defensively?), a rule can't always tell. The levers, in order of preference,
+are a tighter pattern, then a per-spell override, then — for a whole fuzzy
+bucket — the optional one-time LLM enrichment pass described above, whose output
+is reviewed and committed so runtime stays deterministic and free.
