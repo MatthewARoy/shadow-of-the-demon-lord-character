@@ -1,0 +1,8580 @@
+{
+ "spells": {
+  "flense|air": [
+   {
+    "kind": "damage",
+    "value": 10.0,
+    "unit": "damage",
+    "expr": "2d6+3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.882
+   }
+  ],
+  "glide|air": [
+   {
+    "kind": "mitigation",
+    "value": 100,
+    "unit": "%damage",
+    "expr": "immune (conditional)",
+    "flags": {},
+    "rank": 1,
+    "cohort": "mitigation|%damage|rank1",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "wind disk|air": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.309
+   }
+  ],
+  "explosive exhalation|air": [
+   {
+    "kind": "damage",
+    "value": 6.5,
+    "unit": "damage",
+    "expr": "1d6+3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.405
+   }
+  ],
+  "thunderclap|air": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.349
+   }
+  ],
+  "bedeviling winds|air": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "fling|air": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "create cyclone|air": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "suffocate|air": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.044
+   }
+  ],
+  "vacuum|air": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.181
+   }
+  ],
+  "cacophony|air": [
+   {
+    "kind": "damage",
+    "value": 24.5,
+    "unit": "damage",
+    "expr": "7d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.769
+   }
+  ],
+  "skyfall|air": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.053
+   }
+  ],
+  "become the wind|air": [
+   {
+    "kind": "damage",
+    "value": 12.5,
+    "unit": "damage",
+    "expr": "3d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.324
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "%damage",
+    "expr": "half damage",
+    "flags": {
+     "all_sources": false
+    },
+    "rank": 8,
+    "cohort": "mitigation|%damage|rank8",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
+  "fury of the heavens|air": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.405
+   }
+  ],
+  "venomous dart|alchemy": [
+   {
+    "kind": "damage",
+    "value": 3.0,
+    "unit": "damage",
+    "expr": "1d3+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.29
+   }
+  ],
+  "fire bottle|alchemy": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "oil slick|alchemy": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "manikins|alchemy": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.175
+   }
+  ],
+  "spew poison|alchemy": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.684
+   }
+  ],
+  "brew dragon fire|alchemy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.144
+   }
+  ],
+  "universal solvent|alchemy": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.923
+   }
+  ],
+  "warp flesh|alteration": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "malform|alteration": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.409
+   }
+  ],
+  "steal hearing|alteration": [
+   {
+    "kind": "damage",
+    "value": 6.5,
+    "unit": "damage",
+    "expr": "1d6+3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.5
+   }
+  ],
+  "bolster defense|alteration": [
+   {
+    "kind": "mitigation",
+    "value": 5,
+    "unit": "temp-health",
+    "expr": "+5 HP buffer",
+    "flags": {},
+    "rank": 2,
+    "cohort": "mitigation|temp-health|rank2",
+    "cohort_n": 5,
+    "percentile": 0.2
+   }
+  ],
+  "revitalize|alteration": [
+   {
+    "kind": "heal",
+    "value": 2.0,
+    "unit": "healing-rate",
+    "expr": "2× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "heal|healing-rate|rank2",
+    "cohort_n": 7,
+    "percentile": 0.857
+   }
+  ],
+  "alter size|alteration": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.816
+   },
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 3,
+    "cohort": "mitigation|temp-health|rank3",
+    "cohort_n": 3,
+    "percentile": 0.333
+   }
+  ],
+  "regeneration|alteration": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "heal|healing-rate|rank3",
+    "cohort_n": 6,
+    "percentile": 0.167
+   }
+  ],
+  "bolster health|alteration": [
+   {
+    "kind": "mitigation",
+    "value": 20,
+    "unit": "temp-health",
+    "expr": "+20 HP buffer",
+    "flags": {},
+    "rank": 4,
+    "cohort": "mitigation|temp-health|rank4",
+    "cohort_n": 4,
+    "percentile": 0.625
+   }
+  ],
+  "horrid growths|alteration": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.144
+   }
+  ],
+  "diminish|alteration": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.351
+   }
+  ],
+  "awaken the giant|alteration": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.947
+   },
+   {
+    "kind": "mitigation",
+    "value": 80,
+    "unit": "temp-health",
+    "expr": "+80 HP buffer",
+    "flags": {},
+    "rank": 7,
+    "cohort": "mitigation|temp-health|rank7",
+    "cohort_n": 3,
+    "percentile": 0.833
+   }
+  ],
+  "demigod|alteration": [
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "temp-health",
+    "expr": "+50 HP buffer",
+    "flags": {},
+    "rank": 10,
+    "cohort": "mitigation|temp-health|rank10",
+    "cohort_n": 2,
+    "percentile": 0.5
+   }
+  ],
+  "magic dart|arcana": [
+   {
+    "kind": "damage",
+    "value": 3.0,
+    "unit": "damage",
+    "expr": "1d3+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.29
+   }
+  ],
+  "unerring darts|arcana": [
+   {
+    "kind": "damage",
+    "value": 1.0,
+    "unit": "damage",
+    "expr": "1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.009
+   }
+  ],
+  "explosive darts|arcana": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.349
+   }
+  ],
+  "inevitable blade|arcana": [
+   {
+    "kind": "damage",
+    "value": 8.0,
+    "unit": "damage",
+    "expr": "2d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.643
+   }
+  ],
+  "arcane lightning|arcana": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.816
+   }
+  ],
+  "arcane conflagration|arcana": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.564
+   }
+  ],
+  "arcane retribution|arcana": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.926
+   }
+  ],
+  "darts of annihilation|arcana": [
+   {
+    "kind": "damage",
+    "value": 70.0,
+    "unit": "damage",
+    "expr": "10d6+35",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.885
+   }
+  ],
+  "close wounds|battle": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.389
+   }
+  ],
+  "arc of death|battle": [
+   {
+    "kind": "damage",
+    "value": 13.5,
+    "unit": "damage",
+    "expr": "3d6+3",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.849
+   }
+  ],
+  "mountain fall|battle": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "iron grasp|battle": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "drive them before you|battle": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.144
+   }
+  ],
+  "wall of swords|battle": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.833
+   }
+  ],
+  "paint the field red|battle": [
+   {
+    "kind": "damage",
+    "value": 15.0,
+    "unit": "damage",
+    "expr": "4d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.436
+   }
+  ],
+  "reaper’s harvest|battle": [
+   {
+    "kind": "damage",
+    "value": 26.0,
+    "unit": "damage",
+    "expr": "6d6+5",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.755
+   }
+  ],
+  "strike like lightning|battle": [
+   {
+    "kind": "damage",
+    "value": 17.0,
+    "unit": "damage",
+    "expr": "4d6+3",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.5
+   }
+  ],
+  "savage rebuke|battle": [
+   {
+    "kind": "damage",
+    "value": 13.5,
+    "unit": "damage",
+    "expr": "3d6+3",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.346
+   }
+  ],
+  "whirlwind of death|battle": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.474
+   }
+  ],
+  "surge of slaughter|battle": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.692
+   }
+  ],
+  "god of war|battle": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.119
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "temp-health",
+    "expr": "+50 HP buffer",
+    "flags": {},
+    "rank": 10,
+    "cohort": "mitigation|temp-health|rank10",
+    "cohort_n": 2,
+    "percentile": 0.5
+   }
+  ],
+  "burning beam|celestial": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "sun shard|celestial": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.845
+   }
+  ],
+  "focused light|celestial": [
+   {
+    "kind": "damage",
+    "value": 8.0,
+    "unit": "damage",
+    "expr": "2d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.643
+   }
+  ],
+  "sunrays|celestial": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "radiation|celestial": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "rainbow|celestial": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "starfall|celestial": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.412
+   }
+  ],
+  "crown of stars|celestial": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.144
+   }
+  ],
+  "nova|celestial": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.278
+   }
+  ],
+  "sword of the dawn|celestial": [
+   {
+    "kind": "damage",
+    "value": 12.5,
+    "unit": "damage",
+    "expr": "3d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.733
+   }
+  ],
+  "falling stars|celestial": [
+   {
+    "kind": "damage",
+    "value": 15.0,
+    "unit": "damage",
+    "expr": "4d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.436
+   }
+  ],
+  "sunbeam|celestial": [
+   {
+    "kind": "damage",
+    "value": 13.5,
+    "unit": "damage",
+    "expr": "3d6+3",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.287
+   }
+  ],
+  "raiment of the sun|celestial": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.436
+   }
+  ],
+  "sunburst|celestial": [
+   {
+    "kind": "damage",
+    "value": 24.5,
+    "unit": "damage",
+    "expr": "7d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.769
+   }
+  ],
+  "invisible sun|celestial": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.263
+   }
+  ],
+  "blaze in the northern sky|celestial": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.441
+   }
+  ],
+  "call down the heavens|celestial": [
+   {
+    "kind": "damage",
+    "value": 60.0,
+    "unit": "damage",
+    "expr": "10d6+25",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.786
+   }
+  ],
+  "erratic bolt|chaos": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "capricious devastation|chaos": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "chaos unleashed|chaos": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "chromatic lance|chaos": [
+   {
+    "kind": "damage",
+    "value": 12.0,
+    "unit": "damage",
+    "expr": "2d6+5",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.833
+   }
+  ],
+  "color of magic|chaos": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.349
+   }
+  ],
+  "chaos orb|chaos": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "chaotic lance|chaos": [
+   {
+    "kind": "damage",
+    "value": 22.5,
+    "unit": "damage",
+    "expr": "5d6+5",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.991
+   }
+  ],
+  "chaos vortex|chaos": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.351
+   }
+  ],
+  "shape magic|chaos": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.702
+   }
+  ],
+  "singularity|chaos": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.926
+   }
+  ],
+  "power of chaos|chaos": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.295
+   }
+  ],
+  "undo reality|chaos": [
+   {
+    "kind": "damage",
+    "value": 50.0,
+    "unit": "damage",
+    "expr": "50",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.738
+   }
+  ],
+  "energy burst|conjuration": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "flying knives|conjuration": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "sticky strands|conjuration": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "forest of spikes|conjuration": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "passage|conjuration": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.181
+   }
+  ],
+  "simulacrum|conjuration": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": true
+    },
+    "rank": 6,
+    "cohort": "heal|health|rank6",
+    "cohort_n": 2,
+    "percentile": null
+   }
+  ],
+  "true conjuration|conjuration": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.571
+   }
+  ],
+  "pox|curse": [
+   {
+    "kind": "damage",
+    "value": 2.0,
+    "unit": "damage",
+    "expr": "1d3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.194
+   }
+  ],
+  "curse of the emerald hand|curse": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "flesh-bursting curse|curse": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.074
+   }
+  ],
+  "petrify|curse": [
+   {
+    "kind": "damage",
+    "value": 34.5,
+    "unit": "damage",
+    "expr": "7d6+10",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.883
+   }
+  ],
+  "terror|curse": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.181
+   }
+  ],
+  "accursed land|curse": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.051
+   }
+  ],
+  "plaguebearer|curse": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.679
+   }
+  ],
+  "curse of eight torments|curse": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.235
+   }
+  ],
+  "mouth of madness|curse": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.038
+   }
+  ],
+  "arrow of endings|death": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "dead one walking|death": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.968
+   }
+  ],
+  "mantle of thanatos|death": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "soul wrench|death": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "destroy spirits|death": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "warden of the underworld|death": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "toll the bell|death": [
+   {
+    "kind": "damage",
+    "value": 20.5,
+    "unit": "damage",
+    "expr": "3d6+10",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.67
+   }
+  ],
+  "unlife|death": [
+   {
+    "kind": "mitigation",
+    "value": 100,
+    "unit": "%damage",
+    "expr": "immune (conditional)",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|%damage|rank5",
+    "cohort_n": 3,
+    "percentile": 0.667
+   }
+  ],
+  "life siphon|death": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.051
+   }
+  ],
+  "angel of death|death": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.263
+   }
+  ],
+  "inhume|death": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.059
+   }
+  ],
+  "unmake|death": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.154
+   }
+  ],
+  "kill them all|death": [
+   {
+    "kind": "damage",
+    "value": 20.0,
+    "unit": "damage",
+    "expr": "20",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.31
+   }
+  ],
+  "otherworldly scream|demonology": [
+   {
+    "kind": "damage",
+    "value": 1.0,
+    "unit": "damage",
+    "expr": "1",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.065
+   }
+  ],
+  "written in blood|demonology": [
+   {
+    "kind": "damage",
+    "value": 1.0,
+    "unit": "damage",
+    "expr": "1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.065
+   }
+  ],
+  "mark of the beast|demonology": [
+   {
+    "kind": "damage",
+    "value": 2.0,
+    "unit": "damage",
+    "expr": "1d3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.045
+   }
+  ],
+  "minor demon|demonology": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.936
+   }
+  ],
+  "bestow mark of darkness|demonology": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.778
+   }
+  ],
+  "blood harvest|demonology": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.778
+   }
+  ],
+  "demon seed|demonology": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "vision of nowhere|demonology": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.175
+   }
+  ],
+  "demonic maw|demonology": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.778
+   }
+  ],
+  "query the void|demonology": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.044
+   },
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "health",
+    "expr": "1",
+    "flags": {
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "heal|health|rank4",
+    "cohort_n": 2,
+    "percentile": 0.25
+   }
+  ],
+  "steal form from substance|demonology": [
+   {
+    "kind": "damage",
+    "value": 30.0,
+    "unit": "damage",
+    "expr": "30",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.83
+   }
+  ],
+  "unholy chorus|demonology": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.074
+   }
+  ],
+  "call greater demon|demonology": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.436
+   }
+  ],
+  "create demon spawn|demonology": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.436
+   }
+  ],
+  "demonic horde|demonology": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.474
+   }
+  ],
+  "into the void|demonology": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.765
+   }
+  ],
+  "call titanic demon|demonology": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.692
+   }
+  ],
+  "herald of the demon lord|demonology": [
+   {
+    "kind": "damage",
+    "value": 15.0,
+    "unit": "damage",
+    "expr": "15",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.167
+   }
+  ],
+  "break|destruction": [
+   {
+    "kind": "damage",
+    "value": 1.0,
+    "unit": "damage",
+    "expr": "1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.065
+   }
+  ],
+  "burst|destruction": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.952
+   }
+  ],
+  "ruin|destruction": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "splinter|destruction": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.903
+   }
+  ],
+  "dissolve|destruction": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.309
+   }
+  ],
+  "maim|destruction": [
+   {
+    "kind": "damage",
+    "value": 8.0,
+    "unit": "damage",
+    "expr": "2d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.8
+   }
+  ],
+  "rend|destruction": [
+   {
+    "kind": "damage",
+    "value": 11.5,
+    "unit": "damage",
+    "expr": "3d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.991
+   }
+  ],
+  "snap bone|destruction": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "sunder|destruction": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.936
+   }
+  ],
+  "clear the path|destruction": [
+   {
+    "kind": "damage",
+    "value": 15.0,
+    "unit": "damage",
+    "expr": "15",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.905
+   }
+  ],
+  "entropic power|destruction": [
+   {
+    "kind": "damage",
+    "value": 3.0,
+    "unit": "damage",
+    "expr": "3",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.024
+   }
+  ],
+  "erode|destruction": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "ruinous presence|destruction": [
+   {
+    "kind": "damage",
+    "value": 8.0,
+    "unit": "damage",
+    "expr": "2d6+1",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.643
+   }
+  ],
+  "crack the earth|destruction": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.816
+   }
+  ],
+  "detonate|destruction": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.939
+   }
+  ],
+  "evaporate|destruction": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.939
+   }
+  ],
+  "path of ruin|destruction": [
+   {
+    "kind": "damage",
+    "value": 20.0,
+    "unit": "damage",
+    "expr": "20",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.886
+   }
+  ],
+  "destroy|destruction": [
+   {
+    "kind": "damage",
+    "value": 30.0,
+    "unit": "damage",
+    "expr": "30",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.989
+   }
+  ],
+  "fragility|destruction": [
+   {
+    "kind": "damage",
+    "value": 5.0,
+    "unit": "damage",
+    "expr": "5",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.011
+   }
+  ],
+  "tear asunder|destruction": [
+   {
+    "kind": "damage",
+    "value": 24.5,
+    "unit": "damage",
+    "expr": "7d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.956
+   }
+  ],
+  "brutal concussion|destruction": [
+   {
+    "kind": "damage",
+    "value": 30.0,
+    "unit": "damage",
+    "expr": "30",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.83
+   }
+  ],
+  "demolition|destruction": [
+   {
+    "kind": "damage",
+    "value": 100.0,
+    "unit": "damage",
+    "expr": "100",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.989
+   }
+  ],
+  "disintegrate|destruction": [
+   {
+    "kind": "damage",
+    "value": 31.5,
+    "unit": "damage",
+    "expr": "9d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.862
+   }
+  ],
+  "cascading ruin|destruction": [
+   {
+    "kind": "damage",
+    "value": 8.0,
+    "unit": "damage",
+    "expr": "8",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.218
+   }
+  ],
+  "obliterate|destruction": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.821
+   }
+  ],
+  "bring it down|destruction": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.763
+   }
+  ],
+  "annihilate|destruction": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.912
+   }
+  ],
+  "cataclysm|destruction": [
+   {
+    "kind": "damage",
+    "value": 26.0,
+    "unit": "damage",
+    "expr": "26",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.423
+   }
+  ],
+  "earth spike|earth": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "ensnare|earth": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "stone armor|earth": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "stone blades|earth": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "avalanche|earth": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.873
+   }
+  ],
+  "earth wave|earth": [
+   {
+    "kind": "damage",
+    "value": 24.0,
+    "unit": "damage",
+    "expr": "4d6+10",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.992
+   }
+  ],
+  "eruption|earth": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.816
+   }
+  ],
+  "earthquake|earth": [
+   {
+    "kind": "damage",
+    "value": 24.0,
+    "unit": "damage",
+    "expr": "4d6+10",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.922
+   }
+  ],
+  "voracious earth|earth": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.144
+   }
+  ],
+  "crystal shards|earth": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.074
+   }
+  ],
+  "fissure|earth": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.564
+   }
+  ],
+  "major earthquake|earth": [
+   {
+    "kind": "damage",
+    "value": 24.0,
+    "unit": "damage",
+    "expr": "4d6+10",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.605
+   }
+  ],
+  "become the mountain|earth": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.618
+   },
+   {
+    "kind": "mitigation",
+    "value": 40,
+    "unit": "temp-health",
+    "expr": "+40 HP buffer",
+    "flags": {},
+    "rank": 8,
+    "cohort": "mitigation|temp-health|rank8",
+    "cohort_n": 2,
+    "percentile": 0.75
+   }
+  ],
+  "crack the world|earth": [
+   {
+    "kind": "damage",
+    "value": 24.0,
+    "unit": "damage",
+    "expr": "4d6+10",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.357
+   }
+  ],
+  "prick|fey": [
+   {
+    "kind": "damage",
+    "value": 1.0,
+    "unit": "damage",
+    "expr": "1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.065
+   }
+  ],
+  "faerie gold|fey": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "heal|healing-rate|rank2",
+    "cohort_n": 7,
+    "percentile": 0.357
+   }
+  ],
+  "bewilder|fey": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "wee free men|fey": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.278
+   }
+  ],
+  "beget changeling|fey": [
+   {
+    "kind": "damage",
+    "value": 10.0,
+    "unit": "damage",
+    "expr": "10",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.244
+   }
+  ],
+  "gift of immortality|fey": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "heal|health|rank8",
+    "cohort_n": 0,
+    "percentile": null
+   }
+  ],
+  "imagine a hidden kingdom|fey": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.238
+   }
+  ],
+  "create flame|fire": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.823
+   }
+  ],
+  "flame missile|fire": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "blazing columns|fire": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "fire blast|fire": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.936
+   }
+  ],
+  "meteor|fire": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.845
+   }
+  ],
+  "sword of fire|fire": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.409
+   }
+  ],
+  "fiery volley|fire": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.349
+   }
+  ],
+  "flaming shroud|fire": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "ignite|fire": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "cloak of cinders|fire": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   },
+   {
+    "kind": "mitigation",
+    "value": 100,
+    "unit": "%damage",
+    "expr": "immune (conditional)",
+    "flags": {},
+    "rank": 3,
+    "cohort": "mitigation|%damage|rank3",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "fireball|fire": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.816
+   }
+  ],
+  "immolate|fire": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.684
+   }
+  ],
+  "living inferno|fire": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.144
+   }
+  ],
+  "wall of flames|fire": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "circle of fire|fire": [
+   {
+    "kind": "damage",
+    "value": 15.5,
+    "unit": "damage",
+    "expr": "3d6+5",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.479
+   }
+  ],
+  "rain of fire|fire": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.564
+   }
+  ],
+  "blood of the earth|fire": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.821
+   }
+  ],
+  "wildfire|fire": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.564
+   }
+  ],
+  "swarm of fireballs|fire": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.342
+   }
+  ],
+  "become the conflagration|fire": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.441
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "%damage",
+    "expr": "half damage",
+    "flags": {
+     "all_sources": false
+    },
+    "rank": 8,
+    "cohort": "mitigation|%damage|rank8",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
+  "call down the mountain|fire": [
+   {
+    "kind": "damage",
+    "value": 70.0,
+    "unit": "damage",
+    "expr": "20d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.881
+   }
+  ],
+  "carve the flesh|forbidden": [
+   {
+    "kind": "damage",
+    "value": 4.0,
+    "unit": "damage",
+    "expr": "1d3+2",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.758
+   }
+  ],
+  "face rip|forbidden": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "hateful defecation|forbidden": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.409
+   }
+  ],
+  "obedience|forbidden": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "seal the cavity|forbidden": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "serpent tongue|forbidden": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.409
+   }
+  ],
+  "grotesque fantasies|forbidden": [
+   {
+    "kind": "damage",
+    "value": 2.0,
+    "unit": "damage",
+    "expr": "1d3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.008
+   }
+  ],
+  "ravenous maggots|forbidden": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "vision’s end|forbidden": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "desire’s end|forbidden": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "part bone from flesh|forbidden": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.939
+   }
+  ],
+  "unruly organs|forbidden": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "vivisection|forbidden": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.816
+   }
+  ],
+  "spectacular expulsion|forbidden": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "horrid joining|forbidden": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.181
+   }
+  ],
+  "part soul from flesh|forbidden": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.923
+   }
+  ],
+  "desecrate|forbidden": [
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 7,
+    "cohort": "mitigation|temp-health|rank7",
+    "cohort_n": 3,
+    "percentile": 0.167
+   }
+  ],
+  "pollution|forbidden": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.235
+   }
+  ],
+  "false healing|illusion": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   },
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 2,
+    "cohort": "mitigation|temp-health|rank2",
+    "cohort_n": 5,
+    "percentile": 0.8
+   }
+  ],
+  "glamer|illusion": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "phantasm|illusion": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.684
+   }
+  ],
+  "waking nightmare|illusion": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.021
+   }
+  ],
+  "the storm queen|invocation": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "the grand druid|invocation": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "laughing scoundrel|invocation": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "the one-eyed god|invocation": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "the summer queen|invocation": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.278
+   }
+  ],
+  "the winter king|invocation": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "%damage",
+    "expr": "half damage",
+    "flags": {
+     "all_sources": false
+    },
+    "rank": 4,
+    "cohort": "mitigation|%damage|rank4",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "the death angel|invocation": [
+   {
+    "kind": "damage",
+    "value": 12.5,
+    "unit": "damage",
+    "expr": "3d6+2",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.266
+   },
+   {
+    "kind": "heal",
+    "value": 7.0,
+    "unit": "health",
+    "expr": "2d6",
+    "flags": {
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "heal|health|rank5",
+    "cohort_n": 3,
+    "percentile": 0.5
+   }
+  ],
+  "the diviner|invocation": [
+   {
+    "kind": "mitigation",
+    "value": 100,
+    "unit": "%damage",
+    "expr": "immune (conditional)",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|%damage|rank5",
+    "cohort_n": 3,
+    "percentile": 0.667
+   }
+  ],
+  "the dark lady|invocation": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.436
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "%damage",
+    "expr": "half damage",
+    "flags": {
+     "all_sources": false
+    },
+    "rank": 6,
+    "cohort": "mitigation|%damage|rank6",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "the witch-king|invocation": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.679
+   }
+  ],
+  "the great dragon|invocation": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.765
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "%damage",
+    "expr": "half damage",
+    "flags": {
+     "all_sources": false
+    },
+    "rank": 8,
+    "cohort": "mitigation|%damage|rank8",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
+  "the ascended one|invocation": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.154
+   }
+  ],
+  "the devil|invocation": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.238
+   }
+  ],
+  "death ward|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "health",
+    "expr": "1",
+    "flags": {
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "heal|health|rank0",
+    "cohort_n": 2,
+    "percentile": 0.25
+   }
+  ],
+  "destroy death|life": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.903
+   },
+   {
+    "kind": "heal",
+    "value": 2.0,
+    "unit": "health",
+    "expr": "1d3",
+    "flags": {
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "heal|health|rank0",
+    "cohort_n": 2,
+    "percentile": 0.75
+   }
+  ],
+  "minor healing|life": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "heal|healing-rate|rank0",
+    "cohort_n": 2,
+    "percentile": 0.5
+   }
+  ],
+  "bountiful vitality|life": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.389
+   }
+  ],
+  "cure|life": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.389
+   }
+  ],
+  "life surge|life": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.389
+   }
+  ],
+  "light healing|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.889
+   }
+  ],
+  "moderate healing|life": [
+   {
+    "kind": "heal",
+    "value": 2.0,
+    "unit": "healing-rate",
+    "expr": "2× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "heal|healing-rate|rank2",
+    "cohort_n": 7,
+    "percentile": 0.857
+   }
+  ],
+  "seed of life|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "heal|healing-rate|rank2",
+    "cohort_n": 7,
+    "percentile": 0.357
+   },
+   {
+    "kind": "mitigation",
+    "value": 6,
+    "unit": "temp-health",
+    "expr": "+6 HP buffer",
+    "flags": {},
+    "rank": 2,
+    "cohort": "mitigation|temp-health|rank2",
+    "cohort_n": 5,
+    "percentile": 0.5
+   }
+  ],
+  "vitality burst|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "heal|healing-rate|rank2",
+    "cohort_n": 7,
+    "percentile": 0.357
+   }
+  ],
+  "eradicate the unclean|life": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.684
+   }
+  ],
+  "greater cure|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "heal|healing-rate|rank3",
+    "cohort_n": 6,
+    "percentile": 0.583
+   }
+  ],
+  "major healing|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "heal|healing-rate|rank3",
+    "cohort_n": 6,
+    "percentile": 0.583
+   }
+  ],
+  "mass healing|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": true
+    },
+    "rank": 4,
+    "cohort": "heal|healing-rate|rank4",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
+  "restore body|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "heal|healing-rate|rank4",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
+  "total healing|life": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "heal|health|rank4",
+    "cohort_n": 2,
+    "percentile": null
+   }
+  ],
+  "end suffering|life": [
+   {
+    "kind": "heal",
+    "value": 2.0,
+    "unit": "healing-rate",
+    "expr": "2× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "heal|healing-rate|rank5",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "invigorate|life": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "heal|health|rank5",
+    "cohort_n": 3,
+    "percentile": null
+   }
+  ],
+  "resurrect|life": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "health",
+    "expr": "1",
+    "flags": {
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "heal|health|rank5",
+    "cohort_n": 3,
+    "percentile": 0.167
+   }
+  ],
+  "heal all|life": [
+   {
+    "kind": "heal",
+    "value": 2.0,
+    "unit": "healing-rate",
+    "expr": "2× rate",
+    "flags": {
+     "area": true
+    },
+    "rank": 6,
+    "cohort": "heal|healing-rate|rank6",
+    "cohort_n": 2,
+    "percentile": 0.75
+   }
+  ],
+  "heal soul|life": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.923
+   }
+  ],
+  "house of healing|life": [
+   {
+    "kind": "heal",
+    "value": 3.5,
+    "unit": "health",
+    "expr": "1d6",
+    "flags": {
+     "area": true
+    },
+    "rank": 7,
+    "cohort": "heal|health|rank7",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "raise the dead|life": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": true
+    },
+    "rank": 8,
+    "cohort": "heal|health|rank8",
+    "cohort_n": 0,
+    "percentile": null
+   }
+  ],
+  "ashes to ashes|life": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.5
+   },
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": true
+    },
+    "rank": 9,
+    "cohort": "heal|health|rank9",
+    "cohort_n": 0,
+    "percentile": null
+   }
+  ],
+  "second life|life": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 10,
+    "cohort": "heal|health|rank10",
+    "cohort_n": 1,
+    "percentile": null
+   }
+  ],
+  "black breath|madness": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "dream worm|madness": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "hoary tentacle|madness": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.778
+   }
+  ],
+  "bedeviling colors|madness": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "eye of the outer god|madness": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "mind shatter|madness": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "dark star|madness": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.778
+   }
+  ],
+  "ninth dimension|madness": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "chant of the lost|madness": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.154
+   }
+  ],
+  "pinning spike|metal": [
+   {
+    "kind": "damage",
+    "value": 8.0,
+    "unit": "damage",
+    "expr": "2d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.8
+   }
+  ],
+  "memory of the forge|metal": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "iron cloud|metal": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "spike burst|metal": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.889
+   }
+  ],
+  "adamantine chains|metal": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.564
+   }
+  ],
+  "invincible panoply|metal": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.021
+   }
+  ],
+  "river of molten metal|metal": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.571
+   }
+  ],
+  "magic acorns|nature": [
+   {
+    "kind": "damage",
+    "value": 2.0,
+    "unit": "damage",
+    "expr": "1d3",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.194
+   }
+  ],
+  "green tongue|nature": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.389
+   }
+  ],
+  "fiery pinecones|nature": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "thorny skin|nature": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "brambles|nature": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "tumescent puffballs|nature": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "sacred grove|nature": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": true
+    },
+    "rank": 4,
+    "cohort": "heal|healing-rate|rank4",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
+  "toxic growth|nature": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "wrath of nature|nature": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "bramble hedge|nature": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.181
+   }
+  ],
+  "form of the oak guardian|nature": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.181
+   },
+   {
+    "kind": "mitigation",
+    "value": 15,
+    "unit": "temp-health",
+    "expr": "+15 HP buffer",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|temp-health|rank5",
+    "cohort_n": 8,
+    "percentile": 0.188
+   }
+  ],
+  "reincarnation|nature": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "heal|health|rank5",
+    "cohort_n": 3,
+    "percentile": null
+   }
+  ],
+  "seasons passage|nature": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.154
+   },
+   {
+    "kind": "mitigation",
+    "value": 5,
+    "unit": "temp-health",
+    "expr": "+5 HP buffer",
+    "flags": {},
+    "rank": 6,
+    "cohort": "mitigation|temp-health|rank6",
+    "cohort_n": 2,
+    "percentile": 0.25
+   }
+  ],
+  "abundance|nature": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": true
+    },
+    "rank": 7,
+    "cohort": "heal|health|rank7",
+    "cohort_n": 1,
+    "percentile": null
+   }
+  ],
+  "spectral grasp|necromancy": [
+   {
+    "kind": "damage",
+    "value": 2.0,
+    "unit": "damage",
+    "expr": "1d3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.194
+   }
+  ],
+  "bone armor|necromancy": [
+   {
+    "kind": "damage",
+    "value": 2.0,
+    "unit": "damage",
+    "expr": "1d3",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.045
+   }
+  ],
+  "grave grasp|necromancy": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "harvest soul|necromancy": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.889
+   }
+  ],
+  "bone splinters|necromancy": [
+   {
+    "kind": "damage",
+    "value": 15.5,
+    "unit": "damage",
+    "expr": "3d6+5",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.937
+   }
+  ],
+  "shrieking skull|necromancy": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.349
+   }
+  ],
+  "cannibalize magic|necromancy": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "keening|necromancy": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.684
+   }
+  ],
+  "spectral scythe|necromancy": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.412
+   }
+  ],
+  "drown in maggots|necromancy": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "soul blight|necromancy": [
+   {
+    "kind": "heal",
+    "value": 7.0,
+    "unit": "health",
+    "expr": "2d6",
+    "flags": {
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "heal|health|rank4",
+    "cohort_n": 2,
+    "percentile": 0.75
+   }
+  ],
+  "animate huge corpse|necromancy": [
+   {
+    "kind": "heal",
+    "value": 10.5,
+    "unit": "health",
+    "expr": "3d6",
+    "flags": {
+     "area": true
+    },
+    "rank": 5,
+    "cohort": "heal|health|rank5",
+    "cohort_n": 3,
+    "percentile": 0.833
+   }
+  ],
+  "call of the grave|necromancy": [
+   {
+    "kind": "damage",
+    "value": 19.0,
+    "unit": "damage",
+    "expr": "4d6+5",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.628
+   }
+  ],
+  "awaken graveyard|necromancy": [
+   {
+    "kind": "heal",
+    "value": 14.0,
+    "unit": "health",
+    "expr": "4d6",
+    "flags": {
+     "area": true
+    },
+    "rank": 6,
+    "cohort": "heal|health|rank6",
+    "cohort_n": 2,
+    "percentile": 0.75
+   }
+  ],
+  "embodiment of death|necromancy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.154
+   }
+  ],
+  "unleash bone machine|necromancy": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "heal|health|rank8",
+    "cohort_n": 0,
+    "percentile": null
+   }
+  ],
+  "undead legion|necromancy": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": true
+    },
+    "rank": 9,
+    "cohort": "heal|health|rank9",
+    "cohort_n": 0,
+    "percentile": null
+   }
+  ],
+  "undead plague|necromancy": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.571
+   }
+  ],
+  "demand|order": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.778
+   }
+  ],
+  "forbidden zone|order": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.873
+   }
+  ],
+  "command truth|order": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.079
+   }
+  ],
+  "depower|order": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "heal|health|rank4",
+    "cohort_n": 2,
+    "percentile": null
+   }
+  ],
+  "forceful summons|order": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.181
+   }
+  ],
+  "ordered space|order": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.564
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "%damage",
+    "expr": "half damage",
+    "flags": {
+     "all_sources": false
+    },
+    "rank": 5,
+    "cohort": "mitigation|%damage|rank5",
+    "cohort_n": 3,
+    "percentile": 0.167
+   }
+  ],
+  "eradicate infestation|order": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.679
+   }
+  ],
+  "purge chaos|order": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.474
+   }
+  ],
+  "restore reality|order": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.571
+   }
+  ],
+  "lick your wounds|primal": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "heal|healing-rate|rank0",
+    "cohort_n": 2,
+    "percentile": 0.5
+   }
+  ],
+  "primal might|primal": [
+   {
+    "kind": "mitigation",
+    "value": 3,
+    "unit": "temp-health",
+    "expr": "+3 HP buffer",
+    "flags": {},
+    "rank": 0,
+    "cohort": "mitigation|temp-health|rank0",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "venomous fangs|primal": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.309
+   }
+  ],
+  "rabid beast|primal": [
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 3,
+    "cohort": "mitigation|temp-health|rank3",
+    "cohort_n": 3,
+    "percentile": 0.333
+   }
+  ],
+  "resilient beast|primal": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "heal|healing-rate|rank3",
+    "cohort_n": 6,
+    "percentile": 0.167
+   }
+  ],
+  "call of the wild|primal": [
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 4,
+    "cohort": "mitigation|temp-health|rank4",
+    "cohort_n": 4,
+    "percentile": 0.25
+   }
+  ],
+  "primal beast|primal": [
+   {
+    "kind": "mitigation",
+    "value": 20,
+    "unit": "temp-health",
+    "expr": "+20 HP buffer",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|temp-health|rank5",
+    "cohort_n": 8,
+    "percentile": 0.562
+   }
+  ],
+  "savagery|primal": [
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|temp-health|rank5",
+    "cohort_n": 8,
+    "percentile": 0.062
+   }
+  ],
+  "call arion charger|primal": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": true
+    },
+    "rank": 6,
+    "cohort": "heal|health|rank6",
+    "cohort_n": 2,
+    "percentile": null
+   }
+  ],
+  "stampede|primal": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.474
+   },
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": true
+    },
+    "rank": 7,
+    "cohort": "heal|health|rank7",
+    "cohort_n": 1,
+    "percentile": null
+   }
+  ],
+  "primal regent|primal": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "heal|health|rank8",
+    "cohort_n": 0,
+    "percentile": null
+   }
+  ],
+  "favor of the horned lord|primal": [
+   {
+    "kind": "heal",
+    "value": 2.0,
+    "unit": "healing-rate",
+    "expr": "2× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 9,
+    "cohort": "heal|healing-rate|rank9",
+    "cohort_n": 1,
+    "percentile": 0.5
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "temp-health",
+    "expr": "+50 HP buffer",
+    "flags": {},
+    "rank": 9,
+    "cohort": "mitigation|temp-health|rank9",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "binding shackles|protection": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "perfect target|protection": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.936
+   }
+  ],
+  "electrify|protection": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "vigor|protection": [
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 2,
+    "cohort": "mitigation|temp-health|rank2",
+    "cohort_n": 5,
+    "percentile": 0.8
+   }
+  ],
+  "forceful rebuke|protection": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.684
+   }
+  ],
+  "magic trap|protection": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.939
+   }
+  ],
+  "force shield|protection": [
+   {
+    "kind": "damage",
+    "value": 12.5,
+    "unit": "damage",
+    "expr": "3d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.733
+   }
+  ],
+  "reflective cube|protection": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.158
+   }
+  ],
+  "ultimate security|protection": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.059
+   }
+  ],
+  "refuge|protection": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 9,
+    "cohort": "heal|health|rank9",
+    "cohort_n": 0,
+    "percentile": null
+   }
+  ],
+  "true protection|protection": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "health",
+    "expr": "1",
+    "flags": {
+     "area": false
+    },
+    "rank": 10,
+    "cohort": "heal|health|rank10",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
+  "glyph of fire|rune": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.409
+   }
+  ],
+  "detonating rune|rune": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.778
+   }
+  ],
+  "glyphic prison|rune": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.968
+   }
+  ],
+  "sickening rune|rune": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "sigil trap|rune": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "pulsing glyph|rune": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "rune of thunder|rune": [
+   {
+    "kind": "damage",
+    "value": 10.0,
+    "unit": "damage",
+    "expr": "2d6+3",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.333
+   }
+  ],
+  "rune of power|rune": [
+   {
+    "kind": "mitigation",
+    "value": 20,
+    "unit": "temp-health",
+    "expr": "+20 HP buffer",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|temp-health|rank5",
+    "cohort_n": 8,
+    "percentile": 0.562
+   }
+  ],
+  "rune of the giant|rune": [
+   {
+    "kind": "mitigation",
+    "value": 20,
+    "unit": "temp-health",
+    "expr": "+20 HP buffer",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|temp-health|rank5",
+    "cohort_n": 8,
+    "percentile": 0.562
+   }
+  ],
+  "rune of warding|rune": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.923
+   }
+  ],
+  "runic inscription|rune": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.912
+   }
+  ],
+  "rune of damning light|rune": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.346
+   }
+  ],
+  "rune of annihilation|rune": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.048
+   }
+  ],
+  "nightfall blade|shadow": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "darkening blades|shadow": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "shadow dart|shadow": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "penumbral blade|shadow": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.69
+   }
+  ],
+  "shadow snakes|shadow": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "shadow stride|shadow": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "strangling twin|shadow": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "chilling darkness|shadow": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "void tentacles|shadow": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "shadow horror|shadow": [
+   {
+    "kind": "mitigation",
+    "value": 20,
+    "unit": "temp-health",
+    "expr": "+20 HP buffer",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|temp-health|rank5",
+    "cohort_n": 8,
+    "percentile": 0.562
+   }
+  ],
+  "obsidian serpents|shadow": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.436
+   }
+  ],
+  "shade|shadow": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.618
+   }
+  ],
+  "cacophonous utterance|song": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "song of healing|song": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "heal|healing-rate|rank2",
+    "cohort_n": 7,
+    "percentile": 0.357
+   }
+  ],
+  "song of heroes|song": [
+   {
+    "kind": "mitigation",
+    "value": 20,
+    "unit": "temp-health",
+    "expr": "+20 HP buffer",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|temp-health|rank5",
+    "cohort_n": 8,
+    "percentile": 0.562
+   }
+  ],
+  "hymn of rebirth|song": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "health",
+    "expr": "1",
+    "flags": {
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "heal|health|rank6",
+    "cohort_n": 2,
+    "percentile": 0.25
+   }
+  ],
+  "voice of thunder|song": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.763
+   }
+  ],
+  "heavenly choir|song": [
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 8,
+    "cohort": "mitigation|temp-health|rank8",
+    "cohort_n": 2,
+    "percentile": 0.25
+   }
+  ],
+  "blow your horn|song": [
+   {
+    "kind": "damage",
+    "value": 78.0,
+    "unit": "damage",
+    "expr": "8d6+50",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.962
+   }
+  ],
+  "music of the spheres|song": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 10,
+    "cohort": "heal|healing-rate|rank10",
+    "cohort_n": 2,
+    "percentile": 0.5
+   }
+  ],
+  "guarded soul|soul": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.389
+   }
+  ],
+  "topple the mountain|soul": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "introspective trance|soul": [
+   {
+    "kind": "heal",
+    "value": null,
+    "unit": "health",
+    "expr": "see text",
+    "flags": {
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "heal|health|rank3",
+    "cohort_n": 0,
+    "percentile": null
+   }
+  ],
+  "become the soul|soul": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.564
+   }
+  ],
+  "enlightenment|soul": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 10,
+    "cohort": "heal|healing-rate|rank10",
+    "cohort_n": 2,
+    "percentile": 0.5
+   }
+  ],
+  "lion spirit|spiritualism": [
+   {
+    "kind": "mitigation",
+    "value": 5,
+    "unit": "temp-health",
+    "expr": "+5 HP buffer",
+    "flags": {},
+    "rank": 2,
+    "cohort": "mitigation|temp-health|rank2",
+    "cohort_n": 5,
+    "percentile": 0.2
+   }
+  ],
+  "horrifying spirits|spiritualism": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "host of spirits|spiritualism": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.144
+   },
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "heal|healing-rate|rank4",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
+  "tormenting spirit|spiritualism": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.351
+   }
+  ],
+  "guiding spirits|spiritualism": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.295
+   }
+  ],
+  "hero spirit|spiritualism": [
+   {
+    "kind": "mitigation",
+    "value": 20,
+    "unit": "temp-health",
+    "expr": "+20 HP buffer",
+    "flags": {},
+    "rank": 7,
+    "cohort": "mitigation|temp-health|rank7",
+    "cohort_n": 3,
+    "percentile": 0.5
+   }
+  ],
+  "dragon spirit|spiritualism": [
+   {
+    "kind": "damage",
+    "value": 19.0,
+    "unit": "damage",
+    "expr": "4d6+5",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.269
+   }
+  ],
+  "electric eel skin|storm": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "shock|storm": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "forked lightning|storm": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.409
+   }
+  ],
+  "freezing fog|storm": [
+   {
+    "kind": "damage",
+    "value": 2.0,
+    "unit": "damage",
+    "expr": "1d3",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.045
+   }
+  ],
+  "jolt|storm": [
+   {
+    "kind": "damage",
+    "value": 6.5,
+    "unit": "damage",
+    "expr": "1d6+3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.5
+   }
+  ],
+  "call lightning|storm": [
+   {
+    "kind": "damage",
+    "value": 15.5,
+    "unit": "damage",
+    "expr": "3d6+5",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.937
+   }
+  ],
+  "poisonous fog|storm": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "ride the lightning|storm": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "hailstorm|storm": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.535
+   }
+  ],
+  "lightning bolt|storm": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.816
+   }
+  ],
+  "acid rain|storm": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.833
+   }
+  ],
+  "smog|storm": [
+   {
+    "kind": "damage",
+    "value": 8.0,
+    "unit": "damage",
+    "expr": "2d6+1",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.233
+   }
+  ],
+  "dancing lightning|storm": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.702
+   }
+  ],
+  "leaping lightning|storm": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.798
+   }
+  ],
+  "summon storm|storm": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.295
+   }
+  ],
+  "lightning storm|storm": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.763
+   }
+  ],
+  "heart of winter|storm": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.618
+   }
+  ],
+  "hurricane|storm": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.571
+   }
+  ],
+  "gatecrasher|technomancy": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.984
+   }
+  ],
+  "jury-rig|technomancy": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "magic wrench|technomancy": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.823
+   }
+  ],
+  "bolt thrower|technomancy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "caltrops|technomancy": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.309
+   }
+  ],
+  "electrified chain|technomancy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "incandescent bomb|technomancy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "sparking shield|technomancy": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.173
+   }
+  ],
+  "detonation marbles|technomancy": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.778
+   }
+  ],
+  "flamethrower|technomancy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "grenades|technomancy": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.349
+   }
+  ],
+  "mines|technomancy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "flying blades|technomancy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "watchful eyes|technomancy": [
+   {
+    "kind": "damage",
+    "value": 10.0,
+    "unit": "damage",
+    "expr": "2d6+3",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.447
+   }
+  ],
+  "artillery turrets|technomancy": [
+   {
+    "kind": "damage",
+    "value": 10.0,
+    "unit": "damage",
+    "expr": "2d6+3",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.333
+   }
+  ],
+  "iron boots|technomancy": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "bladed whirligig|technomancy": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.351
+   }
+  ],
+  "gatling gun|technomancy": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.351
+   }
+  ],
+  "stonebreaker bomb|technomancy": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.923
+   }
+  ],
+  "wall of gears|technomancy": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.679
+   }
+  ],
+  "mobile fortress|technomancy": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.912
+   },
+   {
+    "kind": "mitigation",
+    "value": 50,
+    "unit": "%damage",
+    "expr": "half damage",
+    "flags": {
+     "all_sources": false
+    },
+    "rank": 8,
+    "cohort": "mitigation|%damage|rank8",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
+  "world-breaker bomb|technomancy": [
+   {
+    "kind": "damage",
+    "value": 70.0,
+    "unit": "damage",
+    "expr": "20d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.881
+   }
+  ],
+  "smash|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 15.0,
+    "unit": "damage",
+    "expr": "15",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.905
+   }
+  ],
+  "catch projectiles|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.684
+   }
+  ],
+  "force missile|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.684
+   }
+  ],
+  "sweep aside|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.833
+   }
+  ],
+  "enemy to weapon|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 15.0,
+    "unit": "damage",
+    "expr": "4d6+1",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.436
+   }
+  ],
+  "mind fist|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 27.5,
+    "unit": "damage",
+    "expr": "5d6+10",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.777
+   }
+  ],
+  "explode|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.679
+   }
+  ],
+  "telekinetic might|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.564
+   }
+  ],
+  "mental armor|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.053
+   }
+  ],
+  "implode|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 50.0,
+    "unit": "damage",
+    "expr": "50",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.808
+   }
+  ],
+  "catastrophic outburst|telekinesis": [
+   {
+    "kind": "damage",
+    "value": 120.0,
+    "unit": "damage",
+    "expr": "120",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.976
+   }
+  ],
+  "bury the hatchet|teleportation": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ],
+  "division|teleportation": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.936
+   }
+  ],
+  "relocate object|teleportation": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "fuse|teleportation": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.939
+   }
+  ],
+  "dismember|teleportation": [
+   {
+    "kind": "damage",
+    "value": 21.0,
+    "unit": "damage",
+    "expr": "6d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.889
+   }
+  ],
+  "travel|teleportation": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.926
+   }
+  ],
+  "remove obstacle|teleportation": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.051
+   }
+  ],
+  "dismantle|teleportation": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.763
+   }
+  ],
+  "mantle of holiness|theurgy": [
+   {
+    "kind": "heal",
+    "value": 0.5,
+    "unit": "healing-rate",
+    "expr": "0.5× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "heal|healing-rate|rank1",
+    "cohort_n": 9,
+    "percentile": 0.389
+   }
+  ],
+  "divine shield|theurgy": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "heal|healing-rate|rank2",
+    "cohort_n": 7,
+    "percentile": 0.357
+   }
+  ],
+  "god hammer|theurgy": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "holy armaments|theurgy": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.69
+   }
+  ],
+  "divine aid|theurgy": [
+   {
+    "kind": "mitigation",
+    "value": 15,
+    "unit": "temp-health",
+    "expr": "+15 HP buffer",
+    "flags": {},
+    "rank": 3,
+    "cohort": "mitigation|temp-health|rank3",
+    "cohort_n": 3,
+    "percentile": 0.833
+   }
+  ],
+  "salvation|theurgy": [
+   {
+    "kind": "heal",
+    "value": 2.0,
+    "unit": "healing-rate",
+    "expr": "2× rate",
+    "flags": {
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "heal|healing-rate|rank3",
+    "cohort_n": 6,
+    "percentile": 0.917
+   }
+  ],
+  "wrath of god|theurgy": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.412
+   }
+  ],
+  "anoint the faithful|theurgy": [
+   {
+    "kind": "mitigation",
+    "value": 10,
+    "unit": "temp-health",
+    "expr": "+10 HP buffer",
+    "flags": {},
+    "rank": 4,
+    "cohort": "mitigation|temp-health|rank4",
+    "cohort_n": 4,
+    "percentile": 0.25
+   }
+  ],
+  "divine justice|theurgy": [
+   {
+    "kind": "damage",
+    "value": 36.0,
+    "unit": "damage",
+    "expr": "8d6+8",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.968
+   }
+  ],
+  "fire from heaven|theurgy": [
+   {
+    "kind": "damage",
+    "value": 24.5,
+    "unit": "damage",
+    "expr": "7d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.734
+   }
+  ],
+  "holy ground|theurgy": [
+   {
+    "kind": "damage",
+    "value": 14.0,
+    "unit": "damage",
+    "expr": "4d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.436
+   },
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": true
+    },
+    "rank": 6,
+    "cohort": "heal|healing-rate|rank6",
+    "cohort_n": 2,
+    "percentile": 0.25
+   },
+   {
+    "kind": "mitigation",
+    "value": 15,
+    "unit": "temp-health",
+    "expr": "+15 HP buffer",
+    "flags": {},
+    "rank": 6,
+    "cohort": "mitigation|temp-health|rank6",
+    "cohort_n": 2,
+    "percentile": 0.75
+   }
+  ],
+  "purge the unclean|theurgy": [
+   {
+    "kind": "damage",
+    "value": 28.0,
+    "unit": "damage",
+    "expr": "8d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.763
+   }
+  ],
+  "apocalypse|theurgy": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.571
+   }
+  ],
+  "time dilation|time": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.154
+   }
+  ],
+  "temporal bubble|time": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.947
+   }
+  ],
+  "erase from existence|time": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.147
+   }
+  ],
+  "stop time|time": [
+   {
+    "kind": "damage",
+    "value": 31.5,
+    "unit": "damage",
+    "expr": "9d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 9,
+    "cohort": "damage|damage|rank9",
+    "cohort_n": 13,
+    "percentile": 0.577
+   }
+  ],
+  "time gate|time": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.048
+   }
+  ],
+  "weapon appendage|transformation": [
+   {
+    "kind": "damage",
+    "value": 4.5,
+    "unit": "damage",
+    "expr": "1d6+1",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.823
+   }
+  ],
+  "hulk|transformation": [
+   {
+    "kind": "mitigation",
+    "value": 40,
+    "unit": "temp-health",
+    "expr": "+40 HP buffer",
+    "flags": {},
+    "rank": 4,
+    "cohort": "mitigation|temp-health|rank4",
+    "cohort_n": 4,
+    "percentile": 0.875
+   }
+  ],
+  "griffon form|transformation": [
+   {
+    "kind": "mitigation",
+    "value": 30,
+    "unit": "temp-health",
+    "expr": "+30 HP buffer",
+    "flags": {},
+    "rank": 5,
+    "cohort": "mitigation|temp-health|rank5",
+    "cohort_n": 8,
+    "percentile": 0.938
+   }
+  ],
+  "freeze|water": [
+   {
+    "kind": "damage",
+    "value": 2.0,
+    "unit": "damage",
+    "expr": "1d3",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.194
+   }
+  ],
+  "icicle|water": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 0,
+    "cohort": "damage|damage|rank0",
+    "cohort_n": 31,
+    "percentile": 0.532
+   }
+  ],
+  "drown|water": [
+   {
+    "kind": "damage",
+    "value": 5.5,
+    "unit": "damage",
+    "expr": "1d6+2",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.409
+   }
+  ],
+  "ice blast|water": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.845
+   }
+  ],
+  "water burst|water": [
+   {
+    "kind": "damage",
+    "value": 6.5,
+    "unit": "damage",
+    "expr": "1d6+3",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.5
+   }
+  ],
+  "geyser|water": [
+   {
+    "kind": "damage",
+    "value": 9.0,
+    "unit": "damage",
+    "expr": "2d6+2",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.69
+   }
+  ],
+  "watery serpent|water": [
+   {
+    "kind": "damage",
+    "value": 10.0,
+    "unit": "damage",
+    "expr": "2d6+3",
+    "flags": {
+     "auto": false,
+     "area": true,
+     "attack": true
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.722
+   }
+  ],
+  "wave|water": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 2,
+    "cohort": "damage|damage|rank2",
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "flood|water": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "restorative waters|water": [
+   {
+    "kind": "heal",
+    "value": 1.0,
+    "unit": "healing-rate",
+    "expr": "1× rate",
+    "flags": {
+     "area": true
+    },
+    "rank": 3,
+    "cohort": "heal|healing-rate|rank3",
+    "cohort_n": 6,
+    "percentile": 0.583
+   }
+  ],
+  "sphere of water|water": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 3,
+    "cohort": "damage|damage|rank3",
+    "cohort_n": 57,
+    "percentile": 0.289
+   }
+  ],
+  "cold snap|water": [
+   {
+    "kind": "damage",
+    "value": 24.5,
+    "unit": "damage",
+    "expr": "7d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.956
+   }
+  ],
+  "wall of ice|water": [
+   {
+    "kind": "damage",
+    "value": 10.5,
+    "unit": "damage",
+    "expr": "3d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 4,
+    "cohort": "damage|damage|rank4",
+    "cohort_n": 45,
+    "percentile": 0.533
+   }
+  ],
+  "caustic waters|water": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.564
+   }
+  ],
+  "parch|water": [
+   {
+    "kind": "damage",
+    "value": 20.0,
+    "unit": "damage",
+    "expr": "4d6+6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 47,
+    "percentile": 0.649
+   }
+  ],
+  "control water|water": [
+   {
+    "kind": "damage",
+    "value": 3.5,
+    "unit": "damage",
+    "expr": "1d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.051
+   }
+  ],
+  "seething sea|water": [
+   {
+    "kind": "damage",
+    "value": 35.0,
+    "unit": "damage",
+    "expr": "10d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 39,
+    "percentile": 0.923
+   }
+  ],
+  "elemental ice|water": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 7,
+    "cohort": "damage|damage|rank7",
+    "cohort_n": 19,
+    "percentile": 0.158
+   }
+  ],
+  "become the sea|water": [
+   {
+    "kind": "damage",
+    "value": 17.5,
+    "unit": "damage",
+    "expr": "5d6",
+    "flags": {
+     "auto": false,
+     "area": false,
+     "attack": true
+    },
+    "rank": 8,
+    "cohort": "damage|damage|rank8",
+    "cohort_n": 17,
+    "percentile": 0.441
+   }
+  ],
+  "tsunami|water": [
+   {
+    "kind": "damage",
+    "value": 70.0,
+    "unit": "damage",
+    "expr": "20d6",
+    "flags": {
+     "auto": true,
+     "area": true,
+     "attack": false
+    },
+    "rank": 10,
+    "cohort": "damage|damage|rank10",
+    "cohort_n": 21,
+    "percentile": 0.881
+   }
+  ],
+  "witch fire|witch": [
+   {
+    "kind": "damage",
+    "value": 7.0,
+    "unit": "damage",
+    "expr": "2d6",
+    "flags": {
+     "auto": true,
+     "area": false,
+     "attack": false
+    },
+    "rank": 1,
+    "cohort": "damage|damage|rank1",
+    "cohort_n": 55,
+    "percentile": 0.655
+   }
+  ]
+ },
+ "cohorts": {
+  "damage|damage|1": {
+   "n": 55,
+   "median": 6.5,
+   "max": 11.5
+  },
+  "mitigation|%damage|1": {
+   "n": 1,
+   "median": 100,
+   "max": 100
+  },
+  "damage|damage|2": {
+   "n": 63,
+   "median": 7.0,
+   "max": 24.0
+  },
+  "damage|damage|3": {
+   "n": 57,
+   "median": 10.5,
+   "max": 22.5
+  },
+  "damage|damage|4": {
+   "n": 45,
+   "median": 10.5,
+   "max": 30.0
+  },
+  "damage|damage|5": {
+   "n": 47,
+   "median": 17.0,
+   "max": 100.0
+  },
+  "damage|damage|6": {
+   "n": 39,
+   "median": 14.0,
+   "max": 35.0
+  },
+  "damage|damage|7": {
+   "n": 19,
+   "median": 21.0,
+   "max": 35.0
+  },
+  "damage|damage|8": {
+   "n": 17,
+   "median": 17.5,
+   "max": 35.0
+  },
+  "mitigation|%damage|8": {
+   "n": 4,
+   "median": 50.0,
+   "max": 50
+  },
+  "damage|damage|10": {
+   "n": 21,
+   "median": 35.0,
+   "max": 120.0
+  },
+  "damage|damage|0": {
+   "n": 31,
+   "median": 3.5,
+   "max": 14.0
+  },
+  "mitigation|temp-health|2": {
+   "n": 5,
+   "median": 6,
+   "max": 10
+  },
+  "heal|healing-rate|2": {
+   "n": 7,
+   "median": 1.0,
+   "max": 2.0
+  },
+  "mitigation|temp-health|3": {
+   "n": 3,
+   "median": 10,
+   "max": 15
+  },
+  "heal|healing-rate|3": {
+   "n": 6,
+   "median": 1.0,
+   "max": 2.0
+  },
+  "mitigation|temp-health|4": {
+   "n": 4,
+   "median": 15.0,
+   "max": 40
+  },
+  "mitigation|temp-health|7": {
+   "n": 3,
+   "median": 20,
+   "max": 80
+  },
+  "mitigation|temp-health|10": {
+   "n": 2,
+   "median": 50.0,
+   "max": 50
+  },
+  "damage|damage|9": {
+   "n": 13,
+   "median": 28.0,
+   "max": 78.0
+  },
+  "heal|healing-rate|1": {
+   "n": 9,
+   "median": 0.5,
+   "max": 1.0
+  },
+  "mitigation|%damage|5": {
+   "n": 3,
+   "median": 100,
+   "max": 100
+  },
+  "heal|health|4": {
+   "n": 2,
+   "median": 4.0,
+   "max": 7.0
+  },
+  "mitigation|temp-health|8": {
+   "n": 2,
+   "median": 25.0,
+   "max": 40
+  },
+  "mitigation|%damage|3": {
+   "n": 1,
+   "median": 100,
+   "max": 100
+  },
+  "mitigation|%damage|4": {
+   "n": 1,
+   "median": 50,
+   "max": 50
+  },
+  "heal|health|5": {
+   "n": 3,
+   "median": 7.0,
+   "max": 10.5
+  },
+  "mitigation|%damage|6": {
+   "n": 1,
+   "median": 50,
+   "max": 50
+  },
+  "heal|health|0": {
+   "n": 2,
+   "median": 1.5,
+   "max": 2.0
+  },
+  "heal|healing-rate|0": {
+   "n": 2,
+   "median": 0.5,
+   "max": 0.5
+  },
+  "heal|healing-rate|4": {
+   "n": 4,
+   "median": 1.0,
+   "max": 1.0
+  },
+  "heal|healing-rate|5": {
+   "n": 1,
+   "median": 2.0,
+   "max": 2.0
+  },
+  "heal|healing-rate|6": {
+   "n": 2,
+   "median": 1.5,
+   "max": 2.0
+  },
+  "heal|health|7": {
+   "n": 1,
+   "median": 3.5,
+   "max": 3.5
+  },
+  "mitigation|temp-health|5": {
+   "n": 8,
+   "median": 20.0,
+   "max": 30
+  },
+  "mitigation|temp-health|6": {
+   "n": 2,
+   "median": 10.0,
+   "max": 15
+  },
+  "heal|health|6": {
+   "n": 2,
+   "median": 7.5,
+   "max": 14.0
+  },
+  "mitigation|temp-health|0": {
+   "n": 1,
+   "median": 3,
+   "max": 3
+  },
+  "heal|healing-rate|9": {
+   "n": 1,
+   "median": 2.0,
+   "max": 2.0
+  },
+  "mitigation|temp-health|9": {
+   "n": 1,
+   "median": 50,
+   "max": 50
+  },
+  "heal|health|10": {
+   "n": 1,
+   "median": 1.0,
+   "max": 1.0
+  },
+  "heal|healing-rate|10": {
+   "n": 2,
+   "median": 1.0,
+   "max": 1.0
+  }
+ },
+ "notes": {
+  "comparison": "percentile is within the spell's (kind, unit, rank) cohort — a top-quartile rank-3 damage spell scores ~0.75. Compares like with like.",
+  "units": "damage/health are expected points (d6=3.5, d3=2); healing-rate is a multiple of the caster's healing rate; %damage is reduction; temp-health is a buffer.",
+  "reliability": "Damage is the expected value assuming it lands. `auto` = no attack roll (reliable); `area` = multi-target upside; `attack` = needs to hit. These are flags, not folded into the number."
+ }
+}

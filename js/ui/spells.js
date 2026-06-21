@@ -61,6 +61,7 @@ export function renderSpells(el) {
       </div>
       ${categoryBar()}
       ${buildBar()}
+      ${comboBar()}
       <div class="spell-grid" id="sp-results"></div>
       <p class="small dim" id="sp-more"></p>
     </div>`;
@@ -237,6 +238,65 @@ function buildBar() {
   </details>`;
 }
 
+// Combos: what stacks with what, from scripts/detect_combos.py. The detector
+// groups spells by fight-goal and lever and ranks the pairings; this panel
+// renders them with a synergy badge and the why. Each member spell is a button
+// that searches the Archive for it, so a combo is a jump-off to the cards.
+const COMBO_TYPE = {
+  compounding: { label: "compounds", title: "Different levers on one goal — they multiply, dodging each other's diminishing returns." },
+  additive:    { label: "stacks",    title: "Flat bonuses that add together — pile them on." },
+  diminishing: { label: "diminishes", title: "Same roll-lever: boons/banes pool to the highest die, so extra sources barely help." },
+};
+
+function comboMember(m) {
+  const mag = m.magnitude ? ` <span class="dim">${esc(m.magnitude)}</span>` : "";
+  // A star when the piece is also individually strong for its rank (top third),
+  // from the per-spell scorer; the title spells out the percentile.
+  const star = m.quality != null && m.quality >= 0.66 ? `<span class="combo-star">★</span>` : "";
+  const qtip = m.quality != null
+    ? ` · ${ordinal(Math.round(m.quality * 100))} pct ${m.strength?.kind || ""} for its rank` : "";
+  return `<button class="chip combo-member" data-find="${esc(m.name)}" title="Find ${esc(m.name)} (${esc(m.tradition)}, rank ${m.rank}) in the Archive${esc(qtip)}">${esc(m.name)}${mag}${star}</button>`;
+}
+
+function comboBar() {
+  const data = rules.combos;
+  if (!data?.combos?.length) return "";
+  const byGoal = new Map();
+  for (const c of data.combos) {
+    if (!byGoal.has(c.goal)) byGoal.set(c.goal, []);
+    byGoal.get(c.goal).push(c);
+  }
+  const sections = [...byGoal.entries()].map(([goal, list]) => {
+    const g = data.goals[goal] || { label: goal, desc: "" };
+    const rows = list.map((c) => {
+      const t = COMBO_TYPE[c.type] || { label: c.type, title: "" };
+      const flags = [
+        c.all_precastable ? `<span class="combo-flag precast" title="Every piece lasts minutes+, so you can cast them before the fight — no action cost once combat starts">pre-cast</span>` : "",
+        c.fragile ? `<span class="combo-flag fragile" title="Needs 2+ concentration spells up at once — taking damage forces a challenge roll to keep each">fragile</span>` : "",
+      ].join("");
+      const more = Object.entries(c.alternatives || {})
+        .map(([lever, n]) => n > 1 ? `${n} ${esc(lever)}` : null).filter(Boolean).join(" · ");
+      return `<div class="combo-row">
+        <div class="combo-head">
+          <span class="combo-type ${esc(c.type)}" title="${esc(t.title)}">${esc(t.label)}</span>
+          ${c.members.map(comboMember).join("")}
+          ${flags}
+        </div>
+        <p class="combo-why">${esc(c.rationale)}${more ? ` <span class="dim">— ${more} to choose from</span>` : ""}</p>
+      </div>`;
+    }).join("");
+    return `<div class="combo-goal">
+      <div class="cat-facet">${esc(g.label)} <span class="small dim">${esc(g.desc)}</span></div>
+      ${rows}
+    </div>`;
+  }).join("");
+  const n = data.combos.length;
+  return `<details class="cat-bar combo-bar" open>
+    <summary class="cat-summary">Combos — what stacks with what <span class="small dim">(${n} synergies; cross-lever combos compound, same roll-lever diminishes)</span></summary>
+    ${sections}
+  </details>`;
+}
+
 function renderResults(el, char, computed) {
   const box = el.querySelector("#sp-results");
   const more = el.querySelector("#sp-more");
@@ -303,6 +363,36 @@ function tagChips(s) {
     `<button class="cat-tag ${filters.tags.has(t) ? "on" : ""}" data-tag="${esc(t)}" title="Filter by: ${esc(tagLabel(t))}">${esc(tagLabel(t))}</button>`).join("")}</div>`;
 }
 
+// Effectiveness badges (score_spells.py): expected output + where it sits among
+// same-rank, same-kind peers (percentile), with reliability/area as flags.
+const SCORE_ICON = { damage: "⚔", heal: "✚", mitigation: "🛡" };
+const UNIT_LABEL = {
+  damage: "avg dmg", health: "HP", "healing-rate": "× rate",
+  "%damage": "% reduced", "damage-reduced": "less/hit", "temp-health": "HP buffer",
+};
+function scoreBadge(s) {
+  const recs = rules.scores?.spells?.[spellKey(s.name, s.tradition)];
+  if (!recs?.length) return "";
+  const badges = recs.map((sc) => {
+    const icon = SCORE_ICON[sc.kind] || "•";
+    const pct = sc.percentile != null && sc.cohort_n > 2
+      ? `<b>${ordinal(Math.round(sc.percentile * 100))}</b> pct` : "";
+    const val = sc.value != null
+      ? `${sc.unit === "healing-rate" ? sc.value + "×" : sc.value} <span class="dim">${UNIT_LABEL[sc.unit] || sc.unit}</span>`
+      : `<span class="dim">see text</span>`;
+    const flags = Object.entries(sc.flags || {}).filter(([, on]) => on)
+      .map(([f]) => `<span class="score-flag">${f}</span>`).join("");
+    const tip = `Rank ${sc.rank} ${sc.kind}: ${sc.expr || ""}` +
+      (pct ? ` — better than ${Math.round(sc.percentile * 100)}% of rank-${sc.rank} ${sc.kind} spells (n=${sc.cohort_n})` : ` (only ${sc.cohort_n} at this rank)`);
+    return `<span class="score-badge ${sc.kind}" title="${esc(tip)}">${icon} ${val}${pct ? " · " + pct : ""}${flags}</span>`;
+  }).join("");
+  return `<div class="spell-scores">${badges}</div>`;
+}
+function ordinal(n) {
+  const s = ["th", "st", "nd", "rd"], v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
 // AI build-lens block: role/build/tempo as click-to-filter badges plus the
 // one-line synergy note. Only shown for spells the enrichment pass has reached.
 function enrichBlock(s) {
@@ -361,6 +451,7 @@ export function spellCard(s, opts = {}) {
     </div>
     ${meta.length ? `<div class="spell-meta">${meta.join(" &nbsp;·&nbsp; ")}</div>` : ""}
     ${tagChips(s)}
+    ${scoreBadge(s)}
     ${enrichBlock(s)}
     <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
     ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
@@ -411,6 +502,20 @@ function wire(el, char, computed) {
   el.addEventListener("click", (e) => {
     const c = active();
     if (!c) return;
+    const find = e.target.closest("[data-find]");
+    if (find) {
+      e.preventDefault();
+      // Jump from a combo to its spell: clear filters that would hide it, set
+      // the search to its name, and scroll the results into view.
+      filters.q = find.dataset.find;
+      filters.tradition = filters.rank = filters.type = filters.source = "";
+      filters.role = filters.archetype = filters.tempo = "";
+      filters.tags.clear();
+      filters.learnable = false;
+      renderSpells(el);
+      el.querySelector("#sp-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
     const tagChip = e.target.closest("[data-tag]");
     if (tagChip) {
       const t = tagChip.dataset.tag;
