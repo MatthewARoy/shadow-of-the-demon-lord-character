@@ -104,6 +104,17 @@ A combo only pays off if the pieces can be up at once. Each spell gets a
   forces a challenge roll to keep each, so these are flagged and penalized.
 - In-combat castings beyond the first cost actions and dock the score.
 
+## Piece quality (from the per-spell scorer)
+
+`detect_combos.py` optionally reads `data/spell-scores.json` and tags each member
+with a `quality` = its best rank-cohort percentile (0..1) where it has measurable
+output (damage/heal/mitigation). Quality is a tiebreaker in `pick_pair` — among
+same-tradition, pre-castable candidates it prefers the individually-stronger
+spell — and a score bump, so a combo whose pieces are also good on their own
+floats up. Buff/debuff levers (banes, boons, raw Defense) have no output score
+and simply carry no quality; the file is optional, so combos still build without
+it. The UI stars members in the top third of their cohort.
+
 ## Output and scoring
 
 `scripts/detect_combos.py` writes `data/spell-combos.json`:

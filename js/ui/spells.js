@@ -201,7 +201,12 @@ const COMBO_TYPE = {
 
 function comboMember(m) {
   const mag = m.magnitude ? ` <span class="dim">${esc(m.magnitude)}</span>` : "";
-  return `<button class="chip combo-member" data-find="${esc(m.name)}" title="Find ${esc(m.name)} (${esc(m.tradition)}, rank ${m.rank}) in the Archive">${esc(m.name)}${mag}</button>`;
+  // A star when the piece is also individually strong for its rank (top third),
+  // from the per-spell scorer; the title spells out the percentile.
+  const star = m.quality != null && m.quality >= 0.66 ? `<span class="combo-star">★</span>` : "";
+  const qtip = m.quality != null
+    ? ` · ${ordinal(Math.round(m.quality * 100))} pct ${m.strength?.kind || ""} for its rank` : "";
+  return `<button class="chip combo-member" data-find="${esc(m.name)}" title="Find ${esc(m.name)} (${esc(m.tradition)}, rank ${m.rank}) in the Archive${esc(qtip)}">${esc(m.name)}${mag}${star}</button>`;
 }
 
 function comboBar() {
@@ -237,7 +242,7 @@ function comboBar() {
     </div>`;
   }).join("");
   const n = data.combos.length;
-  return `<details class="cat-bar combo-bar">
+  return `<details class="cat-bar combo-bar" open>
     <summary class="cat-summary">Combos — what stacks with what <span class="small dim">(${n} synergies; cross-lever combos compound, same roll-lever diminishes)</span></summary>
     ${sections}
   </details>`;

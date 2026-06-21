@@ -71,10 +71,14 @@ like the other sidecars; absent `data/spell-scores.json`, no badge renders.
 ## How it composes with combos
 
 The combo detector ranks *which* spells synergise; this scorer rates *how good
-each piece is*. They're separate JSON sidecars today, but `detect_combos.py` can
-read `spell-scores.json` to break ties (prefer the higher-percentile damage spell
-in a showcase, or surface a combo of two individually-strong pieces) without
-either script depending on the other's internals.
+each piece is*. `detect_combos.py` reads `spell-scores.json` (optionally — it
+skips the signal if the file is absent) and attaches each member's best
+rank-cohort percentile as a `quality`. That quality then (a) breaks ties when
+choosing a showcase pair, so a combo is built from spells that are good on their
+own merits, and (b) bumps a combo's score, floating combos-of-strong-pieces up
+the list. Neither script imports the other; the contract is just the JSON keys
+(lowercased `name|tradition`, shared with the enrichment sidecar). The combo
+panel stars members in the top third of their cohort.
 
 ## Known limits
 

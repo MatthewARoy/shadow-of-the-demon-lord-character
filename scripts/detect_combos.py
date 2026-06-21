@@ -51,6 +51,7 @@ from collections import defaultdict
 ROOT = Path(__file__).resolve().parent.parent
 SPELLS = ROOT / "data" / "spells.json"
 ENRICH = ROOT / "data" / "spell-enrichment.json"
+SCORES = ROOT / "data" / "spell-scores.json"
 OUT = ROOT / "data" / "spell-combos.json"
 
 
@@ -381,12 +382,33 @@ def effects(spell):
 # Build combos.
 # --------------------------------------------------------------------------- #
 
+def load_scores():
+    """key -> {percentile, kind, value, unit} for the spell's best-scored output.
+    Optional: if score_spells.py hasn't been run, combos just skip the quality
+    signal. 'Best' = highest percentile among records with a real cohort (n>=3)."""
+    if not SCORES.exists():
+        return {}
+    data = json.loads(SCORES.read_text())
+    out = {}
+    for k, recs in data.get("spells", {}).items():
+        ranked = [r for r in recs if r.get("percentile") is not None and r.get("cohort_n", 0) >= 3]
+        if not ranked:
+            continue
+        best = max(ranked, key=lambda r: r["percentile"])
+        out[k] = {"percentile": best["percentile"], "kind": best["kind"],
+                  "value": best["value"], "unit": best["unit"]}
+    return out
+
+
 def key(s):
-    return f"{s['name']}|{s['tradition']}"
+    return f"{s['name']}|{s['tradition']}".lower()
+
+
+_SCORES = {}  # key -> best score record; populated by build()
 
 
 def short(s, atom, dclass):
-    return {
+    m = {
         "name": s["name"],
         "tradition": s["tradition"],
         "rank": s["rank"],
@@ -395,6 +417,17 @@ def short(s, atom, dclass):
         "duration": dclass,
         "precast": precastable(dclass),
     }
+    sc = _SCORES.get(f"{s['name']}|{s['tradition']}".lower())
+    if sc:
+        # The piece's individual strength for its rank (0..1), so showcases can
+        # prefer combos built from spells that are good on their own merits.
+        m["quality"] = sc["percentile"]
+        m["strength"] = {"kind": sc["kind"], "value": sc["value"], "unit": sc["unit"]}
+    return m
+
+
+def _q(m):
+    return m.get("quality") or 0.0
 
 
 def _spellid(m):
@@ -414,6 +447,7 @@ def pick_pair(lever_a, lever_b):
             rank = (
                 0 if ma["tradition"] == mb["tradition"] else 1,   # same-tradition first
                 0 if (ma["precast"] and mb["precast"]) else 1,    # precastable first
+                -round(_q(ma) + _q(mb), 3),                       # individually-stronger first
                 ma["rank"] + mb["rank"],                          # accessible first
             )
             if best is None or rank < best[0]:
@@ -421,7 +455,9 @@ def pick_pair(lever_a, lever_b):
     return (best[1], best[2]) if best else (None, None)
 
 
-def build(spells):
+def build(spells, scores=None):
+    global _SCORES
+    _SCORES = scores or {}
     # goal -> lever -> [member dicts]
     members = defaultdict(lambda: defaultdict(list))
     unarmed = {"damage": [], "accuracy": []}
@@ -468,6 +504,11 @@ def build(spells):
                 score += 15
             score -= 20 if feas["fragile"] else 0
             score -= 5 * max(0, feas["combat_castings"] - 1)
+            # Reward pairs whose pieces are individually strong for their rank.
+            scored = [m for m in (pa, pb) if m.get("quality") is not None]
+            avg_q = sum(_q(m) for m in scored) / len(scored) if scored else None
+            score += round(15 * avg_q) if avg_q is not None else 0
+            strong = avg_q is not None and avg_q >= 0.66
             combos.append({
                 "goal": goal,
                 "type": "compounding",
@@ -482,6 +523,7 @@ def build(spells):
                     f"{gdef['levers'][a]['label']} + {gdef['levers'][b]['label']}: "
                     f"two different levers on “{gdef['label'].lower()}”, so they "
                     f"compound instead of fighting each other's diminishing returns."
+                    + (" Both pieces are also strong for their rank." if strong else "")
                 ),
             })
 
@@ -492,15 +534,18 @@ def build(spells):
             if len(roster) < 2:
                 continue
             additive = ldef["additive"]
-            top = sorted(roster, key=lambda m: (m["precast"], m["rank"]), reverse=True)[:3]
+            top = sorted(roster, key=lambda m: (m["precast"], _q(m), m["rank"]), reverse=True)[:3]
             feas = feasibility(top)
+            scored = [m for m in top if m.get("quality") is not None]
+            avg_q = sum(_q(m) for m in scored) / len(scored) if scored else None
             combos.append({
                 "goal": goal,
                 "type": "additive" if additive else "diminishing",
                 "levers": [lever],
                 "members": top,
                 "alternatives": {lever: len(roster)},
-                "score": (70 if additive else 35) + (10 if feas["all_precastable"] else 0),
+                "score": (70 if additive else 35) + (10 if feas["all_precastable"] else 0)
+                         + (round(15 * avg_q) if avg_q is not None else 0),
                 "fragile": feas["fragile"],
                 "all_precastable": feas["all_precastable"],
                 "rationale": (
@@ -552,7 +597,19 @@ def build(spells):
                 ),
             })
 
+    # Dedupe: the same pair of spells can fill two different lever-role pairings
+    # within a goal (e.g. a spell that both reduces damage and heals). Keep the
+    # best-scored instance per (goal, member set).
     combos.sort(key=lambda c: c["score"], reverse=True)
+    seen = set()
+    deduped = []
+    for c in combos:
+        sig = (c["goal"], frozenset(_spellid(m) for m in c["members"]))
+        if sig in seen:
+            continue
+        seen.add(sig)
+        deduped.append(c)
+    combos = deduped
 
     rosters = {
         goal: {lever: members[goal].get(lever, []) for lever in gdef["levers"] if members[goal].get(lever)}
@@ -583,6 +640,10 @@ def build(spells):
             "precast": "Minute+/hour buffs can be cast before the fight, so they cost no action "
                        "economy once combat starts. Holding 2+ concentration spells is fragile: "
                        "taking damage forces a challenge roll to keep each.",
+            "quality": "Where a member has a measurable output, its `quality` is that spell's "
+                       "rank-cohort percentile from score_spells.py (0..1). Showcases prefer "
+                       "pairs built from individually-strong pieces, and combos of strong pieces "
+                       "score higher.",
         },
     }
 
@@ -615,7 +676,7 @@ def main():
     args = ap.parse_args()
 
     spells = json.loads(SPELLS.read_text())
-    data = build(spells)
+    data = build(spells, load_scores())
 
     if args.report:
         report(data)

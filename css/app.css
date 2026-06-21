@@ -298,6 +298,7 @@ h2.rubric .count { font-family: var(--caps); font-size: 13px; color: var(--text-
 }
 .combo-flag.precast { color: #6fae7a; border-color: #3f6e48; }
 .combo-flag.fragile { color: var(--blood-bright); border-color: #5c2424; }
+.combo-star { color: var(--bronze-bright); margin-left: 3px; font-size: 10px; }
 .combo-why { margin: 4px 0 0; font-size: 12px; color: var(--text-dim); line-height: 1.4; }
 
 /* Effectiveness scores (score_spells.py) -------------------- */
