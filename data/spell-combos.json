@@ -106,7 +106,7 @@
      "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.739,
+     "quality": 0.733,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -125,7 +125,7 @@
    ],
    "alternatives": {
     "attacker-banes": 36,
-    "concealment": 41
+    "concealment": 40
    },
    "score": 121,
    "fragile": false,
@@ -198,7 +198,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -296,7 +296,7 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.688,
+     "quality": 0.679,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -311,7 +311,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -320,7 +320,7 @@
     }
    ],
    "alternatives": {
-    "target-banes": 59,
+    "target-banes": 55,
     "control": 333
    },
    "score": 119,
@@ -328,6 +328,49 @@
    "all_precastable": true,
    "same_tradition": true,
    "rationale": "Banes on the target's rolls + Stun / immobilize / slow: two different levers on “blunt the enemy”, so they compound instead of fighting each other's diminishing returns."
+  },
+  {
+   "goal": "resist",
+   "type": "compounding",
+   "levers": [
+    "resist-boons",
+    "cure"
+   ],
+   "members": [
+    {
+     "name": "Life Surge",
+     "tradition": "Life",
+     "rank": 1,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.389,
+     "strength": {
+      "kind": "heal",
+      "value": 0.5,
+      "unit": "healing-rate"
+     }
+    },
+    {
+     "name": "Augmented Vitality",
+     "tradition": "Life",
+     "rank": 2,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    }
+   ],
+   "alternatives": {
+    "resist-boons": 35,
+    "cure": 18
+   },
+   "score": 116,
+   "fragile": false,
+   "all_precastable": true,
+   "same_tradition": true,
+   "rationale": "Boons on your challenge rolls + Cure / remove conditions: two different levers on “shrug off effects”, so they compound instead of fighting each other's diminishing returns."
   },
   {
    "goal": "evade",
@@ -364,62 +407,13 @@
    ],
    "alternatives": {
     "defense": 22,
-    "concealment": 41
+    "concealment": 40
    },
    "score": 113,
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
    "rationale": "Raise Defense + Concealment / hard to target: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns."
-  },
-  {
-   "goal": "resist",
-   "type": "compounding",
-   "levers": [
-    "resist-boons",
-    "cure"
-   ],
-   "members": [
-    {
-     "name": "Life Surge",
-     "tradition": "Life",
-     "rank": 1,
-     "lever": "resist-boons",
-     "magnitude": "1 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.389,
-     "strength": {
-      "kind": "heal",
-      "value": 0.5,
-      "unit": "healing-rate"
-     }
-    },
-    {
-     "name": "House of Healing",
-     "tradition": "Life",
-     "rank": 7,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.075,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
-    }
-   ],
-   "alternatives": {
-    "resist-boons": 35,
-    "cure": 18
-   },
-   "score": 113,
-   "fragile": false,
-   "all_precastable": true,
-   "same_tradition": true,
-   "rationale": "Boons on your challenge rolls + Cure / remove conditions: two different levers on “shrug off effects”, so they compound instead of fighting each other's diminishing returns."
   },
   {
    "goal": "mitigate",
@@ -436,7 +430,7 @@
      "magnitude": "+80 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.95,
+     "quality": 0.947,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -512,7 +506,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.927,
+     "quality": 0.926,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -527,7 +521,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.925,
+     "quality": 0.923,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -588,7 +582,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.833,
+     "quality": 0.83,
      "strength": {
       "kind": "damage",
       "value": 30.0,
@@ -680,7 +674,7 @@
      "magnitude": "+5 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.927,
+     "quality": 0.926,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -868,7 +862,7 @@
      "magnitude": "concealment",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.3,
+     "quality": 0.263,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -877,7 +871,7 @@
     }
    ],
    "alternatives": {
-    "concealment": 41
+    "concealment": 40
    },
    "score": 88,
    "fragile": false,
@@ -956,21 +950,6 @@
    ],
    "members": [
     {
-     "name": "House of Healing",
-     "tradition": "Life",
-     "rank": 7,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.075,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Query the Void",
      "tradition": "Demonology",
      "rank": 4,
@@ -978,12 +957,21 @@
      "magnitude": "cure",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.043,
+     "quality": 0.044,
      "strength": {
       "kind": "damage",
       "value": 5.5,
       "unit": "damage"
      }
+    },
+    {
+     "name": "House of Healing",
+     "tradition": "Life",
+     "rank": 7,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
     },
     {
      "name": "Quiet the Soul",
@@ -1048,7 +1036,7 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.688,
+     "quality": 0.679,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -1057,7 +1045,7 @@
     }
    ],
    "alternatives": {
-    "target-banes": 59
+    "target-banes": 55
    },
    "score": 57,
    "fragile": false,
@@ -1140,7 +1128,7 @@
      "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.739,
+     "quality": 0.733,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -1201,7 +1189,7 @@
      "magnitude": "2 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.833,
+     "quality": 0.83,
      "strength": {
       "kind": "damage",
       "value": 30.0,
@@ -1231,7 +1219,7 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.573,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -1240,7 +1228,7 @@
     }
    ],
    "alternatives": {
-    "self-attack-boons": 42
+    "self-attack-boons": 41
    },
    "score": 55,
    "fragile": false,
@@ -1259,7 +1247,7 @@
      "magnitude": "+2 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.321,
+     "quality": 0.309,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -1274,7 +1262,7 @@
      "magnitude": "+5 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.927,
+     "quality": 0.926,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -1289,7 +1277,7 @@
      "magnitude": "+2 Def",
      "duration": "instant",
      "precast": false,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -1426,9 +1414,9 @@
      "precast": true,
      "quality": 0.188,
      "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
+      "kind": "mitigation",
+      "value": 15,
+      "unit": "temp-health"
      }
     },
     {
@@ -1511,7 +1499,7 @@
      "magnitude": "+2 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -1603,7 +1591,7 @@
      "magnitude": "2 bane(s) on their attack",
      "duration": "instant",
      "precast": false,
-     "quality": 0.188,
+     "quality": 0.181,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -1633,7 +1621,7 @@
      "magnitude": "1 bane(s) on their attack",
      "duration": "instant",
      "precast": false,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -1741,7 +1729,7 @@
      "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -1789,7 +1777,7 @@
      "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.739,
+     "quality": 0.733,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -1977,7 +1965,7 @@
      "magnitude": "concealment",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.3,
+     "quality": 0.263,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -2039,15 +2027,6 @@
      "precast": true
     },
     {
-     "name": "Harm",
-     "tradition": "Forbidden",
-     "rank": 0,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Horrid Joining",
      "tradition": "Forbidden",
      "rank": 5,
@@ -2055,7 +2034,7 @@
      "magnitude": "concealment",
      "duration": "instant",
      "precast": false,
-     "quality": 0.188,
+     "quality": 0.181,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -2319,7 +2298,7 @@
      "magnitude": "concealment",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -2466,9 +2445,9 @@
      "precast": true,
      "quality": 0.188,
      "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
+      "kind": "mitigation",
+      "value": 15,
+      "unit": "temp-health"
      }
     },
     {
@@ -2479,7 +2458,7 @@
      "magnitude": "1 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.15,
+     "quality": 0.154,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -2668,7 +2647,7 @@
      "magnitude": "3 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -2683,7 +2662,7 @@
      "magnitude": "1 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.15,
+     "quality": 0.154,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -2733,7 +2712,7 @@
      "magnitude": "cure",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.043,
+     "quality": 0.044,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -2804,13 +2783,7 @@
      "lever": "cure",
      "magnitude": "cure",
      "duration": "sustained",
-     "precast": true,
-     "quality": 0.075,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
+     "precast": true
     },
     {
      "name": "Second Life",
@@ -2892,7 +2865,7 @@
      "magnitude": "cure",
      "duration": "instant",
      "precast": false,
-     "quality": 0.775,
+     "quality": 0.763,
      "strength": {
       "kind": "damage",
       "value": 28.0,
@@ -3058,7 +3031,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.3,
+     "quality": 0.263,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -3073,7 +3046,7 @@
      "magnitude": "reduce damage",
      "duration": "instant",
      "precast": false,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -3088,7 +3061,7 @@
      "magnitude": "reduce damage",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.179,
+     "quality": 0.173,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -3193,7 +3166,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.152,
+     "quality": 0.144,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -3232,7 +3205,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.293,
+     "quality": 0.278,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -3247,7 +3220,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -3292,7 +3265,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -3406,7 +3379,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.573,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -3505,7 +3478,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.575,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -3619,7 +3592,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -3732,7 +3705,7 @@
      "magnitude": "+80 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.95,
+     "quality": 0.947,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -3816,7 +3789,7 @@
      "magnitude": "+10 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -3848,9 +3821,9 @@
      "precast": true,
      "quality": 0.188,
      "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
+      "kind": "mitigation",
+      "value": 15,
+      "unit": "temp-health"
      }
     },
     {
@@ -3861,7 +3834,7 @@
      "magnitude": "+5 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.15,
+     "quality": 0.154,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4098,7 +4071,7 @@
      "magnitude": "+15 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -4199,7 +4172,7 @@
      "magnitude": "heal",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.043,
+     "quality": 0.044,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -4501,13 +4474,7 @@
      "lever": "heal",
      "magnitude": "heal",
      "duration": "sustained",
-     "precast": true,
-     "quality": 0.075,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
+     "precast": true
     },
     {
      "name": "Raise the Dead",
@@ -4612,13 +4579,7 @@
      "lever": "heal",
      "magnitude": "heal",
      "duration": "sustained",
-     "precast": true,
-     "quality": 0.152,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
-     }
+     "precast": true
     },
     {
      "name": "Animate Huge Corpse",
@@ -4642,13 +4603,7 @@
      "lever": "heal",
      "magnitude": "heal",
      "duration": "instant",
-     "precast": false,
-     "quality": 0.438,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
+     "precast": false
     },
     {
      "name": "Unleash Bone Machine",
@@ -4718,7 +4673,7 @@
      "magnitude": "heal",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.5,
+     "quality": 0.474,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -4895,7 +4850,7 @@
      "magnitude": "heal",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -4929,7 +4884,7 @@
      "magnitude": "3 boon(s) to hit",
      "duration": "instant",
      "precast": false,
-     "quality": 0.365,
+     "quality": 0.351,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -4995,7 +4950,7 @@
      "magnitude": "2 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.833,
+     "quality": 0.83,
      "strength": {
       "kind": "damage",
       "value": 30.0,
@@ -5010,7 +4965,7 @@
      "magnitude": "3 boon(s) to hit",
      "duration": "instant",
      "precast": false,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -5072,15 +5027,6 @@
      "precast": false
     },
     {
-     "name": "False Injury",
-     "tradition": "Illusion",
-     "rank": 5,
-     "lever": "self-attack-boons",
-     "magnitude": "1 boon(s) to hit",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "The One-eyed God",
      "tradition": "Invocation",
      "rank": 3,
@@ -5103,7 +5049,7 @@
      "magnitude": "3 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.293,
+     "quality": 0.278,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -5127,7 +5073,7 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.573,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -5280,7 +5226,7 @@
      "magnitude": "2 boon(s) to hit",
      "duration": "instant",
      "precast": false,
-     "quality": 0.448,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 15.0,
@@ -5383,7 +5329,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.884,
+     "quality": 0.882,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -5422,7 +5368,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.42,
+     "quality": 0.409,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -5437,7 +5383,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.509,
+     "quality": 0.5,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -5476,7 +5422,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.152,
+     "quality": 0.144,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5620,7 +5566,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.848,
+     "quality": 0.845,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -5635,7 +5581,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.152,
+     "quality": 0.144,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5650,7 +5596,7 @@
      "magnitude": "+3d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.775,
+     "quality": 0.769,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -5665,7 +5611,7 @@
      "magnitude": "+3d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.3,
+     "quality": 0.263,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -5695,7 +5641,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5725,7 +5671,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.287,
+     "quality": 0.295,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -5758,7 +5704,7 @@
      "magnitude": "+4d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.073,
+     "quality": 0.074,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5773,7 +5719,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.885,
+     "quality": 0.883,
      "strength": {
       "kind": "damage",
       "value": 34.5,
@@ -5788,7 +5734,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.05,
+     "quality": 0.051,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -5818,7 +5764,7 @@
      "magnitude": "+2d6+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5857,7 +5803,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -5887,7 +5833,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.833,
+     "quality": 0.83,
      "strength": {
       "kind": "damage",
       "value": 30.0,
@@ -5902,7 +5848,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -5932,7 +5878,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.321,
+     "quality": 0.309,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -5947,7 +5893,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.804,
+     "quality": 0.8,
      "strength": {
       "kind": "damage",
       "value": 8.0,
@@ -6037,7 +5983,7 @@
      "magnitude": "+3d6+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.957,
+     "quality": 0.956,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -6052,7 +5998,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.865,
+     "quality": 0.862,
      "strength": {
       "kind": "damage",
       "value": 31.5,
@@ -6100,7 +6046,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.179,
+     "quality": 0.173,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -6157,7 +6103,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.42,
+     "quality": 0.409,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -6187,7 +6133,7 @@
      "magnitude": "+1d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.152,
+     "quality": 0.144,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -6202,7 +6148,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.375,
+     "quality": 0.342,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -6217,7 +6163,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.42,
+     "quality": 0.409,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -6232,7 +6178,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.42,
+     "quality": 0.409,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -6307,7 +6253,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.188,
+     "quality": 0.181,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -6322,7 +6268,7 @@
      "magnitude": "+4d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.925,
+     "quality": 0.923,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -6367,7 +6313,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -6421,7 +6367,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -6592,7 +6538,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.15,
+     "quality": 0.154,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -6631,7 +6577,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.179,
+     "quality": 0.173,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -6685,7 +6631,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.635,
+     "quality": 0.628,
      "strength": {
       "kind": "damage",
       "value": 19.0,
@@ -6700,7 +6646,7 @@
      "magnitude": "+4d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.688,
+     "quality": 0.679,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -6724,7 +6670,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.321,
+     "quality": 0.309,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -6955,7 +6901,7 @@
      "magnitude": "+3d6",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -7090,7 +7036,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.42,
+     "quality": 0.409,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -7105,7 +7051,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.509,
+     "quality": 0.5,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -7120,7 +7066,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.233,
      "strength": {
       "kind": "damage",
       "value": 8.0,
@@ -7144,7 +7090,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7174,7 +7120,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.348,
+     "quality": 0.333,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -7213,7 +7159,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.781,
+     "quality": 0.777,
      "strength": {
       "kind": "damage",
       "value": 27.5,
@@ -7228,7 +7174,7 @@
      "magnitude": "+2d6+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.688,
+     "quality": 0.679,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -7243,7 +7189,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.575,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -7267,7 +7213,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7282,7 +7228,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.938,
+     "quality": 0.936,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -7312,7 +7258,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.891,
+     "quality": 0.889,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -7525,7 +7471,7 @@
      "magnitude": "+1d6",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7562,7 +7508,7 @@
      "magnitude": "4 bane(s) on its rolls",
      "duration": "instant",
      "precast": false,
-     "quality": 0.188,
+     "quality": 0.181,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -7625,7 +7571,7 @@
      "magnitude": "3 bane(s) on its rolls",
      "duration": "instant",
      "precast": false,
-     "quality": 0.365,
+     "quality": 0.351,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -7883,7 +7829,7 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.688,
+     "quality": 0.679,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -7958,7 +7904,7 @@
      "magnitude": "3 bane(s) on its rolls",
      "duration": "instant",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7991,7 +7937,7 @@
      "magnitude": "2 bane(s) on its rolls",
      "duration": "instant",
      "precast": false,
-     "quality": 0.365,
+     "quality": 0.351,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -8048,7 +7994,7 @@
      "magnitude": "3 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.287,
+     "quality": 0.295,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8089,24 +8035,6 @@
      "precast": true
     },
     {
-     "name": "Wipe the Mind",
-     "tradition": "Telepathy",
-     "rank": 6,
-     "lever": "target-banes",
-     "magnitude": "3 bane(s) on its rolls",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Reality Shift",
-     "tradition": "Teleportation",
-     "rank": 10,
-     "lever": "target-banes",
-     "magnitude": "5 bane(s) on its rolls",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Anoint the Faithful",
      "tradition": "Theurgy",
      "rank": 4,
@@ -8129,7 +8057,7 @@
      "magnitude": "3 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -8142,24 +8070,6 @@
      "rank": 9,
      "lever": "target-banes",
      "magnitude": "4 bane(s) on its rolls",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Time Loop",
-     "tradition": "Time",
-     "rank": 1,
-     "lever": "target-banes",
-     "magnitude": "1 bane(s) on its rolls",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Major Paradox",
-     "tradition": "Time",
-     "rank": 3,
-     "lever": "target-banes",
-     "magnitude": "1 bane(s) on its rolls",
      "duration": "instant",
      "precast": false
     },
@@ -8206,7 +8116,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.884,
+     "quality": 0.882,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -8290,7 +8200,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8305,7 +8215,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.043,
+     "quality": 0.044,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -8320,7 +8230,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.188,
+     "quality": 0.181,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8335,7 +8245,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.775,
+     "quality": 0.769,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -8404,7 +8314,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.925,
+     "quality": 0.923,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -8419,7 +8329,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.42,
+     "quality": 0.409,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -8434,7 +8344,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.509,
+     "quality": 0.5,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -8467,7 +8377,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.152,
+     "quality": 0.144,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8509,7 +8419,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.573,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -8524,7 +8434,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.927,
+     "quality": 0.926,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -8587,7 +8497,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.152,
+     "quality": 0.144,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8653,7 +8563,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.848,
+     "quality": 0.845,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -8692,7 +8602,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.293,
+     "quality": 0.278,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -8707,7 +8617,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.739,
+     "quality": 0.733,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -8722,7 +8632,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.448,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 15.0,
@@ -8737,7 +8647,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.302,
+     "quality": 0.287,
      "strength": {
       "kind": "damage",
       "value": 13.5,
@@ -8752,7 +8662,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.3,
+     "quality": 0.263,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8782,7 +8692,7 @@
      "magnitude": "control",
      "duration": "round",
      "precast": false,
-     "quality": 0.927,
+     "quality": 0.926,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -8820,13 +8730,7 @@
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
-     "precast": true,
-     "quality": 0.179,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
+     "precast": true
     },
     {
      "name": "Conjure Weapon",
@@ -8869,7 +8773,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8980,7 +8884,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.073,
+     "quality": 0.074,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8995,7 +8899,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.885,
+     "quality": 0.883,
      "strength": {
       "kind": "damage",
       "value": 34.5,
@@ -9010,7 +8914,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.188,
+     "quality": 0.181,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -9064,7 +8968,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.677,
+     "quality": 0.67,
      "strength": {
       "kind": "damage",
       "value": 20.5,
@@ -9094,7 +8998,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.05,
+     "quality": 0.051,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -9109,7 +9013,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.3,
+     "quality": 0.263,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -9184,7 +9088,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.783,
+     "quality": 0.778,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -9199,7 +9103,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.833,
+     "quality": 0.83,
      "strength": {
       "kind": "damage",
       "value": 30.0,
@@ -9214,7 +9118,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.073,
+     "quality": 0.074,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -9229,7 +9133,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.321,
+     "quality": 0.309,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -9244,7 +9148,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -9319,7 +9223,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.957,
+     "quality": 0.956,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -9334,7 +9238,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.833,
+     "quality": 0.83,
      "strength": {
       "kind": "damage",
       "value": 30.0,
@@ -9349,7 +9253,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.99,
+     "quality": 0.989,
      "strength": {
       "kind": "damage",
       "value": 100.0,
@@ -9364,7 +9268,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.865,
+     "quality": 0.862,
      "strength": {
       "kind": "damage",
       "value": 31.5,
@@ -9379,7 +9283,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.212,
+     "quality": 0.218,
      "strength": {
       "kind": "damage",
       "value": 8.0,
@@ -9394,7 +9298,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.825,
+     "quality": 0.821,
      "strength": {
       "kind": "damage",
       "value": 28.0,
@@ -9409,7 +9313,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.775,
+     "quality": 0.763,
      "strength": {
       "kind": "damage",
       "value": 28.0,
@@ -9463,7 +9367,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.179,
+     "quality": 0.173,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -9526,7 +9430,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.924,
+     "quality": 0.922,
      "strength": {
       "kind": "damage",
       "value": 24.0,
@@ -9541,7 +9445,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.152,
+     "quality": 0.144,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -9556,7 +9460,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.073,
+     "quality": 0.074,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -9571,7 +9475,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.575,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -9586,7 +9490,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.625,
+     "quality": 0.605,
      "strength": {
       "kind": "damage",
       "value": 24.0,
@@ -9829,7 +9733,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.49,
+     "quality": 0.479,
      "strength": {
       "kind": "damage",
       "value": 15.5,
@@ -9859,7 +9763,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.42,
+     "quality": 0.409,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -9874,7 +9778,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -9988,7 +9892,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -10030,7 +9934,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.925,
+     "quality": 0.923,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -10159,7 +10063,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.293,
+     "quality": 0.278,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -10174,7 +10078,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -10252,7 +10156,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.925,
+     "quality": 0.923,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -10282,7 +10186,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.783,
+     "quality": 0.778,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -10297,7 +10201,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -10330,7 +10234,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.15,
+     "quality": 0.154,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -10354,7 +10258,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.804,
+     "quality": 0.8,
      "strength": {
       "kind": "damage",
       "value": 8.0,
@@ -10384,7 +10288,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.573,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -10465,7 +10369,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -10480,7 +10384,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -10522,7 +10426,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.179,
+     "quality": 0.173,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -10582,7 +10486,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.635,
+     "quality": 0.628,
      "strength": {
       "kind": "damage",
       "value": 19.0,
@@ -10597,7 +10501,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.15,
+     "quality": 0.154,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -10645,7 +10549,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.188,
+     "quality": 0.181,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -10669,7 +10573,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.5,
+     "quality": 0.474,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -10786,7 +10690,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.5,
+     "quality": 0.474,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -10855,7 +10759,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.739,
+     "quality": 0.733,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -10954,7 +10858,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -10969,7 +10873,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.348,
+     "quality": 0.333,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -11047,7 +10951,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -11062,7 +10966,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -11101,7 +11005,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -11131,7 +11035,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -11209,7 +11113,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.775,
+     "quality": 0.763,
      "strength": {
       "kind": "damage",
       "value": 28.0,
@@ -11380,7 +11284,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.509,
+     "quality": 0.5,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -11458,7 +11362,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.708,
+     "quality": 0.702,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -11473,7 +11377,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.287,
+     "quality": 0.295,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -11488,7 +11392,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.775,
+     "quality": 0.763,
      "strength": {
       "kind": "damage",
       "value": 28.0,
@@ -11533,7 +11437,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.321,
+     "quality": 0.309,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -11548,7 +11452,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -11563,7 +11467,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.661,
+     "quality": 0.655,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -11578,7 +11482,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.179,
+     "quality": 0.173,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -11623,7 +11527,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -11671,7 +11575,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.837,
+     "quality": 0.833,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -11686,7 +11590,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.448,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 15.0,
@@ -11701,7 +11605,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.781,
+     "quality": 0.777,
      "strength": {
       "kind": "damage",
       "value": 27.5,
@@ -11716,7 +11620,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.688,
+     "quality": 0.679,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -11731,7 +11635,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.575,
+     "quality": 0.564,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -11857,7 +11761,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.938,
+     "quality": 0.936,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -11905,7 +11809,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.891,
+     "quality": 0.889,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -11920,7 +11824,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.927,
+     "quality": 0.926,
      "strength": {
       "kind": "damage",
       "value": 35.0,
@@ -11935,7 +11839,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.05,
+     "quality": 0.051,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -11950,7 +11854,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.775,
+     "quality": 0.763,
      "strength": {
       "kind": "damage",
       "value": 28.0,
@@ -12022,7 +11926,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.969,
+     "quality": 0.968,
      "strength": {
       "kind": "damage",
       "value": 36.0,
@@ -12037,7 +11941,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.74,
+     "quality": 0.734,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -12061,7 +11965,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.775,
+     "quality": 0.763,
      "strength": {
       "kind": "damage",
       "value": 28.0,
@@ -12148,7 +12052,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.15,
+     "quality": 0.154,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -12196,7 +12100,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.509,
+     "quality": 0.5,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -12280,7 +12184,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.957,
+     "quality": 0.956,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -12295,7 +12199,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.543,
+     "quality": 0.533,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -12310,7 +12214,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.2,
+     "quality": 0.158,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -12383,7 +12287,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -12425,7 +12329,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.321,
+     "quality": 0.309,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -12637,7 +12541,7 @@
      "magnitude": "3 boon(s) to hit",
      "duration": "instant",
      "precast": false,
-     "quality": 0.438,
+     "quality": 0.436,
      "strength": {
       "kind": "damage",
       "value": 14.0,

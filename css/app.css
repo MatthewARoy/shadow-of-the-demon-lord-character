@@ -318,6 +318,26 @@ h2.rubric .count { font-family: var(--caps); font-size: 13px; color: var(--text-
   border: 1px solid var(--line); border-radius: 2px; padding: 0 3px; color: var(--text-dim); margin-left: 2px;
 }
 
+/* Future Studies (wishlist) ---------------------------------- */
+.study-btn {
+  background: none; border: none; cursor: pointer; padding: 0 4px;
+  font-size: 16px; line-height: 1; color: var(--text-dim); transition: color .12s, transform .1s;
+}
+.study-btn:hover { color: var(--bronze-bright); transform: scale(1.15); }
+.study-btn.on { color: var(--bronze-bright); }
+.study-row {
+  display: flex; align-items: center; gap: 8px; padding: 5px 6px;
+  border: 1px solid var(--line); border-radius: 4px; margin-bottom: 5px;
+  background: rgba(176,141,79,.04);
+}
+.study-row.ready { border-color: var(--bronze); background: rgba(176,141,79,.10); }
+.study-row.learned { opacity: .55; }
+.study-name { flex: 1; font-family: var(--caps); font-size: 13.5px; color: var(--text); }
+.study-status { font-family: var(--caps); font-size: 11px; letter-spacing: .03em; }
+.study-status.ready { color: var(--bronze-bright); }
+.study-status.learned { color: var(--text-dim); }
+.study-status.blocked { color: var(--text-dim); font-style: italic; }
+
 /* Sheet ------------------------------------------------------ */
 .attr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
 .attr-card {
