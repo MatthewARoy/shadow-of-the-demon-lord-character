@@ -39,10 +39,12 @@ engine — not a pile of manually-entered numbers.
 * **Derived stats with provenance** — every point of Health, Power, and
   Defense knows where it came from.
 * **Castings tracker** using the real (non-linear) castings table, a spell
-  browser with learnable-now filtering and theorycrafting category/build-lens
-  filters, a **Future Studies** wishlist that flags which starred spells are
-  ready to learn as you level, an armory with encumbrance warnings, and SotDL
-  boon/bane dice with a roll ledger.
+  browser (capped at rank 5, where play actually happens) with learnable-now
+  filtering, sort-by-efficiency, and an **advanced view** that unfolds the
+  theorycrafting layer — category/build-lens filters, combos, and per-spell
+  efficiency &amp; AI labels — a **Future Studies** wishlist that flags which
+  starred spells are ready to learn as you level, an armory with encumbrance
+  warnings, and SotDL boon/bane dice with a roll ledger.
 * **Summoned-creature stat blocks.** Conjuration and summoning spells carry
   their referenced creatures ("compelled small monster", "Shadow, page 246")
   as inline expandable stat blocks parsed from the bestiaries.

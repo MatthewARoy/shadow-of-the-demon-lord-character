@@ -54,6 +54,11 @@ ENRICH = ROOT / "data" / "spell-enrichment.json"
 SCORES = ROOT / "data" / "spell-scores.json"
 OUT = ROOT / "data" / "spell-combos.json"
 
+# Ranks above this effectively never come up in play, so the combo layer only
+# considers spells up to here — both as showcase pieces and in the alternative
+# counts. Mirrors MAX_RANK in js/ui/spells.js.
+MAX_RANK = 5
+
 
 # --------------------------------------------------------------------------- #
 # Goals and levers: the synergy taxonomy.
@@ -673,9 +678,12 @@ def report(data):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--report", action="store_true", help="print a summary, don't write")
+    ap.add_argument("--max-rank", type=int, default=MAX_RANK,
+                    help=f"only consider spells up to this rank (default {MAX_RANK})")
     args = ap.parse_args()
 
     spells = json.loads(SPELLS.read_text())
+    spells = [s for s in spells if s.get("rank", 0) <= args.max_rank]
     data = build(spells, load_scores())
 
     if args.report:

@@ -10,7 +10,21 @@ import { statBlockHtml } from "./statblock.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-const filters = { q: "", tradition: "", rank: "", type: "", source: "", learnable: false, wishlist: false, tags: new Set(), role: "", archetype: "", tempo: "" };
+// Ranks above 5 effectively never come up in play, so the Archive — and the
+// theorycrafting it feeds (combos, sorting) — only ever considers spells up to
+// this rank.
+const MAX_RANK = 5;
+
+const filters = { q: "", tradition: "", rank: "", type: "", source: "", sort: "", learnable: false, wishlist: false, advanced: false, tags: new Set(), role: "", archetype: "", tempo: "" };
+
+// Efficiency = how a spell ranks among its same-rank, same-kind peers (the
+// scorer's percentile). A spell may carry several score records; take its best.
+// Unscored spells sort last.
+function efficiencyOf(s) {
+  const recs = rules.scores?.spells?.[spellKey(s.name, s.tradition)];
+  if (!recs?.length) return -1;
+  return Math.max(...recs.map((r) => r.percentile ?? 0));
+}
 
 const enrichFor = (s) => rules.enrichment?.[spellKey(s.name, s.tradition)];
 
@@ -43,7 +57,7 @@ export function renderSpells(el) {
         </select>
         <select id="sp-rank">
           <option value="">any rank</option>
-          ${Array.from({ length: 11 }, (_, i) => `<option ${filters.rank === String(i) ? "selected" : ""}>${i}</option>`).join("")}
+          ${Array.from({ length: MAX_RANK + 1 }, (_, i) => `<option ${filters.rank === String(i) ? "selected" : ""}>${i}</option>`).join("")}
         </select>
         <select id="sp-type">
           <option value="">attack &amp; utility</option>
@@ -56,12 +70,18 @@ export function renderSpells(el) {
           <option value="occult" ${filters.source === "occult" ? "selected" : ""}>Occult Philosophy</option>
           <option value="terrible" ${filters.source === "terrible" ? "selected" : ""}>Terrible Beauty</option>
         </select>
+        <select id="sp-sort" title="Order the results">
+          <option value="" ${filters.sort === "" ? "selected" : ""}>default order</option>
+          <option value="rank" ${filters.sort === "rank" ? "selected" : ""}>rank ↑</option>
+          <option value="efficiency" ${filters.sort === "efficiency" ? "selected" : ""}>efficiency ↓</option>
+        </select>
         <button class="chip ${filters.learnable ? "on" : ""}" id="sp-learnable" title="Spells you could legally learn now">learnable now</button>
         <button class="chip ${filters.wishlist ? "on" : ""}" id="sp-wishlist" title="Only spells on your Future Studies list">★ studies</button>
+        <button class="chip ${filters.advanced ? "on" : ""}" id="sp-advanced" title="Show the theorycrafting layer: categories, build lens, combos, and per-spell efficiency &amp; AI labels">⚙ advanced</button>
       </div>
-      ${categoryBar()}
-      ${buildBar()}
-      ${comboBar()}
+      ${filters.advanced ? categoryBar() : ""}
+      ${filters.advanced ? buildBar() : ""}
+      ${filters.advanced ? comboBar() : ""}
       <div class="spell-grid" id="sp-results"></div>
       <p class="small dim" id="sp-more"></p>
     </div>`;
@@ -261,8 +281,12 @@ function comboMember(m) {
 function comboBar() {
   const data = rules.combos;
   if (!data?.combos?.length) return "";
+  // A combo only counts if every piece is castable in a realistic game (rank ≤
+  // MAX_RANK) — drop any that lean on a high-rank spell that never gets cast.
+  const combos = data.combos.filter((c) => c.members.every((m) => (m.rank ?? 0) <= MAX_RANK));
+  if (!combos.length) return "";
   const byGoal = new Map();
-  for (const c of data.combos) {
+  for (const c of combos) {
     if (!byGoal.has(c.goal)) byGoal.set(c.goal, []);
     byGoal.get(c.goal).push(c);
   }
@@ -290,7 +314,7 @@ function comboBar() {
       ${rows}
     </div>`;
   }).join("");
-  const n = data.combos.length;
+  const n = combos.length;
   return `<details class="cat-bar combo-bar" open>
     <summary class="cat-summary">Combos — what stacks with what <span class="small dim">(${n} synergies; cross-lever combos compound, same roll-lever diminishes)</span></summary>
     ${sections}
@@ -305,6 +329,7 @@ function renderResults(el, char, computed) {
   const wishKeys = filters.wishlist ? new Set(char.wishlist || []) : null;
   const q = filters.q.trim().toLowerCase();
   pool = pool.filter((s) => {
+    if (s.rank > MAX_RANK) return false;
     if (wishKeys && !wishKeys.has(spellKey(s.name, s.tradition))) return false;
     if (filters.tradition && s.tradition !== filters.tradition) return false;
     if (filters.rank !== "" && s.rank !== parseInt(filters.rank, 10)) return false;
@@ -325,6 +350,11 @@ function renderResults(el, char, computed) {
     if (q && !s.name.toLowerCase().includes(q) && !s.description.toLowerCase().includes(q)) return false;
     return true;
   });
+  if (filters.sort === "efficiency") {
+    pool = [...pool].sort((a, b) => efficiencyOf(b) - efficiencyOf(a) || a.name.localeCompare(b.name));
+  } else if (filters.sort === "rank") {
+    pool = [...pool].sort((a, b) => a.rank - b.rank || a.name.localeCompare(b.name));
+  }
   const known = new Set(computed.spells.map((s) => spellKey(s.name, s.tradition)));
   const shown = pool.slice(0, 60);
   box.innerHTML = shown.map((s) => spellCard(s, { learned: known.has(spellKey(s.name, s.tradition)), char, computed })).join("") ||
@@ -450,9 +480,9 @@ export function spellCard(s, opts = {}) {
       </span>
     </div>
     ${meta.length ? `<div class="spell-meta">${meta.join(" &nbsp;·&nbsp; ")}</div>` : ""}
-    ${tagChips(s)}
-    ${scoreBadge(s)}
-    ${enrichBlock(s)}
+    ${filters.advanced ? tagChips(s) : ""}
+    ${filters.advanced ? scoreBadge(s) : ""}
+    ${filters.advanced ? enrichBlock(s) : ""}
     <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
     ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
     ${openCreature ? statBlockHtml(openCreature) : ""}
@@ -485,6 +515,11 @@ function wire(el, char, computed) {
   el.querySelector("#sp-rank").addEventListener("change", (e) => { filters.rank = e.target.value; rerun(); });
   el.querySelector("#sp-type").addEventListener("change", (e) => { filters.type = e.target.value; rerun(); });
   el.querySelector("#sp-source").addEventListener("change", (e) => { filters.source = e.target.value; rerun(); });
+  el.querySelector("#sp-sort").addEventListener("change", (e) => { filters.sort = e.target.value; rerun(); });
+  el.querySelector("#sp-advanced").addEventListener("click", () => {
+    filters.advanced = !filters.advanced;
+    renderSpells(el);  // toggles whole panels + card decorations, so full re-render
+  });
   el.querySelector("#sp-learnable").addEventListener("click", (e) => {
     filters.learnable = !filters.learnable;
     e.target.classList.toggle("on", filters.learnable);

@@ -94,6 +94,92 @@
    "goal": "evade",
    "type": "compounding",
    "levers": [
+    "defense",
+    "attacker-banes"
+   ],
+   "members": [
+    {
+     "name": "Arcane Retribution",
+     "tradition": "Arcana",
+     "rank": 5,
+     "lever": "defense",
+     "magnitude": "+5 Def",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.926,
+     "strength": {
+      "kind": "damage",
+      "value": 35.0,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Arcane Shield",
+     "tradition": "Arcana",
+     "rank": 1,
+     "lever": "attacker-banes",
+     "magnitude": "3 bane(s) on their attack",
+     "duration": "sustained",
+     "precast": true
+    }
+   ],
+   "alternatives": {
+    "defense": 16,
+    "attacker-banes": 31
+   },
+   "score": 124,
+   "fragile": false,
+   "all_precastable": true,
+   "same_tradition": true,
+   "rationale": "Raise Defense + Banes on enemies' attacks against you: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns. Both pieces are also strong for their rank."
+  },
+  {
+   "goal": "mitigate",
+   "type": "compounding",
+   "levers": [
+    "damage-reduction",
+    "buffer"
+   ],
+   "members": [
+    {
+     "name": "Avatar",
+     "tradition": "Theurgy",
+     "rank": 4,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Divine Aid",
+     "tradition": "Theurgy",
+     "rank": 3,
+     "lever": "buffer",
+     "magnitude": "+15 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.833,
+     "strength": {
+      "kind": "mitigation",
+      "value": 15,
+      "unit": "temp-health"
+     }
+    }
+   ],
+   "alternatives": {
+    "damage-reduction": 33,
+    "buffer": 21
+   },
+   "score": 122,
+   "fragile": false,
+   "all_precastable": true,
+   "same_tradition": true,
+   "rationale": "Reduce incoming damage + Extra / temporary Health: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns. Both pieces are also strong for their rank."
+  },
+  {
+   "goal": "evade",
+   "type": "compounding",
+   "levers": [
     "attacker-banes",
     "concealment"
    ],
@@ -124,112 +210,14 @@
     }
    ],
    "alternatives": {
-    "attacker-banes": 36,
-    "concealment": 40
+    "attacker-banes": 31,
+    "concealment": 31
    },
    "score": 121,
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
    "rationale": "Banes on enemies' attacks against you + Concealment / hard to target: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns. Both pieces are also strong for their rank."
-  },
-  {
-   "goal": "evade",
-   "type": "compounding",
-   "levers": [
-    "defense",
-    "attacker-banes"
-   ],
-   "members": [
-    {
-     "name": "The Great Dragon",
-     "tradition": "Invocation",
-     "rank": 8,
-     "lever": "defense",
-     "magnitude": "Def set/up",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.765,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The One-eyed God",
-     "tradition": "Invocation",
-     "rank": 3,
-     "lever": "attacker-banes",
-     "magnitude": "1 bane(s) on their attack",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.535,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    }
-   ],
-   "alternatives": {
-    "defense": 22,
-    "attacker-banes": 36
-   },
-   "score": 120,
-   "fragile": false,
-   "all_precastable": true,
-   "same_tradition": true,
-   "rationale": "Raise Defense + Banes on enemies' attacks against you: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns."
-  },
-  {
-   "goal": "mitigate",
-   "type": "compounding",
-   "levers": [
-    "damage-reduction",
-    "buffer"
-   ],
-   "members": [
-    {
-     "name": "Holy Ground",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Divine Aid",
-     "tradition": "Theurgy",
-     "rank": 3,
-     "lever": "buffer",
-     "magnitude": "+15 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.833,
-     "strength": {
-      "kind": "mitigation",
-      "value": 15,
-      "unit": "temp-health"
-     }
-    }
-   ],
-   "alternatives": {
-    "damage-reduction": 64,
-    "buffer": 32
-   },
-   "score": 120,
-   "fragile": false,
-   "all_precastable": true,
-   "same_tradition": true,
-   "rationale": "Reduce incoming damage + Extra / temporary Health: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns."
   },
   {
    "goal": "mitigate",
@@ -240,18 +228,18 @@
    ],
    "members": [
     {
-     "name": "The Great Dragon",
+     "name": "The Diviner",
      "tradition": "Invocation",
-     "rank": 8,
+     "rank": 5,
      "lever": "damage-reduction",
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.765,
+     "quality": 0.667,
      "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
+      "kind": "mitigation",
+      "value": 100,
+      "unit": "%damage"
      }
     },
     {
@@ -271,14 +259,63 @@
     }
    ],
    "alternatives": {
-    "damage-reduction": 64,
-    "heal": 62
+    "damage-reduction": 33,
+    "heal": 41
    },
    "score": 119,
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
    "rationale": "Reduce incoming damage + In-fight healing: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns."
+  },
+  {
+   "goal": "mitigate",
+   "type": "compounding",
+   "levers": [
+    "buffer",
+    "heal"
+   ],
+   "members": [
+    {
+     "name": "Divine Aid",
+     "tradition": "Theurgy",
+     "rank": 3,
+     "lever": "buffer",
+     "magnitude": "+15 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.833,
+     "strength": {
+      "kind": "mitigation",
+      "value": 15,
+      "unit": "temp-health"
+     }
+    },
+    {
+     "name": "Mantle of Holiness",
+     "tradition": "Theurgy",
+     "rank": 1,
+     "lever": "heal",
+     "magnitude": "heal",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.389,
+     "strength": {
+      "kind": "heal",
+      "value": 0.5,
+      "unit": "healing-rate"
+     }
+    }
+   ],
+   "alternatives": {
+    "buffer": 21,
+    "heal": 41
+   },
+   "score": 119,
+   "fragile": false,
+   "all_precastable": true,
+   "same_tradition": true,
+   "rationale": "Extra / temporary Health + In-fight healing: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns."
   },
   {
    "goal": "suppress-enemy",
@@ -289,41 +326,41 @@
    ],
    "members": [
     {
-     "name": "The Witch-king",
-     "tradition": "Invocation",
-     "rank": 6,
+     "name": "Anoint the Faithful",
+     "tradition": "Theurgy",
+     "rank": 4,
      "lever": "target-banes",
-     "magnitude": "1 bane(s) on its rolls",
+     "magnitude": "2 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.679,
+     "quality": 0.25,
      "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
+      "kind": "mitigation",
+      "value": 10,
+      "unit": "temp-health"
      }
     },
     {
-     "name": "The Winter King",
-     "tradition": "Invocation",
-     "rank": 4,
+     "name": "Holy Armaments",
+     "tradition": "Theurgy",
+     "rank": 2,
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.69,
      "strength": {
       "kind": "damage",
-      "value": 10.5,
+      "value": 9.0,
       "unit": "damage"
      }
     }
    ],
    "alternatives": {
-    "target-banes": 55,
-    "control": 333
+    "target-banes": 38,
+    "control": 246
    },
-   "score": 119,
+   "score": 117,
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
@@ -363,8 +400,8 @@
     }
    ],
    "alternatives": {
-    "resist-boons": 35,
-    "cure": 18
+    "resist-boons": 24,
+    "cure": 12
    },
    "score": 116,
    "fragile": false,
@@ -406,75 +443,14 @@
     }
    ],
    "alternatives": {
-    "defense": 22,
-    "concealment": 40
+    "defense": 16,
+    "concealment": 31
    },
    "score": 113,
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
    "rationale": "Raise Defense + Concealment / hard to target: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns."
-  },
-  {
-   "goal": "mitigate",
-   "type": "additive",
-   "levers": [
-    "buffer"
-   ],
-   "members": [
-    {
-     "name": "Awaken the Giant",
-     "tradition": "Alteration",
-     "rank": 7,
-     "lever": "buffer",
-     "magnitude": "+80 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.947,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Griffon Form",
-     "tradition": "Transformation",
-     "rank": 5,
-     "lever": "buffer",
-     "magnitude": "+30 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.938,
-     "strength": {
-      "kind": "mitigation",
-      "value": 30,
-      "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Hulk",
-     "tradition": "Transformation",
-     "rank": 4,
-     "lever": "buffer",
-     "magnitude": "+40 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.875,
-     "strength": {
-      "kind": "mitigation",
-      "value": 40,
-      "unit": "temp-health"
-     }
-    }
-   ],
-   "alternatives": {
-    "buffer": 32
-   },
-   "score": 94,
-   "fragile": false,
-   "all_precastable": true,
-   "rationale": "Multiple sources of extra / temporary health. These are flat bonuses, so they add up — pile them on."
   },
   {
    "goal": "suppress-enemy",
@@ -514,28 +490,89 @@
      }
     },
     {
-     "name": "Universal Solvent",
-     "tradition": "Alchemy",
-     "rank": 6,
+     "name": "Earthquake",
+     "tradition": "Earth",
+     "rank": 4,
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.923,
+     "quality": 0.922,
      "strength": {
       "kind": "damage",
-      "value": 35.0,
+      "value": 24.0,
       "unit": "damage"
      }
     }
    ],
    "alternatives": {
-    "control": 333
+    "control": 246
    },
    "score": 94,
    "fragile": false,
    "all_precastable": true,
    "rationale": "Multiple sources of stun / immobilize / slow. These are flat bonuses, so they add up — pile them on."
+  },
+  {
+   "goal": "mitigate",
+   "type": "additive",
+   "levers": [
+    "buffer"
+   ],
+   "members": [
+    {
+     "name": "Griffon Form",
+     "tradition": "Transformation",
+     "rank": 5,
+     "lever": "buffer",
+     "magnitude": "+30 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.938,
+     "strength": {
+      "kind": "mitigation",
+      "value": 30,
+      "unit": "temp-health"
+     }
+    },
+    {
+     "name": "Hulk",
+     "tradition": "Transformation",
+     "rank": 4,
+     "lever": "buffer",
+     "magnitude": "+40 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.875,
+     "strength": {
+      "kind": "mitigation",
+      "value": 40,
+      "unit": "temp-health"
+     }
+    },
+    {
+     "name": "Divine Aid",
+     "tradition": "Theurgy",
+     "rank": 3,
+     "lever": "buffer",
+     "magnitude": "+15 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.833,
+     "strength": {
+      "kind": "mitigation",
+      "value": 15,
+      "unit": "temp-health"
+     }
+    }
+   ],
+   "alternatives": {
+    "buffer": 21
+   },
+   "score": 93,
+   "fragile": false,
+   "all_precastable": true,
+   "rationale": "Multiple sources of extra / temporary health. These are flat bonuses, so they add up — pile them on."
   },
   {
    "goal": "boost-damage",
@@ -591,7 +628,7 @@
     }
    ],
    "alternatives": {
-    "extra-damage": 167
+    "extra-damage": 138
    },
    "score": 93,
    "fragile": false,
@@ -599,48 +636,18 @@
    "rationale": "Multiple sources of extra weapon/unarmed damage. These are flat bonuses, so they add up — pile them on."
   },
   {
-   "goal": "mitigate",
+   "goal": "evade",
    "type": "additive",
    "levers": [
-    "damage-reduction"
+    "concealment"
    ],
    "members": [
-    {
-     "name": "Mobile Fortress",
-     "tradition": "Technomancy",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.912,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Great Dragon",
-     "tradition": "Invocation",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.765,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
     {
      "name": "Unlife",
      "tradition": "Death",
      "rank": 5,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
+     "lever": "concealment",
+     "magnitude": "concealment",
      "duration": "sustained",
      "precast": true,
      "quality": 0.667,
@@ -649,15 +656,81 @@
       "value": 100,
       "unit": "%damage"
      }
+    },
+    {
+     "name": "Confound the Soul",
+     "tradition": "Soul",
+     "rank": 5,
+     "lever": "concealment",
+     "magnitude": "concealment",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Third Eye",
+     "tradition": "Divination",
+     "rank": 4,
+     "lever": "concealment",
+     "magnitude": "concealment",
+     "duration": "sustained",
+     "precast": true
     }
    ],
    "alternatives": {
-    "damage-reduction": 64
+    "concealment": 31
    },
-   "score": 92,
+   "score": 90,
    "fragile": false,
    "all_precastable": true,
-   "rationale": "Multiple sources of reduce incoming damage. These are flat bonuses, so they add up — pile them on."
+   "rationale": "Multiple sources of concealment / hard to target. These are flat bonuses, so they add up — pile them on."
+  },
+  {
+   "goal": "boost-damage",
+   "type": "compounding",
+   "levers": [
+    "unarmed-accuracy",
+    "unarmed-damage"
+   ],
+   "members": [
+    {
+     "name": "Unlife",
+     "tradition": "Death",
+     "rank": 5,
+     "lever": "self-attack-boons",
+     "magnitude": "2 boon(s) to hit",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.667,
+     "strength": {
+      "kind": "mitigation",
+      "value": 100,
+      "unit": "%damage"
+     }
+    },
+    {
+     "name": "Primal Beast",
+     "tradition": "Primal",
+     "rank": 5,
+     "lever": "extra-damage",
+     "magnitude": "+2d6+2d6",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.562,
+     "strength": {
+      "kind": "mitigation",
+      "value": 20,
+      "unit": "temp-health"
+     }
+    }
+   ],
+   "alternatives": {
+    "unarmed-damage": 19,
+    "unarmed-accuracy": 9
+   },
+   "score": 90,
+   "fragile": false,
+   "all_precastable": true,
+   "rationale": "Boons to land the unarmed strike plus stacked extra damage on it: accuracy and damage on the same attack, the brawler's core."
   },
   {
    "goal": "evade",
@@ -682,21 +755,6 @@
      }
     },
     {
-     "name": "The Great Dragon",
-     "tradition": "Invocation",
-     "rank": 8,
-     "lever": "defense",
-     "magnitude": "Def set/up",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.765,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Thorny Skin",
      "tradition": "Nature",
      "rank": 2,
@@ -710,51 +768,91 @@
       "value": 7.0,
       "unit": "damage"
      }
+    },
+    {
+     "name": "Wind Disk",
+     "tradition": "Air",
+     "rank": 1,
+     "lever": "defense",
+     "magnitude": "+2 Def",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.309,
+     "strength": {
+      "kind": "damage",
+      "value": 4.5,
+      "unit": "damage"
+     }
     }
    ],
    "alternatives": {
-    "defense": 22
+    "defense": 16
    },
-   "score": 91,
+   "score": 89,
    "fragile": false,
    "all_precastable": true,
    "rationale": "Multiple sources of raise defense. These are flat bonuses, so they add up — pile them on."
   },
   {
-   "goal": "boost-damage",
-   "type": "compounding",
+   "goal": "mitigate",
+   "type": "additive",
    "levers": [
-    "unarmed-accuracy",
-    "unarmed-damage"
+    "damage-reduction"
    ],
    "members": [
     {
-     "name": "Favor of the Horned Lord",
-     "tradition": "Primal",
-     "rank": 9,
-     "lever": "self-attack-boons",
-     "magnitude": "2 boon(s) to hit",
+     "name": "Unlife",
+     "tradition": "Death",
+     "rank": 5,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
      "duration": "sustained",
-     "precast": true
+     "precast": true,
+     "quality": 0.667,
+     "strength": {
+      "kind": "mitigation",
+      "value": 100,
+      "unit": "%damage"
+     }
     },
     {
-     "name": "Impervious",
-     "tradition": "Metal",
-     "rank": 8,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
+     "name": "The Diviner",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
      "duration": "sustained",
-     "precast": true
+     "precast": true,
+     "quality": 0.667,
+     "strength": {
+      "kind": "mitigation",
+      "value": 100,
+      "unit": "%damage"
+     }
+    },
+    {
+     "name": "Ordered Space",
+     "tradition": "Order",
+     "rank": 5,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.564,
+     "strength": {
+      "kind": "damage",
+      "value": 17.5,
+      "unit": "damage"
+     }
     }
    ],
    "alternatives": {
-    "unarmed-damage": 23,
-    "unarmed-accuracy": 12
+    "damage-reduction": 33
    },
-   "score": 90,
+   "score": 89,
    "fragile": false,
    "all_precastable": true,
-   "rationale": "Boons to land the unarmed strike plus stacked extra damage on it: accuracy and damage on the same attack, the brawler's core."
+   "rationale": "Multiple sources of reduce incoming damage. These are flat bonuses, so they add up — pile them on."
   },
   {
    "goal": "mitigate",
@@ -810,73 +908,12 @@
     }
    ],
    "alternatives": {
-    "heal": 62
+    "heal": 41
    },
    "score": 89,
    "fragile": false,
    "all_precastable": true,
    "rationale": "Multiple sources of in-fight healing. These are flat bonuses, so they add up — pile them on."
-  },
-  {
-   "goal": "evade",
-   "type": "additive",
-   "levers": [
-    "concealment"
-   ],
-   "members": [
-    {
-     "name": "Unlife",
-     "tradition": "Death",
-     "rank": 5,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.667,
-     "strength": {
-      "kind": "mitigation",
-      "value": 100,
-      "unit": "%damage"
-     }
-    },
-    {
-     "name": "Shade",
-     "tradition": "Shadow",
-     "rank": 8,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.618,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Angel of Death",
-     "tradition": "Death",
-     "rank": 7,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.263,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    }
-   ],
-   "alternatives": {
-    "concealment": 40
-   },
-   "score": 88,
-   "fragile": false,
-   "all_precastable": true,
-   "rationale": "Multiple sources of concealment / hard to target. These are flat bonuses, so they add up — pile them on."
   },
   {
    "goal": "boost-damage",
@@ -885,24 +922,6 @@
     "unarmed-damage"
    ],
    "members": [
-    {
-     "name": "Favor of the Horned Lord",
-     "tradition": "Primal",
-     "rank": 9,
-     "lever": "extra-damage",
-     "magnitude": "+3d6+2d6+1d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Impervious",
-     "tradition": "Metal",
-     "rank": 8,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true
-    },
     {
      "name": "Unlife",
      "tradition": "Death",
@@ -932,10 +951,40 @@
       "value": 20,
       "unit": "temp-health"
      }
+    },
+    {
+     "name": "Savagery",
+     "tradition": "Primal",
+     "rank": 5,
+     "lever": "extra-damage",
+     "magnitude": "+3d6",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.062,
+     "strength": {
+      "kind": "mitigation",
+      "value": 10,
+      "unit": "temp-health"
+     }
+    },
+    {
+     "name": "Call of the Wild",
+     "tradition": "Primal",
+     "rank": 4,
+     "lever": "extra-damage",
+     "magnitude": "+1d6",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.25,
+     "strength": {
+      "kind": "mitigation",
+      "value": 10,
+      "unit": "temp-health"
+     }
     }
    ],
    "alternatives": {
-    "unarmed-damage": 23
+    "unarmed-damage": 19
    },
    "score": 85,
    "fragile": false,
@@ -965,15 +1014,6 @@
      }
     },
     {
-     "name": "House of Healing",
-     "tradition": "Life",
-     "rank": 7,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Quiet the Soul",
      "tradition": "Soul",
      "rank": 4,
@@ -981,10 +1021,19 @@
      "magnitude": "cure",
      "duration": "sustained",
      "precast": true
+    },
+    {
+     "name": "Introspective Trance",
+     "tradition": "Soul",
+     "rank": 3,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
     }
    ],
    "alternatives": {
-    "cure": 18
+    "cure": 12
    },
    "score": 81,
    "fragile": false,
@@ -1029,23 +1078,23 @@
      }
     },
     {
-     "name": "The Witch-king",
-     "tradition": "Invocation",
-     "rank": 6,
+     "name": "Unlife",
+     "tradition": "Death",
+     "rank": 5,
      "lever": "target-banes",
-     "magnitude": "1 bane(s) on its rolls",
+     "magnitude": "2 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.679,
+     "quality": 0.667,
      "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
+      "kind": "mitigation",
+      "value": 100,
+      "unit": "%damage"
      }
     }
    ],
    "alternatives": {
-    "target-banes": 55
+    "target-banes": 38
    },
    "score": 57,
    "fragile": false,
@@ -1106,7 +1155,7 @@
     }
    ],
    "alternatives": {
-    "resist-boons": 35
+    "resist-boons": 24
    },
    "score": 56,
    "fragile": false,
@@ -1167,7 +1216,7 @@
     }
    ],
    "alternatives": {
-    "attacker-banes": 36
+    "attacker-banes": 31
    },
    "score": 55,
    "fragile": false,
@@ -1228,7 +1277,7 @@
     }
    ],
    "alternatives": {
-    "self-attack-boons": 41
+    "self-attack-boons": 31
    },
    "score": 55,
    "fragile": false,
@@ -1270,21 +1319,6 @@
      }
     },
     {
-     "name": "Create Demon Spawn",
-     "tradition": "Demonology",
-     "rank": 6,
-     "lever": "defense",
-     "magnitude": "+2 Def",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Stone Gauntlet",
      "tradition": "Earth",
      "rank": 0,
@@ -1305,36 +1339,6 @@
      "strength": {
       "kind": "damage",
       "value": 3.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Great Dragon",
-     "tradition": "Invocation",
-     "rank": 8,
-     "lever": "defense",
-     "magnitude": "Def set/up",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.765,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Devil",
-     "tradition": "Invocation",
-     "rank": 10,
-     "lever": "defense",
-     "magnitude": "Def set/up",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.238,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
       "unit": "damage"
      }
     },
@@ -1450,21 +1454,6 @@
      }
     },
     {
-     "name": "Hero Spirit",
-     "tradition": "Spiritualism",
-     "rank": 7,
-     "lever": "defense",
-     "magnitude": "+2 Def",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.5,
-     "strength": {
-      "kind": "mitigation",
-      "value": 20,
-      "unit": "temp-health"
-     }
-    },
-    {
      "name": "Dark Helmet",
      "tradition": "Technomancy",
      "rank": 3,
@@ -1490,36 +1479,6 @@
      "magnitude": "+3 Def",
      "duration": "round",
      "precast": false
-    },
-    {
-     "name": "Holy Ground",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "defense",
-     "magnitude": "+2 Def",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Become the Sea",
-     "tradition": "Water",
-     "rank": 8,
-     "lever": "defense",
-     "magnitude": "+1 Def",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.441,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
     }
    ],
    "attacker-banes": [
@@ -1610,21 +1569,6 @@
      "strength": {
       "kind": "damage",
       "value": 1.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Create Demon Spawn",
-     "tradition": "Demonology",
-     "rank": 6,
-     "lever": "attacker-banes",
-     "magnitude": "1 bane(s) on their attack",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
       "unit": "damage"
      }
     },
@@ -1722,36 +1666,6 @@
      }
     },
     {
-     "name": "The Dark Lady",
-     "tradition": "Invocation",
-     "rank": 6,
-     "lever": "attacker-banes",
-     "magnitude": "1 bane(s) on their attack",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Ascended One",
-     "tradition": "Invocation",
-     "rank": 9,
-     "lever": "attacker-banes",
-     "magnitude": "3 bane(s) on their attack",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Augmented Vitality",
      "tradition": "Life",
      "rank": 2,
@@ -1801,24 +1715,6 @@
      "magnitude": "1 bane(s) on their attack",
      "duration": "concentration",
      "precast": false
-    },
-    {
-     "name": "Heavenly Choir",
-     "tradition": "Song",
-     "rank": 8,
-     "lever": "attacker-banes",
-     "magnitude": "4 bane(s) on their attack",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
-     "name": "Enlightenment",
-     "tradition": "Soul",
-     "rank": 10,
-     "lever": "attacker-banes",
-     "magnitude": "5 bane(s) on their attack",
-     "duration": "permanent",
-     "precast": true
     },
     {
      "name": "Empty Mind",
@@ -1958,21 +1854,6 @@
      }
     },
     {
-     "name": "Angel of Death",
-     "tradition": "Death",
-     "rank": 7,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.263,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Locate",
      "tradition": "Divination",
      "rank": 3,
@@ -1985,15 +1866,6 @@
      "name": "Third Eye",
      "tradition": "Divination",
      "rank": 4,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Cosmic Awareness",
-     "tradition": "Divination",
-     "rank": 10,
      "lever": "concealment",
      "magnitude": "concealment",
      "duration": "sustained",
@@ -2060,36 +1932,9 @@
      "precast": true
     },
     {
-     "name": "Mass Concealment",
-     "tradition": "Illusion",
-     "rank": 6,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
-     "name": "Illusory Landscape",
-     "tradition": "Illusion",
-     "rank": 8,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Life Sense",
      "tradition": "Life",
      "rank": 0,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Cosmic Spores",
-     "tradition": "Madness",
-     "rank": 7,
      "lever": "concealment",
      "magnitude": "concealment",
      "duration": "sustained",
@@ -2103,15 +1948,6 @@
      "magnitude": "concealment",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Shed the Mortal Coil",
-     "tradition": "Necromancy",
-     "rank": 7,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Hide From Animals",
@@ -2159,30 +1995,6 @@
      "precast": false
     },
     {
-     "name": "Shade",
-     "tradition": "Shadow",
-     "rank": 8,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.618,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Eclipse",
-     "tradition": "Shadow",
-     "rank": 9,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Soul to Soul",
      "tradition": "Soul",
      "rank": 2,
@@ -2199,15 +2011,6 @@
      "magnitude": "concealment",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Astral Projection",
-     "tradition": "Soul",
-     "rank": 8,
-     "lever": "concealment",
-     "magnitude": "concealment",
-     "duration": "concentration",
-     "precast": false
     },
     {
      "name": "Saint Astrid’s Flame",
@@ -2352,15 +2155,6 @@
      "precast": true
     },
     {
-     "name": "Mind Library",
-     "tradition": "Divination",
-     "rank": 6,
-     "lever": "resist-boons",
-     "magnitude": "2 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Awaken Passion",
      "tradition": "Enchantment",
      "rank": 2,
@@ -2377,30 +2171,6 @@
      "magnitude": "3 boon(s) to resist",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Awaken the Hero",
-     "tradition": "Enchantment",
-     "rank": 6,
-     "lever": "resist-boons",
-     "magnitude": "3 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Desecrate",
-     "tradition": "Forbidden",
-     "rank": 7,
-     "lever": "resist-boons",
-     "magnitude": "2 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.167,
-     "strength": {
-      "kind": "mitigation",
-      "value": 10,
-      "unit": "temp-health"
-     }
     },
     {
      "name": "The Dwarf Lord",
@@ -2451,33 +2221,9 @@
      }
     },
     {
-     "name": "Seasons Passage",
-     "tradition": "Nature",
-     "rank": 6,
-     "lever": "resist-boons",
-     "magnitude": "1 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Well of Dark Power",
      "tradition": "Necromancy",
      "rank": 3,
-     "lever": "resist-boons",
-     "magnitude": "1 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Strength From Order",
-     "tradition": "Order",
-     "rank": 6,
      "lever": "resist-boons",
      "magnitude": "1 boon(s) to resist",
      "duration": "sustained",
@@ -2541,15 +2287,6 @@
      }
     },
     {
-     "name": "Nightfall",
-     "tradition": "Shadow",
-     "rank": 6,
-     "lever": "resist-boons",
-     "magnitude": "3 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Song of Heroes",
      "tradition": "Song",
      "rank": 5,
@@ -2558,39 +2295,6 @@
      "duration": "sustained",
      "precast": true,
      "quality": 0.562,
-     "strength": {
-      "kind": "mitigation",
-      "value": 20,
-      "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Heavenly Choir",
-     "tradition": "Song",
-     "rank": 8,
-     "lever": "resist-boons",
-     "magnitude": "2 boon(s) to resist",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
-     "name": "Enlightenment",
-     "tradition": "Soul",
-     "rank": 10,
-     "lever": "resist-boons",
-     "magnitude": "3 boon(s) to resist",
-     "duration": "permanent",
-     "precast": true
-    },
-    {
-     "name": "Hero Spirit",
-     "tradition": "Spiritualism",
-     "rank": 7,
-     "lever": "resist-boons",
-     "magnitude": "3 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.5,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -2637,36 +2341,6 @@
       "kind": "mitigation",
       "value": 10,
       "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Holy Ground",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "resist-boons",
-     "magnitude": "3 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Time Dilation",
-     "tradition": "Time",
-     "rank": 6,
-     "lever": "resist-boons",
-     "magnitude": "1 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
      }
     },
     {
@@ -2777,24 +2451,6 @@
      "precast": false
     },
     {
-     "name": "House of Healing",
-     "tradition": "Life",
-     "rank": 7,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Second Life",
-     "tradition": "Life",
-     "rank": 10,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Reincarnation",
      "tradition": "Nature",
      "rank": 5,
@@ -2813,27 +2469,9 @@
      "precast": false
     },
     {
-     "name": "Refuge",
-     "tradition": "Protection",
-     "rank": 9,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Rousing Ballad",
      "tradition": "Song",
      "rank": 2,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Music of the Spheres",
-     "tradition": "Song",
-     "rank": 10,
      "lever": "cure",
      "magnitude": "cure",
      "duration": "instant",
@@ -2856,30 +2494,6 @@
      "magnitude": "cure",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Purge the Unclean",
-     "tradition": "Theurgy",
-     "rank": 7,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.763,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Miracle",
-     "tradition": "Theurgy",
-     "rank": 9,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Restorative Waters",
@@ -2910,21 +2524,6 @@
      "precast": false
     },
     {
-     "name": "Become the Wind",
-     "tradition": "Air",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.5,
-     "strength": {
-      "kind": "mitigation",
-      "value": 50,
-      "unit": "%damage"
-     }
-    },
-    {
      "name": "Preservation",
      "tradition": "Alchemy",
      "rank": 0,
@@ -2937,24 +2536,6 @@
      "name": "Resistance",
      "tradition": "Alteration",
      "rank": 5,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Suspend Animation",
-     "tradition": "Alteration",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Demigod",
-     "tradition": "Alteration",
-     "rank": 10,
      "lever": "damage-reduction",
      "magnitude": "reduce damage",
      "duration": "sustained",
@@ -2983,15 +2564,6 @@
       "value": 12.0,
       "unit": "damage"
      }
-    },
-    {
-     "name": "Simulacrum",
-     "tradition": "Conjuration",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Dead One Walking",
@@ -3024,36 +2596,6 @@
      }
     },
     {
-     "name": "Angel of Death",
-     "tradition": "Death",
-     "rank": 7,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.263,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Create Demon Spawn",
-     "tradition": "Demonology",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Stone Armor",
      "tradition": "Earth",
      "rank": 1,
@@ -3069,30 +2611,6 @@
      }
     },
     {
-     "name": "Wall of Stone",
-     "tradition": "Earth",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "permanent",
-     "precast": true
-    },
-    {
-     "name": "Become the Mountain",
-     "tradition": "Earth",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.618,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Drunkenness",
      "tradition": "Fey",
      "rank": 1,
@@ -3100,15 +2618,6 @@
      "magnitude": "reduce damage",
      "duration": "instant",
      "precast": false
-    },
-    {
-     "name": "Gift of Immortality",
-     "tradition": "Fey",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "permanent",
-     "precast": true
     },
     {
      "name": "Flame Ward",
@@ -3171,21 +2680,6 @@
       "kind": "damage",
       "value": 7.0,
       "unit": "damage"
-     }
-    },
-    {
-     "name": "Become the Conflagration",
-     "tradition": "Fire",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.5,
-     "strength": {
-      "kind": "mitigation",
-      "value": 50,
-      "unit": "%damage"
      }
     },
     {
@@ -3258,75 +2752,6 @@
      }
     },
     {
-     "name": "The Dark Lady",
-     "tradition": "Invocation",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Archmage",
-     "tradition": "Invocation",
-     "rank": 7,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "The Great Dragon",
-     "tradition": "Invocation",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.765,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Ascended One",
-     "tradition": "Invocation",
-     "rank": 9,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Devil",
-     "tradition": "Invocation",
-     "rank": 10,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.238,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Augmented Vitality",
      "tradition": "Life",
      "rank": 2,
@@ -3334,33 +2759,6 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Iron Bulwark",
-     "tradition": "Metal",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "permanent",
-     "precast": true
-    },
-    {
-     "name": "Impervious",
-     "tradition": "Metal",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Shed the Mortal Coil",
-     "tradition": "Necromancy",
-     "rank": 7,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Logic Prison",
@@ -3387,30 +2785,6 @@
      }
     },
     {
-     "name": "Imprisoned By Flawless Logic",
-     "tradition": "Order",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Restore Reality",
-     "tradition": "Order",
-     "rank": 10,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.571,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Energy Ward",
      "tradition": "Protection",
      "rank": 4,
@@ -3429,39 +2803,6 @@
      "precast": false
     },
     {
-     "name": "True Protection",
-     "tradition": "Protection",
-     "rank": 10,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Impregnable Rune",
-     "tradition": "Rune",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Shade",
-     "tradition": "Shadow",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.618,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Trance of Excellence",
      "tradition": "Soul",
      "rank": 4,
@@ -3471,54 +2812,6 @@
      "precast": true
     },
     {
-     "name": "Become the Soul",
-     "tradition": "Soul",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.564,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Astral Projection",
-     "tradition": "Soul",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
-     "name": "Transcendence",
-     "tradition": "Soul",
-     "rank": 9,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
-     "name": "Dragon Spirit",
-     "tradition": "Spiritualism",
-     "rank": 9,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.269,
-     "strength": {
-      "kind": "damage",
-      "value": 19.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Storm Blessing",
      "tradition": "Storm",
      "rank": 2,
@@ -3526,21 +2819,6 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Mobile Fortress",
-     "tradition": "Technomancy",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.912,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
     },
     {
      "name": "Banish",
@@ -3585,30 +2863,6 @@
      "precast": true
     },
     {
-     "name": "Holy Ground",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Sever Timeline",
-     "tradition": "Time",
-     "rank": 6,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Mist Form",
      "tradition": "Transformation",
      "rank": 3,
@@ -3634,21 +2888,6 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Become the Sea",
-     "tradition": "Water",
-     "rank": 8,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.441,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
     }
    ],
    "buffer": [
@@ -3698,75 +2937,6 @@
      }
     },
     {
-     "name": "Awaken the Giant",
-     "tradition": "Alteration",
-     "rank": 7,
-     "lever": "buffer",
-     "magnitude": "+80 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.947,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Demigod",
-     "tradition": "Alteration",
-     "rank": 10,
-     "lever": "buffer",
-     "magnitude": "+50 Health",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "God of War",
-     "tradition": "Battle",
-     "rank": 10,
-     "lever": "buffer",
-     "magnitude": "+50 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.119,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Become the Mountain",
-     "tradition": "Earth",
-     "rank": 8,
-     "lever": "buffer",
-     "magnitude": "+40 Health",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.618,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Desecrate",
-     "tradition": "Forbidden",
-     "rank": 7,
-     "lever": "buffer",
-     "magnitude": "+10 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.167,
-     "strength": {
-      "kind": "mitigation",
-      "value": 10,
-      "unit": "temp-health"
-     }
-    },
-    {
      "name": "False Healing",
      "tradition": "Illusion",
      "rank": 2,
@@ -3779,21 +2949,6 @@
       "kind": "mitigation",
       "value": 10,
       "unit": "temp-health"
-     }
-    },
-    {
-     "name": "The Dark Lady",
-     "tradition": "Invocation",
-     "rank": 6,
-     "lever": "buffer",
-     "magnitude": "+10 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
      }
     },
     {
@@ -3824,21 +2979,6 @@
       "kind": "mitigation",
       "value": 15,
       "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Seasons Passage",
-     "tradition": "Nature",
-     "rank": 6,
-     "lever": "buffer",
-     "magnitude": "+5 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
      }
     },
     {
@@ -3909,15 +3049,6 @@
       "value": 10,
       "unit": "temp-health"
      }
-    },
-    {
-     "name": "Favor of the Horned Lord",
-     "tradition": "Primal",
-     "rank": 9,
-     "lever": "buffer",
-     "magnitude": "+50 Health",
-     "duration": "sustained",
-     "precast": true
     },
     {
      "name": "Vigor",
@@ -3995,15 +3126,6 @@
      }
     },
     {
-     "name": "Heavenly Choir",
-     "tradition": "Song",
-     "rank": 8,
-     "lever": "buffer",
-     "magnitude": "+10 Health",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
      "name": "Lion Spirit",
      "tradition": "Spiritualism",
      "rank": 2,
@@ -4015,21 +3137,6 @@
      "strength": {
       "kind": "mitigation",
       "value": 5,
-      "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Hero Spirit",
-     "tradition": "Spiritualism",
-     "rank": 7,
-     "lever": "buffer",
-     "magnitude": "+20 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.5,
-     "strength": {
-      "kind": "mitigation",
-      "value": 20,
       "unit": "temp-health"
      }
     },
@@ -4061,21 +3168,6 @@
       "kind": "mitigation",
       "value": 10,
       "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Holy Ground",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "buffer",
-     "magnitude": "+15 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
      }
     },
     {
@@ -4156,15 +3248,6 @@
      }
     },
     {
-     "name": "Simulacrum",
-     "tradition": "Conjuration",
-     "rank": 6,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Query the Void",
      "tradition": "Demonology",
      "rank": 4,
@@ -4193,15 +3276,6 @@
       "value": 1.0,
       "unit": "healing-rate"
      }
-    },
-    {
-     "name": "Gift of Immortality",
-     "tradition": "Fey",
-     "rank": 8,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "permanent",
-     "precast": true
     },
     {
      "name": "The Death Angel",
@@ -4459,57 +3533,6 @@
      }
     },
     {
-     "name": "Heal All",
-     "tradition": "Life",
-     "rank": 6,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "House of Healing",
-     "tradition": "Life",
-     "rank": 7,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Raise the Dead",
-     "tradition": "Life",
-     "rank": 8,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Ashes to Ashes",
-     "tradition": "Life",
-     "rank": 9,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.5,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Second Life",
-     "tradition": "Life",
-     "rank": 10,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Green Tongue",
      "tradition": "Nature",
      "rank": 1,
@@ -4547,15 +3570,6 @@
      "magnitude": "heal",
      "duration": "instant",
      "precast": false
-    },
-    {
-     "name": "Abundance",
-     "tradition": "Nature",
-     "rank": 7,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "permanent",
-     "precast": true
     },
     {
      "name": "Harvest Soul",
@@ -4597,33 +3611,6 @@
      }
     },
     {
-     "name": "Awaken Graveyard",
-     "tradition": "Necromancy",
-     "rank": 6,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Unleash Bone Machine",
-     "tradition": "Necromancy",
-     "rank": 8,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Undead Legion",
-     "tradition": "Necromancy",
-     "rank": 9,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Depower",
      "tradition": "Order",
      "rank": 4,
@@ -4657,66 +3644,6 @@
      }
     },
     {
-     "name": "Call Arion Charger",
-     "tradition": "Primal",
-     "rank": 6,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "permanent",
-     "precast": true
-    },
-    {
-     "name": "Stampede",
-     "tradition": "Primal",
-     "rank": 7,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.474,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Primal Regent",
-     "tradition": "Primal",
-     "rank": 8,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Favor of the Horned Lord",
-     "tradition": "Primal",
-     "rank": 9,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Refuge",
-     "tradition": "Protection",
-     "rank": 9,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "True Protection",
-     "tradition": "Protection",
-     "rank": 10,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Song of Healing",
      "tradition": "Song",
      "rank": 2,
@@ -4730,24 +3657,6 @@
       "value": 1.0,
       "unit": "healing-rate"
      }
-    },
-    {
-     "name": "Hymn of Rebirth",
-     "tradition": "Song",
-     "rank": 6,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Music of the Spheres",
-     "tradition": "Song",
-     "rank": 10,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Guarded Soul",
@@ -4771,15 +3680,6 @@
      "lever": "heal",
      "magnitude": "heal",
      "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Enlightenment",
-     "tradition": "Soul",
-     "rank": 10,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "permanent",
      "precast": true
     },
     {
@@ -4843,21 +3743,6 @@
      }
     },
     {
-     "name": "Holy Ground",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Restorative Waters",
      "tradition": "Water",
      "rank": 3,
@@ -4892,15 +3777,6 @@
      }
     },
     {
-     "name": "Enrich Magic",
-     "tradition": "Arcana",
-     "rank": 10,
-     "lever": "self-attack-boons",
-     "magnitude": "5 boon(s) to hit",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Augmented Attack",
      "tradition": "Battle",
      "rank": 0,
@@ -4908,21 +3784,6 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "instant",
      "precast": false
-    },
-    {
-     "name": "God of War",
-     "tradition": "Battle",
-     "rank": 10,
-     "lever": "self-attack-boons",
-     "magnitude": "3 boon(s) to hit",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.119,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
     },
     {
      "name": "Scintillating Worms",
@@ -4958,21 +3819,6 @@
      }
     },
     {
-     "name": "Create Demon Spawn",
-     "tradition": "Demonology",
-     "rank": 6,
-     "lever": "self-attack-boons",
-     "magnitude": "3 boon(s) to hit",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Distraction",
      "tradition": "Enchantment",
      "rank": 0,
@@ -4987,15 +3833,6 @@
      "rank": 2,
      "lever": "self-attack-boons",
      "magnitude": "1 boon(s) to hit",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Self-destruct",
-     "tradition": "Enchantment",
-     "rank": 8,
-     "lever": "self-attack-boons",
-     "magnitude": "3 boon(s) to hit",
      "duration": "instant",
      "precast": false
     },
@@ -5129,29 +3966,11 @@
      }
     },
     {
-     "name": "Favor of the Horned Lord",
-     "tradition": "Primal",
-     "rank": 9,
-     "lever": "self-attack-boons",
-     "magnitude": "2 boon(s) to hit",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Rune of Speed",
      "tradition": "Rune",
      "rank": 5,
      "lever": "self-attack-boons",
      "magnitude": "2 boon(s) to hit",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Nightfall",
-     "tradition": "Shadow",
-     "rank": 6,
-     "lever": "self-attack-boons",
-     "magnitude": "3 boon(s) to hit",
      "duration": "sustained",
      "precast": true
     },
@@ -5183,24 +4002,6 @@
      "precast": false
     },
     {
-     "name": "Heavenly Choir",
-     "tradition": "Song",
-     "rank": 8,
-     "lever": "self-attack-boons",
-     "magnitude": "2 boon(s) to hit",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
-     "name": "Enlightenment",
-     "tradition": "Soul",
-     "rank": 10,
-     "lever": "self-attack-boons",
-     "magnitude": "3 boon(s) to hit",
-     "duration": "permanent",
-     "precast": true
-    },
-    {
      "name": "Spellbound Weapon",
      "tradition": "Spellbinder",
      "rank": 0,
@@ -5208,15 +4009,6 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "instant",
      "precast": false
-    },
-    {
-     "name": "Underworld",
-     "tradition": "Spiritualism",
-     "rank": 8,
-     "lever": "self-attack-boons",
-     "magnitude": "2 boon(s) to hit",
-     "duration": "sustained",
-     "precast": true
     },
     {
      "name": "Enemy to Weapon",
@@ -5294,15 +4086,6 @@
      "name": "Avatar",
      "tradition": "Theurgy",
      "rank": 4,
-     "lever": "self-attack-boons",
-     "magnitude": "1 boon(s) to hit",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Paragon of Faith",
-     "tradition": "Theurgy",
-     "rank": 6,
      "lever": "self-attack-boons",
      "magnitude": "1 boon(s) to hit",
      "duration": "sustained",
@@ -5430,15 +4213,6 @@
      }
     },
     {
-     "name": "Enrich Magic",
-     "tradition": "Arcana",
-     "rank": 10,
-     "lever": "extra-damage",
-     "magnitude": "+3d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Savage Strike",
      "tradition": "Battle",
      "rank": 0,
@@ -5535,30 +4309,6 @@
      "precast": false
     },
     {
-     "name": "Cast Down From Heaven",
-     "tradition": "Battle",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "triggered",
-     "precast": false
-    },
-    {
-     "name": "God of War",
-     "tradition": "Battle",
-     "rank": 10,
-     "lever": "extra-damage",
-     "magnitude": "+5d6",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.119,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Sun Shard",
      "tradition": "Celestial",
      "rank": 1,
@@ -5585,36 +4335,6 @@
      "strength": {
       "kind": "damage",
       "value": 7.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Sunburst",
-     "tradition": "Celestial",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+3d6",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.769,
-     "strength": {
-      "kind": "damage",
-      "value": 24.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Invisible Sun",
-     "tradition": "Celestial",
-     "rank": 7,
-     "lever": "extra-damage",
-     "magnitude": "+3d6",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.263,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
       "unit": "damage"
      }
     },
@@ -5664,21 +4384,6 @@
      }
     },
     {
-     "name": "Power of Chaos",
-     "tradition": "Chaos",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.295,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Pain",
      "tradition": "Curse",
      "rank": 1,
@@ -5723,36 +4428,6 @@
      "strength": {
       "kind": "damage",
       "value": 34.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Accursed Land",
-     "tradition": "Curse",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+1d6",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.051,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Curse of Eight Torments",
-     "tradition": "Curse",
-     "rank": 8,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.235,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
       "unit": "damage"
      }
     },
@@ -5837,21 +4512,6 @@
      "strength": {
       "kind": "damage",
       "value": 30.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Create Demon Spawn",
-     "tradition": "Demonology",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+1d6",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
       "unit": "damage"
      }
     },
@@ -6072,15 +4732,6 @@
      "precast": true
     },
     {
-     "name": "Awaken the Hero",
-     "tradition": "Enchantment",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+1d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Flame Missile",
      "tradition": "Fire",
      "rank": 0,
@@ -6137,21 +4788,6 @@
      "strength": {
       "kind": "damage",
       "value": 7.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Swarm of Fireballs",
-     "tradition": "Fire",
-     "rank": 7,
-     "lever": "extra-damage",
-     "magnitude": "+1d6",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.342,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
       "unit": "damage"
      }
     },
@@ -6257,21 +4893,6 @@
      "strength": {
       "kind": "damage",
       "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Part Soul From Flesh",
-     "tradition": "Forbidden",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+4d6",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.923,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
       "unit": "damage"
      }
     },
@@ -6444,15 +5065,6 @@
      }
     },
     {
-     "name": "Impervious",
-     "tradition": "Metal",
-     "rank": 8,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Magic Acorns",
      "tradition": "Nature",
      "rank": 0,
@@ -6515,30 +5127,6 @@
      "duration": "sustained",
      "precast": true,
      "quality": 0.289,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Call Nature’s Protector",
-     "tradition": "Nature",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Seasons Passage",
-     "tradition": "Nature",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+1d6",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -6635,21 +5223,6 @@
      "strength": {
       "kind": "damage",
       "value": 19.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Eradicate Infestation",
-     "tradition": "Order",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+4d6",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.679,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
       "unit": "damage"
      }
     },
@@ -6783,15 +5356,6 @@
      }
     },
     {
-     "name": "Favor of the Horned Lord",
-     "tradition": "Primal",
-     "rank": 9,
-     "lever": "extra-damage",
-     "magnitude": "+3d6+2d6+1d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Brand of Doom",
      "tradition": "Rune",
      "rank": 1,
@@ -6909,15 +5473,6 @@
      }
     },
     {
-     "name": "Nightfall",
-     "tradition": "Shadow",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+2d6+1d6+2d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Song of Valor",
      "tradition": "Song",
      "rank": 1,
@@ -6972,63 +5527,6 @@
      "precast": false
     },
     {
-     "name": "Displace Soul",
-     "tradition": "Soul",
-     "rank": 7,
-     "lever": "extra-damage",
-     "magnitude": "+7d6",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Enlightenment",
-     "tradition": "Soul",
-     "rank": 10,
-     "lever": "extra-damage",
-     "magnitude": "+1d6",
-     "duration": "permanent",
-     "precast": true
-    },
-    {
-     "name": "Hero Spirit",
-     "tradition": "Spiritualism",
-     "rank": 7,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.5,
-     "strength": {
-      "kind": "mitigation",
-      "value": 20,
-      "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Underworld",
-     "tradition": "Spiritualism",
-     "rank": 8,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Dragon Spirit",
-     "tradition": "Spiritualism",
-     "rank": 9,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.269,
-     "strength": {
-      "kind": "damage",
-      "value": 19.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Forked Lightning",
      "tradition": "Storm",
      "rank": 1,
@@ -7072,15 +5570,6 @@
       "value": 8.0,
       "unit": "damage"
      }
-    },
-    {
-     "name": "Power of the Storm",
-     "tradition": "Storm",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true
     },
     {
      "name": "Bolt Thrower",
@@ -7165,45 +5654,6 @@
       "value": 27.5,
       "unit": "damage"
      }
-    },
-    {
-     "name": "Explode",
-     "tradition": "Telekinesis",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+2d6+2d6",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.679,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Telekinetic Might",
-     "tradition": "Telekinesis",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.564,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Brain Fire",
-     "tradition": "Telepathy",
-     "rank": 10,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Bury the Hatchet",
@@ -7338,15 +5788,6 @@
      "precast": true
     },
     {
-     "name": "Paragon of Faith",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Weapon Appendage",
      "tradition": "Transformation",
      "rank": 0,
@@ -7390,15 +5831,6 @@
       "value": 30,
       "unit": "temp-health"
      }
-    },
-    {
-     "name": "Shapeshifter",
-     "tradition": "Transformation",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+1d6",
-     "duration": "sustained",
-     "precast": true
     },
     {
      "name": "Icicle",
@@ -7516,21 +5948,6 @@
      }
     },
     {
-     "name": "Become the Wind",
-     "tradition": "Air",
-     "rank": 8,
-     "lever": "target-banes",
-     "magnitude": "1 bane(s) on its rolls",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.5,
-     "strength": {
-      "kind": "mitigation",
-      "value": 50,
-      "unit": "%damage"
-     }
-    },
-    {
      "name": "Distort Appearance",
      "tradition": "Alteration",
      "rank": 0,
@@ -7588,24 +6005,6 @@
      "precast": true
     },
     {
-     "name": "End All Magic",
-     "tradition": "Arcana",
-     "rank": 8,
-     "lever": "target-banes",
-     "magnitude": "3 bane(s) on its rolls",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Enrich Magic",
-     "tradition": "Arcana",
-     "rank": 10,
-     "lever": "target-banes",
-     "magnitude": "5 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Meteoric Assault",
      "tradition": "Battle",
      "rank": 3,
@@ -7613,21 +6012,6 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "instant",
      "precast": false
-    },
-    {
-     "name": "God of War",
-     "tradition": "Battle",
-     "rank": 10,
-     "lever": "target-banes",
-     "magnitude": "5 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.119,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
     },
     {
      "name": "Strobe Light",
@@ -7705,30 +6089,6 @@
      "precast": false
     },
     {
-     "name": "Cosmic Awareness",
-     "tradition": "Divination",
-     "rank": 10,
-     "lever": "target-banes",
-     "magnitude": "5 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Become the Mountain",
-     "tradition": "Earth",
-     "rank": 8,
-     "lever": "target-banes",
-     "magnitude": "1 bane(s) on its rolls",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.618,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Dolor",
      "tradition": "Enchantment",
      "rank": 3,
@@ -7774,30 +6134,6 @@
      "precast": false
     },
     {
-     "name": "Gift of Immortality",
-     "tradition": "Fey",
-     "rank": 8,
-     "lever": "target-banes",
-     "magnitude": "4 bane(s) on its rolls",
-     "duration": "permanent",
-     "precast": true
-    },
-    {
-     "name": "Desecrate",
-     "tradition": "Forbidden",
-     "rank": 7,
-     "lever": "target-banes",
-     "magnitude": "3 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.167,
-     "strength": {
-      "kind": "mitigation",
-      "value": 10,
-      "unit": "temp-health"
-     }
-    },
-    {
      "name": "Conceal Object",
      "tradition": "Illusion",
      "rank": 0,
@@ -7818,21 +6154,6 @@
      "strength": {
       "kind": "damage",
       "value": 3.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Witch-king",
-     "tradition": "Invocation",
-     "rank": 6,
-     "lever": "target-banes",
-     "magnitude": "1 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.679,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
       "unit": "damage"
      }
     },
@@ -7864,15 +6185,6 @@
      "name": "Well of Dark Power",
      "tradition": "Necromancy",
      "rank": 3,
-     "lever": "target-banes",
-     "magnitude": "1 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Strength From Order",
-     "tradition": "Order",
-     "rank": 6,
      "lever": "target-banes",
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
@@ -7912,15 +6224,6 @@
      }
     },
     {
-     "name": "Nightfall",
-     "tradition": "Shadow",
-     "rank": 6,
-     "lever": "target-banes",
-     "magnitude": "3 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Frightful Spirit",
      "tradition": "Spiritualism",
      "rank": 0,
@@ -7945,30 +6248,6 @@
      }
     },
     {
-     "name": "Underworld",
-     "tradition": "Spiritualism",
-     "rank": 8,
-     "lever": "target-banes",
-     "magnitude": "2 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Dragon Spirit",
-     "tradition": "Spiritualism",
-     "rank": 9,
-     "lever": "target-banes",
-     "magnitude": "4 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.269,
-     "strength": {
-      "kind": "damage",
-      "value": 19.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Sleet",
      "tradition": "Storm",
      "rank": 1,
@@ -7985,36 +6264,6 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Summon Storm",
-     "tradition": "Storm",
-     "rank": 6,
-     "lever": "target-banes",
-     "magnitude": "3 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.295,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Hurricane",
-     "tradition": "Storm",
-     "rank": 10,
-     "lever": "target-banes",
-     "magnitude": "5 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.571,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
     },
     {
      "name": "Rend Mind",
@@ -8048,30 +6297,6 @@
       "value": 10,
       "unit": "temp-health"
      }
-    },
-    {
-     "name": "Holy Ground",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "target-banes",
-     "magnitude": "3 bane(s) on its rolls",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Miracle",
-     "tradition": "Theurgy",
-     "rank": 9,
-     "lever": "target-banes",
-     "magnitude": "4 bane(s) on its rolls",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Devolve",
@@ -8238,51 +6463,6 @@
      }
     },
     {
-     "name": "Cacophony",
-     "tradition": "Air",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.769,
-     "strength": {
-      "kind": "damage",
-      "value": 24.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Become the Wind",
-     "tradition": "Air",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.5,
-     "strength": {
-      "kind": "mitigation",
-      "value": 50,
-      "unit": "%damage"
-     }
-    },
-    {
-     "name": "Fury of the Heavens",
-     "tradition": "Air",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.405,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Oil Slick",
      "tradition": "Alchemy",
      "rank": 2,
@@ -8305,21 +6485,6 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Universal Solvent",
-     "tradition": "Alchemy",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.923,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
     },
     {
      "name": "Malform",
@@ -8383,15 +6548,6 @@
       "value": 7.0,
       "unit": "damage"
      }
-    },
-    {
-     "name": "Malefic Monstrosities",
-     "tradition": "Alteration",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Sorcerous Lens",
@@ -8503,15 +6659,6 @@
       "value": 7.0,
       "unit": "damage"
      }
-    },
-    {
-     "name": "Cast Down From Heaven",
-     "tradition": "Battle",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "triggered",
-     "precast": false
     },
     {
      "name": "Burning Beam",
@@ -8655,36 +6802,6 @@
      }
     },
     {
-     "name": "Invisible Sun",
-     "tradition": "Celestial",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.263,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Call Down the Heavens",
-     "tradition": "Celestial",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.786,
-     "strength": {
-      "kind": "damage",
-      "value": 60.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Singularity",
      "tradition": "Chaos",
      "rank": 5,
@@ -8696,21 +6813,6 @@
      "strength": {
       "kind": "damage",
       "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Undo Reality",
-     "tradition": "Chaos",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.738,
-     "strength": {
-      "kind": "damage",
-      "value": 50.0,
       "unit": "damage"
      }
     },
@@ -8777,57 +6879,6 @@
      "strength": {
       "kind": "damage",
       "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Conjure Cadre",
-     "tradition": "Conjuration",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Simulacrum",
-     "tradition": "Conjuration",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Conjure Titanic Monster",
-     "tradition": "Conjuration",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Conjure Monstrous Horde",
-     "tradition": "Conjuration",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "True Conjuration",
-     "tradition": "Conjuration",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "permanent",
-     "precast": true,
-     "quality": 0.571,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
       "unit": "damage"
      }
     },
@@ -8922,15 +6973,6 @@
      }
     },
     {
-     "name": "Eternal Slumber",
-     "tradition": "Curse",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Dead One Walking",
      "tradition": "Death",
      "rank": 2,
@@ -8988,66 +7030,6 @@
       "kind": "mitigation",
       "value": 100,
       "unit": "%damage"
-     }
-    },
-    {
-     "name": "Life Siphon",
-     "tradition": "Death",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.051,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Angel of Death",
-     "tradition": "Death",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.263,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Inhume",
-     "tradition": "Death",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.059,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Kill Them All",
-     "tradition": "Death",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.31,
-     "strength": {
-      "kind": "damage",
-      "value": 20.0,
-      "unit": "damage"
      }
     },
     {
@@ -9276,66 +7258,6 @@
      }
     },
     {
-     "name": "Cascading Ruin",
-     "tradition": "Destruction",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.218,
-     "strength": {
-      "kind": "damage",
-      "value": 8.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Obliterate",
-     "tradition": "Destruction",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.821,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Bring It Down",
-     "tradition": "Destruction",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.763,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Annihilate",
-     "tradition": "Destruction",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.912,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Earth Spike",
      "tradition": "Earth",
      "rank": 0,
@@ -9468,66 +7390,6 @@
      }
     },
     {
-     "name": "Fissure",
-     "tradition": "Earth",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.564,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Major Earthquake",
-     "tradition": "Earth",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.605,
-     "strength": {
-      "kind": "damage",
-      "value": 24.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Become the Mountain",
-     "tradition": "Earth",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.618,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Crack the World",
-     "tradition": "Earth",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.357,
-     "strength": {
-      "kind": "damage",
-      "value": 24.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Distraction",
      "tradition": "Enchantment",
      "rank": 0,
@@ -9589,24 +7451,6 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Awaken the Hero",
-     "tradition": "Enchantment",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Ennui",
-     "tradition": "Enchantment",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
     },
     {
      "name": "Exorcism",
@@ -9699,24 +7543,6 @@
      "precast": false
     },
     {
-     "name": "Deep Sleep",
-     "tradition": "Fey",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Lords and Ladies",
-     "tradition": "Fey",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Fire Imps",
      "tradition": "Fire",
      "rank": 4,
@@ -9738,21 +7564,6 @@
       "kind": "damage",
       "value": 15.5,
       "unit": "damage"
-     }
-    },
-    {
-     "name": "Become the Conflagration",
-     "tradition": "Fire",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.5,
-     "strength": {
-      "kind": "mitigation",
-      "value": 50,
-      "unit": "%damage"
      }
     },
     {
@@ -9918,54 +7729,6 @@
      "precast": false
     },
     {
-     "name": "Effluvial Bog",
-     "tradition": "Forbidden",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Part Soul From Flesh",
-     "tradition": "Forbidden",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.923,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Pollution",
-     "tradition": "Forbidden",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.235,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Utter Ruin",
-     "tradition": "Forbidden",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Befuddle",
      "tradition": "Illusion",
      "rank": 1,
@@ -10017,24 +7780,6 @@
      "name": "Illusory Double",
      "tradition": "Illusion",
      "rank": 5,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Accursed Double",
-     "tradition": "Illusion",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Army of One",
-     "tradition": "Illusion",
-     "rank": 9,
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
@@ -10101,36 +7846,6 @@
      }
     },
     {
-     "name": "The Ascended One",
-     "tradition": "Invocation",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The Devil",
-     "tradition": "Invocation",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.238,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Fleeting Life",
      "tradition": "Life",
      "rank": 3,
@@ -10147,21 +7862,6 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false
-    },
-    {
-     "name": "Heal Soul",
-     "tradition": "Life",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.923,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
     },
     {
      "name": "Hoary Tentacle",
@@ -10227,30 +7927,6 @@
      "precast": false
     },
     {
-     "name": "Chant of the Lost",
-     "tradition": "Madness",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Night Terrors",
-     "tradition": "Madness",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Pinning Spike",
      "tradition": "Metal",
      "rank": 1,
@@ -10294,15 +7970,6 @@
       "value": 17.5,
       "unit": "damage"
      }
-    },
-    {
-     "name": "Impervious",
-     "tradition": "Metal",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
     },
     {
      "name": "Grasping Growth",
@@ -10392,24 +8059,6 @@
      }
     },
     {
-     "name": "Rouse the Woods",
-     "tradition": "Nature",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Incarnate Nature",
-     "tradition": "Nature",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Charnel Stench",
      "tradition": "Necromancy",
      "rank": 1,
@@ -10494,45 +8143,6 @@
      }
     },
     {
-     "name": "Embodiment of Death",
-     "tradition": "Necromancy",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Shed the Mortal Coil",
-     "tradition": "Necromancy",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Undead Plague",
-     "tradition": "Necromancy",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.571,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Depower",
      "tradition": "Order",
      "rank": 4,
@@ -10553,54 +8163,6 @@
      "strength": {
       "kind": "damage",
       "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Strength From Order",
-     "tradition": "Order",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Purge Chaos",
-     "tradition": "Order",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.474,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Voice of Ultimate Authority",
-     "tradition": "Order",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Restore Reality",
-     "tradition": "Order",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.571,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
       "unit": "damage"
      }
     },
@@ -10672,30 +8234,6 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false
-    },
-    {
-     "name": "Call Primal Champion",
-     "tradition": "Primal",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Stampede",
-     "tradition": "Primal",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.474,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
     },
     {
      "name": "Danger Sense",
@@ -10785,39 +8323,6 @@
      "precast": false
     },
     {
-     "name": "Denial",
-     "tradition": "Protection",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Ultimate Security",
-     "tradition": "Protection",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.059,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Refuge",
-     "tradition": "Protection",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
      "name": "Rune of Force",
      "tradition": "Rune",
      "rank": 1,
@@ -10877,36 +8382,6 @@
      "strength": {
       "kind": "damage",
       "value": 10.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Runic Inscription",
-     "tradition": "Rune",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.912,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Rune of Damning Light",
-     "tradition": "Rune",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.346,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
       "unit": "damage"
      }
     },
@@ -10998,36 +8473,6 @@
      }
     },
     {
-     "name": "Obsidian Serpents",
-     "tradition": "Shadow",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Shade",
-     "tradition": "Shadow",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.618,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Cacophonous Utterance",
      "tradition": "Song",
      "rank": 1,
@@ -11097,45 +8542,6 @@
      "precast": false
     },
     {
-     "name": "Siren Song",
-     "tradition": "Song",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
-     "name": "Voice of Thunder",
-     "tradition": "Song",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.763,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Blow Your Horn",
-     "tradition": "Song",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.962,
-     "strength": {
-      "kind": "damage",
-      "value": 78.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Topple the Mountain",
      "tradition": "Soul",
      "rank": 2,
@@ -11176,33 +8582,6 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false
-    },
-    {
-     "name": "Displace Soul",
-     "tradition": "Soul",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Astral Projection",
-     "tradition": "Soul",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false
-    },
-    {
-     "name": "Enlightenment",
-     "tradition": "Soul",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "permanent",
-     "precast": true
     },
     {
      "name": "Call Poltergeist",
@@ -11366,51 +8745,6 @@
      "strength": {
       "kind": "damage",
       "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Summon Storm",
-     "tradition": "Storm",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.295,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Lightning Storm",
-     "tradition": "Storm",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.763,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Hurricane",
-     "tradition": "Storm",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.571,
-     "strength": {
-      "kind": "damage",
-      "value": 35.0,
       "unit": "damage"
      }
     },
@@ -11613,75 +8947,6 @@
      }
     },
     {
-     "name": "Explode",
-     "tradition": "Telekinesis",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.679,
-     "strength": {
-      "kind": "damage",
-      "value": 21.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Telekinetic Might",
-     "tradition": "Telekinesis",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.564,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Stop",
-     "tradition": "Telekinesis",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Implode",
-     "tradition": "Telekinesis",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.808,
-     "strength": {
-      "kind": "damage",
-      "value": 50.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Catastrophic Outburst",
-     "tradition": "Telekinesis",
-     "rank": 10,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.976,
-     "strength": {
-      "kind": "damage",
-      "value": 120.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Anticipation",
      "tradition": "Telepathy",
      "rank": 1,
@@ -11733,24 +8998,6 @@
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Brain Damage",
-     "tradition": "Telepathy",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Domination",
-     "tradition": "Telepathy",
-     "rank": 9,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "permanent",
      "precast": true
     },
     {
@@ -11828,36 +9075,6 @@
      "strength": {
       "kind": "damage",
       "value": 35.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Remove Obstacle",
-     "tradition": "Teleportation",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.051,
-     "strength": {
-      "kind": "damage",
-      "value": 3.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Dismantle",
-     "tradition": "Teleportation",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.763,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
       "unit": "damage"
      }
     },
@@ -11949,39 +9166,6 @@
      }
     },
     {
-     "name": "Paragon of Faith",
-     "tradition": "Theurgy",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Purge the Unclean",
-     "tradition": "Theurgy",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.763,
-     "strength": {
-      "kind": "damage",
-      "value": 28.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Heavenly Host",
-     "tradition": "Theurgy",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Delay",
      "tradition": "Time",
      "rank": 0,
@@ -12034,30 +9218,6 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Sever Timeline",
-     "tradition": "Time",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Time Dilation",
-     "tradition": "Time",
-     "rank": 6,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.154,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
-     }
     },
     {
      "name": "Abundant Animals",
@@ -12205,36 +9365,6 @@
       "value": 10.5,
       "unit": "damage"
      }
-    },
-    {
-     "name": "Elemental Ice",
-     "tradition": "Water",
-     "rank": 7,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.158,
-     "strength": {
-      "kind": "damage",
-      "value": 7.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Become the Sea",
-     "tradition": "Water",
-     "rank": 8,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "concentration",
-     "precast": false,
-     "quality": 0.441,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
     }
    ]
   },
@@ -12280,35 +9410,11 @@
      }
     },
     {
-     "name": "Create Demon Spawn",
-     "tradition": "Demonology",
-     "rank": 6,
-     "lever": "extra-damage",
-     "magnitude": "+1d6",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
-     }
-    },
-    {
      "name": "Stone Gauntlet",
      "tradition": "Earth",
      "rank": 0,
      "lever": "extra-damage",
      "magnitude": "+2 dmg",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Impervious",
-     "tradition": "Metal",
-     "rank": 8,
-     "lever": "extra-damage",
-     "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true
     },
@@ -12442,15 +9548,6 @@
      }
     },
     {
-     "name": "Favor of the Horned Lord",
-     "tradition": "Primal",
-     "rank": 9,
-     "lever": "extra-damage",
-     "magnitude": "+3d6+2d6+1d6",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Focused Strike",
      "tradition": "Soul",
      "rank": 0,
@@ -12474,15 +9571,6 @@
      "rank": 5,
      "lever": "extra-damage",
      "magnitude": "+5d6+2d6",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Displace Soul",
-     "tradition": "Soul",
-     "rank": 7,
-     "lever": "extra-damage",
-     "magnitude": "+7d6",
      "duration": "instant",
      "precast": false
     },
@@ -12531,21 +9619,6 @@
       "kind": "mitigation",
       "value": 100,
       "unit": "%damage"
-     }
-    },
-    {
-     "name": "Create Demon Spawn",
-     "tradition": "Demonology",
-     "rank": 6,
-     "lever": "self-attack-boons",
-     "magnitude": "3 boon(s) to hit",
-     "duration": "instant",
-     "precast": false,
-     "quality": 0.436,
-     "strength": {
-      "kind": "damage",
-      "value": 14.0,
-      "unit": "damage"
      }
     },
     {
@@ -12603,15 +9676,6 @@
      }
     },
     {
-     "name": "Favor of the Horned Lord",
-     "tradition": "Primal",
-     "rank": 9,
-     "lever": "self-attack-boons",
-     "magnitude": "2 boon(s) to hit",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
      "name": "Focused Strike",
      "tradition": "Soul",
      "rank": 0,
@@ -12633,15 +9697,6 @@
      "name": "Soul Dissonance",
      "tradition": "Soul",
      "rank": 5,
-     "lever": "self-attack-boons",
-     "magnitude": "3 boon(s) to hit",
-     "duration": "instant",
-     "precast": false
-    },
-    {
-     "name": "Displace Soul",
-     "tradition": "Soul",
-     "rank": 7,
      "lever": "self-attack-boons",
      "magnitude": "3 boon(s) to hit",
      "duration": "instant",
