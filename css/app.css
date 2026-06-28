@@ -420,6 +420,52 @@ dl.kv dd { margin: 0; }
 }
 .cast-pip.spent { background: transparent; border-color: var(--line-bright); opacity: .5; }
 .cast-pip:hover { transform: scale(1.15); }
+.spell-info-btn { font-weight: 700; }
+
+/* Spell detail popup ----------------------------------------- */
+.spell-modal {
+  position: fixed; inset: 0; z-index: 80;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 6vh 16px; overflow-y: auto;
+  background: rgba(8,6,5,.74); backdrop-filter: blur(3px);
+}
+.spell-modal[hidden] { display: none; }
+.spell-modal-box {
+  position: relative; width: 100%; max-width: 560px;
+  border: 1px solid var(--line-bright); border-radius: 6px;
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  box-shadow: 0 18px 60px rgba(0,0,0,.6), inset 0 0 30px rgba(176,141,79,.05);
+  padding: 20px 22px; display: flex; flex-direction: column; gap: 12px;
+}
+.sm-close {
+  position: absolute; top: 8px; right: 12px;
+  background: transparent; border: none; color: var(--text-dim);
+  font-size: 18px; line-height: 1; cursor: pointer;
+}
+.sm-close:hover { color: var(--blood-bright); }
+.sm-head { display: flex; flex-direction: column; gap: 8px; padding-right: 26px; }
+.sm-head .spell-name { font-size: 20px; }
+.sm-stats {
+  display: flex; flex-direction: column; gap: 6px;
+  border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px;
+  background: rgba(0,0,0,.18);
+}
+.sm-stat { display: flex; gap: 10px; font-size: 13.5px; }
+.sm-k {
+  font-family: var(--caps); color: var(--bronze-bright);
+  min-width: 96px; letter-spacing: .04em; flex-shrink: 0;
+}
+.sm-v { color: var(--text); }
+.sm-section { margin: 0; }
+.sm-section h4 {
+  font-family: var(--caps); font-size: 12px; letter-spacing: .08em;
+  color: var(--text-dim); text-transform: uppercase; margin: 0 0 6px;
+}
+.sm-desc { font-size: 14.5px; margin: 0; }
+.sm-foot {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  border-top: 1px solid var(--line); padding-top: 12px; margin-top: 2px;
+}
 
 /* Gear ------------------------------------------------------- */
 table.ledger { width: 100%; border-collapse: collapse; font-size: 14px; }
