@@ -489,9 +489,142 @@ export function spellCard(s, opts = {}) {
     ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
     <div class="spell-foot">
       ${castingsRow || `<span class="small dim">${s.source === "core" ? "Core" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty"} · p.${s.page}</span>`}
-      <span>${opts.learned ? "" : studyBtn(s, opts.char)} ${exchangeBtn} ${attackBtn}</span>
+      <span>${infoBtn(s)} ${opts.learned ? "" : studyBtn(s, opts.char)} ${exchangeBtn} ${attackBtn}</span>
     </div>
   </div>`;
+}
+
+// ---- Spell detail popup -------------------------------------------------
+// A small ⓘ on every card opens a focused popup gathering everything the data
+// pipeline knows about one spell — parsed stats, theorycrafting categories,
+// effectiveness scores and AI build-lens labels — in one place, regardless of
+// the Archive's advanced toggle. The popup also carries a "relabel" action
+// that opens a prefilled GitHub issue: spells are occasionally mislabeled
+// (e.g. Evoke Gale is typed Attack when it is really utility / crowd control),
+// and this gives players a one-click way to report the correction.
+
+const GH_REPO = "MatthewARoy/shadow-of-the-demon-lord-character";
+
+function infoBtn(s) {
+  return `<button class="btn btn-small spell-info-btn" data-info="${esc(spellKey(s.name, s.tradition))}" title="Detailed info — tags, stats & relabel">ⓘ</button>`;
+}
+
+// Build a GitHub "new issue" URL prefilled with the spell's current labels, so
+// the report names exactly what looks wrong. Works from the static page with no
+// API token: the user's own browser session authors the issue.
+function relabelIssueUrl(s) {
+  const cats = (s.tags || []).map(tagLabel).join(", ") || "none";
+  const e = enrichFor(s);
+  const lens = e
+    ? `role=${e.role || "—"}, build=${(e.archetypes || []).join("/") || "—"}, tempo=${e.tempo || "—"}`
+    : "none";
+  const src = s.source === "core" ? "Core Rulebook" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty";
+  const title = `Relabel: ${s.name} (${s.tradition})`;
+  const body = [
+    `**Spell:** ${s.name}`,
+    `**Tradition:** ${s.tradition}`,
+    `**Rank:** ${s.rank}`,
+    `**Current type:** ${s.type}`,
+    `**Current categories:** ${cats}`,
+    `**Current build lens:** ${lens}`,
+    `**Source:** ${src}, p.${s.page}`,
+    ``,
+    `### Suggested correction`,
+    `<!-- Describe what this spell should be labeled as and why, e.g.`,
+    `"Evoke Gale is typed Attack but is really Utility / crowd control." -->`,
+    ``,
+  ].join("\n");
+  return `https://github.com/${GH_REPO}/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+}
+
+// Static (non-interactive) build-lens badges for the popup — the filtering
+// variant in enrichBlock() relies on the Archive's delegated handlers, which
+// don't reach the popup since it lives outside the tab element.
+function lensStatic(s) {
+  const e = enrichFor(s);
+  if (!e) return "";
+  const badge = (dim, v) => `<span class="lens-badge ${dim}">${esc(lensLabel(v))}</span>`;
+  const badges = [
+    e.role ? badge("role", e.role) : "",
+    ...(e.archetypes || []).map((a) => badge("archetype", a)),
+    e.tempo ? badge("tempo", e.tempo) : "",
+  ].join("");
+  if (!badges && !e.synergy) return "";
+  return `<div class="spell-lens"><div class="lens-badges">${badges}</div>${e.synergy ? `<p class="lens-synergy">${esc(e.synergy)}</p>` : ""}</div>`;
+}
+
+function spellModalHtml(s) {
+  const trad = rules.traditionByName.get(s.tradition);
+  const attrClass = trad ? trad.attribute.toLowerCase() : "";
+  const stats = [];
+  if (s.requirement) stats.push(["Requirement", s.requirement]);
+  if (s.target) stats.push(["Target", s.target]);
+  if (s.area) stats.push(["Area", s.area]);
+  if (s.duration) stats.push(["Duration", s.duration]);
+  if (s.attack) {
+    const a = s.attack;
+    stats.push(["Attack", `${a.attribute} vs ${a.against}${a.damage ? ` · ${a.damage} damage` : ""}`]);
+  }
+  const statRows = stats.map(([k, v]) =>
+    `<div class="sm-stat"><span class="sm-k">${esc(k)}</span><span class="sm-v">${esc(v)}</span></div>`).join("");
+  const cats = s.tags?.length
+    ? `<div class="sm-section"><h4>Categories</h4><div class="spell-cats">${
+        s.tags.map((t) => `<span class="cat-tag">${esc(tagLabel(t))}</span>`).join("")}</div></div>`
+    : "";
+  const scores = scoreBadge(s);
+  const scoreSec = scores ? `<div class="sm-section"><h4>Effectiveness</h4>${scores}</div>` : "";
+  const lens = lensStatic(s);
+  const lensSec = lens ? `<div class="sm-section"><h4>Build lens</h4>${lens}</div>` : "";
+  const src = s.source === "core" ? "Core Rulebook" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty";
+  return `
+  <div class="spell-modal-box" role="dialog" aria-modal="true" aria-label="${esc(s.name)} details">
+    <button class="sm-close" data-modal-close title="Close (Esc)">✕</button>
+    <div class="sm-head">
+      <span class="spell-name">${esc(s.name)}</span>
+      <span class="spell-tags">
+        <span class="tag rank">Rank ${s.rank}</span>
+        <span class="tag ${s.type.toLowerCase()}">${esc(s.type)}</span>
+        <span class="tag ${attrClass}">${esc(s.tradition)}${trad?.dark ? " ☠" : ""}</span>
+      </span>
+    </div>
+    ${statRows ? `<div class="sm-stats">${statRows}</div>` : ""}
+    ${cats}
+    ${scoreSec}
+    ${lensSec}
+    <div class="sm-section"><h4>Description</h4><p class="sm-desc">${esc(s.description)}</p></div>
+    <div class="sm-foot">
+      <span class="small dim">${src} · p.${s.page}</span>
+      <a class="btn btn-small btn-resolve" href="${relabelIssueUrl(s)}" target="_blank" rel="noopener"
+         title="Open a prefilled GitHub issue to suggest a corrected label for this spell">⚑ Relabel…</a>
+    </div>
+  </div>`;
+}
+
+let modalEl = null;
+function ensureModal() {
+  if (modalEl) return modalEl;
+  modalEl = document.createElement("div");
+  modalEl.className = "spell-modal";
+  modalEl.hidden = true;
+  // Backdrop click or the ✕ closes; the relabel link (an <a>) opens normally.
+  modalEl.addEventListener("click", (e) => {
+    if (e.target === modalEl || e.target.closest("[data-modal-close]")) closeSpellModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modalEl.hidden) closeSpellModal();
+  });
+  document.body.appendChild(modalEl);
+  return modalEl;
+}
+function closeSpellModal() {
+  if (modalEl) modalEl.hidden = true;
+}
+function openSpellModal(key) {
+  const s = rules.spellByKey.get(key);
+  if (!s) return;
+  const m = ensureModal();
+  m.innerHTML = spellModalHtml(s);
+  m.hidden = false;
 }
 
 // Star toggle: add/remove a spell from the character's Future Studies list.
@@ -537,6 +670,12 @@ function wire(el, char, computed) {
   el.addEventListener("click", (e) => {
     const c = active();
     if (!c) return;
+    const info = e.target.closest("[data-info]");
+    if (info) {
+      e.preventDefault();
+      openSpellModal(info.dataset.info);
+      return;
+    }
     const find = e.target.closest("[data-find]");
     if (find) {
       e.preventDefault();
