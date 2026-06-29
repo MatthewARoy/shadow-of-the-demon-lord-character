@@ -5,6 +5,7 @@ import { store, load, save, active, addCharacter, deleteActive, exportActive, im
 import { renderBuilder } from "./ui/builder.js";
 import { renderSheet } from "./ui/sheet.js";
 import { renderSpells } from "./ui/spells.js";
+import { renderPaths } from "./ui/paths.js";
 import { renderGear } from "./ui/gear.js";
 import { renderDice } from "./ui/dice.js";
 import { renderLookup } from "./ui/lookup.js";
@@ -13,6 +14,7 @@ const tabs = {
   build: renderBuilder,
   sheet: renderSheet,
   spells: renderSpells,
+  paths: renderPaths,
   gear: renderGear,
   dice: renderDice,
   lookup: renderLookup,
