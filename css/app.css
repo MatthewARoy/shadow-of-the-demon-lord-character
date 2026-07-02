@@ -61,6 +61,8 @@ body::after { /* film grain */
 }
 
 header.masthead, nav.tabs, main, footer { position: relative; z-index: 1; }
+/* Masthead sits above the sticky tab strip so its ⋯ popover can overlap it. */
+header.masthead { z-index: 21; }
 
 /* Masthead --------------------------------------------------- */
 .masthead {
@@ -81,6 +83,34 @@ header.masthead, nav.tabs, main, footer { position: relative; z-index: 1; }
 .roster-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .roster-bar select {
   min-width: 180px; max-width: 260px;
+}
+
+/* Overflow menu (⋯) — hidden on desktop, revealed on narrow widths. */
+.roster-overflow { display: none; position: relative; }
+.overflow-btn { padding: 7px 12px; line-height: 1; }
+.overflow-menu {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 30;
+  min-width: 200px; width: max-content; max-width: min(280px, calc(100vw - 32px));
+  padding: 8px; display: flex; flex-direction: column; gap: 4px;
+}
+.overflow-menu[hidden] { display: none; }
+.ov-item {
+  font-family: var(--caps); font-size: 14px; letter-spacing: .04em;
+  text-align: left; background: transparent; color: var(--bronze-bright);
+  border: 1px solid transparent; border-radius: 3px; padding: 8px 10px;
+  cursor: pointer; transition: all .12s ease;
+}
+.ov-item:hover, .ov-item:focus-visible {
+  background: rgba(176,141,79,.10); border-color: var(--line-bright); outline: none;
+}
+.ov-sample { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ov-sample > span {
+  font-family: var(--caps); font-size: 14px; letter-spacing: .04em; color: var(--bronze-bright);
+}
+.ov-sample select { flex: 1 1 auto; min-width: 0; max-width: 60%; }
+.ov-danger { color: var(--blood-bright); }
+.ov-danger:hover, .ov-danger:focus-visible {
+  background: rgba(142,31,31,.14); border-color: var(--blood-bright);
 }
 
 /* Controls --------------------------------------------------- */
@@ -112,12 +142,23 @@ nav.tabs {
   display: flex; gap: 2px; padding: 0 34px; border-bottom: 1px solid var(--line);
   background: rgba(13,10,9,.7); position: sticky; top: 0; z-index: 20;
   backdrop-filter: blur(6px);
+  overflow-x: auto; scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+nav.tabs::-webkit-scrollbar { display: none; }
+/* Right-edge fade signalling more tabs; sticky so it pins to the visible
+   edge, pointer-events none so it never intercepts taps. */
+nav.tabs::after {
+  content: ""; position: sticky; right: 0; flex: 0 0 auto;
+  align-self: stretch; width: 40px; margin-left: -40px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--ink));
 }
 .tab {
   font-family: var(--display); font-size: 15px; letter-spacing: .12em;
   background: none; border: none; color: var(--text-dim);
   padding: 14px 22px 11px; cursor: pointer; border-bottom: 3px solid transparent;
   text-transform: uppercase; text-decoration: none;
+  flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start;
 }
 .tab:hover { color: var(--bronze); }
 .tab.active { color: var(--bronze-bright); border-bottom-color: var(--blood); }
@@ -570,6 +611,11 @@ table.ledger tr:hover td { background: rgba(176,141,79,.04); }
 }
 hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
 
+@media (prefers-reduced-motion: reduce) {
+  .ov-item { transition: none; }
+  .tab-panel { animation: none; }
+}
+
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--ink-2); }
 ::-webkit-scrollbar-thumb { background: var(--line-bright); border-radius: 5px; }
@@ -577,12 +623,16 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
 
 @media (max-width: 720px) {
   .masthead, nav.tabs, main { padding-left: 16px; padding-right: 16px; }
+  .masthead { padding-top: 16px; padding-bottom: 10px; gap: 8px; align-items: center; }
   .masthead h1 { font-size: 24px; }
-  .roster-bar { width: 100%; }
-  .roster-bar select { min-width: 0; flex: 1 1 140px; }
-  nav.tabs { overflow-x: auto; scrollbar-width: none; }
-  nav.tabs::-webkit-scrollbar { display: none; }
-  .tab { flex: 0 0 auto; padding: 12px 12px 9px; font-size: 13px; white-space: nowrap; }
+  .subtitle { display: none; }
+  .roster-bar { width: 100%; flex-wrap: nowrap; gap: 8px; }
+  .roster-bar select#roster-select { min-width: 0; flex: 1 1 auto; max-width: none; }
+  /* Collapse the desktop controls into the ⋯ overflow menu. */
+  #new-char-btn, #sample-select, #export-btn, #import-btn, #delete-btn { display: none; }
+  .roster-overflow { display: block; flex: 0 0 auto; }
+  .tab { padding: 12px 12px 9px; font-size: 13px; }
+  nav.tabs::after { width: 32px; margin-left: -32px; }
 }
 
 /* ============================================================

@@ -54,6 +54,8 @@ async function boot() {
     current = btn.dataset.tab;
     document.querySelectorAll(".tab[data-tab]").forEach((t) => t.classList.toggle("active", t === btn));
     document.querySelectorAll(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === `tab-${current}`));
+    // Keep the active tab (and its underline) in view when the strip scrolls.
+    btn.scrollIntoView({ inline: "nearest", block: "nearest" });
     renderCurrent();
   });
 
@@ -62,14 +64,16 @@ async function boot() {
     save();
     renderCurrent();
   });
-  document.getElementById("new-char-btn").addEventListener("click", () => {
+
+  // Shared roster actions, reused by the desktop bar and the ⋯ overflow menu.
+  const newSoul = () => {
     const name = prompt("Name the poor soul:", "Unnamed Soul");
     if (name === null) return;
     addCharacter(name || "Unnamed Soul");
     renderRoster();
     renderCurrent();
-  });
-  document.getElementById("delete-btn").addEventListener("click", () => {
+  };
+  const deleteSoul = () => {
     const c = active();
     if (!c) return;
     if (confirm(`Strike “${c.name}” from the ledger forever?`)) {
@@ -77,9 +81,16 @@ async function boot() {
       renderRoster();
       renderCurrent();
     }
-  });
+  };
+  const importClick = () => document.getElementById("import-file").click();
+
+  document.getElementById("new-char-btn").addEventListener("click", newSoul);
+  document.getElementById("delete-btn").addEventListener("click", deleteSoul);
   document.getElementById("export-btn").addEventListener("click", exportActive);
-  document.getElementById("import-btn").addEventListener("click", () => document.getElementById("import-file").click());
+  document.getElementById("import-btn").addEventListener("click", importClick);
+
+  setupOverflowMenu({ newSoul, deleteSoul, importClick });
+
   document.getElementById("import-file").addEventListener("change", async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -99,26 +110,85 @@ async function boot() {
 
 async function setupSamples() {
   const sel = document.getElementById("sample-select");
+  const ovSel = document.getElementById("ov-sample-select");
   try {
     const samples = await fetch("data/samples.json").then((r) => (r.ok ? r.json() : []));
-    if (!samples.length) { sel.hidden = true; return; }
+    if (!samples.length) { sel.hidden = true; if (ovSel) ovSel.hidden = true; return; }
     for (let i = 0; i < samples.length; i++) {
+      const label = `${samples[i].name} — L${samples[i].level}`;
       const o = document.createElement("option");
       o.value = String(i);
-      o.textContent = `${samples[i].name} — L${samples[i].level}`;
+      o.textContent = label;
       sel.appendChild(o);
+      if (ovSel) {
+        const o2 = document.createElement("option");
+        o2.value = String(i);
+        o2.textContent = label;
+        ovSel.appendChild(o2);
+      }
     }
-    sel.addEventListener("change", () => {
-      if (sel.value === "") return;
-      const sample = samples[parseInt(sel.value, 10)];
+    const pick = (which) => {
+      if (which.value === "") return;
+      const sample = samples[parseInt(which.value, 10)];
       importCharacter(JSON.stringify(sample));
       sel.value = "";
+      if (ovSel) ovSel.value = "";
+      closeOverflowMenu();
       renderRoster();
       renderCurrent();
-    });
+    };
+    sel.addEventListener("change", () => pick(sel));
+    if (ovSel) ovSel.addEventListener("change", () => pick(ovSel));
   } catch {
     sel.hidden = true;
+    if (ovSel) ovSel.hidden = true;
   }
+}
+
+// ⋯ overflow menu: popover of roster rites for narrow layouts. Opens under
+// the button; closes on outside click, Escape, or after an action fires.
+function closeOverflowMenu() {
+  const btn = document.getElementById("overflow-btn");
+  const menu = document.getElementById("overflow-menu");
+  if (!btn || !menu || menu.hidden) return;
+  menu.hidden = true;
+  btn.setAttribute("aria-expanded", "false");
+}
+
+function setupOverflowMenu({ newSoul, deleteSoul, importClick }) {
+  const btn = document.getElementById("overflow-btn");
+  const menu = document.getElementById("overflow-menu");
+  if (!btn || !menu) return;
+
+  const open = () => {
+    menu.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+  };
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (menu.hidden) open(); else closeOverflowMenu();
+  });
+
+  // Menu item actions reuse the shared handlers, then dismiss the popover.
+  const wrap = (fn) => () => { fn(); closeOverflowMenu(); };
+  document.getElementById("ov-new-btn").addEventListener("click", wrap(newSoul));
+  document.getElementById("ov-export-btn").addEventListener("click", wrap(exportActive));
+  document.getElementById("ov-import-btn").addEventListener("click", wrap(importClick));
+  document.getElementById("ov-delete-btn").addEventListener("click", wrap(deleteSoul));
+
+  // Outside click and Escape dismiss the popover.
+  document.addEventListener("click", (e) => {
+    if (menu.hidden) return;
+    if (e.target.closest("#overflow-menu") || e.target.closest("#overflow-btn")) return;
+    closeOverflowMenu();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !menu.hidden) {
+      closeOverflowMenu();
+      btn.focus();
+    }
+  });
 }
 
 boot();
