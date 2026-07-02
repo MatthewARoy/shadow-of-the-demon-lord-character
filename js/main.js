@@ -1,7 +1,8 @@
 // Boot: load data, wire the chrome, route tabs.
 
 import { loadRules } from "./data.js";
-import { store, load, save, active, addCharacter, deleteActive, exportActive, importCharacter, onChange } from "./state.js";
+import { store, load, save, active, addCharacter, deleteActive, removeCharacter, exportActive, importCharacter, onChange } from "./state.js";
+import { showToast } from "./ui/toast.js";
 import { renderBuilder } from "./ui/builder.js";
 import { renderSheet } from "./ui/sheet.js";
 import { renderSpells } from "./ui/spells.js";
@@ -159,12 +160,30 @@ async function setupSamples() {
     const pick = (which) => {
       if (which.value === "") return;
       const sample = samples[parseInt(which.value, 10)];
-      importCharacter(JSON.stringify(sample));
+      // Remember who was active so Undo can restore them; importCharacter makes
+      // the new soul active and may append " (2)" etc. for name collisions.
+      const prevId = store.activeId;
+      const added = importCharacter(JSON.stringify(sample));
       sel.value = "";
       if (ovSel) ovSel.value = "";
       closeOverflowMenu();
       renderRoster();
       renderCurrent();
+      showToast(
+        { total: "✦", label: `${added.name} joined the roster`, detail: "" },
+        {
+          action: {
+            label: "Undo",
+            // Remove the just-added soul by id (targets it even if the user has
+            // since switched characters) and restore the previously active one.
+            onClick: () => {
+              removeCharacter(added.id, prevId);
+              renderRoster();
+              renderCurrent();
+            },
+          },
+        },
+      );
     };
     sel.addEventListener("change", () => pick(sel));
     if (ovSel) ovSel.addEventListener("change", () => pick(ovSel));

@@ -645,6 +645,14 @@ table.ledger th.th-equip { width: 1%; white-space: nowrap; }
 .armory-list { max-height: 70vh; overflow-y: auto; }
 
 /* Dice ------------------------------------------------------- */
+/* One panel, two interior columns on desktop (caster left, ledger right);
+   stacks on narrow screens. */
+.dice-grid { display: grid; gap: 22px; }
+@media (min-width: 980px) {
+  .dice-grid { grid-template-columns: 1fr 1fr; }
+  /* Divider between the two interior columns. */
+  .dice-ledger { border-left: 1px solid var(--line); padding-left: 22px; }
+}
 .dice-tray { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
 .die-btn {
   font-family: var(--display); font-size: 18px; width: 64px; height: 64px;
@@ -668,6 +676,18 @@ table.ledger th.th-equip { width: 1%; white-space: nowrap; }
 .log-entry.crit .total { color: var(--bronze-bright); text-shadow: 0 0 10px rgba(217,176,106,.5); }
 .log-entry.fumble .total { color: var(--blood-bright); }
 
+/* The latest roll, emphasized at the top of the ledger. */
+.log-entry.featured {
+  display: flex; align-items: center; gap: 16px;
+  border-left-width: 3px; border-color: var(--bronze);
+  padding: 12px 16px; margin-bottom: 14px;
+  background: linear-gradient(180deg, rgba(176,141,79,.07), rgba(0,0,0,.2));
+}
+.log-entry.featured .total { font-size: 40px; margin-right: 0; line-height: 1; }
+.log-entry.featured .featured-body { min-width: 0; }
+.log-entry.featured .featured-body b { font-size: 15px; }
+.log-entry.featured .when { margin-top: 4px; }
+
 /* Roll toast ------------------------------------------------- */
 .roll-toast {
   position: fixed; bottom: 26px; right: 26px; z-index: 60;
@@ -688,6 +708,14 @@ table.ledger th.th-equip { width: 1%; white-space: nowrap; }
 @keyframes toast-in { from { opacity: 0; transform: translateY(12px); } }
 .roll-toast .total { font-family: var(--display); font-size: 36px; color: var(--parchment); }
 .roll-toast .detail { font-size: 13px; color: var(--text-dim); }
+.roll-toast .toast-action {
+  display: inline-block; margin-top: 10px;
+  font-family: var(--caps); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--bronze-bright); background: transparent; cursor: pointer;
+  border: 1px solid var(--bronze); border-radius: 4px; padding: 5px 14px;
+  transition: all .15s;
+}
+.roll-toast .toast-action:hover { background: rgba(176,141,79,.14); border-color: var(--bronze-bright); }
 
 /* Misc ------------------------------------------------------- */
 .colophon { padding: 30px 34px; border-top: 1px solid var(--line); margin-top: 30px; }
@@ -703,6 +731,8 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
   .ov-item { transition: none; }
   .tab-panel { animation: none; }
   .enc-fill { transition: none; }
+  .toast-action { transition: none; }
+  .roll-toast .toast { animation: none; }
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
