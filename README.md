@@ -66,20 +66,33 @@ npm run dev     # serves on http://localhost:3000
 ## ⛧ Data Pipeline
 
 The ruleset under `data/` is generated from the rulebook PDFs (kept locally
-in the repo root, gitignored) by the scripts in `scripts/`:
+in the repo root, gitignored) by the scripts in `scripts/`. The Python
+dependencies (PyMuPDF) come from `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+The stages, in dependency order (`scripts/rebuild_data.sh` runs them all):
 
 ```bash
 python3 scripts/extract_text.py      # PDFs -> normalized text (fixes broken ligatures)
 python3 scripts/parse_spells.py      # -> data/spells.json
 python3 scripts/tag_spells.py        # -> adds theorycrafting `tags` (+ data/spell-tags.json); applies data/spell-tag-overrides.json
 python3 scripts/enrich_spells.py     # -> data/spell-enrichment.json (LLM build-lens labels via claude -p; resumable, shardable)
-python3 scripts/detect_combos.py     # -> data/spell-combos.json (which spells stack, by fight-goal/lever, with effectiveness scoring)
 python3 scripts/score_spells.py      # -> data/spell-scores.json (per-spell damage/heal/mitigation efficiency as rank-cohort percentiles)
+python3 scripts/detect_combos.py     # -> data/spell-combos.json (which spells stack, by fight-goal/lever, with effectiveness scoring); reads spell-scores.json, so run score_spells.py first
 python3 scripts/parse_paths.py       # -> data/paths.json
 python3 scripts/parse_traditions.py  # -> data/traditions.json
 python3 scripts/parse_equipment.py   # -> data/equipment.json
 python3 scripts/parse_creatures.py   # -> data/creatures.json
 python3 scripts/parse_rules_index.py # -> data/rules-index.json
+```
+
+After regenerating, verify the result:
+
+```bash
+npm test    # data counts + cross-file integrity, then sample-character regression
 ```
 
 `data/curated.json` is hand-written from the rulebook text: ancestries with

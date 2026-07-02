@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+"""Sanity-check the generated data files against each other.
+
+The parse_* scripts are heuristic text extractors; a small regression (a
+heading absorbed into a description, a spell block skipped, a renamed key)
+can slip into the committed JSON without anything crashing. This script makes
+those regressions loud: it asserts the expected corpus counts and that every
+cross-file reference resolves back to data/spells.json.
+
+Runs offline against data/ only — no PDFs or cache needed — so it works in
+any checkout. Wired into `npm test`; run directly with:
+
+    python3 scripts/validate_data.py
+"""
+import json
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / "data"
+
+# Corpus sizes as parsed from the three rulebooks. If a parser or the source
+# text changes these on purpose, update them here in the same commit.
+EXPECTED_SPELLS_BY_SOURCE = {"core": 331, "occult": 761, "terrible": 28}
+EXPECTED_SPELL_COUNT = sum(EXPECTED_SPELLS_BY_SOURCE.values())  # 1120
+EXPECTED_PATH_COUNT = 165
+EXPECTED_TRADITION_COUNT = 42
+
+failures = []
+
+
+def fail(msg):
+    failures.append(msg)
+
+
+def load(name):
+    return json.load(open(DATA / name))
+
+
+def spell_key(s):
+    return f"{s['name']}|{s['tradition']}".lower()
+
+
+def check_spells(spells):
+    if len(spells) != EXPECTED_SPELL_COUNT:
+        fail(f"spells.json: expected {EXPECTED_SPELL_COUNT} spells, got {len(spells)}")
+    by_source = {}
+    for s in spells:
+        by_source[s.get("source")] = by_source.get(s.get("source"), 0) + 1
+    for source, want in EXPECTED_SPELLS_BY_SOURCE.items():
+        got = by_source.get(source, 0)
+        if got != want:
+            fail(f"spells.json: expected {want} {source} spells, got {got}")
+    for s in spells:
+        name = s.get("name") or "<unnamed>"
+        for field in ("name", "tradition", "type", "description", "source"):
+            if not s.get(field):
+                fail(f"spells.json: {name}: missing/empty {field!r}")
+        if not isinstance(s.get("rank"), int) or not (0 <= s["rank"] <= 10):
+            fail(f"spells.json: {name}: bad rank {s.get('rank')!r}")
+    keys = [spell_key(s) for s in spells]
+    dupes = {k for k in keys if keys.count(k) > 1}
+    if dupes:
+        fail(f"spells.json: duplicate name|tradition keys: {sorted(dupes)}")
+    return set(keys)
+
+
+def check_traditions(traditions, spells):
+    if len(traditions) != EXPECTED_TRADITION_COUNT:
+        fail(f"traditions.json: expected {EXPECTED_TRADITION_COUNT} traditions, got {len(traditions)}")
+    spell_traditions = {s["tradition"] for s in spells}
+    for t in traditions:
+        if t["name"] not in spell_traditions:
+            fail(f"traditions.json: tradition {t['name']!r} has no spells in spells.json")
+    # Spell traditions outside traditions.json must be path pseudo-traditions
+    # (path-granted spells use the path name as the tradition slot).
+    known = {t["name"] for t in traditions}
+    for s in spells:
+        if s["tradition"] not in known and not s.get("path_spell"):
+            fail(f"spells.json: {s['name']}: tradition {s['tradition']!r} not in "
+                 f"traditions.json and not flagged path_spell")
+
+
+def check_paths(paths, spells):
+    if len(paths) != EXPECTED_PATH_COUNT:
+        fail(f"paths.json: expected {EXPECTED_PATH_COUNT} paths, got {len(paths)}")
+    spell_names = {s["name"].lower() for s in spells}
+    for p in paths:
+        for level, entry in (p.get("levels") or {}).items():
+            magic = entry.get("magic") if isinstance(entry, dict) else None
+            for grant in (magic or {}).get("grants", []):
+                if grant.lower() not in spell_names:
+                    fail(f"paths.json: {p['name']} level {level}: granted spell "
+                         f"{grant!r} not found in spells.json")
+
+
+def check_scores(scores, spell_keys):
+    for key in scores.get("spells", {}):
+        if key not in spell_keys:
+            fail(f"spell-scores.json: key {key!r} does not resolve to spells.json")
+
+
+def check_enrichment(enrichment, spell_keys):
+    for key in enrichment:
+        if key not in spell_keys:
+            fail(f"spell-enrichment.json: key {key!r} does not resolve to spells.json")
+    missing = spell_keys - set(enrichment)
+    if missing:
+        fail(f"spell-enrichment.json: {len(missing)} spells lack enrichment "
+             f"(e.g. {sorted(missing)[:3]}) — re-run enrich_spells.py")
+
+
+def check_combos(combos, spell_keys):
+    def member(where, m):
+        key = f"{m['name']}|{m['tradition']}".lower()
+        if key not in spell_keys:
+            fail(f"spell-combos.json: {where}: member {key!r} does not resolve to spells.json")
+
+    for i, combo in enumerate(combos.get("combos", [])):
+        for m in combo.get("members", []):
+            member(f"combos[{i}] ({combo.get('goal')})", m)
+    for goal, levers in combos.get("rosters", {}).items():
+        for lever, members in levers.items():
+            for m in members:
+                member(f"rosters[{goal}][{lever}]", m)
+
+
+def check_tag_sidecar(taxonomy, spells):
+    counts = {}
+    for s in spells:
+        for t in s.get("tags", []):
+            counts[t] = counts.get(t, 0) + 1
+    for entry in taxonomy.get("tags", []):
+        got = counts.get(entry["id"], 0)
+        if entry.get("count") != got:
+            fail(f"spell-tags.json: tag {entry['id']!r} count {entry.get('count')} "
+                 f"!= {got} in spells.json — re-run tag_spells.py")
+
+
+def main():
+    spells = load("spells.json")
+    spell_keys = check_spells(spells)
+    check_traditions(load("traditions.json"), spells)
+    check_paths(load("paths.json"), spells)
+    check_scores(load("spell-scores.json"), spell_keys)
+    check_enrichment(load("spell-enrichment.json"), spell_keys)
+    check_combos(load("spell-combos.json"), spell_keys)
+    check_tag_sidecar(load("spell-tags.json"), spells)
+
+    if failures:
+        for f in failures:
+            print(f"✗ {f}", file=sys.stderr)
+        print(f"\n{len(failures)} data validation failure(s)", file=sys.stderr)
+        sys.exit(1)
+    print(f"✓ data OK — {len(spells)} spells "
+          f"({', '.join(f'{v} {k}' for k, v in EXPECTED_SPELLS_BY_SOURCE.items())}), "
+          f"{EXPECTED_PATH_COUNT} paths, {EXPECTED_TRADITION_COUNT} traditions; "
+          "scores/enrichment/combos/grants all resolve")
+
+
+if __name__ == "__main__":
+    main()

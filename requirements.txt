@@ -1,0 +1,3 @@
+# Python dependencies for the data pipeline under scripts/.
+# Everything else the scripts use is the standard library.
+PyMuPDF>=1.24
