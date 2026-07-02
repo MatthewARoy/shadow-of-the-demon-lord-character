@@ -79,8 +79,14 @@ function ensureIndex() {
   return loading;
 }
 
+// Function words would dominate scoring and highlight inside other words
+// ("and" in "hands") — drop them unless the whole query is made of them.
+const STOPWORDS = new Set(["and", "or", "the", "of", "to", "an", "in", "on", "at", "with", "for", "you", "your", "is", "are"]);
+
 function tokenize(s) {
-  return s.toLowerCase().split(/[^a-z0-9’']+/).filter((w) => w.length > 1);
+  const words = s.toLowerCase().split(/[^a-z0-9’']+/).filter((w) => w.length > 1);
+  const meaningful = words.filter((w) => !STOPWORDS.has(w));
+  return meaningful.length ? meaningful : words;
 }
 
 function score(chunk, terms, phrase) {
@@ -144,7 +150,7 @@ function snippetWindow(c, terms) {
 function highlight(escaped, terms) {
   let out = escaped;
   for (const t of [...terms].sort((a, b) => b.length - a.length)) {
-    out = out.replace(new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"), "<mark>$1</mark>");
+    out = out.replace(new RegExp(`\\b(${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"), "<mark>$1</mark>");
   }
   return out;
 }
