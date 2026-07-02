@@ -146,13 +146,9 @@ nav.tabs {
   scrollbar-width: none;
 }
 nav.tabs::-webkit-scrollbar { display: none; }
-/* Right-edge fade signalling more tabs; sticky so it pins to the visible
-   edge, pointer-events none so it never intercepts taps. */
-nav.tabs::after {
-  content: ""; position: sticky; right: 0; flex: 0 0 auto;
-  align-self: stretch; width: 40px; margin-left: -40px; pointer-events: none;
-  background: linear-gradient(90deg, transparent, var(--ink));
-}
+/* Right-edge fade lives inside the mobile @media block (below): on desktop the
+   strip never overflows, so a sticky ::after would render in flow after the
+   last tab and dim it. */
 .tab {
   font-family: var(--display); font-size: 15px; letter-spacing: .12em;
   background: none; border: none; color: var(--text-dim);
@@ -623,16 +619,33 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
 
 @media (max-width: 720px) {
   .masthead, nav.tabs, main { padding-left: 16px; padding-right: 16px; }
-  .masthead { padding-top: 16px; padding-bottom: 10px; gap: 8px; align-items: center; }
-  .masthead h1 { font-size: 24px; }
+  /* Row 1 = compact title + roster select + ⋯, all on one line: keep the
+     masthead a single nowrap row and let the title shrink beside the controls. */
+  .masthead {
+    padding-top: 26px; padding-bottom: 24px; gap: 10px;
+    flex-wrap: nowrap; align-items: center;
+  }
+  .masthead-title { flex: 0 1 auto; min-width: 0; }
+  .masthead h1 {
+    font-size: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .masthead h1 .amp { font-size: 15px; }
+  /* Tagline must not consume a mobile row. */
   .subtitle { display: none; }
-  .roster-bar { width: 100%; flex-wrap: nowrap; gap: 8px; }
+  .roster-bar { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; gap: 8px; justify-content: flex-end; }
   .roster-bar select#roster-select { min-width: 0; flex: 1 1 auto; max-width: none; }
   /* Collapse the desktop controls into the ⋯ overflow menu. */
   #new-char-btn, #sample-select, #export-btn, #import-btn, #delete-btn { display: none; }
   .roster-overflow { display: block; flex: 0 0 auto; }
   .tab { padding: 12px 12px 9px; font-size: 13px; }
-  nav.tabs::after { width: 32px; margin-left: -32px; }
+  /* Right-edge fade signalling more tabs; sticky so it pins to the visible
+     edge, pointer-events none so it never intercepts taps. Mobile-only: on
+     desktop the strip never overflows and the fade would dim the last tab. */
+  nav.tabs::after {
+    content: ""; position: sticky; right: 0; flex: 0 0 auto;
+    align-self: stretch; width: 32px; margin-left: -32px; pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--ink));
+  }
 }
 
 /* ============================================================

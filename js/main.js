@@ -165,8 +165,9 @@ function setupOverflowMenu({ newSoul, deleteSoul, importClick }) {
     btn.setAttribute("aria-expanded", "true");
   };
 
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
+  btn.addEventListener("click", () => {
+    // No stopPropagation needed: the document click handler ignores clicks
+    // inside #overflow-btn, so this toggle won't self-close the menu.
     if (menu.hidden) open(); else closeOverflowMenu();
   });
 
