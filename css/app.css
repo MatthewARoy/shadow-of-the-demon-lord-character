@@ -466,6 +466,7 @@ dl.kv dd { margin: 0; }
 
 /* Archive filter summary ------------------------------------- */
 .filter-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: -6px 0 14px; }
+.filter-summary[hidden] { display: none; }
 .fs-count {
   font-family: var(--caps); font-size: 12px; letter-spacing: .04em;
   font-variant: small-caps; color: var(--text-dim);
