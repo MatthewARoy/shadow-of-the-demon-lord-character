@@ -1,6 +1,6 @@
 // Renders a parsed creature stat block, parchment-style.
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 const SECTIONS = [
   ["attack_options", "Attack Options"],

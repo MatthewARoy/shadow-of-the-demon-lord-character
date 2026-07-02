@@ -9,6 +9,7 @@ import { renderPaths } from "./ui/paths.js";
 import { renderGear } from "./ui/gear.js";
 import { renderDice } from "./ui/dice.js";
 import { renderLookup } from "./ui/lookup.js";
+import { esc } from "./ui/util.js";
 
 const tabs = {
   build: renderBuilder,
@@ -30,7 +31,7 @@ function renderCurrent() {
 function renderRoster() {
   const sel = document.getElementById("roster-select");
   sel.innerHTML = store.characters.map((c) =>
-    `<option value="${c.id}" ${c.id === store.activeId ? "selected" : ""}>${(c.name || "Unnamed Soul").replace(/[&<>"]/g, "")} — L${c.level}</option>`).join("");
+    `<option value="${esc(c.id)}" ${c.id === store.activeId ? "selected" : ""}>${esc(c.name || "Unnamed Soul")} — L${esc(c.level)}</option>`).join("");
 }
 
 async function boot() {

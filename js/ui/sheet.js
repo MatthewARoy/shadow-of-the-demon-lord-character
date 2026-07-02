@@ -8,7 +8,8 @@ import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
+
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const sign = (n) => (n >= 0 ? "+" : "") + n;
 
@@ -45,7 +46,7 @@ export function renderSheet(el) {
         <div style="display:flex;justify-content:center;margin-bottom:6px">
           <div class="pent-node pn-small" style="position:relative;transform:none;width:54px;height:54px">
             <span class="pn-label">Level</span>
-            <span class="pn-value">${char.level}</span>
+            <span class="pn-value">${esc(char.level)}</span>
           </div>
         </div>
         <span class="ink-label">Ancestry</span>
@@ -189,7 +190,7 @@ function node(cls, pos, label, value, sub, attrs = "", title = "") {
   return `
   <div class="pent-node ${cls}" style="left:${pos.x}%;top:${pos.y}%" ${attrs} ${title ? `title="${esc(title)}"` : ""}>
     ${label ? `<span class="pn-label">${esc(label)}</span>` : ""}
-    <span class="pn-value">${value}</span>
+    <span class="pn-value">${esc(value)}</span>
     ${sub ? `<span class="pn-sub">${esc(sub)}</span>` : ""}
   </div>`;
 }

@@ -6,7 +6,7 @@ import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 let catalogTab = "weapons";
 
@@ -67,17 +67,17 @@ function inventoryTable(char, computed) {
         const reqWarn = it.requirement ? requirementUnmet(it.requirement, computed) : null;
         return `
         <tr>
-          <td><input type="checkbox" data-equip="${it.id}" ${it.equipped ? "checked" : ""} title="Equipped"></td>
+          <td><input type="checkbox" data-equip="${esc(it.id)}" ${it.equipped ? "checked" : ""} title="Equipped"></td>
           <td>
             <span class="parch">${esc(it.name)}</span>
-            ${it.damage ? `<button class="btn btn-small" data-weapon-roll="${it.id}" title="Attack roll, then damage">⚔ ${esc(it.damage)}</button>` : ""}
+            ${it.damage ? `<button class="btn btn-small" data-weapon-roll="${esc(it.id)}" title="Attack roll, then damage">⚔ ${esc(it.damage)}</button>` : ""}
             ${it.defense ? `<span class="small dim"> · Defense ${esc(it.defense)}</span>` : ""}
             ${reqWarn ? `<div class="warn">requires ${esc(it.requirement)} — ${reqWarn}</div>` : ""}
             ${it.properties ? `<div class="small dim">${esc(it.properties)}</div>` : ""}
           </td>
-          <td><input type="number" value="${it.qty || 1}" min="1" style="width:58px" data-qty="${it.id}"></td>
-          <td><input type="text" value="${esc(it.notes || "")}" data-notes="${it.id}" style="width:100%"></td>
-          <td><button class="btn btn-small btn-danger" data-drop="${it.id}">✕</button></td>
+          <td><input type="number" value="${esc(it.qty || 1)}" min="1" style="width:58px" data-qty="${esc(it.id)}"></td>
+          <td><input type="text" value="${esc(it.notes || "")}" data-notes="${esc(it.id)}" style="width:100%"></td>
+          <td><button class="btn btn-small btn-danger" data-drop="${esc(it.id)}">✕</button></td>
         </tr>`;
       }).join("")}
     </tbody>

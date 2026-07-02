@@ -4,8 +4,8 @@ import { diceState, rollD20, rollPlain, rollDamage, rollLog, onRoll } from "../d
 import { compute, ATTRS } from "../engine.js";
 import { active } from "../state.js";
 import { showToast } from "./toast.js";
+import { esc } from "./util.js";
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
 let wired = false;

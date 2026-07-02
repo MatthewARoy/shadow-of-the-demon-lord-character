@@ -1,7 +1,7 @@
 // Roll result toasts — stacked so consecutive rolls (attack, then damage)
 // each stay readable for their full lifetime.
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 const LIFETIME = 4000;
 

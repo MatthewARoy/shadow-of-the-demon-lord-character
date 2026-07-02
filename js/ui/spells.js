@@ -7,8 +7,7 @@ import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
 import { statBlockHtml } from "./statblock.js";
-
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 // Ranks above 5 effectively never come up in play, so the Archive — and the
 // theorycrafting it feeds (combos, sorting) — only ever considers spells up to
