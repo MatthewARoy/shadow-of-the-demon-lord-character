@@ -809,13 +809,97 @@ button.pent-node:focus-visible { outline: 2px solid var(--ink-red); outline-offs
 .paper .btn-ink:hover { background: rgba(142,31,31,.1); border-color: var(--ink-red); }
 
 .paper textarea.ink-area {
-  width: 100%; background: transparent; border: none; resize: vertical;
+  width: 100%; background: transparent; border: none; resize: none;
   color: var(--ink-dark); font-family: var(--fell); font-size: 14.5px; font-style: italic;
+  /* Grow to fit, then scroll. min/max are set in lines so the box opens at a
+     sensible height and never runs away down the page. */
+  overflow-y: auto;
+  min-height: 5.2em; max-height: 12lh;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-red-soft) transparent;
 }
+/* Native auto-grow where supported; the JS scrollHeight fallback covers the
+   rest. The shared max-height caps both paths, then overflow-y scrolls. */
+@supports (field-sizing: content) {
+  .paper textarea.ink-area { field-sizing: content; }
+}
+.paper textarea.ink-area::-webkit-scrollbar { width: 8px; }
+.paper textarea.ink-area::-webkit-scrollbar-track { background: transparent; }
+.paper textarea.ink-area::-webkit-scrollbar-thumb {
+  background: var(--ink-red-soft); border-radius: 4px;
+}
+.paper textarea.ink-area::-webkit-scrollbar-thumb:hover { background: var(--ink-red); }
 .paper textarea.ink-area:focus { outline: 1px dashed var(--ink-red-soft); }
 
+/* Play-tracking steppers (Damage / Insanity / Corruption) ------ */
+.stepper-row {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+  margin-top: 10px;
+}
+.stepper {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  border: 1.5px solid var(--ink-red-soft); border-radius: 8px;
+  padding: 7px 12px 8px; min-width: 108px;
+  background: rgba(255, 252, 244, .3);
+}
+.stepper-name {
+  font-family: var(--display); font-size: 11.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-red);
+}
+.stepper-controls { display: flex; align-items: center; gap: 10px; }
+.stepper-btn {
+  width: 34px; height: 34px; flex: 0 0 34px; border-radius: 50%;
+  border: 1.5px solid var(--ink-red-soft); background: transparent;
+  color: var(--ink-red); font-family: var(--display); font-size: 20px; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .12s, border-color .12s;
+}
+.stepper-btn:hover { background: rgba(142,31,31,.1); border-color: var(--ink-red); }
+.stepper-btn:active { background: rgba(142,31,31,.18); }
+.stepper-value {
+  font-family: var(--display); font-size: 24px; color: var(--ink-dark);
+  min-width: 1.6em; text-align: center; font-variant-numeric: tabular-nums;
+}
+.stepper-sub { font-family: var(--caps); font-size: 11px; color: var(--ink-faint); }
+
+/* Provenance tooltip on stat nodes ----------------------------- */
+.prov-tip {
+  position: fixed; z-index: 70; pointer-events: none;
+  min-width: 150px; max-width: min(260px, 90vw);
+  padding: 8px 10px; border-radius: 5px;
+  border: 1px solid var(--line-bright);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  box-shadow: 0 10px 34px rgba(0,0,0,.6);
+  color: var(--text); font-family: var(--body); font-size: 12.5px; line-height: 1.4;
+  animation: prov-tip-in .12s ease;
+}
+.prov-tip[hidden] { display: none; }
+.prov-tip-title {
+  font-family: var(--caps); font-size: 12.5px; letter-spacing: .05em;
+  color: var(--bronze-bright); margin-bottom: 5px;
+  padding-bottom: 4px; border-bottom: 1px solid var(--line);
+}
+.prov-tip-row {
+  display: flex; justify-content: space-between; gap: 14px;
+}
+.prov-tip-row + .prov-tip-row { margin-top: 2px; }
+.prov-tip-row > span:last-child {
+  font-variant-numeric: tabular-nums; color: var(--parchment); flex: 0 0 auto;
+}
+.prov-tip-total {
+  margin-top: 5px; padding-top: 4px; border-top: 1px solid var(--line);
+  font-family: var(--caps); color: var(--bronze-bright);
+}
+.prov-tip-total > span:last-child { color: var(--bronze-bright); }
+@keyframes prov-tip-in { from { opacity: 0; transform: translateY(3px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .prov-tip { animation: none; }
+  .stepper-btn { transition: none; }
+}
+
 @media print {
-  .masthead, nav.tabs, .colophon, .roll-toast, .vignette, .sigil, .sheet-below { display: none !important; }
+  .masthead, nav.tabs, .colophon, .roll-toast, .vignette, .sigil, .sheet-below, .prov-tip { display: none !important; }
   body { background: white; }
   body::after { display: none; }
   main { padding: 0; max-width: none; }
