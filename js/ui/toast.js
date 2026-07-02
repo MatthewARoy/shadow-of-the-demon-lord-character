@@ -15,9 +15,10 @@ export function showToast(entry) {
     <b>${esc(entry.label)}</b>
     <div class="detail">${esc(entry.detail)}${entry.crit ? " — a natural 20!" : ""}${entry.fumble ? " — a natural 1…" : ""}</div>`;
   box.appendChild(t);
-  box.hidden = false;
+  // The live region stays permanently in the accessibility tree (never
+  // `hidden`) so inserted toasts are reliably announced; it's empty and
+  // pointer-transparent between rolls, so nothing blocks the page.
   setTimeout(() => {
     t.remove();
-    if (!box.children.length) box.hidden = true;
   }, LIFETIME);
 }

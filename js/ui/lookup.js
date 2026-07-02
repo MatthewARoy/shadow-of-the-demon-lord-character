@@ -45,7 +45,9 @@ export function renderLookup(el) {
   const results = el.querySelector("#lk-results");
   const toggleBody = (body) => {
     const clamped = body.classList.toggle("lk-clamp");
-    body.setAttribute("aria-expanded", clamped ? "false" : "true");
+    // Only long bodies are exposed as role="button"; short paragraphs stay
+    // plain <p>, so don't stamp aria-expanded on a non-interactive element.
+    if (body.hasAttribute("role")) body.setAttribute("aria-expanded", clamped ? "false" : "true");
   };
   results.addEventListener("click", (e) => {
     const body = e.target.closest(".lk-body");
