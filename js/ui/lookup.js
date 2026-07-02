@@ -1,7 +1,7 @@
 // Lookup tab: instant rules search over the pre-chunked rulebook index.
 // Pure client-side lexical scoring — works offline at the table.
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 const BOOKS = { core: "Core Rulebook", occult: "Occult Philosophy", terrible: "Terrible Beauty" };
 

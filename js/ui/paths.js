@@ -11,8 +11,7 @@
 
 import { rules } from "../data.js";
 import { analyzeAllPaths } from "../path-eval.js";
-
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 const BOOKS = { core: "Core Rulebook", occult: "Occult Philosophy", terrible: "Terrible Beauty" };
 
