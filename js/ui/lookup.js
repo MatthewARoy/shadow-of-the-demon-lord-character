@@ -51,6 +51,9 @@ export function renderLookup(el) {
     const count = el.querySelector("#lk-count");
     if (count) count.textContent = `${index.length} sections indexed`;
     if (query) runSearch(el);
+  }).catch(() => {
+    const count = el.querySelector("#lk-count");
+    if (count) count.textContent = "the index could not be loaded — reopen this tab to retry";
   });
   if (query) runSearch(el);
   input.focus();
@@ -60,10 +63,17 @@ function ensureIndex() {
   if (index) return Promise.resolve(index);
   if (!loading) {
     loading = fetch("data/rules-index.json")
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error(`rules-index.json: HTTP ${r.status}`);
+        return r.json();
+      })
       .then((data) => {
         index = data.map((c) => ({ ...c, tl: c.t.toLowerCase(), xl: c.x.toLowerCase() }));
         return index;
+      })
+      .catch((e) => {
+        loading = null; // allow a retry on the next mount
+        throw e;
       });
   }
   return loading;
@@ -113,7 +123,7 @@ function runSearch(el) {
     <div class="talent" style="margin-bottom:14px">
       <b>${highlight(esc(c.t), terms)}</b>
       <span class="src">${BOOKS[c.b]} · p.${c.p}</span>
-      <p class="lk-body ${c.x.length > 460 ? "lk-clamp" : ""}" data-full="${esc(c.x)}">${highlight(esc(win), terms)}</p>
+      <p class="lk-body ${c.x.length > 460 ? "lk-clamp" : ""}">${highlight(esc(win), terms)}</p>
     </div>`;
   }).join("");
 }

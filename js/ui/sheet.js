@@ -26,7 +26,6 @@ export function renderSheet(el) {
   const char = active();
   if (!char) return;
   const computed = compute(char);
-  const m = computed.modifiers;
   const incapacitated = computed.health > 0 && char.damage >= computed.health;
   const masterName = char.masterMode === "second-expert" ? char.secondExpertPath : char.masterPath;
 

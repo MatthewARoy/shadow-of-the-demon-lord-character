@@ -91,7 +91,9 @@ function levelPlan(char) {
   const expert = char.expertPath && rules.pathByName.get(char.expertPath);
   const second = char.secondExpertPath && rules.pathByName.get(char.secondExpertPath);
   const master = char.masterPath && rules.pathByName.get(char.masterPath);
-  const ancestry = rules.ancestryByName.get(char.ancestry);
+  // Same fallback as compute(): an unknown imported ancestry plays as the
+  // first curated one, keeping creation[...] slot prefixes consistent.
+  const ancestry = rules.ancestryByName.get(char.ancestry) || rules.curated.ancestries[0];
   const useSecond = char.masterMode === "second-expert";
 
   // Slot ids embed the path name so switching paths (or levels) orphans old
