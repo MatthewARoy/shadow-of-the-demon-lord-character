@@ -63,6 +63,10 @@ const SAMPLES = [
       name: "Grin, Guild Knife",
       ancestry: "Goblin", level: 2, novicePath: "Rogue",
       notes: "Sample build — guild-trained cutpurse (Rogue Training 2) who dabbles in magic: the Magic roguery talent grants Power and shadow tricks.",
+      inventory: [
+        { id: "grin-leathers", name: "Soft Leather", qty: 1, defense: "Agility+1", requirement: null, type: "Clothing", armor: true, equipped: true },
+        { id: "grin-loot", name: "Mail", qty: 1, defense: "15", requirement: "Strength 13", type: "Medium Armor", armor: true, equipped: false, notes: "Stolen — for selling, not wearing" },
+      ],
     },
     script: {
       attributes: ["agility", "intellect"],
@@ -72,33 +76,47 @@ const SAMPLES = [
       talents: ["Magic"],
       langProf: ["Thief", "Smuggler", "Pickpocket"],
     },
-    expect: { power: 1, traditionCount: 2, agility: 13, pending: 0 },
+    // Soft Leather: Defense = Agility 13 + 1. The unequipped (and unwearable)
+    // mail must affect nothing.
+    expect: { power: 1, traditionCount: 2, agility: 13, defense: 14, speed: 10, pending: 0 },
   },
   {
     base: {
       name: "Torga Stonejaw",
       ancestry: "Dwarf", level: 4, novicePath: "Warrior",
       notes: "Sample build — militia veteran (Warrior Training 3). Takes Shake it Off at level 4; no magic at all.",
+      inventory: [
+        { id: "torga-brigandine", name: "Brigandine", qty: 1, defense: "13", requirement: "Strength 11", type: "Light Armor", armor: true, equipped: true },
+      ],
     },
     script: {
       attributes: ["strength", "agility"],
       options: { "Level 4 Dwarf Benefit": 1 },
       langProf: ["Miner", "Brewer", "Militia member"],
     },
-    expect: { health: 31, power: 0, spellCount: 0, talentHas: "Shake it Off", pending: 0 },
+    // Brigandine replaces Agility 10 with 13; Strength 11 meets the
+    // requirement exactly, so the dwarf Speed 8 is untouched.
+    expect: { health: 31, power: 0, spellCount: 0, talentHas: "Shake it Off", defense: 13, speed: 8, pending: 0 },
   },
   {
     base: {
       name: "Walter the Unyielding",
       ancestry: "Human", level: 7, novicePath: "Warrior", expertPath: "Fighter", masterPath: "Dreadnaught",
       notes: "Sample build — pit fighter turned iron-clad wall (Warrior Training 1). Tests the full novice → expert → master spine with Determined at level 4.",
+      inventory: [
+        { id: "walter-mail", name: "Mail", qty: 1, defense: "15", requirement: "Strength 13", type: "Medium Armor", armor: true, equipped: true },
+        { id: "walter-shield", name: "Large shield", qty: 1, damage: "1d3", hands: "Off", properties: "Size 1, Defensive +2", requirement: "Strength 11", weapon: true, equipped: true },
+      ],
     },
     script: {
       attributes: ["strength", "agility", "strength", "will", "strength", "agility", "will"],
       options: { "Level 4 Human Benefit": 1 },
       langProf: ["Pit fighter", "Laborer", "Dark Speech", "Mercenary", "Officer"],
     },
-    expect: { power: 0, spellCount: 0, talentHas: "Iron Clad", pending: 0 },
+    // Mail (15) replaces Agility 12, the shield's Defensive +2 and the
+    // Warrior level 5 +1 stack on top: Defense 18. Strength 14 meets both
+    // requirements; medium armor doesn't slow him.
+    expect: { power: 0, spellCount: 0, talentHas: "Iron Clad", defense: 18, speed: 10, pending: 0 },
   },
 ];
 
@@ -225,7 +243,7 @@ function pickSpell(char, out, p, q) {
 function check(name, expect, out) {
   const fails = [];
   const got = {
-    health: out.health, power: out.power, defense: out.defense,
+    health: out.health, power: out.power, defense: out.defense, speed: out.speed,
     strength: out.attributes.strength, agility: out.attributes.agility,
     intellect: out.attributes.intellect, will: out.attributes.will,
     spellCount: out.spells.length, traditionCount: out.discovered.length,
@@ -242,10 +260,54 @@ function check(name, expect, out) {
 }
 
 // ---------------------------------------------------------------------------
+// Equipped-gear engine checks (core p. 35, 101, 103). These cover rule
+// corners the user-facing samples shouldn't model — e.g. wearing armor whose
+// Strength requirement is unmet — and never touch samples.json.
+// ---------------------------------------------------------------------------
+
+const GEAR_CHECKS = [
+  {
+    name: "heavy armor with unmet Strength requirement",
+    // Defense 17 still replaces Agility 10; Speed 10 loses 2 for heavy
+    // armor and 2 more for the unmet requirement.
+    inventory: [
+      { id: "t1", name: "Plate and Mail", qty: 1, defense: "17", requirement: "Strength 15", type: "Heavy Armor", armor: true, equipped: true },
+    ],
+    expect: { defense: 17, speed: 6 },
+  },
+  {
+    name: "Agility-based armor stacks with a shield",
+    inventory: [
+      { id: "t1", name: "Soft Leather", qty: 1, defense: "Agility+1", type: "Clothing", armor: true, equipped: true },
+      { id: "t2", name: "Small shield", qty: 1, damage: "1", hands: "Off", properties: "Defensive +1", requirement: "Strength 9", weapon: true, equipped: true },
+    ],
+    expect: { defense: 12, speed: 10 },
+  },
+  {
+    name: "unequipped armor is ignored",
+    inventory: [
+      { id: "t1", name: "Mail", qty: 1, defense: "15", requirement: "Strength 13", type: "Medium Armor", armor: true, equipped: false },
+    ],
+    expect: { defense: 10, speed: 10 },
+  },
+];
+
+// ---------------------------------------------------------------------------
 
 const write = process.argv.includes("--write");
 const samples = [];
 let failed = 0;
+
+for (const gc of GEAR_CHECKS) {
+  const char = Object.assign(newCharacter("Gear Check"), { inventory: gc.inventory });
+  const fails = check(gc.name, gc.expect, compute(char));
+  if (fails.length) {
+    failed++;
+    console.error(`✗ gear: ${gc.name}\n   ${fails.join("\n   ")}`);
+  } else {
+    console.log(`✓ gear: ${gc.name}`);
+  }
+}
 
 for (const spec of SAMPLES) {
   const { char, out } = resolveAll(spec);

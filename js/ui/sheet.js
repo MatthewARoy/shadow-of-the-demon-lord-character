@@ -126,7 +126,10 @@ export function renderSheet(el) {
         <h2 class="rubric">Provenance</h2>
         ${provBlock("Health", computed.provenance.health, [{ source: "Strength score", amount: computed.attributes.strength }])}
         ${provBlock("Power", computed.provenance.power)}
-        ${provBlock("Defense", computed.provenance.defense, computed.defenseFixed != null ? [{ source: "Fixed (ancestry)", amount: computed.defenseFixed }] : [{ source: "Agility score", amount: computed.attributes.agility }])}
+        ${provBlock("Defense", computed.provenance.defense,
+          computed.armor ? [{ source: `${computed.armor.name} (armor)`, amount: computed.armor.base }]
+          : computed.defenseFixed != null ? [{ source: "Fixed (ancestry)", amount: computed.defenseFixed }]
+          : [{ source: "Agility score", amount: computed.attributes.agility }])}
         ${provBlock("Speed", computed.provenance.speed, [{ source: "Ancestry base", amount: computed.ancestry.creation.speed }])}
         ${provBlock("Corruption", computed.provenance.corruption)}
         ${provBlock("Insanity", computed.provenance.insanity)}

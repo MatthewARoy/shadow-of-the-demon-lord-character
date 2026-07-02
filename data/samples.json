@@ -237,7 +237,29 @@
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
   "expended": {},
-  "inventory": [],
+  "inventory": [
+   {
+    "id": "grin-leathers",
+    "name": "Soft Leather",
+    "qty": 1,
+    "defense": "Agility+1",
+    "requirement": null,
+    "type": "Clothing",
+    "armor": true,
+    "equipped": true
+   },
+   {
+    "id": "grin-loot",
+    "name": "Mail",
+    "qty": 1,
+    "defense": "15",
+    "requirement": "Strength 13",
+    "type": "Medium Armor",
+    "armor": true,
+    "equipped": false,
+    "notes": "Stolen — for selling, not wearing"
+   }
+  ],
   "coins": "",
   "notes": "Sample build — guild-trained cutpurse (Rogue Training 2) who dabbles in magic: the Magic roguery talent grants Power and shadow tricks."
  },
@@ -280,7 +302,18 @@
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
   "expended": {},
-  "inventory": [],
+  "inventory": [
+   {
+    "id": "torga-brigandine",
+    "name": "Brigandine",
+    "qty": 1,
+    "defense": "13",
+    "requirement": "Strength 11",
+    "type": "Light Armor",
+    "armor": true,
+    "equipped": true
+   }
+  ],
   "coins": "",
   "notes": "Sample build — militia veteran (Warrior Training 3). Takes Shake it Off at level 4; no magic at all."
  },
@@ -350,7 +383,29 @@
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
   "expended": {},
-  "inventory": [],
+  "inventory": [
+   {
+    "id": "walter-mail",
+    "name": "Mail",
+    "qty": 1,
+    "defense": "15",
+    "requirement": "Strength 13",
+    "type": "Medium Armor",
+    "armor": true,
+    "equipped": true
+   },
+   {
+    "id": "walter-shield",
+    "name": "Large shield",
+    "qty": 1,
+    "damage": "1d3",
+    "hands": "Off",
+    "properties": "Size 1, Defensive +2",
+    "requirement": "Strength 11",
+    "weapon": true,
+    "equipped": true
+   }
+  ],
   "coins": "",
   "notes": "Sample build — pit fighter turned iron-clad wall (Warrior Training 1). Tests the full novice → expert → master spine with Determined at level 4."
  }
