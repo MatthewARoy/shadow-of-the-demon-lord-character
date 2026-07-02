@@ -15,7 +15,9 @@ export function renderGear(el) {
   if (!char) return;
   const computed = compute(char);
   const str = computed.attributes.strength;
-  const itemCount = char.inventory.reduce((n, it) => n + (it.qty || 1), 0);
+  // Coerce qty to a number — imported JSON can carry a string qty, which would
+  // otherwise string-concatenate here and land raw in the meter's aria-valuenow.
+  const itemCount = char.inventory.reduce((n, it) => n + (Number(it.qty) || 1), 0);
   const encumbered = itemCount > str;
   const overloaded = itemCount > str * 2;
 
@@ -99,7 +101,9 @@ function equipEffect(it, computed) {
   const agi = computed.attributes.agility;
 
   // Armor: parsed defense value drives Defense; heavy armor and unmet
-  // requirements each cost Speed −2 (see applyEquippedGear).
+  // requirements each cost Speed −2 (see applyEquippedGear). The engine only
+  // touches Speed inside this armor guard, so the Speed −2 line must live here
+  // too — a weapon/shield with an unmet requirement gets no Speed penalty.
   if (it.defense != null && it.defense !== "") {
     const m = String(it.defense).trim().match(/^agility\s*(?:\+\s*(\d+))?$/i);
     if (m) {
@@ -111,29 +115,33 @@ function equipEffect(it, computed) {
     }
     const type = it.type || rules.equipment.armor.find((a) => a.name === it.name)?.type || "";
     if (/heavy/i.test(type)) lines.push(esc("Speed −2 — heavy armor"));
+    if (it.requirement && !meetsRequirement(it.requirement, computed.attributes)) {
+      lines.push(esc(`Speed −2 — ${it.requirement} required`));
+    }
   }
 
   // Weapons/shields with the Defensive property add to Defense on top.
   const def = String(it.properties || "").match(/defensive\s*\+\s*(\d+)/i);
   if (def) lines.push(esc(`Defense +${parseInt(def[1], 10)}`));
 
-  // Unmet Strength requirement: the engine applies a Speed −2 penalty.
-  if (it.requirement && !meetsRequirement(it.requirement, computed.attributes)) {
-    lines.push(esc(`Speed −2 — ${it.requirement} required`));
-  }
-
   if (!lines.length) return "";
-  if (!it.equipped) return `<div class="equip-effect stowed">stowed</div>`;
-  return `<div class="equip-effect">${lines.join(" · ")}</div>`;
+  // Stowed items preview their dormant effect dimmed; the worn/stowed word
+  // already lives on the equip toggle, so we don't repeat it here.
+  const cls = it.equipped ? "equip-effect" : "equip-effect stowed";
+  return `<div class="${cls}">${lines.join(" · ")}</div>`;
 }
 
 function encumbranceMeter(count, limit, encumbered) {
   const max = Math.max(1, limit);
   const pct = Math.min(100, (count / max) * 100);
   const over = count > limit;
+  // role="meter" forbids aria-valuenow > aria-valuemax, so clamp it and expose
+  // the true count via aria-valuetext.
+  const now = Math.min(count, max);
   return `
   <div class="enc-meter ${over ? "over" : encumbered ? "warn-fill" : ""}"
-       role="meter" aria-valuemin="0" aria-valuemax="${max}" aria-valuenow="${count}"
+       role="meter" aria-valuemin="0" aria-valuemax="${max}" aria-valuenow="${now}"
+       aria-valuetext="${count} of ${max} item${count !== 1 ? "s" : ""}"
        aria-label="Items carried against Strength limit">
     <div class="enc-fill" style="width:${pct}%"></div>
   </div>`;
