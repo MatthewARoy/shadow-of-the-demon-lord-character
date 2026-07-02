@@ -1,7 +1,7 @@
 // Gear tab: inventory, the armory catalog, encumbrance.
 
 import { rules } from "../data.js";
-import { compute } from "../engine.js";
+import { compute, meetsRequirement } from "../engine.js";
 import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
@@ -86,13 +86,7 @@ function inventoryTable(char, computed) {
 
 function requirementUnmet(req, computed) {
   // e.g. "Strength 11", "Strength or Agility 11", "Strength 13"
-  const m = String(req).match(/Strength( or Agility)? (\d+)/i);
-  if (!m) return null;
-  const need = parseInt(m[2], 10);
-  const ok = m[1]
-    ? computed.attributes.strength >= need || computed.attributes.agility >= need
-    : computed.attributes.strength >= need;
-  return ok ? null : "1 bane on attacks / slowed in armor";
+  return meetsRequirement(req, computed.attributes) ? null : "1 bane on attacks / slowed in armor";
 }
 
 function catalogTable(tab) {
@@ -173,7 +167,7 @@ function wire(el, char, computed) {
         char.inventory.push({ id: crypto.randomUUID(), name: w.name, qty: 1, damage: w.damage, hands: w.hands, properties: w.properties, requirement: w.requirement || null, weapon: true });
       } else if (kind === "a") {
         const a = rules.equipment.armor[i];
-        char.inventory.push({ id: crypto.randomUUID(), name: a.name, qty: 1, defense: a.defense, requirement: a.requirement || null, armor: true });
+        char.inventory.push({ id: crypto.randomUUID(), name: a.name, qty: 1, defense: a.defense, type: a.type, requirement: a.requirement || null, armor: true });
       } else {
         const g = rules.equipment.gear[i];
         char.inventory.push({ id: crypto.randomUUID(), name: g.name, qty: 1 });
