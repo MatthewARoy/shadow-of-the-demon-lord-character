@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "npx -y serve -l 3000",
-    "test": "node scripts/build_samples.mjs"
+    "test": "python3 scripts/validate_data.py && node scripts/build_samples.mjs"
   },
   "keywords": [
     "sotdl",
