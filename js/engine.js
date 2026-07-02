@@ -362,7 +362,7 @@ function applyEquippedGear(out, char) {
 }
 
 // "15" | "Agility" | "Agility+2" → the Defense the armor imposes.
-function armorDefenseBase(defense, agility) {
+export function armorDefenseBase(defense, agility) {
   const m = String(defense).trim().match(/^agility\s*(?:\+\s*(\d+))?$/i);
   if (m) return agility + (m[1] ? parseInt(m[1], 10) : 0);
   const n = parseInt(defense, 10);
