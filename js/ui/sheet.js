@@ -189,12 +189,18 @@ function pentagram(char, computed, incapacitated) {
 }
 
 function node(cls, pos, label, value, sub, attrs = "", title = "") {
+  // Rollable nodes are real buttons so they're keyboard-reachable and announce
+  // their action; static nodes stay <div>s. The `rollable` class only ever rides
+  // along with a data-roll-* attribute, so keying off it is safe.
+  const rollable = /\brollable\b/.test(cls);
+  const tag = rollable ? "button" : "div";
+  const typeAttr = rollable ? `type="button"` : "";
   return `
-  <div class="pent-node ${cls}" style="left:${pos.x}%;top:${pos.y}%" ${attrs} ${title ? `title="${esc(title)}"` : ""}>
+  <${tag} class="pent-node ${cls}" style="left:${pos.x}%;top:${pos.y}%" ${typeAttr} ${attrs} ${title ? `title="${esc(title)}"` : ""}>
     ${label ? `<span class="pn-label">${esc(label)}</span>` : ""}
     <span class="pn-value">${esc(value)}</span>
     ${sub ? `<span class="pn-sub">${esc(sub)}</span>` : ""}
-  </div>`;
+  </${tag}>`;
 }
 
 /* ---------------- weapons ---------------- */

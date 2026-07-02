@@ -42,9 +42,23 @@ export function renderLookup(el) {
     input.value = q;
     runSearch(el);
   });
-  el.querySelector("#lk-results").addEventListener("click", (e) => {
+  const results = el.querySelector("#lk-results");
+  const toggleBody = (body) => {
+    const clamped = body.classList.toggle("lk-clamp");
+    body.setAttribute("aria-expanded", clamped ? "false" : "true");
+  };
+  results.addEventListener("click", (e) => {
     const body = e.target.closest(".lk-body");
-    if (body) body.classList.toggle("lk-clamp");
+    if (body) toggleBody(body);
+  });
+  // Keyboard reach for the clamp toggles: Enter/Space fire the same toggle,
+  // Space also preventing the page from scrolling.
+  results.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const body = e.target.closest(".lk-body[role='button']");
+    if (!body) return;
+    e.preventDefault();
+    toggleBody(body);
   });
 
   ensureIndex().then(() => {
@@ -125,11 +139,15 @@ function runSearch(el) {
   }
   box.innerHTML = hits.map(({ c }) => {
     const win = snippetWindow(c, terms);
+    // Only long bodies clamp, and only those are interactive: expose them as
+    // keyboard-reachable toggle buttons (collapsed = aria-expanded false).
+    const clamped = c.x.length > 460;
+    const toggle = clamped ? ` tabindex="0" role="button" aria-expanded="false"` : "";
     return `
     <div class="talent" style="margin-bottom:14px">
       <b>${highlight(esc(c.t), terms)}</b>
       <span class="src">${BOOKS[c.b]} · p.${c.p}</span>
-      <p class="lk-body ${c.x.length > 460 ? "lk-clamp" : ""}">${highlight(esc(win), terms)}</p>
+      <p class="lk-body ${clamped ? "lk-clamp" : ""}"${toggle}>${highlight(esc(win), terms)}</p>
     </div>`;
   }).join("");
 }

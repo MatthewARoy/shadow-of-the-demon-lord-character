@@ -482,7 +482,7 @@ export function spellCard(s, opts = {}) {
     ${filters.advanced ? tagChips(s) : ""}
     ${filters.advanced ? scoreBadge(s) : ""}
     ${filters.advanced ? enrichBlock(s) : ""}
-    <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
+    <p class="spell-desc clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(s.description)}</p>
     ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
     ${openCreature ? statBlockHtml(openCreature) : ""}
     ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
@@ -576,7 +576,7 @@ function spellModalHtml(s) {
   const lensSec = lens ? `<div class="sm-section"><h4>Build lens</h4>${lens}</div>` : "";
   const src = s.source === "core" ? "Core Rulebook" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty";
   return `
-  <div class="spell-modal-box" role="dialog" aria-modal="true" aria-label="${esc(s.name)} details">
+  <div class="spell-modal-box" role="dialog" aria-modal="true" aria-label="${esc(s.name)} details" tabindex="-1">
     <button class="sm-close" data-modal-close title="Close (Esc)">✕</button>
     <div class="sm-head">
       <span class="spell-name">${esc(s.name)}</span>
@@ -600,6 +600,14 @@ function spellModalHtml(s) {
 }
 
 let modalEl = null;
+let modalReturnFocus = null; // element focused before the modal opened
+
+// The elements the focus trap cycles through, in DOM order.
+const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+function focusablesIn(root) {
+  return [...root.querySelectorAll(FOCUSABLE)].filter((n) => n.offsetParent !== null || n === document.activeElement);
+}
+
 function ensureModal() {
   if (modalEl) return modalEl;
   modalEl = document.createElement("div");
@@ -610,20 +618,45 @@ function ensureModal() {
     if (e.target === modalEl || e.target.closest("[data-modal-close]")) closeSpellModal();
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !modalEl.hidden) closeSpellModal();
+    if (modalEl.hidden) return;
+    if (e.key === "Escape") { closeSpellModal(); return; }
+    if (e.key !== "Tab") return;
+    // Trap Tab/Shift+Tab within the dialog's focusable elements, wrapping.
+    const box = modalEl.querySelector(".spell-modal-box");
+    if (!box) return;
+    const items = focusablesIn(box);
+    if (!items.length) { e.preventDefault(); box.focus(); return; }
+    const first = items[0];
+    const last = items[items.length - 1];
+    const activeInside = box.contains(document.activeElement) ? document.activeElement : null;
+    if (e.shiftKey && (activeInside === first || activeInside === box || !activeInside)) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && (activeInside === last || activeInside === box || !activeInside)) {
+      e.preventDefault(); first.focus();
+    }
   });
   document.body.appendChild(modalEl);
   return modalEl;
 }
 function closeSpellModal() {
-  if (modalEl) modalEl.hidden = true;
+  if (!modalEl || modalEl.hidden) return;
+  modalEl.hidden = true;
+  // Restore focus to whatever opened the modal (the ⓘ button), on every close
+  // path — Esc, ✕, or backdrop click all funnel through here.
+  const back = modalReturnFocus;
+  modalReturnFocus = null;
+  if (back && typeof back.focus === "function") back.focus();
 }
 function openSpellModal(key) {
   const s = rules.spellByKey.get(key);
   if (!s) return;
   const m = ensureModal();
+  // Remember what to return focus to before the dialog steals it.
+  modalReturnFocus = document.activeElement;
   m.innerHTML = spellModalHtml(s);
   m.hidden = false;
+  // Move focus into the dialog so keyboard users land inside it.
+  m.querySelector(".spell-modal-box")?.focus();
 }
 
 // Star toggle: add/remove a spell from the character's Future Studies list.
@@ -638,6 +671,13 @@ function castingsPips(s, opts) {
   const pips = Array.from({ length: opts.castings }, (_, i) =>
     `<span class="cast-pip ${i < used ? "spent" : ""}" data-pip="${esc(key)}" data-i="${i}" title="${i < used ? "Expended — click to restore one casting" : "Click to expend one casting"}"></span>`);
   return `<span class="castings">${pips.join("")}</span>`;
+}
+
+// Toggle a clamped description block and keep aria-expanded in step (clamped =
+// collapsed = expanded false). Shared by click and keyboard handlers.
+function toggleClamp(node) {
+  const clamped = node.classList.toggle("clamp");
+  if (node.hasAttribute("role")) node.setAttribute("aria-expanded", clamped ? "false" : "true");
 }
 
 function wire(el, char, computed) {
@@ -728,7 +768,7 @@ function wire(el, char, computed) {
     }
 
     const desc = e.target.closest(".spell-desc");
-    if (desc) { desc.classList.toggle("clamp"); return; }
+    if (desc) { toggleClamp(desc); return; }
 
     const crBtn = e.target.closest("[data-creature]");
     if (crBtn) {
@@ -799,6 +839,16 @@ function wire(el, char, computed) {
       exchangeOpen = null;
       save(); renderSpells(el);
     }
+  });
+
+  // Keyboard reach for the clamp toggle on spell descriptions: Enter/Space
+  // expand/collapse, Space also preventing the page from scrolling.
+  el.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const desc = e.target.closest(".spell-desc[role='button']");
+    if (!desc) return;
+    e.preventDefault();
+    toggleClamp(desc);
   });
 }
 

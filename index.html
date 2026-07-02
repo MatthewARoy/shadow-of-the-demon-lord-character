@@ -49,28 +49,28 @@
   </div>
 </header>
 
-<nav class="tabs" id="tabs">
-  <button class="tab active" data-tab="build">Build</button>
-  <button class="tab" data-tab="sheet">Sheet</button>
-  <button class="tab" data-tab="spells">Spells</button>
-  <button class="tab" data-tab="paths">Paths</button>
-  <button class="tab" data-tab="gear">Gear</button>
-  <button class="tab" data-tab="dice">Dice</button>
-  <button class="tab" data-tab="lookup">Lookup</button>
+<nav class="tabs" id="tabs" role="tablist" aria-label="Character sections">
+  <button class="tab active" data-tab="build" role="tab" aria-selected="true" aria-controls="tab-build">Build</button>
+  <button class="tab" data-tab="sheet" role="tab" aria-selected="false" aria-controls="tab-sheet">Sheet</button>
+  <button class="tab" data-tab="spells" role="tab" aria-selected="false" aria-controls="tab-spells">Spells</button>
+  <button class="tab" data-tab="paths" role="tab" aria-selected="false" aria-controls="tab-paths">Paths</button>
+  <button class="tab" data-tab="gear" role="tab" aria-selected="false" aria-controls="tab-gear">Gear</button>
+  <button class="tab" data-tab="dice" role="tab" aria-selected="false" aria-controls="tab-dice">Dice</button>
+  <button class="tab" data-tab="lookup" role="tab" aria-selected="false" aria-controls="tab-lookup">Lookup</button>
 </nav>
 
 <main id="app">
-  <section id="tab-build" class="tab-panel active"></section>
-  <section id="tab-sheet" class="tab-panel"></section>
-  <section id="tab-spells" class="tab-panel"></section>
-  <section id="tab-paths" class="tab-panel"></section>
-  <section id="tab-gear" class="tab-panel"></section>
-  <section id="tab-dice" class="tab-panel"></section>
-  <section id="tab-lookup" class="tab-panel"></section>
+  <section id="tab-build" class="tab-panel active" role="tabpanel" aria-label="Build"></section>
+  <section id="tab-sheet" class="tab-panel" role="tabpanel" aria-label="Sheet"></section>
+  <section id="tab-spells" class="tab-panel" role="tabpanel" aria-label="Spells"></section>
+  <section id="tab-paths" class="tab-panel" role="tabpanel" aria-label="Paths"></section>
+  <section id="tab-gear" class="tab-panel" role="tabpanel" aria-label="Gear"></section>
+  <section id="tab-dice" class="tab-panel" role="tabpanel" aria-label="Dice"></section>
+  <section id="tab-lookup" class="tab-panel" role="tabpanel" aria-label="Lookup"></section>
   <p id="loading" class="loading">Consulting the archives&hellip;</p>
 </main>
 
-<aside id="roll-toast" class="roll-toast" hidden></aside>
+<aside id="roll-toast" class="roll-toast" role="status" aria-live="polite" hidden></aside>
 
 <footer class="colophon">
   <p>Shadow of the Demon Lord is &copy; Schwalb Entertainment. This is an unofficial character tool;

@@ -48,15 +48,44 @@ async function boot() {
   renderRoster();
   renderCurrent();
 
-  document.getElementById("tabs").addEventListener("click", (e) => {
-    const btn = e.target.closest(".tab[data-tab]");
+  const tabsNav = document.getElementById("tabs");
+
+  // Switch to a tab button: sync active class + aria-selected, scroll it into
+  // view (Task 1 overflow strip), and render. `focus` moves keyboard focus to
+  // the newly-selected tab — used by arrow-key navigation, harmless for clicks.
+  const activateTab = (btn, focus = false) => {
     if (!btn) return;
     current = btn.dataset.tab;
-    document.querySelectorAll(".tab[data-tab]").forEach((t) => t.classList.toggle("active", t === btn));
+    document.querySelectorAll(".tab[data-tab]").forEach((t) => {
+      const on = t === btn;
+      t.classList.toggle("active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+    });
     document.querySelectorAll(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === `tab-${current}`));
     // Keep the active tab (and its underline) in view when the strip scrolls.
     btn.scrollIntoView({ inline: "nearest", block: "nearest" });
+    if (focus) btn.focus();
     renderCurrent();
+  };
+
+  tabsNav.addEventListener("click", (e) => {
+    const btn = e.target.closest(".tab[data-tab]");
+    if (!btn) return;
+    activateTab(btn);
+  });
+
+  // Arrow keys move focus and activate the previous/next tab, wrapping at the
+  // ends (WAI-ARIA tablist pattern). activateTab focuses the target, which — via
+  // scrollIntoView — keeps it visible in the Task 1 overflow strip.
+  tabsNav.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const list = [...tabsNav.querySelectorAll(".tab[data-tab]")];
+    const i = list.indexOf(document.activeElement);
+    if (i === -1) return;
+    e.preventDefault();
+    const step = e.key === "ArrowRight" ? 1 : -1;
+    const next = list[(i + step + list.length) % list.length];
+    activateTab(next, true);
   });
 
   document.getElementById("roster-select").addEventListener("change", (e) => {

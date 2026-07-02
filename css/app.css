@@ -491,6 +491,12 @@ dl.kv dd { margin: 0; }
 .spell-meta b { font-family: var(--caps); color: var(--text); font-weight: 500; }
 .spell-desc { font-size: 13.8px; margin: 0; }
 .spell-desc.clamp { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
+/* Clamp toggles are role="button" <p>s — give keyboard focus a visible ring. */
+.spell-desc[role="button"]:focus-visible,
+.path-talent[role="button"]:focus-visible,
+.lk-body[role="button"]:focus-visible {
+  outline: 2px solid var(--bronze); outline-offset: 2px; border-radius: 2px;
+}
 .spell-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: auto; }
 .castings { display: flex; gap: 4px; flex-wrap: wrap; }
 .cast-pip {
@@ -740,6 +746,17 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
   box-shadow: 0 2px 8px rgba(60,40,20,.25), inset 0 0 12px rgba(142,31,31,.07);
   text-align: center; line-height: 1;
 }
+/* Rollable nodes render as <button>; strip native chrome so they stay
+   pixel-identical to the <div> nodes. The app's :focus-visible outline is left
+   intact (we only clear the always-on :focus ring UAs draw), so keyboard focus
+   is visible while mouse clicks stay clean. */
+button.pent-node {
+  margin: 0; padding: 0; font: inherit; color: inherit;
+  -webkit-appearance: none; appearance: none;
+  text-align: center;
+}
+button.pent-node:focus { outline: none; }
+button.pent-node:focus-visible { outline: 2px solid var(--ink-red); outline-offset: 2px; }
 .pent-node .pn-label {
   position: absolute; top: -17px; left: 50%; transform: translateX(-50%);
   font-family: var(--display); font-size: 10.5px; letter-spacing: .08em;
