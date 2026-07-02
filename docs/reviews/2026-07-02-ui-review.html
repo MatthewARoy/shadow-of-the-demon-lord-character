@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledger of the Damned — UI Review</title>
+<style>
+  :root {
+    --ground: #16100a;
+    --panel: #201810;
+    --panel-2: #2a2015;
+    --line: #3a2c1b;
+    --parchment: #e9e2d0;
+    --parchment-2: #f1ebdc;
+    --ink: #2a2119;
+    --ink-soft: #6a5a47;
+    --brass: #c9a55c;
+    --brass-dim: #9b8a70;
+    --oxblood: #b04038;
+    --ember: #c2604a;
+    --sage: #8a9a74;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  html { background: var(--ground); }
+  body {
+    font-family: var(--serif);
+    color: #d8cdb8;
+    line-height: 1.55;
+    margin: 0;
+    background:
+      radial-gradient(120% 70% at 50% -10%, rgba(201,165,92,.08), transparent 55%),
+      var(--ground);
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 48px 24px 96px; }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--brass-dim); margin: 0 0 10px;
+  }
+  h1 {
+    font-size: clamp(30px, 5vw, 44px); font-variant: small-caps; letter-spacing: .04em;
+    color: var(--brass); margin: 0 0 6px; font-weight: 600; text-wrap: balance;
+  }
+  .standfirst { font-style: italic; color: var(--brass-dim); margin: 0 0 8px; font-size: 17px; }
+  .context { font-size: 14.5px; color: #b3a58c; max-width: 68ch; }
+
+  h2 {
+    font-variant: small-caps; letter-spacing: .06em; font-weight: 600;
+    color: var(--brass); font-size: 24px; margin: 56px 0 6px;
+    padding-top: 22px; border-top: 1px solid var(--line); text-wrap: balance;
+  }
+  h2 .no { color: var(--oxblood); margin-right: 10px; }
+  h3 { font-size: 18px; color: #e4d9c2; margin: 28px 0 6px; font-weight: 600; text-wrap: balance; }
+  p, li { max-width: 72ch; }
+  a { color: var(--brass); }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+  code { font-family: var(--mono); font-size: .86em; color: #d9c08a; background: rgba(201,165,92,.08); padding: 1px 5px; border-radius: 3px; }
+
+  /* chips */
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 10px; }
+  .chip {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--brass-dim);
+  }
+  .chip.high   { border-color: rgba(194,96,74,.5);  color: var(--ember); }
+  .chip.med    { border-color: rgba(201,165,92,.5); color: var(--brass); }
+  .chip.low    { border-color: rgba(138,154,116,.5); color: var(--sage); }
+  .chip.fixed  { border-color: rgba(138,154,116,.6); color: var(--sage); background: rgba(138,154,116,.08); }
+
+  /* index table */
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  .index-tbl th {
+    text-align: left; font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--brass-dim); font-weight: 500;
+    padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line);
+  }
+  .index-tbl td { padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(58,44,27,.55); vertical-align: baseline; }
+  .index-tbl td:first-child { font-family: var(--mono); color: var(--oxblood); white-space: nowrap; }
+  .index-tbl .imp { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+  .imp.high { color: var(--ember); } .imp.med { color: var(--brass); } .imp.low { color: var(--sage); }
+
+  /* strengths strip */
+  .strengths { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 18px 0 8px; }
+  .strength {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px;
+    font-size: 14.5px;
+  }
+  .strength b { color: var(--brass); font-variant: small-caps; letter-spacing: .04em; font-size: 15px; }
+  .strength p { margin: 4px 0 0; color: #bfb096; }
+
+  /* finding block */
+  .finding { margin: 34px 0; }
+  .observed { color: #bfb096; }
+  .observed b, .rec b { color: #e4d9c2; }
+  .rec { border-left: 2px solid var(--oxblood); padding-left: 14px; }
+
+  /* mock stages */
+  .stage {
+    border: 1px solid var(--line); border-radius: 8px; background: var(--panel);
+    padding: 20px; margin: 16px 0; overflow-x: auto;
+  }
+  .stage-label {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--brass-dim); margin: 0 0 12px;
+  }
+  .stage-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+  .half { flex: 1 1 300px; min-width: 280px; }
+
+  /* phone frame */
+  .phone {
+    width: 300px; border: 1px solid #4a3922; border-radius: 14px; background: #120d08;
+    overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,.4); flex: 0 0 auto;
+  }
+  .phone .ph-label { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-dim); text-align: center; padding: 6px 0; border-bottom: 1px solid #2a2015; }
+
+  /* app-look primitives used inside mocks */
+  .m-sel, .m-btn {
+    font-family: var(--serif); font-variant: small-caps; letter-spacing: .04em;
+    background: #1d150d; border: 1px solid #4a3922; color: #d8cdb8;
+    border-radius: 4px; padding: 6px 10px; font-size: 13px;
+  }
+  .m-btn { cursor: default; }
+  .m-btn.danger { color: var(--oxblood); border-color: rgba(176,64,56,.5); }
+  .m-title { font-variant: small-caps; color: var(--brass); font-weight: 700; letter-spacing: .03em; }
+
+  .tabstrip { display: flex; gap: 18px; padding: 10px 14px; border-top: 1px solid #2a2015; border-bottom: 1px solid #2a2015; font-variant: small-caps; letter-spacing: .12em; font-size: 13px; color: #9b8a70; white-space: nowrap; position: relative; overflow: hidden; }
+  .tabstrip .on { color: var(--brass); border-bottom: 2px solid var(--oxblood); padding-bottom: 2px; }
+  .fade-r { position: absolute; right: 0; top: 0; bottom: 0; width: 44px; background: linear-gradient(90deg, transparent, #120d08 78%); pointer-events: none; }
+
+  /* parchment stage */
+  .parch {
+    background: var(--parchment); color: var(--ink); border-radius: 6px; padding: 18px;
+    border: 1px solid #c9bda1;
+  }
+  .parch .p-label { font-variant: small-caps; letter-spacing: .1em; color: var(--oxblood); font-size: 12.5px; font-weight: 700; }
+
+  /* steppers mock */
+  .steppers { display: flex; gap: 14px; flex-wrap: wrap; }
+  .stepper { border: 1px solid #b04038; border-radius: 8px; padding: 10px 14px; background: var(--parchment-2); min-width: 130px; text-align: center; }
+  .stepper .s-name { font-variant: small-caps; letter-spacing: .08em; font-size: 12px; color: var(--oxblood); font-weight: 700; }
+  .stepper .s-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 4px; }
+  .stepper .s-val { font-size: 26px; font-weight: 700; color: var(--ink); min-width: 2ch; font-variant-numeric: tabular-nums; }
+  .stepper .s-sub { font-size: 11px; color: var(--ink-soft); }
+  .sbtn {
+    width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--oxblood);
+    background: transparent; color: var(--oxblood); font-size: 19px; line-height: 1; cursor: default;
+    font-family: var(--serif);
+  }
+  .healrest { display: flex; gap: 10px; align-items: center; margin-top: 12px; }
+  .h-chip { border: 1px solid var(--ink-soft); border-radius: 999px; padding: 4px 14px; font-variant: small-caps; letter-spacing: .06em; font-size: 13px; color: var(--ink); background: transparent; }
+
+  /* provenance tooltip mock */
+  .prov-wrap { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+  .pnode { width: 84px; height: 84px; border-radius: 50%; border: 2px solid #a5524a; background: var(--parchment-2); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 0 4px rgba(165,82,74,.12); }
+  .pnode .n-label { font-variant: small-caps; font-size: 11px; letter-spacing: .08em; color: var(--oxblood); font-weight: 700; }
+  .pnode .n-val { font-size: 28px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .tip { background: #241b12; color: #d8cdb8; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; font-size: 13.5px; max-width: 300px; box-shadow: 0 10px 26px rgba(0,0,0,.45); }
+  .tip b { color: var(--brass); font-variant: small-caps; letter-spacing: .05em; }
+  .tip table td { padding: 2px 0; border: 0; color: #bfb096; }
+  .tip table td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: #e4d9c2; padding-left: 22px; }
+  .tip .total td { border-top: 1px solid var(--line); color: var(--brass); font-weight: 700; }
+
+  /* exchange disclosure mock */
+  details.xch { border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); }
+  details.xch summary {
+    cursor: pointer; padding: 10px 14px; font-size: 14px; color: var(--brass-dim);
+    font-variant: small-caps; letter-spacing: .05em; list-style: none;
+  }
+  details.xch summary::before { content: "▸ "; color: var(--oxblood); }
+  details.xch[open] summary::before { content: "▾ "; }
+  .xch-chain { padding: 4px 16px 14px; font-size: 14px; color: #bfb096; }
+  .xch-chain .arrow { color: var(--oxblood); padding: 0 6px; }
+  .xch-chain li { margin: 4px 0; list-style: none; }
+  .xch-chain .undo { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; color: var(--brass-dim); border: 1px solid var(--line); border-radius: 3px; padding: 1px 7px; margin-left: 10px; text-transform: uppercase; }
+
+  /* filter summary mock */
+  .filterline { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 14px; }
+  .filterline .count { color: var(--brass); font-variant-numeric: tabular-nums; }
+  .fchip { border: 1px solid rgba(201,165,92,.45); color: var(--brass); border-radius: 999px; padding: 3px 12px; font-size: 12.5px; letter-spacing: .04em; }
+  .fchip .x { color: var(--oxblood); margin-left: 7px; }
+  .clearall { color: var(--brass-dim); text-decoration: underline; font-size: 12.5px; }
+
+  /* gear table mock */
+  .gear-tbl { width: 100%; font-size: 14px; }
+  .gear-tbl th { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--brass-dim); text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--line); font-weight: 500; }
+  .gear-tbl td { padding: 9px 14px 9px 0; border-bottom: 1px solid rgba(58,44,27,.5); color: #d8cdb8; vertical-align: middle; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; }
+  .tg { width: 34px; height: 19px; border-radius: 999px; background: #3a2c1b; position: relative; flex: 0 0 auto; }
+  .tg::after { content: ""; position: absolute; top: 2px; left: 2px; width: 15px; height: 15px; border-radius: 50%; background: #9b8a70; }
+  .tg.on { background: rgba(176,64,56,.7); }
+  .tg.on::after { left: 17px; background: var(--parchment); }
+  .effect { color: var(--sage); font-size: 12.5px; }
+  .meter { height: 8px; border-radius: 999px; background: #2a2015; overflow: hidden; max-width: 260px; margin-top: 6px; }
+  .meter i { display: block; height: 100%; width: 62%; background: linear-gradient(90deg, var(--brass-dim), var(--brass)); }
+
+  .quickwins li { margin: 7px 0; }
+  .qw-file { font-family: var(--mono); font-size: 11.5px; color: var(--brass-dim); }
+
+  .note {
+    border: 1px solid rgba(138,154,116,.4); background: rgba(138,154,116,.06);
+    border-radius: 6px; padding: 14px 18px; margin: 20px 0; font-size: 14.5px;
+  }
+  .note b { color: var(--sage); font-variant: small-caps; letter-spacing: .05em; }
+
+  .foot { margin-top: 64px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--brass-dim); font-style: italic; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">UI Review · July 2, 2026</p>
+  <h1>Ledger of the Damned</h1>
+  <p class="standfirst">Full walk-through of the live app — all seven tabs, desktop (1280px) and mobile (375px), driven with a real imported character.</p>
+  <p class="context">The visual identity is the app's biggest asset and nothing below proposes changing it. These are flow, clarity, and reach improvements, each with a mock rendered in the app's own palette. Mocks are HTML recreations, not screenshots — treat them as sketches of intent, not pixel specs.</p>
+
+  <h2>What's already working</h2>
+  <div class="strengths">
+    <div class="strength"><b>A real identity</b><p>The parchment sheet with the pentagram stat wheel is genuinely distinctive — nobody will mistake this for a generic character tool. The gothic voice ("Ask, and the law shall answer") is consistent everywhere.</p></div>
+    <div class="strength"><b>Decisions surface themselves</b><p>"Unresolved Fates" puts exactly the actionable choices in front of the player — the imported character's two unpicked professions were impossible to miss.</p></div>
+    <div class="strength"><b>Provenance everywhere</b><p>Every derived number can explain itself; the exchange chips even preserve an 8-step swap chain. That's rare and worth building on (see finding 5).</p></div>
+    <div class="strength"><b>Quietly considerate details</b><p>Casting pips, learnable-now filtering, print styles for the paper sheet, offline-capable rules search, encumbrance limits from Strength.</p></div>
+  </div>
+
+  <h2>Findings at a glance</h2>
+  <table class="index-tbl">
+    <tr><th>#</th><th>Finding</th><th>Area</th><th>Impact</th><th>Effort</th></tr>
+    <tr><td><a href="#f1">1</a></td><td>Mobile header spends the whole first screen on chrome</td><td>Global</td><td class="imp high">High</td><td>M</td></tr>
+    <tr><td><a href="#f2">2</a></td><td>Mobile tab bar hides Dice &amp; Lookup with no affordance</td><td>Global</td><td class="imp high">High</td><td>S</td></tr>
+    <tr><td><a href="#f3">3</a></td><td>Keyboard &amp; screen-reader reach: five gaps, all cheap</td><td>Global</td><td class="imp high">High</td><td>S–M</td></tr>
+    <tr><td><a href="#f4">4</a></td><td>Play-tracking controls are small, scattered text chips</td><td>Sheet</td><td class="imp med">Medium</td><td>S</td></tr>
+    <tr><td><a href="#f5">5</a></td><td>Provenance lives in a far-away panel instead of on the number</td><td>Sheet</td><td class="imp med">Medium</td><td>M</td></tr>
+    <tr><td><a href="#f6">6</a></td><td>Exchange history reads as noise at the bottom of the grimoire</td><td>Spells</td><td class="imp med">Medium</td><td>S</td></tr>
+    <tr><td><a href="#f7">7</a></td><td>Archive filters give no feedback on what's filtered</td><td>Spells</td><td class="imp med">Medium</td><td>S</td></tr>
+    <tr><td><a href="#f8">8</a></td><td>Armory sprawls; the equip checkbox is unlabeled</td><td>Gear</td><td class="imp med">Medium</td><td>M</td></tr>
+    <tr><td><a href="#f9">9</a></td><td>Dice tab underuses the room it has</td><td>Dice</td><td class="imp low">Low</td><td>S</td></tr>
+    <tr><td><a href="#f10">10</a></td><td>Sheet description box: fixed height, OS scrollbar on parchment</td><td>Sheet</td><td class="imp low">Low</td><td>S</td></tr>
+    <tr><td><a href="#f11">11</a></td><td>Sample picks silently multiply roster entries</td><td>Roster</td><td class="imp low">Low</td><td>S</td></tr>
+    <tr><td><a href="#f12">12</a></td><td>Lookup highlighted "and" inside words — <span class="imp low">fixed during this review</span></td><td>Lookup</td><td class="imp low">Low</td><td>done</td></tr>
+  </table>
+
+  <h2 id="f1"><span class="no">1</span>Mobile header spends the whole first screen on chrome</h2>
+  <div class="chips"><span class="chip high">Impact: high</span><span class="chip">Effort: M</span><span class="chip">index.html · css/app.css</span></div>
+  <p class="observed">At 375px the masthead, roster select, +New, Samples, Export, Import, and a lone floating delete ✕ stack to roughly 500px — a full viewport of controls before any character content. The delete button ends up visually orphaned on its own row, right where a thumb expects a primary action.</p>
+  <p class="rec"><b>Collapse to two rows.</b> Keep the title as a compact monogram row, keep the roster select full-width beside a <b>⋯</b> menu that holds New / Samples / Export / Import / Delete. Destructive delete moves inside the menu — off the first screen, harder to fat-finger.</p>
+  <div class="stage">
+    <p class="stage-label">Mock — mobile header, current vs. proposed</p>
+    <div class="stage-row">
+      <div class="phone">
+        <div class="ph-label">Now — ~500px before content</div>
+        <div style="padding:14px 14px 6px">
+          <div class="m-title" style="font-size:22px">Ledger <i style="color:#9b8a70">of the</i> Damned</div>
+          <div style="font-style:italic;color:#9b8a70;font-size:12px;margin:4px 0 12px">A Shadow of the Demon Lord character grimoire…</div>
+          <div style="display:flex;gap:8px;margin-bottom:8px"><span class="m-sel" style="flex:1">Syrah — L1 ▾</span><span class="m-btn">+ New</span></div>
+          <div style="display:flex;gap:8px;margin-bottom:8px"><span class="m-sel" style="flex:1">Samples… ▾</span><span class="m-btn">Export</span><span class="m-btn">Import</span></div>
+          <div style="margin-bottom:10px"><span class="m-btn danger">✕</span></div>
+        </div>
+        <div class="tabstrip"><span class="on">Build</span><span>Sheet</span><span>Spells</span><span>Paths</span><span>Gea…</span></div>
+        <div style="padding:12px 14px;color:#6a5a47;font-size:12px;font-style:italic">…content finally starts here</div>
+      </div>
+      <div class="phone">
+        <div class="ph-label">Proposed — ~130px before content</div>
+        <div style="padding:12px 14px 10px;display:flex;gap:8px;align-items:center">
+          <span class="m-title" style="font-size:17px;flex:0 0 auto">L✠D</span>
+          <span class="m-sel" style="flex:1">Syrah — L1 ▾</span>
+          <span class="m-btn" aria-label="Character actions">⋯</span>
+        </div>
+        <div class="tabstrip"><span class="on">Build</span><span>Sheet</span><span>Spells</span><span>Paths</span><span>Gea…</span><span class="fade-r"></span></div>
+        <div style="padding:12px 14px">
+          <div style="border:1px solid #3a2c1b;border-radius:6px;background:#241b12;padding:10px 12px;font-size:12.5px;color:#bfb096">
+            <span style="font-variant:small-caps;color:#c9a55c">The Soul</span><br>Name · Ancestry · Level…
+          </div>
+          <div style="margin-top:8px;font-size:11px;color:#6a5a47;font-style:italic">⋯ menu holds: New soul · Samples · Export · Import · <span style="color:#b04038">Delete</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="f2"><span class="no">2</span>Mobile tab bar hides Dice &amp; Lookup with no affordance</h2>
+  <div class="chips"><span class="chip high">Impact: high</span><span class="chip">Effort: S</span><span class="chip">css/app.css</span></div>
+  <p class="observed">The seven tabs overflow at 375px and the strip clips clean at the edge — <b>Dice</b> and <b>Lookup</b> simply don't exist unless you happen to try swiping a row that doesn't look swipeable.</p>
+  <p class="rec"><b>Make the cut visible.</b> Let the strip scroll (<code>overflow-x: auto</code> + <code>scrollbar-width: none</code>), add a right-edge gradient fade, and nudge the layout so the last visible tab is always half-cropped — a cropped label is the affordance. <code>scroll-snap-type: x proximity</code> keeps taps landing cleanly.</p>
+  <div class="stage">
+    <p class="stage-label">Mock — overflow with a scent of more</p>
+    <div class="phone" style="width:340px">
+      <div class="tabstrip"><span class="on">Build</span><span>Sheet</span><span>Spells</span><span>Paths</span><span>Gear</span><span>Di…</span><span class="fade-r"></span></div>
+    </div>
+  </div>
+
+  <h2 id="f3"><span class="no">3</span>Keyboard &amp; screen-reader reach: five gaps, all cheap</h2>
+  <div class="chips"><span class="chip high">Impact: high</span><span class="chip">Effort: S–M</span></div>
+  <p class="observed">The app is mouse-first in a few places that matter at a real table (tablets, external keyboards, screen readers). None of these change the visual design:</p>
+  <ul>
+    <li><b>Roll results are silent.</b> Toasts render without <code>aria-live</code>, so a screen reader never hears a roll outcome. One attribute on the toast container. <span class="qw-file">js/ui/toast.js</span></li>
+    <li><b>The pentagram's rollable nodes are <code>&lt;div&gt;</code>s.</b> Strength/Agility/Perception rolls are unreachable by keyboard. Render rollables as <code>&lt;button&gt;</code> with the existing focus outline. <span class="qw-file">js/ui/sheet.js</span></li>
+    <li><b>The tab bar is plain buttons.</b> Add <code>role="tablist"</code> / <code>aria-selected</code> and arrow-key movement. <span class="qw-file">index.html · js/main.js</span></li>
+    <li><b>Long spell/path text expands only by clicking a <code>&lt;p&gt;</code>.</b> Wrap the clamp toggle in a button or give it <code>tabindex</code> + Enter handling. <span class="qw-file">js/ui/spells.js · paths.js · lookup.js</span></li>
+    <li><b>The spell modal doesn't trap or move focus.</b> It already has <code>role="dialog"</code> and Esc — send focus in on open, return it on close. <span class="qw-file">js/ui/spells.js</span></li>
+  </ul>
+
+  <h2 id="f4"><span class="no">4</span>Play-tracking controls are small, scattered text chips</h2>
+  <div class="chips"><span class="chip med">Impact: medium</span><span class="chip">Effort: S</span><span class="chip">js/ui/sheet.js</span></div>
+  <p class="observed">Damage, Insanity, and Corruption — the three numbers that change constantly during play — are adjusted through six small <b>− / +</b> text chips in two rows under the pentagram. Mid-session (the "someone just hit me" moment) they're easy to mis-tap, and the value each chip affects sits in a circle elsewhere on the wheel.</p>
+  <p class="rec"><b>Group each tracked value with its own stepper.</b> Big round ± targets, the value between them, Heal/Rest staying adjacent. Same parchment/oxblood language; nothing else on the sheet moves.</p>
+  <div class="stage">
+    <p class="stage-label">Mock — play-tracking steppers on the parchment</p>
+    <div class="parch">
+      <div class="steppers">
+        <div class="stepper">
+          <div class="s-name">Damage</div>
+          <div class="s-row"><button class="sbtn" aria-label="Reduce damage">−</button><span class="s-val">6</span><button class="sbtn" aria-label="Add damage">+</button></div>
+          <div class="s-sub">of 10 health</div>
+        </div>
+        <div class="stepper">
+          <div class="s-name">Insanity</div>
+          <div class="s-row"><button class="sbtn" aria-label="Reduce insanity">−</button><span class="s-val">0</span><button class="sbtn" aria-label="Add insanity">+</button></div>
+          <div class="s-sub">of 11 will</div>
+        </div>
+        <div class="stepper">
+          <div class="s-name">Corruption</div>
+          <div class="s-row"><button class="sbtn" aria-label="Reduce corruption">−</button><span class="s-val">0</span><button class="sbtn" aria-label="Add corruption">+</button></div>
+          <div class="s-sub">marks of darkness</div>
+        </div>
+      </div>
+      <div class="healrest"><span class="h-chip">☾ Rest</span><span class="h-chip">Heal 2</span><span style="font-size:12px;color:var(--ink-soft);font-style:italic">healing rate applies</span></div>
+    </div>
+  </div>
+
+  <h2 id="f5"><span class="no">5</span>Provenance lives in a far-away panel instead of on the number</h2>
+  <div class="chips"><span class="chip med">Impact: medium</span><span class="chip">Effort: M</span><span class="chip">js/ui/sheet.js</span></div>
+  <p class="observed">The engine knows exactly why Defense is 18 — and prints it in a flat "Provenance" panel below the fold, disconnected from the circles it explains. Now that equipped armor and shields flow into Defense, "why is this number what it is" will be asked more, not less.</p>
+  <p class="rec"><b>Put the answer on the number.</b> Hover (desktop) or tap-and-hold (touch) on any stat circle shows its breakdown; the panel below can stay for print. This also gives the new armor math a place to explain itself.</p>
+  <div class="stage">
+    <p class="stage-label">Mock — provenance on the Defense node (Walter, level 7)</p>
+    <div class="parch">
+      <div class="prov-wrap">
+        <div class="pnode"><span class="n-label">Defense</span><span class="n-val">18</span></div>
+        <div class="tip" role="tooltip">
+          <b>Defense — where it comes from</b>
+          <table>
+            <tr><td>Mail (equipped, replaces Agility 12)</td><td>15</td></tr>
+            <tr><td>Large shield · Defensive</td><td>+2</td></tr>
+            <tr><td>Warrior level 5</td><td>+1</td></tr>
+            <tr class="total"><td>Defense</td><td>18</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 id="f6"><span class="no">6</span>Exchange history reads as noise at the bottom of the grimoire</h2>
+  <div class="chips"><span class="chip med">Impact: medium</span><span class="chip">Effort: S</span><span class="chip">js/ui/spells.js</span></div>
+  <p class="observed">The imported character's eight spell exchanges render as eight separate <b>⇄ A → B ✕</b> chips wrapping across two rows. The data is excellent — the presentation makes a feature look like leftover debug output, and each ✕ (an undo) sits one errant click away.</p>
+  <p class="rec"><b>Collapse it into a ledger entry.</b> One disclosure line summarizing the count; expanding shows each exchange as a sentence with its undo. Chains that fold into one another (Rune of Invisibility → … → Swiftness) can render as a single lineage line — the provenance the engine already tracks.</p>
+  <div class="stage">
+    <p class="stage-label">Mock — collapsed by default, expanded shown here</p>
+    <details class="xch" open>
+      <summary>Exchanged 8 times — expand the ledger</summary>
+      <ul class="xch-chain">
+        <li>Blink <span class="arrow">→</span> Borrowed Time <span class="undo">undo</span></li>
+        <li>Trip <span class="arrow">→</span> Guiding Sprite <span class="undo">undo</span></li>
+        <li>Dismiss <span class="arrow">→</span> Bury the Hatchet <span class="undo">undo</span></li>
+        <li>Rune of Invisibility <span class="arrow">→</span> Time Loop <span class="arrow">→</span> Slow <span class="arrow">→</span> Bend Space <span class="arrow">→</span> Short Hop <span class="arrow">→</span> Swiftness <span class="undo">undo last</span></li>
+      </ul>
+    </details>
+  </div>
+
+  <h2 id="f7"><span class="no">7</span>Archive filters give no feedback on what's filtered</h2>
+  <div class="chips"><span class="chip med">Impact: medium</span><span class="chip">Effort: S</span><span class="chip">js/ui/spells.js</span></div>
+  <p class="observed">The Archive's filter bar is five dropdowns and three toggles. Once two or three are set, nothing tells you how many of the 1,120 spells survived, which filters are active, or how to get back to everything — the dropdowns just quietly hold state.</p>
+  <p class="rec"><b>Add one summary line under the bar:</b> result count, each active filter as a removable chip, and a clear-all. This is the cheapest possible orientation aid and it works for the Paths browser too.</p>
+  <div class="stage">
+    <p class="stage-label">Mock — active-filter summary line</p>
+    <div class="filterline">
+      <span class="count">61 of 1,120 spells</span>
+      <span class="fchip">rank ≤ 1 <span class="x">✕</span></span>
+      <span class="fchip">Air <span class="x">✕</span></span>
+      <span class="fchip">learnable now <span class="x">✕</span></span>
+      <a class="clearall" href="#f7">clear all</a>
+    </div>
+  </div>
+
+  <h2 id="f8"><span class="no">8</span>Armory sprawls; the equip checkbox is unlabeled</h2>
+  <div class="chips"><span class="chip med">Impact: medium</span><span class="chip">Effort: M</span><span class="chip">js/ui/gear.js</span></div>
+  <p class="observed">Two related issues. The armory is one very long single column — reaching Heavy Melee means scrolling past every basic weapon, while the possessions column sits mostly empty beside it. And in possessions, the first column is a bare checkbox with no header: nothing says it means <i>equipped</i>, or what equipping does — which matters now that armor actually drives Defense and Speed.</p>
+  <p class="rec"><b>Name the column and show the consequence.</b> An "Equipped" toggle with an effect line ("Defense 13 · replaces Agility") turns a mystery checkbox into a decision. For the armory: sticky category tabs and a denser two-column row layout; the encumbrance line becomes a small meter.</p>
+  <div class="stage">
+    <p class="stage-label">Mock — possessions with a named, consequential equip toggle</p>
+    <table class="gear-tbl">
+      <tr><th>Item</th><th>Qty</th><th>Equipped</th><th>Effect while equipped</th></tr>
+      <tr><td>Brigandine <span style="color:var(--brass-dim);font-size:12px">· Light Armor · req Str 11</span></td><td>1</td><td><span class="toggle"><span class="tg on"></span></span></td><td class="effect">Defense 13 — replaces Agility</td></tr>
+      <tr><td>Large shield <span style="color:var(--brass-dim);font-size:12px">· req Str 11</span></td><td>1</td><td><span class="toggle"><span class="tg on"></span></span></td><td class="effect">Defense +2</td></tr>
+      <tr><td>Dagger or knife</td><td>1</td><td><span class="toggle"><span class="tg"></span></span></td><td class="effect" style="color:var(--brass-dim)">stowed</td></tr>
+    </table>
+    <div style="margin-top:14px;font-size:12.5px;color:var(--brass-dim)">Carrying 5 of 8 items <span style="color:#d8cdb8">(Strength)</span></div>
+    <div class="meter"><i></i></div>
+  </div>
+
+  <h2 id="f9"><span class="no">9</span>Dice tab underuses the room it has</h2>
+  <div class="chips"><span class="chip low">Impact: low</span><span class="chip">Effort: S</span><span class="chip">js/ui/dice.js</span></div>
+  <p class="observed">Two half-empty panels float over a screen of dark background; the roll ledger ("The dice are silent") sits far from the buttons that feed it. The attribute quick-roll chips with live modifiers are the best part and deserve the visual lead.</p>
+  <p class="rec"><b>One shared panel, roller left, running ledger right</b> — most recent roll writ large with its boon/bane math, history beneath it. Add Enter-to-roll on the damage-expression input if it's not already there.</p>
+
+  <h2 id="f10"><span class="no">10</span>Sheet description box: fixed height, OS scrollbar on parchment</h2>
+  <div class="chips"><span class="chip low">Impact: low</span><span class="chip">Effort: S</span><span class="chip">js/ui/sheet.js · css/app.css</span></div>
+  <p class="observed">The imported character's ten-line backstory gets four visible rows and a default OS scrollbar — the one modern-UI artifact on an otherwise immaculate parchment.</p>
+  <p class="rec"><b>Let it grow.</b> <code>field-sizing: content</code> with a <code>max-height</code> where supported (or the classic scrollHeight resize on input), plus a thin parchment-toned scrollbar for the capped case.</p>
+
+  <h2 id="f11"><span class="no">11</span>Sample picks silently multiply roster entries</h2>
+  <div class="chips"><span class="chip low">Impact: low</span><span class="chip">Effort: S</span><span class="chip">js/main.js</span></div>
+  <p class="observed">Choosing from "Samples…" imports a fresh copy into the roster every time — browse three samples and your roster has three new souls, with no confirmation and no visible way back except delete-each.</p>
+  <p class="rec"><b>Announce and offer the exit.</b> The toast system already exists: "Torga Stonejaw joined the roster — Undo". Numbering repeat imports ("Torga Stonejaw (2)") keeps the select legible.</p>
+
+  <h2 id="f12"><span class="no">12</span>Lookup highlighting — fixed during this review</h2>
+  <div class="chips"><span class="chip fixed">Fixed on this branch</span><span class="chip">js/ui/lookup.js</span></div>
+  <p class="observed">Searching "boons and banes" highlighted every <b>and</b> — including inside <i>h<mark>and</mark>s</i> and <i>st<mark>and</mark>ard</i> — and let function words inflate section scores. Stopwords are now dropped from scoring and highlighting (with a fallback when the whole query is stopwords), and highlights anchor to word starts. Verified live: only <i>boons</i> and <i>banes</i> mark, ranking unchanged.</p>
+
+  <div class="note"><b>Also landed with this review cycle</b> — equipped armor &amp; shields now drive Defense/Speed with provenance (merged from its fix branch); import hardening + XSS escaping (PR #11); Terrible Beauty text bleed + data validation in <code>npm test</code> (PR #10); Lookup fetch failures now fail loudly and retryably; unknown imported ancestries fall back consistently; and Syrah ships as the sixth sample build, replay-locked by the test suite.</div>
+
+  <h2>Suggested order of attack</h2>
+  <ol class="quickwins">
+    <li><b>One afternoon, mostly CSS/attributes:</b> tab-strip overflow fade (2) · aria-live on toasts (3) · filter summary line (7) · equipped column header + effect text (8, label part) · textarea auto-grow (10) · sample-import toast (11).</li>
+    <li><b>One focused session each:</b> mobile header collapse (1) · play-tracking steppers (4) · exchange ledger disclosure (6) · rollable nodes as buttons + tablist semantics (3).</li>
+    <li><b>When touching the sheet next anyway:</b> provenance tooltips on stat nodes (5) · armory layout pass (8, layout part) · dice tab merge (9).</li>
+  </ol>
+
+  <p class="foot">Reviewed against the live app served from the working branch, with Syrah (imported), Walter the Unyielding, and a fresh soul. Shadow of the Demon Lord is © Schwalb Entertainment; this review covers only the unofficial tool's interface.</p>
+</div>
+
+</html>
