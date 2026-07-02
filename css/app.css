@@ -731,7 +731,7 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
   .ov-item { transition: none; }
   .tab-panel { animation: none; }
   .enc-fill { transition: none; }
-  .toast-action { transition: none; }
+  .roll-toast .toast-action { transition: none; }
   .roll-toast .toast { animation: none; }
 }
 
