@@ -63,6 +63,18 @@ export function deleteActive() {
   save();
 }
 
+// Remove a specific character by id and make `restoreId` active (falls back to
+// the first survivor if that id is gone). Powers the sample-import Undo, which
+// must target the just-added soul even if the user has since switched away.
+export function removeCharacter(id, restoreId) {
+  store.characters = store.characters.filter((c) => c.id !== id);
+  if (!store.characters.length) store.characters.push(newCharacter());
+  store.activeId = store.characters.some((c) => c.id === restoreId)
+    ? restoreId
+    : store.characters[0].id;
+  save();
+}
+
 export function exportActive() {
   const c = active();
   if (!c) return;
@@ -104,8 +116,21 @@ export function importCharacter(json) {
     if (typeof c[k] !== "string") c[k] = fresh[k];
   }
   if (typeof c.sizeChoice !== "string") c.sizeChoice = null;
+  c.name = uniqueName(c.name);
   store.characters.push(c);
   store.activeId = c.id;
   save();
   return c;
+}
+
+// Keep the roster select legible: if a character with this exact name already
+// exists, append " (2)", " (3)", … Counts collisions against the base name so
+// re-importing the same soul climbs the numbering rather than stacking suffixes.
+function uniqueName(name) {
+  const taken = new Set(store.characters.map((c) => c.name));
+  if (!taken.has(name)) return name;
+  for (let n = 2; ; n++) {
+    const candidate = `${name} (${n})`;
+    if (!taken.has(candidate)) return candidate;
+  }
 }

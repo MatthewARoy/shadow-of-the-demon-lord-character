@@ -71,7 +71,7 @@ function levelBlock(level, e) {
   const talents = (e.talents || []).map((t) => `
     <div class="talent">
       <b>${esc(t.name)}</b>
-      <p class="path-talent clamp" title="Click to expand">${esc(t.text)}</p>
+      <p class="path-talent clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(t.text)}</p>
     </div>`).join("");
   return `
     <div class="path-level">
@@ -116,7 +116,7 @@ function pathCard(p) {
     </div>
     ${focusTags ? `<div class="spell-tags path-focus">${focusTags}</div>` : ""}
     ${filters.advanced ? analysisStrip(p) : ""}
-    <p class="spell-desc clamp" title="Click to expand">${esc(p.description)}</p>
+    <p class="spell-desc clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(p.description)}</p>
     ${levels.map((lvl) => levelBlock(lvl, p.levels[lvl])).join("")}
     <div class="spell-foot">
       <span class="small dim">${BOOKS[p.source] || p.source} · p.${p.page}</span>
@@ -286,6 +286,23 @@ function wire(el) {
       return;
     }
     const clamp = e.target.closest(".spell-desc, .path-talent");
-    if (clamp) clamp.classList.toggle("clamp");
+    if (clamp) toggleClamp(clamp);
   });
+
+  // Keyboard reach for the clamp toggles: Enter/Space expand/collapse, Space
+  // also preventing the page from scrolling.
+  el.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const clamp = e.target.closest(".spell-desc[role='button'], .path-talent[role='button']");
+    if (!clamp) return;
+    e.preventDefault();
+    toggleClamp(clamp);
+  });
+}
+
+// Toggle a clamped block and keep aria-expanded in step (clamped = collapsed =
+// expanded false). Shared by the click and keyboard handlers.
+function toggleClamp(node) {
+  const clamped = node.classList.toggle("clamp");
+  if (node.hasAttribute("role")) node.setAttribute("aria-expanded", clamped ? "false" : "true");
 }

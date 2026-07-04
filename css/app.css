@@ -61,6 +61,8 @@ body::after { /* film grain */
 }
 
 header.masthead, nav.tabs, main, footer { position: relative; z-index: 1; }
+/* Masthead sits above the sticky tab strip so its ⋯ popover can overlap it. */
+header.masthead { z-index: 21; }
 
 /* Masthead --------------------------------------------------- */
 .masthead {
@@ -81,6 +83,34 @@ header.masthead, nav.tabs, main, footer { position: relative; z-index: 1; }
 .roster-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .roster-bar select {
   min-width: 180px; max-width: 260px;
+}
+
+/* Overflow menu (⋯) — hidden on desktop, revealed on narrow widths. */
+.roster-overflow { display: none; position: relative; }
+.overflow-btn { padding: 7px 12px; line-height: 1; }
+.overflow-menu {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 30;
+  min-width: 200px; width: max-content; max-width: min(280px, calc(100vw - 32px));
+  padding: 8px; display: flex; flex-direction: column; gap: 4px;
+}
+.overflow-menu[hidden] { display: none; }
+.ov-item {
+  font-family: var(--caps); font-size: 14px; letter-spacing: .04em;
+  text-align: left; background: transparent; color: var(--bronze-bright);
+  border: 1px solid transparent; border-radius: 3px; padding: 8px 10px;
+  cursor: pointer; transition: all .12s ease;
+}
+.ov-item:hover, .ov-item:focus-visible {
+  background: rgba(176,141,79,.10); border-color: var(--line-bright); outline: none;
+}
+.ov-sample { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ov-sample > span {
+  font-family: var(--caps); font-size: 14px; letter-spacing: .04em; color: var(--bronze-bright);
+}
+.ov-sample select { flex: 1 1 auto; min-width: 0; max-width: 60%; }
+.ov-danger { color: var(--blood-bright); }
+.ov-danger:hover, .ov-danger:focus-visible {
+  background: rgba(142,31,31,.14); border-color: var(--blood-bright);
 }
 
 /* Controls --------------------------------------------------- */
@@ -112,12 +142,19 @@ nav.tabs {
   display: flex; gap: 2px; padding: 0 34px; border-bottom: 1px solid var(--line);
   background: rgba(13,10,9,.7); position: sticky; top: 0; z-index: 20;
   backdrop-filter: blur(6px);
+  overflow-x: auto; scroll-snap-type: x proximity;
+  scrollbar-width: none;
 }
+nav.tabs::-webkit-scrollbar { display: none; }
+/* Right-edge fade lives inside the mobile @media block (below): on desktop the
+   strip never overflows, so a sticky ::after would render in flow after the
+   last tab and dim it. */
 .tab {
   font-family: var(--display); font-size: 15px; letter-spacing: .12em;
   background: none; border: none; color: var(--text-dim);
   padding: 14px 22px 11px; cursor: pointer; border-bottom: 3px solid transparent;
   text-transform: uppercase; text-decoration: none;
+  flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start;
 }
 .tab:hover { color: var(--bronze); }
 .tab.active { color: var(--bronze-bright); border-bottom-color: var(--blood); }
@@ -427,6 +464,41 @@ dl.kv dd { margin: 0; }
 .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; align-items: center; }
 .filter-bar input[type="text"] { flex: 1; min-width: 160px; }
 
+/* Archive filter summary ------------------------------------- */
+.filter-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: -6px 0 14px; }
+.filter-summary[hidden] { display: none; }
+.fs-count {
+  font-family: var(--caps); font-size: 12px; letter-spacing: .04em;
+  font-variant: small-caps; color: var(--text-dim);
+}
+.fs-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip.fs-chip { font-size: 11.5px; padding: 1px 9px; }
+.fs-clear {
+  font-family: var(--caps); font-size: 11.5px; letter-spacing: .06em;
+  font-variant: small-caps; color: var(--blood-bright);
+  background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline;
+}
+.fs-clear:hover { color: var(--blood); }
+
+/* Exchange ledger disclosure --------------------------------- */
+.ledger-log { border: 1px solid var(--line); border-radius: 6px; background: rgba(176,141,79,.04); }
+.lg-summary {
+  font-family: var(--caps); font-size: 12px; letter-spacing: .06em;
+  font-variant: small-caps; color: var(--text-dim);
+  padding: 7px 12px; cursor: pointer; user-select: none;
+}
+.lg-summary:hover { color: var(--bronze-bright); }
+.ledger-log[open] .lg-summary { border-bottom: 1px solid var(--line); color: var(--text); }
+.lg-lines { padding: 4px 0; }
+.lg-line {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 5px 12px; border-bottom: 1px solid rgba(176,141,79,.06);
+}
+.lg-line:last-child { border-bottom: none; }
+.lg-path { flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.lg-node { font-family: var(--caps); font-size: 12.5px; letter-spacing: .02em; color: var(--text); }
+.lg-arrow { color: var(--bronze); opacity: .7; }
+
 .spell-grid { display: grid; gap: 12px; }
 @media (min-width: 980px) { .spell-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1380px) { .spell-grid { grid-template-columns: 1fr 1fr 1fr; } }
@@ -454,6 +526,12 @@ dl.kv dd { margin: 0; }
 .spell-meta b { font-family: var(--caps); color: var(--text); font-weight: 500; }
 .spell-desc { font-size: 13.8px; margin: 0; }
 .spell-desc.clamp { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; cursor: pointer; }
+/* Clamp toggles are role="button" <p>s — give keyboard focus a visible ring. */
+.spell-desc[role="button"]:focus-visible,
+.path-talent[role="button"]:focus-visible,
+.lk-body[role="button"]:focus-visible {
+  outline: 2px solid var(--bronze); outline-offset: 2px; border-radius: 2px;
+}
 .spell-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: auto; }
 .castings { display: flex; gap: 4px; flex-wrap: wrap; }
 .cast-pip {
@@ -520,7 +598,61 @@ table.ledger td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertic
 table.ledger tr:hover td { background: rgba(176,141,79,.04); }
 .warn { color: var(--blood-bright); font-family: var(--caps); font-size: 12px; }
 
+/* Gear tab --------------------------------------------------- */
+table.ledger th.th-equip { width: 1%; white-space: nowrap; }
+/* Labeled equip toggle: the checkbox keeps its semantics/wiring; the label
+   spells out the state in the same small-caps gothic voice as the headers. */
+.equip-toggle {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  font-family: var(--caps); font-variant: small-caps; font-size: 12px;
+  letter-spacing: .04em; color: var(--text-dim);
+}
+.equip-toggle input { cursor: pointer; accent-color: var(--bronze); }
+.equip-toggle input:checked + span { color: var(--bronze-bright); }
+.equip-effect {
+  margin-top: 2px; font-family: var(--caps); font-variant: small-caps;
+  font-size: 12px; letter-spacing: .03em; color: var(--bronze-bright);
+}
+.equip-effect.stowed { color: var(--text-dim); }
+
+/* Encumbrance meter: brass gradient filling N/M, oxblood when over limit. */
+.enc-meter {
+  height: 8px; margin: -4px 0 12px; border: 1px solid var(--line-bright);
+  border-radius: 5px; overflow: hidden; background: var(--ink-2);
+}
+.enc-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--bronze), var(--bronze-bright));
+  transition: width .2s ease;
+}
+.enc-meter.warn-fill .enc-fill {
+  background: linear-gradient(90deg, var(--bronze), var(--blood));
+}
+.enc-meter.over { border-color: #5c2424; }
+.enc-meter.over .enc-fill {
+  background: linear-gradient(90deg, var(--blood), var(--blood-bright));
+}
+
+/* Sticky armory nav: category tabs pin to the panel top while the catalog
+   scrolls beneath them. Desktop and mobile alike — the pin stays useful on a
+   narrow viewport, where the long catalog would otherwise scroll the whole
+   page away from the tabs. */
+.armory-tabs {
+  position: sticky; top: 0; z-index: 2;
+  margin-bottom: 12px; padding-bottom: 10px;
+  background: var(--panel); border-bottom: 1px solid var(--line);
+}
+.armory-list { max-height: 70vh; overflow-y: auto; }
+
 /* Dice ------------------------------------------------------- */
+/* One panel, two interior columns on desktop (caster left, ledger right);
+   stacks on narrow screens. */
+.dice-grid { display: grid; gap: 22px; }
+@media (min-width: 980px) {
+  .dice-grid { grid-template-columns: 1fr 1fr; }
+  /* Divider between the two interior columns. */
+  .dice-ledger { border-left: 1px solid var(--line); padding-left: 22px; }
+}
 .dice-tray { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
 .die-btn {
   font-family: var(--display); font-size: 18px; width: 64px; height: 64px;
@@ -544,21 +676,46 @@ table.ledger tr:hover td { background: rgba(176,141,79,.04); }
 .log-entry.crit .total { color: var(--bronze-bright); text-shadow: 0 0 10px rgba(217,176,106,.5); }
 .log-entry.fumble .total { color: var(--blood-bright); }
 
+/* The latest roll, emphasized at the top of the ledger. */
+.log-entry.featured {
+  display: flex; align-items: center; gap: 16px;
+  border-left-width: 3px; border-color: var(--bronze);
+  padding: 12px 16px; margin-bottom: 14px;
+  background: linear-gradient(180deg, rgba(176,141,79,.07), rgba(0,0,0,.2));
+}
+.log-entry.featured .total { font-size: 40px; margin-right: 0; line-height: 1; }
+.log-entry.featured .featured-body { min-width: 0; }
+.log-entry.featured .featured-body b { font-size: 15px; }
+.log-entry.featured .when { margin-top: 4px; }
+
 /* Roll toast ------------------------------------------------- */
 .roll-toast {
   position: fixed; bottom: 26px; right: 26px; z-index: 60;
   display: flex; flex-direction: column-reverse; gap: 10px;
   max-width: 320px;
+  /* The live region stays in the DOM permanently (for reliable SR
+     announcements) but must never intercept clicks over the page it overlays;
+     individual toasts re-enable pointer events for themselves. */
+  pointer-events: none;
 }
 .roll-toast .toast {
   border: 1px solid var(--bronze); border-radius: 6px; padding: 14px 20px;
   background: linear-gradient(180deg, #241b13, #14100c);
   box-shadow: 0 8px 40px rgba(0,0,0,.7), 0 0 24px rgba(176,141,79,.2);
   animation: toast-in .2s ease;
+  pointer-events: auto;
 }
 @keyframes toast-in { from { opacity: 0; transform: translateY(12px); } }
 .roll-toast .total { font-family: var(--display); font-size: 36px; color: var(--parchment); }
 .roll-toast .detail { font-size: 13px; color: var(--text-dim); }
+.roll-toast .toast-action {
+  display: inline-block; margin-top: 10px;
+  font-family: var(--caps); font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--bronze-bright); background: transparent; cursor: pointer;
+  border: 1px solid var(--bronze); border-radius: 4px; padding: 5px 14px;
+  transition: all .15s;
+}
+.roll-toast .toast-action:hover { background: rgba(176,141,79,.14); border-color: var(--bronze-bright); }
 
 /* Misc ------------------------------------------------------- */
 .colophon { padding: 30px 34px; border-top: 1px solid var(--line); margin-top: 30px; }
@@ -570,6 +727,14 @@ table.ledger tr:hover td { background: rgba(176,141,79,.04); }
 }
 hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
 
+@media (prefers-reduced-motion: reduce) {
+  .ov-item { transition: none; }
+  .tab-panel { animation: none; }
+  .enc-fill { transition: none; }
+  .roll-toast .toast-action { transition: none; }
+  .roll-toast .toast { animation: none; }
+}
+
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--ink-2); }
 ::-webkit-scrollbar-thumb { background: var(--line-bright); border-radius: 5px; }
@@ -577,12 +742,33 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
 
 @media (max-width: 720px) {
   .masthead, nav.tabs, main { padding-left: 16px; padding-right: 16px; }
-  .masthead h1 { font-size: 24px; }
-  .roster-bar { width: 100%; }
-  .roster-bar select { min-width: 0; flex: 1 1 140px; }
-  nav.tabs { overflow-x: auto; scrollbar-width: none; }
-  nav.tabs::-webkit-scrollbar { display: none; }
-  .tab { flex: 0 0 auto; padding: 12px 12px 9px; font-size: 13px; white-space: nowrap; }
+  /* Row 1 = compact title + roster select + ⋯, all on one line: keep the
+     masthead a single nowrap row and let the title shrink beside the controls. */
+  .masthead {
+    padding-top: 26px; padding-bottom: 24px; gap: 10px;
+    flex-wrap: nowrap; align-items: center;
+  }
+  .masthead-title { flex: 0 1 auto; min-width: 0; }
+  .masthead h1 {
+    font-size: 20px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .masthead h1 .amp { font-size: 15px; }
+  /* Tagline must not consume a mobile row. */
+  .subtitle { display: none; }
+  .roster-bar { flex: 1 1 auto; min-width: 0; flex-wrap: nowrap; gap: 8px; justify-content: flex-end; }
+  .roster-bar select#roster-select { min-width: 0; flex: 1 1 auto; max-width: none; }
+  /* Collapse the desktop controls into the ⋯ overflow menu. */
+  #new-char-btn, #sample-select, #export-btn, #import-btn, #delete-btn { display: none; }
+  .roster-overflow { display: block; flex: 0 0 auto; }
+  .tab { padding: 12px 12px 9px; font-size: 13px; }
+  /* Right-edge fade signalling more tabs; sticky so it pins to the visible
+     edge, pointer-events none so it never intercepts taps. Mobile-only: on
+     desktop the strip never overflows and the fade would dim the last tab. */
+  nav.tabs::after {
+    content: ""; position: sticky; right: 0; flex: 0 0 auto;
+    align-self: stretch; width: 32px; margin-left: -32px; pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--ink));
+  }
 }
 
 /* ============================================================
@@ -677,6 +863,17 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
   box-shadow: 0 2px 8px rgba(60,40,20,.25), inset 0 0 12px rgba(142,31,31,.07);
   text-align: center; line-height: 1;
 }
+/* Rollable nodes render as <button>; strip native chrome so they stay
+   pixel-identical to the <div> nodes. The app's :focus-visible outline is left
+   intact (we only clear the always-on :focus ring UAs draw), so keyboard focus
+   is visible while mouse clicks stay clean. */
+button.pent-node {
+  margin: 0; padding: 0; font: inherit; line-height: 1; color: inherit;
+  -webkit-appearance: none; appearance: none;
+  text-align: center;
+}
+button.pent-node:focus { outline: none; }
+button.pent-node:focus-visible { outline: 2px solid var(--ink-red); outline-offset: 2px; }
 .pent-node .pn-label {
   position: absolute; top: -17px; left: 50%; transform: translateX(-50%);
   font-family: var(--display); font-size: 10.5px; letter-spacing: .08em;
@@ -724,13 +921,97 @@ hr.rule { border: none; border-top: 1px solid var(--line); margin: 14px 0; }
 .paper .btn-ink:hover { background: rgba(142,31,31,.1); border-color: var(--ink-red); }
 
 .paper textarea.ink-area {
-  width: 100%; background: transparent; border: none; resize: vertical;
+  width: 100%; background: transparent; border: none; resize: none;
   color: var(--ink-dark); font-family: var(--fell); font-size: 14.5px; font-style: italic;
+  /* Grow to fit, then scroll. min/max are set in lines so the box opens at a
+     sensible height and never runs away down the page. */
+  overflow-y: auto;
+  min-height: 5.2em; max-height: 12lh;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-red-soft) transparent;
 }
+/* Native auto-grow where supported; the JS scrollHeight fallback covers the
+   rest. The shared max-height caps both paths, then overflow-y scrolls. */
+@supports (field-sizing: content) {
+  .paper textarea.ink-area { field-sizing: content; }
+}
+.paper textarea.ink-area::-webkit-scrollbar { width: 8px; }
+.paper textarea.ink-area::-webkit-scrollbar-track { background: transparent; }
+.paper textarea.ink-area::-webkit-scrollbar-thumb {
+  background: var(--ink-red-soft); border-radius: 4px;
+}
+.paper textarea.ink-area::-webkit-scrollbar-thumb:hover { background: var(--ink-red); }
 .paper textarea.ink-area:focus { outline: 1px dashed var(--ink-red-soft); }
 
+/* Play-tracking steppers (Damage / Insanity / Corruption) ------ */
+.stepper-row {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+  margin-top: 10px;
+}
+.stepper {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  border: 1.5px solid var(--ink-red-soft); border-radius: 8px;
+  padding: 7px 12px 8px; min-width: 108px;
+  background: rgba(255, 252, 244, .3);
+}
+.stepper-name {
+  font-family: var(--display); font-size: 11.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-red);
+}
+.stepper-controls { display: flex; align-items: center; gap: 10px; }
+.stepper-btn {
+  width: 34px; height: 34px; flex: 0 0 34px; border-radius: 50%;
+  border: 1.5px solid var(--ink-red-soft); background: transparent;
+  color: var(--ink-red); font-family: var(--display); font-size: 20px; line-height: 1;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .12s, border-color .12s;
+}
+.stepper-btn:hover { background: rgba(142,31,31,.1); border-color: var(--ink-red); }
+.stepper-btn:active { background: rgba(142,31,31,.18); }
+.stepper-value {
+  font-family: var(--display); font-size: 24px; color: var(--ink-dark);
+  min-width: 1.6em; text-align: center; font-variant-numeric: tabular-nums;
+}
+.stepper-sub { font-family: var(--caps); font-size: 11px; color: var(--ink-faint); }
+
+/* Provenance tooltip on stat nodes ----------------------------- */
+.prov-tip {
+  position: fixed; z-index: 70; pointer-events: none;
+  min-width: 150px; max-width: min(260px, 90vw);
+  padding: 8px 10px; border-radius: 5px;
+  border: 1px solid var(--line-bright);
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  box-shadow: 0 10px 34px rgba(0,0,0,.6);
+  color: var(--text); font-family: var(--body); font-size: 12.5px; line-height: 1.4;
+  animation: prov-tip-in .12s ease;
+}
+.prov-tip[hidden] { display: none; }
+.prov-tip-title {
+  font-family: var(--caps); font-size: 12.5px; letter-spacing: .05em;
+  color: var(--bronze-bright); margin-bottom: 5px;
+  padding-bottom: 4px; border-bottom: 1px solid var(--line);
+}
+.prov-tip-row {
+  display: flex; justify-content: space-between; gap: 14px;
+}
+.prov-tip-row + .prov-tip-row { margin-top: 2px; }
+.prov-tip-row > span:last-child {
+  font-variant-numeric: tabular-nums; color: var(--parchment); flex: 0 0 auto;
+}
+.prov-tip-total {
+  margin-top: 5px; padding-top: 4px; border-top: 1px solid var(--line);
+  font-family: var(--caps); color: var(--bronze-bright);
+}
+.prov-tip-total > span:last-child { color: var(--bronze-bright); }
+@keyframes prov-tip-in { from { opacity: 0; transform: translateY(3px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .prov-tip { animation: none; }
+  .stepper-btn { transition: none; }
+}
+
 @media print {
-  .masthead, nav.tabs, .colophon, .roll-toast, .vignette, .sigil, .sheet-below { display: none !important; }
+  .masthead, nav.tabs, .colophon, .roll-toast, .vignette, .sigil, .sheet-below, .prov-tip { display: none !important; }
   body { background: white; }
   body::after { display: none; }
   main { padding: 0; max-width: none; }

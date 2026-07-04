@@ -26,7 +26,6 @@ export function renderSheet(el) {
   const char = active();
   if (!char) return;
   const computed = compute(char);
-  const m = computed.modifiers;
   const incapacitated = computed.health > 0 && char.damage >= computed.health;
   const masterName = char.masterMode === "second-expert" ? char.secondExpertPath : char.masterPath;
 
@@ -77,17 +76,20 @@ export function renderSheet(el) {
 
       <div class="pg-pentagram">
         ${pentagram(char, computed, incapacitated)}
-        <div style="display:flex;justify-content:center;gap:8px;margin-top:6px">
-          <button class="btn-ink" data-dmg="-1">− damage</button>
-          <button class="btn-ink" data-dmg="1">+ damage</button>
+        <div class="stepper-row">
+          ${stepper("Damage", char.damage, `of ${computed.health} health`,
+            `data-dmg="-1"`, `data-dmg="1"`, "Remove damage", "Add damage")}
+          ${stepper("Insanity", computed.insanity + (computed.insanityNote ? "*" : ""),
+            `of ${computed.attributes.will} will`,
+            `data-adj="insanityAdjust:-1"`, `data-adj="insanityAdjust:1"`,
+            "Remove a point of insanity", "Mark insanity gained")}
+          ${stepper("Corruption", computed.corruption, "marks of darkness",
+            `data-adj="corruptionAdjust:-1"`, `data-adj="corruptionAdjust:1"`,
+            "Remove a point of corruption", "Mark corruption gained")}
+        </div>
+        <div style="display:flex;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap">
           <button class="btn-ink" data-heal title="Heal your healing rate">heal ${computed.healingRate}</button>
           <button class="btn-ink" data-rest title="Complete a rest (8 hours): heal your healing rate and regain all expended castings">rest</button>
-        </div>
-        <div style="display:flex;justify-content:center;gap:8px;margin-top:6px;flex-wrap:wrap">
-          <button class="btn-ink" data-adj="insanityAdjust:-1" title="Remove a point of Insanity (quirks, recovery)">− insanity</button>
-          <button class="btn-ink" data-adj="insanityAdjust:1" title="Mark Insanity gained in play">+ insanity</button>
-          <button class="btn-ink" data-adj="corruptionAdjust:-1" title="Remove a point of Corruption">− corruption</button>
-          <button class="btn-ink" data-adj="corruptionAdjust:1" title="Mark Corruption gained in play">+ corruption</button>
         </div>
         ${incapacitated ? `<p style="text-align:center;color:var(--ink-red);font-family:var(--caps);margin:6px 0 0">Incapacitated — roll a fate die each round.</p>` : ""}
         ${computed.insanityNote ? `<p class="ink-small" style="text-align:center;margin:4px 0 0">Insanity * plus ${esc(computed.insanityNote)}</p>` : ""}
@@ -121,16 +123,18 @@ export function renderSheet(el) {
     </div>
   </div>
 
+  <div class="prov-tip" id="prov-tip" role="tooltip" hidden></div>
+
   <div class="sheet-below">
     <div class="cols cols-2" style="margin-top:18px">
       <div class="panel">
         <h2 class="rubric">Provenance</h2>
-        ${provBlock("Health", computed.provenance.health, [{ source: "Strength score", amount: computed.attributes.strength }])}
-        ${provBlock("Power", computed.provenance.power)}
-        ${provBlock("Defense", computed.provenance.defense, computed.defenseFixed != null ? [{ source: "Fixed (ancestry)", amount: computed.defenseFixed }] : [{ source: "Agility score", amount: computed.attributes.agility }])}
-        ${provBlock("Speed", computed.provenance.speed, [{ source: "Ancestry base", amount: computed.ancestry.creation.speed }])}
-        ${provBlock("Corruption", computed.provenance.corruption)}
-        ${provBlock("Insanity", computed.provenance.insanity)}
+        ${provBlock("Health", computed.provenance.health, provBase("Health", computed))}
+        ${provBlock("Power", computed.provenance.power, provBase("Power", computed))}
+        ${provBlock("Defense", computed.provenance.defense, provBase("Defense", computed))}
+        ${provBlock("Speed", computed.provenance.speed, provBase("Speed", computed))}
+        ${provBlock("Corruption", computed.provenance.corruption, provBase("Corruption", computed))}
+        ${provBlock("Insanity", computed.provenance.insanity, provBase("Insanity", computed))}
         <p class="small dim" style="margin-bottom:0">Use your browser's print function for a paper copy — the dark chrome stays behind.</p>
       </div>
       <div class="panel">
@@ -163,16 +167,16 @@ function pentagram(char, computed, incapacitated) {
     nodes.push(node("pn-med rollable", p, cap(a), computed.attributes[a], null, `data-roll-attr="${a}"`, `Roll ${cap(a)}`));
     nodes.push(node("pn-mod", modPos(a), null, sign(m[a])));
   }
-  nodes.push(node("pn-med", STAR.health, "Health", computed.health));
+  nodes.push(node("pn-med", STAR.health, "Health", computed.health, null, provAttr("Health", computed)));
   nodes.push(node("pn-mod", { x: 50, y: 73.5 }, "Healing", computed.healingRate));
   nodes.push(node(`pn-large pn-damage`, { x: 50, y: 50 }, "Damage", char.damage, incapacitated ? "DOWN" : null));
   // satellites, mirroring the paper sheet's outer circles
   nodes.push(node("pn-small", { x: 10.5, y: 25 }, "Size", computed.size));
-  nodes.push(node("pn-small", { x: 5.5, y: 41 }, "Speed", computed.speed));
-  nodes.push(node("pn-small", { x: 89.5, y: 9 }, "Power", computed.power));
+  nodes.push(node("pn-small", { x: 5.5, y: 41 }, "Speed", computed.speed, null, provAttr("Speed", computed)));
+  nodes.push(node("pn-small", { x: 89.5, y: 9 }, "Power", computed.power, null, provAttr("Power", computed)));
   nodes.push(node("pn-small rollable", { x: 94, y: 26.5 }, "Perception", computed.perception, null, `data-roll-perception="1"`, "Roll Perception"));
   nodes.push(node("pn-small", { x: 96, y: 43.5 }, "Insanity", computed.insanity + (computed.insanityNote ? "*" : "")));
-  nodes.push(node("pn-small", { x: 16.5, y: 84 }, "Defense", computed.defense));
+  nodes.push(node("pn-small", { x: 16.5, y: 84 }, "Defense", computed.defense, null, provAttr("Defense", computed)));
   nodes.push(node("pn-small", { x: 83.5, y: 84 }, "Corruption", computed.corruption));
 
   return `
@@ -187,11 +191,40 @@ function pentagram(char, computed, incapacitated) {
 }
 
 function node(cls, pos, label, value, sub, attrs = "", title = "") {
+  // Rollable nodes are real buttons so they're keyboard-reachable and announce
+  // their action; static nodes stay <div>s. The `rollable` class only ever rides
+  // along with a data-roll-* attribute, so keying off it is safe.
+  const rollable = /\brollable\b/.test(cls);
+  const tag = rollable ? "button" : "div";
+  const typeAttr = rollable ? `type="button"` : "";
+  // A static node carrying provenance still needs keyboard focus so the
+  // breakdown appears on focus for desktop keyboard users (buttons already
+  // focus themselves).
+  const focusAttr = !rollable && /\bdata-prov=/.test(attrs) ? `tabindex="0"` : "";
   return `
-  <div class="pent-node ${cls}" style="left:${pos.x}%;top:${pos.y}%" ${attrs} ${title ? `title="${esc(title)}"` : ""}>
+  <${tag} class="pent-node ${cls}" style="left:${pos.x}%;top:${pos.y}%" ${typeAttr} ${focusAttr} ${attrs} ${title ? `title="${esc(title)}"` : ""}>
     ${label ? `<span class="pn-label">${esc(label)}</span>` : ""}
     <span class="pn-value">${esc(value)}</span>
     ${sub ? `<span class="pn-sub">${esc(sub)}</span>` : ""}
+  </${tag}>`;
+}
+
+/* ---------------- play-tracking steppers ---------------- */
+
+// A grouped stepper card: small-caps name, − value + row of real buttons, and
+// a one-line subnote. The buttons carry the same data-dmg / data-adj hooks the
+// old chips used, so the existing mutation handlers (with their clamp rules)
+// drive them unchanged.
+function stepper(name, value, sub, minusAttr, plusAttr, minusLabel, plusLabel) {
+  return `
+  <div class="stepper">
+    <span class="stepper-name">${esc(name)}</span>
+    <div class="stepper-controls">
+      <button type="button" class="stepper-btn" ${minusAttr} aria-label="${esc(minusLabel)}">−</button>
+      <span class="stepper-value">${esc(value)}</span>
+      <button type="button" class="stepper-btn" ${plusAttr} aria-label="${esc(plusLabel)}">+</button>
+    </div>
+    <span class="stepper-sub">${esc(sub)}</span>
   </div>`;
 }
 
@@ -224,16 +257,53 @@ function weaponsTable(char, computed) {
 
 /* ---------------- provenance ---------------- */
 
+// The non-engine "base" rows that lead each stat's breakdown — the replacement
+// or starting value the engine's provenance deltas build on. Shared by the
+// print block and the node tooltips so the two never drift.
+function provBase(name, computed) {
+  switch (name) {
+    case "Health":
+      return [{ source: "Strength score", amount: computed.attributes.strength }];
+    case "Defense":
+      return computed.armor ? [{ source: `${computed.armor.name} (armor)`, amount: computed.armor.base }]
+        : computed.defenseFixed != null ? [{ source: "Fixed (ancestry)", amount: computed.defenseFixed }]
+        : [{ source: "Agility score", amount: computed.attributes.agility }];
+    case "Speed":
+      return [{ source: "Ancestry base", amount: computed.ancestry.creation.speed }];
+    default:
+      return [];
+  }
+}
+
+// The final computed value for a stat — the authoritative "Total" a tooltip
+// shows. It reflects clamps (e.g. Defense caps at 25) the row sum may not.
+function provTotal(name, computed) {
+  return { Health: computed.health, Power: computed.power, Defense: computed.defense, Speed: computed.speed }[name];
+}
+
 function provBlock(name, list, base = []) {
   const rows = [...base, ...list];
   if (!rows.length) return "";
-  return `<p class="prov"><b>${name}:</b> ${rows.map((r) =>
-    `${r.source} ${r.amount >= 0 ? "+" : ""}${r.amount}`).join(" · ")}</p>`;
+  return `<p class="prov"><b>${esc(name)}:</b> ${rows.map((r) =>
+    `${esc(r.source)} ${r.amount >= 0 ? "+" : ""}${esc(r.amount)}`).join(" · ")}</p>`;
+}
+
+// A data-prov="…" attribute carrying a JSON breakdown for the hover/focus/tap
+// tooltip. Rows come straight from the same base + engine provenance the print
+// block uses; the total is the authoritative computed stat. Empty when there's
+// nothing to explain. esc() keeps user-derived sources (armor names) safe once
+// the value is read back and re-inserted as text by the tooltip.
+function provAttr(name, computed) {
+  const rows = [...provBase(name, computed), ...(computed.provenance[name.toLowerCase()] || [])];
+  if (!rows.length) return "";
+  const payload = { name, total: provTotal(name, computed), rows: rows.map((r) => ({ source: r.source, amount: r.amount })) };
+  return `data-prov="${esc(JSON.stringify(payload))}"`;
 }
 
 /* ---------------- events ---------------- */
 
 function wireSheet(el, char, computed) {
+  wireProvTooltip(el);
   el.querySelectorAll("[data-roll-attr]").forEach((n) => n.addEventListener("click", () => {
     const a = n.dataset.rollAttr;
     showToast(rollD20(`${cap(a)} challenge`, computed.modifiers[a]));
@@ -271,5 +341,120 @@ function wireSheet(el, char, computed) {
       if (dmg) showToast(dmg);
     }
   }));
-  el.querySelector("#sheet-notes")?.addEventListener("change", (e) => { char.notes = e.target.value; save(); });
+  const notes = el.querySelector("#sheet-notes");
+  if (notes) {
+    notes.addEventListener("change", (e) => { char.notes = e.target.value; save(); });
+    // Auto-grow fallback for browsers without field-sizing: content. Also runs
+    // once now so loaded/imported notes open at their full height.
+    notes.addEventListener("input", () => autoSizeNotes(notes));
+    autoSizeNotes(notes);
+  }
+}
+
+// Grow the notes area to fit its content up to the CSS max-height, then let it
+// scroll. Skipped where field-sizing already does the work. Reads/writes only
+// this element's own height, so it never nudges the page's scroll position.
+function autoSizeNotes(ta) {
+  if (CSS.supports?.("field-sizing", "content")) return;
+  ta.style.height = "auto";
+  ta.style.height = ta.scrollHeight + "px";
+}
+
+/* ---------------- provenance tooltip ---------------- */
+
+// A single tooltip element (#prov-tip) shows a stat's breakdown on hover/focus,
+// and toggles on tap for non-rollable stat nodes (rollable nodes keep their
+// roll-on-click and only respond to hover/focus). Listeners are delegated on
+// the sheet pane and attached once — the pane's innerHTML is replaced each
+// render but these survive because they live on the pane itself.
+function wireProvTooltip(el) {
+  if (el.dataset.provWired) return;
+  el.dataset.provWired = "1";
+
+  const tipFor = () => el.querySelector("#prov-tip");
+  let current = null; // the node whose tooltip is showing (for tap-toggle)
+
+  const hide = () => {
+    const tip = tipFor();
+    if (tip) { tip.hidden = true; tip.innerHTML = ""; }
+    if (current) { current.removeAttribute("aria-describedby"); current = null; }
+  };
+
+  const show = (node) => {
+    const tip = tipFor();
+    if (!tip || !node?.dataset.prov) return;
+    let data;
+    try { data = JSON.parse(node.dataset.prov); } catch { return; }
+    tip.innerHTML = provTipHTML(data);
+    node.setAttribute("aria-describedby", "prov-tip");
+    tip.hidden = false;
+    positionTip(tip, node);
+    current = node;
+  };
+
+  // Hover + keyboard focus (desktop): show on enter/focus, hide on leave/blur.
+  el.addEventListener("mouseover", (e) => {
+    const node = e.target.closest?.("[data-prov]");
+    if (node) show(node);
+  });
+  el.addEventListener("mouseout", (e) => {
+    const node = e.target.closest?.("[data-prov]");
+    // Ignore moves within the same node.
+    if (node && node !== e.relatedTarget?.closest?.("[data-prov]")) hide();
+  });
+  el.addEventListener("focusin", (e) => {
+    const node = e.target.closest?.("[data-prov]");
+    if (node) show(node);
+  });
+  el.addEventListener("focusout", (e) => {
+    if (e.target.closest?.("[data-prov]")) hide();
+  });
+  // Touch: a tap on a NON-rollable stat node toggles its tooltip. We gate on
+  // pointerType so desktop mouse clicks (which already got a hover tooltip)
+  // don't immediately toggle it back off. Rollable nodes are never intercepted,
+  // so their roll-on-click stays untouched.
+  let touchToggled = false;
+  el.addEventListener("pointerup", (e) => {
+    if (e.pointerType !== "touch") return;
+    const node = e.target.closest?.("[data-prov]");
+    if (!node || node.classList.contains("rollable")) return;
+    if (current === node) hide(); else show(node);
+    touchToggled = true;
+  });
+  // Swallow the click a touch tap synthesizes so it can't re-trigger anything.
+  el.addEventListener("click", (e) => {
+    if (!touchToggled) return;
+    touchToggled = false;
+    const node = e.target.closest?.("[data-prov]");
+    if (node && !node.classList.contains("rollable")) { e.stopPropagation(); e.preventDefault(); }
+  });
+  // A tap anywhere off an open tooltip's node dismisses it.
+  document.addEventListener("pointerdown", (e) => {
+    if (current && !e.target.closest?.("[data-prov]") && !e.target.closest?.("#prov-tip")) hide();
+  });
+  el.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && current) { const n = current; hide(); n.blur?.(); }
+  });
+}
+
+function provTipHTML(data) {
+  const rows = data.rows.map((r) =>
+    `<div class="prov-tip-row"><span>${esc(r.source)}</span><span>${r.amount >= 0 ? "+" : ""}${esc(r.amount)}</span></div>`).join("");
+  return `<div class="prov-tip-title">${esc(data.name)}</div>${rows}
+    <div class="prov-tip-row prov-tip-total"><span>Total</span><span>${esc(data.total)}</span></div>`;
+}
+
+// Place the fixed-position tooltip centered above the node, flipping below and
+// clamping to the viewport so it never spills off-screen.
+function positionTip(tip, node) {
+  const n = node.getBoundingClientRect();
+  const t = tip.getBoundingClientRect();
+  const gap = 8;
+  let left = n.left + n.width / 2 - t.width / 2;
+  left = Math.max(6, Math.min(left, window.innerWidth - t.width - 6));
+  let top = n.top - t.height - gap;
+  if (top < 6) top = n.bottom + gap; // flip below when it would clip the top
+
+  tip.style.left = left + "px";
+  tip.style.top = top + "px";
 }

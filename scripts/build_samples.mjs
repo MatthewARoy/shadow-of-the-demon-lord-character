@@ -63,6 +63,10 @@ const SAMPLES = [
       name: "Grin, Guild Knife",
       ancestry: "Goblin", level: 2, novicePath: "Rogue",
       notes: "Sample build — guild-trained cutpurse (Rogue Training 2) who dabbles in magic: the Magic roguery talent grants Power and shadow tricks.",
+      inventory: [
+        { id: "grin-leathers", name: "Soft Leather", qty: 1, defense: "Agility+1", requirement: null, type: "Clothing", armor: true, equipped: true },
+        { id: "grin-loot", name: "Mail", qty: 1, defense: "15", requirement: "Strength 13", type: "Medium Armor", armor: true, equipped: false, notes: "Stolen — for selling, not wearing" },
+      ],
     },
     script: {
       attributes: ["agility", "intellect"],
@@ -72,33 +76,99 @@ const SAMPLES = [
       talents: ["Magic"],
       langProf: ["Thief", "Smuggler", "Pickpocket"],
     },
-    expect: { power: 1, traditionCount: 2, agility: 13, pending: 0 },
+    // Soft Leather: Defense = Agility 13 + 1. The unequipped (and unwearable)
+    // mail must affect nothing.
+    expect: { power: 1, traditionCount: 2, agility: 13, defense: 14, speed: 10, pending: 0 },
   },
   {
     base: {
       name: "Torga Stonejaw",
       ancestry: "Dwarf", level: 4, novicePath: "Warrior",
       notes: "Sample build — militia veteran (Warrior Training 3). Takes Shake it Off at level 4; no magic at all.",
+      inventory: [
+        { id: "torga-brigandine", name: "Brigandine", qty: 1, defense: "13", requirement: "Strength 11", type: "Light Armor", armor: true, equipped: true },
+      ],
     },
     script: {
       attributes: ["strength", "agility"],
       options: { "Level 4 Dwarf Benefit": 1 },
       langProf: ["Miner", "Brewer", "Militia member"],
     },
-    expect: { health: 31, power: 0, spellCount: 0, talentHas: "Shake it Off", pending: 0 },
+    // Brigandine replaces Agility 10 with 13; Strength 11 meets the
+    // requirement exactly, so the dwarf Speed 8 is untouched.
+    expect: { health: 31, power: 0, spellCount: 0, talentHas: "Shake it Off", defense: 13, speed: 8, pending: 0 },
   },
   {
     base: {
       name: "Walter the Unyielding",
       ancestry: "Human", level: 7, novicePath: "Warrior", expertPath: "Fighter", masterPath: "Dreadnaught",
       notes: "Sample build — pit fighter turned iron-clad wall (Warrior Training 1). Tests the full novice → expert → master spine with Determined at level 4.",
+      inventory: [
+        { id: "walter-mail", name: "Mail", qty: 1, defense: "15", requirement: "Strength 13", type: "Medium Armor", armor: true, equipped: true },
+        { id: "walter-shield", name: "Large shield", qty: 1, damage: "1d3", hands: "Off", properties: "Size 1, Defensive +2", requirement: "Strength 11", weapon: true, equipped: true },
+      ],
     },
     script: {
       attributes: ["strength", "agility", "strength", "will", "strength", "agility", "will"],
       options: { "Level 4 Human Benefit": 1 },
       langProf: ["Pit fighter", "Laborer", "Dark Speech", "Mercenary", "Officer"],
     },
-    expect: { power: 0, spellCount: 0, talentHas: "Iron Clad", pending: 0 },
+    // Mail (15) replaces Agility 12, the shield's Defensive +2 and the
+    // Warrior level 5 +1 stack on top: Defense 18. Strength 14 meets both
+    // requirements; medium armor doesn't slow him.
+    expect: { power: 0, spellCount: 0, talentHas: "Iron Clad", defense: 18, speed: 10, pending: 0 },
+  },
+  {
+    // Real exported character included verbatim (play state zeroed): the
+    // engine must keep replaying her decisions to the same sheet. Exercises
+    // attributeSwap, four tradition discoveries with Cantrip rank-0 picks,
+    // and an eight-step spell-exchange chain (Blink → … → Swiftness).
+    raw: {
+      version: 2,
+      name: "Syrah",
+      ancestry: "Changeling",
+      level: 1,
+      novicePath: "Magician",
+      attributeSwap: { from: "strength", to: "intellect" },
+      decisions: {
+        "novice[Magician]:1:0:0": { attrs: ["intellect", "will"] },
+        "novice[Magician]:1:2:0": { text: "Magic" },
+        "novice[Magician]:1:3:0": { kind: "discover", tradition: "Rune" },
+        "novice[Magician]:1:3:0:rank0": { spell: "Rune of Prohibition", tradition: "Rune" },
+        "novice[Magician]:1:3:0:cantrip": { spell: "Rune of Invisibility", tradition: "Rune" },
+        "novice[Magician]:1:4:0": { kind: "discover", tradition: "Teleportation" },
+        "novice[Magician]:1:4:0:rank0": { spell: "Blink", tradition: "Teleportation" },
+        "novice[Magician]:1:4:0:cantrip": { spell: "Dismiss", tradition: "Teleportation" },
+        "novice[Magician]:1:4:1": { kind: "discover", tradition: "Time" },
+        "novice[Magician]:1:4:1:rank0": { spell: "Delay", tradition: "Time" },
+        "novice[Magician]:1:4:1:cantrip": { spell: "Consequence", tradition: "Time" },
+        "novice[Magician]:1:4:2": { kind: "discover", tradition: "Fey" },
+        "novice[Magician]:1:4:2:rank0": { spell: "Shrink Object", tradition: "Fey" },
+        "novice[Magician]:1:4:2:cantrip": { spell: "Trip", tradition: "Fey" },
+      },
+      exchanges: [
+        { drop: { name: "Blink", tradition: "Teleportation" }, gain: { name: "Borrowed Time", tradition: "Time" } },
+        { drop: { name: "Trip", tradition: "Fey" }, gain: { name: "Guiding Sprite", tradition: "Fey" } },
+        { drop: { name: "Dismiss", tradition: "Teleportation" }, gain: { name: "Bury the Hatchet", tradition: "Teleportation" } },
+        { drop: { name: "Rune of Invisibility", tradition: "Rune" }, gain: { name: "Time Loop", tradition: "Time" } },
+        { drop: { name: "Time Loop", tradition: "Time" }, gain: { name: "Slow", tradition: "Time" } },
+        { drop: { name: "Slow", tradition: "Time" }, gain: { name: "Bend Space", tradition: "Teleportation" } },
+        { drop: { name: "Bend Space", tradition: "Teleportation" }, gain: { name: "Short Hop", tradition: "Teleportation" } },
+        { drop: { name: "Short Hop", tradition: "Teleportation" }, gain: { name: "Swiftness", tradition: "Time" } },
+      ],
+      inventory: [
+        { id: "2aa66ddc-ff5c-4cf2-91dc-fb0a6f058ced", name: "Dagger or knife", qty: 1, damage: "1d3", hands: "Off", properties: "Finesse, thrown, range (short)", requirement: null, weapon: true },
+        { id: "06bbea84-e1d5-418b-a902-efb14b40f21b", name: "Sling", qty: 1, damage: "1d3", hands: "Off", properties: "Range (medium), uses stones", requirement: null, weapon: true },
+        { id: "d630b9ef-60f7-4da4-a9bb-5a45bc2ee351", name: "Tinderbox", qty: 1 },
+        { id: "00093634-4e03-47b7-ae83-8c953ef819a4", name: "Torch", qty: 1 },
+        { id: "627f5118-b388-4f05-819c-509fbfdd2d84", name: "Torch", qty: 1 },
+      ],
+      coins: "2 copper",
+      notes: "Common and Fey languages\nMade a pact with marlene - boon on all spells, need to sacrifice at least 1 soul per 15 days\n3 corruption\nWriter and lawyer\n18 yo female human\n12 - a druid took me in\nI have terrible nightmares\nI'm a good person\nI'm courageous and conceited.\nI have a tiny floating metal ball",
+    },
+    // 9 spells: her 8 picks (post-exchange) plus the Magician's granted Sense
+    // Magic. The two pending slots are her never-picked level-0 professions.
+    expect: { health: 10, power: 1, defense: 10, intellect: 12, will: 11, spellCount: 9, traditionCount: 4, spellHas: "Swiftness", pending: 2 },
   },
 ];
 
@@ -225,7 +295,7 @@ function pickSpell(char, out, p, q) {
 function check(name, expect, out) {
   const fails = [];
   const got = {
-    health: out.health, power: out.power, defense: out.defense,
+    health: out.health, power: out.power, defense: out.defense, speed: out.speed,
     strength: out.attributes.strength, agility: out.attributes.agility,
     intellect: out.attributes.intellect, will: out.attributes.will,
     spellCount: out.spells.length, traditionCount: out.discovered.length,
@@ -234,6 +304,8 @@ function check(name, expect, out) {
   for (const [k, v] of Object.entries(expect)) {
     if (k === "talentHas") {
       if (!out.talents.some((t) => t.name.includes(v))) fails.push(`missing talent ${v}`);
+    } else if (k === "spellHas") {
+      if (!out.spells.some((s) => s.name === v)) fails.push(`missing spell ${v}`);
     } else if (got[k] !== v) {
       fails.push(`${k}: expected ${v}, got ${got[k]}`);
     }
@@ -242,20 +314,72 @@ function check(name, expect, out) {
 }
 
 // ---------------------------------------------------------------------------
+// Equipped-gear engine checks (core p. 35, 101, 103). These cover rule
+// corners the user-facing samples shouldn't model — e.g. wearing armor whose
+// Strength requirement is unmet — and never touch samples.json.
+// ---------------------------------------------------------------------------
+
+const GEAR_CHECKS = [
+  {
+    name: "heavy armor with unmet Strength requirement",
+    // Defense 17 still replaces Agility 10; Speed 10 loses 2 for heavy
+    // armor and 2 more for the unmet requirement.
+    inventory: [
+      { id: "t1", name: "Plate and Mail", qty: 1, defense: "17", requirement: "Strength 15", type: "Heavy Armor", armor: true, equipped: true },
+    ],
+    expect: { defense: 17, speed: 6 },
+  },
+  {
+    name: "Agility-based armor stacks with a shield",
+    inventory: [
+      { id: "t1", name: "Soft Leather", qty: 1, defense: "Agility+1", type: "Clothing", armor: true, equipped: true },
+      { id: "t2", name: "Small shield", qty: 1, damage: "1", hands: "Off", properties: "Defensive +1", requirement: "Strength 9", weapon: true, equipped: true },
+    ],
+    expect: { defense: 12, speed: 10 },
+  },
+  {
+    name: "unequipped armor is ignored",
+    inventory: [
+      { id: "t1", name: "Mail", qty: 1, defense: "15", requirement: "Strength 13", type: "Medium Armor", armor: true, equipped: false },
+    ],
+    expect: { defense: 10, speed: 10 },
+  },
+];
+
+// ---------------------------------------------------------------------------
 
 const write = process.argv.includes("--write");
 const samples = [];
 let failed = 0;
 
+for (const gc of GEAR_CHECKS) {
+  const char = Object.assign(newCharacter("Gear Check"), { inventory: gc.inventory });
+  const fails = check(gc.name, gc.expect, compute(char));
+  if (fails.length) {
+    failed++;
+    console.error(`✗ gear: ${gc.name}\n   ${fails.join("\n   ")}`);
+  } else {
+    console.log(`✓ gear: ${gc.name}`);
+  }
+}
+
 for (const spec of SAMPLES) {
-  const { char, out } = resolveAll(spec);
-  const fails = check(spec.base.name, spec.expect, out);
+  const name = spec.base?.name || spec.raw.name;
+  // `raw` specs are real exported characters replayed verbatim rather than
+  // built by the resolver.
+  const { char, out } = spec.raw
+    ? (() => {
+        const char = { ...newCharacter(spec.raw.name), ...structuredClone(spec.raw) };
+        return { char, out: compute(char) };
+      })()
+    : resolveAll(spec);
+  const fails = check(name, spec.expect, out);
   const summary = `health ${out.health} · power ${out.power} · defense ${out.defense} · ${out.spells.length} spells · ${out.discovered.length} traditions · ${out.talents.length} talents`;
   if (fails.length) {
     failed++;
-    console.error(`✗ ${spec.base.name} — ${summary}\n   ${fails.join("\n   ")}`);
+    console.error(`✗ ${name} — ${summary}\n   ${fails.join("\n   ")}`);
   } else {
-    console.log(`✓ ${spec.base.name} — ${summary}`);
+    console.log(`✓ ${name} — ${summary}`);
   }
   delete char.id;
   delete char.log;

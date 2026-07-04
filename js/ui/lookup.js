@@ -42,15 +42,34 @@ export function renderLookup(el) {
     input.value = q;
     runSearch(el);
   });
-  el.querySelector("#lk-results").addEventListener("click", (e) => {
+  const results = el.querySelector("#lk-results");
+  const toggleBody = (body) => {
+    const clamped = body.classList.toggle("lk-clamp");
+    // Only long bodies are exposed as role="button"; short paragraphs stay
+    // plain <p>, so don't stamp aria-expanded on a non-interactive element.
+    if (body.hasAttribute("role")) body.setAttribute("aria-expanded", clamped ? "false" : "true");
+  };
+  results.addEventListener("click", (e) => {
     const body = e.target.closest(".lk-body");
-    if (body) body.classList.toggle("lk-clamp");
+    if (body) toggleBody(body);
+  });
+  // Keyboard reach for the clamp toggles: Enter/Space fire the same toggle,
+  // Space also preventing the page from scrolling.
+  results.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const body = e.target.closest(".lk-body[role='button']");
+    if (!body) return;
+    e.preventDefault();
+    toggleBody(body);
   });
 
   ensureIndex().then(() => {
     const count = el.querySelector("#lk-count");
     if (count) count.textContent = `${index.length} sections indexed`;
     if (query) runSearch(el);
+  }).catch(() => {
+    const count = el.querySelector("#lk-count");
+    if (count) count.textContent = "the index could not be loaded — reopen this tab to retry";
   });
   if (query) runSearch(el);
   input.focus();
@@ -60,17 +79,30 @@ function ensureIndex() {
   if (index) return Promise.resolve(index);
   if (!loading) {
     loading = fetch("data/rules-index.json")
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error(`rules-index.json: HTTP ${r.status}`);
+        return r.json();
+      })
       .then((data) => {
         index = data.map((c) => ({ ...c, tl: c.t.toLowerCase(), xl: c.x.toLowerCase() }));
         return index;
+      })
+      .catch((e) => {
+        loading = null; // allow a retry on the next mount
+        throw e;
       });
   }
   return loading;
 }
 
+// Function words would dominate scoring and highlight inside other words
+// ("and" in "hands") — drop them unless the whole query is made of them.
+const STOPWORDS = new Set(["and", "or", "the", "of", "to", "an", "in", "on", "at", "with", "for", "you", "your", "is", "are"]);
+
 function tokenize(s) {
-  return s.toLowerCase().split(/[^a-z0-9’']+/).filter((w) => w.length > 1);
+  const words = s.toLowerCase().split(/[^a-z0-9’']+/).filter((w) => w.length > 1);
+  const meaningful = words.filter((w) => !STOPWORDS.has(w));
+  return meaningful.length ? meaningful : words;
 }
 
 function score(chunk, terms, phrase) {
@@ -109,11 +141,15 @@ function runSearch(el) {
   }
   box.innerHTML = hits.map(({ c }) => {
     const win = snippetWindow(c, terms);
+    // Only long bodies clamp, and only those are interactive: expose them as
+    // keyboard-reachable toggle buttons (collapsed = aria-expanded false).
+    const clamped = c.x.length > 460;
+    const toggle = clamped ? ` tabindex="0" role="button" aria-expanded="false"` : "";
     return `
     <div class="talent" style="margin-bottom:14px">
       <b>${highlight(esc(c.t), terms)}</b>
       <span class="src">${BOOKS[c.b]} · p.${c.p}</span>
-      <p class="lk-body ${c.x.length > 460 ? "lk-clamp" : ""}" data-full="${esc(c.x)}">${highlight(esc(win), terms)}</p>
+      <p class="lk-body ${clamped ? "lk-clamp" : ""}"${toggle}>${highlight(esc(win), terms)}</p>
     </div>`;
   }).join("");
 }
@@ -134,7 +170,7 @@ function snippetWindow(c, terms) {
 function highlight(escaped, terms) {
   let out = escaped;
   for (const t of [...terms].sort((a, b) => b.length - a.length)) {
-    out = out.replace(new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"), "<mark>$1</mark>");
+    out = out.replace(new RegExp(`\\b(${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"), "<mark>$1</mark>");
   }
   return out;
 }

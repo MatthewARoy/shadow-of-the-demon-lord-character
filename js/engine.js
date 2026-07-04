@@ -91,7 +91,9 @@ function levelPlan(char) {
   const expert = char.expertPath && rules.pathByName.get(char.expertPath);
   const second = char.secondExpertPath && rules.pathByName.get(char.secondExpertPath);
   const master = char.masterPath && rules.pathByName.get(char.masterPath);
-  const ancestry = rules.ancestryByName.get(char.ancestry);
+  // Same fallback as compute(): an unknown imported ancestry plays as the
+  // first curated one, keeping creation[...] slot prefixes consistent.
+  const ancestry = rules.ancestryByName.get(char.ancestry) || rules.curated.ancestries[0];
   const useSecond = char.masterMode === "second-expert";
 
   // Slot ids embed the path name so switching paths (or levels) orphans old
@@ -190,6 +192,7 @@ export function compute(char) {
     corruption: c.corruption || 0,
     defenseBonus: 0,
     speedBonus: 0,
+    armor: null,               // best equipped armor: {name, base}
     provenance: { health: [], power: [], defense: [], speed: [], perception: [], corruption: [], insanity: [] },
     traits: (c.traits || []).map((t) => ({ ...t, source: ancestry.name })),
     talents: [],
@@ -279,11 +282,13 @@ export function compute(char) {
   out.attributes.intellect = clampScore(out.attributes.intellect);
   out.attributes.will = clampScore(out.attributes.will);
 
+  applyEquippedGear(out, char);
+
   out.health += out.attributes.strength;
   out.healingRate = Math.max(1, Math.floor(out.health / (c.healing_divisor || 4)));
   out.perception = out.attributes.intellect + out.perceptionBonus;
   // Maximum Defense: a creature's Defense cannot exceed 25.
-  out.defense = Math.min(25, (out.defenseFixed ?? out.attributes.agility) + out.defenseBonus);
+  out.defense = Math.min(25, (out.armor ? out.armor.base : out.defenseFixed ?? out.attributes.agility) + out.defenseBonus);
   out.speed = c.speed + out.speedBonus;
 
   applyExchanges(out, char);
@@ -320,6 +325,59 @@ function pathChoiceTitle(which) {
 }
 
 function clampScore(v) { return Math.max(1, Math.min(20, v)); }
+
+// ---------------------------------------------------------------------------
+// Equipped gear (core p. 35, 101, 103)
+// ---------------------------------------------------------------------------
+
+// Armor replaces the unarmored (Agility or ancestry) Defense with its listed
+// value — "15" — or formula — "Agility+2"; a wielded shield's Defensive
+// property adds on top, as do path/ancestry Defense bonuses. Heavy armor
+// slows the wearer by 2, as does armor whose Strength requirement is unmet.
+// The unmet requirement's 1 bane on Strength and Agility rolls has no
+// numeric home, so it lands in the marginalia (the Gear tab warns too).
+function applyEquippedGear(out, char) {
+  for (const it of char.inventory || []) {
+    if (!it.equipped) continue;
+    if (it.defense != null && it.defense !== "") {
+      const base = armorDefenseBase(it.defense, out.attributes.agility);
+      if (base != null && (!out.armor || base > out.armor.base)) out.armor = { name: it.name, base };
+      const type = it.type || rules.equipment.armor.find((a) => a.name === it.name)?.type || "";
+      if (/heavy/i.test(type)) {
+        out.speedBonus -= 2;
+        out.provenance.speed.push({ source: `${it.name} (heavy armor)`, level: null, amount: -2 });
+      }
+      if (!meetsRequirement(it.requirement, out.attributes)) {
+        out.speedBonus -= 2;
+        out.provenance.speed.push({ source: `${it.name} (requirement unmet)`, level: null, amount: -2 });
+        out.notes.push({ text: `${it.name}: requires ${it.requirement} — all Strength and Agility rolls take 1 bane and Speed is reduced by 2.`, level: null });
+      }
+    }
+    const def = String(it.properties || "").match(/defensive\s*\+\s*(\d+)/i);
+    if (def) {
+      out.defenseBonus += parseInt(def[1], 10);
+      out.provenance.defense.push({ source: `${it.name} (equipped)`, level: null, amount: parseInt(def[1], 10) });
+    }
+  }
+}
+
+// "15" | "Agility" | "Agility+2" → the Defense the armor imposes.
+export function armorDefenseBase(defense, agility) {
+  const m = String(defense).trim().match(/^agility\s*(?:\+\s*(\d+))?$/i);
+  if (m) return agility + (m[1] ? parseInt(m[1], 10) : 0);
+  const n = parseInt(defense, 10);
+  return Number.isFinite(n) ? n : null;
+}
+
+// "Strength 13" / "Strength or Agility 11" — armor and weapon requirements.
+export function meetsRequirement(requirement, attributes) {
+  const m = String(requirement || "").match(/strength( or agility)? (\d+)/i);
+  if (!m) return true;
+  const need = parseInt(m[2], 10);
+  return m[1]
+    ? attributes.strength >= need || attributes.agility >= need
+    : attributes.strength >= need;
+}
 
 function addHealthSource(out, label, level, amount) {
   if (!amount) return;
