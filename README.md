@@ -7,9 +7,7 @@ hand.
 
 ## Live demo
 
-```
-https://matthewaroy.github.io/shadow-of-the-demon-lord-character/
-```
+**[matthewaroy.github.io/shadow-of-the-demon-lord-character](https://matthewaroy.github.io/shadow-of-the-demon-lord-character/)**
 
 To enable GitHub Pages for your own fork: open the repository settings, go to
 **Pages**, set the source to **Deploy from a branch**, choose branch `main` and
