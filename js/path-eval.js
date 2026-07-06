@@ -169,7 +169,7 @@ export function analyzeAllPaths(paths, traditions) {
   });
 
   // Percentiles within each type cohort.
-  for (const type of ["expert", "master"]) {
+  for (const type of ["novice", "expert", "master"]) {
     const cohort = analyses.filter((x) => x.type === type);
     const cp = percentileRanks(cohort, (x) => x.casterRaw);
     const sp = percentileRanks(cohort, (x) => x.statRaw);

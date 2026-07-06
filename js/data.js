@@ -76,6 +76,12 @@ export async function loadRules() {
     }
   }
   for (const p of paths) rules.pathByName.set(p.name, p);
+  // Novice (baseline) paths live in curated.json with the builder's effect
+  // schema. Reshape them into the same parsed shape the expert/master paths
+  // use and append them so the Paths tab and its analysis treat every path
+  // uniformly. Kept out of pathByName — the engine reads the originals from
+  // novicePathByName, where the effect schema it needs is preserved.
+  rules.paths = paths.concat((curated.novice_paths || []).map(noviceAsParsedPath));
   for (const t of traditions) rules.traditionByName.set(t.name, t);
   for (const a of curated.ancestries) rules.ancestryByName.set(a.name, a);
   for (const n of curated.novice_paths) rules.novicePathByName.set(n.name, n);
@@ -126,6 +132,78 @@ function resolveSummons(spell) {
     if (new RegExp(`(compelled (?:[a-z]+ )?|becomes? an? (?:size \\d+ )?)${n}s?\\b`).test(lower)) out.push(cr);
   }
   return out;
+}
+
+// Reshape a curated novice path (effect-list schema) into the parsed
+// expert/master path shape: per-level { attributes, characteristics,
+// languages_professions, magic, talents }. This lets the Paths browser and its
+// caster analysis consume novice paths through the same code paths.
+function noviceAsParsedPath(np) {
+  const levels = {};
+  for (const [lvl, entry] of Object.entries(np.levels || {})) {
+    const out = {};
+    const talents = [];
+    const magicRaw = [];
+    const magicChoices = [];
+    for (const eff of entry.effects || []) {
+      switch (eff.type) {
+        case "attribute_choice":
+          out.attributes = { choose: eff.count, increase: eff.amount || 1 };
+          if (eff.each) out.attributes.each = true;
+          break;
+        case "characteristics": {
+          const { type, ...chars } = eff;
+          out.characteristics = { ...(out.characteristics || {}), ...chars };
+          break;
+        }
+        case "lang_prof":
+          out.languages_professions = eff.text;
+          break;
+        case "talent":
+        case "hook_cantrip":
+          talents.push({ name: eff.name, text: eff.text });
+          break;
+        case "talent_choice": {
+          const n = eff.count || 1;
+          const label = `${n} ${eff.pool} talent${n !== 1 ? "s" : ""}`;
+          talents.push({ name: `Choose ${label}`, text: `Choose ${label} of your choice.` });
+          break;
+        }
+        case "discover_tradition":
+          magicChoices.push({ pick: eff.count || 1, options: ["discover_tradition"] });
+          magicRaw.push("Discover a tradition" + (eff.constraint === "religion" ? " granted by your religion" : ""));
+          break;
+        case "learn_spell":
+          magicChoices.push({ pick: eff.count || 1, options: ["learn_spell"] });
+          magicRaw.push(`Learn ${eff.count || 1} spell${(eff.count || 1) !== 1 ? "s" : ""}`);
+          break;
+        case "magic_picks": {
+          const n = eff.count || 1;
+          magicChoices.push({ pick: n, options: ["discover_tradition", "learn_spell"] });
+          const times = n === 1 ? "Discover a tradition or learn a spell"
+            : `${n} times, discover a tradition or learn a spell`;
+          magicRaw.push(times + (eff.constraint === "religion" ? " granted by your religion" : ""));
+          break;
+        }
+        case "grant_spell":
+          magicRaw.push(`Learn the ${eff.spell} spell`);
+          break;
+      }
+    }
+    if (magicRaw.length || magicChoices.length) {
+      out.magic = { raw: magicRaw.join(". ") + "." };
+      if (magicChoices.length) out.magic.choices = magicChoices;
+    }
+    if (talents.length) out.talents = talents;
+    levels[lvl] = out;
+  }
+  return {
+    name: np.name,
+    type: "novice",
+    source: "core",
+    description: np.description,
+    levels,
+  };
 }
 
 export function spellKey(name, tradition) {
