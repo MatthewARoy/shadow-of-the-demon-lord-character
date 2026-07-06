@@ -90,8 +90,8 @@ ancestries with their creation rules and level 4 choices, the four novice paths
 as full effect lists, the castings matrix, the advancement table, religions,
 roguery talents, professions, and starting wealth.
 
-The design of the effects/decisions engine is documented in
-[docs/superpowers/specs/2026-06-11-v2-character-manager-design.md](docs/superpowers/specs/2026-06-11-v2-character-manager-design.md).
+The design of the effects/decisions engine is documented in the
+[character manager design spec](docs/superpowers/specs/2026-06-11-v2-character-manager-design.md).
 
 ## Reference materials
 
