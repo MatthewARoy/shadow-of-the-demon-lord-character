@@ -1814,7 +1814,7 @@
   "tradition": "Battle",
   "type": "Attack",
   "rank": 1,
-  "description": "As part of casting this spell, make an attack with a ranged weapon or a thrown weapon. You make the attack roll with 1 boon. Your attack ignores banes due to cover, and you can attack totally covered targets, but if you cannot see such a target, you shoot as if you were blinded. If you can see a totally covered target, you can attack that target as if it was not covered.",
+  "description": "As part of casting this spell, make an attack with a ranged weapon or a thrown weapon. You make the attack roll with 1 boon. Your attack ignores banes due to cover, and you can attack totally covered targets, but if you cannot see such a target, you shoot as if you were blinded. If you can see a totally covered target, you can attack that target as if it was not covered. Celestial Spells",
   "source": "terrible",
   "page": 21,
   "tags": [
@@ -2327,7 +2327,7 @@
   "requirement": "You can cast this spell only at night or underground",
   "area": "A line 10 yards long, 2 yards wide, and 1 inch thick, originating from a point within medium range, each end of which must be in contact with a solid surface",
   "duration": "Concentration, up to 1 minute",
-  "description": "Soft light fills the area and remains for the duration. The area becomes solid and able to hold any weight placed on it. Sacrifice You can expend a casting of this spell to cast the burning beam spell.",
+  "description": "Soft light fills the area and remains for the duration. The area becomes solid and able to hold any weight placed on it. Sacrifice You can expend a casting of this spell to cast the burning beam spell. Conjuration Spells",
   "source": "terrible",
   "page": 21,
   "tags": [
@@ -3255,7 +3255,7 @@
   "rank": 2,
   "target": "A circle with a 1-yard radius centered on a point on a flat surface within short range",
   "duration": "1 hour",
-  "description": "A closed, ornate, round wooden door 2 yards in diameter appears in the area. The door can be opened and closed, functioning as an ordinary door. Behind the door is a 2-yard- diameter open space that extends up to 2 yards into the surface on which the spell was cast. Both the door and the space remain for the duration. If the thickness of the surface is 2 yards or less, opening the door grants access to whatever lies beyond the surface. When the eﬀ ect ends, any creature or object inside the space created by the spell becomes shunted into the Void, unlikely to be seen again.",
+  "description": "A closed, ornate, round wooden door 2 yards in diameter appears in the area. The door can be opened and closed, functioning as an ordinary door. Behind the door is a 2-yard- diameter open space that extends up to 2 yards into the surface on which the spell was cast. Both the door and the space remain for the duration. If the thickness of the surface is 2 yards or less, opening the door grants access to whatever lies beyond the surface. When the eﬀ ect ends, any creature or object inside the space created by the spell becomes shunted into the Void, unlikely to be seen again. Curse Spells",
   "source": "terrible",
   "page": 21,
   "tags": [
@@ -3830,7 +3830,7 @@
   "rank": 3,
   "target": "One apple you are holding",
   "duration": "24 hours or until consumed",
-  "description": "You concentrate for 1 minute, during which time you must prick your hand and spill a little blood onto the target. At the end of this time, you imbue the target with magic that imparts a curse on anyone who eats the target. The imbued magic lasts for the duration. As part of the casting, you must state a specific action that can lift the curse laid by the target, such as a kiss from a mortal with noble blood, the tears of a maiden, or a drop of blood from a mortal child. You can also use an action to lift the curse from the target, provided you are within long range of it. A creature that eats the apple falls prone and becomes cursed. While cursed, the creature is asleep, does not need to eat or drink, and grows no older. The eﬀ ect lasts until the curse is lifted, or until you die.",
+  "description": "You concentrate for 1 minute, during which time you must prick your hand and spill a little blood onto the target. At the end of this time, you imbue the target with magic that imparts a curse on anyone who eats the target. The imbued magic lasts for the duration. As part of the casting, you must state a specific action that can lift the curse laid by the target, such as a kiss from a mortal with noble blood, the tears of a maiden, or a drop of blood from a mortal child. You can also use an action to lift the curse from the target, provided you are within long range of it. A creature that eats the apple falls prone and becomes cursed. While cursed, the creature is asleep, does not need to eat or drink, and grows no older. The eﬀ ect lasts until the curse is lifted, or until you die. Enchantment Spells",
   "source": "terrible",
   "page": 21,
   "tags": [
@@ -6379,7 +6379,7 @@
   "type": "Attack",
   "rank": 3,
   "target": "Any number of creatures within short range",
-  "description": "Each target must make a Will challenge roll. If the target is charmed, it makes the roll with 1 bane. If you attacked the target at any point since you last completed a rest, the target is immune to this spell. On a failure, the target becomes dazed for 1 minute or until it takes damage.",
+  "description": "Each target must make a Will challenge roll. If the target is charmed, it makes the roll with 1 bane. If you attacked the target at any point since you last completed a rest, the target is immune to this spell. On a failure, the target becomes dazed for 1 minute or until it takes damage. Illusion Spells",
   "source": "terrible",
   "page": 22,
   "tags": [
@@ -7068,7 +7068,7 @@
   "type": "Utility",
   "rank": 6,
   "requirement": "Before you can cast this spell, you must spend 1 hour working with mud, sticks, leaves, and small stones to form a simulacrum of a human-shaped creature. The simulacrum can be no larger than Size 1.",
-  "description": "Once created, the simulacrum retains its potency until you complete a rest or until it takes 10 damage or more. Target The simulacrum you created that is within your reach Duration 1d6 + 1 days; see the text You transform the target into a changeling that has the appearance of one living creature you can see within medium range. The changeling has 1 for all of its attribute scores. Each hour, the changeling’s attribute scores increase by 1 until it has Strength 9, Agility 10, Intellect 10, and Will 10. When the spell would end, roll a d20. If you roll a 1, the effect becomes permanent. Any other result indicates that the spell ends, and the changeling collapses into a pile of dirt, sticks, leaves, and small rocks. Other Spells Aside from magic of the Fey tradition, faeries have devised numerous other spells that characters of any ancestry might find useful.",
+  "description": "Once created, the simulacrum retains its potency until you complete a rest or until it takes 10 damage or more. Target The simulacrum you created that is within your reach Duration 1d6 + 1 days; see the text You transform the target into a changeling that has the appearance of one living creature you can see within medium range. The changeling has 1 for all of its attribute scores. Each hour, the changeling’s attribute scores increase by 1 until it has Strength 9, Agility 10, Intellect 10, and Will 10. When the spell would end, roll a d20. If you roll a 1, the effect becomes permanent. Any other result indicates that the spell ends, and the changeling collapses into a pile of dirt, sticks, leaves, and small rocks. Other Spells Aside from magic of the Fey tradition, faeries have devised numerous other spells that characters of any ancestry might find useful. Battle Spells",
   "source": "terrible",
   "page": 21,
   "tags": [
@@ -8327,7 +8327,7 @@
   "type": "Utility",
   "rank": 1,
   "duration": "1 hour",
-  "description": "For the duration, creatures that can see and that have the same Size or range of Sizes that members of your ancestry commonly possess perceive you as sharing their ancestry. In addition, when you speak, creatures that hear you speak and know at least one language can understand what you say as if you had spoken in a language they know.",
+  "description": "For the duration, creatures that can see and that have the same Size or range of Sizes that members of your ancestry commonly possess perceive you as sharing their ancestry. In addition, when you speak, creatures that hear you speak and know at least one language can understand what you say as if you had spoken in a language they know. Nature Spells",
   "source": "terrible",
   "page": 22,
   "tags": [
@@ -10514,7 +10514,7 @@
   "type": "Utility",
   "rank": 3,
   "target": "Eight points on the ground within short range, each of which must be at least 2 yards from another",
-  "description": "You cause a stone to rise from one target point when you cast the spell and another stone in each round when you use an action to concentrate on the spell, until a total of eight stones appear. Each stone is 2 yards wide, 1 yard thick, and 4 yards tall, with Defense 5 and 100 Health, and remains until it is destroyed. A stone that appears as a result of casting this spell is imbued with magical energy that lasts until you complete a rest. You can use an action, or a triggered action on your turn, to choose up to eight creatures you can see within medium range of you. The stones provide a +1 bonus to Defense and 1 boon to attack rolls for chosen creatures that are within 1 yard of at least one of the stones. A chosen creature can use an action to touch a stone imbued with magical energy and be moved into the stone’s space. While in the stone’s space, the creature remains aware of its surroundings and of the passage of time, but it cannot do anything except to use an action to move out of the stone through the surface where it entered. If a stone is destroyed while a creature is inside it, the creature becomes fused to the rubble and dies. If the creature is still inside the stone when the stone’s magical energy dissipates, the creature is forced out of the stone, taking damage equal to twice its healing rate and gaining 1d6 Insanity.",
+  "description": "You cause a stone to rise from one target point when you cast the spell and another stone in each round when you use an action to concentrate on the spell, until a total of eight stones appear. Each stone is 2 yards wide, 1 yard thick, and 4 yards tall, with Defense 5 and 100 Health, and remains until it is destroyed. A stone that appears as a result of casting this spell is imbued with magical energy that lasts until you complete a rest. You can use an action, or a triggered action on your turn, to choose up to eight creatures you can see within medium range of you. The stones provide a +1 bonus to Defense and 1 boon to attack rolls for chosen creatures that are within 1 yard of at least one of the stones. A chosen creature can use an action to touch a stone imbued with magical energy and be moved into the stone’s space. While in the stone’s space, the creature remains aware of its surroundings and of the passage of time, but it cannot do anything except to use an action to move out of the stone through the surface where it entered. If a stone is destroyed while a creature is inside it, the creature becomes fused to the rubble and dies. If the creature is still inside the stone when the stone’s magical energy dissipates, the creature is forced out of the stone, taking damage equal to twice its healing rate and gaining 1d6 Insanity. Primal Spells",
   "source": "terrible",
   "page": 22,
   "tags": [
@@ -11872,7 +11872,7 @@
   "rank": 4,
   "target": "A circle on the ground with a radius of 5 yards centered on a point within short range",
   "duration": "8 hours; see the effect",
-  "description": "At the end of the round, six horses appear in the area standing on the ground. They remain for the duration or until they become incapacitated, at which point they disappear. The horses become compelled by anyone riding them for as long as they are ridden.",
+  "description": "At the end of the round, six horses appear in the area standing on the ground. They remain for the duration or until they become incapacitated, at which point they disappear. The horses become compelled by anyone riding them for as long as they are ridden. Protection Spells",
   "source": "terrible",
   "page": 22,
   "tags": [
@@ -12480,7 +12480,7 @@
   "type": "Attack",
   "rank": 5,
   "target": "One cursed creature you can see within medium range",
-  "description": "Make an Intellect challenge roll. On a success, you remove one curse from the target. If the total of your challenge roll is 20 or higher, you remove all curses from the target.",
+  "description": "Make an Intellect challenge roll. On a success, you remove one curse from the target. If the total of your challenge roll is 20 or higher, you remove all curses from the target. Song Spells",
   "source": "terrible",
   "page": 23,
   "tags": [
@@ -13847,11 +13847,12 @@
   "type": "Attack",
   "rank": 5,
   "target": "Any number of living creatures within short range that can hear you",
-  "description": "You play or sing a lively melody. Each target must get a success on a Will challenge roll or become enthralled for as long as you concentrate and continue to play, up to 1 hour. An enthralled creature is dazed, and on each of its turns, it must move to stay with medium range of you. If an affected creature cannot see or hear you on its turn, the effect immediately ends for that creature. Faerie Music Faeries love music and often weave magic into their songs and melodies that can bewitch mortals who hear the tunes, luring them to join the fey in their dancing and capering. Faeries favor fiddles, harps, cymbals, tambourines, and mouth harps, all good at making the sort of lively music that mortals find enchanting. Many popular faerie songs are the foundations for spells of the Song tradition.",
+  "description": "You play or sing a lively melody. Each target must get a success on a Will challenge roll or become enthralled for as long as you concentrate and continue to play, up to 1 hour. An enthralled creature is dazed, and on each of its turns, it must move to stay with medium range of you. If an affected creature cannot see or hear you on its turn, the effect immediately ends for that creature. Faerie Music Faeries love music and often weave magic into their songs and melodies that can bewitch mortals who hear the tunes, luring them to join the fey in their dancing and capering. Faeries favor fiddles, harps, cymbals, tambourines, and mouth harps, all good at making the sort of lively music that mortals find enchanting. Many popular faerie songs are the foundations for spells of the Song tradition. Teleportation Spells",
   "source": "terrible",
   "page": 23,
   "tags": [
-   "control"
+   "control",
+   "teleport"
   ]
  },
  {

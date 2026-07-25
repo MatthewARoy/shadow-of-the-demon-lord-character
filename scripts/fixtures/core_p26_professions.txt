@@ -1,0 +1,133 @@
+===PAGE 26===
+Character Creation
+1
+Starting 
+Equipment
+You start with equipment based on your character’s wealth. 
+To determine your wealth, roll and total 3d6, then consult 
+the Wealth table. Keeping your professions and ancestry in 
+mind, come up with a story for how your character came by 
+this lifestyle.
+	 Your starting wealth tells you the equipment you have 
+when the adventure begins. For details on equipment, see 
+Chapter 6.
+Destitute
+You have a club or sling with 20 stones, rags, and a pouch 
+containing 1d6 bits.
+Poor
+You have a staff or club or sling with 20 stones, patched 
+basic clothing, a sack, bread, a waterskin, a tinderbox, a 
+candle, and a pouch containing 2d6 bits.
+Getting By
+You have a dagger, a staff or club or sling with 20 stones, 
+basic clothing, a backpack, a week of rations, a waterskin,  
+a tinderbox, 2 torches, and a pouch containing 1d6 cp.
+Wilderness Professions
+d20
+Profession
+d20
+Profession
+d20
+Profession
+d20
+Profession
+1
+Bandit, brigand,  
+or highway robber
+7
+Hermit
+13
+Prospector
+19
+Trapper
+2
+Barbarian
+8–9
+Hunter
+14
+Outlaw
+20
+Woodcutter
+3
+Exile
+10
+Nomad or vagabond
+15–16
+Refugee
+4
+Gatherer
+11
+Pioneer
+17
+Spelunker
+5–6
+Guide
+12
+Poacher or rustler
+18
+Tracker
+Religious Professions
+d20
+Profession
+1–2
+Devotee. You are a strong believer and follower of your faith’s tenets. You can read and write one language you know.
+3–4
+Evangelist. You travel from place to place, preaching your faith to any who will listen and rely on the charity of 
+believers. You can read and write one language you know.
+5
+Fanatic. You cloak yourself in deprivation to bring you closer to your gods. You might scourge yourself, deprive 
+yourself of food and drink, or find other, creative ways to make yourself suffer.
+6
+Heretic. You hold religious beliefs deemed dangerous and heretical by the leaders of your faith.
+7–8
+Initiate of the Old Faith. You have been initiated into the Old Faith.
+9–10
+Minister. You are a religious leader in your community. You know how to read and write one language you know.
+11–12
+Acolyte of the New God. You study to become a priest in the Cult of the New God. You know how to read and write 
+one language you know.
+13
+Inquisitor’s Henchman. You serve an inquisitor or witch hunter.
+14–16
+Pilgrim. You travel to sites deemed holy to members of your religion.
+17–18
+Street Preacher. You preach on street corners, beseeching people to seek redemption as the end is near.
+19–20
+Temple Ward. You were raised in a temple. You were likely an orphan and brought up by the clergy.
+Wealth
+3d6
+Lifestyle
+3–4
+Destitute You are penniless and live on the 
+streets.
+5–8
+Poor You live in squalid conditions and you’re never 
+sure where you’re going to get your next meal.
+9–13
+Getting By You earn enough to meet all your 
+expenses.
+14–16
+Comfortable You live well and make enough that 
+you can save a little.
+17
+Wealthy You live very well. You have nice clothes 
+and fine accommodations, and you have probably 
+not gone without for a long time.
+18
+Rich You want for nothing. You likely come from a 
+noble family, and you have servants and an estate, 
+castle, or house in the best part of town. Your 
+fortunes earn you many friends and many enemies.
+Comfortable
+You have a dagger, a staff or club or sling with 20 stones, 
+fine clothing, a backpack, a cloak, a week of rations, a 
+waterskin, a coil of rope, a tinderbox, 2 torches, a healing 
+potion, and a pouch containing 2d6 cp. You also have a small 
+shield; an incantation of a rank 0 spell of the GM’s choice 
+written on a scroll; or a healer’s kit, tool kit, or writing kit.
+Wealthy
+You have a dagger, courtier’s clothing, a cloak, a backpack, 
+a week of rations, a waterskin, a coil of rope, a tinderbox, 
+a lantern, 2 flasks of oil, a healing potion, and a pouch 
+25
+

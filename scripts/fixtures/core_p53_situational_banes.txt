@@ -1,0 +1,99 @@
+===PAGE 53===
+PLaying the Game
+Escape
+You can use this action if you are grabbed. Make a Strength 
+or Agility attack roll against the Strength of the creature 
+that has grabbed you. A success removes the grabbed 
+affliction and lets you move up to half your Speed. This 
+movement does not trigger free attacks from the creature 
+that had grabbed you. (See Grabbed for information on the 
+effects of being grabbed, and Grab for how to grab.)
+Feint
+Choose one target creature within short range of you that 
+can see you. Make an Agility attack roll against the target’s 
+Perception. On a success, you make the next attack roll 
+against the target’s Defense or Agility before the end of the 
+next round with 2 boons. Alternatively, your movement 
+does not trigger free attacks from the target for 1 round.
+Grab
+You must have at least one hand free to grab, and you 
+cannot be grabbing another creature. Choose one target 
+creature within your reach that has a physical body (not a 
+spirit, for example) and make a Strength or Agility attack 
+roll against the target’s Agility. If you choose a creature you 
+are already grabbing, you automatically get a success.
+	 On a success, the target becomes grabbed until the end 
+of the next round. If you are prevented from using actions 
+(such as because you are dazed, stunned, or unconscious), 
+the grabbed affliction ends. The grabbed affliction also 
+ends if you move or are moved to a position where you can 
+no longer reach the grabbed target. (See Grabbed for more 
+information on the effects of being grabbed, and Escape for 
+how to escape a grab.)
+Knock Down
+Choose one target creature within your reach. Make 
+a Strength attack roll against the target’s Agility. If the 
+target is larger than you, make this roll with 1 bane for 
+each point of Size it is larger. You make this roll with 1 
+boon if the target is smaller than you. On a success, the 
+target falls prone.
+Pull
+Choose one target creature of your Size or smaller that you 
+are grabbing. Make a Strength attack roll against the target’s 
+Strength. On a success, you move up to half your Speed 
+and the grabbed creature moves with you so that it remains 
+within your reach.
+Shove
+Choose one target creature within your reach. Make a 
+Strength attack roll against the target’s Strength. If the 
+target is larger than you, you make this roll with 1 bane 
+for each point of Size it is larger. You make this roll with 
+1 boon if the target is smaller than you. On a success, you 
+move the target 1 yard away from you, plus a number of 
+yards equal to your Strength modifier (minimum total 
+distance 1 yard).
+Charge
+When you use an action to charge, you make attack 
+rolls and challenge rolls with 1 bane until the end of the 
+round. Move up to your Speed. At any point during your 
+movement, make one attack with a melee weapon or with 
+an attribute to knock down or shove a creature.
+Attacking Worn  
+or Carried Objects
+You can attack an object that another creature wears or 
+carries. You make the attack roll with 2 banes. The GM 
+might decide that certain objects are immune or resistant to 
+some forms of attack. An arrow isn’t going to break a sword, 
+for example.
+Situational Banes  
+to Attack Rolls
+One or more banes might apply to your attack rolls, based 
+on the circumstances under which you make the attack. 
+These are in addition to any banes or boons included in the 
+attack. The following table summarizes the most common 
+situations.
+Situational Banes
+Target is . . .
+Effect
+Half covered
+1 bane
+Three-quarters covered
+2 banes
+Totally covered
+Automatic failure
+Partially obscured:  
+In a partially obscured area
+1 bane
+Heavily obscured:  
+In a heavily obscured area
+2 banes
+Totally obscured:  
+In a totally obscured area
+3 banes*
+Weather, terrain: In inclement 
+weather or covering terrain
+1 or more banes
+*You must guess the target’s location (see Hide).
+52
+2
+

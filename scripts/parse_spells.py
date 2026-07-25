@@ -120,7 +120,13 @@ def parse_book(book):
             # Section boundaries that end the last spell of a block: a new
             # tradition's intro, a path level entry, a random table, or an
             # all-caps heading that is not the next spell's name.
-            if nxt in tradition_names or re.match(r"^Level \d+ ", nxt) \
+            # A tradition's section heading reads "<Tradition> Spells", while
+            # tradition_names holds the bare name, so strip the suffix before
+            # testing. Without this the heading bleeds into the previous
+            # spell's description — one defect per tradition boundary.
+            heading = re.sub(r"\s+Spells$", "", nxt)
+            if nxt in tradition_names or heading in tradition_names \
+               or re.match(r"^Level \d+ ", nxt) \
                or re.match(r"^d\d+$", nxt) or nxt == "Story Development":
                 break
             if re.match(r"^[A-Z][A-Z’'\-, ]+$", nxt) and not FURNITURE.match(nxt):
