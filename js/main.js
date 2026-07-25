@@ -8,6 +8,7 @@ import { renderSpells } from "./ui/spells.js";
 import { renderPaths } from "./ui/paths.js";
 import { renderGear } from "./ui/gear.js";
 import { renderDice } from "./ui/dice.js";
+import { renderCombat } from "./ui/combat.js";
 import { renderLookup } from "./ui/lookup.js";
 
 const tabs = {
@@ -17,6 +18,7 @@ const tabs = {
   paths: renderPaths,
   gear: renderGear,
   dice: renderDice,
+  combat: renderCombat,
   lookup: renderLookup,
 };
 
