@@ -96,5 +96,44 @@ class TestAnchorTerminatedRanges(unittest.TestCase):
             self.assertIn(t, titles, f"over-deleted the rules section {t}")
 
 
+class TestTableManifest(unittest.TestCase):
+    def test_weapon_rows_are_not_sections(self):
+        titles = {c["t"] for c in p.chunk()}
+        for t in ("Sling", "Trident", "Whip", "Blowgun", "Crossbow"):
+            self.assertNotIn(t, titles, f"table row {t} chunked as a section")
+
+    def test_no_chunk_carries_a_weapon_stat_row(self):
+        """The reported bug: searching 'sling' returned a run-on table row."""
+        offenders = [c["t"] for c in p.chunk()
+                     if "uses stones" in c["x"] or "Name. Damage. Hands." in c["x"]]
+        self.assertEqual(offenders, [], f"weapon stat rows still present: {offenders}")
+
+    def test_ancestry_random_tables_are_excluded(self):
+        titles = {c["t"] for c in p.chunk()}
+        for t in ("Human Background", "Human Personality", "Dwarf Age", "Goblin Build"):
+            self.assertNotIn(t, titles, f"ancestry table {t} chunked as a section")
+
+    def test_profession_tables_are_excluded(self):
+        titles = {c["t"] for c in p.chunk()}
+        for t in ("Academic Professions", "Wilderness Professions"):
+            self.assertNotIn(t, titles)
+
+    def test_equipment_prose_sections_are_retained(self):
+        """These carry rules text that exists ONLY in the index.
+
+        equipment.json holds price and availability for Garrote, Holy Water,
+        and Lantern but not their rules, so over-deleting here loses data
+        with no other home.
+        """
+        titles = {c["t"] for c in p.chunk()}
+        for t in ("Improvised Weapons", "Special Materials", "Living Expenses"):
+            self.assertIn(t, titles, f"manifest over-deleted: lost {t}")
+
+    def test_combat_rules_sections_are_retained(self):
+        titles = {c["t"] for c in p.chunk()}
+        for t in ("Melee Attack Options", "Ranged Attack Options", "Cover"):
+            self.assertIn(t, titles, f"manifest over-deleted: lost {t}")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -11,6 +11,8 @@ import json
 import os
 import re
 
+from table_manifest import is_table_caption, is_table_internal
+
 CACHE = os.path.join(os.path.dirname(__file__), "cache")
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "rules-index.json")
 
@@ -91,19 +93,38 @@ def furniture(s):
 def chunk():
     chunks = []
     current = None
-    for book, page, line in lines_in_ranges():
+    open_caption = None         # caption of the table block currently open
+    stream = list(lines_in_ranges())
+    for idx, (book, page, line) in enumerate(stream):
         if book is None:            # range/book boundary — close the open chunk
             if current:
                 chunks.append(current)
                 current = None
+            open_caption = None
             continue
+        nxt = stream[idx + 1]
+        peek = nxt[2] if nxt[0] is not None else ""
         s = line.strip()
         if furniture(s):
             continue
         if is_heading(s):
+            # A declared caption opens (or re-opens) a table block.
+            if is_table_caption(s, peek):
+                if current:
+                    chunks.append(current)
+                    current = None
+                open_caption = s
+                continue
+            # Headings that belong to the open table — the column header —
+            # must not close it, or the remaining rows become their body.
+            if open_caption and is_table_internal(s, open_caption, peek):
+                continue
+            open_caption = None
             if current:
                 chunks.append(current)
             current = {"t": s, "b": book, "p": page, "x": ""}
+            continue
+        if open_caption:            # row numbers and row text
             continue
         if current is None:
             current = {"t": "Introduction", "b": book, "p": page, "x": ""}
