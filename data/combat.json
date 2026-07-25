@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "actions",
+      "label": "Actions",
+      "blurb": "One action per round. What you can spend it on."
+    },
+    {
+      "id": "attack-options",
+      "label": "Attack Options",
+      "blurb": "Trade a bane for an effect, and attack an attribute directly."
+    },
+    {
+      "id": "turn",
+      "label": "Turn & Economy",
+      "blurb": "Fast and slow turns, triggered actions, free attacks, minor activities."
+    },
+    {
+      "id": "afflictions",
+      "label": "Afflictions",
+      "blurb": "The nineteen conditions and what each one does to you."
+    },
+    {
+      "id": "modifiers",
+      "label": "Modifiers",
+      "blurb": "Cover, obscurement, range bands, and the common situational banes."
+    }
+  ],
+  "entries": [
+    {
+      "id": "action-attack",
+      "kind": "action",
+      "name": "Attack",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 49 },
+      "text": "You use a weapon, an attack spell, or something else to harm or hinder another creature or an object. See Making Attacks for how to resolve this activity."
+    },
+    {
+      "id": "action-cast-a-utility-spell",
+      "kind": "action",
+      "name": "Cast a Utility Spell",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 49 },
+      "text": "You cast a utility spell (one that doesn’t count as an attack) and resolve its effects. See Chapter 7 for details about casting spells."
+    },
+    {
+      "id": "action-concentrate",
+      "kind": "action",
+      "name": "Concentrate",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 49 },
+      "text": "Some spell effects and talents require you to concentrate to keep them going. If you concentrate on an effect, the effect continues until the end of the next round, up to the maximum amount of time allowed by the spell."
+    },
+    {
+      "id": "action-defend",
+      "kind": "action",
+      "name": "Defend",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 49 },
+      "text": "When you defend, until the end of the round, all attack rolls are made against you with 1 bane and you make all challenge rolls to resist attacks with 1 boon. These benefits end if you are prevented from using actions, such as when you become dazed, stunned, or unconscious."
+    },
+    {
+      "id": "action-end-an-effect",
+      "kind": "action",
+      "name": "End an Effect",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "Choose one effect you created with a spell you cast or a talent you used. The effect ends."
+    },
+    {
+      "id": "action-find",
+      "kind": "action",
+      "name": "Find",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You attempt to locate a hidden creature or object. Make a Perception challenge roll to search for a hidden object or make a Perception attack roll against the Agility of a hidden creature. On a success, the creature or object is no longer hidden from you and any other creature with whom you share your knowledge."
+    },
+    {
+      "id": "action-help",
+      "kind": "action",
+      "name": "Help",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "Choose one creature within 5 yards of you that can see you and understand what you say. Make an Intellect challenge roll. On a success, the target makes its next attack roll or challenge roll before the end of the round with 1 boon."
+    },
+    {
+      "id": "action-hide",
+      "kind": "action",
+      "name": "Hide",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You can attempt to hide when you are not being observed and when you are in a heavily obscured area or have three-quarters cover or better from an object (see Cover). Make an Agility challenge roll. On a success, you become hidden. You remain hidden until the conditions that let you hide no longer apply or you do something that would reveal your position (such as shouting, making an attack, or casting a spell). For example, if you are in darkness, you would no longer be hidden if the area becomes lit. Similarly, if you are hidden behind a wall, you would no longer be hidden if someone moves to a position where the wall no longer covers you. While you are hidden, other creatures cannot perceive you. Generally, this means a creature cannot choose you as a target for its attack, though you are still subject to area effects. A creature can guess at your location, making the attack roll with 3 banes. Even with a success, the attack hits you only if the guess was correct. Also, while hidden, you make all attack rolls with 1 boon against the Defense or Agility of targets from which you are hidden."
+    },
+    {
+      "id": "action-prepare",
+      "kind": "action",
+      "name": "Prepare",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You prepare to undertake an activity when a specified event occurs. Choose one activity you would normally use an action to perform, such as attack or retreat. Then, describe what event has to occur for you to undertake it. This is the trigger. If the triggering event occurs before the end of the round, you can use a triggered action to perform the activity. You make any attack roll or challenge roll required by the activity with 1 boon. Otherwise, nothing happens. For example, Bobby takes a fast turn and uses an action to prepare an attack against the first enemy that moves into his reach. When a hostile warg moves up to attack his character, Bobby uses his triggered action to attack it with his sword, making the attack roll with 1 boon."
+    },
+    {
+      "id": "action-reload",
+      "kind": "action",
+      "name": "Reload",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "Choose a weapon you can reach that has the reload property (such as a crossbow). If you have a piece of ammunition the weapon uses, you reload the weapon.",
+      "requires": [
+        { "type": "unloaded_weapon", "label": "a weapon with the reload property" }
+      ]
+    },
+    {
+      "id": "action-retreat",
+      "kind": "action",
+      "name": "Retreat",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You move up to half your Speed. This movement does not trigger free attacks.",
+      "derive": [{ "label": "Retreat distance", "expr": "half_speed" }]
+    },
+    {
+      "id": "action-rush",
+      "kind": "action",
+      "name": "Rush",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You move up to twice your Speed.",
+      "derive": [{ "label": "Your Speed", "expr": "speed" }]
+    },
+    {
+      "id": "action-stabilize",
+      "kind": "action",
+      "name": "Stabilize",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "Choose one incapacitated creature within your reach. Make an Intellect challenge roll, with 1 bane if the creature is dying. On a success, the target heals 1 damage.",
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }]
+    },
+    {
+      "id": "action-use-an-item",
+      "kind": "action",
+      "name": "Use an Item",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You interact with an item you are holding or wearing, or with an object you can reach. Examples include picking a lock, retrieving an object from a pouch or a backpack, or lighting a torch."
+    }
+  ]
+}
