@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "npx -y serve -l 3000",
-    "test": "node scripts/build_samples.mjs && python3 -m unittest discover -s scripts/tests -t scripts/tests && python3 scripts/scan_parse_quality.py"
+    "test": "node scripts/build_samples.mjs && python3 -m unittest discover -s scripts/tests -t scripts/tests && python3 scripts/scan_parse_quality.py && node --test \"js/ui/tests/*.test.mjs\""
   },
   "keywords": [
     "sotdl",

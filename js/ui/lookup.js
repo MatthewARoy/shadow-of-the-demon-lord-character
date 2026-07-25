@@ -1,7 +1,24 @@
-// Lookup tab: instant rules search over the pre-chunked rulebook index.
-// Pure client-side lexical scoring — works offline at the table.
+// Lookup tab: instant rules search over the pre-chunked rulebook index,
+// plus structured equipment results. Pure client-side lexical scoring —
+// works offline at the table.
+//
+// Equipment comes from data/equipment.json rather than the rules index. The
+// index no longer carries equipment table rows at all: the chunker turned
+// each row into a run-on section, which is why searching "sling" used to
+// return "1d3 Off Range (medium), uses stones 5 cp C Shields...".
+
+import { rules as ruleData } from "../data.js";
+import { equipmentCard, equipmentKey } from "./equipment-card.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// Separate quotas rather than one merged ranking. The prose scorer and a
+// gear scorer cannot be compared directly — a corrupt "Sling" chunk and a
+// "Sling" gear record both scored 26 from title bonuses alone, so the winner
+// would have come down to an arbitrary projection detail. Splitting the
+// buckets dissolves the tie instead of tuning around it, and reads better.
+const GEAR_QUOTA = 5;
+const RULES_QUOTA = 15;
 
 const BOOKS = { core: "Core Rulebook", occult: "Occult Philosophy", terrible: "Terrible Beauty" };
 
@@ -13,6 +30,7 @@ const QUICK = [
 
 let index = null;       // [{t, b, p, x}]
 let loading = null;
+let indexError = null;
 let query = "";
 
 export function renderLookup(el) {
@@ -60,10 +78,20 @@ function ensureIndex() {
   if (index) return Promise.resolve(index);
   if (!loading) {
     loading = fetch("data/rules-index.json")
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error(`rules-index.json: ${r.status}`);
+        return r.json();
+      })
       .then((data) => {
         index = data.map((c) => ({ ...c, tl: c.t.toLowerCase(), xl: c.x.toLowerCase() }));
+        indexError = null;
         return index;
+      })
+      .catch((err) => {
+        // Without this the tab sat on "loading the law…" forever.
+        loading = null;              // allow a retry
+        indexError = err;
+        throw err;
       });
   }
   return loading;
@@ -90,32 +118,111 @@ function score(chunk, terms, phrase) {
   return present ? s : 0;
 }
 
+// Gear records are a dozen words; prose chunks are up to 1,600 characters.
+// Term-frequency scoring would let prose win every time, so gear is scored
+// on where the term appears rather than how often.
+export function scoreGear(item, terms, phrase) {
+  const name = item.name.toLowerCase();
+  const blob = [item.category, item.type, item.properties, item.requirement]
+    .filter(Boolean).join(" ").toLowerCase();
+  let s = 0;
+  let present = 0;
+  for (const t of terms) {
+    const inName = name.includes(t);
+    const inBlob = blob.includes(t);
+    if (inName || inBlob) present++;
+    s += (inName ? 6 : 0) + (inBlob ? 2 : 0);
+  }
+  // Every term must land, or "knock down" would surface unrelated weapons.
+  if (present !== terms.length) return 0;
+  if (name === phrase) s += 20;
+  else if (name.startsWith(phrase)) s += 8;
+  return s;
+}
+
+export function searchAll(index, gear, query) {
+  const q = (query || "").trim();
+  if (!q) return { rules: [], gear: [] };
+  const terms = tokenize(q);
+  const phrase = q.toLowerCase();
+  if (!terms.length) return { rules: [], gear: [] };
+
+  const ruleHits = index
+    .map((c) => ({ c, s: score(withLower(c), terms, phrase) }))
+    .filter((h) => h.s > 0)
+    .sort((a, b) => b.s - a.s)
+    .slice(0, RULES_QUOTA)
+    .map((h) => h.c);
+
+  const seen = new Set();
+  const gearHits = gear
+    .map((item) => ({ item, s: scoreGear(item, terms, phrase) }))
+    .filter((h) => h.s > 0)
+    .sort((a, b) => b.s - a.s)
+    .filter((h) => {
+      // name+category, so both "Bastard sword or warhammer" variants survive
+      const k = equipmentKey(h.item);
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    })
+    .slice(0, GEAR_QUOTA)
+    .map((h) => h.item);
+
+  return { rules: ruleHits, gear: gearHits };
+}
+
+function withLower(c) {
+  return c.tl ? c : { ...c, tl: c.t.toLowerCase(), xl: c.x.toLowerCase() };
+}
+
+function allGear() {
+  const e = (ruleData && ruleData.equipment) || {};
+  return [...(e.weapons || []), ...(e.armor || []), ...(e.gear || [])];
+}
+
 function runSearch(el) {
   const box = el.querySelector("#lk-results");
   if (!box) return;
   const q = query.trim();
   if (!q) { box.innerHTML = `<p class="empty">Ask, and the law shall answer.</p>`; return; }
+  if (indexError) {
+    box.innerHTML = `<p class="empty">The archives are unreachable — ${esc(indexError.message)}.
+      <button class="btn btn-small" id="lk-retry">Try again</button></p>`;
+    el.querySelector("#lk-retry")?.addEventListener("click", () => {
+      indexError = null;
+      ensureIndex().then(() => runSearch(el)).catch(() => runSearch(el));
+    });
+    return;
+  }
   if (!index) { box.innerHTML = `<p class="empty">Loading the index…</p>`; return; }
+
   const terms = tokenize(q);
-  const phrase = q.toLowerCase().trim();
-  const hits = index
-    .map((c) => ({ c, s: score(c, terms, phrase) }))
-    .filter((h) => h.s > 0)
-    .sort((a, b) => b.s - a.s)
-    .slice(0, 20);
-  if (!hits.length) {
+  const { rules: ruleHits, gear: gearHits } = searchAll(index, allGear(), q);
+  if (!ruleHits.length && !gearHits.length) {
     box.innerHTML = `<p class="empty">Nothing in the law speaks of “${esc(q)}”.</p>`;
     return;
   }
-  box.innerHTML = hits.map(({ c }) => {
-    const win = snippetWindow(c, terms);
-    return `
-    <div class="talent" style="margin-bottom:14px">
-      <b>${highlight(esc(c.t), terms)}</b>
-      <span class="src">${BOOKS[c.b]} · p.${c.p}</span>
-      <p class="lk-body ${c.x.length > 460 ? "lk-clamp" : ""}" data-full="${esc(c.x)}">${highlight(esc(win), terms)}</p>
-    </div>`;
-  }).join("");
+
+  const gearSection = gearHits.length ? `
+    <h3 class="rubric small">Equipment</h3>
+    ${gearHits.map((item) => equipmentCard(item)).join("")}` : "";
+
+  const rulesSection = ruleHits.length ? `
+    ${gearHits.length ? `<h3 class="rubric small" style="margin-top:18px">Rules</h3>` : ""}
+    ${ruleHits.map((c) => {
+      const win = snippetWindow(c, terms);
+      // Equipment records have no book or page; guard the citation.
+      const cite = c.b && c.p ? `<span class="src">${BOOKS[c.b]} · p.${c.p}</span>` : "";
+      return `
+      <div class="talent" style="margin-bottom:14px">
+        <b>${highlight(esc(c.t), terms)}</b>
+        ${cite}
+        <p class="lk-body ${c.x.length > 460 ? "lk-clamp" : ""}" data-full="${esc(c.x)}">${highlight(esc(win), terms)}</p>
+      </div>`;
+    }).join("")}` : "";
+
+  box.innerHTML = gearSection + rulesSection;
 }
 
 // Show the area around the first match for long chunks.
