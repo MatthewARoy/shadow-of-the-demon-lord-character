@@ -30,8 +30,19 @@ the character-creation chapter the larger offender:
 | Ch.6 Equipment (p.100–110) | 31 |
 | Ch.2 Playing the Game (p.34–53) | 1 |
 
-Spells (1,120) and paths (165) scan clean. This is one script's problem, not
-a pipeline-wide one — but within that script it is systemic, not local.
+Within `parse_rules_index.py` the problem is systemic rather than local. A
+pipeline-wide scan (see *Parse-quality scanner*) shows the other parsers are
+in far better shape, with one exception: **11 spells carry a bled section
+header** — one at each tradition boundary, where the last spell of a
+tradition absorbs the next tradition's "X Spells" heading. `Phasing Missile`
+ends with "Celestial Spells", `Moon Bridge` with "Conjuration Spells", and so
+on through all 11 boundaries. That is defect class A again, in
+`parse_spells.py`.
+
+An earlier draft of this spec asserted that spells and paths scanned clean.
+That was wrong, and wrong for the same reason the original triage was wrong:
+the scan used signatures derived from the defect already known. The scanner
+below exists to stop that failure mode recurring.
 
 ## The five defect classes
 
@@ -223,6 +234,64 @@ self-contained. The alternative — copying equipment data into the index — is
 how this bug arose. Equipment is already fetched at boot, so this adds no
 network request.
 
+## Parse-quality scanner
+
+Every defect in this document was found by an ad-hoc scan, and every *missed*
+defect was missed because the scan only looked for signatures already known.
+`scripts/scan_parse_quality.py` makes that scanning a committed, reusable
+tool covering the whole pipeline rather than throwaway one-liners covering
+one file.
+
+It reads the committed `data/*.json` — no PDFs, no `scripts/cache/`, so it
+runs in a fresh clone — walks every string field over 15 characters, and
+reports matches grouped by file and signature. **It never modifies data.**
+
+| Signature | Catches |
+|---|---|
+| `bleed` | trailing section/tradition headers, running heads in any capitalisation, chunks spanning books |
+| `table_row` | price runs, damage/hands/availability rows, `Name. Damage. Hands.` header remnants |
+| `dice_table` | 3+ `d20` tokens, or a body ending in a bare die size |
+| `orphan_heading` | titles starting with a lowercase article or preposition |
+| `cross_dataset` | a record's title matching a name in a different dataset (spells leaking into the rules index) |
+| `ligature` | residual PDF artifacts (`ŋ`, `Ŋ`, `Ō`, `ő`, `Œ`, `fi rst`) that `extract_text.py` should have repaired |
+
+Two design rules, both learned from the defects above:
+
+- **Report, never delete.** Same principle as the table manifest. A scanner
+  that prunes is a scanner that loses data silently.
+- **Signatures are tuned for recall, and false positives are expected.** The
+  prototype flags 112 `area` and 40 `target` fields as "truncated" that are
+  simply unpunctuated phrases (`A cylinder, 4 yards tall…`). The scanner
+  carries a **committed baseline** of known-acceptable hits; `npm test`
+  fails only on hits *not* in the baseline. That keeps it useful as a
+  regression gate without demanding a perfect signature set.
+
+Current baseline, from the prototype:
+
+| File | Records | State |
+|---|---|---|
+| `rules-index.json` | 547 | all five defect classes present — this rework's target |
+| `spells.json` | 1,120 | 11 bled tradition headers |
+| `paths.json` | 165 | clean |
+| `creatures.json` | 155 | clean |
+| `traditions.json` | 42 | clean |
+| `equipment.json` | 171 | clean |
+| `curated.json` | 52 | clean |
+
+No ligature artifacts anywhere — `extract_text.py`'s repair is sound.
+
+### Folded-in fix: `parse_spells.py` boundary bleed
+
+The 11 bled tradition headers are the same defect class as A and the fix is
+the same shape — flush at the boundary rather than letting the block run on.
+It is included here rather than deferred: it is small, it is verified by the
+scanner this work already adds, and splitting one defect class across two
+projects would be arbitrary. Regenerating `data/spells.json` is required, so
+this step needs the gitignored PDFs.
+
+Asserted after the fix: **no spell description ends with a tradition name or
+the word "Spells".**
+
 ## Verification
 
 `scripts/cache/` and `*.pdf` are both gitignored, so **no test can regenerate
@@ -260,15 +329,18 @@ All of the above is wired into `npm test`, which currently runs only
 ## Scope boundaries
 
 **In scope:** `scripts/parse_rules_index.py` rework, the table manifest,
-`js/ui/lookup.js` gear results and error handling, extraction of a shared
-equipment card renderer from `js/ui/gear.js`, fixtures and tests, and
-regeneration of `data/rules-index.json`.
+`scripts/scan_parse_quality.py` and its baseline, the `parse_spells.py`
+boundary-flush fix, `js/ui/lookup.js` gear results and error handling,
+extraction of a shared equipment card renderer from `js/ui/gear.js`, fixtures
+and tests, and regeneration of `data/rules-index.json` and
+`data/spells.json`.
 
 **Out of scope, deliberately:**
 
-- Other parsers. `parse_spells.py`, `parse_paths.py`, `parse_traditions.py`,
-  `parse_equipment.py`, and `parse_creatures.py` scan clean and are not
-  touched.
+- Other parsers, with one exception. `parse_paths.py`,
+  `parse_traditions.py`, `parse_equipment.py`, and `parse_creatures.py` scan
+  clean and are not touched. `parse_spells.py` gets the small boundary-flush
+  fix for its 11 bled tradition headers, described above.
 - The Combat quick reference tab — its own spec, built after this.
 - ARIA/tab-semantics remediation. Review noted the existing tab bar
   (index.html:34) uses plain buttons without `tablist`/`tab`/`tabpanel`
