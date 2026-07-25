@@ -223,5 +223,49 @@ class TestAfflictionCoverage(unittest.TestCase):
                                      f"{e['id']}.{field} -> {target} is not a condition")
 
 
+class TestTurnAndModifierCoverage(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.entries = load()["entries"]
+        cls.by_id = {e["id"]: e for e in cls.entries}
+
+    def test_turn_structure_entries_present(self):
+        for entry_id in ("anatomy-of-a-round", "fast-turns", "slow-turns",
+                         "triggered-actions", "free-attack", "minor-activities"):
+            self.assertIn(entry_id, self.by_id)
+            self.assertEqual(self.by_id[entry_id]["group"], "turn", entry_id)
+
+    def test_free_attack_is_a_triggered_action(self):
+        self.assertEqual(self.by_id["free-attack"]["economy"], "triggered")
+
+    def test_minor_activities_are_free(self):
+        self.assertEqual(self.by_id["minor-activities"]["economy"], "free")
+
+    def test_modifier_entries_present(self):
+        for entry_id in ("cover", "obscurement", "range-bands", "situational-banes"):
+            self.assertIn(entry_id, self.by_id)
+            self.assertEqual(self.by_id[entry_id]["group"], "modifiers", entry_id)
+
+    def test_tabular_modifiers_carry_rows(self):
+        """These four are tables in the book. The rules index flattened the
+        p.53 banes table into prose; combat.json reconstructs it as rows."""
+        for entry_id in ("cover", "obscurement", "range-bands", "situational-banes"):
+            rows = self.by_id[entry_id].get("rows")
+            self.assertTrue(rows, f"{entry_id} has no rows")
+            for row in rows:
+                self.assertTrue(row["label"].strip(), entry_id)
+                self.assertTrue(row["effect"].strip(), entry_id)
+
+    def test_range_bands_cover_all_seven(self):
+        labels = {r["label"] for r in self.by_id["range-bands"]["rows"]}
+        self.assertEqual(labels, {"You", "Reach", "Short", "Medium", "Long",
+                                  "Extreme", "Sight"})
+
+    def test_cover_has_three_degrees(self):
+        labels = {r["label"] for r in self.by_id["cover"]["rows"]}
+        self.assertEqual(labels, {"Half covered", "Three-quarters covered",
+                                  "Totally covered"})
+
+
 if __name__ == "__main__":
     unittest.main()

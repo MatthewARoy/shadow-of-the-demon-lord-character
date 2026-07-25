@@ -131,7 +131,8 @@
       "economy": "action",
       "source": { "book": "core", "page": 50 },
       "text": "You move up to half your Speed. This movement does not trigger free attacks.",
-      "derive": [{ "label": "Retreat distance", "expr": "half_speed" }]
+      "derive": [{ "label": "Retreat distance", "expr": "half_speed" }],
+      "see_also": ["free-attack"]
     },
     {
       "id": "action-rush",
@@ -219,7 +220,8 @@
       "cost": { "banes": 1 },
       "on_success": "Your movement does not trigger free attacks from the target until the end of the round.",
       "source": { "book": "core", "page": 51 },
-      "text": "You make the attack roll with 1 bane. On a success, your movement does not trigger free attacks from the target until the end of the round."
+      "text": "You make the attack roll with 1 bane. On a success, your movement does not trigger free attacks from the target until the end of the round.",
+      "see_also": ["free-attack"]
     },
     {
       "id": "melee-unbalancing-attack",
@@ -255,7 +257,8 @@
       "cost": { "banes": 1 },
       "on_success": "You can attack a target out to twice your weapon’s range.",
       "source": { "book": "core", "page": 52 },
-      "text": "You can attack a target that is beyond your weapon’s range, but no more than twice the weapon’s range. You make the attack roll with 1 bane."
+      "text": "You can attack a target that is beyond your weapon’s range, but no more than twice the weapon’s range. You make the attack roll with 1 bane.",
+      "see_also": ["range-bands"]
     },
     {
       "id": "ranged-staggering-shot",
@@ -292,7 +295,8 @@
       "defender": "Intellect",
       "on_success": "The target makes its next attack roll or challenge roll before the end of the round with 2 banes.",
       "source": { "book": "core", "page": 52 },
-      "text": "Choose one target creature within short range of you that can see you. Make an Intellect attack roll against the target’s Intellect. On a success, the target makes its next attack roll or challenge roll before the end of the round with 2 banes."
+      "text": "Choose one target creature within short range of you that can see you. Make an Intellect attack roll against the target’s Intellect. On a success, the target makes its next attack roll or challenge roll before the end of the round with 2 banes.",
+      "see_also": ["range-bands"]
     },
     {
       "id": "attack-escape",
@@ -308,7 +312,7 @@
       "requires_condition": ["affliction-grabbed"],
       "removes": ["affliction-grabbed"],
       "derive": [{ "label": "Movement on a success", "expr": "half_speed" }],
-      "see_also": ["attack-grab"]
+      "see_also": ["attack-grab", "free-attack"]
     },
     {
       "id": "attack-feint",
@@ -319,7 +323,8 @@
       "defender": "Perception",
       "on_success": "Either make the next attack roll against the target’s Defense or Agility before the end of the next round with 2 boons, or your movement does not trigger free attacks from the target for 1 round.",
       "source": { "book": "core", "page": 53 },
-      "text": "Choose one target creature within short range of you that can see you. Make an Agility attack roll against the target’s Perception. On a success, you make the next attack roll against the target’s Defense or Agility before the end of the next round with 2 boons. Alternatively, your movement does not trigger free attacks from the target for 1 round."
+      "text": "Choose one target creature within short range of you that can see you. Make an Agility attack roll against the target’s Perception. On a success, you make the next attack roll against the target’s Defense or Agility before the end of the next round with 2 boons. Alternatively, your movement does not trigger free attacks from the target for 1 round.",
+      "see_also": ["range-bands", "free-attack"]
     },
     {
       "id": "attack-grab",
@@ -519,7 +524,8 @@
       "group": "afflictions",
       "source": { "book": "core", "page": 43 },
       "text": "A slowed creature can take only a slow turn (see Combat), its Speed is halved, and it cannot benefit from increases to Speed.",
-      "derive": [{ "label": "Your halved Speed", "expr": "half_speed" }]
+      "derive": [{ "label": "Your halved Speed", "expr": "half_speed" }],
+      "see_also": ["slow-turns"]
     },
     {
       "id": "affliction-stunned",
@@ -544,6 +550,158 @@
       "group": "afflictions",
       "source": { "book": "core", "page": 43 },
       "text": "An unconscious creature is unable to act, move, or perceive its surroundings. The creature’s Defense is 5. It cannot use actions or move, and all its challenge rolls result in failure."
+    },
+
+    {
+      "id": "anatomy-of-a-round",
+      "kind": "reference",
+      "name": "Anatomy of a Round",
+      "group": "turn",
+      "source": { "book": "core", "page": 47 },
+      "text": "Combat is resolved in 10-second units of time, called rounds. A round has three parts: fast turns, slow turns, and the end of the round. During each round, players who want to take a turn (fast or slow) do so in that part of the round, in any order they choose. Once a player finishes his or her turn, he or she cannot take another turn until after the end of that round. If players cannot decide who goes first, the GM might decide or have each conflicting player roll a d6, with priority going to the player who rolled the highest number. Once all the players have finished taking their turns during a part of the round, creatures under the GM’s control can take turns in that part, in any order. Once a creature finishes its turn, it cannot take another turn until after the end of that round.",
+      "see_also": ["fast-turns", "slow-turns"]
+    },
+    {
+      "id": "fast-turns",
+      "kind": "reference",
+      "name": "Fast Turns",
+      "group": "turn",
+      "source": { "book": "core", "page": 47 },
+      "text": "A creature that takes a fast turn can either use an action or move up to its Speed. It cannot do both.",
+      "derive": [{ "label": "Your Speed", "expr": "speed" }],
+      "see_also": ["slow-turns", "minor-activities"]
+    },
+    {
+      "id": "slow-turns",
+      "kind": "reference",
+      "name": "Slow Turns",
+      "group": "turn",
+      "source": { "book": "core", "page": 47 },
+      "text": "A creature that takes a slow turn can use both an action and move up to its Speed. It can use an action at any point during the move.",
+      "derive": [{ "label": "Your Speed", "expr": "speed" }],
+      "see_also": ["fast-turns", "minor-activities"]
+    },
+    {
+      "id": "triggered-actions",
+      "kind": "action",
+      "name": "Triggered Actions",
+      "group": "turn",
+      "economy": "triggered",
+      "source": { "book": "core", "page": 50 },
+      "text": "In addition to using actions, most creatures can use one triggered action each round. Creatures use triggered actions to react to the specific events that trigger their use, hence the name. Almost all creatures can use triggered actions to make a free attack, which is described in the following section. Creatures can also use triggered actions to perform other activities from talents and spells. Any activity that involves the use of a triggered action also specifies the condition under which the character can use it. The condition, called the trigger, could be broad, such as “on your turn,” or narrow, such as “when a creature willingly moves out of your reach.” Provided you meet the conditions for using the triggered action, you may do so, provided you have not already used a triggered action during the round.",
+      "see_also": ["free-attack", "action-prepare"]
+    },
+    {
+      "id": "free-attack",
+      "kind": "action",
+      "name": "Free Attack",
+      "group": "turn",
+      "economy": "triggered",
+      "source": { "book": "core", "page": 51 },
+      "text": "When a creature in your reach willingly moves out of your reach, you can use a triggered action to make an attack against that creature using a melee weapon you are wielding.",
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }],
+      "see_also": ["melee-shifting-attack", "attack-escape", "action-retreat"]
+    },
+    {
+      "id": "minor-activities",
+      "kind": "action",
+      "name": "Minor Activities",
+      "group": "turn",
+      "economy": "free",
+      "source": { "book": "core", "page": 51 },
+      "text": "Some activities are so minor that you can just do them on your turn without using an action, triggered action, or move. Examples include dropping an item or picking one up, drawing or stowing a weapon, and opening or closing a door. As a general rule, you can perform one minor activity during a fast turn, or two during a slow turn. You might do more if you don’t move or use an action on your turn, or if your GM says you can do more.",
+      "see_also": ["fast-turns", "slow-turns"]
+    },
+
+    {
+      "id": "cover",
+      "kind": "reference",
+      "name": "Cover",
+      "group": "modifiers",
+      "source": { "book": "core", "page": 52 },
+      "text": "Terrain and objects on the battlefield can provide protection against attacks with ranged weapons or spells that target things at a distance.",
+      "rows": [
+        {
+          "label": "Half covered",
+          "effect": "An object between you and the attacker covers at least half your body: ranged attack rolls against you are made with 1 bane."
+        },
+        {
+          "label": "Three-quarters covered",
+          "effect": "An object covers at least three-quarters of your body: ranged attack rolls against you are made with 2 banes."
+        },
+        {
+          "label": "Totally covered",
+          "effect": "An object covers your body entirely: you cannot be a target for any attack or effect."
+        }
+      ],
+      "see_also": ["situational-banes", "action-hide"]
+    },
+    {
+      "id": "obscurement",
+      "kind": "reference",
+      "name": "Obscurement",
+      "group": "modifiers",
+      "source": { "book": "core", "page": 44 },
+      "text": "Poor lighting, precipitation, and fog reduce visibility. An area, and creatures and objects within it, can be partially, heavily, or totally obscured.",
+      "rows": [
+        {
+          "label": "Partially obscured",
+          "effect": "Rain, light snow, fog, and shadows. Everything is visible, but observers cannot make out fine detail. Any roll involving sight by a creature looking into the area is made with 1 bane."
+        },
+        {
+          "label": "Heavily obscured",
+          "effect": "Heavy rain, snow, and thick fog. Everything is faintly visible. Any roll involving sight by a creature looking into the area is made with 2 banes."
+        },
+        {
+          "label": "Totally obscured",
+          "effect": "Darkness or blinding conditions, such as a whiteout in a blizzard. Creatures and objects cannot be seen, and a creature in the area is blinded."
+        }
+      ],
+      "inflicts": ["affliction-blinded"],
+      "see_also": ["situational-banes", "action-hide"]
+    },
+    {
+      "id": "range-bands",
+      "kind": "reference",
+      "name": "Range and Distance",
+      "group": "modifiers",
+      "source": { "book": "core", "page": 44 },
+      "text": "A few broad categories describe the range of weapons and spells for the purpose of choosing targets and centering area effects.",
+      "rows": [
+        {
+          "label": "You",
+          "effect": "You are the target, or the effect originates from you or a point within your space. You are always within range of yourself for the purpose of targeting."
+        },
+        {
+          "label": "Reach",
+          "effect": "The target must be within your reach and you must be able to touch it. Touching an unwilling creature requires a Strength or Agility attack roll against its Agility."
+        },
+        { "label": "Short", "effect": "Within 5 yards of you." },
+        { "label": "Medium", "effect": "Within 20 yards of you." },
+        { "label": "Long", "effect": "Within 100 yards of you." },
+        { "label": "Extreme", "effect": "Within 500 yards of you." },
+        { "label": "Sight", "effect": "You must be able to see the target or the point from which the effect originates." }
+      ],
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }],
+      "see_also": ["ranged-distant-shot"]
+    },
+    {
+      "id": "situational-banes",
+      "kind": "reference",
+      "name": "Situational Banes to Attack Rolls",
+      "group": "modifiers",
+      "source": { "book": "core", "page": 53 },
+      "text": "One or more banes might apply to your attack rolls, based on the circumstances under which you make the attack. These are in addition to any banes or boons included in the attack. The following table summarizes the most common situations.",
+      "rows": [
+        { "label": "Half covered", "effect": "1 bane" },
+        { "label": "Three-quarters covered", "effect": "2 banes" },
+        { "label": "Totally covered", "effect": "Automatic failure" },
+        { "label": "Partially obscured", "effect": "1 bane" },
+        { "label": "Heavily obscured", "effect": "2 banes" },
+        { "label": "Totally obscured", "effect": "3 banes — you must guess the target’s location (see Hide)." },
+        { "label": "Weather, terrain", "effect": "In inclement weather or covering terrain: 1 or more banes" }
+      ],
+      "see_also": ["cover", "obscurement", "action-hide"]
     }
   ]
 }
