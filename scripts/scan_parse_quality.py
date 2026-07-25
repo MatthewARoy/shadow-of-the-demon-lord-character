@@ -13,6 +13,7 @@ Signatures are tuned for recall; false positives are expected and absorbed
 by scripts/parse_quality_baseline.json. The gate fails only on hits that are
 not in that baseline.
 """
+import hashlib
 import json
 import os
 import re
@@ -83,6 +84,7 @@ def scan_records(filename, records):
                     "file": filename,
                     "path": path,
                     "signature": name,
+                    "text": text,
                     "excerpt": text[-90:].strip(),
                 })
     return hits
@@ -100,8 +102,16 @@ def scan(data_dir=DATA):
 
 
 def key(hit):
-    """Stable identity for baselining, independent of excerpt drift."""
-    return f"{hit['file']}|{hit['path']}|{hit['signature']}"
+    """Content-addressed identity for baselining.
+
+    Deliberately NOT the JSON path: array indices shift whenever a parser
+    change adds or removes records, so a path-keyed baseline reports every
+    surviving false positive as new after each regeneration. Hashing the
+    matched text means an accepted hit stays accepted while its content is
+    unchanged, and any genuinely new text is surfaced for review.
+    """
+    digest = hashlib.sha1(hit["text"].encode("utf-8")).hexdigest()[:12]
+    return f"{hit['file']}|{hit['signature']}|{digest}"
 
 
 def main():

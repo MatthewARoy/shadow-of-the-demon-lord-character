@@ -66,16 +66,17 @@ def lines_in_ranges():
     """
     for book, lo, hi, end_anchor in RANGES:
         page = 0
-        for raw in open(os.path.join(CACHE, f"{book}.txt")):
-            s = raw.rstrip("\n")
-            m = re.match(r"^===PAGE (\d+)===$", s.strip())
-            if m:
-                page = int(m.group(1))
-                continue
-            if lo <= page <= hi:
-                if end_anchor and end_anchor.match(s.strip()):
-                    break
-                yield book, page, s
+        with open(os.path.join(CACHE, f"{book}.txt")) as f:
+            for raw in f:
+                s = raw.rstrip("\n")
+                m = re.match(r"^===PAGE (\d+)===$", s.strip())
+                if m:
+                    page = int(m.group(1))
+                    continue
+                if lo <= page <= hi:
+                    if end_anchor and end_anchor.match(s.strip()):
+                        break
+                    yield book, page, s
         yield BOUNDARY
 
 

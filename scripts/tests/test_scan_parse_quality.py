@@ -3,7 +3,7 @@ import sys
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from scan_parse_quality import SIGNATURES, scan_records
+from scan_parse_quality import SIGNATURES, key, scan_records
 
 
 class TestSignatures(unittest.TestCase):
@@ -77,6 +77,29 @@ class TestScanRecords(unittest.TestCase):
         hits = scan_records("equipment.json", records)
         self.assertEqual(len(hits), 1)
         self.assertEqual(hits[0]["signature"], "table_row")
+
+
+class TestBaselineKey(unittest.TestCase):
+    BLED = "It ends here. Conjuration Spells"
+
+    def test_key_is_stable_when_records_are_reordered(self):
+        """A parser change that adds or removes records must not invalidate
+        the baseline for hits whose content is unchanged."""
+        before = scan_records("spells.json", [{"d": self.BLED}])
+        after = scan_records("spells.json",
+                             [{"d": "filler that matches nothing at all"},
+                              {"d": self.BLED}])
+        self.assertEqual(key(before[0]), key(after[-1]))
+
+    def test_key_changes_when_content_changes(self):
+        a = scan_records("spells.json", [{"d": self.BLED}])
+        b = scan_records("spells.json", [{"d": "Something else. Nature Spells"}])
+        self.assertNotEqual(key(a[0]), key(b[0]))
+
+    def test_key_separates_files_and_signatures(self):
+        a = scan_records("spells.json", [{"d": self.BLED}])
+        b = scan_records("paths.json", [{"d": self.BLED}])
+        self.assertNotEqual(key(a[0]), key(b[0]))
 
 
 if __name__ == "__main__":

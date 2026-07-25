@@ -129,6 +129,25 @@ class TestTableManifest(unittest.TestCase):
         for t in ("Improvised Weapons", "Special Materials", "Living Expenses"):
             self.assertIn(t, titles, f"manifest over-deleted: lost {t}")
 
+    def test_price_and_damage_tables_are_excluded(self):
+        chunks = p.chunk()
+        for c in chunks:
+            self.assertNotEqual(c["x"].strip(), "Off One 1d3 Two 1d6",
+                                "improvised weapon damage table retained")
+            self.assertNotRegex(c["x"], r"^Rank \d+ \d+ gc",
+                                "incantation price table retained")
+
+    def test_incantations_rules_section_survives(self):
+        """'Incantations' captions a price table AND a rules section.
+
+        Matching the caption on text alone would delete the rules section,
+        so the table test requires table furniture on the following line.
+        """
+        titles = {c["t"] for c in p.chunk()}
+        self.assertIn("Incantations", titles)
+        body = next(c["x"] for c in p.chunk() if c["t"] == "Incantations")
+        self.assertGreater(len(body), 80, "kept the table, dropped the prose")
+
     def test_combat_rules_sections_are_retained(self):
         titles = {c["t"] for c in p.chunk()}
         for t in ("Melee Attack Options", "Ranged Attack Options", "Cover"):

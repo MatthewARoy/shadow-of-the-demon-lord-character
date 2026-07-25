@@ -34,6 +34,13 @@ import re
 
 DATA = os.path.join(os.path.dirname(__file__), "..", "data")
 
+# A real section heading is followed by its body prose; a table cell is
+# followed by another cell. "Improvised Weapons" is followed by "You can also
+# attack with objects you find around you...", while the weapon-name cell
+# "Club" is followed by "1d6". This length test is what lets a block contain
+# heading-shaped row cells without swallowing the section that follows it.
+BODY_PROSE_MIN = 50
+
 # The die-size line that follows a random table's caption.
 DIE_LINE = re.compile(r"^(?:d20|d12|d10|d8|d6|3d6|2d6)$")
 
@@ -62,8 +69,10 @@ TABLE_CAPTIONS = {
     "Food and Accommodations", "Food & Accommodations",
     "Animals and Animal Gear", "Hirelings", "Apparel and Accessories",
     "Adventuring Gear", "Other Commodities", "Prices",
-    # ch.7 magic
-    "Castings", "Potions", "Relics",
+    "Improvised Weapon Damage", "Weapons for Larger Creatures",
+    # ch.7 magic. "Incantations" is ALSO a real prose section heading, so a
+    # literal match alone would over-delete it — see is_table_caption.
+    "Castings", "Potions", "Relics", "Incantations",
 }
 
 
@@ -84,23 +93,23 @@ PROFESSION_CAPTION = re.compile(r"^[A-Z][a-z]+ Professions$")
 
 
 def is_table_caption(caption, next_line=""):
-    """True when `caption` opens a declared table block."""
+    """True when `caption` opens a declared table block.
+
+    A declared caption must also be followed by table furniture rather than
+    body prose. Several captions double as prose section headings — the
+    p.110 price table is captioned "Incantations" and followed by the column
+    header "Spell Rank", while the "Incantations" rules section is followed
+    by a sentence. Matching on text alone would delete the rules section.
+    """
     caption, next_line = caption.strip(), (next_line or "").strip()
+    followed_by_prose = len(next_line) >= BODY_PROSE_MIN
     if caption in TABLE_CAPTIONS:
-        return True
+        return not followed_by_prose
     if PROFESSION_CAPTION.match(caption):
         return True
     if ANCESTRY_CAPTION.match(caption) and DIE_LINE.match(next_line):
         return True
     return False
-
-
-# A real section heading is followed by its body prose; a table cell is
-# followed by another cell. "Improvised Weapons" is followed by "You can also
-# attack with objects you find around you...", while the weapon-name cell
-# "Club" is followed by "1d6". This length test is what lets a block contain
-# heading-shaped row cells without swallowing the section that follows it.
-BODY_PROSE_MIN = 50
 
 
 def is_table_internal(line, open_caption, next_line=""):
