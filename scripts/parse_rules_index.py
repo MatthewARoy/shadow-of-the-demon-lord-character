@@ -37,7 +37,18 @@ RUNNING_HEADS = {
     "Terrible Beauty",
 }
 
+# Matched case-insensitively: the extraction emits "PLaying the Game" as well
+# as "Playing the Game", and an exact-match set let the variant through into
+# seven chunk bodies.
+RUNNING_HEADS_LOWER = {h.lower() for h in RUNNING_HEADS}
+
 SMALL_WORDS = {"of", "the", "and", "a", "an", "to", "in", "for", "with", "or", "by", "at", "on"}
+
+# A heading wrapped onto a second line continues with a lowercase article or
+# preposition: "Attack with" / "a Melee Weapon", "Situational Banes" / "to
+# Attack Rolls". Capitalised "The Dice" is a heading in its own right, so the
+# test is case-sensitive.
+CONTINUATION = re.compile(r"^(a|an|the|to|of|with|or|and)\b")
 
 MAX_BODY = 1600         # chunks larger than this get split on paragraph-ish seams
 
@@ -74,7 +85,7 @@ def is_heading(s):
         return False
     if s.endswith((".", ",", ";", ":", "?", "!", ")")):
         return False
-    if s in RUNNING_HEADS or re.match(r"^\d", s) or "\t" in s:
+    if s.lower() in RUNNING_HEADS_LOWER or re.match(r"^\d", s) or "\t" in s:
         return False
     words = s.split()
     if len(words) > 6:
@@ -85,16 +96,28 @@ def is_heading(s):
 
 def furniture(s):
     s = s.strip()
-    return not s or re.match(r"^\d{1,3}$", s) or s in RUNNING_HEADS or \
+    return not s or re.match(r"^\d{1,3}$", s) or s.lower() in RUNNING_HEADS_LOWER or \
         re.match(r"^Chapter \d+:?$", s) or s.startswith("Rusty Shackleford")
+
+
+def wrapped_heading(s, peek):
+    """Return the joined heading when `peek` continues `s`, else None."""
+    peek = (peek or "").strip()
+    if peek and CONTINUATION.match(peek) and is_heading(peek):
+        return f"{s} {peek}"
+    return None
 
 
 def chunk():
     chunks = []
     current = None
     open_caption = None         # caption of the table block currently open
+    skip_next = False           # second line of a heading already joined
     stream = list(lines_in_ranges())
     for idx, (book, page, line) in enumerate(stream):
+        if skip_next:
+            skip_next = False
+            continue
         if book is None:            # range/book boundary — close the open chunk
             if current:
                 chunks.append(current)
@@ -107,6 +130,16 @@ def chunk():
         if furniture(s):
             continue
         if is_heading(s):
+            # Join a wrapped heading BEFORE testing it as a caption: the
+            # Situational Banes table is captioned "Situational Banes / to
+            # Attack Rolls" across two lines, so testing the first line alone
+            # opened the block and left the tail as an orphan chunk.
+            joined = wrapped_heading(s, peek)
+            if joined:
+                s = joined
+                skip_next = True
+                nxt2 = stream[idx + 2] if idx + 2 < len(stream) else (None, None, "")
+                peek = nxt2[2] if nxt2[0] is not None else ""
             # A declared caption opens (or re-opens) a table block.
             if is_table_caption(s, peek):
                 if current:

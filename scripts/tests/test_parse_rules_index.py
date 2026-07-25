@@ -162,5 +162,37 @@ class TestShortRulesSurvive(unittest.TestCase):
         self.assertNotIn("Dazed", compelled[0]["x"])
 
 
+class TestHeadingReconstruction(unittest.TestCase):
+    def test_multiline_headings_are_joined(self):
+        titles = {c["t"] for c in p.chunk()}
+        self.assertIn("Attack with a Melee Weapon", titles)
+        self.assertIn("Attack with a Ranged Weapon", titles)
+
+    def test_no_orphan_fragment_titles(self):
+        """A wrapped heading's tail starts lowercase.
+
+        Case matters: "The Dice" and "The Game Master" are legitimate
+        headings, while "a Melee Weapon" and "to Attack Rolls" are the
+        second halves of headings the extraction split across two lines.
+        """
+        bad = sorted({c["t"] for c in p.chunk()
+                      if c["t"].split()[0] in {"a", "an", "the", "to", "of", "with", "or", "and"}})
+        self.assertEqual(bad, [], f"orphaned heading fragments: {bad}")
+
+    def test_running_head_furniture_does_not_leak_into_bodies(self):
+        """Only the variant capitalisation indicates furniture.
+
+        "While playing the game, keep track of what your character does" is
+        ordinary prose and must not be flagged. The extraction's "PLaying
+        the Game" is a page header that escaped the exact-match filter.
+        """
+        bad = sorted({c["t"] for c in p.chunk() if "PLaying the Game" in c["x"]})
+        self.assertEqual(bad, [], f"chunks carrying running-head furniture: {bad}")
+
+    def test_running_head_variant_is_not_a_chunk_title(self):
+        titles = {c["t"] for c in p.chunk()}
+        self.assertNotIn("PLaying the Game", titles)
+
+
 if __name__ == "__main__":
     unittest.main()

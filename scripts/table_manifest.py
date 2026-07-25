@@ -52,7 +52,8 @@ TABLE_CAPTIONS = {
     "Interesting Things Table 1", "Interesting Things Table 2",
     "Interesting Things Table 3", "Ancestry Tables", "Wealth",
     # ch.2 playing the game
-    "Movement by Pace", "Falling Damage", "Situational Banes",
+    "Movement by Pace", "Falling Damage",
+    "Situational Banes to Attack Rolls",
     # ch.6 equipment
     "Lifestyle", "Clothing and Armor", "Ammunition", "Armor Descriptions",
     "Basic Melee Weapons", "Ranged Weapons", "Shields",
