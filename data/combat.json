@@ -35,7 +35,8 @@
       "group": "actions",
       "economy": "action",
       "source": { "book": "core", "page": 49 },
-      "text": "You use a weapon, an attack spell, or something else to harm or hinder another creature or an object. See Making Attacks for how to resolve this activity."
+      "text": "You use a weapon, an attack spell, or something else to harm or hinder another creature or an object. See Making Attacks for how to resolve this activity.",
+      "see_also": ["charge"]
     },
     {
       "id": "action-cast-a-utility-spell",
@@ -159,6 +160,225 @@
       "economy": "action",
       "source": { "book": "core", "page": 50 },
       "text": "You interact with an item you are holding or wearing, or with an object you can reach. Examples include picking a lock, retrieving an object from a pouch or a backpack, or lighting a torch."
+    },
+
+    {
+      "id": "charge",
+      "kind": "action",
+      "name": "Charge",
+      "group": "attack-options",
+      "economy": "action",
+      "source": { "book": "core", "page": 53 },
+      "text": "When you use an action to charge, you make attack rolls and challenge rolls with 1 bane until the end of the round. Move up to your Speed. At any point during your movement, make one attack with a melee weapon or with an attribute to knock down or shove a creature.",
+      "derive": [{ "label": "Move up to", "expr": "speed" }],
+      "see_also": ["attack-knock-down", "attack-shove"]
+    },
+
+    {
+      "id": "melee-driving-attack",
+      "kind": "option",
+      "name": "Driving Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "You and the target move a number of yards equal to your Strength modifier in the same direction.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You make the attack roll with 1 bane. On a success, you and the target move a number of yards equal to your Strength modifier in the same direction.",
+      "derive": [{ "label": "You both move", "expr": "str_mod" }]
+    },
+    {
+      "id": "melee-guarded-attack",
+      "kind": "option",
+      "name": "Guarded Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "The next creature to make an attack roll against your Defense before the end of the round does so with 1 bane.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You make the attack roll with 1 bane, but the next creature to make an attack roll against your Defense before the end of the round does so with 1 bane."
+    },
+    {
+      "id": "melee-lunging-attack",
+      "kind": "option",
+      "name": "Lunging Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "Your reach increases by 1 yard for the attack.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You can increase your reach by 1 yard, but you make the attack roll with 1 bane.",
+      "derive": [{ "label": "Base reach from Size", "expr": "reach_from_size" }]
+    },
+    {
+      "id": "melee-shifting-attack",
+      "kind": "option",
+      "name": "Shifting Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "Your movement does not trigger free attacks from the target until the end of the round.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You make the attack roll with 1 bane. On a success, your movement does not trigger free attacks from the target until the end of the round."
+    },
+    {
+      "id": "melee-unbalancing-attack",
+      "kind": "option",
+      "name": "Unbalancing Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "If the target is your Size or smaller, it must make an Agility challenge roll. On a failure, the target falls prone.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You make the attack roll with 1 bane. On a success, if the target is your Size or smaller, it must make an Agility challenge roll. On a failure, the target falls prone.",
+      "derive": [{ "label": "Your Size", "expr": "size" }]
+    },
+
+    {
+      "id": "ranged-called-shot",
+      "kind": "option",
+      "name": "Called Shot",
+      "group": "attack-options",
+      "weapon_class": "ranged",
+      "cost": { "banes": 2 },
+      "on_success": "The attack has an additional effect as determined by the GM.",
+      "source": { "book": "core", "page": 52 },
+      "text": "You attack a specific location on the target’s body. You can use this option only if the target has a physical body. Make the attack roll with 2 banes. On a success, the attack has an additional effect as determined by the GM. Attacking a creature’s eyes might impose 1 bane on all rolls the target makes that rely on sight, for example."
+    },
+    {
+      "id": "ranged-distant-shot",
+      "kind": "option",
+      "name": "Distant Shot",
+      "group": "attack-options",
+      "weapon_class": "ranged",
+      "cost": { "banes": 1 },
+      "on_success": "You can attack a target out to twice your weapon’s range.",
+      "source": { "book": "core", "page": 52 },
+      "text": "You can attack a target that is beyond your weapon’s range, but no more than twice the weapon’s range. You make the attack roll with 1 bane."
+    },
+    {
+      "id": "ranged-staggering-shot",
+      "kind": "option",
+      "name": "Staggering Shot",
+      "group": "attack-options",
+      "weapon_class": "ranged",
+      "cost": { "banes": 2 },
+      "on_success": "A target that is your Size or smaller must make an Agility challenge roll. On a failure, the target falls prone.",
+      "source": { "book": "core", "page": 52 },
+      "text": "You make the attack roll with 2 banes. On a success, a target that is your Size or smaller must make an Agility challenge roll. On a failure, the target falls prone.",
+      "derive": [{ "label": "Your Size", "expr": "size" }]
+    },
+
+    {
+      "id": "attack-disarm",
+      "kind": "attack",
+      "name": "Disarm",
+      "group": "attack-options",
+      "attacker": "Strength or Agility",
+      "defender": ["Strength", "Agility"],
+      "on_success": "The target drops one object it is holding, of your choice.",
+      "source": { "book": "core", "page": 52 },
+      "text": "Choose one target creature within your reach that’s holding an object. Make a Strength or Agility attack roll against the higher of the target’s Strength or Agility. If you are unarmed, you make this roll with 2 banes. On a success, the target drops one object it is holding of your choice.",
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }]
+    },
+    {
+      "id": "attack-distract",
+      "kind": "attack",
+      "name": "Distract",
+      "group": "attack-options",
+      "attacker": "Intellect",
+      "defender": "Intellect",
+      "on_success": "The target makes its next attack roll or challenge roll before the end of the round with 2 banes.",
+      "source": { "book": "core", "page": 52 },
+      "text": "Choose one target creature within short range of you that can see you. Make an Intellect attack roll against the target’s Intellect. On a success, the target makes its next attack roll or challenge roll before the end of the round with 2 banes."
+    },
+    {
+      "id": "attack-escape",
+      "kind": "attack",
+      "name": "Escape",
+      "group": "attack-options",
+      "attacker": "Strength or Agility",
+      "defender": "Strength",
+      "on_success": "The grabbed affliction is removed and you can move up to half your Speed without triggering a free attack from the creature that had grabbed you.",
+      "source": { "book": "core", "page": 53 },
+      "text": "You can use this action if you are grabbed. Make a Strength or Agility attack roll against the Strength of the creature that has grabbed you. A success removes the grabbed affliction and lets you move up to half your Speed. This movement does not trigger free attacks from the creature that had grabbed you. (See Grabbed for information on the effects of being grabbed, and Grab for how to grab.)",
+      "requires": [{ "type": "condition", "label": "you are grabbed" }],
+      "derive": [{ "label": "Movement on a success", "expr": "half_speed" }],
+      "see_also": ["attack-grab"]
+    },
+    {
+      "id": "attack-feint",
+      "kind": "attack",
+      "name": "Feint",
+      "group": "attack-options",
+      "attacker": "Agility",
+      "defender": "Perception",
+      "on_success": "Either make the next attack roll against the target’s Defense or Agility before the end of the next round with 2 boons, or your movement does not trigger free attacks from the target for 1 round.",
+      "source": { "book": "core", "page": 53 },
+      "text": "Choose one target creature within short range of you that can see you. Make an Agility attack roll against the target’s Perception. On a success, you make the next attack roll against the target’s Defense or Agility before the end of the next round with 2 boons. Alternatively, your movement does not trigger free attacks from the target for 1 round."
+    },
+    {
+      "id": "attack-grab",
+      "kind": "attack",
+      "name": "Grab",
+      "group": "attack-options",
+      "attacker": "Strength or Agility",
+      "defender": "Agility",
+      "on_success": "The target becomes grabbed until the end of the next round.",
+      "source": { "book": "core", "page": 53 },
+      "text": "You must have at least one hand free to grab, and you cannot be grabbing another creature. Choose one target creature within your reach that has a physical body (not a spirit, for example) and make a Strength or Agility attack roll against the target’s Agility. If you choose a creature you are already grabbing, you automatically get a success. On a success, the target becomes grabbed until the end of the next round. If you are prevented from using actions (such as because you are dazed, stunned, or unconscious), the grabbed affliction ends. The grabbed affliction also ends if you move or are moved to a position where you can no longer reach the grabbed target. (See Grabbed for more information on the effects of being grabbed, and Escape for how to escape a grab.)",
+      "requires": [{ "type": "free_hand", "label": "at least one free hand" }],
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }],
+      "see_also": ["attack-escape"]
+    },
+    {
+      "id": "attack-knock-down",
+      "kind": "attack",
+      "name": "Knock Down",
+      "group": "attack-options",
+      "attacker": "Strength",
+      "defender": "Agility",
+      "on_success": "The target falls prone.",
+      "size_rule": "1 bane for each point of Size the target is larger than you; 1 boon if it is smaller.",
+      "source": { "book": "core", "page": 53 },
+      "text": "Choose one target creature within your reach. Make a Strength attack roll against the target’s Agility. If the target is larger than you, make this roll with 1 bane for each point of Size it is larger. You make this roll with 1 boon if the target is smaller than you. On a success, the target falls prone.",
+      "derive": [
+        { "label": "Your Size", "expr": "size" },
+        { "label": "Your reach", "expr": "reach_from_size" }
+      ]
+    },
+    {
+      "id": "attack-pull",
+      "kind": "attack",
+      "name": "Pull",
+      "group": "attack-options",
+      "attacker": "Strength",
+      "defender": "Strength",
+      "on_success": "You move up to half your Speed and the grabbed creature moves with you so that it remains within your reach.",
+      "source": { "book": "core", "page": 53 },
+      "text": "Choose one target creature of your Size or smaller that you are grabbing. Make a Strength attack roll against the target’s Strength. On a success, you move up to half your Speed and the grabbed creature moves with you so that it remains within your reach.",
+      "requires": [{ "type": "condition", "label": "you are grabbing the target" }],
+      "derive": [
+        { "label": "You move up to", "expr": "half_speed" },
+        { "label": "Your Size", "expr": "size" }
+      ],
+      "see_also": ["attack-grab"]
+    },
+    {
+      "id": "attack-shove",
+      "kind": "attack",
+      "name": "Shove",
+      "group": "attack-options",
+      "attacker": "Strength",
+      "defender": "Strength",
+      "on_success": "You move the target 1 yard away from you, plus a number of yards equal to your Strength modifier (minimum total distance 1 yard).",
+      "size_rule": "1 bane for each point of Size the target is larger than you; 1 boon if it is smaller.",
+      "source": { "book": "core", "page": 53 },
+      "text": "Choose one target creature within your reach. Make a Strength attack roll against the target’s Strength. If the target is larger than you, you make this roll with 1 bane for each point of Size it is larger. You make this roll with 1 boon if the target is smaller than you. On a success, you move the target 1 yard away from you, plus a number of yards equal to your Strength modifier (minimum total distance 1 yard).",
+      "derive": [
+        { "label": "Push distance beyond the first yard", "expr": "str_mod" },
+        { "label": "Your Size", "expr": "size" },
+        { "label": "Your reach", "expr": "reach_from_size" }
+      ]
     }
   ]
 }

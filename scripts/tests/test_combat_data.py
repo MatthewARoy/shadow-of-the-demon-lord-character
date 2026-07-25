@@ -113,12 +113,70 @@ class TestActionCoverage(unittest.TestCase):
         cls.entries = load()["entries"]
 
     def test_all_fourteen_actions_present(self):
-        """Core p.49. Concentrate and Defend are the two routinely missed."""
-        names = {e["name"] for e in self.entries if e["kind"] == "action"
-                 and e["economy"] == "action"}
+        """Core p.49. Concentrate and Defend are the two routinely missed.
+
+        Filtered to the actions group: Charge (p.53) and Free Attack (p.51)
+        are also actions but are not on the p.49 list.
+        """
+        names = {e["name"] for e in self.entries
+                 if e["kind"] == "action" and e["group"] == "actions"}
         self.assertEqual(names, set(ACTIONS),
                          f"missing: {sorted(set(ACTIONS) - names)}; "
                          f"unexpected: {sorted(names - set(ACTIONS))}")
+
+
+MELEE_OPTIONS = ["Driving Attack", "Guarded Attack", "Lunging Attack",
+                 "Shifting Attack", "Unbalancing Attack"]
+RANGED_OPTIONS = ["Called Shot", "Distant Shot", "Staggering Shot"]
+ATTRIBUTE_ATTACKS = ["Disarm", "Distract", "Escape", "Feint", "Grab",
+                     "Knock Down", "Pull", "Shove"]
+
+
+class TestAttackCoverage(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.entries = load()["entries"]
+
+    def by_kind(self, kind, **match):
+        return [e for e in self.entries if e["kind"] == kind
+                and all(e.get(k) == v for k, v in match.items())]
+
+    def test_melee_options_present(self):
+        """Core p.51 - all five live inside one 'Melee Attack Options' chunk."""
+        names = {e["name"] for e in self.by_kind("option", weapon_class="melee")}
+        self.assertEqual(names, set(MELEE_OPTIONS))
+
+    def test_ranged_options_present(self):
+        """Core p.52 - all three live inside one 'Ranged Attack Options' chunk."""
+        names = {e["name"] for e in self.by_kind("option", weapon_class="ranged")}
+        self.assertEqual(names, set(RANGED_OPTIONS))
+
+    def test_attribute_attacks_present(self):
+        """Core p.52-53."""
+        names = {e["name"] for e in self.by_kind("attack")}
+        self.assertEqual(names, set(ATTRIBUTE_ATTACKS))
+
+    def test_every_option_costs_at_least_one_bane(self):
+        """The whole family is 'pay a bane, get an effect'."""
+        for e in self.by_kind("option"):
+            self.assertGreaterEqual(e["cost"]["banes"], 1, e["id"])
+
+    def test_charge_exists_and_is_an_action(self):
+        """Charge is described under Making Attacks (p.53), not in the p.49 list."""
+        charge = [e for e in self.entries if e["id"] == "charge"]
+        self.assertEqual(len(charge), 1)
+        self.assertEqual(charge[0]["economy"], "action")
+
+    def test_disarm_defends_against_the_higher_of_two(self):
+        """Disarm is the one attack whose defender is a choice, not a value."""
+        disarm = next(e for e in self.entries if e["id"] == "attack-disarm")
+        self.assertIsInstance(disarm["defender"], list)
+        self.assertEqual(len(disarm["defender"]), 2)
+
+    def test_size_dependent_attacks_carry_a_size_rule(self):
+        for entry_id in ("attack-knock-down", "attack-shove"):
+            e = next(x for x in self.entries if x["id"] == entry_id)
+            self.assertTrue(e["size_rule"].strip(), entry_id)
 
 
 if __name__ == "__main__":
