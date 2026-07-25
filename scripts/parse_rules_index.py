@@ -14,11 +14,18 @@ import re
 CACHE = os.path.join(os.path.dirname(__file__), "cache")
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "rules-index.json")
 
-# (book, first pdf page, last pdf page)
+# A spell entry's header is the tradition/type/rank line that follows an
+# all-caps spell name, e.g. "AIR UTILITY 0". Page numbers cannot separate the
+# generic magic rules at the top of core p.116 from the spell list lower on
+# the SAME page, so that range ends on content instead. Without this, 33 spell
+# records leaked into the index and duplicated the Spells tab.
+SPELL_LIST_START = re.compile(r"^[A-Z][A-Z’'\- ]*\s+(ATTACK|UTILITY)\s+\d+\s*$")
+
+# (book, first pdf page, last pdf page, end anchor or None)
 RANGES = [
-    ("core", 6, 53),      # ch1 character creation + ch2 playing the game
-    ("core", 100, 118),   # ch6 equipment + ch7 magic rules (pre spell lists)
-    ("occult", 6, 12),    # restated/updated casting, learning, exchanging
+    ("core", 6, 53, None),                 # ch1 character creation + ch2 playing the game
+    ("core", 100, 118, SPELL_LIST_START),  # ch6 equipment + ch7 magic rules (pre spell lists)
+    ("occult", 6, 12, None),               # restated/updated casting, learning, exchanging
 ]
 
 RUNNING_HEADS = {
@@ -45,7 +52,7 @@ def lines_in_ranges():
     next — including across books. That is how chunks titled EXPLOSIVE DARTS
     (core p.118) came to end with Occult Philosophy p.6 text.
     """
-    for book, lo, hi in RANGES:
+    for book, lo, hi, end_anchor in RANGES:
         page = 0
         for raw in open(os.path.join(CACHE, f"{book}.txt")):
             s = raw.rstrip("\n")
@@ -54,6 +61,8 @@ def lines_in_ranges():
                 page = int(m.group(1))
                 continue
             if lo <= page <= hi:
+                if end_anchor and end_anchor.match(s.strip()):
+                    break
                 yield book, page, s
         yield BOUNDARY
 

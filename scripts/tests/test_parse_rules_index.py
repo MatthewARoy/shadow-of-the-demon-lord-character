@@ -68,5 +68,33 @@ class TestBoundaryFlush(unittest.TestCase):
         self.assertEqual(offenders, [], f"chunks bridging the p.53/p.100 gap: {offenders}")
 
 
+class TestAnchorTerminatedRanges(unittest.TestCase):
+    def test_no_spell_entries_leak_from_the_spell_list(self):
+        """Defect E: spell entries begin partway down core p.116.
+
+        Scoped to the magic chapter on purpose. Several rules sections
+        elsewhere legitimately share a name with a spell — Illumination and
+        Invisibility (p.44), Reincarnation (p.41) — and must not be removed.
+        """
+        import json
+        data = os.path.join(HERE, "..", "..", "data", "spells.json")
+        with open(data) as f:
+            spell_names = {s["name"].lower() for s in json.load(f)}
+        offenders = sorted({c["t"] for c in p.chunk()
+                            if c["p"] >= 111 and c["t"].lower() in spell_names})
+        self.assertEqual(offenders, [], f"spell entries in the rules index: {offenders}")
+
+    def test_magic_rules_before_the_spell_list_are_retained(self):
+        titles = {c["t"] for c in p.chunk()}
+        self.assertIn("Casting a Spell", titles,
+                      "the anchor cut too early and removed magic rules")
+
+    def test_rules_sections_sharing_a_spell_name_survive(self):
+        """Guards the assertion above against becoming an over-deletion."""
+        titles = {c["t"] for c in p.chunk()}
+        for t in ("Illumination", "Invisibility", "Reincarnation"):
+            self.assertIn(t, titles, f"over-deleted the rules section {t}")
+
+
 if __name__ == "__main__":
     unittest.main()
