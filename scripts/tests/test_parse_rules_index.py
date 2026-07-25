@@ -8,6 +8,18 @@ FIXTURES = os.path.join(HERE, "..", "fixtures")
 
 import parse_rules_index as p
 
+# scripts/cache/ and the source PDFs are gitignored, so chunk() cannot run in
+# a fresh clone or anywhere extract_text.py has not been run. Tests that
+# exercise the parser against the real corpus are skipped there.
+#
+# Defect coverage does not depend on this: every defect class is also
+# asserted against the committed data/rules-index.json in
+# test_rules_index_invariants.py, which reads generated JSON only and runs
+# everywhere.
+HAS_CACHE = os.path.exists(os.path.join(HERE, "..", "cache", "core.txt"))
+needs_cache = unittest.skipUnless(
+    HAS_CACHE, "scripts/cache is gitignored; run scripts/extract_text.py with the PDFs")
+
 
 def load_fixture(name):
     with open(os.path.join(FIXTURES, name)) as f:
@@ -42,6 +54,7 @@ class TestIsHeading(unittest.TestCase):
         self.assertFalse(p.is_heading("PLaying the Game"))
 
 
+@needs_cache
 class TestBoundaryFlush(unittest.TestCase):
     def test_iterator_emits_a_sentinel_between_ranges(self):
         seq = list(p.lines_in_ranges())
@@ -68,6 +81,7 @@ class TestBoundaryFlush(unittest.TestCase):
         self.assertEqual(offenders, [], f"chunks bridging the p.53/p.100 gap: {offenders}")
 
 
+@needs_cache
 class TestAnchorTerminatedRanges(unittest.TestCase):
     def test_no_spell_entries_leak_from_the_spell_list(self):
         """Defect E: spell entries begin partway down core p.116.
@@ -96,6 +110,7 @@ class TestAnchorTerminatedRanges(unittest.TestCase):
             self.assertIn(t, titles, f"over-deleted the rules section {t}")
 
 
+@needs_cache
 class TestTableManifest(unittest.TestCase):
     def test_weapon_rows_are_not_sections(self):
         titles = {c["t"] for c in p.chunk()}
@@ -163,6 +178,7 @@ AFFLICTIONS = [
 ]
 
 
+@needs_cache
 class TestShortRulesSurvive(unittest.TestCase):
     def test_short_rules_are_independent_chunks(self):
         titles = {c["t"] for c in p.chunk()}
@@ -181,6 +197,7 @@ class TestShortRulesSurvive(unittest.TestCase):
         self.assertNotIn("Dazed", compelled[0]["x"])
 
 
+@needs_cache
 class TestHeadingReconstruction(unittest.TestCase):
     def test_multiline_headings_are_joined(self):
         titles = {c["t"] for c in p.chunk()}
