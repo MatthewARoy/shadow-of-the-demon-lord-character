@@ -135,5 +135,32 @@ class TestTableManifest(unittest.TestCase):
             self.assertIn(t, titles, f"manifest over-deleted: lost {t}")
 
 
+# Core p.42-43. Immobilized is the one most easily lost from this list.
+AFFLICTIONS = [
+    "Asleep", "Blinded", "Charmed", "Compelled", "Dazed", "Deafened",
+    "Defenseless", "Diseased", "Fatigued", "Frightened", "Grabbed",
+    "Immobilized", "Impaired", "Poisoned", "Prone", "Slowed", "Stunned",
+    "Surprised", "Unconscious",
+]
+
+
+class TestShortRulesSurvive(unittest.TestCase):
+    def test_short_rules_are_independent_chunks(self):
+        titles = {c["t"] for c in p.chunk()}
+        for t in ("Dazed", "Rush", "Disabled", "Dying"):
+            self.assertIn(t, titles, f"{t} was merged away by length")
+
+    def test_all_nineteen_afflictions_resolve(self):
+        titles = {c["t"] for c in p.chunk()}
+        missing = [a for a in AFFLICTIONS if a not in titles]
+        self.assertEqual(missing, [], f"missing afflictions: {missing}")
+        self.assertEqual(len(AFFLICTIONS), 19)
+
+    def test_dazed_is_not_glued_onto_compelled(self):
+        compelled = [c for c in p.chunk() if c["t"] == "Compelled"]
+        self.assertEqual(len(compelled), 1)
+        self.assertNotIn("Dazed", compelled[0]["x"])
+
+
 if __name__ == "__main__":
     unittest.main()

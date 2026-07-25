@@ -39,7 +39,6 @@ RUNNING_HEADS = {
 
 SMALL_WORDS = {"of", "the", "and", "a", "an", "to", "in", "for", "with", "or", "by", "at", "on"}
 
-MIN_BODY = 60           # below this, likely a table cell; merge into parent
 MAX_BODY = 1600         # chunks larger than this get split on paragraph-ish seams
 
 
@@ -132,14 +131,15 @@ def chunk():
     if current:
         chunks.append(current)
 
-    # Merge tiny chunks (mostly table cells misread as headings) into their
-    # parent section; the heading text joins the body so it stays searchable.
+    # Table cells are excluded by the manifest before headings are built, so
+    # a short body no longer implies a table cell. Length-based merging used
+    # to swallow real rules: "A dazed creature cannot use actions." is 36
+    # characters and a complete affliction entry, and it was glued onto the
+    # end of Compelled — along with Rush, Disabled, and Dying.
     merged = []
     for c in chunks:
         c["x"] = re.sub(r"\s+", " ", c["x"]).strip()
-        if merged and len(c["x"]) < MIN_BODY and merged[-1]["b"] == c["b"]:
-            merged[-1]["x"] += f" {c['t']}: {c['x']}" if c["x"] else f" {c['t']}."
-        else:
+        if c["x"]:
             merged.append(c)
 
     # Split oversized chunks at sentence seams.
