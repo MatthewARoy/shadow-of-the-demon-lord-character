@@ -1,0 +1,242 @@
+===PAGE 104===
+Equipment
+Weapons
+Basic Melee Weapons
+Name
+Damage
+Hands
+Properties
+Price
+Avail.
+Axe
+1d6 + 1
+One
+—
+1 ss
+C
+Club
+1d6
+One
+—
+5 cp
+C
+Dagger or knife
+1d3
+Off
+Finesse, thrown, range (short)
+5 cp
+C
+Dart
+1
+Off
+Finesse, thrown, range (short)
+1 cp
+C
+Hammer or hatchet
+1d3
+Off
+Thrown, range (short)
+1 ss
+C
+Javelin
+1d3
+One
+Finesse, thrown, range (medium)
+1 ss
+C
+Sickle or spear
+1d6
+One
+Finesse
+1 ss
+C
+Staff
+1d6 + 1
+Two
+Finesse
+5 cp
+C
+Unarmed strike
+1
+Off
+Finesse
+—
+—
+Ranged Weapons
+Name
+Damage
+Hands
+Properties
+Price
+Avail.
+Blowgun
+1d3
+One
+Range (medium), uses needles
+1 ss
+U
+Bow
+1d6
+Two
+Range (long), uses arrows
+5 ss
+C
+Crossbow
+2d6
+Two
+Range (long), reload, uses bolts
+1 gc
+C
+Hand crossbow
+1d6
+Off
+Range (short), reload, uses bolts
+2 gc
+R
+Longbow (requires Strength 9+)
+1d6 + 1
+Two
+Size 1, range (long), uses arrows
+1 gc
+U
+Pistol
+2d6
+Off
+Misfire, range (medium), reload, uses bullets
+5 gc
+E
+Rifle
+3d6
+Two
+Misfire, range (long), reload, uses bullets
+10 gc
+E
+Sling
+1d3
+Off
+Range (medium), uses stones
+5 cp
+C
+Shields (Requires Strength 9 or higher)
+Name
+Damage
+Hands
+Properties
+Price
+Avail.
+Small shield
+1
+Off
+Defensive +1
+5 cp
+C
+Large shield (requires Strength 11+)
+1d3
+Off
+Size 1, Defensive +2
+1 ss
+C
+Military Melee Weapons (Requires Strength 11 or higher)
+Name
+Damage
+Hands
+Properties
+Price
+Avail.
+Battleaxe, flail, morning star, pick, 
+or sword
+1d6 + 2
+One
+—
+5 ss
+U
+Glaive, halberd, or poleaxe
+1d6 + 2
+Two
+Reach + 1
+1 gc
+U
+Lance
+1d6 + 1
+Two
+One hand while mounted, reach + 2
+5 ss
+U
+Mace
+1d6
+Off
+—
+5 ss
+C
+Bastard sword or warhammer
+2d6
+Two
+Cumbersome
+1 gc
+R
+Pike
+1d6
+Two
+Size 1, reach + 2
+5 ss
+U
+Spear
+1d6
+One
+Finesse, thrown, range (short)
+1 ss
+C
+Trident
+1d6
+One
+Thrown, range (short)
+5 ss
+U
+Swift Melee Weapons (Requires Strength or Agility 11 or higher)
+Name
+Damage
+Hands
+Properties
+Price
+Avail.
+Chain, cutlass, long knife, scourge, 
+or small sword
+1d6
+Off
+Finesse
+5 ss
+U
+Rapier, saber, or scimitar
+1d6 + 1
+One
+Finesse
+1 gc
+U
+Whip
+1d3
+Off
+Finesse, reach + 1
+5 ss
+U
+Heavy Melee Weapons (Requires Strength 13 or higher)
+Name
+Damage
+Hands
+Properties
+Price
+Avail.
+Bastard sword or warhammer
+2d6
+One
+Cumbersome
+1 gc
+R
+Greataxe, greatsword or maul
+3d6
+Two
+Cumbersome
+2 gc
+R
+103
+6
+
