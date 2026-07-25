@@ -84,17 +84,6 @@
   "rules-index.json|[89].x|dice_table",
   "rules-index.json|[90].x|dice_table",
   "rules-index.json|[92].x|bleed",
-  "rules-index.json|[96].x|dice_table",
-  "spells.json|[115].description|bleed",
-  "spells.json|[148].description|bleed",
-  "spells.json|[206].description|bleed",
-  "spells.json|[239].description|bleed",
-  "spells.json|[391].description|bleed",
-  "spells.json|[432].description|bleed",
-  "spells.json|[505].description|bleed",
-  "spells.json|[631].description|bleed",
-  "spells.json|[711].description|bleed",
-  "spells.json|[748].description|bleed",
-  "spells.json|[833].description|bleed"
+  "rules-index.json|[96].x|dice_table"
  ]
 }
