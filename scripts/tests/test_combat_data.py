@@ -179,5 +179,49 @@ class TestAttackCoverage(unittest.TestCase):
             self.assertTrue(e["size_rule"].strip(), entry_id)
 
 
+# Core p.42-43. Nineteen, not eighteen: Immobilized is the one routinely
+# dropped from lists of these. Disabled, Dying, and Incapacitated are p.41
+# health states and are deliberately not here.
+AFFLICTIONS = [
+    "Asleep", "Blinded", "Charmed", "Compelled", "Dazed", "Deafened",
+    "Defenseless", "Diseased", "Fatigued", "Frightened", "Grabbed",
+    "Immobilized", "Impaired", "Poisoned", "Prone", "Slowed", "Stunned",
+    "Surprised", "Unconscious",
+]
+
+
+class TestAfflictionCoverage(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.entries = load()["entries"]
+
+    def test_all_nineteen_afflictions_present(self):
+        names = {e["name"] for e in self.entries if e["kind"] == "condition"}
+        self.assertEqual(names, set(AFFLICTIONS),
+                         f"missing: {sorted(set(AFFLICTIONS) - names)}; "
+                         f"unexpected: {sorted(names - set(AFFLICTIONS))}")
+
+    def test_there_are_exactly_nineteen(self):
+        self.assertEqual(len([e for e in self.entries if e["kind"] == "condition"]), 19)
+
+    def test_health_states_are_not_afflictions(self):
+        """Disabled/Dying/Incapacitated are p.41 health states, a separate group."""
+        names = {e["name"] for e in self.entries if e["kind"] == "condition"}
+        self.assertEqual(names & {"Disabled", "Dying", "Incapacitated"}, set())
+
+    def test_afflictions_are_all_in_the_afflictions_group(self):
+        for e in self.entries:
+            if e["kind"] == "condition":
+                self.assertEqual(e["group"], "afflictions", e["id"])
+
+    def test_inflict_links_point_at_conditions(self):
+        by_id = {e["id"]: e for e in self.entries}
+        for e in self.entries:
+            for field in ("inflicts", "requires_condition", "removes"):
+                for target in e.get(field, []):
+                    self.assertEqual(by_id[target]["kind"], "condition",
+                                     f"{e['id']}.{field} -> {target} is not a condition")
+
+
 if __name__ == "__main__":
     unittest.main()

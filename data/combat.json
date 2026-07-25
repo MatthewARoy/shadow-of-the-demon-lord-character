@@ -63,7 +63,8 @@
       "group": "actions",
       "economy": "action",
       "source": { "book": "core", "page": 49 },
-      "text": "When you defend, until the end of the round, all attack rolls are made against you with 1 bane and you make all challenge rolls to resist attacks with 1 boon. These benefits end if you are prevented from using actions, such as when you become dazed, stunned, or unconscious."
+      "text": "When you defend, until the end of the round, all attack rolls are made against you with 1 bane and you make all challenge rolls to resist attacks with 1 boon. These benefits end if you are prevented from using actions, such as when you become dazed, stunned, or unconscious.",
+      "see_also": ["affliction-dazed", "affliction-stunned", "affliction-unconscious"]
     },
     {
       "id": "action-end-an-effect",
@@ -230,7 +231,8 @@
       "on_success": "If the target is your Size or smaller, it must make an Agility challenge roll. On a failure, the target falls prone.",
       "source": { "book": "core", "page": 51 },
       "text": "You make the attack roll with 1 bane. On a success, if the target is your Size or smaller, it must make an Agility challenge roll. On a failure, the target falls prone.",
-      "derive": [{ "label": "Your Size", "expr": "size" }]
+      "derive": [{ "label": "Your Size", "expr": "size" }],
+      "inflicts": ["affliction-prone"]
     },
 
     {
@@ -265,7 +267,8 @@
       "on_success": "A target that is your Size or smaller must make an Agility challenge roll. On a failure, the target falls prone.",
       "source": { "book": "core", "page": 52 },
       "text": "You make the attack roll with 2 banes. On a success, a target that is your Size or smaller must make an Agility challenge roll. On a failure, the target falls prone.",
-      "derive": [{ "label": "Your Size", "expr": "size" }]
+      "derive": [{ "label": "Your Size", "expr": "size" }],
+      "inflicts": ["affliction-prone"]
     },
 
     {
@@ -302,6 +305,8 @@
       "source": { "book": "core", "page": 53 },
       "text": "You can use this action if you are grabbed. Make a Strength or Agility attack roll against the Strength of the creature that has grabbed you. A success removes the grabbed affliction and lets you move up to half your Speed. This movement does not trigger free attacks from the creature that had grabbed you. (See Grabbed for information on the effects of being grabbed, and Grab for how to grab.)",
       "requires": [{ "type": "condition", "label": "you are grabbed" }],
+      "requires_condition": ["affliction-grabbed"],
+      "removes": ["affliction-grabbed"],
       "derive": [{ "label": "Movement on a success", "expr": "half_speed" }],
       "see_also": ["attack-grab"]
     },
@@ -327,6 +332,7 @@
       "source": { "book": "core", "page": 53 },
       "text": "You must have at least one hand free to grab, and you cannot be grabbing another creature. Choose one target creature within your reach that has a physical body (not a spirit, for example) and make a Strength or Agility attack roll against the target’s Agility. If you choose a creature you are already grabbing, you automatically get a success. On a success, the target becomes grabbed until the end of the next round. If you are prevented from using actions (such as because you are dazed, stunned, or unconscious), the grabbed affliction ends. The grabbed affliction also ends if you move or are moved to a position where you can no longer reach the grabbed target. (See Grabbed for more information on the effects of being grabbed, and Escape for how to escape a grab.)",
       "requires": [{ "type": "free_hand", "label": "at least one free hand" }],
+      "inflicts": ["affliction-grabbed"],
       "derive": [{ "label": "Your reach", "expr": "reach_from_size" }],
       "see_also": ["attack-escape"]
     },
@@ -344,7 +350,8 @@
       "derive": [
         { "label": "Your Size", "expr": "size" },
         { "label": "Your reach", "expr": "reach_from_size" }
-      ]
+      ],
+      "inflicts": ["affliction-prone"]
     },
     {
       "id": "attack-pull",
@@ -357,6 +364,7 @@
       "source": { "book": "core", "page": 53 },
       "text": "Choose one target creature of your Size or smaller that you are grabbing. Make a Strength attack roll against the target’s Strength. On a success, you move up to half your Speed and the grabbed creature moves with you so that it remains within your reach.",
       "requires": [{ "type": "condition", "label": "you are grabbing the target" }],
+      "requires_condition": ["affliction-grabbed"],
       "derive": [
         { "label": "You move up to", "expr": "half_speed" },
         { "label": "Your Size", "expr": "size" }
@@ -379,6 +387,163 @@
         { "label": "Your Size", "expr": "size" },
         { "label": "Your reach", "expr": "reach_from_size" }
       ]
+    },
+
+    {
+      "id": "affliction-asleep",
+      "kind": "condition",
+      "name": "Asleep",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A sleeping creature is prone and unconscious. Another creature that can reach it can use an action to wake it up. Unless otherwise noted, taking damage removes this affliction.",
+      "see_also": ["affliction-prone", "affliction-unconscious"]
+    },
+    {
+      "id": "affliction-blinded",
+      "kind": "condition",
+      "name": "Blinded",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A blinded creature cannot see. It treats its surroundings as totally obscured (see Obscurement). Other creatures make attack rolls with 1 boon against a blinded creature’s Defense or Agility. Perception challenge rolls that rely on sight automatically result in failure. Finally, the blinded creature’s Speed becomes 2 unless its normal Speed is lower."
+    },
+    {
+      "id": "affliction-charmed",
+      "kind": "condition",
+      "name": "Charmed",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A charmed creature sees the source of the affliction as a trusted friend and ally. The charmed creature cannot choose the creature that bestowed the affliction as the target of its attacks."
+    },
+    {
+      "id": "affliction-compelled",
+      "kind": "condition",
+      "name": "Compelled",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A compelled creature cannot use actions or move. Instead, during each fast turn (see Combat), the creature that bestowed the affliction can force the compelled creature to move up to its Speed or to use an action. The creature that bestowed the affliction makes all decisions on the compelled creature’s behalf."
+    },
+    {
+      "id": "affliction-dazed",
+      "kind": "condition",
+      "name": "Dazed",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A dazed creature cannot use actions."
+    },
+    {
+      "id": "affliction-deafened",
+      "kind": "condition",
+      "name": "Deafened",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A deafened creature cannot hear. Perception challenge rolls made to listen automatically result in failure."
+    },
+    {
+      "id": "affliction-defenseless",
+      "kind": "condition",
+      "name": "Defenseless",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A defenseless creature cannot defend itself. Its Defense is 5, it cannot use actions, and its challenge rolls using attributes result in failure. The creature can still perceive its surroundings, however, and can make Perception challenge rolls as normal."
+    },
+    {
+      "id": "affliction-diseased",
+      "kind": "condition",
+      "name": "Diseased",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A diseased creature makes all attack rolls and challenge rolls with 1 bane."
+    },
+    {
+      "id": "affliction-fatigued",
+      "kind": "condition",
+      "name": "Fatigued",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A fatigued creature makes all attack rolls and challenge rolls with 1 bane."
+    },
+    {
+      "id": "affliction-frightened",
+      "kind": "condition",
+      "name": "Frightened",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A frightened creature makes attack rolls and challenge rolls with 1 bane or 3 banes when it can see the source of the frightened affliction."
+    },
+    {
+      "id": "affliction-grabbed",
+      "kind": "condition",
+      "name": "Grabbed",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "The effects of the affliction depend on the creature’s Size. If the grabbed creature’s Size is equal to or smaller than that of the creature grabbing it, the grabbed creature cannot move away from the creature that grabbed it until it removes the affliction. If the grabbed creature’s Size is larger than that of the creature grabbing it, whenever the grabbed creature moves, the creature grabbing it can choose to move with it (by clinging to the grabbed creature’s body) or end the grab. (See Grab for more information on how to grab, and Escape for how to escape a grab.)",
+      "derive": [{ "label": "Your Size", "expr": "size" }],
+      "see_also": ["attack-grab", "attack-escape"]
+    },
+    {
+      "id": "affliction-immobilized",
+      "kind": "condition",
+      "name": "Immobilized",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "An immobilized creature has Speed 0 and cannot benefit from bonuses to Speed. Other creatures make all attack rolls against the immobilized creature with 1 boon."
+    },
+    {
+      "id": "affliction-impaired",
+      "kind": "condition",
+      "name": "Impaired",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "An impaired creature makes all attack rolls and challenge rolls with 1 bane."
+    },
+    {
+      "id": "affliction-poisoned",
+      "kind": "condition",
+      "name": "Poisoned",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A poisoned creature makes all attack rolls and challenge rolls with 1 bane."
+    },
+    {
+      "id": "affliction-prone",
+      "kind": "condition",
+      "name": "Prone",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A prone creature lies on the ground. Other creatures can move through its space. While prone, the creature can move by crawling or can use its move to stand up. The prone creature makes Strength and Agility rolls with 1 bane. Creatures that can reach the prone creature make all attack rolls against it with 1 boon, while creatures that cannot reach it make attack rolls against its Defense with 1 bane."
+    },
+    {
+      "id": "affliction-slowed",
+      "kind": "condition",
+      "name": "Slowed",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A slowed creature can take only a slow turn (see Combat), its Speed is halved, and it cannot benefit from increases to Speed.",
+      "derive": [{ "label": "Your halved Speed", "expr": "half_speed" }]
+    },
+    {
+      "id": "affliction-stunned",
+      "kind": "condition",
+      "name": "Stunned",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A stunned creature cannot move or use actions. The creature automatically gets a failure on any challenge rolls it would make. Other creatures make all attack rolls against the stunned creature with 1 boon."
+    },
+    {
+      "id": "affliction-surprised",
+      "kind": "condition",
+      "name": "Surprised",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A surprised creature cannot use actions, cannot move, and automatically gets a failure on any challenge rolls it would make."
+    },
+    {
+      "id": "affliction-unconscious",
+      "kind": "condition",
+      "name": "Unconscious",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "An unconscious creature is unable to act, move, or perceive its surroundings. The creature’s Defense is 5. It cannot use actions or move, and all its challenge rolls result in failure."
     }
   ]
 }
