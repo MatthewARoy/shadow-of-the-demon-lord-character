@@ -34,7 +34,17 @@ MIN_BODY = 60           # below this, likely a table cell; merge into parent
 MAX_BODY = 1600         # chunks larger than this get split on paragraph-ish seams
 
 
+BOUNDARY = (None, None, None)
+
+
 def lines_in_ranges():
+    """Yield (book, page, line) per content line, and BOUNDARY between ranges.
+
+    Without an explicit boundary the chunker holds its open chunk across the
+    gap, so the last section of one range absorbs the first prose of the
+    next — including across books. That is how chunks titled EXPLOSIVE DARTS
+    (core p.118) came to end with Occult Philosophy p.6 text.
+    """
     for book, lo, hi in RANGES:
         page = 0
         for raw in open(os.path.join(CACHE, f"{book}.txt")):
@@ -45,6 +55,7 @@ def lines_in_ranges():
                 continue
             if lo <= page <= hi:
                 yield book, page, s
+        yield BOUNDARY
 
 
 def is_heading(s):
@@ -72,6 +83,11 @@ def chunk():
     chunks = []
     current = None
     for book, page, line in lines_in_ranges():
+        if book is None:            # range/book boundary — close the open chunk
+            if current:
+                chunks.append(current)
+                current = None
+            continue
         s = line.strip()
         if furniture(s):
             continue
