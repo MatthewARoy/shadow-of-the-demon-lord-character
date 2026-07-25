@@ -60,9 +60,15 @@ export function renderLookup(el) {
     input.value = q;
     runSearch(el);
   });
+  // A real button rather than a click handler on the paragraph, so the
+  // expander is reachable and operable from the keyboard.
   el.querySelector("#lk-results").addEventListener("click", (e) => {
-    const body = e.target.closest(".lk-body");
-    if (body) body.classList.toggle("lk-clamp");
+    const btn = e.target.closest(".lk-more");
+    if (!btn) return;
+    const body = btn.parentElement.querySelector(".lk-body");
+    const open = body.classList.toggle("lk-clamp") === false;
+    btn.setAttribute("aria-expanded", String(open));
+    btn.textContent = open ? "Show less" : "Show more";
   });
 
   ensureIndex().then(() => {
@@ -212,13 +218,15 @@ function runSearch(el) {
     ${gearHits.length ? `<h3 class="rubric small" style="margin-top:18px">Rules</h3>` : ""}
     ${ruleHits.map((c) => {
       const win = snippetWindow(c, terms);
+      const clamped = c.x.length > 460;
       // Equipment records have no book or page; guard the citation.
       const cite = c.b && c.p ? `<span class="src">${BOOKS[c.b]} · p.${c.p}</span>` : "";
       return `
       <div class="talent" style="margin-bottom:14px">
         <b>${highlight(esc(c.t), terms)}</b>
         ${cite}
-        <p class="lk-body ${c.x.length > 460 ? "lk-clamp" : ""}" data-full="${esc(c.x)}">${highlight(esc(win), terms)}</p>
+        <p class="lk-body ${clamped ? "lk-clamp" : ""}" data-full="${esc(c.x)}">${highlight(esc(win), terms)}</p>
+        ${clamped ? `<button class="btn btn-small lk-more" aria-expanded="false">Show more</button>` : ""}
       </div>`;
     }).join("")}` : "";
 
