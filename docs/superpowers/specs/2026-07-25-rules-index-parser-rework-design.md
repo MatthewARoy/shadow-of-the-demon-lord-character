@@ -341,6 +341,13 @@ and tests, and regeneration of `data/rules-index.json` and
   `parse_traditions.py`, `parse_equipment.py`, and `parse_creatures.py` scan
   clean and are not touched. `parse_spells.py` gets the small boundary-flush
   fix for its 11 bled tradition headers, described above.
+
+  > **Amended 2026-07-28.** "Scans clean" was a verdict against the scanner's
+  > running-head list, not against the data. That list held five heads and was
+  > missing `paths of magic`, `story development`, and the `expert paths` case
+  > variant, so `paths.json` was carrying 46 spliced-in running heads while the
+  > scan reported it clean. Widening the list also surfaced pre-existing bleed
+  > in `spells.json` and `creatures.json`, which remains open.
 - The Combat quick reference tab — its own spec, built after this.
 - ARIA/tab-semantics remediation. Review noted the existing tab bar
   (index.html:34) uses plain buttons without `tablist`/`tab`/`tabpanel`

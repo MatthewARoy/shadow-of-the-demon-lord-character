@@ -74,7 +74,7 @@
     "talents": [
      {
       "name": "Mechanical Servants",
-      "text": "You can use an action to create one or more small constructs using materials contained in your Artificer’s Bag. For each 1 gc in materials you spend, a compelled small construct appears in an open space within short range of you. You can grant the flier trait to any number of constructs by spending 1 extra gc from the bag for each construct you would make fly. The constructs remain until destroyed or until you complete a rest. At the end of this time, the mechanical servants collapse into parts. Expert paths"
+      "text": "You can use an action to create one or more small constructs using materials contained in your Artificer’s Bag. For each 1 gc in materials you spend, a compelled small construct appears in an open space within short range of you. You can grant the flier trait to any number of constructs by spending 1 extra gc from the bag for each construct you would make fly. The constructs remain until destroyed or until you complete a rest. At the end of this time, the mechanical servants collapse into parts."
      }
     ]
    }
@@ -229,7 +229,7 @@
     "talents": [
      {
       "name": "Killer’s Eye",
-      "text": "You can use an action on your turn to choose one creature within long range from which you are hidden. Make a Perception challenge roll. On a success, you know where best to attack the target for 1 minute. Until the effect ends, when you attack the target, you make your attack roll with 1 boon and the attack deals 2d6 extra damage. Assassin Story Development"
+      "text": "You can use an action on your turn to choose one creature within long range from which you are hidden. Make a Perception challenge roll. On a success, you know where best to attack the target for 1 minute. Until the effect ends, when you attack the target, you make your attack roll with 1 boon and the attack deals 2d6 extra damage."
      }
     ]
    }
@@ -321,7 +321,7 @@
      },
      {
       "name": "Power of the Ancients",
-      "text": "While you have the Favor talent, you can expend the casting of one spell you have learned to gain the Power of the Ancients for a number of rounds equal to 1 + the rank of the spell whose casting you expended. Until the effect ends, you gain the following benefits: \n• You impose 1 bane on attack rolls made by creatures against you. \n• You gain a +4 bonus to Speed. \n• You can use your Countless Doors talent without expending a use. \n• You heal 1d6 damage at the end of each round. Avowed Story Development"
+      "text": "While you have the Favor talent, you can expend the casting of one spell you have learned to gain the Power of the Ancients for a number of rounds equal to 1 + the rank of the spell whose casting you expended. Until the effect ends, you gain the following benefits: \n• You impose 1 bane on attack rolls made by creatures against you. \n• You gain a +4 bonus to Speed. \n• You can use your Countless Doors talent without expending a use. \n• You heal 1d6 damage at the end of each round."
      }
     ]
    }
@@ -379,7 +379,7 @@
     "talents": [
      {
       "name": "Reckless Strike",
-      "text": "When you attack with a melee weapon, you can choose to make the attack roll with 1 bane to deal 2d6 extra damage on a success. Expert paths"
+      "text": "When you attack with a melee weapon, you can choose to make the attack roll with 1 bane to deal 2d6 extra damage on a success."
      }
     ]
    }
@@ -570,7 +570,7 @@
      },
      {
       "name": "Strengthen Potion",
-      "text": "If you do not know the identify substance Alchemy spell, you learn it. You can use an action to expend the casting of this spell to create another dose of Brewmaster’s Admixture. Brewmaster Potions Brewmasters have invented several potions. They rigorously guard the secrets of their manufacture from outsiders and never, under any circumstances, sell these potions to other alchemists who do not belong to their cabal. The following potions represent the most common ones known to brewmasters, but the GM might make others available. Brewmaster potions count as exotic items, typically sell for 1 gc per dose, and use the normal rules for potions (Shadow, page 108). Amazing Tonic Reeking of spoiled fish, amazing tonic has a thin, oily consistency. When it is consumed, the drinker must get a success on a Strength challenge roll or vomit the potion up with no additional effect. If the creature can hold down the dose, the potion immediately removes the diseased and poisoned afflictions from the creature and renders the creature immune to damage from disease or poison, as well as to the diseased and poisoned afflictions, until the creature completes a rest. Bracing Toddy This strong black concoction smelling of cloves causes the drinker, when the potion takes effect, to turn bright red and emanate heat from its body in a 1-yard radius for 1d6 hours. Until the effect ends, the creature is immune to damage from cold and is in no way discomfited by cold temperatures. In addition, at the end of each round, any other creature within 1 yard of the affected creature must succeed on a Strength challenge roll or take 1d6 damage from the strong heat. Brewmaster’s Bubbly A straw-yellow effervescent fluid, brewmaster’s bubbly has a strong, yeasty smell. When the potion takes effect, bubbles of lighter-than-air gas fill the affected creature’s body, causing it to rise 1d3 yards straight up into the air immediately and ascend an additional 1d3 yards at the end of each round for 1d6 minutes. The creature can end the effect by releasing the gas in a profound belch, which counts as a minor activity. Paths of Magic Once the gas is released, the creature falls. An affected creature that can reach a surface can pull itself along that surface as if crawling. In addition, wind might move a floating creature. Otherwise, unless the creature can fly, it cannot move itself horizontally while affected by this potion. Caecras Cocktail Anyone who consumes this cocktail, made primarily from pure grain alcohol, becomes impaired for 1d6 + 1 hours. If the drinker is already impaired, it instead falls prone and becomes unconscious for the duration. The fluid is extremely flammable and is often used as an explosive. As a minor action, a creature can stuff a rag into a container that holds the potion and light it, assuming the creature has ready access to fire. The creature can then use an action to throw the flaming bottle to a point on a solid surface within medium range. When the bottle hits that point or encounters a solid surface before then, it explodes, covering everything within 5 yards with flaming liquid. All flammable objects take 2d6 damage and catch fire. Each creature in the area must make an Agility challenge roll with 1 bane. A creature takes 2d6 damage and catches fire on a failure, or just takes half the damage on a success. A creature that catches fire takes 1d6 damage at the end of each round until it or another creature uses an action to douse the flames. The fire burns in the area for 1d6 + 1 rounds, and smoke fills and heavily obscures a 5-yard-radius, 20-yard-tall cylinder centered on the point of impact until the flames are extinguished. Rumblebelly Juice This concoction is bright green and stinks of licorice. When the potion takes effect, the creature’s belly bloats, filling with foul gas that lasts for 1d6 minutes. An affected creature can use an action, or a triggered action on its turn, though no more than once per round, to belch a stream of noxious gas into a 5-yard cone originating from a point in the creature’s space. Each living creature in the area of gas must succeed on a Strength challenge roll with 1 bane or take 1d6 damage from the poisonous fumes and become poisoned for 1 round. A creature already poisoned instead takes 1d6 extra damage. Tongue Loosener This bluish potion has a strong alcohol taste. When the potion takes effect, the creature becomes impaired for 1d6 + 1 hours. While impaired in this way, the creature makes attack rolls in social situations with 3 boons and ignores the bane from being impaired. XXX Liquid Courage A thick, black malted brew, XXX Liquid Courage removes misgivings and doubts for 1d6 + 1 hours from anyone who consumes it. Until the effect ends, the affected creature is impaired, but it cannot be charmed, compelled, or frightened. In addition, the affected creature does not become frightened as a result of gaining Insanity. Blizzard MAge The secrets of elemental magic come from the genies, those crazed and unpredictable entities found haunting the most desolate lands in the world. That knowledge has been passed down through the generations, subtly altered to suit the needs of the magic-users who learn the art. Sometimes, this haphazard learning produces entirely new strains of magic, often resulting from combining elements from two or more traditions. Blizzard mages, for example, have discovered how to merge the magic of Air and Water into an entirely new discipline, giving them power over cold and ice. Many blizzard mages come from the ranks of other elemental casters, their specialty reflecting a new branch of study. Others might be devotees of Old Man Winter who have striven to master the forces their patron deity represents in order to better serve his interests in the world. And there are those who stumble onto the art, perhaps having uncovered the techniques from a relic they have found or a fortunate mishap resulting from a miscast spell. Whatever the source of their power, they prove to be deadly combatants, with the full might of winter in their arsenals. Blizzard Mage Story Development"
+      "text": "If you do not know the identify substance Alchemy spell, you learn it. You can use an action to expend the casting of this spell to create another dose of Brewmaster’s Admixture. Brewmaster Potions Brewmasters have invented several potions. They rigorously guard the secrets of their manufacture from outsiders and never, under any circumstances, sell these potions to other alchemists who do not belong to their cabal. The following potions represent the most common ones known to brewmasters, but the GM might make others available. Brewmaster potions count as exotic items, typically sell for 1 gc per dose, and use the normal rules for potions (Shadow, page 108). Amazing Tonic Reeking of spoiled fish, amazing tonic has a thin, oily consistency. When it is consumed, the drinker must get a success on a Strength challenge roll or vomit the potion up with no additional effect. If the creature can hold down the dose, the potion immediately removes the diseased and poisoned afflictions from the creature and renders the creature immune to damage from disease or poison, as well as to the diseased and poisoned afflictions, until the creature completes a rest. Bracing Toddy This strong black concoction smelling of cloves causes the drinker, when the potion takes effect, to turn bright red and emanate heat from its body in a 1-yard radius for 1d6 hours. Until the effect ends, the creature is immune to damage from cold and is in no way discomfited by cold temperatures. In addition, at the end of each round, any other creature within 1 yard of the affected creature must succeed on a Strength challenge roll or take 1d6 damage from the strong heat. Brewmaster’s Bubbly A straw-yellow effervescent fluid, brewmaster’s bubbly has a strong, yeasty smell. When the potion takes effect, bubbles of lighter-than-air gas fill the affected creature’s body, causing it to rise 1d3 yards straight up into the air immediately and ascend an additional 1d3 yards at the end of each round for 1d6 minutes. The creature can end the effect by releasing the gas in a profound belch, which counts as a minor activity. Once the gas is released, the creature falls. An affected creature that can reach a surface can pull itself along that surface as if crawling. In addition, wind might move a floating creature. Otherwise, unless the creature can fly, it cannot move itself horizontally while affected by this potion. Caecras Cocktail Anyone who consumes this cocktail, made primarily from pure grain alcohol, becomes impaired for 1d6 + 1 hours. If the drinker is already impaired, it instead falls prone and becomes unconscious for the duration. The fluid is extremely flammable and is often used as an explosive. As a minor action, a creature can stuff a rag into a container that holds the potion and light it, assuming the creature has ready access to fire. The creature can then use an action to throw the flaming bottle to a point on a solid surface within medium range. When the bottle hits that point or encounters a solid surface before then, it explodes, covering everything within 5 yards with flaming liquid. All flammable objects take 2d6 damage and catch fire. Each creature in the area must make an Agility challenge roll with 1 bane. A creature takes 2d6 damage and catches fire on a failure, or just takes half the damage on a success. A creature that catches fire takes 1d6 damage at the end of each round until it or another creature uses an action to douse the flames. The fire burns in the area for 1d6 + 1 rounds, and smoke fills and heavily obscures a 5-yard-radius, 20-yard-tall cylinder centered on the point of impact until the flames are extinguished. Rumblebelly Juice This concoction is bright green and stinks of licorice. When the potion takes effect, the creature’s belly bloats, filling with foul gas that lasts for 1d6 minutes. An affected creature can use an action, or a triggered action on its turn, though no more than once per round, to belch a stream of noxious gas into a 5-yard cone originating from a point in the creature’s space. Each living creature in the area of gas must succeed on a Strength challenge roll with 1 bane or take 1d6 damage from the poisonous fumes and become poisoned for 1 round. A creature already poisoned instead takes 1d6 extra damage. Tongue Loosener This bluish potion has a strong alcohol taste. When the potion takes effect, the creature becomes impaired for 1d6 + 1 hours. While impaired in this way, the creature makes attack rolls in social situations with 3 boons and ignores the bane from being impaired. XXX Liquid Courage A thick, black malted brew, XXX Liquid Courage removes misgivings and doubts for 1d6 + 1 hours from anyone who consumes it. Until the effect ends, the affected creature is impaired, but it cannot be charmed, compelled, or frightened. In addition, the affected creature does not become frightened as a result of gaining Insanity. Blizzard MAge The secrets of elemental magic come from the genies, those crazed and unpredictable entities found haunting the most desolate lands in the world. That knowledge has been passed down through the generations, subtly altered to suit the needs of the magic-users who learn the art. Sometimes, this haphazard learning produces entirely new strains of magic, often resulting from combining elements from two or more traditions. Blizzard mages, for example, have discovered how to merge the magic of Air and Water into an entirely new discipline, giving them power over cold and ice. Many blizzard mages come from the ranks of other elemental casters, their specialty reflecting a new branch of study. Others might be devotees of Old Man Winter who have striven to master the forces their patron deity represents in order to better serve his interests in the world. And there are those who stumble onto the art, perhaps having uncovered the techniques from a relic they have found or a fortunate mishap resulting from a miscast spell. Whatever the source of their power, they prove to be deadly combatants, with the full might of winter in their arsenals."
      }
     ]
    }
@@ -578,7 +578,7 @@
   "source": "occult",
   "page": 148,
   "type": "expert",
-  "description": "One of the essential techniques learned by most alchemists is the art of brewing potions. Although most alchemists treat this skill as a stepping stone toward mastering more potent forms of alchemical magic, the study of potions, elixirs, and tinctures holds a certain appeal to those who delight in the creation of different substances and who always prefer to have something on hand to deal with a raft of situations. Brewmasters have elevated the science of potion brewing into an art form all its own, and in their cauldrons they can whip up beverages to astonish and amaze. In Lij, the City of Magic, members of the Brewmasters’ Guild gather to advance the knowledge of their trade. Petitioners who show a steady hand and a tolerance for intoxication might join their esteemed ranks and learn their secrets—on the promise of never sharing them with outsiders. The period of apprenticeship lasts a year or two. After completing the training, the new brewmaster is presented with a fine journal to hold all the notes and recipes learned from the Guild—in code, of course. Paths of Magic"
+  "description": "One of the essential techniques learned by most alchemists is the art of brewing potions. Although most alchemists treat this skill as a stepping stone toward mastering more potent forms of alchemical magic, the study of potions, elixirs, and tinctures holds a certain appeal to those who delight in the creation of different substances and who always prefer to have something on hand to deal with a raft of situations. Brewmasters have elevated the science of potion brewing into an art form all its own, and in their cauldrons they can whip up beverages to astonish and amaze. In Lij, the City of Magic, members of the Brewmasters’ Guild gather to advance the knowledge of their trade. Petitioners who show a steady hand and a tolerance for intoxication might join their esteemed ranks and learn their secrets—on the promise of never sharing them with outsiders. The period of apprenticeship lasts a year or two. After completing the training, the new brewmaster is presented with a fine journal to hold all the notes and recipes learned from the Guild—in code, of course."
  },
  {
   "name": "Cleric",
@@ -838,7 +838,7 @@
     "talents": [
      {
       "name": "Resist Elements",
-      "text": "You are never at risk of becoming fatigued from exposure. You take half damage from cold, lightning, thunder, and fire. Expert paths"
+      "text": "You are never at risk of becoming fatigued from exposure. You take half damage from cold, lightning, thunder, and fire."
      }
     ]
    }
@@ -885,7 +885,7 @@
      },
      {
       "name": "Time Leap",
-      "text": "When you take a turn, you can use a triggered action to expend the casting of a rank 1 or higher Time spell. You step forward in time, seeming to disappear from reality until you reappear at the end of the round. Paths of Magic"
+      "text": "When you take a turn, you can use a triggered action to expend the casting of a rank 1 or higher Time spell. You step forward in time, seeming to disappear from reality until you reappear at the end of the round."
      }
     ]
    },
@@ -1118,7 +1118,7 @@
   "source": "occult",
   "page": 153,
   "type": "expert",
-  "description": "In the most remote reaches of time and space, impossible beings exist, alien gods of such size and power that to apprehend them fully is to go mad forever. Some have sought to consult with these beings, to gain insights from them and thus transcend the limits of their own bodies and minds, but most who do find themselves drawn into psychosis. Farseers, however, have trained their minds to withstand the rigors of such communion, to gird their personalities against mental assault so that they can understand their dread patrons more fully. Most farseers come from the ranks of those seekers of forbidden knowledge—individuals who, for one reason or another, believe no secret should be secure, Paths of Magic no knowledge should be denied to them. For every farseer who masters the essential talents of the art, a dozen more succumb to madness, their minds buckling under the strain of their investigations. Yet those who survive the training with their faculties more or less intact find their vistas broadened, the possibilities for what they can achieve becoming almost endless."
+  "description": "In the most remote reaches of time and space, impossible beings exist, alien gods of such size and power that to apprehend them fully is to go mad forever. Some have sought to consult with these beings, to gain insights from them and thus transcend the limits of their own bodies and minds, but most who do find themselves drawn into psychosis. Farseers, however, have trained their minds to withstand the rigors of such communion, to gird their personalities against mental assault so that they can understand their dread patrons more fully. Most farseers come from the ranks of those seekers of forbidden knowledge—individuals who, for one reason or another, believe no secret should be secure, no knowledge should be denied to them. For every farseer who masters the essential talents of the art, a dozen more succumb to madness, their minds buckling under the strain of their investigations. Yet those who survive the training with their faculties more or less intact find their vistas broadened, the possibilities for what they can achieve becoming almost endless."
  },
  {
   "name": "Fighter",
@@ -1421,7 +1421,7 @@
   "source": "occult",
   "page": 155,
   "type": "expert",
-  "description": "One of the greatest threats to the Empire comes in the form of magical misuse, exemplified by the proliferation of dark magic and its unhinged users. Each time a necromancer animates a corpse or an apocalyptist casts a Forbidden spell, the world grows a little darker. Now, the need to contain this danger has never been greater. While the Inquisition works to root out such evil and consign the villains to the purifying Paths of Magic flames of their pyres, others have also seen the peril and have stepped forward to contain the darkness in the best way they can. The Order of Magisters came into prominence a century ago in Lij. Although the city shows great tolerance for magic in all its forms, many magicians feared the spread of dark magic in their city and the horrors that its use could unleash. Committing themselves to tracking down and destroying these renegade users, the members devised special techniques to pierce magical defenses, while also protecting themselves from reprisals. The magisters have since spread out from Lij, but their numbers remain few and the task they set for themselves exceedingly dangerous. These men and women roam the lands, watchful for signs of dark magic, and work with local authorities to track the perpetrators down and destroy them wherever they find them."
+  "description": "One of the greatest threats to the Empire comes in the form of magical misuse, exemplified by the proliferation of dark magic and its unhinged users. Each time a necromancer animates a corpse or an apocalyptist casts a Forbidden spell, the world grows a little darker. Now, the need to contain this danger has never been greater. While the Inquisition works to root out such evil and consign the villains to the purifying flames of their pyres, others have also seen the peril and have stepped forward to contain the darkness in the best way they can. The Order of Magisters came into prominence a century ago in Lij. Although the city shows great tolerance for magic in all its forms, many magicians feared the spread of dark magic in their city and the horrors that its use could unleash. Committing themselves to tracking down and destroying these renegade users, the members devised special techniques to pierce magical defenses, while also protecting themselves from reprisals. The magisters have since spread out from Lij, but their numbers remain few and the task they set for themselves exceedingly dangerous. These men and women roam the lands, watchful for signs of dark magic, and work with local authorities to track the perpetrators down and destroy them wherever they find them."
  },
  {
   "name": "Manipulator",
@@ -1455,7 +1455,7 @@
     "talents": [
      {
       "name": "Emotion Control",
-      "text": "For a number of times equal to 1 + your Power score, you can use an action to choose one creature within medium range that is charmed by you and cause the target to experience one of the following emotions. Paths of Magic \n• The target experiences intense feelings of love and friendship for one creature you choose within short range of it. The target must do everything in its power to protect the target of its affection and cannot move more than 5 yards from that creature. \n• The target feels incredible joy. It gains a +5 bonus to its Health and makes attack rolls and challenge rolls with 1 boon. \n• The target feels terrible grief. It takes a –5 penalty to its Health and makes attack rolls and challenge rolls with 1 bane. \n• The target experiences intense feelings of hatred for one creature you choose within short range of it. The target must do everything it can to destroy that creature for as long as it is within 5 yards of it. The effect lasts until the target removes the charmed affliction or you use Emotion Control again. You regain expended uses of this talent when you complete a rest."
+      "text": "For a number of times equal to 1 + your Power score, you can use an action to choose one creature within medium range that is charmed by you and cause the target to experience one of the following emotions. \n• The target experiences intense feelings of love and friendship for one creature you choose within short range of it. The target must do everything in its power to protect the target of its affection and cannot move more than 5 yards from that creature. \n• The target feels incredible joy. It gains a +5 bonus to its Health and makes attack rolls and challenge rolls with 1 boon. \n• The target feels terrible grief. It takes a –5 penalty to its Health and makes attack rolls and challenge rolls with 1 bane. \n• The target experiences intense feelings of hatred for one creature you choose within short range of it. The target must do everything it can to destroy that creature for as long as it is within 5 yards of it. The effect lasts until the target removes the charmed affliction or you use Emotion Control again. You regain expended uses of this talent when you complete a rest."
      },
      {
       "name": "Glamorous Casting",
@@ -1637,7 +1637,7 @@
      },
      {
       "name": "Vile Whispers",
-      "text": "You can use an action to attack the mind of one creature you can see within short range, filling its thoughts with horrifying visions. Make an Intellect attack roll against the target’s Will. On a success, the target becomes frightened for 1 minute or until it takes damage from a source other than your Vile Whispers. At the end of each round, the target must get a success on a Will challenge roll or take damage equal to 1d6 + your Corruption score. Once you use Vile Whispers, you must wait 1 minute before you can use it again. You can use this talent a number of times equal to 1 + your Power score. You regain expended uses when you complete a rest. Paths of Magic"
+      "text": "You can use an action to attack the mind of one creature you can see within short range, filling its thoughts with horrifying visions. Make an Intellect attack roll against the target’s Will. On a success, the target becomes frightened for 1 minute or until it takes damage from a source other than your Vile Whispers. At the end of each round, the target must get a success on a Will challenge roll or take damage equal to 1d6 + your Corruption score. Once you use Vile Whispers, you must wait 1 minute before you can use it again. You can use this talent a number of times equal to 1 + your Power score. You regain expended uses when you complete a rest."
      }
     ]
    },
@@ -1690,7 +1690,7 @@
   "source": "occult",
   "page": 157,
   "type": "expert",
-  "description": "Among those who succumb to the temptation of dark magic, individuals in possession of latent psychic abilities sometimes realize that they can use the secrets of evil magic to augment their mental faculties—often leading to deleterious ends for individuals who cross them. The magic-users known as nightmares are just Paths of Magic one example of how such figures might meld the forms of magic they have discovered and use their gifts for sinister ends. Able to reach into the minds of others, nightmares call forth their victims’ deepest fears and amplify them to the point that the affected creatures cannot do anything but grapple with the terror building inside them. As nightmares grow more powerful, they can transport their victims’ minds into a waking dream in which the fears that plague them become all too real."
+  "description": "Among those who succumb to the temptation of dark magic, individuals in possession of latent psychic abilities sometimes realize that they can use the secrets of evil magic to augment their mental faculties—often leading to deleterious ends for individuals who cross them. The magic-users known as nightmares are just one example of how such figures might meld the forms of magic they have discovered and use their gifts for sinister ends. Able to reach into the minds of others, nightmares call forth their victims’ deepest fears and amplify them to the point that the affected creatures cannot do anything but grapple with the terror building inside them. As nightmares grow more powerful, they can transport their victims’ minds into a waking dream in which the fears that plague them become all too real."
  },
  {
   "name": "Oracle",
@@ -1764,7 +1764,7 @@
     "talents": [
      {
       "name": "Avatar",
-      "text": "While under the effects of Divine Ecstasy, you gain the following additional benefits: \n• You gain a +1 bonus to Defense. \n• You make Strength and Agility attack rolls and challenge rolls with 1 boon. \n• Your attacks deal 1d6 extra damage. Expert paths"
+      "text": "While under the effects of Divine Ecstasy, you gain the following additional benefits: \n• You gain a +1 bonus to Defense. \n• You make Strength and Agility attack rolls and challenge rolls with 1 boon. \n• Your attacks deal 1d6 extra damage."
      }
     ]
    }
@@ -1857,7 +1857,7 @@
     "talents": [
      {
       "name": "Holy Radiance",
-      "text": "You can use an action, or a triggered action on your turn, to cause light to shine from a point within your space out to a number of yards equal to twice your Power. The light moves with you, remaining centered on the point in your space. It lasts for 1 minute. Until this effect ends, you and creatures you choose within the light cannot be frightened and make challenge rolls to resist attacks with 1 boon. Demons, devils, faeries, spirits, and undead in the area of light are impaired for as long as they remain in the area. (You are not impaired by the light if you yourself are a faerie or undead.) You can use this talent a number of times equal to your Power. You regain expended uses when you complete a rest. Paladin Story Development"
+      "text": "You can use an action, or a triggered action on your turn, to cause light to shine from a point within your space out to a number of yards equal to twice your Power. The light moves with you, remaining centered on the point in your space. It lasts for 1 minute. Until this effect ends, you and creatures you choose within the light cannot be frightened and make challenge rolls to resist attacks with 1 boon. Demons, devils, faeries, spirits, and undead in the area of light are impaired for as long as they remain in the area. (You are not impaired by the light if you yourself are a faerie or undead.) You can use this talent a number of times equal to your Power. You regain expended uses when you complete a rest."
      }
     ]
    }
@@ -1899,7 +1899,7 @@
     "talents": [
      {
       "name": "Invert Healing",
-      "text": "When you cast a Life spell that would allow a creature to heal damage, you can use a triggered action to invert the spell. When you do so, make a Will attack roll against the target’s Strength. On a success, the target takes the damage from the spell instead of being healed. For example, if you invert minor healing and you get a success on the attack roll, the target would take damage equal to half its healing rate rather than heal damage equal to half its healing rate. Paths of Magic"
+      "text": "When you cast a Life spell that would allow a creature to heal damage, you can use a triggered action to invert the spell. When you do so, make a Will attack roll against the target’s Strength. On a success, the target takes the damage from the spell instead of being healed. For example, if you invert minor healing and you get a success on the attack roll, the target would take damage equal to half its healing rate rather than heal damage equal to half its healing rate."
      }
     ]
    },
@@ -2138,7 +2138,7 @@
   "source": "occult",
   "page": 160,
   "type": "expert",
-  "description": "Beneath the surface of the world flows the hot blood of Urth. Pyroclasts can feel the boiling magma as if it were their own blood and burn with the desire to call it forth. Students of both Earth and Fire magic, they learn to harness these elements, combining them in their bodies to achieve greater command over both. When they tap into these fundamental forces, they transform into beings of superheated rock, eyes blazing and heat radiating from their bodies in punishing waves. Pyroclasts first appeared in the world in ancient times, when the gnomes and salamanders joined forces to fight the trolls and their hateful armies. Since then, pyroclasts have reemerged at various times, usually as a byproduct of discovering either the Earth or Fire traditions. Most pyroclasts find that their magic changes them, making them angry and more temperamental, prone to lashing out with little or no provocation. Paths of Magic"
+  "description": "Beneath the surface of the world flows the hot blood of Urth. Pyroclasts can feel the boiling magma as if it were their own blood and burn with the desire to call it forth. Students of both Earth and Fire magic, they learn to harness these elements, combining them in their bodies to achieve greater command over both. When they tap into these fundamental forces, they transform into beings of superheated rock, eyes blazing and heat radiating from their bodies in punishing waves. Pyroclasts first appeared in the world in ancient times, when the gnomes and salamanders joined forces to fight the trolls and their hateful armies. Since then, pyroclasts have reemerged at various times, usually as a byproduct of discovering either the Earth or Fire traditions. Most pyroclasts find that their magic changes them, making them angry and more temperamental, prone to lashing out with little or no provocation."
  },
  {
   "name": "Ranger",
@@ -2194,7 +2194,7 @@
      },
      {
       "name": "Relentless Pursuit",
-      "text": "When a creature you designated as your prey from your use of the Hunt Prey talent moves, you can use a triggered action to move up to half your Speed. Expert paths"
+      "text": "When a creature you designated as your prey from your use of the Hunt Prey talent moves, you can use a triggered action to move up to half your Speed."
      }
     ]
    }
@@ -2262,7 +2262,7 @@
     "talents": [
      {
       "name": "Runescribed Technomancy",
-      "text": "Whenever you cast a Technomancy spell that creates a device, such as sparking shield or flamethrower, you can expend the casting of a rank 1 or higher Rune spell to upgrade the device. Choose one of the following effects. \n• You grant the device an additional use per rank of the spell whose casting you expended. \n• If the spell creates multiple devices—such as grenades and flying blades—you create one additional device per rank of the spell whose casting you expended. \n• If the device deals damage and has but a single use, it deals 1d6 extra damage per rank of the spell whose casting you expended. If the device has multiple uses, the device deals 1d6 extra damage for a rank 1 or 2 spell, 2d6 extra damage for a rank 3 or 4 spell, or 3d6 extra damage for a rank 5 or higher spell. Paths of Magic \n• If the device has a duration of 1 minute, you can increase the duration to 10 minutes for a rank 1 spell, 1 hour for a rank 2 or 3 spell, or 8 hours for a rank 4 or higher spell."
+      "text": "Whenever you cast a Technomancy spell that creates a device, such as sparking shield or flamethrower, you can expend the casting of a rank 1 or higher Rune spell to upgrade the device. Choose one of the following effects. \n• You grant the device an additional use per rank of the spell whose casting you expended. \n• If the spell creates multiple devices—such as grenades and flying blades—you create one additional device per rank of the spell whose casting you expended. \n• If the device deals damage and has but a single use, it deals 1d6 extra damage per rank of the spell whose casting you expended. If the device has multiple uses, the device deals 1d6 extra damage for a rank 1 or 2 spell, 2d6 extra damage for a rank 3 or 4 spell, or 3d6 extra damage for a rank 5 or higher spell. \n• If the device has a duration of 1 minute, you can increase the duration to 10 minutes for a rank 1 spell, 1 hour for a rank 2 or 3 spell, or 8 hours for a rank 4 or higher spell."
      }
     ]
    },
@@ -2644,7 +2644,7 @@
     "talents": [
      {
       "name": "Sorcerous Blast",
-      "text": "You can release your strain as a blast of magical energy. You must have at least 1 strain to use this talent. Use an action to reduce your strain by 1 and make an Intellect or Will attack roll against the Agility of one creature or object within medium range. On a success, the blast of energy hits and the target takes 2d6 damage. Expert paths"
+      "text": "You can release your strain as a blast of magical energy. You must have at least 1 strain to use this talent. Use an action to reduce your strain by 1 and make an Intellect or Will attack roll against the Agility of one creature or object within medium range. On a success, the blast of energy hits and the target takes 2d6 damage."
      }
     ]
    }
@@ -2690,7 +2690,7 @@
      },
      {
       "name": "Evoke Daemon",
-      "text": "When you cast an Invocation spell, you can choose your daemonic vessel to be the target, provided it is within short range. You are still subject to the spell’s aftereffect, but you make the roll with 3 boons. Paths of Magic DAEMONIC VESSEL Size 1 undead Perception 5 (–5) Defense 9; Health 100; Insanity —; Corruption — Strength 12 (+2), Agility 9 (–1), Intellect 5 (–5), Will 15 (+5) Speed 8 Immune damage from cold, disease, or poison; asleep, blinded, charmed, dazed, deafened, diseased, fatigued, poisoned, stunned ATTACK OPTIONS Fist (melee) +2 with 1 boon (2d6)"
+      "text": "When you cast an Invocation spell, you can choose your daemonic vessel to be the target, provided it is within short range. You are still subject to the spell’s aftereffect, but you make the roll with 3 boons. DAEMONIC VESSEL Size 1 undead Perception 5 (–5) Defense 9; Health 100; Insanity —; Corruption — Strength 12 (+2), Agility 9 (–1), Intellect 5 (–5), Will 15 (+5) Speed 8 Immune damage from cold, disease, or poison; asleep, blinded, charmed, dazed, deafened, diseased, fatigued, poisoned, stunned ATTACK OPTIONS Fist (melee) +2 with 1 boon (2d6)"
      }
     ]
    },
@@ -3015,7 +3015,7 @@
     "talents": [
      {
       "name": "Elder Spirit Guide",
-      "text": "You forge a bond with another animal spirit. You can choose either a bear spirit or a lion spirit. When you use your Spirit Guide talent and expend the casting of a rank 4 or higher Primal or Spiritualism spell, you can call a greater spirit instead of your normal spirit. Paths of Magic BEAR SPIRIT Size 2 spirit Perception 14 (+4); shadowsight Defense 13; Health 60; Insanity —; Corruption 0 Strength 14 (+4), Agility 10 (+0), Intellect 9 (–1), Will 14 (+4) Speed 10 Immune damage from disease or poison; asleep, diseased, fatigued, poisoned"
+      "text": "You forge a bond with another animal spirit. You can choose either a bear spirit or a lion spirit. When you use your Spirit Guide talent and expend the casting of a rank 4 or higher Primal or Spiritualism spell, you can call a greater spirit instead of your normal spirit. BEAR SPIRIT Size 2 spirit Perception 14 (+4); shadowsight Defense 13; Health 60; Insanity —; Corruption 0 Strength 14 (+4), Agility 10 (+0), Intellect 9 (–1), Will 14 (+4) Speed 10 Immune damage from disease or poison; asleep, diseased, fatigued, poisoned"
      },
      {
       "name": "Devoted Protector",
@@ -3035,7 +3035,7 @@
   "source": "occult",
   "page": 164,
   "type": "expert",
-  "description": "Among the Woad and other peoples living in the wild, there are certain individuals who can peer beyond reality’s veil and see into the spirit world, which is believed to encompass all of creation. These people, called spiritcallers, sometimes bond with the spirits of nature they find in this realm and can call upon them for aid. These magic-users occupy important places in their tribes and serve their people as protectors. Spiritcallers depend on the connections they establish with the spirits they have encountered. Most of them keep small totems of friendly spirits and might even use one of these items as an implement. When in need, they can call forth these spirits to fight at their sides. When the spirits manifest in the real world, they appear as animals of their kind, but seeming almost feral, with gleaming eyes and wisps of mist curling from their bodies. The spirits can remain for only a short time before the magic that brought them forth unravels. Further, if they die in the real world, it takes time for them to re-form in the spirit world, so most spiritcallers dismiss their allies when they are in serious jeopardy. Paths of Magic"
+  "description": "Among the Woad and other peoples living in the wild, there are certain individuals who can peer beyond reality’s veil and see into the spirit world, which is believed to encompass all of creation. These people, called spiritcallers, sometimes bond with the spirits of nature they find in this realm and can call upon them for aid. These magic-users occupy important places in their tribes and serve their people as protectors. Spiritcallers depend on the connections they establish with the spirits they have encountered. Most of them keep small totems of friendly spirits and might even use one of these items as an implement. When in need, they can call forth these spirits to fight at their sides. When the spirits manifest in the real world, they appear as animals of their kind, but seeming almost feral, with gleaming eyes and wisps of mist curling from their bodies. The spirits can remain for only a short time before the magic that brought them forth unravels. Further, if they die in the real world, it takes time for them to re-form in the spirit world, so most spiritcallers dismiss their allies when they are in serious jeopardy."
  },
  {
   "name": "Tempest",
@@ -3133,7 +3133,7 @@
   "source": "occult",
   "page": 166,
   "type": "expert",
-  "description": "In the last year, a new sort of spellcaster has appeared in the lands of Rûl, one whose skin turned to steel and on whose body lightning danced. This pioneering magic-user spawned more of his kind as he taught the secrets of the power contained in both Metal and Storm magic to his apprentices. Since then, these dangerous individuals, called tempests, have brought to bear a new force in the fight against the growing darkness, one that displays steely resolve and the fury of the most dangerous storms. Tempests learn to enhance their castings of Storm spells by transforming themselves into beings of living steel. In this form, they can harness even more energy than before and direct it out from themselves with Paths of Magic tremendous force. Many tempests are as wild as the storms they control and are given to sudden outbursts of violence."
+  "description": "In the last year, a new sort of spellcaster has appeared in the lands of Rûl, one whose skin turned to steel and on whose body lightning danced. This pioneering magic-user spawned more of his kind as he taught the secrets of the power contained in both Metal and Storm magic to his apprentices. Since then, these dangerous individuals, called tempests, have brought to bear a new force in the fight against the growing darkness, one that displays steely resolve and the fury of the most dangerous storms. Tempests learn to enhance their castings of Storm spells by transforming themselves into beings of living steel. In this form, they can harness even more energy than before and direct it out from themselves with tremendous force. Many tempests are as wild as the storms they control and are given to sudden outbursts of violence."
  },
  {
   "name": "Thief",
@@ -3218,7 +3218,7 @@
      },
      {
       "name": "Trap Sense",
-      "text": "When you search for traps or would resist a trap’s effects, you make the challenge roll with 1 boon. Expert paths"
+      "text": "When you search for traps or would resist a trap’s effects, you make the challenge roll with 1 boon."
      }
     ]
    }
@@ -3261,7 +3261,7 @@
      },
      {
       "name": "Directed Strike",
-      "text": "When a thrall you have created using a talent gained from this path would attack, you can use a triggered action and expend the casting of a Conjuration spell to grant 1 or more boons on the attack roll. The number of boons granted equals the rank of the spell whose casting you expended (minimum 1 boon). Paths of Magic"
+      "text": "When a thrall you have created using a talent gained from this path would attack, you can use a triggered action and expend the casting of a Conjuration spell to grant 1 or more boons on the attack roll. The number of boons granted equals the rank of the spell whose casting you expended (minimum 1 boon)."
      },
      {
       "name": "Infusion of Magic",
@@ -3595,7 +3595,7 @@
     "talents": [
      {
       "name": "Lasting Bond",
-      "text": "You can use an action to forge a bond with one creature within short range that can see and hear you. If the target is willing, you become connected until you die, the target dies, or you use this talent again. Until the effect ends, you and the target make all Perception rolls with 1 boon while you are within medium range of each other. Whenever you or the target heals damage, the other heals half the damage provided you are within medium range of each other. Finally, you can use an action to cause an image of the target to appear on a reflective surface you can see within short range and remain there for as long as you concentrate. The image reveals the target and the area within short range of it. Expert paths"
+      "text": "You can use an action to forge a bond with one creature within short range that can see and hear you. If the target is willing, you become connected until you die, the target dies, or you use this talent again. Until the effect ends, you and the target make all Perception rolls with 1 boon while you are within medium range of each other. Whenever you or the target heals damage, the other heals half the damage provided you are within medium range of each other. Finally, you can use an action to cause an image of the target to appear on a reflective surface you can see within short range and remain there for as long as you concentrate. The image reveals the target and the area within short range of it."
      }
     ]
    }
@@ -3684,7 +3684,7 @@
     "talents": [
      {
       "name": "Spell Mastery",
-      "text": "You master the art of casting spells and can express this mastery with 6 spell points. When you cast a spell, you can spend a number of spell points equal to the spell’s rank (minimum 1 point) to cast the spell without expending a casting, or to cast a spell for which you have no castings remaining. You replenish all spell points spent when you complete a rest. Wizard Story Development"
+      "text": "You master the art of casting spells and can express this mastery with 6 spell points. When you cast a spell, you can spend a number of spell points equal to the spell’s rank (minimum 1 point) to cast the spell without expending a casting, or to cast a spell for which you have no castings remaining. You replenish all spell points spent when you complete a rest."
      }
     ]
    }
@@ -3726,7 +3726,7 @@
     "talents": [
      {
       "name": "Chaotic Destruction",
-      "text": "Whenever you cast a Chaos spell, roll a d6. On a 6, you gain 1 Insanity. You do not become frightened from gaining Insanity in this way; instead, chaotic energy spills out from your body for a number of rounds equal to your Insanity score. Until this effect ends, any creature that starts its turn within 1 yard of you or moves to such a location must get a success on an Agility challenge roll or take 1d6 damage plus 1d6 damage per point of your Power score. In addition, Destruction spells you cast deal 1d6 extra damage. Paths of Magic"
+      "text": "Whenever you cast a Chaos spell, roll a d6. On a 6, you gain 1 Insanity. You do not become frightened from gaining Insanity in this way; instead, chaotic energy spills out from your body for a number of rounds equal to your Insanity score. Until this effect ends, any creature that starts its turn within 1 yard of you or moves to such a location must get a success on an Agility challenge roll or take 1d6 damage plus 1d6 damage per point of your Power score. In addition, Destruction spells you cast deal 1d6 extra damage."
      }
     ]
    },
@@ -3775,7 +3775,7 @@
      },
      {
       "name": "Controlled Chaos",
-      "text": "Whenever you cast a Chaos spell, you can choose to add the spell’s rank to your roll of a d6 to determine if your Chaotic Destruction talent is triggered. Master paths offer areas of specialization that allow player characters to excel in one primary pursuit that defines their essential techniques. Often, characters move into master paths to focus on the thing they do best, but sometimes characters opt for master paths that take them in a different direction, using the path to complement the talents they acquired from other paths."
+      "text": "Whenever you cast a Chaos spell, you can choose to add the spell’s rank to your roll of a d6 to determine if your Chaotic Destruction talent is triggered."
      }
     ]
    }
@@ -4111,7 +4111,7 @@
      },
      {
       "name": "Channeled Faith",
-      "text": "When you cast a Theurgy attack spell, you can expend the casting of a rank 0 Theurgy spell to make the attack roll with 1 boon and to impose 1 bane on challenge rolls made to resist your spell. Paths of Magic"
+      "text": "When you cast a Theurgy attack spell, you can expend the casting of a rank 0 Theurgy spell to make the attack roll with 1 boon and to impose 1 bane on challenge rolls made to resist your spell."
      }
     ]
    },
@@ -4870,7 +4870,7 @@
   "source": "occult",
   "page": 171,
   "type": "master",
-  "description": "Most students of the Necromancy tradition use their magic to create undead, near-mindless minions that obey their every command. Bone collectors focus their work and research on the bones of the dead, imbuing them with a form of magical life and using these servants to protect themselves from those who would interfere with their work. Bone collectors keep the bones of at least one dead creature always within reach, woven into their clothing, tied to their equipment, or carried in bags. Paths of Magic"
+  "description": "Most students of the Necromancy tradition use their magic to create undead, near-mindless minions that obey their every command. Bone collectors focus their work and research on the bones of the dead, imbuing them with a form of magical life and using these servants to protect themselves from those who would interfere with their work. Bone collectors keep the bones of at least one dead creature always within reach, woven into their clothing, tied to their equipment, or carried in bags."
  },
  {
   "name": "Brute",
@@ -4937,7 +4937,7 @@
     "talents": [
      {
       "name": "Magic Construction",
-      "text": "You can use an action and expend a casting of one of your Conjuration spells to create structures in your environment. The rank of the spell whose casting you expend determines the amount of material you have to work with, as shown on the following table. The material is in the form of a number of blocks, each a cube 1 yard on a side. Paths of Magic Building Blocks Spell Rank Blocks 5+ Each block is an object with Defense 10 and Health 20. You can arrange the blocks in any way you choose within medium range, but they must be placed in open spaces. You can stack them, set them in a row, or scatter them. You can choose to make the blocks transparent or opaque. Blocks created by this talent last for a number of minutes equal to your Power score x 10."
+      "text": "You can use an action and expend a casting of one of your Conjuration spells to create structures in your environment. The rank of the spell whose casting you expend determines the amount of material you have to work with, as shown on the following table. The material is in the form of a number of blocks, each a cube 1 yard on a side. Building Blocks Spell Rank Blocks 5+ Each block is an object with Defense 10 and Health 20. You can arrange the blocks in any way you choose within medium range, but they must be placed in open spaces. You can stack them, set them in a row, or scatter them. You can choose to make the blocks transparent or opaque. Blocks created by this talent last for a number of minutes equal to your Power score x 10."
      }
     ]
    },
@@ -5463,7 +5463,7 @@
     "talents": [
      {
       "name": "Blind",
-      "text": "You have lost the ability to see by normal means. You are immune to the blinded affliction. You have truesight out to a range of 60 yards, but you cannot perceive anything beyond this distance. Paths of Magic"
+      "text": "You have lost the ability to see by normal means. You are immune to the blinded affliction. You have truesight out to a range of 60 yards, but you cannot perceive anything beyond this distance."
      },
      {
       "name": "Dazzling Light",
@@ -5981,7 +5981,7 @@
     "talents": [
      {
       "name": "Alter Ego",
-      "text": "You gain an alter ego, a second identity that lurks inside you. Your alter ego is a separate character that shares your body. Whenever you become injured or when the effects of your gaining Insanity end, your alter ego Paths of Magic takes over your body or recedes to enable you to regain control. Each creature within short range of you that sees this transformation must get a success on a Will challenge roll or become frightened for 1 round. When you gain this talent, create an alter ego character using the following guidelines: \n• Attributes Your alter ego’s Strength score equals your normal Intellect score, and its Intellect score equals your normal Strength score. \n• Characteristics Your alter ego uses your scores for all of your characteristics, regardless of changes to your attributes. \n• Professions and Languages Your alter ego speaks, reads, and writes all languages you know how to speak, read, and write. Randomly determine the alter ego’s professions. \n• Ancestry Traits Your alter ego retains all of your traits gained from your ancestry. \n• Appearance, Build, Personality Randomly determine each of these for your alter ego. \n• Path Features Your alter ego retains all of your features gained from your paths. \n• Mighty Your alter ego makes attack rolls using melee weapons with 1 boon, and its melee attacks deal 1d6 extra damage."
+      "text": "You gain an alter ego, a second identity that lurks inside you. Your alter ego is a separate character that shares your body. Whenever you become injured or when the effects of your gaining Insanity end, your alter ego takes over your body or recedes to enable you to regain control. Each creature within short range of you that sees this transformation must get a success on a Will challenge roll or become frightened for 1 round. When you gain this talent, create an alter ego character using the following guidelines: \n• Attributes Your alter ego’s Strength score equals your normal Intellect score, and its Intellect score equals your normal Strength score. \n• Characteristics Your alter ego uses your scores for all of your characteristics, regardless of changes to your attributes. \n• Professions and Languages Your alter ego speaks, reads, and writes all languages you know how to speak, read, and write. Randomly determine the alter ego’s professions. \n• Ancestry Traits Your alter ego retains all of your traits gained from your ancestry. \n• Appearance, Build, Personality Randomly determine each of these for your alter ego. \n• Path Features Your alter ego retains all of your features gained from your paths. \n• Mighty Your alter ego makes attack rolls using melee weapons with 1 boon, and its melee attacks deal 1d6 extra damage."
      }
     ]
    },
@@ -6532,7 +6532,7 @@
   "source": "occult",
   "page": 175,
   "type": "master",
-  "description": "The magic of the Metal tradition has a lasting effect on those who access its power. Many students of Metal magic find their bodies changing, assuming a metallic sheen that eventually hardens to protect them. Others, such as the forgeborn, take greater advantage of this change and learn to shape their appendages into useful forms so that they never need fear of being disarmed. Paths of Magic"
+  "description": "The magic of the Metal tradition has a lasting effect on those who access its power. Many students of Metal magic find their bodies changing, assuming a metallic sheen that eventually hardens to protect them. Others, such as the forgeborn, take greater advantage of this change and learn to shape their appendages into useful forms so that they never need fear of being disarmed."
  },
  {
   "name": "Geomancer",
@@ -6630,7 +6630,7 @@
      },
      {
       "name": "Swift Spirit Bind",
-      "text": "You can use a triggered action to cast a Spiritualism spell you have learned, provided you make yourself the target of the spell. Paths of Magic"
+      "text": "You can use a triggered action to cast a Spiritualism spell you have learned, provided you make yourself the target of the spell."
      }
     ]
    },
@@ -7475,7 +7475,7 @@
   "source": "occult",
   "page": 177,
   "type": "master",
-  "description": "Those who take up the path of the librarian surround themselves with books, scrolls, and other writings, delving into these works to gain a greater understanding of the world and its nature. Their research inevitably reveals to them knowledge of magic and spells, and librarians keep the spells they learn in their books for easy recall when needed. No librarian goes anywhere without at least a few books in his or her backpack. Paths of Magic"
+  "description": "Those who take up the path of the librarian surround themselves with books, scrolls, and other writings, delving into these works to gain a greater understanding of the world and its nature. Their research inevitably reveals to them knowledge of magic and spells, and librarians keep the spells they learn in their books for easy recall when needed. No librarian goes anywhere without at least a few books in his or her backpack."
  },
  {
   "name": "Machinist",
@@ -7794,7 +7794,7 @@
     "talents": [
      {
       "name": "Thought Worm",
-      "text": "When you cast a Telepathy attack spell that requires you to make an attack roll and you get a success, you can use a triggered action to implant a thought worm in the target’s mind. The thought worm remains for 1 minute. At the end of each of the creature’s Paths of Magic turns, it can make a Will challenge roll and removes the thought worm on a success. Whenever a creature with a thought worm you implanted takes a turn, choose one of the following effects. \n• You render one creature invisible to the target until the end of the target’s turn. \n• If the target would make an attack roll, you can grant the target 1 boon or impose 1 bane. \n• If the target would make a challenge roll, you can grant the target 2 boons or impose 2 banes. \n• If the target would use an action to attack a creature, you can make an Intellect attack roll against the target’s Will. On a success, you choose the target of the attack. \n• If the target would move, you can make an Intellect attack roll against the target’s Will. On a success, you decide the distance and direction of the target’s movement."
+      "text": "When you cast a Telepathy attack spell that requires you to make an attack roll and you get a success, you can use a triggered action to implant a thought worm in the target’s mind. The thought worm remains for 1 minute. At the end of each of the creature’s turns, it can make a Will challenge roll and removes the thought worm on a success. Whenever a creature with a thought worm you implanted takes a turn, choose one of the following effects. \n• You render one creature invisible to the target until the end of the target’s turn. \n• If the target would make an attack roll, you can grant the target 1 boon or impose 1 bane. \n• If the target would make a challenge roll, you can grant the target 2 boons or impose 2 banes. \n• If the target would use an action to attack a creature, you can make an Intellect attack roll against the target’s Will. On a success, you choose the target of the attack. \n• If the target would move, you can make an Intellect attack roll against the target’s Will. On a success, you decide the distance and direction of the target’s movement."
      }
     ]
    },
@@ -7899,7 +7899,7 @@
      },
      {
       "name": "Versatile Appearance",
-      "text": "You learn the mask spell (Shadow, page 146) from the Transformation tradition. If you already know this spell, you learn a different rank 0 spell from the Transformation tradition. When a creature that can see you would attack you, you can use a triggered action to cast mask. If you do so, the triggering creature makes its attack roll with 1 bane. Paths of Magic"
+      "text": "You learn the mask spell (Shadow, page 146) from the Transformation tradition. If you already know this spell, you learn a different rank 0 spell from the Transformation tradition. When a creature that can see you would attack you, you can use a triggered action to cast mask. If you do so, the triggering creature makes its attack roll with 1 bane."
      }
     ]
    },
@@ -8362,7 +8362,7 @@
     "talents": [
      {
       "name": "Phasing",
-      "text": "You can use an action to become insubstantial for a number of rounds equal to your Power score. Until this effect ends, you take half damage from all sources, you ignore all forms of difficult terrain, and you can freely pass Paths of Magic through spaces occupied by creatures and objects. If you end your movement inside a space occupied by a creature or an object, however, you gain 1 Insanity. You can use this talent a number of times equal to your Power score. You regain expended uses when you complete a rest."
+      "text": "You can use an action to become insubstantial for a number of rounds equal to your Power score. Until this effect ends, you take half damage from all sources, you ignore all forms of difficult terrain, and you can freely pass through spaces occupied by creatures and objects. If you end your movement inside a space occupied by a creature or an object, however, you gain 1 Insanity. You can use this talent a number of times equal to your Power score. You regain expended uses when you complete a rest."
      }
     ]
    }
@@ -8839,7 +8839,7 @@
     "talents": [
      {
       "name": "Lingering Shadows",
-      "text": "When you cast a Shadow spell, your space becomes partially obscured by shadows until the end of the round. Paths of Magic"
+      "text": "When you cast a Shadow spell, your space becomes partially obscured by shadows until the end of the round."
      }
     ]
    },
@@ -9151,7 +9151,7 @@
     "talents": [
      {
       "name": "Possession",
-      "text": "If your soul resides in the valuable object to which it is anchored, you can attempt to possess another creature within medium range. Make an Intellect attack roll against the target’s Will. On a success, your soul enters the target’s body, suppressing the host’s personality and soul. If you get a failure, the target becomes immune to your Possession talent until it completes a rest. You control the body you possess as if it were your own. You retain your Intellect and Will scores, talents, and spells, but you otherwise use the target’s statistics in place of your normal ones. You remain in this body until your original body re-forms, at which point this effect ends. If the valuable object to which your soul was anchored is destroyed, you remain in the host’s body until it dies or is destroyed. Paths of Magic"
+      "text": "If your soul resides in the valuable object to which it is anchored, you can attempt to possess another creature within medium range. Make an Intellect attack roll against the target’s Will. On a success, your soul enters the target’s body, suppressing the host’s personality and soul. If you get a failure, the target becomes immune to your Possession talent until it completes a rest. You control the body you possess as if it were your own. You retain your Intellect and Will scores, talents, and spells, but you otherwise use the target’s statistics in place of your normal ones. You remain in this body until your original body re-forms, at which point this effect ends. If the valuable object to which your soul was anchored is destroyed, you remain in the host’s body until it dies or is destroyed."
      }
     ]
    }
@@ -9269,7 +9269,7 @@
     "talents": [
      {
       "name": "Greater Song",
-      "text": "When you cast a Song attack spell, you make the attack roll with 1 boon and you impose 1 bane on challenge rolls made to resist your spell. In addition, Paths of Magic whenever you cast a Song spell that has a duration of concentration, you can expend the casting of a rank 0 Song spell. If you do so, you do not have to concentrate on the effect, and the effect lasts until its maximum duration."
+      "text": "When you cast a Song attack spell, you make the attack roll with 1 boon and you impose 1 bane on challenge rolls made to resist your spell. In addition, whenever you cast a Song spell that has a duration of concentration, you can expend the casting of a rank 0 Song spell. If you do so, you do not have to concentrate on the effect, and the effect lasts until its maximum duration."
      }
     ]
    }
@@ -10036,7 +10036,7 @@
     "talents": [
      {
       "name": "Woodland Apotheosis",
-      "text": "You transform into a plant. You basically resemble your original form, but bark covers your body, and slender branches sprout from your head to form a crown of sorts. As a result of this transformation, you gain the following benefits and drawbacks. \n• You gain shadowsight if you don’t have the trait already. \n• You are always under the effect of the oak hide Nature spell (Shadow, page 134). If you know this spell, you can use a triggered action on your turn and expend a casting of the spell to increase your Defense by 2 for 1 minute. \n• You are immune to the asleep and fatigued afflictions, and you cannot be moved against your will or knocked prone while you are standing on the ground. \n• You take double damage from fire. Paths of Magic"
+      "text": "You transform into a plant. You basically resemble your original form, but bark covers your body, and slender branches sprout from your head to form a crown of sorts. As a result of this transformation, you gain the following benefits and drawbacks. \n• You gain shadowsight if you don’t have the trait already. \n• You are always under the effect of the oak hide Nature spell (Shadow, page 134). If you know this spell, you can use a triggered action on your turn and expend a casting of the spell to increase your Defense by 2 for 1 minute. \n• You are immune to the asleep and fatigued afflictions, and you cannot be moved against your will or knocked prone while you are standing on the ground. \n• You take double damage from fire."
      }
     ]
    },
@@ -10310,7 +10310,7 @@
     "talents": [
      {
       "name": "Stolen Blood",
-      "text": "When you cast a Demonology spell, you can choose one creature within short range. The target must get a success on a Strength challenge roll or take the damage from casting the spell instead of you. If the total of the target’s roll is 0 or lower, it takes double damage and you regain the casting of the spell. Paths of Magic"
+      "text": "When you cast a Demonology spell, you can choose one creature within short range. The target must get a success on a Strength challenge roll or take the damage from casting the spell instead of you. If the total of the target’s roll is 0 or lower, it takes double damage and you regain the casting of the spell."
      }
     ]
    }
@@ -10546,7 +10546,7 @@
      },
      {
       "name": "Swimmer",
-      "text": "You ignore the effects of moving across difficult terrain when you swim. Paths of Magic"
+      "text": "You ignore the effects of moving across difficult terrain when you swim."
      }
     ]
    },
