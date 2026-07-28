@@ -8,6 +8,7 @@ import { renderSpells } from "./ui/spells.js";
 import { renderPaths } from "./ui/paths.js";
 import { renderGear } from "./ui/gear.js";
 import { renderDice } from "./ui/dice.js";
+import { renderCombat } from "./ui/combat.js";
 import { renderLookup } from "./ui/lookup.js";
 
 const tabs = {
@@ -17,6 +18,7 @@ const tabs = {
   paths: renderPaths,
   gear: renderGear,
   dice: renderDice,
+  combat: renderCombat,
   lookup: renderLookup,
 };
 
@@ -25,6 +27,19 @@ let current = "build";
 function renderCurrent() {
   const panel = document.getElementById(`tab-${current}`);
   if (panel) tabs[current](panel);
+}
+
+function selectTab(btn) {
+  if (!btn) return;
+  current = btn.dataset.tab;
+  document.querySelectorAll(".tab[data-tab]").forEach((t) => {
+    const on = t === btn;
+    t.classList.toggle("active", on);
+    t.setAttribute("aria-selected", String(on));
+    t.tabIndex = on ? 0 : -1;
+  });
+  document.querySelectorAll(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === `tab-${current}`));
+  renderCurrent();
 }
 
 function renderRoster() {
@@ -47,13 +62,25 @@ async function boot() {
   renderRoster();
   renderCurrent();
 
-  document.getElementById("tabs").addEventListener("click", (e) => {
-    const btn = e.target.closest(".tab[data-tab]");
-    if (!btn) return;
-    current = btn.dataset.tab;
-    document.querySelectorAll(".tab[data-tab]").forEach((t) => t.classList.toggle("active", t === btn));
-    document.querySelectorAll(".tab-panel").forEach((p) => p.classList.toggle("active", p.id === `tab-${current}`));
-    renderCurrent();
+  const tabBar = document.getElementById("tabs");
+  tabBar.addEventListener("click", (e) => selectTab(e.target.closest(".tab[data-tab]")));
+  // Roving tabindex: one stop on the bar, arrows move within it. Without this
+  // the bar was role-less buttons and tabbed through all eight.
+  tabBar.addEventListener("keydown", (e) => {
+    const keys = { ArrowRight: 1, ArrowLeft: -1, Home: "first", End: "last" };
+    if (!(e.key in keys)) return;
+    const all = [...tabBar.querySelectorAll(".tab[data-tab]")];
+    const i = all.indexOf(document.activeElement);
+    if (i === -1) return;
+    e.preventDefault();
+    const step = keys[e.key];
+    const next = step === "first" ? all[0]
+      : step === "last" ? all[all.length - 1]
+      : all[(i + step + all.length) % all.length];
+    selectTab(next);
+    // Focus after rendering, not before: Lookup autofocuses its search box,
+    // which would otherwise strand an arrow-key user off the tab bar.
+    next.focus();
   });
 
   document.getElementById("roster-select").addEventListener("change", (e) => {

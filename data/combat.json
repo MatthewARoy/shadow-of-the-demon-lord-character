@@ -1,0 +1,707 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "actions",
+      "label": "Actions",
+      "blurb": "One action per round. What you can spend it on."
+    },
+    {
+      "id": "attack-options",
+      "label": "Attack Options",
+      "blurb": "Trade a bane for an effect, and attack an attribute directly."
+    },
+    {
+      "id": "turn",
+      "label": "Turn & Economy",
+      "blurb": "Fast and slow turns, triggered actions, free attacks, minor activities."
+    },
+    {
+      "id": "afflictions",
+      "label": "Afflictions",
+      "blurb": "The nineteen conditions and what each one does to you."
+    },
+    {
+      "id": "modifiers",
+      "label": "Modifiers",
+      "blurb": "Cover, obscurement, range bands, and the common situational banes."
+    }
+  ],
+  "entries": [
+    {
+      "id": "action-attack",
+      "kind": "action",
+      "name": "Attack",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 49 },
+      "text": "You use a weapon, an attack spell, or something else to harm or hinder another creature or an object. See Making Attacks for how to resolve this activity.",
+      "see_also": ["charge"]
+    },
+    {
+      "id": "action-cast-a-utility-spell",
+      "kind": "action",
+      "name": "Cast a Utility Spell",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 49 },
+      "text": "You cast a utility spell (one that doesn’t count as an attack) and resolve its effects. See Chapter 7 for details about casting spells."
+    },
+    {
+      "id": "action-concentrate",
+      "kind": "action",
+      "name": "Concentrate",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 49 },
+      "text": "Some spell effects and talents require you to concentrate to keep them going. If you concentrate on an effect, the effect continues until the end of the next round, up to the maximum amount of time allowed by the spell."
+    },
+    {
+      "id": "action-defend",
+      "kind": "action",
+      "name": "Defend",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 49 },
+      "text": "When you defend, until the end of the round, all attack rolls are made against you with 1 bane and you make all challenge rolls to resist attacks with 1 boon. These benefits end if you are prevented from using actions, such as when you become dazed, stunned, or unconscious.",
+      "see_also": ["affliction-dazed", "affliction-stunned", "affliction-unconscious"]
+    },
+    {
+      "id": "action-end-an-effect",
+      "kind": "action",
+      "name": "End an Effect",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "Choose one effect you created with a spell you cast or a talent you used. The effect ends."
+    },
+    {
+      "id": "action-find",
+      "kind": "action",
+      "name": "Find",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You attempt to locate a hidden creature or object. Make a Perception challenge roll to search for a hidden object or make a Perception attack roll against the Agility of a hidden creature. On a success, the creature or object is no longer hidden from you and any other creature with whom you share your knowledge."
+    },
+    {
+      "id": "action-help",
+      "kind": "action",
+      "name": "Help",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "Choose one creature within 5 yards of you that can see you and understand what you say. Make an Intellect challenge roll. On a success, the target makes its next attack roll or challenge roll before the end of the round with 1 boon."
+    },
+    {
+      "id": "action-hide",
+      "kind": "action",
+      "name": "Hide",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You can attempt to hide when you are not being observed and when you are in a heavily obscured area or have three-quarters cover or better from an object (see Cover). Make an Agility challenge roll. On a success, you become hidden. You remain hidden until the conditions that let you hide no longer apply or you do something that would reveal your position (such as shouting, making an attack, or casting a spell). For example, if you are in darkness, you would no longer be hidden if the area becomes lit. Similarly, if you are hidden behind a wall, you would no longer be hidden if someone moves to a position where the wall no longer covers you. While you are hidden, other creatures cannot perceive you. Generally, this means a creature cannot choose you as a target for its attack, though you are still subject to area effects. A creature can guess at your location, making the attack roll with 3 banes. Even with a success, the attack hits you only if the guess was correct. Also, while hidden, you make all attack rolls with 1 boon against the Defense or Agility of targets from which you are hidden."
+    },
+    {
+      "id": "action-prepare",
+      "kind": "action",
+      "name": "Prepare",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You prepare to undertake an activity when a specified event occurs. Choose one activity you would normally use an action to perform, such as attack or retreat. Then, describe what event has to occur for you to undertake it. This is the trigger. If the triggering event occurs before the end of the round, you can use a triggered action to perform the activity. You make any attack roll or challenge roll required by the activity with 1 boon. Otherwise, nothing happens. For example, Bobby takes a fast turn and uses an action to prepare an attack against the first enemy that moves into his reach. When a hostile warg moves up to attack his character, Bobby uses his triggered action to attack it with his sword, making the attack roll with 1 boon."
+    },
+    {
+      "id": "action-reload",
+      "kind": "action",
+      "name": "Reload",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "Choose a weapon you can reach that has the reload property (such as a crossbow). If you have a piece of ammunition the weapon uses, you reload the weapon.",
+      "requires": [
+        { "type": "unloaded_weapon", "label": "a weapon with the reload property" }
+      ]
+    },
+    {
+      "id": "action-retreat",
+      "kind": "action",
+      "name": "Retreat",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You move up to half your Speed. This movement does not trigger free attacks.",
+      "derive": [{ "label": "Retreat distance", "expr": "half_speed" }],
+      "see_also": ["free-attack"]
+    },
+    {
+      "id": "action-rush",
+      "kind": "action",
+      "name": "Rush",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You move up to twice your Speed.",
+      "derive": [{ "label": "Your Speed", "expr": "speed" }]
+    },
+    {
+      "id": "action-stabilize",
+      "kind": "action",
+      "name": "Stabilize",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "Choose one incapacitated creature within your reach. Make an Intellect challenge roll, with 1 bane if the creature is dying. On a success, the target heals 1 damage.",
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }]
+    },
+    {
+      "id": "action-use-an-item",
+      "kind": "action",
+      "name": "Use an Item",
+      "group": "actions",
+      "economy": "action",
+      "source": { "book": "core", "page": 50 },
+      "text": "You interact with an item you are holding or wearing, or with an object you can reach. Examples include picking a lock, retrieving an object from a pouch or a backpack, or lighting a torch."
+    },
+
+    {
+      "id": "charge",
+      "kind": "action",
+      "name": "Charge",
+      "group": "attack-options",
+      "economy": "action",
+      "source": { "book": "core", "page": 53 },
+      "text": "When you use an action to charge, you make attack rolls and challenge rolls with 1 bane until the end of the round. Move up to your Speed. At any point during your movement, make one attack with a melee weapon or with an attribute to knock down or shove a creature.",
+      "derive": [{ "label": "Move up to", "expr": "speed" }],
+      "see_also": ["attack-knock-down", "attack-shove"]
+    },
+
+    {
+      "id": "melee-driving-attack",
+      "kind": "option",
+      "name": "Driving Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "You and the target move a number of yards equal to your Strength modifier in the same direction.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You make the attack roll with 1 bane. On a success, you and the target move a number of yards equal to your Strength modifier in the same direction.",
+      "derive": [{ "label": "You both move", "expr": "str_mod" }]
+    },
+    {
+      "id": "melee-guarded-attack",
+      "kind": "option",
+      "name": "Guarded Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "The next creature to make an attack roll against your Defense before the end of the round does so with 1 bane.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You make the attack roll with 1 bane, but the next creature to make an attack roll against your Defense before the end of the round does so with 1 bane."
+    },
+    {
+      "id": "melee-lunging-attack",
+      "kind": "option",
+      "name": "Lunging Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "Your reach increases by 1 yard for the attack.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You can increase your reach by 1 yard, but you make the attack roll with 1 bane.",
+      "derive": [{ "label": "Base reach from Size", "expr": "reach_from_size" }]
+    },
+    {
+      "id": "melee-shifting-attack",
+      "kind": "option",
+      "name": "Shifting Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "Your movement does not trigger free attacks from the target until the end of the round.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You make the attack roll with 1 bane. On a success, your movement does not trigger free attacks from the target until the end of the round.",
+      "see_also": ["free-attack"]
+    },
+    {
+      "id": "melee-unbalancing-attack",
+      "kind": "option",
+      "name": "Unbalancing Attack",
+      "group": "attack-options",
+      "weapon_class": "melee",
+      "cost": { "banes": 1 },
+      "on_success": "If the target is your Size or smaller, it must make an Agility challenge roll. On a failure, the target falls prone.",
+      "source": { "book": "core", "page": 51 },
+      "text": "You make the attack roll with 1 bane. On a success, if the target is your Size or smaller, it must make an Agility challenge roll. On a failure, the target falls prone.",
+      "derive": [{ "label": "Your Size", "expr": "size" }],
+      "inflicts": ["affliction-prone"]
+    },
+
+    {
+      "id": "ranged-called-shot",
+      "kind": "option",
+      "name": "Called Shot",
+      "group": "attack-options",
+      "weapon_class": "ranged",
+      "cost": { "banes": 2 },
+      "on_success": "The attack has an additional effect as determined by the GM.",
+      "source": { "book": "core", "page": 52 },
+      "text": "You attack a specific location on the target’s body. You can use this option only if the target has a physical body. Make the attack roll with 2 banes. On a success, the attack has an additional effect as determined by the GM. Attacking a creature’s eyes might impose 1 bane on all rolls the target makes that rely on sight, for example."
+    },
+    {
+      "id": "ranged-distant-shot",
+      "kind": "option",
+      "name": "Distant Shot",
+      "group": "attack-options",
+      "weapon_class": "ranged",
+      "cost": { "banes": 1 },
+      "on_success": "You can attack a target out to twice your weapon’s range.",
+      "source": { "book": "core", "page": 52 },
+      "text": "You can attack a target that is beyond your weapon’s range, but no more than twice the weapon’s range. You make the attack roll with 1 bane.",
+      "see_also": ["range-bands"]
+    },
+    {
+      "id": "ranged-staggering-shot",
+      "kind": "option",
+      "name": "Staggering Shot",
+      "group": "attack-options",
+      "weapon_class": "ranged",
+      "cost": { "banes": 2 },
+      "on_success": "A target that is your Size or smaller must make an Agility challenge roll. On a failure, the target falls prone.",
+      "source": { "book": "core", "page": 52 },
+      "text": "You make the attack roll with 2 banes. On a success, a target that is your Size or smaller must make an Agility challenge roll. On a failure, the target falls prone.",
+      "derive": [{ "label": "Your Size", "expr": "size" }],
+      "inflicts": ["affliction-prone"]
+    },
+
+    {
+      "id": "attack-disarm",
+      "kind": "attack",
+      "name": "Disarm",
+      "group": "attack-options",
+      "attacker": "Strength or Agility",
+      "defender": ["Strength", "Agility"],
+      "on_success": "The target drops one object it is holding, of your choice.",
+      "source": { "book": "core", "page": 52 },
+      "text": "Choose one target creature within your reach that’s holding an object. Make a Strength or Agility attack roll against the higher of the target’s Strength or Agility. If you are unarmed, you make this roll with 2 banes. On a success, the target drops one object it is holding of your choice.",
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }]
+    },
+    {
+      "id": "attack-distract",
+      "kind": "attack",
+      "name": "Distract",
+      "group": "attack-options",
+      "attacker": "Intellect",
+      "defender": "Intellect",
+      "on_success": "The target makes its next attack roll or challenge roll before the end of the round with 2 banes.",
+      "source": { "book": "core", "page": 52 },
+      "text": "Choose one target creature within short range of you that can see you. Make an Intellect attack roll against the target’s Intellect. On a success, the target makes its next attack roll or challenge roll before the end of the round with 2 banes.",
+      "see_also": ["range-bands"]
+    },
+    {
+      "id": "attack-escape",
+      "kind": "attack",
+      "name": "Escape",
+      "group": "attack-options",
+      "attacker": "Strength or Agility",
+      "defender": "Strength",
+      "on_success": "The grabbed affliction is removed and you can move up to half your Speed without triggering a free attack from the creature that had grabbed you.",
+      "source": { "book": "core", "page": 53 },
+      "text": "You can use this action if you are grabbed. Make a Strength or Agility attack roll against the Strength of the creature that has grabbed you. A success removes the grabbed affliction and lets you move up to half your Speed. This movement does not trigger free attacks from the creature that had grabbed you. (See Grabbed for information on the effects of being grabbed, and Grab for how to grab.)",
+      "requires": [{ "type": "condition", "label": "you are grabbed" }],
+      "requires_condition": ["affliction-grabbed"],
+      "removes": ["affliction-grabbed"],
+      "derive": [{ "label": "Movement on a success", "expr": "half_speed" }],
+      "see_also": ["attack-grab", "free-attack"]
+    },
+    {
+      "id": "attack-feint",
+      "kind": "attack",
+      "name": "Feint",
+      "group": "attack-options",
+      "attacker": "Agility",
+      "defender": "Perception",
+      "on_success": "Either make the next attack roll against the target’s Defense or Agility before the end of the next round with 2 boons, or your movement does not trigger free attacks from the target for 1 round.",
+      "source": { "book": "core", "page": 53 },
+      "text": "Choose one target creature within short range of you that can see you. Make an Agility attack roll against the target’s Perception. On a success, you make the next attack roll against the target’s Defense or Agility before the end of the next round with 2 boons. Alternatively, your movement does not trigger free attacks from the target for 1 round.",
+      "see_also": ["range-bands", "free-attack"]
+    },
+    {
+      "id": "attack-grab",
+      "kind": "attack",
+      "name": "Grab",
+      "group": "attack-options",
+      "attacker": "Strength or Agility",
+      "defender": "Agility",
+      "on_success": "The target becomes grabbed until the end of the next round.",
+      "source": { "book": "core", "page": 53 },
+      "text": "You must have at least one hand free to grab, and you cannot be grabbing another creature. Choose one target creature within your reach that has a physical body (not a spirit, for example) and make a Strength or Agility attack roll against the target’s Agility. If you choose a creature you are already grabbing, you automatically get a success. On a success, the target becomes grabbed until the end of the next round. If you are prevented from using actions (such as because you are dazed, stunned, or unconscious), the grabbed affliction ends. The grabbed affliction also ends if you move or are moved to a position where you can no longer reach the grabbed target. (See Grabbed for more information on the effects of being grabbed, and Escape for how to escape a grab.)",
+      "requires": [{ "type": "free_hand", "label": "at least one free hand" }],
+      "inflicts": ["affliction-grabbed"],
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }],
+      "see_also": ["attack-escape"]
+    },
+    {
+      "id": "attack-knock-down",
+      "kind": "attack",
+      "name": "Knock Down",
+      "group": "attack-options",
+      "attacker": "Strength",
+      "defender": "Agility",
+      "on_success": "The target falls prone.",
+      "size_rule": "1 bane for each point of Size the target is larger than you; 1 boon if it is smaller.",
+      "source": { "book": "core", "page": 53 },
+      "text": "Choose one target creature within your reach. Make a Strength attack roll against the target’s Agility. If the target is larger than you, make this roll with 1 bane for each point of Size it is larger. You make this roll with 1 boon if the target is smaller than you. On a success, the target falls prone.",
+      "derive": [
+        { "label": "Your Size", "expr": "size" },
+        { "label": "Your reach", "expr": "reach_from_size" }
+      ],
+      "inflicts": ["affliction-prone"]
+    },
+    {
+      "id": "attack-pull",
+      "kind": "attack",
+      "name": "Pull",
+      "group": "attack-options",
+      "attacker": "Strength",
+      "defender": "Strength",
+      "on_success": "You move up to half your Speed and the grabbed creature moves with you so that it remains within your reach.",
+      "source": { "book": "core", "page": 53 },
+      "text": "Choose one target creature of your Size or smaller that you are grabbing. Make a Strength attack roll against the target’s Strength. On a success, you move up to half your Speed and the grabbed creature moves with you so that it remains within your reach.",
+      "requires": [{ "type": "condition", "label": "you are grabbing the target" }],
+      "requires_condition": ["affliction-grabbed"],
+      "derive": [
+        { "label": "You move up to", "expr": "half_speed" },
+        { "label": "Your Size", "expr": "size" }
+      ],
+      "see_also": ["attack-grab"]
+    },
+    {
+      "id": "attack-shove",
+      "kind": "attack",
+      "name": "Shove",
+      "group": "attack-options",
+      "attacker": "Strength",
+      "defender": "Strength",
+      "on_success": "You move the target 1 yard away from you, plus a number of yards equal to your Strength modifier (minimum total distance 1 yard).",
+      "size_rule": "1 bane for each point of Size the target is larger than you; 1 boon if it is smaller.",
+      "source": { "book": "core", "page": 53 },
+      "text": "Choose one target creature within your reach. Make a Strength attack roll against the target’s Strength. If the target is larger than you, you make this roll with 1 bane for each point of Size it is larger. You make this roll with 1 boon if the target is smaller than you. On a success, you move the target 1 yard away from you, plus a number of yards equal to your Strength modifier (minimum total distance 1 yard).",
+      "derive": [
+        { "label": "Push distance beyond the first yard", "expr": "str_mod" },
+        { "label": "Your Size", "expr": "size" },
+        { "label": "Your reach", "expr": "reach_from_size" }
+      ]
+    },
+
+    {
+      "id": "affliction-asleep",
+      "kind": "condition",
+      "name": "Asleep",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A sleeping creature is prone and unconscious. Another creature that can reach it can use an action to wake it up. Unless otherwise noted, taking damage removes this affliction.",
+      "see_also": ["affliction-prone", "affliction-unconscious"]
+    },
+    {
+      "id": "affliction-blinded",
+      "kind": "condition",
+      "name": "Blinded",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A blinded creature cannot see. It treats its surroundings as totally obscured (see Obscurement). Other creatures make attack rolls with 1 boon against a blinded creature’s Defense or Agility. Perception challenge rolls that rely on sight automatically result in failure. Finally, the blinded creature’s Speed becomes 2 unless its normal Speed is lower."
+    },
+    {
+      "id": "affliction-charmed",
+      "kind": "condition",
+      "name": "Charmed",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A charmed creature sees the source of the affliction as a trusted friend and ally. The charmed creature cannot choose the creature that bestowed the affliction as the target of its attacks."
+    },
+    {
+      "id": "affliction-compelled",
+      "kind": "condition",
+      "name": "Compelled",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A compelled creature cannot use actions or move. Instead, during each fast turn (see Combat), the creature that bestowed the affliction can force the compelled creature to move up to its Speed or to use an action. The creature that bestowed the affliction makes all decisions on the compelled creature’s behalf."
+    },
+    {
+      "id": "affliction-dazed",
+      "kind": "condition",
+      "name": "Dazed",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A dazed creature cannot use actions."
+    },
+    {
+      "id": "affliction-deafened",
+      "kind": "condition",
+      "name": "Deafened",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A deafened creature cannot hear. Perception challenge rolls made to listen automatically result in failure."
+    },
+    {
+      "id": "affliction-defenseless",
+      "kind": "condition",
+      "name": "Defenseless",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A defenseless creature cannot defend itself. Its Defense is 5, it cannot use actions, and its challenge rolls using attributes result in failure. The creature can still perceive its surroundings, however, and can make Perception challenge rolls as normal."
+    },
+    {
+      "id": "affliction-diseased",
+      "kind": "condition",
+      "name": "Diseased",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A diseased creature makes all attack rolls and challenge rolls with 1 bane."
+    },
+    {
+      "id": "affliction-fatigued",
+      "kind": "condition",
+      "name": "Fatigued",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A fatigued creature makes all attack rolls and challenge rolls with 1 bane."
+    },
+    {
+      "id": "affliction-frightened",
+      "kind": "condition",
+      "name": "Frightened",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "A frightened creature makes attack rolls and challenge rolls with 1 bane or 3 banes when it can see the source of the frightened affliction."
+    },
+    {
+      "id": "affliction-grabbed",
+      "kind": "condition",
+      "name": "Grabbed",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "The effects of the affliction depend on the creature’s Size. If the grabbed creature’s Size is equal to or smaller than that of the creature grabbing it, the grabbed creature cannot move away from the creature that grabbed it until it removes the affliction. If the grabbed creature’s Size is larger than that of the creature grabbing it, whenever the grabbed creature moves, the creature grabbing it can choose to move with it (by clinging to the grabbed creature’s body) or end the grab. (See Grab for more information on how to grab, and Escape for how to escape a grab.)",
+      "derive": [{ "label": "Your Size", "expr": "size" }],
+      "see_also": ["attack-grab", "attack-escape"]
+    },
+    {
+      "id": "affliction-immobilized",
+      "kind": "condition",
+      "name": "Immobilized",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 42 },
+      "text": "An immobilized creature has Speed 0 and cannot benefit from bonuses to Speed. Other creatures make all attack rolls against the immobilized creature with 1 boon."
+    },
+    {
+      "id": "affliction-impaired",
+      "kind": "condition",
+      "name": "Impaired",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "An impaired creature makes all attack rolls and challenge rolls with 1 bane."
+    },
+    {
+      "id": "affliction-poisoned",
+      "kind": "condition",
+      "name": "Poisoned",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A poisoned creature makes all attack rolls and challenge rolls with 1 bane."
+    },
+    {
+      "id": "affliction-prone",
+      "kind": "condition",
+      "name": "Prone",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A prone creature lies on the ground. Other creatures can move through its space. While prone, the creature can move by crawling or can use its move to stand up. The prone creature makes Strength and Agility rolls with 1 bane. Creatures that can reach the prone creature make all attack rolls against it with 1 boon, while creatures that cannot reach it make attack rolls against its Defense with 1 bane."
+    },
+    {
+      "id": "affliction-slowed",
+      "kind": "condition",
+      "name": "Slowed",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A slowed creature can take only a slow turn (see Combat), its Speed is halved, and it cannot benefit from increases to Speed.",
+      "derive": [{ "label": "Your halved Speed", "expr": "half_speed" }],
+      "see_also": ["slow-turns"]
+    },
+    {
+      "id": "affliction-stunned",
+      "kind": "condition",
+      "name": "Stunned",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A stunned creature cannot move or use actions. The creature automatically gets a failure on any challenge rolls it would make. Other creatures make all attack rolls against the stunned creature with 1 boon."
+    },
+    {
+      "id": "affliction-surprised",
+      "kind": "condition",
+      "name": "Surprised",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "A surprised creature cannot use actions, cannot move, and automatically gets a failure on any challenge rolls it would make."
+    },
+    {
+      "id": "affliction-unconscious",
+      "kind": "condition",
+      "name": "Unconscious",
+      "group": "afflictions",
+      "source": { "book": "core", "page": 43 },
+      "text": "An unconscious creature is unable to act, move, or perceive its surroundings. The creature’s Defense is 5. It cannot use actions or move, and all its challenge rolls result in failure."
+    },
+
+    {
+      "id": "anatomy-of-a-round",
+      "kind": "reference",
+      "name": "Anatomy of a Round",
+      "group": "turn",
+      "source": { "book": "core", "page": 47 },
+      "text": "Combat is resolved in 10-second units of time, called rounds. A round has three parts: fast turns, slow turns, and the end of the round. During each round, players who want to take a turn (fast or slow) do so in that part of the round, in any order they choose. Once a player finishes his or her turn, he or she cannot take another turn until after the end of that round. If players cannot decide who goes first, the GM might decide or have each conflicting player roll a d6, with priority going to the player who rolled the highest number. Once all the players have finished taking their turns during a part of the round, creatures under the GM’s control can take turns in that part, in any order. Once a creature finishes its turn, it cannot take another turn until after the end of that round.",
+      "see_also": ["fast-turns", "slow-turns"]
+    },
+    {
+      "id": "fast-turns",
+      "kind": "reference",
+      "name": "Fast Turns",
+      "group": "turn",
+      "source": { "book": "core", "page": 47 },
+      "text": "A creature that takes a fast turn can either use an action or move up to its Speed. It cannot do both.",
+      "derive": [{ "label": "Your Speed", "expr": "speed" }],
+      "see_also": ["slow-turns", "minor-activities"]
+    },
+    {
+      "id": "slow-turns",
+      "kind": "reference",
+      "name": "Slow Turns",
+      "group": "turn",
+      "source": { "book": "core", "page": 47 },
+      "text": "A creature that takes a slow turn can use both an action and move up to its Speed. It can use an action at any point during the move.",
+      "derive": [{ "label": "Your Speed", "expr": "speed" }],
+      "see_also": ["fast-turns", "minor-activities"]
+    },
+    {
+      "id": "triggered-actions",
+      "kind": "action",
+      "name": "Triggered Actions",
+      "group": "turn",
+      "economy": "triggered",
+      "source": { "book": "core", "page": 50 },
+      "text": "In addition to using actions, most creatures can use one triggered action each round. Creatures use triggered actions to react to the specific events that trigger their use, hence the name. Almost all creatures can use triggered actions to make a free attack, which is described in the following section. Creatures can also use triggered actions to perform other activities from talents and spells. Any activity that involves the use of a triggered action also specifies the condition under which the character can use it. The condition, called the trigger, could be broad, such as “on your turn,” or narrow, such as “when a creature willingly moves out of your reach.” Provided you meet the conditions for using the triggered action, you may do so, provided you have not already used a triggered action during the round.",
+      "see_also": ["free-attack", "action-prepare"]
+    },
+    {
+      "id": "free-attack",
+      "kind": "action",
+      "name": "Free Attack",
+      "group": "turn",
+      "economy": "triggered",
+      "source": { "book": "core", "page": 51 },
+      "text": "When a creature in your reach willingly moves out of your reach, you can use a triggered action to make an attack against that creature using a melee weapon you are wielding.",
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }],
+      "see_also": ["melee-shifting-attack", "attack-escape", "action-retreat"]
+    },
+    {
+      "id": "minor-activities",
+      "kind": "action",
+      "name": "Minor Activities",
+      "group": "turn",
+      "economy": "free",
+      "source": { "book": "core", "page": 51 },
+      "text": "Some activities are so minor that you can just do them on your turn without using an action, triggered action, or move. Examples include dropping an item or picking one up, drawing or stowing a weapon, and opening or closing a door. As a general rule, you can perform one minor activity during a fast turn, or two during a slow turn. You might do more if you don’t move or use an action on your turn, or if your GM says you can do more.",
+      "see_also": ["fast-turns", "slow-turns"]
+    },
+
+    {
+      "id": "cover",
+      "kind": "reference",
+      "name": "Cover",
+      "group": "modifiers",
+      "source": { "book": "core", "page": 52 },
+      "text": "Terrain and objects on the battlefield can provide protection against attacks with ranged weapons or spells that target things at a distance.",
+      "rows": [
+        {
+          "label": "Half covered",
+          "effect": "An object between you and the attacker covers at least half your body: ranged attack rolls against you are made with 1 bane."
+        },
+        {
+          "label": "Three-quarters covered",
+          "effect": "An object covers at least three-quarters of your body: ranged attack rolls against you are made with 2 banes."
+        },
+        {
+          "label": "Totally covered",
+          "effect": "An object covers your body entirely: you cannot be a target for any attack or effect."
+        }
+      ],
+      "see_also": ["situational-banes", "action-hide"]
+    },
+    {
+      "id": "obscurement",
+      "kind": "reference",
+      "name": "Obscurement",
+      "group": "modifiers",
+      "source": { "book": "core", "page": 44 },
+      "text": "Poor lighting, precipitation, and fog reduce visibility. An area, and creatures and objects within it, can be partially, heavily, or totally obscured.",
+      "rows": [
+        {
+          "label": "Partially obscured",
+          "effect": "Rain, light snow, fog, and shadows. Everything is visible, but observers cannot make out fine detail. Any roll involving sight by a creature looking into the area is made with 1 bane."
+        },
+        {
+          "label": "Heavily obscured",
+          "effect": "Heavy rain, snow, and thick fog. Everything is faintly visible. Any roll involving sight by a creature looking into the area is made with 2 banes."
+        },
+        {
+          "label": "Totally obscured",
+          "effect": "Darkness or blinding conditions, such as a whiteout in a blizzard. Creatures and objects cannot be seen, and a creature in the area is blinded."
+        }
+      ],
+      "inflicts": ["affliction-blinded"],
+      "see_also": ["situational-banes", "action-hide"]
+    },
+    {
+      "id": "range-bands",
+      "kind": "reference",
+      "name": "Range and Distance",
+      "group": "modifiers",
+      "source": { "book": "core", "page": 44 },
+      "text": "A few broad categories describe the range of weapons and spells for the purpose of choosing targets and centering area effects.",
+      "rows": [
+        {
+          "label": "You",
+          "effect": "You are the target, or the effect originates from you or a point within your space. You are always within range of yourself for the purpose of targeting."
+        },
+        {
+          "label": "Reach",
+          "effect": "The target must be within your reach and you must be able to touch it. Touching an unwilling creature requires a Strength or Agility attack roll against its Agility."
+        },
+        { "label": "Short", "effect": "Within 5 yards of you." },
+        { "label": "Medium", "effect": "Within 20 yards of you." },
+        { "label": "Long", "effect": "Within 100 yards of you." },
+        { "label": "Extreme", "effect": "Within 500 yards of you." },
+        { "label": "Sight", "effect": "You must be able to see the target or the point from which the effect originates." }
+      ],
+      "derive": [{ "label": "Your reach", "expr": "reach_from_size" }],
+      "see_also": ["ranged-distant-shot"]
+    },
+    {
+      "id": "situational-banes",
+      "kind": "reference",
+      "name": "Situational Banes to Attack Rolls",
+      "group": "modifiers",
+      "source": { "book": "core", "page": 53 },
+      "text": "One or more banes might apply to your attack rolls, based on the circumstances under which you make the attack. These are in addition to any banes or boons included in the attack. The following table summarizes the most common situations.",
+      "rows": [
+        { "label": "Half covered", "effect": "1 bane" },
+        { "label": "Three-quarters covered", "effect": "2 banes" },
+        { "label": "Totally covered", "effect": "Automatic failure" },
+        { "label": "Partially obscured", "effect": "1 bane" },
+        { "label": "Heavily obscured", "effect": "2 banes" },
+        { "label": "Totally obscured", "effect": "3 banes — you must guess the target’s location (see Hide)." },
+        { "label": "Weather, terrain", "effect": "In inclement weather or covering terrain: 1 or more banes" }
+      ],
+      "see_also": ["cover", "obscurement", "action-hide"]
+    }
+  ]
+}

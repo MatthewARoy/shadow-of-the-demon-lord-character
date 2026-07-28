@@ -31,24 +31,26 @@
   </div>
 </header>
 
-<nav class="tabs" id="tabs">
-  <button class="tab active" data-tab="build">Build</button>
-  <button class="tab" data-tab="sheet">Sheet</button>
-  <button class="tab" data-tab="spells">Spells</button>
-  <button class="tab" data-tab="paths">Paths</button>
-  <button class="tab" data-tab="gear">Gear</button>
-  <button class="tab" data-tab="dice">Dice</button>
-  <button class="tab" data-tab="lookup">Lookup</button>
+<nav class="tabs" id="tabs" role="tablist" aria-label="Character sections">
+  <button class="tab active" data-tab="build" role="tab" id="tabbtn-build" aria-controls="tab-build" aria-selected="true" tabindex="0">Build</button>
+  <button class="tab" data-tab="sheet" role="tab" id="tabbtn-sheet" aria-controls="tab-sheet" aria-selected="false" tabindex="-1">Sheet</button>
+  <button class="tab" data-tab="spells" role="tab" id="tabbtn-spells" aria-controls="tab-spells" aria-selected="false" tabindex="-1">Spells</button>
+  <button class="tab" data-tab="paths" role="tab" id="tabbtn-paths" aria-controls="tab-paths" aria-selected="false" tabindex="-1">Paths</button>
+  <button class="tab" data-tab="gear" role="tab" id="tabbtn-gear" aria-controls="tab-gear" aria-selected="false" tabindex="-1">Gear</button>
+  <button class="tab" data-tab="dice" role="tab" id="tabbtn-dice" aria-controls="tab-dice" aria-selected="false" tabindex="-1">Dice</button>
+  <button class="tab" data-tab="combat" role="tab" id="tabbtn-combat" aria-controls="tab-combat" aria-selected="false" tabindex="-1">Combat</button>
+  <button class="tab" data-tab="lookup" role="tab" id="tabbtn-lookup" aria-controls="tab-lookup" aria-selected="false" tabindex="-1">Lookup</button>
 </nav>
 
 <main id="app">
-  <section id="tab-build" class="tab-panel active"></section>
-  <section id="tab-sheet" class="tab-panel"></section>
-  <section id="tab-spells" class="tab-panel"></section>
-  <section id="tab-paths" class="tab-panel"></section>
-  <section id="tab-gear" class="tab-panel"></section>
-  <section id="tab-dice" class="tab-panel"></section>
-  <section id="tab-lookup" class="tab-panel"></section>
+  <section id="tab-build" class="tab-panel active" role="tabpanel" aria-labelledby="tabbtn-build" tabindex="0"></section>
+  <section id="tab-sheet" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-sheet" tabindex="0"></section>
+  <section id="tab-spells" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-spells" tabindex="0"></section>
+  <section id="tab-paths" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-paths" tabindex="0"></section>
+  <section id="tab-gear" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-gear" tabindex="0"></section>
+  <section id="tab-dice" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-dice" tabindex="0"></section>
+  <section id="tab-combat" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-combat" tabindex="0"></section>
+  <section id="tab-lookup" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-lookup" tabindex="0"></section>
   <p id="loading" class="loading">Consulting the archives&hellip;</p>
 </main>
 
