@@ -30,8 +30,22 @@ FILES = [
 
 MIN_LEN = 16          # below this a string carries too little signal
 
+# Every distinct page running head in the three books, taken from the first
+# and last content lines of each extracted page. The list was previously five
+# entries long, and the omissions were not theoretical: "paths of magic" and
+# "story development" were bleeding into 29 path talents, and "expert paths"
+# into 9 more, while the scan reported paths.json clean.
+#
+# Deliberately omitted, because they are ordinary prose in these books and a
+# substring scan on them is all noise: "magic", "equipment", "index",
+# "introduction", "bestiary", "shadow of the demon lord". A bleed of one of
+# those is caught by the trailing-header half of the "bleed" signature or by
+# its neighbours on this list.
 RUNNING_HEADS = (r"playing the game|character creation|traditions and spells|"
-                 r"occult philosophy|terrible beauty")
+                 r"occult philosophy|terrible beauty|paths of magic|"
+                 r"story development|running the game|a land in shadow|"
+                 r"creatures of magic|tales of the desolation|novice paths|"
+                 r"expert paths|master paths|spell index")
 LIGATURES = r"[ŋŊŌőŒ]|\bfi rst\b|ﬁ|ﬂ"
 
 SIGNATURES = {

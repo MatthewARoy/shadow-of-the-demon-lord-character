@@ -33,11 +33,42 @@ PATH_LEVELS = {3, 6, 7, 9, 10}
 LEVEL_RE = re.compile(r"^Level (\d+) (?:Expert |Master )?([A-Z][\w’'\- ]+?)\s*$")
 FIELDS = ("Attributes", "Characteristics", "Languages and Professions", "Magic")
 
+# Page running heads. Compared case-insensitively against a whole line, the
+# same treatment parse_rules_index.RUNNING_HEADS gives this class: the
+# extraction emits "Expert paths" alongside "Expert Paths", and matching the
+# exact spelling let that variant bleed into eight level-9 talents, just as it
+# let "PLaying the Game" into seven rules-index chunk bodies. "Paths of Magic"
+# heads every page of Occult Philosophy's chapter 3 and was missing outright.
+RUNNING_HEADS = {
+    "Paths", "Novice Paths", "Expert Paths", "Master Paths", "Paths of Magic",
+    "Terrible Beauty", "Occult Philosophy",
+}
+
+RUNNING_HEADS_LOWER = {h.lower() for h in RUNNING_HEADS}
+
+# The chapter titles the running heads are lifted from also appear, once each,
+# as real section headings partway down the page that opens their section.
+# Those mark the end of the preceding path rather than being furniture, so
+# they are recognised by position: a head within the first HEAD_ZONE content
+# lines of a page is furniture, the same words deeper in are a heading. Terrible
+# Beauty prints its head twice per page, hence 2 rather than 1.
+SECTION_HEADS_LOWER = {"novice paths", "expert paths", "master paths",
+                       "paths of magic", "paths of skill"}
+HEAD_ZONE = 2
+
 FURNITURE = re.compile(
-    r"^(===PAGE \d+===|\d{1,3}|Novice Paths|Expert Paths|Master Paths|"
-    r"Paths|Chapter \d+:?|Terrible Beauty|Occult Philosophy|"
+    r"^(===PAGE \d+===|\d{1,3}|Chapter \d+:?|"
     r"Rusty Shackleford \(Order #\d+\))$"
 )
+
+
+def is_furniture(s, page_line_no):
+    s = s.strip()
+    if FURNITURE.match(s):
+        return True
+    if s.lower() not in RUNNING_HEADS_LOWER:
+        return False
+    return page_line_no <= HEAD_ZONE or s.lower() not in SECTION_HEADS_LOWER
 
 TALENT_START = re.compile(
     r"^((?:[A-Z][\w’'!\-]*|of|the|a|an|and|with|in|for|to|from)"
@@ -67,14 +98,18 @@ NAME_FIXES = {"Enchantment": "Enchanter"}
 def lines_for(book):
     path = os.path.join(CACHE, f"{book}.txt")
     page = 0
+    page_line_no = 0
     out = []
     for raw in open(path):
         line = raw.rstrip("\n")
         m = re.match(r"^===PAGE (\d+)===$", line.strip())
         if m:
             page = int(m.group(1))
+            page_line_no = 0
             continue
-        if FURNITURE.match(line.strip()):
+        if line.strip():
+            page_line_no += 1
+        if is_furniture(line, page_line_no):
             continue
         out.append((page, line.rstrip()))
     return out
@@ -94,6 +129,21 @@ def find_level_blocks(lines):
 # Section headings that follow the final path of a chapter.
 STOP_HEADINGS = {"Legendary Path", "Story Development", "Roll a d6", "Personality"}
 
+# The story-development sidebar is titled with the path's own name, and the
+# page running head lands on the same extracted line: "Assassin Story
+# Development". It precedes the bare "Story Development" column header, so it
+# is the real end of the block — without it the level-9 talent absorbs the
+# title. Every line in the three books ending this way is a sidebar title;
+# none is prose.
+STORY_DEVELOPMENT_TITLE = re.compile(r"^[\w’'\- ]{1,30} Story Development$")
+
+
+def is_stop_heading(s):
+    """True for the headings that close whatever level block is open."""
+    return (s in STOP_HEADINGS
+            or s.lower() in SECTION_HEADS_LOWER
+            or bool(STORY_DEVELOPMENT_TITLE.match(s)))
+
 # Last PDF page of path content per book; the next chapter follows.
 PATH_PAGE_LIMIT = {"core": 99, "occult": 9999, "terrible": 9999}
 
@@ -108,7 +158,7 @@ def block_end(lines, start, headers, h_idx, path_names, book):
         if lines[j][0] > limit:
             return j
         s = lines[j][1].strip()
-        if re.match(r"^d\d+$", s) or s in STOP_HEADINGS:
+        if re.match(r"^d\d+$", s) or is_stop_heading(s):
             return j
         if s in path_names and j > start + 1:
             return j
