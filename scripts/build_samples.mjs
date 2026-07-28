@@ -118,6 +118,58 @@ const SAMPLES = [
     // requirements; medium armor doesn't slow him.
     expect: { power: 0, spellCount: 0, talentHas: "Iron Clad", defense: 18, speed: 10, pending: 0 },
   },
+  {
+    // Real exported character included verbatim (play state zeroed): the
+    // engine must keep replaying her decisions to the same sheet. Exercises
+    // attributeSwap, four tradition discoveries with Cantrip rank-0 picks,
+    // and an eight-step spell-exchange chain (Blink → … → Swiftness).
+    raw: {
+      version: 2,
+      name: "Syrah",
+      ancestry: "Changeling",
+      level: 1,
+      novicePath: "Magician",
+      attributeSwap: { from: "strength", to: "intellect" },
+      decisions: {
+        "novice[Magician]:1:0:0": { attrs: ["intellect", "will"] },
+        "novice[Magician]:1:2:0": { text: "Magic" },
+        "novice[Magician]:1:3:0": { kind: "discover", tradition: "Rune" },
+        "novice[Magician]:1:3:0:rank0": { spell: "Rune of Prohibition", tradition: "Rune" },
+        "novice[Magician]:1:3:0:cantrip": { spell: "Rune of Invisibility", tradition: "Rune" },
+        "novice[Magician]:1:4:0": { kind: "discover", tradition: "Teleportation" },
+        "novice[Magician]:1:4:0:rank0": { spell: "Blink", tradition: "Teleportation" },
+        "novice[Magician]:1:4:0:cantrip": { spell: "Dismiss", tradition: "Teleportation" },
+        "novice[Magician]:1:4:1": { kind: "discover", tradition: "Time" },
+        "novice[Magician]:1:4:1:rank0": { spell: "Delay", tradition: "Time" },
+        "novice[Magician]:1:4:1:cantrip": { spell: "Consequence", tradition: "Time" },
+        "novice[Magician]:1:4:2": { kind: "discover", tradition: "Fey" },
+        "novice[Magician]:1:4:2:rank0": { spell: "Shrink Object", tradition: "Fey" },
+        "novice[Magician]:1:4:2:cantrip": { spell: "Trip", tradition: "Fey" },
+      },
+      exchanges: [
+        { drop: { name: "Blink", tradition: "Teleportation" }, gain: { name: "Borrowed Time", tradition: "Time" } },
+        { drop: { name: "Trip", tradition: "Fey" }, gain: { name: "Guiding Sprite", tradition: "Fey" } },
+        { drop: { name: "Dismiss", tradition: "Teleportation" }, gain: { name: "Bury the Hatchet", tradition: "Teleportation" } },
+        { drop: { name: "Rune of Invisibility", tradition: "Rune" }, gain: { name: "Time Loop", tradition: "Time" } },
+        { drop: { name: "Time Loop", tradition: "Time" }, gain: { name: "Slow", tradition: "Time" } },
+        { drop: { name: "Slow", tradition: "Time" }, gain: { name: "Bend Space", tradition: "Teleportation" } },
+        { drop: { name: "Bend Space", tradition: "Teleportation" }, gain: { name: "Short Hop", tradition: "Teleportation" } },
+        { drop: { name: "Short Hop", tradition: "Teleportation" }, gain: { name: "Swiftness", tradition: "Time" } },
+      ],
+      inventory: [
+        { id: "2aa66ddc-ff5c-4cf2-91dc-fb0a6f058ced", name: "Dagger or knife", qty: 1, damage: "1d3", hands: "Off", properties: "Finesse, thrown, range (short)", requirement: null, weapon: true },
+        { id: "06bbea84-e1d5-418b-a902-efb14b40f21b", name: "Sling", qty: 1, damage: "1d3", hands: "Off", properties: "Range (medium), uses stones", requirement: null, weapon: true },
+        { id: "d630b9ef-60f7-4da4-a9bb-5a45bc2ee351", name: "Tinderbox", qty: 1 },
+        { id: "00093634-4e03-47b7-ae83-8c953ef819a4", name: "Torch", qty: 1 },
+        { id: "627f5118-b388-4f05-819c-509fbfdd2d84", name: "Torch", qty: 1 },
+      ],
+      coins: "2 copper",
+      notes: "Common and Fey languages\nMade a pact with marlene - boon on all spells, need to sacrifice at least 1 soul per 15 days\n3 corruption\nWriter and lawyer\n18 yo female human\n12 - a druid took me in\nI have terrible nightmares\nI'm a good person\nI'm courageous and conceited.\nI have a tiny floating metal ball",
+    },
+    // 9 spells: her 8 picks (post-exchange) plus the Magician's granted Sense
+    // Magic. The two pending slots are her never-picked level-0 professions.
+    expect: { health: 10, power: 1, defense: 10, intellect: 12, will: 11, spellCount: 9, traditionCount: 4, spellHas: "Swiftness", pending: 2 },
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -252,6 +304,8 @@ function check(name, expect, out) {
   for (const [k, v] of Object.entries(expect)) {
     if (k === "talentHas") {
       if (!out.talents.some((t) => t.name.includes(v))) fails.push(`missing talent ${v}`);
+    } else if (k === "spellHas") {
+      if (!out.spells.some((s) => s.name === v)) fails.push(`missing spell ${v}`);
     } else if (got[k] !== v) {
       fails.push(`${k}: expected ${v}, got ${got[k]}`);
     }
@@ -310,14 +364,22 @@ for (const gc of GEAR_CHECKS) {
 }
 
 for (const spec of SAMPLES) {
-  const { char, out } = resolveAll(spec);
-  const fails = check(spec.base.name, spec.expect, out);
+  const name = spec.base?.name || spec.raw.name;
+  // `raw` specs are real exported characters replayed verbatim rather than
+  // built by the resolver.
+  const { char, out } = spec.raw
+    ? (() => {
+        const char = { ...newCharacter(spec.raw.name), ...structuredClone(spec.raw) };
+        return { char, out: compute(char) };
+      })()
+    : resolveAll(spec);
+  const fails = check(name, spec.expect, out);
   const summary = `health ${out.health} · power ${out.power} · defense ${out.defense} · ${out.spells.length} spells · ${out.discovered.length} traditions · ${out.talents.length} talents`;
   if (fails.length) {
     failed++;
-    console.error(`✗ ${spec.base.name} — ${summary}\n   ${fails.join("\n   ")}`);
+    console.error(`✗ ${name} — ${summary}\n   ${fails.join("\n   ")}`);
   } else {
-    console.log(`✓ ${spec.base.name} — ${summary}`);
+    console.log(`✓ ${name} — ${summary}`);
   }
   delete char.id;
   delete char.log;

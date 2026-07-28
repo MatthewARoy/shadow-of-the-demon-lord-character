@@ -37,6 +37,12 @@ FURNITURE = re.compile(
 # would otherwise bleed into the final spell's description.
 SPELL_PAGE_LIMIT = {"core": 149, "occult": 132, "terrible": 23}
 
+# Terrible Beauty groups spells under Title-Case section headings ("Celestial
+# Spells", "Teleportation Spells", "Other Spells"); each ends the previous
+# section's last spell. Core/Occult use these only outside their spell pages
+# ("Learning Spells" p.112 core, the tradition lists pp.188+ occult).
+SECTION_HEADING = re.compile(r"^(?:[A-Z][a-z’']+ )+Spells$")
+
 # Path-granted spells use the path name as the tradition slot.
 PATH_TRADITIONS = {
     "MAGICIAN", "WITCH", "TENEBRIST", "TEMPLAR", "TECHNOMANCER",
@@ -118,16 +124,12 @@ def parse_book(book):
                     body_lines.pop()
                 break
             # Section boundaries that end the last spell of a block: a new
-            # tradition's intro, a path level entry, a random table, or an
+            # tradition's intro, a path level entry, a random table, a
+            # Title-Case section heading ("Celestial Spells"), or an
             # all-caps heading that is not the next spell's name.
-            # A tradition's section heading reads "<Tradition> Spells", while
-            # tradition_names holds the bare name, so strip the suffix before
-            # testing. Without this the heading bleeds into the previous
-            # spell's description — one defect per tradition boundary.
-            heading = re.sub(r"\s+Spells$", "", nxt)
-            if nxt in tradition_names or heading in tradition_names \
-               or re.match(r"^Level \d+ ", nxt) \
-               or re.match(r"^d\d+$", nxt) or nxt == "Story Development":
+            if nxt in tradition_names or re.match(r"^Level \d+ ", nxt) \
+               or re.match(r"^d\d+$", nxt) or nxt == "Story Development" \
+               or SECTION_HEADING.match(nxt):
                 break
             if re.match(r"^[A-Z][A-Z’'\-, ]+$", nxt) and not FURNITURE.match(nxt):
                 follower = lines[j + 1][1].strip() if j + 1 < n else ""

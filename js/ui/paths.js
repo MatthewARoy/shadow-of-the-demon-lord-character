@@ -1,5 +1,6 @@
-// Paths tab: a searchable browser for the 165 expert & master paths, modeled
-// on the Spells Archive. Every path carries its full per-level benefits —
+// Paths tab: a searchable browser for every path in the game — the four novice
+// (baseline) paths plus the 165 expert & master paths — modeled on the Spells
+// Archive. Every path carries its full per-level benefits —
 // attribute increases, characteristic gains, magic, languages/professions, and
 // talents — so this doubles as a "what do I get if I take this path?" planner.
 //
@@ -11,10 +12,11 @@
 
 import { rules } from "../data.js";
 import { analyzeAllPaths } from "../path-eval.js";
-
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 const BOOKS = { core: "Core Rulebook", occult: "Occult Philosophy", terrible: "Terrible Beauty" };
+const TYPE_LABEL = { novice: "Novice", expert: "Expert", master: "Master" };
+const TYPE_ORDER = { novice: 0, expert: 1, master: 2 };
 
 // flags: mechanical filter chips (advanced view). All active flags must hold.
 const filters = { q: "", type: "", source: "", tradition: "", sort: "", advanced: false, flags: new Set() };
@@ -72,7 +74,7 @@ function levelBlock(level, e) {
   const talents = (e.talents || []).map((t) => `
     <div class="talent">
       <b>${esc(t.name)}</b>
-      <p class="path-talent clamp" title="Click to expand">${esc(t.text)}</p>
+      <p class="path-talent clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(t.text)}</p>
     </div>`).join("");
   return `
     <div class="path-level">
@@ -111,16 +113,16 @@ function pathCard(p) {
     <div class="spell-head">
       <span class="spell-name">${esc(p.name)}</span>
       <span class="spell-tags">
-        <span class="tag rank">${p.type === "expert" ? "Expert" : "Master"}</span>
+        <span class="tag rank">${TYPE_LABEL[p.type] || p.type}</span>
         <span class="tag">${BOOKS[p.source] || p.source}</span>
       </span>
     </div>
     ${focusTags ? `<div class="spell-tags path-focus">${focusTags}</div>` : ""}
     ${filters.advanced ? analysisStrip(p) : ""}
-    <p class="spell-desc clamp" title="Click to expand">${esc(p.description)}</p>
+    <p class="spell-desc clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(p.description)}</p>
     ${levels.map((lvl) => levelBlock(lvl, p.levels[lvl])).join("")}
     <div class="spell-foot">
-      <span class="small dim">${BOOKS[p.source] || p.source} · p.${p.page}</span>
+      <span class="small dim">${BOOKS[p.source] || p.source}${p.page ? ` · p.${p.page}` : ""}</span>
     </div>
   </div>`;
 }
@@ -169,16 +171,18 @@ function focusTraditionNames() {
 }
 
 export function renderPaths(el) {
+  const novice = rules.paths.filter((p) => p.type === "novice").length;
   const expert = rules.paths.filter((p) => p.type === "expert").length;
   const master = rules.paths.filter((p) => p.type === "master").length;
   const trads = focusTraditionNames();
   el.innerHTML = `
     <div class="panel">
-      <h2 class="rubric">The Paths <span class="count">${expert} expert · ${master} master paths</span></h2>
+      <h2 class="rubric">The Paths <span class="count">${novice} novice · ${expert} expert · ${master} master paths</span></h2>
       <div class="filter-bar">
         <input type="text" id="pa-q" placeholder="Search names, descriptions, traditions, and talents…" value="${esc(filters.q)}">
         <select id="pa-type">
-          <option value="">expert &amp; master</option>
+          <option value="">all path types</option>
+          <option value="novice" ${filters.type === "novice" ? "selected" : ""}>Novice (level 1)</option>
           <option value="expert" ${filters.type === "expert" ? "selected" : ""}>Expert (level 3)</option>
           <option value="master" ${filters.type === "master" ? "selected" : ""}>Master (level 7)</option>
         </select>
@@ -243,7 +247,7 @@ function renderResults(el) {
     power: (a, b) => ev(b).agg.power - ev(a).agg.power || ev(b).casterRaw - ev(a).casterRaw || byName(a, b),
     attr: (a, b) => ev(b).agg.attrPicks - ev(a).agg.attrPicks || ev(b).statRaw - ev(a).statRaw || byName(a, b),
     health: (a, b) => ev(b).agg.health - ev(a).agg.health || byName(a, b),
-    type: (a, b) => a.type.localeCompare(b.type) || byName(a, b),
+    type: (a, b) => TYPE_ORDER[a.type] - TYPE_ORDER[b.type] || byName(a, b),
     source: (a, b) => a.source.localeCompare(b.source) || byName(a, b),
   };
   pool = [...pool].sort(sorters[sort] || byName);
@@ -287,6 +291,23 @@ function wire(el) {
       return;
     }
     const clamp = e.target.closest(".spell-desc, .path-talent");
-    if (clamp) clamp.classList.toggle("clamp");
+    if (clamp) toggleClamp(clamp);
   });
+
+  // Keyboard reach for the clamp toggles: Enter/Space expand/collapse, Space
+  // also preventing the page from scrolling.
+  el.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const clamp = e.target.closest(".spell-desc[role='button'], .path-talent[role='button']");
+    if (!clamp) return;
+    e.preventDefault();
+    toggleClamp(clamp);
+  });
+}
+
+// Toggle a clamped block and keep aria-expanded in step (clamped = collapsed =
+// expanded false). Shared by the click and keyboard handlers.
+function toggleClamp(node) {
+  const clamped = node.classList.toggle("clamp");
+  if (node.hasAttribute("role")) node.setAttribute("aria-expanded", clamped ? "false" : "true");
 }

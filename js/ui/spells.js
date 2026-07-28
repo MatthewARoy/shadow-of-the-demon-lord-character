@@ -7,8 +7,7 @@ import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
 import { statBlockHtml } from "./statblock.js";
-
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 // Ranks above 5 effectively never come up in play, so the Archive — and the
 // theorycrafting it feeds (combos, sorting) — only ever considers spells up to
@@ -79,6 +78,7 @@ export function renderSpells(el) {
         <button class="chip ${filters.wishlist ? "on" : ""}" id="sp-wishlist" title="Only spells on your Future Studies list">★ studies</button>
         <button class="chip ${filters.advanced ? "on" : ""}" id="sp-advanced" title="Show the theorycrafting layer: categories, build lens, combos, and per-spell efficiency &amp; AI labels">⚙ advanced</button>
       </div>
+      <p class="filter-summary" id="sp-summary" hidden></p>
       ${filters.advanced ? categoryBar() : ""}
       ${filters.advanced ? buildBar() : ""}
       ${filters.advanced ? comboBar() : ""}
@@ -122,12 +122,46 @@ function learnedPanel(char, computed) {
   </div>`;
 }
 
+// The record of every swap made against this grimoire, as a collapsed
+// disclosure. Consecutive exchanges that form a lineage — the gain of one is
+// the drop of the next, matched on exact name + tradition — fold into one line
+// (A → B → C) whose single "undo last" button pops the most recent link. That
+// most-recent link is the highest array index in the run, so undoing it is the
+// same splice-one-by-index mutation the loose exchanges use: undo semantics are
+// unchanged, only the rendering folds.
 function exchangesList(char) {
-  if (!char.exchanges?.length) return "";
-  return `<div class="chip-row" style="margin-top:12px">
-    ${char.exchanges.map((ex, i) =>
-      `<button class="chip" data-unexchange="${i}" title="Undo this exchange">⇄ ${esc(ex.drop.name)} → ${esc(ex.gain.name)} ✕</button>`).join("")}
-  </div>`;
+  const ex = char.exchanges;
+  if (!ex?.length) return "";
+  const same = (a, b) => a.name === b.name && a.tradition === b.tradition;
+  // Walk the list, greedily extending a chain while each gain feeds the next
+  // drop. Each run remembers its member indices in array order.
+  const runs = [];
+  let cur = [0];
+  for (let i = 1; i < ex.length; i++) {
+    if (same(ex[i - 1].gain, ex[i].drop)) cur.push(i);
+    else { runs.push(cur); cur = [i]; }
+  }
+  runs.push(cur);
+  const lines = runs.map((idxs) => {
+    const first = ex[idxs[0]];
+    const names = [first.drop.name, ...idxs.map((i) => ex[i].gain.name)];
+    const path = names.map((n) => `<span class="lg-node">${esc(n)}</span>`).join('<span class="lg-arrow">→</span>');
+    // "Undo last" removes the most recent link — the highest index in the run.
+    const lastIdx = idxs[idxs.length - 1];
+    const undoTitle = idxs.length > 1
+      ? `Undo the most recent link — forget ${esc(ex[lastIdx].gain.name)}, relearn ${esc(ex[lastIdx].drop.name)}`
+      : `Undo this exchange — forget ${esc(ex[lastIdx].gain.name)}, relearn ${esc(ex[lastIdx].drop.name)}`;
+    const undoLabel = idxs.length > 1 ? "undo last" : "undo";
+    return `<div class="lg-line">
+      <span class="lg-path">${path}</span>
+      <button class="btn btn-small" data-unexchange="${lastIdx}" title="${undoTitle}">${undoLabel}</button>
+    </div>`;
+  }).join("");
+  const n = ex.length;
+  return `<details class="ledger-log" style="margin-top:12px">
+    <summary class="lg-summary">⇄ Exchanged ${n} time${n !== 1 ? "s" : ""}</summary>
+    <div class="lg-lines">${lines}</div>
+  </details>`;
 }
 
 // What stands between you and a wishlisted spell, given your current build.
@@ -360,6 +394,79 @@ function renderResults(el, char, computed) {
   box.innerHTML = shown.map((s) => spellCard(s, { learned: known.has(spellKey(s.name, s.tradition)), char, computed })).join("") ||
     `<p class="empty">Nothing in the archive matches.</p>`;
   more.textContent = pool.length > shown.length ? `Showing ${shown.length} of ${pool.length} — refine the filters to see the rest.` : "";
+  renderFilterSummary(el, pool.length);
+}
+
+// The active-filter chips that appear beneath the filter bar. Each entry is a
+// filter whose current value deviates from its default (the "inactive" value in
+// the `filters` object): a search query, a chosen select value, an engaged
+// toggle, a picked category/lens. `advanced` is a display toggle for the
+// theorycrafting layer, not a result filter, so it is deliberately excluded.
+function activeFilterChips() {
+  const chips = [];
+  const q = filters.q.trim();
+  if (q) chips.push({ key: "q", label: `"${esc(q)}"` });
+  if (filters.tradition) chips.push({ key: "tradition", label: esc(filters.tradition) });
+  if (filters.rank !== "") chips.push({ key: "rank", label: `rank ${esc(filters.rank)}` });
+  if (filters.type) chips.push({ key: "type", label: esc(filters.type) });
+  if (filters.source) {
+    const book = { core: "Core", occult: "Occult Philosophy", terrible: "Terrible Beauty" }[filters.source] || filters.source;
+    chips.push({ key: "source", label: esc(book) });
+  }
+  if (filters.sort) {
+    const order = { rank: "rank ↑", efficiency: "efficiency ↓" }[filters.sort] || filters.sort;
+    chips.push({ key: "sort", label: esc(order) });
+  }
+  if (filters.learnable) chips.push({ key: "learnable", label: "learnable now" });
+  if (filters.wishlist) chips.push({ key: "wishlist", label: "★ studies" });
+  if (filters.role) chips.push({ key: "role", label: esc(lensLabel(filters.role)) });
+  if (filters.archetype) chips.push({ key: "archetype", label: esc(lensLabel(filters.archetype)) });
+  if (filters.tempo) chips.push({ key: "tempo", label: esc(lensLabel(filters.tempo)) });
+  for (const t of filters.tags) chips.push({ key: "tag", value: t, label: esc(tagLabel(t)) });
+  return chips;
+}
+
+// Reset a single filter to its default (its "inactive" value). Category tags
+// are keyed individually via the chip's data-value; everything else clears the
+// named field. Mirrors the defaults declared on the `filters` object.
+function resetFilter(key, value) {
+  switch (key) {
+    case "q": filters.q = ""; break;
+    case "tradition": filters.tradition = ""; break;
+    case "rank": filters.rank = ""; break;
+    case "type": filters.type = ""; break;
+    case "source": filters.source = ""; break;
+    case "sort": filters.sort = ""; break;
+    case "learnable": filters.learnable = false; break;
+    case "wishlist": filters.wishlist = false; break;
+    case "role": filters.role = ""; break;
+    case "archetype": filters.archetype = ""; break;
+    case "tempo": filters.tempo = ""; break;
+    case "tag": filters.tags.delete(value); break;
+  }
+}
+
+// Reset every filter and the search box to defaults in one stroke.
+function clearAllFilters() {
+  filters.q = filters.tradition = filters.rank = filters.type = filters.source = filters.sort = "";
+  filters.role = filters.archetype = filters.tempo = "";
+  filters.learnable = filters.wishlist = false;
+  filters.tags.clear();
+}
+
+function renderFilterSummary(el, count) {
+  const box = el.querySelector("#sp-summary");
+  if (!box) return;
+  const chips = activeFilterChips();
+  if (!chips.length) { box.hidden = true; box.innerHTML = ""; return; }
+  const total = rules.spells.length;
+  const chipHtml = chips.map((c) =>
+    `<button class="chip fs-chip" data-filter-reset="${esc(c.key)}"${c.value != null ? ` data-filter-value="${esc(c.value)}"` : ""} title="Remove this filter">${c.label} ✕</button>`).join("");
+  box.hidden = false;
+  box.innerHTML =
+    `<span class="fs-count">${count.toLocaleString()} of ${total.toLocaleString()} spells</span>` +
+    `<span class="fs-chips">${chipHtml}</span>` +
+    `<button class="fs-clear" data-filter-clear>clear all</button>`;
 }
 
 function legalNowKeys(char, computed) {
@@ -483,7 +590,7 @@ export function spellCard(s, opts = {}) {
     ${filters.advanced ? tagChips(s) : ""}
     ${filters.advanced ? scoreBadge(s) : ""}
     ${filters.advanced ? enrichBlock(s) : ""}
-    <p class="spell-desc clamp" title="Click to expand">${esc(s.description)}</p>
+    <p class="spell-desc clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(s.description)}</p>
     ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
     ${openCreature ? statBlockHtml(openCreature) : ""}
     ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
@@ -577,7 +684,7 @@ function spellModalHtml(s) {
   const lensSec = lens ? `<div class="sm-section"><h4>Build lens</h4>${lens}</div>` : "";
   const src = s.source === "core" ? "Core Rulebook" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty";
   return `
-  <div class="spell-modal-box" role="dialog" aria-modal="true" aria-label="${esc(s.name)} details">
+  <div class="spell-modal-box" role="dialog" aria-modal="true" aria-label="${esc(s.name)} details" tabindex="-1">
     <button class="sm-close" data-modal-close title="Close (Esc)">✕</button>
     <div class="sm-head">
       <span class="spell-name">${esc(s.name)}</span>
@@ -601,6 +708,14 @@ function spellModalHtml(s) {
 }
 
 let modalEl = null;
+let modalReturnFocus = null; // element focused before the modal opened
+
+// The elements the focus trap cycles through, in DOM order.
+const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+function focusablesIn(root) {
+  return [...root.querySelectorAll(FOCUSABLE)].filter((n) => n.offsetParent !== null || n === document.activeElement);
+}
+
 function ensureModal() {
   if (modalEl) return modalEl;
   modalEl = document.createElement("div");
@@ -611,20 +726,45 @@ function ensureModal() {
     if (e.target === modalEl || e.target.closest("[data-modal-close]")) closeSpellModal();
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !modalEl.hidden) closeSpellModal();
+    if (modalEl.hidden) return;
+    if (e.key === "Escape") { closeSpellModal(); return; }
+    if (e.key !== "Tab") return;
+    // Trap Tab/Shift+Tab within the dialog's focusable elements, wrapping.
+    const box = modalEl.querySelector(".spell-modal-box");
+    if (!box) return;
+    const items = focusablesIn(box);
+    if (!items.length) { e.preventDefault(); box.focus(); return; }
+    const first = items[0];
+    const last = items[items.length - 1];
+    const activeInside = box.contains(document.activeElement) ? document.activeElement : null;
+    if (e.shiftKey && (activeInside === first || activeInside === box || !activeInside)) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && (activeInside === last || activeInside === box || !activeInside)) {
+      e.preventDefault(); first.focus();
+    }
   });
   document.body.appendChild(modalEl);
   return modalEl;
 }
 function closeSpellModal() {
-  if (modalEl) modalEl.hidden = true;
+  if (!modalEl || modalEl.hidden) return;
+  modalEl.hidden = true;
+  // Restore focus to whatever opened the modal (the ⓘ button), on every close
+  // path — Esc, ✕, or backdrop click all funnel through here.
+  const back = modalReturnFocus;
+  modalReturnFocus = null;
+  if (back && typeof back.focus === "function") back.focus();
 }
 function openSpellModal(key) {
   const s = rules.spellByKey.get(key);
   if (!s) return;
   const m = ensureModal();
+  // Remember what to return focus to before the dialog steals it.
+  modalReturnFocus = document.activeElement;
   m.innerHTML = spellModalHtml(s);
   m.hidden = false;
+  // Move focus into the dialog so keyboard users land inside it.
+  m.querySelector(".spell-modal-box")?.focus();
 }
 
 // Star toggle: add/remove a spell from the character's Future Studies list.
@@ -639,6 +779,13 @@ function castingsPips(s, opts) {
   const pips = Array.from({ length: opts.castings }, (_, i) =>
     `<span class="cast-pip ${i < used ? "spent" : ""}" data-pip="${esc(key)}" data-i="${i}" title="${i < used ? "Expended — click to restore one casting" : "Click to expend one casting"}"></span>`);
   return `<span class="castings">${pips.join("")}</span>`;
+}
+
+// Toggle a clamped description block and keep aria-expanded in step (clamped =
+// collapsed = expanded false). Shared by click and keyboard handlers.
+function toggleClamp(node) {
+  const clamped = node.classList.toggle("clamp");
+  if (node.hasAttribute("role")) node.setAttribute("aria-expanded", clamped ? "false" : "true");
 }
 
 function wire(el, char, computed) {
@@ -690,6 +837,23 @@ function wire(el, char, computed) {
       el.querySelector("#sp-results")?.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
+    // Filter-summary chips: each removes one active filter; "clear all" resets
+    // every filter and the search box. Full re-render so the filter-bar
+    // controls (selects, toggle chips) resync to the new state.
+    const fsReset = e.target.closest("[data-filter-reset]");
+    if (fsReset) {
+      e.preventDefault();
+      resetFilter(fsReset.dataset.filterReset, fsReset.dataset.filterValue);
+      renderSpells(el);
+      return;
+    }
+    if (e.target.closest("[data-filter-clear]")) {
+      e.preventDefault();
+      clearAllFilters();
+      renderSpells(el);
+      return;
+    }
+
     const tagChip = e.target.closest("[data-tag]");
     if (tagChip) {
       const t = tagChip.dataset.tag;
@@ -729,7 +893,7 @@ function wire(el, char, computed) {
     }
 
     const desc = e.target.closest(".spell-desc");
-    if (desc) { desc.classList.toggle("clamp"); return; }
+    if (desc) { toggleClamp(desc); return; }
 
     const crBtn = e.target.closest("[data-creature]");
     if (crBtn) {
@@ -800,6 +964,16 @@ function wire(el, char, computed) {
       exchangeOpen = null;
       save(); renderSpells(el);
     }
+  });
+
+  // Keyboard reach for the clamp toggle on spell descriptions: Enter/Space
+  // expand/collapse, Space also preventing the page from scrolling.
+  el.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const desc = e.target.closest(".spell-desc[role='button']");
+    if (!desc) return;
+    e.preventDefault();
+    toggleClamp(desc);
   });
 }
 

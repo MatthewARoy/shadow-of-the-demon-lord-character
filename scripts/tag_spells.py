@@ -290,8 +290,9 @@ def rule_tags(spell):
         try:
             if match(desc, spell):
                 out.append(tag)
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"tag rule {tag!r} failed on {spell.get('name')!r}: {e!r}",
+                  file=sys.stderr)
     return out
 
 

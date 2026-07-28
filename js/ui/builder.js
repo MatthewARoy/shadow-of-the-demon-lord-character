@@ -3,8 +3,7 @@
 import { rules, expertPaths, masterPaths } from "../data.js";
 import { compute, legalTraditionsFor, legalSpellsFor, ATTRS, activeDecisionIds } from "../engine.js";
 import { active, save } from "../state.js";
-
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 export function renderBuilder(el) {
   const char = active();

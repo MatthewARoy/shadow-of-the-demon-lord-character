@@ -1,12 +1,12 @@
 // Gear tab: inventory, the armory catalog, encumbrance.
 
 import { rules } from "../data.js";
-import { compute, meetsRequirement } from "../engine.js";
+import { compute, meetsRequirement, armorDefenseBase } from "../engine.js";
 import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+import { esc } from "./util.js";
 
 let catalogTab = "weapons";
 
@@ -15,7 +15,9 @@ export function renderGear(el) {
   if (!char) return;
   const computed = compute(char);
   const str = computed.attributes.strength;
-  const itemCount = char.inventory.reduce((n, it) => n + (it.qty || 1), 0);
+  // Coerce qty to a number — imported JSON can carry a string qty, which would
+  // otherwise string-concatenate here and land raw in the meter's aria-valuenow.
+  const itemCount = char.inventory.reduce((n, it) => n + (Number(it.qty) || 1), 0);
   const encumbered = itemCount > str;
   const overloaded = itemCount > str * 2;
 
@@ -25,6 +27,7 @@ export function renderGear(el) {
       <h2 class="rubric">Possessions
         <span class="count">${itemCount} item${itemCount !== 1 ? "s" : ""} · limit ${str} (Strength)</span>
       </h2>
+      ${encumbranceMeter(itemCount, str, encumbered)}
       ${overloaded ? `<p class="blood small"><b>Overloaded.</b> You cannot carry more than twice your Strength in items.</p>`
         : encumbered ? `<p class="blood small"><b>Encumbered.</b> You are slowed and make Strength/Agility rolls with 1 bane.</p>` : ""}
       ${inventoryTable(char, computed)}
@@ -42,14 +45,14 @@ export function renderGear(el) {
       ${wealthNote()}
     </div>
 
-    <div class="panel">
+    <div class="panel armory">
       <h2 class="rubric">The Armory</h2>
-      <div class="chip-row" style="margin-bottom:12px">
+      <div class="chip-row armory-tabs">
         <button class="chip ${catalogTab === "weapons" ? "on" : ""}" data-cat="weapons">Weapons</button>
         <button class="chip ${catalogTab === "armor" ? "on" : ""}" data-cat="armor">Armor</button>
         <button class="chip ${catalogTab === "gear" ? "on" : ""}" data-cat="gear">Gear</button>
       </div>
-      <div id="g-catalog">${catalogTable(catalogTab)}</div>
+      <div id="g-catalog" class="armory-list">${catalogTable(catalogTab)}</div>
     </div>
   </div>`;
 
@@ -58,30 +61,90 @@ export function renderGear(el) {
 
 function inventoryTable(char, computed) {
   if (!char.inventory.length) return `<p class="empty">Nothing but lint and regret.</p>`;
-  const str = computed.attributes.strength;
   return `
   <table class="ledger">
-    <thead><tr><th></th><th>Item</th><th>Qty</th><th>Notes</th><th></th></tr></thead>
+    <thead><tr><th class="th-equip">Equipped</th><th>Item</th><th>Qty</th><th>Notes</th><th></th></tr></thead>
     <tbody>
       ${char.inventory.map((it) => {
         const reqWarn = it.requirement ? requirementUnmet(it.requirement, computed) : null;
         return `
         <tr>
-          <td><input type="checkbox" data-equip="${it.id}" ${it.equipped ? "checked" : ""} title="Equipped"></td>
+          <td>
+            <label class="equip-toggle">
+              <input type="checkbox" data-equip="${esc(it.id)}" ${it.equipped ? "checked" : ""} title="Equipped">
+              <span>${it.equipped ? "worn" : "stowed"}</span>
+            </label>
+          </td>
           <td>
             <span class="parch">${esc(it.name)}</span>
-            ${it.damage ? `<button class="btn btn-small" data-weapon-roll="${it.id}" title="Attack roll, then damage">⚔ ${esc(it.damage)}</button>` : ""}
+            ${it.damage ? `<button class="btn btn-small" data-weapon-roll="${esc(it.id)}" title="Attack roll, then damage">⚔ ${esc(it.damage)}</button>` : ""}
             ${it.defense ? `<span class="small dim"> · Defense ${esc(it.defense)}</span>` : ""}
+            ${equipEffect(it, computed)}
             ${reqWarn ? `<div class="warn">requires ${esc(it.requirement)} — ${reqWarn}</div>` : ""}
             ${it.properties ? `<div class="small dim">${esc(it.properties)}</div>` : ""}
           </td>
-          <td><input type="number" value="${it.qty || 1}" min="1" style="width:58px" data-qty="${it.id}"></td>
-          <td><input type="text" value="${esc(it.notes || "")}" data-notes="${it.id}" style="width:100%"></td>
-          <td><button class="btn btn-small btn-danger" data-drop="${it.id}">✕</button></td>
+          <td><input type="number" value="${esc(it.qty || 1)}" min="1" style="width:58px" data-qty="${esc(it.id)}"></td>
+          <td><input type="text" value="${esc(it.notes || "")}" data-notes="${esc(it.id)}" style="width:100%"></td>
+          <td><button class="btn btn-small btn-danger" data-drop="${esc(it.id)}">✕</button></td>
         </tr>`;
       }).join("")}
     </tbody>
   </table>`;
+}
+
+// The consequence of equipping an item, spelled out — derived from the same
+// fields the engine's applyEquippedGear reads (parsed defense, the Defensive
+// property, and the Strength requirement / Speed penalty), so the wording
+// never drifts from the numbers on the Overview.
+function equipEffect(it, computed) {
+  const lines = [];
+  const agi = computed.attributes.agility;
+
+  // Armor: parsed defense value drives Defense; heavy armor and unmet
+  // requirements each cost Speed −2 (see applyEquippedGear). The engine only
+  // touches Speed inside this armor guard, so the Speed −2 line must live here
+  // too — a weapon/shield with an unmet requirement gets no Speed penalty.
+  if (it.defense != null && it.defense !== "") {
+    const m = String(it.defense).trim().match(/^agility\s*(?:\+\s*(\d+))?$/i);
+    if (m) {
+      const n = m[1] ? parseInt(m[1], 10) : 0;
+      lines.push(esc(n ? `Defense = Agility + ${n}` : "Defense = Agility"));
+    } else {
+      const base = armorDefenseBase(it.defense, agi);
+      if (base != null) lines.push(esc(`Defense ${base} — replaces Agility`));
+    }
+    const type = it.type || rules.equipment.armor.find((a) => a.name === it.name)?.type || "";
+    if (/heavy/i.test(type)) lines.push(esc("Speed −2 — heavy armor"));
+    if (it.requirement && !meetsRequirement(it.requirement, computed.attributes)) {
+      lines.push(esc(`Speed −2 — ${it.requirement} required`));
+    }
+  }
+
+  // Weapons/shields with the Defensive property add to Defense on top.
+  const def = String(it.properties || "").match(/defensive\s*\+\s*(\d+)/i);
+  if (def) lines.push(esc(`Defense +${parseInt(def[1], 10)}`));
+
+  if (!lines.length) return "";
+  // Stowed items preview their dormant effect dimmed; the worn/stowed word
+  // already lives on the equip toggle, so we don't repeat it here.
+  const cls = it.equipped ? "equip-effect" : "equip-effect stowed";
+  return `<div class="${cls}">${lines.join(" · ")}</div>`;
+}
+
+function encumbranceMeter(count, limit, encumbered) {
+  const max = Math.max(1, limit);
+  const pct = Math.min(100, (count / max) * 100);
+  const over = count > limit;
+  // role="meter" forbids aria-valuenow > aria-valuemax, so clamp it and expose
+  // the true count via aria-valuetext.
+  const now = Math.min(count, max);
+  return `
+  <div class="enc-meter ${over ? "over" : encumbered ? "warn-fill" : ""}"
+       role="meter" aria-valuemin="0" aria-valuemax="${max}" aria-valuenow="${now}"
+       aria-valuetext="${count} of ${max} item${count !== 1 ? "s" : ""}"
+       aria-label="Items carried against Strength limit">
+    <div class="enc-fill" style="width:${pct}%"></div>
+  </div>`;
 }
 
 function requirementUnmet(req, computed) {
@@ -204,7 +267,8 @@ function wire(el, char, computed) {
     const equip = e.target.closest("[data-equip]");
     if (equip) {
       const it = char.inventory.find((x) => x.id === equip.dataset.equip);
-      if (it) { it.equipped = equip.checked; save(); }
+      // Re-render so the effect line and worn/stowed label track the toggle.
+      if (it) { it.equipped = equip.checked; save(); renderGear(el); }
       return;
     }
     const qty = e.target.closest("[data-qty]");
