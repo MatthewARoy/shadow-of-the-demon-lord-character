@@ -1,0 +1,114 @@
+"""Assertions against the committed data/creatures.json.
+
+Reads generated JSON only — no PDFs, no scripts/cache — so this runs in a
+fresh clone where scripts/parse_creatures.py cannot.
+
+Nothing closed the last stat block of a chapter: no name, no DIFFICULTY, no
+prose header follows it. The wyvern absorbed the whole Paths of Magic
+chapter intro on occult p.146, and the veteran picked up the first line of
+the wrapped "Customizing / Creatures" sidebar heading.
+
+A failure here means a defect returned. Fix the parser; do not weaken the
+assertion.
+"""
+import json
+import os
+import re
+import unittest
+
+HERE = os.path.dirname(__file__)
+DATA = os.path.join(HERE, "..", "..", "data")
+
+RUNNING_HEADS = [
+    "Novice Paths", "Expert Paths", "Master Paths", "Paths of Magic",
+    "Paths of Skill", "Character Creation", "Playing the Game",
+    "Traditions and Spells", "Story Development",
+]
+HEAD_RE = re.compile(r"(?i)(?<!see )\b(" + "|".join(RUNNING_HEADS) + r")\b")
+
+LIST_FIELDS = ("traits", "attack_options", "special_attacks",
+               "special_actions", "end_of_round", "magic")
+
+
+def load(name):
+    with open(os.path.join(DATA, name)) as f:
+        return json.load(f)
+
+
+def texts(creatures):
+    for c in creatures:
+        for field in LIST_FIELDS:
+            for i, item in enumerate(c.get(field) or []):
+                yield f"{c['name']} ({field}[{i}])", item
+
+
+class TestCreaturesInvariants(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.creatures = load("creatures.json")
+
+    def test_no_chapter_bleed_in_stat_blocks(self):
+        bad = [label for label, text in texts(self.creatures)
+               if HEAD_RE.search(text)]
+        self.assertEqual(bad, [], f"chapter bleed in stat blocks: {bad}")
+
+    def test_no_entry_has_run_away(self):
+        """An unterminated block absorbs the rest of the chapter.
+
+        The wyvern's Instinctive Sting reached 2,128 characters this way.
+        The ceiling is 1,500 rather than something tighter because four
+        entries (Fury, Harpy, Specter, Grim Reaper at 1,307) legitimately
+        sit between 900 and 1,400 — those are consecutive traits that
+        new_item_start merged into one string, a different defect that
+        predates this guard and does not involve chapter bleed.
+        """
+        long = [f"{label} ({len(text)} chars)"
+                for label, text in texts(self.creatures) if len(text) > 1500]
+        self.assertEqual(long, [], f"stat-block entries that ran away: {long}")
+
+    def test_no_wrapped_sidebar_heading_glued_on(self):
+        """"Customizing" was the first line of a two-line sidebar heading."""
+        bad = [label for label, text in texts(self.creatures)
+               if re.search(r"\b(Customizing|Creating|Adjusting)$", text.strip())]
+        self.assertEqual(bad, [], f"sidebar heading glued on: {bad}")
+
+    def test_the_last_creature_of_each_book_is_bounded(self):
+        """These are the two the chapter end could not close."""
+        by_name = {(c["book"], c["name"]): c for c in self.creatures}
+        wyvern = by_name[("occult", "Wyvern")]
+        sting = [s for s in wyvern["special_attacks"]
+                 if s.startswith("Instinctive Sting")]
+        self.assertTrue(sting, "wyvern lost Instinctive Sting")
+        self.assertTrue(
+            sting[0].rstrip().endswith("attack with its stinger."),
+            f"wyvern runs on: ...{sting[0][-90:]!r}",
+        )
+        veteran = by_name[("core", "Veteran")]
+        self.assertEqual(
+            veteran["attack_options"],
+            ["Sword (melee) +2 with 1 boon (2d6 + 2)",
+             "Longbow (long range) +0 with 1 boon (2d6 + 1)"],
+        )
+
+    def test_corpus_has_not_shrunk(self):
+        self.assertEqual(len(self.creatures), 155)
+        by_book = {}
+        for c in self.creatures:
+            by_book[c["book"]] = by_book.get(c["book"], 0) + 1
+        self.assertEqual(by_book, {"core": 127, "occult": 28})
+
+    def test_every_creature_has_its_stat_header(self):
+        """A page limit that fires early would truncate a block's header.
+
+        defense_line and attributes are not checked: Animated Corpse is a
+        template block that leads with prose instead of a stat line and has
+        neither, which predates this guard.
+        """
+        for c in self.creatures:
+            for field in ("difficulty", "descriptor", "speed"):
+                self.assertTrue(c.get(field),
+                                f"{c['name']} is missing {field}")
+
+
+if __name__ == "__main__":
+    unittest.main()

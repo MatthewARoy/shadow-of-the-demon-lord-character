@@ -3075,7 +3075,7 @@
   "traits": [],
   "attack_options": [
    "Sword (melee) +2 with 1 boon (2d6 + 2)",
-   "Longbow (long range) +0 with 1 boon (2d6 + 1) Customizing"
+   "Longbow (long range) +0 with 1 boon (2d6 + 1)"
   ],
   "special_attacks": [],
   "special_actions": [],
@@ -3810,7 +3810,7 @@
   ],
   "special_attacks": [
    "Bite and Claw The wyvern attacks with its teeth and its claws.",
-   "Instinctive Sting When a creature the wyvern can reach uses an action, the wyvern can use a triggered action to attack with its stinger. As you complete adventures and your group level increases, you have opportunities to choose paths. At level 1, you choose a novice path, which defines your most basic capabilities, your most essential techniques for overcoming adversity and lending aid to your companions. When your group advances to level 3, you choose an expert path, which describes how your character fits into the wider world. Your expert path might build on the talents and spells you gained from your novice path, or it could take you in an entirely different direction. Finally, when your group reaches level 7, you choose a master path to define the area in which you hope to attain mastery. Each time you choose a path, you might make your choice based on what has transpired in the campaign so far, to reflect an ultimate goal, or for some other reason. Generally, paths have no requirements, so you are free to mix and match whatever paths you like. If you began as a warrior, you might pick up a grimoire and become a wizard. Or, if you began as a magician, you could take the cloth and fight for your god as a cleric. Shadow of the Demon Lord includes a wide selection of novice, expert, and master paths to help you build the character you envision in your mind. Other supplements expand on these choices, offering new directions for character development, especially in response to the expansion of game concepts and story. This chapter goes even further by presenting a selection of new expert paths, master paths, and a brief discussion of continuing the campaign beyond level 10. Because this book concerns itself with magic, so too do the paths included here. Most paths explore different avenues to magical expertise and mastery, often associated with one or more traditions. Although magicians, priests, and magic-using rogues might benefit most from the options included here, there’s no reason why warriors could not diversify their capabilities by choosing one of these paths as well. Paths of Magic"
+   "Instinctive Sting When a creature the wyvern can reach uses an action, the wyvern can use a triggered action to attack with its stinger."
   ],
   "special_actions": [],
   "end_of_round": [],

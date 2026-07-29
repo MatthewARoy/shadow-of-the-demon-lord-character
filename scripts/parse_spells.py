@@ -43,6 +43,20 @@ SPELL_PAGE_LIMIT = {"core": 149, "occult": 132, "terrible": 23}
 # ("Learning Spells" p.112 core, the tradition lists pp.188+ occult).
 SECTION_HEADING = re.compile(r"^(?:[A-Z][a-z’']+ )+Spells$")
 
+# Path-granted spells are printed inside a path's entry in the paths chapters,
+# so SPELL_PAGE_LIMIT cannot bound them — the limit sits far past those pages.
+# What bounds them is the running head: once the body reaches a page headed by
+# a paths chapter, it has walked out of the spell and into the next path entry.
+# Without this, spellbound weapon (core p.73) ran on through the head, the
+# name "Thief", and the whole thief intro on p.74.
+PATH_CHAPTER_HEADS = {"novice paths", "expert paths", "master paths",
+                      "paths of magic", "paths of skill"}
+
+# The same sidebar title parse_paths stops on. The bare "Story Development"
+# below is the column header two lines further down; this is the title above
+# it, carrying the path's name because the running head shares its line.
+STORY_DEVELOPMENT_TITLE = re.compile(r"^[\w’'\- ]{1,30} Story Development$")
+
 # Path-granted spells use the path name as the tradition slot.
 PATH_TRADITIONS = {
     "MAGICIAN", "WITCH", "TENEBRIST", "TEMPLAR", "TECHNOMANCER",
@@ -129,7 +143,9 @@ def parse_book(book):
             # all-caps heading that is not the next spell's name.
             if nxt in tradition_names or re.match(r"^Level \d+ ", nxt) \
                or re.match(r"^d\d+$", nxt) or nxt == "Story Development" \
-               or SECTION_HEADING.match(nxt):
+               or SECTION_HEADING.match(nxt) \
+               or nxt.lower() in PATH_CHAPTER_HEADS \
+               or STORY_DEVELOPMENT_TITLE.match(nxt):
                 break
             if re.match(r"^[A-Z][A-Z’'\-, ]+$", nxt) and not FURNITURE.match(nxt):
                 follower = lines[j + 1][1].strip() if j + 1 < n else ""

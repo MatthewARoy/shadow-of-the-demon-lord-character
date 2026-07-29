@@ -1,6 +1,5 @@
 {
  "accepted": [
-  "creatures.json|bleed|499f705e7a27",
   "curated.json|bleed|d26361e27913",
   "rules-index.json|bleed|2bc7fce04196",
   "rules-index.json|bleed|34c24d67c605",
@@ -12,7 +11,6 @@
   "rules-index.json|dice_table|43a8501b1b9b",
   "rules-index.json|dice_table|5e0ac07fcd2d",
   "rules-index.json|dice_table|b57c8223bdfe",
-  "spells.json|bleed|2f0cf0320fe5",
   "traditions.json|bleed|68cd5831cb71"
  ]
 }

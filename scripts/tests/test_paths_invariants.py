@@ -101,6 +101,37 @@ class TestPathsInvariants(unittest.TestCase):
                 "8 hours for a rank 4 or higher spell.",
             ("Thief", "9", "Trap Sense"):
                 "you make the challenge roll with 1 boon.",
+            # Ended on the "Brewmaster Potions" sidebar, and absorbed the
+            # whole potion list plus the blizzard mage's intro behind it.
+            ("Brewmaster", "9", "Strengthen Potion"):
+                "another dose of Brewmaster’s Admixture.",
+            # Ended on the "Fighter Talents" sidebar title, which heads the
+            # seven talents below and so must be dropped without ending the
+            # block — see test_sidebar_talents_are_kept.
+            ("Fighter", "9", "Weapon Mastery"):
+                "even if it is 9 or less.",
+            # Ended on the all-caps header of the path-granted witch fire
+            # spell, whose text belongs to spells.json.
+            ("Witch", "3", "Witch Fire"):
+                "which is described below.",
+            ("Inquisitor", "10", "Inquisitor’s Judgment"):
+                "subject to your scrutiny deal 1d6 extra damage.",
+            # Each ended on the all-caps header of the path-granted spell
+            # printed directly below it.
+            ("Necromancer", "7", "Command Undead"):
+                "which is described below.",
+            ("Templar", "7", "Temple of Faith"):
+                "which is described below.",
+            ("Tenebrist", "10", "Shadow Form"):
+                "which is described below.",
+            ("Technomancer", "10", "Animate Object"):
+                "which is described below.",
+            ("Exorcist", "7", "Exorcist Magic"):
+                "which is described below.",
+            ("Spellbinder", "9", "Magic Weapon"):
+                "your attack deals 1d6 extra damage.",
+            ("Keeper of the Flame", "7", "Inured to Fire"):
+                "to resist attacks using fire with 1 boon.",
         }
         for (path, level, talent), tail in expected.items():
             found = [p for p in self.paths if p["name"] == path]
@@ -114,15 +145,67 @@ class TestPathsInvariants(unittest.TestCase):
                 f"...{match[0]['text'][-70:]!r}",
             )
 
+    def test_sidebar_talents_are_kept(self):
+        """"Fighter Talents" heads real talents, so it must not end the block.
+
+        Treating it as a boundary — as every other path-named sidebar is
+        treated — silently cost these seven.
+        """
+        fighter = [p for p in self.paths if p["name"] == "Fighter"][0]
+        names = [t["name"] for t in fighter["levels"]["9"]["talents"]]
+        for talent in ("Fight with Two Weapons", "Haft Attack",
+                       "Powerful Attack", "Precise Attack", "Shield Bash",
+                       "Swift Reload", "Swift Shot"):
+            self.assertIn(talent, names)
+
+    def test_no_spell_debris_parsed_as_a_talent(self):
+        """Path-granted spells are printed inside the path entry.
+
+        Eight of them leaked into the talent that grants them, and their
+        own field lines became talents: "Attack" from a "Roll 20+" line,
+        "Area" from temple of faith's area. Spell text belongs to
+        spells.json, which parses these same blocks properly.
+        """
+        # The labelled fields of a spell, which are never talent names.
+        SPELL_FIELDS = {"Attack", "Utility", "Area", "Target", "Duration",
+                        "Requirement", "Prerequisite"}
+        bad = [f"{p['name']} L{level} {t['name']}"
+               for p in self.paths
+               for level, entry in p["levels"].items()
+               for t in entry.get("talents", [])
+               if t["name"] in SPELL_FIELDS
+               or re.match(r"^Roll \d+\+", t["text"])
+               or re.search(r"\b(ATTACK|UTILITY)\s+\d", t["text"])]
+        self.assertEqual(bad, [], f"spell debris parsed as talents: {bad}")
+
     def test_corpus_has_not_shrunk(self):
-        """A stop heading firing too early drops paths or empties blocks."""
+        """A stop heading firing too early drops paths or empties blocks.
+
+        545, not the original 550: five spell fields that had been parsed as
+        talents are gone — three "Attack" lines, temple of faith's "Area",
+        and spellbound weapon's "Sacrifice", which spells.json carries.
+        Lower this only alongside proof that what vanished was never a talent.
+        """
         by_type = {"expert": 0, "master": 0}
         for p in self.paths:
             by_type[p["type"]] += 1
         self.assertEqual(by_type, {"expert": 42, "master": 123})
         total = sum(len(e.get("talents", []))
                     for p in self.paths for e in p["levels"].values())
-        self.assertGreaterEqual(total, 550, "talents were lost")
+        self.assertGreaterEqual(total, 545, "talents were lost")
+
+    def test_no_talent_has_run_away(self):
+        """An unterminated block absorbs the rest of the chapter.
+
+        Strengthen Potion reached 6,084 characters by swallowing the
+        brewmaster potion list; the longest real talent is under 1,400.
+        """
+        long = [(len(t["text"]), f"{p['name']} L{level} {t['name']}")
+                for p in self.paths
+                for level, entry in p["levels"].items()
+                for t in entry.get("talents", [])
+                if len(t["text"]) > 2000]
+        self.assertEqual(long, [], f"talents that ran away: {long}")
 
     def test_every_path_has_its_required_levels(self):
         for p in self.paths:

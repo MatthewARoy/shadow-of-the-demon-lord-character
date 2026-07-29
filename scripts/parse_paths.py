@@ -138,14 +138,56 @@ STOP_HEADINGS = {"Legendary Path", "Story Development", "Roll a d6", "Personalit
 STORY_DEVELOPMENT_TITLE = re.compile(r"^[\w’'\- ]{1,30} Story Development$")
 
 
-def is_stop_heading(s):
+# A sidebar belonging to a path is titled with that path's own name:
+# "Brewmaster Potions" over a potion list, "WITCH FIRE" over a path-granted
+# spell, "Assassin Story Development" over a d6 table. The title is a whole
+# short line with no body text after it, so it cannot be confused with a
+# talent, whose name is followed on the same line by its rules
+# ("Brewmaster’s Admixture You can use an action...").
+PATH_SIDEBAR_TITLE = re.compile(r"^[A-Z][\w’'\-]*( [A-Z][\w’'\-]*){1,3}$")
+
+# A path-granted spell is printed inside the path's entry as its own block:
+# an all-caps name line, then the tradition/type/rank header parse_spells
+# keys on ("COMMAND UNDEAD" / "NECROMANCER ATTACK 1"). Everything below that
+# is spell text, and belongs to spells.json. Letting it run on appended the
+# spell body to the talent that grants it and turned the spell's attack-roll
+# line into a talent named "Attack".
+SPELL_NAME = re.compile(r"^[A-Z][A-Z0-9’'\-, ]*$")
+SPELL_HEADER = re.compile(r"^[A-Z][A-Z’'\- ]*?\s+(ATTACK|UTILITY)\s+\d+\s*$")
+
+# The one path sidebar whose contents belong to the block that opened it:
+# core prints the fighter's level-9 talent list under "Fighter Talents".
+# Stopping there costs seven real talents, so it is not a boundary.
+SIDEBAR_HOLDS_TALENTS = re.compile(r"(?i) Talents$")
+
+
+def is_path_sidebar_title(s, path_name):
+    """True for a sidebar heading titled with this path's own name."""
+    return (len(s) <= 40
+            and s.lower().startswith(path_name.lower() + " ")
+            and bool(PATH_SIDEBAR_TITLE.match(s)))
+
+
+def is_stop_heading(s, path_name=""):
     """True for the headings that close whatever level block is open."""
     return (s in STOP_HEADINGS
             or s.lower() in SECTION_HEADS_LOWER
-            or bool(STORY_DEVELOPMENT_TITLE.match(s)))
+            or bool(STORY_DEVELOPMENT_TITLE.match(s))
+            or (bool(path_name) and is_path_sidebar_title(s, path_name)
+                and not SIDEBAR_HOLDS_TALENTS.search(s)))
 
 # Last PDF page of path content per book; the next chapter follows.
 PATH_PAGE_LIMIT = {"core": 99, "occult": 9999, "terrible": 9999}
+
+
+def starts_spell_block(lines, j, limit):
+    """True when the next non-blank line is a spell's tradition/rank header."""
+    while j < limit:
+        s = lines[j][1].strip()
+        if s:
+            return bool(SPELL_HEADER.match(s))
+        j += 1
+    return False
 
 
 def block_end(lines, start, headers, h_idx, path_names, book):
@@ -154,13 +196,19 @@ def block_end(lines, start, headers, h_idx, path_names, book):
     nxt = headers[h_idx + 1][0] if h_idx + 1 < len(headers) else len(lines)
     start_page = lines[start][0]
     limit = min(start_page + 1, PATH_PAGE_LIMIT[book])
+    name = headers[h_idx][2]
+    # Compared case-insensitively: Occult Philosophy prints the blizzard mage's
+    # name as "Blizzard MAge", and an exact match walked straight past it.
+    names_lower = {n.lower() for n in path_names}
     for j in range(start + 1, nxt):
         if lines[j][0] > limit:
             return j
         s = lines[j][1].strip()
-        if re.match(r"^d\d+$", s) or is_stop_heading(s):
+        if re.match(r"^d\d+$", s) or is_stop_heading(s, name):
             return j
-        if s in path_names and j > start + 1:
+        if SPELL_NAME.match(s) and starts_spell_block(lines, j + 1, nxt):
+            return j
+        if s.lower() in names_lower and j > start + 1:
             return j
     return nxt
 
@@ -179,7 +227,7 @@ def drop_clipped_duplicates(block_lines):
     return out
 
 
-def parse_block(lines, start, end, book):
+def parse_block(lines, start, end, book, path_name=""):
     """Split a level block into labelled fields and talents."""
     fields = {}
     talents = []
@@ -189,6 +237,11 @@ def parse_block(lines, start, end, book):
         block_lines = drop_clipped_duplicates(block_lines)
     for line in block_lines:
         if not line:
+            continue
+        # "Fighter Talents" heads the talents that follow, so it does not end
+        # the block — but it is still a heading, and left in place it glued
+        # itself to the end of Weapon Mastery.
+        if path_name and is_path_sidebar_title(line, path_name):
             continue
         matched_field = None
         for f in FIELDS:
@@ -372,7 +425,7 @@ def parse_book(book):
     paths = OrderedDict()
     for h_idx, (i, level, name) in enumerate(headers):
         end = block_end(lines, i, headers, h_idx, path_names, book)
-        fields, talents = parse_block(lines, i, end, book)
+        fields, talents = parse_block(lines, i, end, book, name)
         key = name.lower()
         if key not in paths:
             paths[key] = OrderedDict(

@@ -570,7 +570,7 @@
      },
      {
       "name": "Strengthen Potion",
-      "text": "If you do not know the identify substance Alchemy spell, you learn it. You can use an action to expend the casting of this spell to create another dose of Brewmaster’s Admixture. Brewmaster Potions Brewmasters have invented several potions. They rigorously guard the secrets of their manufacture from outsiders and never, under any circumstances, sell these potions to other alchemists who do not belong to their cabal. The following potions represent the most common ones known to brewmasters, but the GM might make others available. Brewmaster potions count as exotic items, typically sell for 1 gc per dose, and use the normal rules for potions (Shadow, page 108). Amazing Tonic Reeking of spoiled fish, amazing tonic has a thin, oily consistency. When it is consumed, the drinker must get a success on a Strength challenge roll or vomit the potion up with no additional effect. If the creature can hold down the dose, the potion immediately removes the diseased and poisoned afflictions from the creature and renders the creature immune to damage from disease or poison, as well as to the diseased and poisoned afflictions, until the creature completes a rest. Bracing Toddy This strong black concoction smelling of cloves causes the drinker, when the potion takes effect, to turn bright red and emanate heat from its body in a 1-yard radius for 1d6 hours. Until the effect ends, the creature is immune to damage from cold and is in no way discomfited by cold temperatures. In addition, at the end of each round, any other creature within 1 yard of the affected creature must succeed on a Strength challenge roll or take 1d6 damage from the strong heat. Brewmaster’s Bubbly A straw-yellow effervescent fluid, brewmaster’s bubbly has a strong, yeasty smell. When the potion takes effect, bubbles of lighter-than-air gas fill the affected creature’s body, causing it to rise 1d3 yards straight up into the air immediately and ascend an additional 1d3 yards at the end of each round for 1d6 minutes. The creature can end the effect by releasing the gas in a profound belch, which counts as a minor activity. Once the gas is released, the creature falls. An affected creature that can reach a surface can pull itself along that surface as if crawling. In addition, wind might move a floating creature. Otherwise, unless the creature can fly, it cannot move itself horizontally while affected by this potion. Caecras Cocktail Anyone who consumes this cocktail, made primarily from pure grain alcohol, becomes impaired for 1d6 + 1 hours. If the drinker is already impaired, it instead falls prone and becomes unconscious for the duration. The fluid is extremely flammable and is often used as an explosive. As a minor action, a creature can stuff a rag into a container that holds the potion and light it, assuming the creature has ready access to fire. The creature can then use an action to throw the flaming bottle to a point on a solid surface within medium range. When the bottle hits that point or encounters a solid surface before then, it explodes, covering everything within 5 yards with flaming liquid. All flammable objects take 2d6 damage and catch fire. Each creature in the area must make an Agility challenge roll with 1 bane. A creature takes 2d6 damage and catches fire on a failure, or just takes half the damage on a success. A creature that catches fire takes 1d6 damage at the end of each round until it or another creature uses an action to douse the flames. The fire burns in the area for 1d6 + 1 rounds, and smoke fills and heavily obscures a 5-yard-radius, 20-yard-tall cylinder centered on the point of impact until the flames are extinguished. Rumblebelly Juice This concoction is bright green and stinks of licorice. When the potion takes effect, the creature’s belly bloats, filling with foul gas that lasts for 1d6 minutes. An affected creature can use an action, or a triggered action on its turn, though no more than once per round, to belch a stream of noxious gas into a 5-yard cone originating from a point in the creature’s space. Each living creature in the area of gas must succeed on a Strength challenge roll with 1 bane or take 1d6 damage from the poisonous fumes and become poisoned for 1 round. A creature already poisoned instead takes 1d6 extra damage. Tongue Loosener This bluish potion has a strong alcohol taste. When the potion takes effect, the creature becomes impaired for 1d6 + 1 hours. While impaired in this way, the creature makes attack rolls in social situations with 3 boons and ignores the bane from being impaired. XXX Liquid Courage A thick, black malted brew, XXX Liquid Courage removes misgivings and doubts for 1d6 + 1 hours from anyone who consumes it. Until the effect ends, the affected creature is impaired, but it cannot be charmed, compelled, or frightened. In addition, the affected creature does not become frightened as a result of gaining Insanity. Blizzard MAge The secrets of elemental magic come from the genies, those crazed and unpredictable entities found haunting the most desolate lands in the world. That knowledge has been passed down through the generations, subtly altered to suit the needs of the magic-users who learn the art. Sometimes, this haphazard learning produces entirely new strains of magic, often resulting from combining elements from two or more traditions. Blizzard mages, for example, have discovered how to merge the magic of Air and Water into an entirely new discipline, giving them power over cold and ice. Many blizzard mages come from the ranks of other elemental casters, their specialty reflecting a new branch of study. Others might be devotees of Old Man Winter who have striven to master the forces their patron deity represents in order to better serve his interests in the world. And there are those who stumble onto the art, perhaps having uncovered the techniques from a relic they have found or a fortunate mishap resulting from a miscast spell. Whatever the source of their power, they prove to be deadly combatants, with the full might of winter in their arsenals."
+      "text": "If you do not know the identify substance Alchemy spell, you learn it. You can use an action to expend the casting of this spell to create another dose of Brewmaster’s Admixture."
      }
     ]
    }
@@ -1170,7 +1170,7 @@
      },
      {
       "name": "Weapon Mastery",
-      "text": "When you make an attack roll with a weapon and the number on the d20 is 9 or less, you can reroll the d20. You must use the second number rolled, even if it is 9 or less. Fighter Talents"
+      "text": "When you make an attack roll with a weapon and the number on the d20 is 9 or less, you can reroll the d20. You must use the second number rolled, even if it is 9 or less."
      },
      {
       "name": "Fight with Two Weapons",
@@ -2813,11 +2813,7 @@
     "talents": [
      {
       "name": "Magic Weapon",
-      "text": "When you attack with the target weapon of your spellbound weapon spell, you make the attack roll with 1 boon and your attack deals 1d6 extra damage. SPELLBOUND WEAPON SPELLBINDER UTILITY 0 You touch one weapon you can reach and imbue it with magical power that lasts for 4 hours. Until the spell ends, you gain the following benefits with the target weapon. \n• The weapon counts as your implement. \n• The weapon grants you 1 boon on attack rolls you make with it. \n• If the weapon is within 1 mile of you, you can use an action to teleport it to your hand or to your feet if your hands are full. \n• You can use an action to touch the target weapon and remove all damage from it, even if the weapon is destroyed, provided you have at least a fragment of it."
-     },
-     {
-      "name": "Sacrifice",
-      "text": "You can use a triggered action to expend a casting of this spell. Until the end of the round, your attacks with the weapon deal extra damage equal to your Power."
+      "text": "When you attack with the target weapon of your spellbound weapon spell, you make the attack roll with 1 boon and your attack deals 1d6 extra damage."
      }
     ]
    }
@@ -3544,11 +3540,7 @@
      },
      {
       "name": "Witch Fire",
-      "text": "You learn the witch fire spell, which is described below. WITCH FIRE WITCH ATTACK 1 Duration Concentration, up to 1 minute For the duration, you become invisible and a ball of green fire appears centered on a point you can reach. When the effect ends, you teleport to an open space of your choice within 1 yard of the fiery ball. When you cast this spell, and again each time you use an action to concentrate on it, you can move the fiery ball up to 10 yards and attack one creature within 1 yard of it. Make an Intellect or Will attack roll against the target’s Agility. On a success, the target takes 2d6 damage."
-     },
-     {
-      "name": "Attack",
-      "text": "Roll 20+ The target takes 1d6 extra damage."
+      "text": "You learn the witch fire spell, which is described below."
      }
     ]
    },
@@ -6334,11 +6326,7 @@
     "talents": [
      {
       "name": "Exorcist Magic",
-      "text": "You learn the exorcism spell, which is described below. EXORCISM EXORCIST ATTACK 1 Target One charmed, compelled, frightened, or possessed creature within short range If the target was charmed, compelled, or frightened, you remove the affliction from it. If the target is possessed, you must concentrate for 1 minute, during which time the target must remain within range, and then make a Will attack roll against the possessing creature’s Will. On a success, the possession ends, and the creature that possessed the target appears in an open space within short range and becomes dazed for 1 round."
-     },
-     {
-      "name": "Attack",
-      "text": "Roll 20+ The possessing creature instead becomes stunned for 1 round."
+      "text": "You learn the exorcism spell, which is described below."
      }
     ]
    },
@@ -7285,7 +7273,7 @@
     "talents": [
      {
       "name": "Inquisitor’s Judgment",
-      "text": "Your weapon attacks against creatures subject to your scrutiny deal 1d6 extra damage. Jack-of-All-Trades Ever dabblers, jacks-of-all-trades know a little about everything but not a lot about any one thing. A path attractive to tricksters and adventurers, its talents help them find solutions to almost any problem and find a way to succeed when they should fail."
+      "text": "Your weapon attacks against creatures subject to your scrutiny deal 1d6 extra damage."
      }
     ]
    }
@@ -7365,7 +7353,7 @@
     "talents": [
      {
       "name": "Inured to Fire",
-      "text": "Creatures attacking you with fire make their attack rolls with 1 bane, and you make challenge rolls to resist attacks using fire with 1 boon. CREATE FLAME FIRE UTILITY 0 Duration 1 hour; see the effect You cause a ball of fire to appear in the palm of your hand or at the end of an object you are holding. The flame is warm, but does not harm you or anything you wear or carry. It emits light that fills a sphere with a 3-yard radius centered on the flame. You can use an action to attack with the flame, which ends the spell. Make an Agility attack roll with 1 boon against the Agility of one creature within short range. On a success, the flame hits and the target takes 1d6 + 1 damage."
+      "text": "Creatures attacking you with fire make their attack rolls with 1 bane, and you make challenge rolls to resist attacks using fire with 1 boon."
      }
     ]
    },
@@ -8110,11 +8098,7 @@
      },
      {
       "name": "Command Undead",
-      "text": "You learn the command undead spell, which is described below. COMMAND UNDEAD NECROMANCER ATTACK 1 Target One undead creature within short range Duration 1 minute Make an Intellect attack roll against the target’s Will. On a success, the target becomes compelled for the duration."
-     },
-     {
-      "name": "Attack",
-      "text": "Roll 20+ You regain the casting of this spell."
+      "text": "You learn the command undead spell, which is described below."
      }
     ]
    },
@@ -9637,7 +9621,7 @@
     "talents": [
      {
       "name": "Animate Object",
-      "text": "You learn the animate object spell, which is described below. ANIMATE OBJECT TECHNOMANCER UTILITY 1 Target One Size 2 or smaller object within short range Duration 1 minute The target becomes a compelled construct of its Size for the duration. If the target was secured, its Speed is 0."
+      "text": "You learn the animate object spell, which is described below."
      }
     ]
    }
@@ -9663,11 +9647,7 @@
     "talents": [
      {
       "name": "Temple of Faith",
-      "text": "You learn the temple of faith spell, which is described below. TEMPLE OF FAITH TEMPLAR UTILITY 0"
-     },
-     {
-      "name": "Area",
-      "text": "A sphere with a 5-yard radius centered on a point you can reach. If the point is on an idol, shrine, or altar related to your religion, the radius increases to 10 yards. Duration 1 minute or until you leave the area Holy power floods the area and remains for the duration. When a creature moves into the area from outside it, you can use a triggered action to move up to your Speed toward that creature and attack it with a weapon. On a success, the creature also becomes immobilized for 1 round."
+      "text": "You learn the temple of faith spell, which is described below."
      }
     ]
    },
@@ -9741,7 +9721,7 @@
     "talents": [
      {
       "name": "Shadow Form",
-      "text": "You learn the shadow form spell, which is described below. SHADOW FORM TENEBRIST UTILITY 1 Duration 1 minute You become shadowy and indistinct for the duration, gaining the following benefits. \n• Creatures attacking your Defense or Agility make the attack roll with 1 bane, and on a failure, you can use a triggered action to move up to your Speed. This movement does not trigger free attacks. \n• You are invisible while you are in areas obscured by shadows or darkness. \n• When moving, you can move through spaces occupied by other creatures."
+      "text": "You learn the shadow form spell, which is described below."
      }
     ]
    }

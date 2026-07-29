@@ -44,6 +44,13 @@ FOOTER_NUM = re.compile(r"^\d{1,3}$")
 # Prose header of the next creature: a short Title Case line.
 PROSE_HEADER = re.compile(r"^[A-Z][a-z’']+( [A-Za-z’'][a-z’']+){0,3}$")
 
+# Last PDF page holding stat blocks, per book, mirroring SPELL_PAGE_LIMIT in
+# parse_spells and PATH_PAGE_LIMIT in parse_paths. The chapter that follows
+# has nothing that ends a block — no name, no DIFFICULTY, no prose header —
+# so the final creature absorbs it: the wyvern's Instinctive Sting ran on
+# through the whole Paths of Magic chapter intro on occult p.146.
+CREATURE_PAGE_LIMIT = {"core": 263, "occult": 145}
+
 
 def printed_offset(lines):
     """Median (pdf page − printed footer number) over the whole book."""
@@ -104,6 +111,8 @@ def parse_book(book):
                 continue
             if PAGE_MARK.match(s):
                 pdf_page = int(PAGE_MARK.match(s).group(1))
+                if pdf_page > CREATURE_PAGE_LIMIT[book]:
+                    break
                 continue
             if FOOTER_NUM.match(s) or s in ("Bestiary", "Creatures of Magic"):
                 continue                    # page furniture
@@ -136,16 +145,44 @@ def parse_book(book):
                 else:
                     append_item(cr["traits"], s, True)
                 continue
-            # Prose header of the next creature ends the block: a short
-            # Title Case line followed by a long prose line.
-            if (len(s) <= 32 and not STAT_LINE.match(s)
-                    and PROSE_HEADER.match(s)
-                    and i < len(lines) and len(lines[i].strip()) > 40):
+            # Prose header of the next creature ends the block.
+            if starts_a_heading(lines, i, s):
                 i -= 1
                 break
             append_item(items, s, new_item_start(s))
         creatures.append(cr)
     return creatures
+
+
+def next_nonblank(lines, i, count):
+    """The next `count` non-blank stripped lines from index i."""
+    out = []
+    while i < len(lines) and len(out) < count:
+        s = lines[i].strip()
+        if s:
+            out.append(s)
+        i += 1
+    return out
+
+
+def starts_a_heading(lines, i, s):
+    """True when `s` opens a sidebar or the next creature's prose entry.
+
+    The heading may wrap onto a second line — core p.264 prints
+    "Customizing" and "Creatures" separately — and testing only the
+    immediate follower for prose left "Customizing" glued to the end of the
+    veteran's last attack option.
+    """
+    if len(s) > 32 or STAT_LINE.match(s) or not PROSE_HEADER.match(s):
+        return False
+    following = next_nonblank(lines, i, 2)
+    if not following:
+        return False
+    if len(following[0]) > 40:
+        return True
+    # A wrapped heading: a second short Title Case line, then the prose.
+    return (len(following) == 2 and len(following[0]) <= 32
+            and PROSE_HEADER.match(following[0]) and len(following[1]) > 40)
 
 
 def new_item_start(s):
