@@ -1,6 +1,7 @@
 // Roster persistence: localStorage, import/export.
 
 import { newCharacter } from "./engine.js";
+import { rules } from "./data.js";
 import { showToast } from "./ui/toast.js";
 
 const KEY = "sotdl_ledger_v2";
@@ -78,7 +79,7 @@ export function removeCharacter(id, restoreId) {
 export function exportActive() {
   const c = active();
   if (!c) return;
-  const blob = new Blob([JSON.stringify(c, null, 2)], { type: "application/json" });
+  const blob = new Blob([JSON.stringify({ ...c, dataRev: rules.dataRev }, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = `${(c.name || "character").replace(/[^\w\- ]+/g, "").trim() || "character"}.sotdl.json`;

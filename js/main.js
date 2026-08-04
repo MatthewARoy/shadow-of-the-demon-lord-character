@@ -1,7 +1,8 @@
 // Boot: load data, wire the chrome, route tabs.
 
-import { loadRules } from "./data.js";
+import { loadRules, rules } from "./data.js";
 import { store, load, save, active, addCharacter, deleteActive, removeCharacter, exportActive, importCharacter, onChange } from "./state.js";
+import { shareSupported, encodeShare } from "./share.js";
 import { showToast } from "./ui/toast.js";
 import { renderBuilder } from "./ui/builder.js";
 import { renderSheet } from "./ui/sheet.js";
@@ -116,12 +117,37 @@ async function boot() {
   };
   const importClick = () => document.getElementById("import-file").click();
 
+  // Copy a self-contained share link: the whole character rides in the URL
+  // fragment, so the link works with no server and no account.
+  const shareLink = async () => {
+    const c = active();
+    if (!c) return;
+    const payload = await encodeShare({ ...c, dataRev: rules.dataRev });
+    const url = `${location.href.split("#")[0]}#c=${payload}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      showToast({ total: "🔗", label: "Link copied", detail: `Opening it imports a copy of ${c.name || "this soul"}.` });
+    } catch {
+      // Clipboard access denied (permissions, non-secure context): let the
+      // user copy by hand instead of failing silently.
+      prompt("Copy this share link:", url);
+    }
+  };
+
   document.getElementById("new-char-btn").addEventListener("click", newSoul);
   document.getElementById("delete-btn").addEventListener("click", deleteSoul);
   document.getElementById("export-btn").addEventListener("click", exportActive);
   document.getElementById("import-btn").addEventListener("click", importClick);
 
-  setupOverflowMenu({ newSoul, deleteSoul, importClick });
+  if (shareSupported()) {
+    document.getElementById("share-btn").addEventListener("click", shareLink);
+  } else {
+    // Pre-2023 browsers lack CompressionStream: hide rather than break.
+    document.getElementById("share-btn").hidden = true;
+    document.getElementById("ov-share-btn").hidden = true;
+  }
+
+  setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink });
 
   document.getElementById("import-file").addEventListener("change", async (e) => {
     const file = e.target.files[0];
@@ -205,7 +231,7 @@ function closeOverflowMenu() {
   btn.setAttribute("aria-expanded", "false");
 }
 
-function setupOverflowMenu({ newSoul, deleteSoul, importClick }) {
+function setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink }) {
   const btn = document.getElementById("overflow-btn");
   const menu = document.getElementById("overflow-menu");
   if (!btn || !menu) return;
@@ -225,6 +251,7 @@ function setupOverflowMenu({ newSoul, deleteSoul, importClick }) {
   const wrap = (fn) => () => { fn(); closeOverflowMenu(); };
   document.getElementById("ov-new-btn").addEventListener("click", wrap(newSoul));
   document.getElementById("ov-export-btn").addEventListener("click", wrap(exportActive));
+  document.getElementById("ov-share-btn").addEventListener("click", wrap(shareLink));
   document.getElementById("ov-import-btn").addEventListener("click", wrap(importClick));
   document.getElementById("ov-delete-btn").addEventListener("click", wrap(deleteSoul));
 
