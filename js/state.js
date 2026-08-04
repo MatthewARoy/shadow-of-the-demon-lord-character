@@ -3,6 +3,7 @@
 import { newCharacter } from "./engine.js";
 import { rules } from "./data.js";
 import { showToast } from "./ui/toast.js";
+import { revMismatch } from "./share.js";
 
 const KEY = "sotdl_ledger_v2";
 
@@ -79,7 +80,8 @@ export function removeCharacter(id, restoreId) {
 export function exportActive() {
   const c = active();
   if (!c) return;
-  const blob = new Blob([JSON.stringify({ ...c, dataRev: rules.dataRev }, null, 2)], { type: "application/json" });
+  const stamped = rules.dataRev ? { ...c, dataRev: rules.dataRev } : c;
+  const blob = new Blob([JSON.stringify(stamped, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = `${(c.name || "character").replace(/[^\w\- ]+/g, "").trim() || "character"}.sotdl.json`;
@@ -122,7 +124,7 @@ export function importCharacter(json) {
   // against (slot IDs resolve positionally into data/*.json). A mismatch is
   // survivable — the engine keeps orphaned decisions recoverable — but the
   // player should re-check their choices.
-  if (typeof c.dataRev === "string" && rules.dataRev && c.dataRev !== rules.dataRev) {
+  if (revMismatch(c.dataRev, rules.dataRev)) {
     showToast({
       total: "⚠",
       label: "Different rules version",

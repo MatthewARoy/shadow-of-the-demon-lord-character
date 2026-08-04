@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { shareSupported, encodeShare, decodeShare } from "../../share.js";
+import { shareSupported, encodeShare, decodeShare, revMismatch } from "../../share.js";
 
 // A realistic character shape (fields mirror engine.js newCharacter()).
 const CHARACTER = {
@@ -35,4 +35,21 @@ test("malformed payloads reject with a clean error", async () => {
   ]) {
     await assert.rejects(decodeShare(bad), /damaged or incomplete/);
   }
+});
+
+test("revMismatch: true when both stamps are known and disagree", () => {
+  assert.equal(revMismatch("abc123", "def456"), true);
+});
+
+test("revMismatch: false when stamps are equal", () => {
+  assert.equal(revMismatch("abc123", "abc123"), false);
+});
+
+test("revMismatch: false when theirs is undefined or null", () => {
+  assert.equal(revMismatch(undefined, "abc123"), false);
+  assert.equal(revMismatch(null, "abc123"), false);
+});
+
+test("revMismatch: false when ours is null", () => {
+  assert.equal(revMismatch("abc123", null), false);
 });

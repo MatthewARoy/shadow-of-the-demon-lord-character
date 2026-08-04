@@ -47,3 +47,9 @@ export async function decodeShare(payload) {
   }
   return new TextDecoder().decode(bytes);
 }
+
+// True when both stamps are known and disagree — the "warn the importer"
+// case. Missing stamps (old exports, absent revision.json) never warn.
+export function revMismatch(theirs, ours) {
+  return typeof theirs === "string" && typeof ours === "string" && theirs !== ours;
+}

@@ -122,7 +122,8 @@ async function boot() {
   const shareLink = async () => {
     const c = active();
     if (!c) return;
-    const payload = await encodeShare({ ...c, dataRev: rules.dataRev });
+    const stamped = rules.dataRev ? { ...c, dataRev: rules.dataRev } : c;
+    const payload = await encodeShare(stamped);
     const url = `${location.href.split("#")[0]}#c=${payload}`;
     try {
       await navigator.clipboard.writeText(url);
@@ -172,7 +173,7 @@ async function boot() {
 // piling up duplicates; clearing the fragment keeps refresh from re-asking —
 // the sender's bookmark retains its own copy of the URL.
 async function maybeImportFromLink() {
-  const m = location.hash.match(/^#c=(.+)$/);
+  const m = location.hash.match(/^#c=(.*)$/);
   if (!m) return;
   const clear = () => history.replaceState(null, "", location.pathname + location.search);
   if (!shareSupported()) {
