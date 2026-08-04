@@ -11,6 +11,7 @@ export const rules = {
   traditions: [],
   equipment: { weapons: [], armor: [], gear: [] },
   creatures: [],
+  dataRev: null,             // data/revision.json stamp; exports/links carry it
   // indexes
   spellByKey: new Map(),     // "name|tradition" lowercased
   spellsByTradition: new Map(),
@@ -53,6 +54,12 @@ export async function loadRules() {
   rules.scores = await fetch("data/spell-scores.json")
     .then((r) => (r.ok ? r.json() : { spells: {} }))
     .catch(() => ({ spells: {} }));
+  // Data-revision stamp for exports/share links. Optional: absent -> exports
+  // simply carry no stamp and imports never warn.
+  rules.dataRev = await fetch("data/revision.json")
+    .then((r) => (r.ok ? r.json() : null))
+    .then((j) => (j && typeof j.rev === "string" ? j.rev : null))
+    .catch(() => null);
   rules.paths = paths;
   rules.traditions = traditions;
   rules.equipment = equipment;

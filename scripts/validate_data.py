@@ -12,6 +12,7 @@ any checkout. Wired into `npm test`; run directly with:
 
     python3 scripts/validate_data.py
 """
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -26,6 +27,12 @@ EXPECTED_SPELL_COUNT = sum(EXPECTED_SPELLS_BY_SOURCE.values())  # 1120
 EXPECTED_PATH_COUNT = 165
 EXPECTED_TRADITION_COUNT = 42
 
+# Character slot IDs resolve positionally into these files, so an exported
+# character is only exactly replayable against the same snapshot of them.
+# Share links and file exports carry this stamp; the app warns on mismatch.
+REVISION_FILES = ["curated.json", "spells.json", "paths.json",
+                  "traditions.json", "equipment.json", "creatures.json"]
+
 failures = []
 
 
@@ -35,6 +42,31 @@ def fail(msg):
 
 def load(name):
     return json.load(open(DATA / name))
+
+
+def compute_revision():
+    h = hashlib.sha256()
+    for name in REVISION_FILES:
+        h.update(name.encode())
+        h.update(b"\0")
+        h.update((DATA / name).read_bytes())
+    return h.hexdigest()[:12]
+
+
+def check_revision():
+    rev = compute_revision()
+    path = DATA / "revision.json"
+    if "--write-revision" in sys.argv:
+        path.write_text(json.dumps({"rev": rev}) + "\n")
+        print(f"wrote data/revision.json (rev {rev})")
+        return
+    try:
+        committed = json.load(open(path)).get("rev")
+    except (FileNotFoundError, json.JSONDecodeError):
+        committed = None
+    if committed != rev:
+        fail(f"revision.json: committed stamp {committed!r} != computed {rev!r} — "
+             "run: python3 scripts/validate_data.py --write-revision")
 
 
 def spell_key(s):
@@ -138,6 +170,7 @@ def check_tag_sidecar(taxonomy, spells):
 
 
 def main():
+    check_revision()
     spells = load("spells.json")
     spell_keys = check_spells(spells)
     check_traditions(load("traditions.json"), spells)
