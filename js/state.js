@@ -118,6 +118,18 @@ export function importCharacter(json) {
   }
   if (typeof c.sizeChoice !== "string") c.sizeChoice = null;
   c.name = uniqueName(c.name);
+  // Exports carry the data-revision stamp of the snapshot they were built
+  // against (slot IDs resolve positionally into data/*.json). A mismatch is
+  // survivable — the engine keeps orphaned decisions recoverable — but the
+  // player should re-check their choices.
+  if (typeof c.dataRev === "string" && rules.dataRev && c.dataRev !== rules.dataRev) {
+    showToast({
+      total: "⚠",
+      label: "Different rules version",
+      detail: `${c.name} was saved under another data revision — review their choices, some may have shifted.`,
+    });
+  }
+  delete c.dataRev;
   store.characters.push(c);
   store.activeId = c.id;
   save();

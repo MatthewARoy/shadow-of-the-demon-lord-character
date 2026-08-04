@@ -2,7 +2,7 @@
 
 import { loadRules, rules } from "./data.js";
 import { store, load, save, active, addCharacter, deleteActive, removeCharacter, exportActive, importCharacter, onChange } from "./state.js";
-import { shareSupported, encodeShare } from "./share.js";
+import { shareSupported, encodeShare, decodeShare } from "./share.js";
 import { showToast } from "./ui/toast.js";
 import { renderBuilder } from "./ui/builder.js";
 import { renderSheet } from "./ui/sheet.js";
@@ -164,6 +164,45 @@ async function boot() {
 
   onChange(renderRoster);
   setupSamples();
+  maybeImportFromLink();
+}
+
+// A #c=<payload> fragment is a share link: offer to import the character it
+// carries. Confirmation (never a silent add) keeps stray link opens from
+// piling up duplicates; clearing the fragment keeps refresh from re-asking —
+// the sender's bookmark retains its own copy of the URL.
+async function maybeImportFromLink() {
+  const m = location.hash.match(/^#c=(.+)$/);
+  if (!m) return;
+  const clear = () => history.replaceState(null, "", location.pathname + location.search);
+  if (!shareSupported()) {
+    clear();
+    showToast({ total: "✕", label: "Cannot open share link", detail: "This browser is too old to decode share links (no CompressionStream)." });
+    return;
+  }
+  let json, preview;
+  try {
+    json = await decodeShare(m[1]);
+    preview = JSON.parse(json);
+    if (typeof preview?.ancestry !== "string" || !preview.ancestry.trim()) {
+      throw new Error("not a character");
+    }
+  } catch {
+    clear();
+    showToast({ total: "✕", label: "Broken share link", detail: "This link’s character data is damaged or incomplete." });
+    return;
+  }
+  clear();
+  const name = preview.name || "Unnamed Soul";
+  const level = Number.isFinite(preview.level) ? preview.level : 0;
+  if (!confirm(`Import “${name}” (${preview.ancestry}, level ${level}) from this link?`)) return;
+  try {
+    importCharacter(json);
+    renderRoster();
+    renderCurrent();
+  } catch (err) {
+    showToast({ total: "✕", label: "Import failed", detail: err.message });
+  }
 }
 
 async function setupSamples() {
