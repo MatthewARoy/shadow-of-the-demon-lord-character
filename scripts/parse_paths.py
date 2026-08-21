@@ -27,7 +27,7 @@ from collections import OrderedDict
 CACHE = os.path.join(os.path.dirname(__file__), "cache")
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "paths.json")
 
-BOOKS = ["core", "occult", "terrible"]
+BOOKS = ["core", "occult", "terrible", "dlc2"]
 PATH_LEVELS = {3, 6, 7, 9, 10}
 
 LEVEL_RE = re.compile(r"^Level (\d+) (?:Expert |Master )?([A-Z][\w’'\- ]+?)\s*$")
@@ -62,10 +62,20 @@ FURNITURE = re.compile(
 )
 
 
-def is_furniture(s, page_line_no):
+# Demon Lord's Companion 2 prints no textual running head at all, only a page
+# number, which FURNITURE already drops. Applying the head heuristic there ate
+# its one real "Master Paths" section heading, which sits two lines into p.33
+# and so looked like a head, and the wardscribe's last talent ran on into the
+# master-paths intro prose below it.
+BOOKS_WITHOUT_RUNNING_HEADS = {"dlc2"}
+
+
+def is_furniture(s, page_line_no, book=""):
     s = s.strip()
     if FURNITURE.match(s):
         return True
+    if book in BOOKS_WITHOUT_RUNNING_HEADS:
+        return False
     if s.lower() not in RUNNING_HEADS_LOWER:
         return False
     return page_line_no <= HEAD_ZONE or s.lower() not in SECTION_HEADS_LOWER
@@ -77,6 +87,26 @@ TALENT_START = re.compile(
     r"Enemies|Attacks|Choose|Roll|Make|Add|Increase|Decrease|Gain|"
     r"Spells|A|An|All|Anytime|Any|Each|For|Whether|On|Using|Other)\b"
 )
+
+# TALENT_START keys on a whitelist of words that commonly open rules text, so a
+# talent whose text opens with anything else is missed and folded into the one
+# above it — the wardscribe's sigil list lost Glyphic Protection ("Shimmering
+# glyphs..."), Crippling Pain ("Lurid red light...") and Gibbering Madness
+# ("Mad laughter..."). At the start of a line the whitelist is not needed to
+# disambiguate: a Title-Case name followed by a fresh capitalised word is a
+# talent, while a wrapped prose line reads "Strength challenge roll..." —
+# capitalised word, lowercase follower. Kept deliberately narrow, because every
+# loosening of it cost more than it recovered: the name must be two or more
+# Title-Case words (a one-word name turns the sidebar title "Basic Sigils" into
+# a talent "Basic"), must not trail off in a small word ("Make a Strength
+# challenge roll..."), and must be followed by a real sentence.
+TALENT_START_LOOSE = re.compile(
+    r"^((?:[A-Z][\w’'!\-]+)"
+    r"(?: (?:of|the|a|an|and|with|in|for|to|from|by))*"
+    r"(?: [A-Z][\w’'!\-]+)+) "
+    r"(?=[A-Z][a-z]\w* \w)"
+)
+MIN_LOOSE_TALENT_TEXT = 30
 
 TRADITIONS = {
     "Air", "Alchemy", "Alteration", "Arcana", "Battle", "Celestial", "Chaos",
@@ -109,7 +139,7 @@ def lines_for(book):
             continue
         if line.strip():
             page_line_no += 1
-        if is_furniture(line, page_line_no):
+        if is_furniture(line, page_line_no, book):
             continue
         out.append((page, line.rstrip()))
     return out
@@ -176,8 +206,10 @@ def is_stop_heading(s, path_name=""):
             or (bool(path_name) and is_path_sidebar_title(s, path_name)
                 and not SIDEBAR_HOLDS_TALENTS.search(s)))
 
-# Last PDF page of path content per book; the next chapter follows.
-PATH_PAGE_LIMIT = {"core": 99, "occult": 9999, "terrible": 9999}
+# Last PDF page of path content per book; the next chapter follows. Without the
+# dlc2 bound the tormentor's last talent ran off p.35 into the Magic chapter and
+# turned its opening prose into a talent named "Shadow of the Demon".
+PATH_PAGE_LIMIT = {"core": 99, "occult": 9999, "terrible": 9999, "dlc2": 35}
 
 
 def starts_spell_block(lines, j, limit):
@@ -227,6 +259,38 @@ def drop_clipped_duplicates(block_lines):
     return out
 
 
+# A talent can also start midway through a field's own line ("Magic You learn
+# one spell. Primal Power Animals charmed by you..."), which the field label
+# swallows whole. Nine level blocks across core, occult and dlc2 lost their
+# first talent that way — Beastmaster's Primal Power, Hexer's Exacting Curse,
+# Stormbringer's Powered by Storm, Cenobite's Countless Lives and Purified Soul,
+# and four more. Recognised by position rather than vocabulary: at a sentence
+# boundary, a Title-Case run followed by a fresh capitalised word starts a
+# talent. A field's own later sentences do not fit that shape — "...tradition.
+# If you have discovered both..." continues with a lowercase "you", and
+# "...spell. In addition, you gain..." with a lowercase "addition".
+FIELD_TALENT = re.compile(
+    r"(?<=\.) ([A-Z][\w’'!\-]*"
+    r"(?: (?:[A-Z][\w’'!\-]*|of|the|by|a|an|and|with|in|for|to|from)){0,3}) "
+    r"(?=[A-Z][a-z])"
+)
+
+
+def split_field_talents(value):
+    """Peel talents off the tail of a field value.
+
+    Returns (field_value, [{"name", "text"}, ...]) in printed order.
+    """
+    cuts = list(FIELD_TALENT.finditer(value))
+    if not cuts:
+        return value, []
+    talents = []
+    for k, m in enumerate(cuts):
+        text_end = cuts[k + 1].start() if k + 1 < len(cuts) else len(value)
+        talents.append({"name": m.group(1), "text": value[m.end():text_end].strip()})
+    return value[:cuts[0].start()].strip(), talents
+
+
 def parse_block(lines, start, end, book, path_name=""):
     """Split a level block into labelled fields and talents."""
     fields = {}
@@ -266,6 +330,10 @@ def parse_block(lines, start, end, book, path_name=""):
             current = ("field", matched_field)
             continue
         tm = TALENT_START.match(line)
+        if not tm:
+            lm = TALENT_START_LOOSE.match(line)
+            if lm and len(line) - lm.end() >= MIN_LOOSE_TALENT_TEXT:
+                tm = lm
         is_continuation = bool(re.match(r"^[a-z0-9(••\-]|^or |^and ", line))
         if tm and not is_continuation:
             talents.append({"name": tm.group(1), "text": line[len(tm.group(1)) + 1:]})
@@ -277,9 +345,16 @@ def parse_block(lines, start, end, book, path_name=""):
         elif current and current[0] == "talent":
             talents[current[1]]["text"] += " " + line
         # else: stray prose before first field; ignore.
+    fields = {k: re.sub(r"\s+", " ", v).strip() for k, v in fields.items()}
+    # Recover talents the fields absorbed. They were printed above the talents
+    # parsed normally, so they go in front.
+    for f in FIELDS:
+        if f not in fields:
+            continue
+        fields[f], recovered = split_field_talents(fields[f])
+        talents[:0] = recovered
     for t in talents:
         t["text"] = re.sub(r"\s+", " ", t["text"]).replace("•", "\n•").strip()
-    fields = {k: re.sub(r"\s+", " ", v).strip() for k, v in fields.items()}
     # A few blocks omit the "Characteristics" label and the values get glued
     # onto Attributes ("Increase each by 1 Health +2"); split them apart.
     if "Attributes" in fields and "Characteristics" not in fields:
@@ -339,8 +414,25 @@ def parse_magic(text):
         result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
                               "traditions": [g.capitalize() for g in m.groups()]}]
         return result
-    # Tradition-constrained variants: "discover the X tradition or learn one X spell"
-    m = re.search(r"discover the (\w+) tradition or learn (?:one|a) (\w+) spell", t)
+    # Either of two named traditions, as Demon Lord's Companion 2 phrases it:
+    # "You discover the Curse tradition or the Spiritualism tradition. If you
+    # have discovered both traditions already, you instead learn one spell from
+    # either tradition." (Wangateur, Wardscribe)
+    m = re.search(r"discover the (\w+) tradition or the (\w+) tradition", t)
+    if m and m.group(1) in TRADITIONS and m.group(2) in TRADITIONS:
+        options = ["discover_tradition"]
+        if re.search(r"instead learn one spell", t):
+            options.append("learn_spell")
+        result["choices"] = [{"pick": 1, "options": options,
+                              "traditions": [m.group(1), m.group(2)]}]
+        return result
+    # Tradition-constrained variants: "discover the X tradition or learn one X
+    # spell", plus the ", or you learn one X spell" wording of the same offer —
+    # without the comma and the "you", 44 occult master paths and 6 dlc2 paths
+    # fell through to the discover-only rule below and silently lost the option
+    # to learn a spell instead.
+    m = re.search(
+        r"discover the (\w+) tradition,? or (?:you )?learn (?:one|a) (\w+) spell", t)
     if m and m.group(1) in TRADITIONS:
         result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
                               "traditions": [m.group(1)]}]
@@ -398,11 +490,26 @@ def parse_magic(text):
 def gather_intro(lines, name, first_header_idx):
     """Collect path intro prose: backwards from the level header to the
     standalone path-name line."""
+    # The path's name appears twice: once titling the intro, and again titling
+    # the story-development sidebar. Elsewhere the sidebar's copy shares its
+    # line with the running head ("Assassin Story Development"), but Demon
+    # Lord's Companion 2 has no running head, so its sidebar title is a bare
+    # name line indistinguishable from the intro's — and being the nearer of
+    # the two, it won the search and left the wardscribe with no description.
+    # The sidebar copy is the one followed by the table, not by prose.
     name_idx = None
     for j in range(first_header_idx - 1, max(first_header_idx - 120, -1), -1):
-        if lines[j][1].strip().lower() == name.lower():
-            name_idx = j
-            break
+        if lines[j][1].strip().lower() != name.lower():
+            continue
+        k = j + 1
+        while k < first_header_idx and not lines[k][1].strip():
+            k += 1
+        nxt = lines[k][1].strip() if k < first_header_idx else ""
+        if re.match(r"^d\d+$", nxt) or "Story Development" in nxt \
+           or nxt.endswith("Training"):
+            continue
+        name_idx = j
+        break
     if name_idx is None:
         return ""
     parts = []

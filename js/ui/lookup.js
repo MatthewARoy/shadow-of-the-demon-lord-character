@@ -7,7 +7,7 @@
 // each row into a run-on section, which is why searching "sling" used to
 // return "1d3 Off Range (medium), uses stones 5 cp C Shields...".
 
-import { rules as ruleData } from "../data.js";
+import { rules as ruleData, BOOKS } from "../data.js";
 import { equipmentCard, equipmentKey } from "./equipment-card.js";
 import { esc } from "./util.js";
 
@@ -19,7 +19,7 @@ import { esc } from "./util.js";
 const GEAR_QUOTA = 5;
 const RULES_QUOTA = 15;
 
-const BOOKS = { core: "Core Rulebook", occult: "Occult Philosophy", terrible: "Terrible Beauty" };
+
 
 const QUICK = [
   "afflictions", "boons and banes", "challenge roll", "attack roll", "charge",

@@ -19,6 +19,7 @@ BOOK_FILES = [
     "SDL1000_Shadow_of_the_Demon_Lord_Revised-digital_3-21-19-1 (2).pdf",
     "Occult_Philosophy_book_file_-_digital_links_v3.pdf",
     "Terrible_Beauty_digital040416.pdf",
+    "SDL1732_DemonLordCompanion2_v2_Digital.pdf",
 ]
 
 
@@ -37,6 +38,7 @@ BOOKS = {
     "core": "SDL1000_Shadow_of_the_Demon_Lord_Revised-digital_3-21-19-1 (2).pdf",
     "occult": "Occult_Philosophy_book_file_-_digital_links_v3.pdf",
     "terrible": "Terrible_Beauty_digital040416.pdf",
+    "dlc2": "SDL1732_DemonLordCompanion2_v2_Digital.pdf",
 }
 
 # Broken ligature glyphs observed in the core rulebook's fonts.

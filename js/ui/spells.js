@@ -1,7 +1,7 @@
 // Spells tab: the learned grimoire with castings trackers, plus the full
 // 1,100+ spell browser with filters.
 
-import { rules, spellKey } from "../data.js";
+import { rules, spellKey, bookName, BOOKS_SHORT } from "../data.js";
 import { compute } from "../engine.js";
 import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
@@ -65,9 +65,8 @@ export function renderSpells(el) {
         </select>
         <select id="sp-source">
           <option value="">all books</option>
-          <option value="core" ${filters.source === "core" ? "selected" : ""}>Core</option>
-          <option value="occult" ${filters.source === "occult" ? "selected" : ""}>Occult Philosophy</option>
-          <option value="terrible" ${filters.source === "terrible" ? "selected" : ""}>Terrible Beauty</option>
+          ${Object.entries(BOOKS_SHORT).map(([k, label]) =>
+            `<option value="${k}" ${filters.source === k ? "selected" : ""}>${label}</option>`).join("")}
         </select>
         <select id="sp-sort" title="Order the results">
           <option value="" ${filters.sort === "" ? "selected" : ""}>default order</option>
@@ -410,7 +409,7 @@ function activeFilterChips() {
   if (filters.rank !== "") chips.push({ key: "rank", label: `rank ${esc(filters.rank)}` });
   if (filters.type) chips.push({ key: "type", label: esc(filters.type) });
   if (filters.source) {
-    const book = { core: "Core", occult: "Occult Philosophy", terrible: "Terrible Beauty" }[filters.source] || filters.source;
+    const book = bookName(filters.source, true);
     chips.push({ key: "source", label: esc(book) });
   }
   if (filters.sort) {
@@ -574,7 +573,7 @@ export function spellCard(s, opts = {}) {
       : "";
   const summons = rules.summonsBySpell.get(key) || [];
   const summonBtns = summons.map((cr) =>
-    `<button class="chip ${creatureOpen === key + "::" + cr.name ? "on" : ""}" data-creature="${esc(key)}::${esc(cr.name)}" title="View the ${esc(cr.name)} stat block (${cr.book === "core" ? "Core" : "Occult Philosophy"} p.${cr.page})">☠ ${esc(cr.name)}</button>`).join(" ");
+    `<button class="chip ${creatureOpen === key + "::" + cr.name ? "on" : ""}" data-creature="${esc(key)}::${esc(cr.name)}" title="View the ${esc(cr.name)} stat block (${bookName(cr.book, true)} p.${cr.page})">☠ ${esc(cr.name)}</button>`).join(" ");
   const openCreature = summons.find((cr) => creatureOpen === key + "::" + cr.name);
   return `
   <div class="spell-card ${opts.learned ? "learned" : ""}">
@@ -595,7 +594,7 @@ export function spellCard(s, opts = {}) {
     ${openCreature ? statBlockHtml(openCreature) : ""}
     ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
     <div class="spell-foot">
-      ${castingsRow || `<span class="small dim">${s.source === "core" ? "Core" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty"} · p.${s.page}</span>`}
+      ${castingsRow || `<span class="small dim">${bookName(s.source, true)} · p.${s.page}</span>`}
       <span>${infoBtn(s)} ${opts.learned ? "" : studyBtn(s, opts.char)} ${exchangeBtn} ${attackBtn}</span>
     </div>
   </div>`;
@@ -625,7 +624,7 @@ function relabelIssueUrl(s) {
   const lens = e
     ? `role=${e.role || "—"}, build=${(e.archetypes || []).join("/") || "—"}, tempo=${e.tempo || "—"}`
     : "none";
-  const src = s.source === "core" ? "Core Rulebook" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty";
+  const src = bookName(s.source);
   const title = `Relabel: ${s.name} (${s.tradition})`;
   const body = [
     `**Spell:** ${s.name}`,
@@ -682,7 +681,7 @@ function spellModalHtml(s) {
   const scoreSec = scores ? `<div class="sm-section"><h4>Effectiveness</h4>${scores}</div>` : "";
   const lens = lensStatic(s);
   const lensSec = lens ? `<div class="sm-section"><h4>Build lens</h4>${lens}</div>` : "";
-  const src = s.source === "core" ? "Core Rulebook" : s.source === "occult" ? "Occult Philosophy" : "Terrible Beauty";
+  const src = bookName(s.source);
   return `
   <div class="spell-modal-box" role="dialog" aria-modal="true" aria-label="${esc(s.name)} details" tabindex="-1">
     <button class="sm-close" data-modal-close title="Close (Esc)">✕</button>

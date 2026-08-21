@@ -1,6 +1,7 @@
 // Renders a parsed creature stat block, parchment-style.
 
 import { esc } from "./util.js";
+import { bookName } from "../data.js";
 
 const SECTIONS = [
   ["attack_options", "Attack Options"],
@@ -23,7 +24,7 @@ export function statBlockHtml(cr) {
     <div class="sb-head">
       <b>${esc(cr.name)}</b>
       <span class="sb-diff">Difficulty ${esc(cr.difficulty)}</span>
-      <span class="small dim">${cr.book === "core" ? "Core Rulebook" : "Occult Philosophy"} · p.${cr.page}</span>
+      <span class="small dim">${bookName(cr.book)} · p.${cr.page}</span>
     </div>
     ${head.map((h) => `<div class="sb-line">${h}</div>`).join("")}
     ${cr.traits.map((t) => `<p class="sb-item">${esc(t)}</p>`).join("")}

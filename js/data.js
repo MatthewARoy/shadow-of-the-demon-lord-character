@@ -213,6 +213,23 @@ function noviceAsParsedPath(np) {
   };
 }
 
+// Source book labels. One map, because the ternary chains this replaced ended
+// in a bare "Terrible Beauty" else-branch, so every Demon Lord's Companion 2
+// spell was credited to the wrong book until it was added here.
+export const BOOKS = {
+  core: "Core Rulebook",
+  occult: "Occult Philosophy",
+  terrible: "Terrible Beauty",
+  dlc2: "Demon Lord’s Companion 2",
+};
+
+// The short form used where the row is already tight (spell cards, filters).
+export const BOOKS_SHORT = { ...BOOKS, core: "Core" };
+
+export function bookName(source, short = false) {
+  return (short ? BOOKS_SHORT : BOOKS)[source] || source;
+}
+
 export function spellKey(name, tradition) {
   return `${name}|${tradition}`.toLowerCase();
 }

@@ -8,10 +8,9 @@
 
 import { active } from "../state.js";
 import { compute } from "../engine.js";
+import { BOOKS } from "../data.js";
 
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-
-const BOOKS = { core: "Core Rulebook", occult: "Occult Philosophy", terrible: "Terrible Beauty" };
 
 const LINK_LABELS = [
   ["inflicts", "inflicts"],

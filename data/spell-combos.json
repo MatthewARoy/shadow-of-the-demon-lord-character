@@ -124,57 +124,14 @@
     }
    ],
    "alternatives": {
-    "defense": 16,
-    "attacker-banes": 31
+    "defense": 19,
+    "attacker-banes": 35
    },
    "score": 124,
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
    "rationale": "Raise Defense + Banes on enemies' attacks against you: two different levers on “don't get hit”, so they compound instead of fighting each other's diminishing returns. Both pieces are also strong for their rank."
-  },
-  {
-   "goal": "mitigate",
-   "type": "compounding",
-   "levers": [
-    "damage-reduction",
-    "buffer"
-   ],
-   "members": [
-    {
-     "name": "Avatar",
-     "tradition": "Theurgy",
-     "rank": 4,
-     "lever": "damage-reduction",
-     "magnitude": "reduce damage",
-     "duration": "sustained",
-     "precast": true
-    },
-    {
-     "name": "Divine Aid",
-     "tradition": "Theurgy",
-     "rank": 3,
-     "lever": "buffer",
-     "magnitude": "+15 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.833,
-     "strength": {
-      "kind": "mitigation",
-      "value": 15,
-      "unit": "temp-health"
-     }
-    }
-   ],
-   "alternatives": {
-    "damage-reduction": 33,
-    "buffer": 21
-   },
-   "score": 122,
-   "fragile": false,
-   "all_precastable": true,
-   "same_tradition": true,
-   "rationale": "Reduce incoming damage + Extra / temporary Health: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns. Both pieces are also strong for their rank."
   },
   {
    "goal": "evade",
@@ -192,7 +149,7 @@
      "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.733,
+     "quality": 0.729,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -210,8 +167,8 @@
     }
    ],
    "alternatives": {
-    "attacker-banes": 31,
-    "concealment": 31
+    "attacker-banes": 35,
+    "concealment": 32
    },
    "score": 121,
    "fragile": false,
@@ -224,11 +181,11 @@
    "type": "compounding",
    "levers": [
     "damage-reduction",
-    "heal"
+    "buffer"
    ],
    "members": [
     {
-     "name": "The Diviner",
+     "name": "Investiture of the Diviner",
      "tradition": "Invocation",
      "rank": 5,
      "lever": "damage-reduction",
@@ -243,7 +200,56 @@
      }
     },
     {
-     "name": "The Death Angel",
+     "name": "Investiture of the Horned One",
+     "tradition": "Invocation",
+     "rank": 4,
+     "lever": "buffer",
+     "magnitude": "+10 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.833,
+     "strength": {
+      "kind": "damage",
+      "value": 17.5,
+      "unit": "damage"
+     }
+    }
+   ],
+   "alternatives": {
+    "damage-reduction": 38,
+    "buffer": 25
+   },
+   "score": 121,
+   "fragile": false,
+   "all_precastable": true,
+   "same_tradition": true,
+   "rationale": "Reduce incoming damage + Extra / temporary Health: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns. Both pieces are also strong for their rank."
+  },
+  {
+   "goal": "mitigate",
+   "type": "compounding",
+   "levers": [
+    "buffer",
+    "heal"
+   ],
+   "members": [
+    {
+     "name": "Investiture of the Horned One",
+     "tradition": "Invocation",
+     "rank": 4,
+     "lever": "buffer",
+     "magnitude": "+10 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.833,
+     "strength": {
+      "kind": "damage",
+      "value": 17.5,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Investiture of the Death Angel",
      "tradition": "Invocation",
      "rank": 5,
      "lever": "heal",
@@ -259,63 +265,63 @@
     }
    ],
    "alternatives": {
-    "damage-reduction": 33,
-    "heal": 41
+    "buffer": 25,
+    "heal": 43
+   },
+   "score": 120,
+   "fragile": false,
+   "all_precastable": true,
+   "same_tradition": true,
+   "rationale": "Extra / temporary Health + In-fight healing: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns. Both pieces are also strong for their rank."
+  },
+  {
+   "goal": "mitigate",
+   "type": "compounding",
+   "levers": [
+    "damage-reduction",
+    "heal"
+   ],
+   "members": [
+    {
+     "name": "Investiture of the Diviner",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.667,
+     "strength": {
+      "kind": "mitigation",
+      "value": 100,
+      "unit": "%damage"
+     }
+    },
+    {
+     "name": "Investiture of the Death Angel",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "heal",
+     "magnitude": "heal",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.5,
+     "strength": {
+      "kind": "heal",
+      "value": 7.0,
+      "unit": "health"
+     }
+    }
+   ],
+   "alternatives": {
+    "damage-reduction": 38,
+    "heal": 43
    },
    "score": 119,
    "fragile": false,
    "all_precastable": true,
    "same_tradition": true,
    "rationale": "Reduce incoming damage + In-fight healing: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns."
-  },
-  {
-   "goal": "mitigate",
-   "type": "compounding",
-   "levers": [
-    "buffer",
-    "heal"
-   ],
-   "members": [
-    {
-     "name": "Divine Aid",
-     "tradition": "Theurgy",
-     "rank": 3,
-     "lever": "buffer",
-     "magnitude": "+15 Health",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.833,
-     "strength": {
-      "kind": "mitigation",
-      "value": 15,
-      "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Mantle of Holiness",
-     "tradition": "Theurgy",
-     "rank": 1,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.389,
-     "strength": {
-      "kind": "heal",
-      "value": 0.5,
-      "unit": "healing-rate"
-     }
-    }
-   ],
-   "alternatives": {
-    "buffer": 21,
-    "heal": 41
-   },
-   "score": 119,
-   "fragile": false,
-   "all_precastable": true,
-   "same_tradition": true,
-   "rationale": "Extra / temporary Health + In-fight healing: two different levers on “take less when hit”, so they compound instead of fighting each other's diminishing returns."
   },
   {
    "goal": "suppress-enemy",
@@ -333,7 +339,7 @@
      "magnitude": "2 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -348,7 +354,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.69,
+     "quality": 0.695,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -357,8 +363,8 @@
     }
    ],
    "alternatives": {
-    "target-banes": 38,
-    "control": 246
+    "target-banes": 41,
+    "control": 254
    },
    "score": 117,
    "fragile": false,
@@ -400,8 +406,8 @@
     }
    ],
    "alternatives": {
-    "resist-boons": 24,
-    "cure": 12
+    "resist-boons": 25,
+    "cure": 15
    },
    "score": 116,
    "fragile": false,
@@ -443,8 +449,8 @@
     }
    ],
    "alternatives": {
-    "defense": 16,
-    "concealment": 31
+    "defense": 19,
+    "concealment": 32
    },
    "score": 113,
    "fragile": false,
@@ -467,10 +473,25 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.939,
+     "quality": 0.94,
      "strength": {
       "kind": "damage",
       "value": 21.0,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Earthquake",
+     "tradition": "Earth",
+     "rank": 4,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.927,
+     "strength": {
+      "kind": "damage",
+      "value": 24.0,
       "unit": "damage"
      }
     },
@@ -488,25 +509,10 @@
       "value": 35.0,
       "unit": "damage"
      }
-    },
-    {
-     "name": "Earthquake",
-     "tradition": "Earth",
-     "rank": 4,
-     "lever": "control",
-     "magnitude": "control",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.922,
-     "strength": {
-      "kind": "damage",
-      "value": 24.0,
-      "unit": "damage"
-     }
     }
    ],
    "alternatives": {
-    "control": 246
+    "control": 254
    },
    "score": 94,
    "fragile": false,
@@ -528,7 +534,7 @@
      "magnitude": "+30 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.938,
+     "quality": 0.944,
      "strength": {
       "kind": "mitigation",
       "value": 30,
@@ -543,7 +549,7 @@
      "magnitude": "+40 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.875,
+     "quality": 0.9,
      "strength": {
       "kind": "mitigation",
       "value": 40,
@@ -551,23 +557,23 @@
      }
     },
     {
-     "name": "Divine Aid",
-     "tradition": "Theurgy",
-     "rank": 3,
+     "name": "Investiture of the Horned One",
+     "tradition": "Invocation",
+     "rank": 4,
      "lever": "buffer",
-     "magnitude": "+15 Health",
+     "magnitude": "+10 Health",
      "duration": "sustained",
      "precast": true,
      "quality": 0.833,
      "strength": {
-      "kind": "mitigation",
-      "value": 15,
-      "unit": "temp-health"
+      "kind": "damage",
+      "value": 17.5,
+      "unit": "damage"
      }
     }
    ],
    "alternatives": {
-    "buffer": 21
+    "buffer": 25
    },
    "score": 93,
    "fragile": false,
@@ -589,7 +595,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.938,
+     "quality": 0.944,
      "strength": {
       "kind": "mitigation",
       "value": 30,
@@ -604,7 +610,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.875,
+     "quality": 0.9,
      "strength": {
       "kind": "mitigation",
       "value": 40,
@@ -628,7 +634,7 @@
     }
    ],
    "alternatives": {
-    "extra-damage": 138
+    "extra-damage": 147
    },
    "score": 93,
    "fragile": false,
@@ -677,12 +683,73 @@
     }
    ],
    "alternatives": {
-    "concealment": 31
+    "concealment": 32
    },
    "score": 90,
    "fragile": false,
    "all_precastable": true,
    "rationale": "Multiple sources of concealment / hard to target. These are flat bonuses, so they add up — pile them on."
+  },
+  {
+   "goal": "mitigate",
+   "type": "additive",
+   "levers": [
+    "heal"
+   ],
+   "members": [
+    {
+     "name": "Harvest Soul",
+     "tradition": "Necromancy",
+     "rank": 1,
+     "lever": "heal",
+     "magnitude": "heal",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.889,
+     "strength": {
+      "kind": "heal",
+      "value": 1.0,
+      "unit": "healing-rate"
+     }
+    },
+    {
+     "name": "Seed of Life",
+     "tradition": "Life",
+     "rank": 2,
+     "lever": "heal",
+     "magnitude": "heal",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.583,
+     "strength": {
+      "kind": "mitigation",
+      "value": 6,
+      "unit": "temp-health"
+     }
+    },
+    {
+     "name": "Investiture of the Death Angel",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "heal",
+     "magnitude": "heal",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.5,
+     "strength": {
+      "kind": "heal",
+      "value": 7.0,
+      "unit": "health"
+     }
+    }
+   ],
+   "alternatives": {
+    "heal": 43
+   },
+   "score": 90,
+   "fragile": false,
+   "all_precastable": true,
+   "rationale": "Multiple sources of in-fight healing. These are flat bonuses, so they add up — pile them on."
   },
   {
    "goal": "boost-damage",
@@ -715,7 +782,7 @@
      "magnitude": "+2d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -724,8 +791,8 @@
     }
    ],
    "alternatives": {
-    "unarmed-damage": 19,
-    "unarmed-accuracy": 9
+    "unarmed-damage": 22,
+    "unarmed-accuracy": 12
    },
    "score": 90,
    "fragile": false,
@@ -762,7 +829,7 @@
      "magnitude": "+2 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -777,7 +844,7 @@
      "magnitude": "+2 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.309,
+     "quality": 0.314,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -786,7 +853,7 @@
     }
    ],
    "alternatives": {
-    "defense": 16
+    "defense": 19
    },
    "score": 89,
    "fragile": false,
@@ -816,7 +883,7 @@
      }
     },
     {
-     "name": "The Diviner",
+     "name": "Investiture of the Diviner",
      "tradition": "Invocation",
      "rank": 5,
      "lever": "damage-reduction",
@@ -847,73 +914,12 @@
     }
    ],
    "alternatives": {
-    "damage-reduction": 33
+    "damage-reduction": 38
    },
    "score": 89,
    "fragile": false,
    "all_precastable": true,
    "rationale": "Multiple sources of reduce incoming damage. These are flat bonuses, so they add up — pile them on."
-  },
-  {
-   "goal": "mitigate",
-   "type": "additive",
-   "levers": [
-    "heal"
-   ],
-   "members": [
-    {
-     "name": "Harvest Soul",
-     "tradition": "Necromancy",
-     "rank": 1,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.889,
-     "strength": {
-      "kind": "heal",
-      "value": 1.0,
-      "unit": "healing-rate"
-     }
-    },
-    {
-     "name": "The Death Angel",
-     "tradition": "Invocation",
-     "rank": 5,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.5,
-     "strength": {
-      "kind": "heal",
-      "value": 7.0,
-      "unit": "health"
-     }
-    },
-    {
-     "name": "Sacred Grove",
-     "tradition": "Nature",
-     "rank": 4,
-     "lever": "heal",
-     "magnitude": "heal",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.5,
-     "strength": {
-      "kind": "heal",
-      "value": 1.0,
-      "unit": "healing-rate"
-     }
-    }
-   ],
-   "alternatives": {
-    "heal": 41
-   },
-   "score": 89,
-   "fragile": false,
-   "all_precastable": true,
-   "rationale": "Multiple sources of in-fight healing. These are flat bonuses, so they add up — pile them on."
   },
   {
    "goal": "boost-damage",
@@ -945,7 +951,7 @@
      "magnitude": "+2d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -960,7 +966,7 @@
      "magnitude": "+3d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.062,
+     "quality": 0.111,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -975,7 +981,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -984,7 +990,7 @@
     }
    ],
    "alternatives": {
-    "unarmed-damage": 19
+    "unarmed-damage": 22
    },
    "score": 85,
    "fragile": false,
@@ -999,6 +1005,21 @@
    ],
    "members": [
     {
+     "name": "Investiture of the World Mother",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.111,
+     "strength": {
+      "kind": "mitigation",
+      "value": 10,
+      "unit": "temp-health"
+     }
+    },
+    {
      "name": "Query the Void",
      "tradition": "Demonology",
      "rank": 4,
@@ -1006,7 +1027,7 @@
      "magnitude": "cure",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.044,
+     "quality": 0.062,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -1021,24 +1042,76 @@
      "magnitude": "cure",
      "duration": "sustained",
      "precast": true
-    },
-    {
-     "name": "Introspective Trance",
-     "tradition": "Soul",
-     "rank": 3,
-     "lever": "cure",
-     "magnitude": "cure",
-     "duration": "sustained",
-     "precast": true
     }
    ],
    "alternatives": {
-    "cure": 12
+    "cure": 15
    },
    "score": 81,
    "fragile": false,
    "all_precastable": true,
    "rationale": "Multiple sources of cure / remove conditions. These are flat bonuses, so they add up — pile them on."
+  },
+  {
+   "goal": "resist",
+   "type": "diminishing",
+   "levers": [
+    "resist-boons"
+   ],
+   "members": [
+    {
+     "name": "Hulk",
+     "tradition": "Transformation",
+     "rank": 4,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.9,
+     "strength": {
+      "kind": "mitigation",
+      "value": 40,
+      "unit": "temp-health"
+     }
+    },
+    {
+     "name": "Alter Size",
+     "tradition": "Alteration",
+     "rank": 3,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.819,
+     "strength": {
+      "kind": "damage",
+      "value": 17.5,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Rune of Power",
+     "tradition": "Rune",
+     "rank": 5,
+     "lever": "resist-boons",
+     "magnitude": "2 boon(s) to resist",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.611,
+     "strength": {
+      "kind": "mitigation",
+      "value": 20,
+      "unit": "temp-health"
+     }
+    }
+   ],
+   "alternatives": {
+    "resist-boons": 25
+   },
+   "score": 57,
+   "fragile": false,
+   "all_precastable": true,
+   "rationale": "Multiple sources of boons on your challenge rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
   },
   {
    "goal": "suppress-enemy",
@@ -1055,7 +1128,7 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.875,
+     "quality": 0.9,
      "strength": {
       "kind": "mitigation",
       "value": 40,
@@ -1070,7 +1143,7 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.816,
+     "quality": 0.819,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -1094,134 +1167,12 @@
     }
    ],
    "alternatives": {
-    "target-banes": 38
+    "target-banes": 41
    },
    "score": 57,
    "fragile": false,
    "all_precastable": true,
    "rationale": "Multiple sources of banes on the target's rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
-  },
-  {
-   "goal": "resist",
-   "type": "diminishing",
-   "levers": [
-    "resist-boons"
-   ],
-   "members": [
-    {
-     "name": "Hulk",
-     "tradition": "Transformation",
-     "rank": 4,
-     "lever": "resist-boons",
-     "magnitude": "2 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.875,
-     "strength": {
-      "kind": "mitigation",
-      "value": 40,
-      "unit": "temp-health"
-     }
-    },
-    {
-     "name": "Alter Size",
-     "tradition": "Alteration",
-     "rank": 3,
-     "lever": "resist-boons",
-     "magnitude": "1 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.816,
-     "strength": {
-      "kind": "damage",
-      "value": 17.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Rune of Power",
-     "tradition": "Rune",
-     "rank": 5,
-     "lever": "resist-boons",
-     "magnitude": "2 boon(s) to resist",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.562,
-     "strength": {
-      "kind": "mitigation",
-      "value": 20,
-      "unit": "temp-health"
-     }
-    }
-   ],
-   "alternatives": {
-    "resist-boons": 24
-   },
-   "score": 56,
-   "fragile": false,
-   "all_precastable": true,
-   "rationale": "Multiple sources of boons on your challenge rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
-  },
-  {
-   "goal": "evade",
-   "type": "diminishing",
-   "levers": [
-    "attacker-banes"
-   ],
-   "members": [
-    {
-     "name": "Force Shield",
-     "tradition": "Protection",
-     "rank": 4,
-     "lever": "attacker-banes",
-     "magnitude": "2 bane(s) on their attack",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.733,
-     "strength": {
-      "kind": "damage",
-      "value": 12.5,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "Holy Armaments",
-     "tradition": "Theurgy",
-     "rank": 2,
-     "lever": "attacker-banes",
-     "magnitude": "1 bane(s) on their attack",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.69,
-     "strength": {
-      "kind": "damage",
-      "value": 9.0,
-      "unit": "damage"
-     }
-    },
-    {
-     "name": "The One-eyed God",
-     "tradition": "Invocation",
-     "rank": 3,
-     "lever": "attacker-banes",
-     "magnitude": "1 bane(s) on their attack",
-     "duration": "sustained",
-     "precast": true,
-     "quality": 0.535,
-     "strength": {
-      "kind": "damage",
-      "value": 10.5,
-      "unit": "damage"
-     }
-    }
-   ],
-   "alternatives": {
-    "attacker-banes": 31
-   },
-   "score": 55,
-   "fragile": false,
-   "all_precastable": true,
-   "rationale": "Multiple sources of banes on enemies' attacks against you. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
   },
   {
    "goal": "land-hits",
@@ -1253,7 +1204,7 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.69,
+     "quality": 0.695,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -1261,28 +1212,89 @@
      }
     },
     {
-     "name": "Adamantine Chains",
-     "tradition": "Metal",
+     "name": "Primal Beast",
+     "tradition": "Primal",
      "rank": 5,
      "lever": "self-attack-boons",
      "magnitude": "1 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.564,
+     "quality": 0.611,
+     "strength": {
+      "kind": "mitigation",
+      "value": 20,
+      "unit": "temp-health"
+     }
+    }
+   ],
+   "alternatives": {
+    "self-attack-boons": 32
+   },
+   "score": 56,
+   "fragile": false,
+   "all_precastable": true,
+   "rationale": "Multiple sources of boons on your attack rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
+  },
+  {
+   "goal": "evade",
+   "type": "diminishing",
+   "levers": [
+    "attacker-banes"
+   ],
+   "members": [
+    {
+     "name": "Force Shield",
+     "tradition": "Protection",
+     "rank": 4,
+     "lever": "attacker-banes",
+     "magnitude": "2 bane(s) on their attack",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.729,
      "strength": {
       "kind": "damage",
-      "value": 17.5,
+      "value": 12.5,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Holy Armaments",
+     "tradition": "Theurgy",
+     "rank": 2,
+     "lever": "attacker-banes",
+     "magnitude": "1 bane(s) on their attack",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.695,
+     "strength": {
+      "kind": "damage",
+      "value": 9.0,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Investiture of the One-eyed God",
+     "tradition": "Invocation",
+     "rank": 3,
+     "lever": "attacker-banes",
+     "magnitude": "1 bane(s) on their attack",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.543,
+     "strength": {
+      "kind": "damage",
+      "value": 10.5,
       "unit": "damage"
      }
     }
    ],
    "alternatives": {
-    "self-attack-boons": 31
+    "attacker-banes": 35
    },
    "score": 55,
    "fragile": false,
    "all_precastable": true,
-   "rationale": "Multiple sources of boons on your attack rolls. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
+   "rationale": "Multiple sources of banes on enemies' attacks against you. Boons/banes pool to the single highest die, so each extra source after the first barely moves the needle — spend the casting on a different lever instead."
   }
  ],
  "rosters": {
@@ -1296,7 +1308,7 @@
      "magnitude": "+2 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.309,
+     "quality": 0.314,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -1328,14 +1340,23 @@
      "precast": true
     },
     {
-     "name": "The Grand Druid",
+     "name": "Investiture of the Stalwart",
+     "tradition": "Invocation",
+     "rank": 0,
+     "lever": "defense",
+     "magnitude": "+1 Def",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Investiture of the Grand Druid",
      "tradition": "Invocation",
      "rank": 2,
      "lever": "defense",
      "magnitude": "+2 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -1352,11 +1373,35 @@
      "precast": true
     },
     {
+     "name": "Strength of Steel",
+     "tradition": "Metal",
+     "rank": 2,
+     "lever": "defense",
+     "magnitude": "+1 Def",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.25,
+     "strength": {
+      "kind": "mitigation",
+      "value": 5,
+      "unit": "temp-health"
+     }
+    },
+    {
      "name": "Animate Metal",
      "tradition": "Metal",
      "rank": 4,
      "lever": "defense",
      "magnitude": "+2 Def",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Flesh to Iron",
+     "tradition": "Metal",
+     "rank": 5,
+     "lever": "defense",
+     "magnitude": "+3 Def",
      "duration": "sustained",
      "precast": true
     },
@@ -1392,7 +1437,7 @@
      "magnitude": "+2 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -1416,7 +1461,7 @@
      "magnitude": "+3 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.188,
+     "quality": 0.278,
      "strength": {
       "kind": "mitigation",
       "value": 15,
@@ -1446,7 +1491,7 @@
      "magnitude": "+2 Def",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.062,
+     "quality": 0.111,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -1508,7 +1553,7 @@
      "magnitude": "1 bane(s) on their attack",
      "duration": "instant",
      "precast": false,
-     "quality": 0.2,
+     "quality": 0.25,
      "strength": {
       "kind": "mitigation",
       "value": 5,
@@ -1651,14 +1696,14 @@
      "precast": true
     },
     {
-     "name": "The One-eyed God",
+     "name": "Investiture of the One-eyed God",
      "tradition": "Invocation",
      "rank": 3,
      "lever": "attacker-banes",
      "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -1684,6 +1729,33 @@
      "precast": true
     },
     {
+     "name": "Order’s Shield",
+     "tradition": "Order",
+     "rank": 1,
+     "lever": "attacker-banes",
+     "magnitude": "2 bane(s) on their attack",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Stillness",
+     "tradition": "Order",
+     "rank": 3,
+     "lever": "attacker-banes",
+     "magnitude": "3 bane(s) on their attack",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Mantle of Law",
+     "tradition": "Order",
+     "rank": 5,
+     "lever": "attacker-banes",
+     "magnitude": "1 bane(s) on their attack",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
      "name": "Force Shield",
      "tradition": "Protection",
      "rank": 4,
@@ -1691,7 +1763,7 @@
      "magnitude": "2 bane(s) on their attack",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.733,
+     "quality": 0.729,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -1715,6 +1787,15 @@
      "magnitude": "1 bane(s) on their attack",
      "duration": "concentration",
      "precast": false
+    },
+    {
+     "name": "Velocity",
+     "tradition": "Soul",
+     "rank": 3,
+     "lever": "attacker-banes",
+     "magnitude": "1 bane(s) on their attack",
+     "duration": "sustained",
+     "precast": true
     },
     {
      "name": "Empty Mind",
@@ -1775,7 +1856,7 @@
      "magnitude": "1 bane(s) on their attack",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.69,
+     "quality": 0.695,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -1995,6 +2076,15 @@
      "precast": false
     },
     {
+     "name": "Open the Third Eye",
+     "tradition": "Soul",
+     "rank": 1,
+     "lever": "concealment",
+     "magnitude": "concealment",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
      "name": "Soul to Soul",
      "tradition": "Soul",
      "rank": 2,
@@ -2101,7 +2191,7 @@
      "magnitude": "concealment",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -2129,7 +2219,7 @@
      "magnitude": "1 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.816,
+     "quality": 0.819,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -2173,7 +2263,7 @@
      "precast": true
     },
     {
-     "name": "The Dwarf Lord",
+     "name": "Investiture of the Dwarf Lord",
      "tradition": "Invocation",
      "rank": 1,
      "lever": "resist-boons",
@@ -2213,7 +2303,7 @@
      "magnitude": "1 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.188,
+     "quality": 0.278,
      "strength": {
       "kind": "mitigation",
       "value": 15,
@@ -2279,7 +2369,7 @@
      "magnitude": "2 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -2294,12 +2384,21 @@
      "magnitude": "2 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
       "unit": "temp-health"
      }
+    },
+    {
+     "name": "Transcendent Recovery",
+     "tradition": "Soul",
+     "rank": 5,
+     "lever": "resist-boons",
+     "magnitude": "1 boon(s) to resist",
+     "duration": "instant",
+     "precast": false
     },
     {
      "name": "Empty Mind",
@@ -2336,7 +2435,7 @@
      "magnitude": "1 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -2360,7 +2459,7 @@
      "magnitude": "2 boon(s) to resist",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.875,
+     "quality": 0.9,
      "strength": {
       "kind": "mitigation",
       "value": 40,
@@ -2386,7 +2485,7 @@
      "magnitude": "cure",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.044,
+     "quality": 0.062,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -2401,6 +2500,21 @@
      "magnitude": "cure",
      "duration": "instant",
      "precast": false
+    },
+    {
+     "name": "Investiture of the World Mother",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.111,
+     "strength": {
+      "kind": "mitigation",
+      "value": 10,
+      "unit": "temp-health"
+     }
     },
     {
      "name": "Cure",
@@ -2460,6 +2574,15 @@
      "precast": false
     },
     {
+     "name": "Rationality",
+     "tradition": "Order",
+     "rank": 1,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
      "name": "Remove Curse",
      "tradition": "Protection",
      "rank": 5,
@@ -2494,6 +2617,15 @@
      "magnitude": "cure",
      "duration": "sustained",
      "precast": true
+    },
+    {
+     "name": "Transcendent Recovery",
+     "tradition": "Soul",
+     "rank": 5,
+     "lever": "cure",
+     "magnitude": "cure",
+     "duration": "instant",
+     "precast": false
     },
     {
      "name": "Restorative Waters",
@@ -2558,7 +2690,7 @@
      "magnitude": "reduce damage",
      "duration": "instant",
      "precast": false,
-     "quality": 0.833,
+     "quality": 0.836,
      "strength": {
       "kind": "damage",
       "value": 12.0,
@@ -2573,7 +2705,7 @@
      "magnitude": "reduce damage",
      "duration": "instant",
      "precast": false,
-     "quality": 0.968,
+     "quality": 0.969,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -2603,7 +2735,7 @@
      "magnitude": "reduce damage",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.173,
+     "quality": 0.169,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -2645,7 +2777,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -2660,7 +2792,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -2675,7 +2807,7 @@
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.144,
+     "quality": 0.167,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -2692,14 +2824,29 @@
      "precast": true
     },
     {
-     "name": "The Summer Queen",
+     "name": "Investiture of the Fire Prince",
+     "tradition": "Invocation",
+     "rank": 1,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.424,
+     "strength": {
+      "kind": "damage",
+      "value": 5.5,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Investiture of the Summer Queen",
      "tradition": "Invocation",
      "rank": 4,
      "lever": "damage-reduction",
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.278,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -2707,14 +2854,14 @@
      }
     },
     {
-     "name": "The Winter King",
+     "name": "Investiture of the Winter King",
      "tradition": "Invocation",
      "rank": 4,
      "lever": "damage-reduction",
      "magnitude": "reduce damage",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -2722,7 +2869,7 @@
      }
     },
     {
-     "name": "The Death Angel",
+     "name": "Investiture of the Death Angel",
      "tradition": "Invocation",
      "rank": 5,
      "lever": "damage-reduction",
@@ -2737,7 +2884,7 @@
      }
     },
     {
-     "name": "The Diviner",
+     "name": "Investiture of the Diviner",
      "tradition": "Invocation",
      "rank": 5,
      "lever": "damage-reduction",
@@ -2761,9 +2908,36 @@
      "precast": true
     },
     {
+     "name": "Unbreakable",
+     "tradition": "Metal",
+     "rank": 0,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Flesh to Iron",
+     "tradition": "Metal",
+     "rank": 5,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
      "name": "Logic Prison",
      "tradition": "Order",
      "rank": 1,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Immobility",
+     "tradition": "Order",
+     "rank": 2,
      "lever": "damage-reduction",
      "magnitude": "reduce damage",
      "duration": "instant",
@@ -2801,6 +2975,15 @@
      "magnitude": "reduce damage",
      "duration": "concentration",
      "precast": false
+    },
+    {
+     "name": "Phase Shift",
+     "tradition": "Soul",
+     "rank": 3,
+     "lever": "damage-reduction",
+     "magnitude": "reduce damage",
+     "duration": "sustained",
+     "precast": true
     },
     {
      "name": "Trance of Excellence",
@@ -2899,7 +3082,7 @@
      "magnitude": "+5 Health",
      "duration": "instant",
      "precast": false,
-     "quality": 0.2,
+     "quality": 0.25,
      "strength": {
       "kind": "mitigation",
       "value": 5,
@@ -2914,7 +3097,7 @@
      "magnitude": "+10 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.816,
+     "quality": 0.819,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -2929,7 +3112,7 @@
      "magnitude": "+20 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.625,
+     "quality": 0.7,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -2944,7 +3127,46 @@
      "magnitude": "+10 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.8,
+     "quality": 0.833,
+     "strength": {
+      "kind": "mitigation",
+      "value": 10,
+      "unit": "temp-health"
+     }
+    },
+    {
+     "name": "Investiture of the Brute",
+     "tradition": "Invocation",
+     "rank": 0,
+     "lever": "buffer",
+     "magnitude": "+4 Health",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Investiture of the Horned One",
+     "tradition": "Invocation",
+     "rank": 4,
+     "lever": "buffer",
+     "magnitude": "+10 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.833,
+     "strength": {
+      "kind": "damage",
+      "value": 17.5,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Investiture of the World Mother",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "buffer",
+     "magnitude": "+10 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.111,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -2959,10 +3181,25 @@
      "magnitude": "+6 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.5,
+     "quality": 0.583,
      "strength": {
       "kind": "mitigation",
       "value": 6,
+      "unit": "temp-health"
+     }
+    },
+    {
+     "name": "Strength of Steel",
+     "tradition": "Metal",
+     "rank": 2,
+     "lever": "buffer",
+     "magnitude": "+5 Health",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.25,
+     "strength": {
+      "kind": "mitigation",
+      "value": 5,
       "unit": "temp-health"
      }
     },
@@ -2974,7 +3211,7 @@
      "magnitude": "+15 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.188,
+     "quality": 0.278,
      "strength": {
       "kind": "mitigation",
       "value": 15,
@@ -3013,7 +3250,7 @@
      "magnitude": "+10 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -3028,7 +3265,7 @@
      "magnitude": "+20 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -3043,7 +3280,7 @@
      "magnitude": "+10 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.062,
+     "quality": 0.111,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -3058,7 +3295,7 @@
      "magnitude": "+10 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.8,
+     "quality": 0.833,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -3073,7 +3310,7 @@
      "magnitude": "+20 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -3088,7 +3325,7 @@
      "magnitude": "+20 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -3103,7 +3340,7 @@
      "magnitude": "+20 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -3118,7 +3355,7 @@
      "magnitude": "+20 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -3133,7 +3370,7 @@
      "magnitude": "+5 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.2,
+     "quality": 0.25,
      "strength": {
       "kind": "mitigation",
       "value": 5,
@@ -3163,7 +3400,7 @@
      "magnitude": "+10 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -3178,7 +3415,7 @@
      "magnitude": "+40 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.875,
+     "quality": 0.9,
      "strength": {
       "kind": "mitigation",
       "value": 40,
@@ -3193,7 +3430,7 @@
      "magnitude": "+30 Health",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.938,
+     "quality": 0.944,
      "strength": {
       "kind": "mitigation",
       "value": 30,
@@ -3255,7 +3492,7 @@
      "magnitude": "heal",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.044,
+     "quality": 0.062,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -3278,7 +3515,7 @@
      }
     },
     {
-     "name": "The Death Angel",
+     "name": "Investiture of the Death Angel",
      "tradition": "Invocation",
      "rank": 5,
      "lever": "heal",
@@ -3290,6 +3527,21 @@
       "kind": "heal",
       "value": 7.0,
       "unit": "health"
+     }
+    },
+    {
+     "name": "Investiture of the World Mother",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "heal",
+     "magnitude": "heal",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.111,
+     "strength": {
+      "kind": "mitigation",
+      "value": 10,
+      "unit": "temp-health"
      }
     },
     {
@@ -3408,7 +3660,7 @@
      "magnitude": "heal",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.5,
+     "quality": 0.583,
      "strength": {
       "kind": "mitigation",
       "value": 6,
@@ -3683,6 +3935,15 @@
      "precast": true
     },
     {
+     "name": "Transcendent Recovery",
+     "tradition": "Soul",
+     "rank": 5,
+     "lever": "heal",
+     "magnitude": "heal",
+     "duration": "instant",
+     "precast": false
+    },
+    {
      "name": "Host of Spirits",
      "tradition": "Spiritualism",
      "rank": 4,
@@ -3864,14 +4125,14 @@
      "precast": false
     },
     {
-     "name": "The One-eyed God",
+     "name": "Investiture of the One-eyed God",
      "tradition": "Invocation",
      "rank": 3,
      "lever": "self-attack-boons",
      "magnitude": "2 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -3879,14 +4140,14 @@
      }
     },
     {
-     "name": "The Summer Queen",
+     "name": "Investiture of the Summer Queen",
      "tradition": "Invocation",
      "rank": 4,
      "lever": "self-attack-boons",
      "magnitude": "3 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.278,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -3927,6 +4188,15 @@
      "precast": true
     },
     {
+     "name": "Stillness",
+     "tradition": "Order",
+     "rank": 3,
+     "lever": "self-attack-boons",
+     "magnitude": "1 boon(s) to hit",
+     "duration": "instant",
+     "precast": false
+    },
+    {
      "name": "Primal Scream",
      "tradition": "Primal",
      "rank": 1,
@@ -3958,7 +4228,7 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -4075,7 +4345,7 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.69,
+     "quality": 0.695,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -4112,7 +4382,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.882,
+     "quality": 0.89,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -4127,7 +4397,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.079,
+     "quality": 0.095,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -4151,7 +4421,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.409,
+     "quality": 0.424,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -4166,7 +4436,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.5,
+     "quality": 0.517,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -4181,7 +4451,7 @@
      "magnitude": "+1d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.816,
+     "quality": 0.819,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -4205,7 +4475,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.144,
+     "quality": 0.167,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4292,7 +4562,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.079,
+     "quality": 0.095,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -4316,7 +4586,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.845,
+     "quality": 0.856,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -4331,7 +4601,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.144,
+     "quality": 0.167,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4361,7 +4631,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4376,7 +4646,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.349,
+     "quality": 0.344,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -4439,7 +4709,7 @@
      "magnitude": "+2d6+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4454,7 +4724,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.968,
+     "quality": 0.969,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -4478,7 +4748,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -4538,7 +4808,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.309,
+     "quality": 0.314,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -4553,7 +4823,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.8,
+     "quality": 0.814,
      "strength": {
       "kind": "damage",
       "value": 8.0,
@@ -4568,7 +4838,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.991,
+     "quality": 0.992,
      "strength": {
       "kind": "damage",
       "value": 11.5,
@@ -4583,7 +4853,7 @@
      "magnitude": "+1d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.024,
+     "quality": 0.023,
      "strength": {
       "kind": "damage",
       "value": 3.0,
@@ -4598,7 +4868,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -4613,7 +4883,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.643,
+     "quality": 0.641,
      "strength": {
       "kind": "damage",
       "value": 8.0,
@@ -4628,7 +4898,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.939,
+     "quality": 0.94,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -4643,7 +4913,7 @@
      "magnitude": "+3d6+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.956,
+     "quality": 0.958,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -4706,7 +4976,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.173,
+     "quality": 0.169,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -4754,7 +5024,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.409,
+     "quality": 0.424,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -4769,7 +5039,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.684,
+     "quality": 0.69,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -4784,7 +5054,7 @@
      "magnitude": "+1d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.144,
+     "quality": 0.167,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4799,7 +5069,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.409,
+     "quality": 0.424,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -4814,7 +5084,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.409,
+     "quality": 0.424,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -4829,7 +5099,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -4844,7 +5114,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.939,
+     "quality": 0.94,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -4859,7 +5129,7 @@
      "magnitude": "+2d6+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4874,7 +5144,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.816,
+     "quality": 0.819,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -4904,7 +5174,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4919,7 +5189,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.684,
+     "quality": 0.69,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -4927,14 +5197,14 @@
      }
     },
     {
-     "name": "The Storm Queen",
+     "name": "Investiture of the Storm Queen",
      "tradition": "Invocation",
      "rank": 1,
      "lever": "extra-damage",
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -4942,14 +5212,14 @@
      }
     },
     {
-     "name": "The Grand Druid",
+     "name": "Investiture of the Grand Druid",
      "tradition": "Invocation",
      "rank": 2,
      "lever": "extra-damage",
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -4957,7 +5227,7 @@
      }
     },
     {
-     "name": "The Robin Prince",
+     "name": "Investiture of the Robin Prince",
      "tradition": "Invocation",
      "rank": 2,
      "lever": "extra-damage",
@@ -4966,14 +5236,23 @@
      "precast": true
     },
     {
-     "name": "The One-eyed God",
+     "name": "Investiture of the Warlord",
+     "tradition": "Invocation",
+     "rank": 2,
+     "lever": "extra-damage",
+     "magnitude": "+1d6+1d6",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Investiture of the One-eyed God",
      "tradition": "Invocation",
      "rank": 3,
      "lever": "extra-damage",
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -4981,14 +5260,14 @@
      }
     },
     {
-     "name": "The Winter King",
+     "name": "Investiture of the Winter King",
      "tradition": "Invocation",
      "rank": 4,
      "lever": "extra-damage",
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -4996,7 +5275,7 @@
      }
     },
     {
-     "name": "The Death Angel",
+     "name": "Investiture of the Death Angel",
      "tradition": "Invocation",
      "rank": 5,
      "lever": "extra-damage",
@@ -5033,7 +5312,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5041,9 +5320,72 @@
      }
     },
     {
+     "name": "Barbed Hide",
+     "tradition": "Metal",
+     "rank": 1,
+     "lever": "extra-damage",
+     "magnitude": "+1d6",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.169,
+     "strength": {
+      "kind": "damage",
+      "value": 3.5,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Sharpen",
+     "tradition": "Metal",
+     "rank": 1,
+     "lever": "extra-damage",
+     "magnitude": "+1d6",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Fusillade",
+     "tradition": "Metal",
+     "rank": 2,
+     "lever": "extra-damage",
+     "magnitude": "+1d6",
+     "duration": "instant",
+     "precast": false,
+     "quality": 0.641,
+     "strength": {
+      "kind": "damage",
+      "value": 8.0,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Strength of Steel",
+     "tradition": "Metal",
+     "rank": 2,
+     "lever": "extra-damage",
+     "magnitude": "+1d6",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.25,
+     "strength": {
+      "kind": "mitigation",
+      "value": 5,
+      "unit": "temp-health"
+     }
+    },
+    {
      "name": "Riddle of Steel",
      "tradition": "Metal",
      "rank": 3,
+     "lever": "extra-damage",
+     "magnitude": "+2d6",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Flesh to Iron",
+     "tradition": "Metal",
+     "rank": 5,
      "lever": "extra-damage",
      "magnitude": "+2d6",
      "duration": "sustained",
@@ -5096,7 +5438,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -5111,7 +5453,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5126,7 +5468,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5134,7 +5476,7 @@
      }
     },
     {
-     "name": "Necromancer",
+     "name": "Mark of the Necromancer",
      "tradition": "Necromancy",
      "rank": 0,
      "lever": "extra-damage",
@@ -5165,7 +5507,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.173,
+     "quality": 0.169,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -5180,7 +5522,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.937,
+     "quality": 0.938,
      "strength": {
       "kind": "damage",
       "value": 15.5,
@@ -5195,7 +5537,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -5243,7 +5585,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.309,
+     "quality": 0.314,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -5300,7 +5642,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -5333,7 +5675,7 @@
      "magnitude": "+2d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -5348,7 +5690,7 @@
      "magnitude": "+3d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.062,
+     "quality": 0.111,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -5372,7 +5714,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5405,7 +5747,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -5435,7 +5777,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.69,
+     "quality": 0.695,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -5450,7 +5792,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5465,7 +5807,7 @@
      "magnitude": "+3d6",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -5509,11 +5851,38 @@
      "precast": false
     },
     {
+     "name": "Strike the Soul",
+     "tradition": "Soul",
+     "rank": 1,
+     "lever": "extra-damage",
+     "magnitude": "+1d6",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Shattering Strike",
+     "tradition": "Soul",
+     "rank": 2,
+     "lever": "extra-damage",
+     "magnitude": "+2d6",
+     "duration": "instant",
+     "precast": false
+    },
+    {
      "name": "Soul Shivers",
      "tradition": "Soul",
      "rank": 3,
      "lever": "extra-damage",
      "magnitude": "+2d6+4d6",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Rend Soul",
+     "tradition": "Soul",
+     "rank": 4,
+     "lever": "extra-damage",
+     "magnitude": "+2d6",
      "duration": "instant",
      "precast": false
     },
@@ -5534,7 +5903,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.409,
+     "quality": 0.424,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -5549,7 +5918,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.5,
+     "quality": 0.517,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -5564,7 +5933,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.233,
+     "quality": 0.26,
      "strength": {
       "kind": "damage",
       "value": 8.0,
@@ -5579,7 +5948,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5594,7 +5963,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5609,7 +5978,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.333,
+     "quality": 0.354,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -5633,7 +6002,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.684,
+     "quality": 0.69,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -5663,7 +6032,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5678,7 +6047,7 @@
      "magnitude": "+1d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.936,
+     "quality": 0.941,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -5693,7 +6062,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.939,
+     "quality": 0.94,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -5708,7 +6077,7 @@
      "magnitude": "+3d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.889,
+     "quality": 0.896,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -5732,7 +6101,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5747,7 +6116,7 @@
      "magnitude": "+2d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.69,
+     "quality": 0.695,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -5771,7 +6140,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -5810,7 +6179,7 @@
      "magnitude": "+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.875,
+     "quality": 0.9,
      "strength": {
       "kind": "mitigation",
       "value": 40,
@@ -5825,7 +6194,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.938,
+     "quality": 0.944,
      "strength": {
       "kind": "mitigation",
       "value": 30,
@@ -5864,7 +6233,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.722,
+     "quality": 0.727,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -5903,7 +6272,7 @@
      "magnitude": "+1d6",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -5973,7 +6342,7 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.816,
+     "quality": 0.819,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -6030,7 +6399,7 @@
      "magnitude": "2 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -6158,6 +6527,30 @@
      }
     },
     {
+     "name": "Magnetize",
+     "tradition": "Metal",
+     "rank": 3,
+     "lever": "target-banes",
+     "magnitude": "3 bane(s) on its rolls",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.009,
+     "strength": {
+      "kind": "damage",
+      "value": 1.0,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Flesh to Iron",
+     "tradition": "Metal",
+     "rank": 5,
+     "lever": "target-banes",
+     "magnitude": "1 bane(s) on its rolls",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
      "name": "Spectral Grasp",
      "tradition": "Necromancy",
      "rank": 0,
@@ -6216,12 +6609,21 @@
      "magnitude": "3 bane(s) on its rolls",
      "duration": "instant",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
       "unit": "damage"
      }
+    },
+    {
+     "name": "Overcome Affliction",
+     "tradition": "Soul",
+     "rank": 0,
+     "lever": "target-banes",
+     "magnitude": "1 bane(s) on its rolls",
+     "duration": "instant",
+     "precast": false
     },
     {
      "name": "Frightful Spirit",
@@ -6291,7 +6693,7 @@
      "magnitude": "2 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -6315,7 +6717,7 @@
      "magnitude": "1 bane(s) on its rolls",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.875,
+     "quality": 0.9,
      "strength": {
       "kind": "mitigation",
       "value": 40,
@@ -6341,7 +6743,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.882,
+     "quality": 0.89,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -6356,7 +6758,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.405,
+     "quality": 0.398,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -6380,7 +6782,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.349,
+     "quality": 0.344,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -6395,7 +6797,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -6410,7 +6812,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.079,
+     "quality": 0.095,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -6425,7 +6827,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -6440,7 +6842,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.044,
+     "quality": 0.062,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -6470,7 +6872,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -6494,7 +6896,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.409,
+     "quality": 0.424,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -6509,7 +6911,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.5,
+     "quality": 0.517,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -6542,7 +6944,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.144,
+     "quality": 0.167,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -6623,7 +7025,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -6638,7 +7040,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.079,
+     "quality": 0.095,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -6653,7 +7055,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.144,
+     "quality": 0.167,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -6710,7 +7112,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.845,
+     "quality": 0.856,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -6734,7 +7136,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.079,
+     "quality": 0.095,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -6749,7 +7151,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.278,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -6764,7 +7166,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.733,
+     "quality": 0.729,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -6851,7 +7253,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -6875,7 +7277,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -6980,7 +7382,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.968,
+     "quality": 0.969,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -6995,7 +7397,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.079,
+     "quality": 0.095,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -7055,7 +7457,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.175,
+     "quality": 0.19,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -7070,7 +7472,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.778,
+     "quality": 0.771,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -7115,7 +7517,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.309,
+     "quality": 0.314,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -7130,7 +7532,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7145,7 +7547,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.905,
+     "quality": 0.906,
      "strength": {
       "kind": "damage",
       "value": 15.0,
@@ -7160,7 +7562,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.816,
+     "quality": 0.819,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -7175,7 +7577,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.939,
+     "quality": 0.94,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -7190,7 +7592,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.886,
+     "quality": 0.888,
      "strength": {
       "kind": "damage",
       "value": 20.0,
@@ -7205,7 +7607,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.956,
+     "quality": 0.958,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -7289,7 +7691,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.173,
+     "quality": 0.169,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -7328,7 +7730,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.816,
+     "quality": 0.819,
      "strength": {
       "kind": "damage",
       "value": 17.5,
@@ -7352,7 +7754,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.922,
+     "quality": 0.927,
      "strength": {
       "kind": "damage",
       "value": 24.0,
@@ -7367,7 +7769,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.144,
+     "quality": 0.167,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7574,7 +7976,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.409,
+     "quality": 0.424,
      "strength": {
       "kind": "damage",
       "value": 5.5,
@@ -7589,7 +7991,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7619,7 +8021,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7634,7 +8036,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7649,7 +8051,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -7664,7 +8066,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.939,
+     "quality": 0.94,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -7679,7 +8081,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7703,7 +8105,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -7754,7 +8156,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -7769,7 +8171,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.684,
+     "quality": 0.69,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -7786,14 +8188,14 @@
      "precast": true
     },
     {
-     "name": "The Grand Druid",
+     "name": "Investiture of the Grand Druid",
      "tradition": "Invocation",
      "rank": 2,
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -7801,14 +8203,29 @@
      }
     },
     {
-     "name": "The Summer Queen",
+     "name": "Investiture of the Horned One",
      "tradition": "Invocation",
      "rank": 4,
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.278,
+     "quality": 0.833,
+     "strength": {
+      "kind": "damage",
+      "value": 17.5,
+      "unit": "damage"
+     }
+    },
+    {
+     "name": "Investiture of the Summer Queen",
+     "tradition": "Invocation",
+     "rank": 4,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -7816,14 +8233,14 @@
      }
     },
     {
-     "name": "The Winter King",
+     "name": "Investiture of the Winter King",
      "tradition": "Invocation",
      "rank": 4,
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -7831,7 +8248,7 @@
      }
     },
     {
-     "name": "The Death Angel",
+     "name": "Investiture of the Death Angel",
      "tradition": "Invocation",
      "rank": 5,
      "lever": "control",
@@ -7843,6 +8260,21 @@
       "kind": "heal",
       "value": 7.0,
       "unit": "health"
+     }
+    },
+    {
+     "name": "Investiture of the World Mother",
+     "tradition": "Invocation",
+     "rank": 5,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "sustained",
+     "precast": true,
+     "quality": 0.111,
+     "strength": {
+      "kind": "mitigation",
+      "value": 10,
+      "unit": "temp-health"
      }
     },
     {
@@ -7871,7 +8303,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.778,
+     "quality": 0.781,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -7886,7 +8318,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.778,
+     "quality": 0.771,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -7894,14 +8326,14 @@
      }
     },
     {
-     "name": "Ninth Dimension",
+     "name": "Worms From the Ninth Dimension",
      "tradition": "Madness",
      "rank": 4,
      "lever": "control",
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -7934,12 +8366,21 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.8,
+     "quality": 0.814,
      "strength": {
       "kind": "damage",
       "value": 8.0,
       "unit": "damage"
      }
+    },
+    {
+     "name": "Cage of Iron",
+     "tradition": "Metal",
+     "rank": 3,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "sustained",
+     "precast": true
     },
     {
      "name": "Iron Cloud",
@@ -7949,7 +8390,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8012,7 +8453,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8036,7 +8477,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8051,7 +8492,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8075,7 +8516,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.173,
+     "quality": 0.169,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -8090,7 +8531,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.937,
+     "quality": 0.938,
      "strength": {
       "kind": "damage",
       "value": 15.5,
@@ -8105,7 +8546,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.684,
+     "quality": 0.69,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -8120,7 +8561,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.412,
+     "quality": 0.422,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -8141,6 +8582,33 @@
       "value": 19.0,
       "unit": "damage"
      }
+    },
+    {
+     "name": "Rationality",
+     "tradition": "Order",
+     "rank": 1,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "sustained",
+     "precast": true
+    },
+    {
+     "name": "Immobility",
+     "tradition": "Order",
+     "rank": 2,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Stillness",
+     "tradition": "Order",
+     "rank": 3,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "instant",
+     "precast": false
     },
     {
      "name": "Depower",
@@ -8165,6 +8633,15 @@
       "value": 10.5,
       "unit": "damage"
      }
+    },
+    {
+     "name": "Mantle of Law",
+     "tradition": "Order",
+     "rank": 5,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "sustained",
+     "precast": true
     },
     {
      "name": "Call Small Animal",
@@ -8252,7 +8729,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -8267,7 +8744,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.684,
+     "quality": 0.69,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -8282,7 +8759,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.939,
+     "quality": 0.94,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -8297,7 +8774,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.733,
+     "quality": 0.729,
      "strength": {
       "kind": "damage",
       "value": 12.5,
@@ -8339,7 +8816,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8363,7 +8840,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8378,7 +8855,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.333,
+     "quality": 0.354,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -8411,7 +8888,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8426,7 +8903,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8441,7 +8918,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8465,7 +8942,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -8480,7 +8957,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8549,7 +9026,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.516,
+     "quality": 0.508,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8560,6 +9037,15 @@
      "name": "Soul Shivers",
      "tradition": "Soul",
      "rank": 3,
+     "lever": "control",
+     "magnitude": "control",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Rend Soul",
+     "tradition": "Soul",
+     "rank": 4,
      "lever": "control",
      "magnitude": "control",
      "duration": "instant",
@@ -8648,7 +9134,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.045,
+     "quality": 0.042,
      "strength": {
       "kind": "damage",
       "value": 2.0,
@@ -8663,7 +9149,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.5,
+     "quality": 0.517,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -8687,7 +9173,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.937,
+     "quality": 0.938,
      "strength": {
       "kind": "damage",
       "value": 15.5,
@@ -8702,7 +9188,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -8717,7 +9203,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.535,
+     "quality": 0.543,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8771,7 +9257,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.309,
+     "quality": 0.314,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -8786,7 +9272,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8801,7 +9287,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.655,
+     "quality": 0.669,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -8816,7 +9302,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.173,
+     "quality": 0.169,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -8831,7 +9317,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.778,
+     "quality": 0.781,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8846,7 +9332,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.447,
+     "quality": 0.457,
      "strength": {
       "kind": "damage",
       "value": 10.0,
@@ -8861,7 +9347,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -8894,7 +9380,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.684,
+     "quality": 0.69,
      "strength": {
       "kind": "damage",
       "value": 14.0,
@@ -9008,7 +9494,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.936,
+     "quality": 0.941,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -9023,7 +9509,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.939,
+     "quality": 0.94,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -9056,7 +9542,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.889,
+     "quality": 0.896,
      "strength": {
       "kind": "damage",
       "value": 21.0,
@@ -9104,7 +9590,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.69,
+     "quality": 0.695,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -9128,7 +9614,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.412,
+     "quality": 0.422,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -9260,7 +9746,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.5,
+     "quality": 0.517,
      "strength": {
       "kind": "damage",
       "value": 6.5,
@@ -9275,7 +9761,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.69,
+     "quality": 0.695,
      "strength": {
       "kind": "damage",
       "value": 9.0,
@@ -9290,7 +9776,7 @@
      "magnitude": "control",
      "duration": "round",
      "precast": false,
-     "quality": 0.167,
+     "quality": 0.164,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -9305,7 +9791,7 @@
      "magnitude": "control",
      "duration": "round",
      "precast": false,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -9320,7 +9806,7 @@
      "magnitude": "control",
      "duration": "concentration",
      "precast": false,
-     "quality": 0.289,
+     "quality": 0.302,
      "strength": {
       "kind": "damage",
       "value": 7.0,
@@ -9344,7 +9830,7 @@
      "magnitude": "control",
      "duration": "instant",
      "precast": false,
-     "quality": 0.956,
+     "quality": 0.958,
      "strength": {
       "kind": "damage",
       "value": 24.5,
@@ -9359,7 +9845,7 @@
      "magnitude": "control",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.533,
+     "quality": 0.542,
      "strength": {
       "kind": "damage",
       "value": 10.5,
@@ -9387,7 +9873,7 @@
      "magnitude": "+2d6",
      "duration": "instant",
      "precast": false,
-     "quality": 0.079,
+     "quality": 0.095,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -9435,7 +9921,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.309,
+     "quality": 0.314,
      "strength": {
       "kind": "damage",
       "value": 4.5,
@@ -9492,7 +9978,7 @@
      "magnitude": "+1d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.25,
+     "quality": 0.3,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -9525,7 +10011,7 @@
      "magnitude": "+2d6+2d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -9540,7 +10026,7 @@
      "magnitude": "+3d6",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.062,
+     "quality": 0.111,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -9557,11 +10043,38 @@
      "precast": false
     },
     {
+     "name": "Strike the Soul",
+     "tradition": "Soul",
+     "rank": 1,
+     "lever": "extra-damage",
+     "magnitude": "+1d6",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Shattering Strike",
+     "tradition": "Soul",
+     "rank": 2,
+     "lever": "extra-damage",
+     "magnitude": "+2d6",
+     "duration": "instant",
+     "precast": false
+    },
+    {
      "name": "Soul Shivers",
      "tradition": "Soul",
      "rank": 3,
      "lever": "extra-damage",
      "magnitude": "+2d6+4d6",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Rend Soul",
+     "tradition": "Soul",
+     "rank": 4,
+     "lever": "extra-damage",
+     "magnitude": "+2d6",
      "duration": "instant",
      "precast": false
     },
@@ -9599,7 +10112,7 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "instant",
      "precast": false,
-     "quality": 0.079,
+     "quality": 0.095,
      "strength": {
       "kind": "damage",
       "value": 3.5,
@@ -9653,7 +10166,7 @@
      "magnitude": "1 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.562,
+     "quality": 0.611,
      "strength": {
       "kind": "mitigation",
       "value": 20,
@@ -9668,7 +10181,7 @@
      "magnitude": "2 boon(s) to hit",
      "duration": "sustained",
      "precast": true,
-     "quality": 0.062,
+     "quality": 0.111,
      "strength": {
       "kind": "mitigation",
       "value": 10,
@@ -9685,9 +10198,36 @@
      "precast": false
     },
     {
+     "name": "Strike the Soul",
+     "tradition": "Soul",
+     "rank": 1,
+     "lever": "self-attack-boons",
+     "magnitude": "3 boon(s) to hit",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Shattering Strike",
+     "tradition": "Soul",
+     "rank": 2,
+     "lever": "self-attack-boons",
+     "magnitude": "3 boon(s) to hit",
+     "duration": "instant",
+     "precast": false
+    },
+    {
      "name": "Soul Shivers",
      "tradition": "Soul",
      "rank": 3,
+     "lever": "self-attack-boons",
+     "magnitude": "3 boon(s) to hit",
+     "duration": "instant",
+     "precast": false
+    },
+    {
+     "name": "Rend Soul",
+     "tradition": "Soul",
+     "rank": 4,
      "lever": "self-attack-boons",
      "magnitude": "3 boon(s) to hit",
      "duration": "instant",

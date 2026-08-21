@@ -10,11 +10,11 @@
 // each path's focus tradition(s) with the governing attribute. See
 // js/path-eval.js for the scoring model.
 
-import { rules } from "../data.js";
+import { rules, BOOKS, BOOKS_SHORT } from "../data.js";
 import { analyzeAllPaths } from "../path-eval.js";
 import { esc } from "./util.js";
 
-const BOOKS = { core: "Core Rulebook", occult: "Occult Philosophy", terrible: "Terrible Beauty" };
+
 const TYPE_LABEL = { novice: "Novice", expert: "Expert", master: "Master" };
 const TYPE_ORDER = { novice: 0, expert: 1, master: 2 };
 
@@ -192,9 +192,8 @@ export function renderPaths(el) {
         </select>
         <select id="pa-source">
           <option value="">all books</option>
-          <option value="core" ${filters.source === "core" ? "selected" : ""}>Core</option>
-          <option value="occult" ${filters.source === "occult" ? "selected" : ""}>Occult Philosophy</option>
-          <option value="terrible" ${filters.source === "terrible" ? "selected" : ""}>Terrible Beauty</option>
+          ${Object.entries(BOOKS_SHORT).map(([k, label]) =>
+            `<option value="${k}" ${filters.source === k ? "selected" : ""}>${label}</option>`).join("")}
         </select>
         <select id="pa-sort" title="Order the results">
           <option value="" ${filters.sort === "" ? "selected" : ""}>name ↑</option>

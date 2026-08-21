@@ -54,8 +54,7 @@
   "description": "A powerful wind assails the target. Make a Will attack roll against the target’s Strength. On a success, the wind moves the target 1d6 yards away from you. Attack Roll 20+ The target falls prone at the end of this movement.",
   "attack": {
    "attribute": "Will",
-   "against": "Strength",
-   "damage": "1d6"
+   "against": "Strength"
   },
   "source": "core",
   "page": 116,
@@ -3721,8 +3720,7 @@
   "description": "Make an Intellect attack roll against the target’s Strength. On a success, the creature becomes immune to the asleep affliction for 1d6 days. A target that does not sleep is subject to the effects of deprivation (Shadow, page 200). Attack Roll 20+ The curse lasts for 3d6 days or until you lift it. Sacrifice You can use an action and expend a casting of this spell to cast the hex spell (Shadow, page 122).",
   "attack": {
    "attribute": "Intellect",
-   "against": "Strength",
-   "damage": "1d6"
+   "against": "Strength"
   },
   "source": "occult",
   "page": 36,
@@ -3899,8 +3897,7 @@
   "description": "As you incant the curse, eerie music fills the air. Make an Intellect attack roll against the target’s Will. On a success, the target becomes cursed for 1 minute. When the target is cursed in this way, it begins to dance in a strange and erratic manner. The target can take only slow turns and must use its movement on each of its turns to move up to half Speed in a direction you choose or a random direction if you cannot see the target to choose the direction. Attack Roll 20+ The curse lasts until you die or until you lift it. In addition, at the end of each hour the target is cursed, the target must get a success on a Strength challenge roll or become fatigued. If the target is already fatigued, it takes a cumulative –1d6 penalty to its Health. The penalty disappears when the target is no longer cursed by this spell.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "1d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 37,
@@ -4061,7 +4058,7 @@
   "attack": {
    "attribute": "Intellect",
    "against": "Will",
-   "damage": "1d6"
+   "damage": "2d6"
   },
   "source": "occult",
   "page": 38,
@@ -4340,8 +4337,7 @@
   "description": "Your hand becomes withered and spotted as you reach out to touch the target, then returns to its normal appearance. Make a Will attack roll against the target’s Agility. On a success, you cause the target to visibly grow older, such that a child grows in size and stature, while an adult grays and becomes frail. The GM decides the target’s starting age category, which is usually adult, and then the target grows 1d3 age categories older. (The categories are child, adolescent, young adult, adult, middle-aged adult, older adult, venerable adult, and corpse.) The target must also make a Strength challenge roll with 1 bane plus 1 bane per category aged. On a failure, the target takes damage equal to its Health from the shock of aging.",
   "attack": {
    "attribute": "Will",
-   "against": "Agility",
-   "damage": "1d3"
+   "against": "Agility"
   },
   "source": "occult",
   "page": 40,
@@ -5903,8 +5899,9 @@
   "tradition": "Earth",
   "type": "Utility",
   "rank": 3,
-  "target": "Any number of Size 1/2 or larger rocks whose total",
-  "description": "Size does not exceed 2 that are within medium range Duration 1 minute; see the effect You imbue each target with the power of earth, causing it to become a compelled construct (Shadow, page 225) for the duration or until it’s destroyed. A Size 1/2 target becomes a small construct, a Size 1 target becomes a medium construct, and a Size 2 target becomes a large construct. Alternatively, you can combine rocks to make a larger construct. You can fuse together two Size 1/2 rocks to create a medium construct, for example.",
+  "target": "Any number of Size 1/2 or larger rocks whose total Size does not exceed 2 that are within medium range",
+  "duration": "1 minute; see the effect",
+  "description": "You imbue each target with the power of earth, causing it to become a compelled construct (Shadow, page 225) for the duration or until it’s destroyed. A Size 1/2 target becomes a small construct, a Size 1 target becomes a medium construct, and a Size 2 target becomes a large construct. Alternatively, you can combine rocks to make a larger construct. You can fuse together two Size 1/2 rocks to create a medium construct, for example.",
   "source": "occult",
   "page": 49,
   "tags": [
@@ -6450,8 +6447,7 @@
   "description": "Make an Intellect attack roll against the target’s Will. On a success, the target becomes filled with hatred for one creature or object you choose within medium range. The target experiences this hatred for 1 minute. Until the spell ends, the target makes attack rolls against the object of its hate with 3 boons and makes attack rolls against anything else with 3 banes. You can use a triggered action on your turn to change the object of the creature’s hate to a different creature or object you can see within medium range. Attack Roll 20+ The target gains 1d6 Insanity. It does not become frightened as a result of gaining Insanity in this way.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "1d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 51,
@@ -6606,8 +6602,7 @@
   "description": "The target experiences lethargy and listlessness. Make an Intellect attack roll against the target’s Intellect. If the target has a Health score of 50 or lower, you make the attack roll with 3 boons. On a success, the target become dazed and slowed until it completes a rest. When the target takes a turn, it can make a Will challenge roll with 3 banes. On a success, it removes the dazed affliction from itself until the end of the round. Attack Roll 20+ Each time the target gets a failure on a Will challenge roll, it gains 1d6 Insanity. If the target goes mad as a result of gaining Insanity in this way, it takes damage equal to its Health.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Intellect",
-   "damage": "1d6"
+   "against": "Intellect"
   },
   "source": "occult",
   "page": 52,
@@ -6717,8 +6712,7 @@
   "description": "Make an Intellect attack roll against the target’s Strength. On a success, the target takes 1 damage and becomes impaired for 1 round. Attack Roll 20+ The target is impaired for 1d3 rounds.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Strength",
-   "damage": "1d3"
+   "against": "Strength"
   },
   "source": "occult",
   "page": 53,
@@ -6749,8 +6743,7 @@
   "description": "Make an Intellect attack roll against the target’s Agility. On a success, the target falls prone and cannot stand up for 1 round. Attack Roll 20+ The target cannot stand up for 1d3 rounds.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Agility",
-   "damage": "1d3"
+   "against": "Agility"
   },
   "source": "occult",
   "page": 53,
@@ -7000,7 +6993,7 @@
   ]
  },
  {
-  "name": "Wee Free Men",
+  "name": "Vengeance of the Wee Free Men",
   "tradition": "Fey",
   "type": "Attack",
   "rank": 4,
@@ -8000,8 +7993,7 @@
   "description": "You grasp the targets’ souls. Make an Intellect attack roll against each target’s Will. On a success, the target becomes dazed for 1 minute. Attack Roll 20+ The target also becomes stunned while it is dazed in this way. Special If you get a success against both targets, their souls permanently swap bodies. Each target gains 1d6 Insanity. Each soul brings the following to its new body, but otherwise uses the new body’s attributes, characteristics, and abilities: • All languages and professions • Intellect and Will scores (recalculate Perception if necessary) • Insanity and Corruption scores • All talents gained from paths • All traditions it has discovered and all spells it knows",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "1d6"
+   "against": "Will"
   },
   "source": "core",
   "page": 131,
@@ -8065,8 +8057,7 @@
   "description": "You reach out and curl your fingers into hooks. Make an Intellect attack roll against the target’s Will. You make the roll with 3 banes against a target with a Health score of 50 or higher. On a success, the target gains 2d6 Insanity. If the Insanity gained would cause the target to go mad, you wrench its soul from its body, killing it instantly and causing the soul to become a shadow (Shadow, page 253) that appears inside an open space within 1 yard of the target. The shadow can take the next available turn and is hostile to all creatures other than you. Dark Magic, Dark Speech Casting Forbidden spells requires speaking mystic phrases in Dark Speech. If you don’t know this language, you make attack rolls using Forbidden spells with 1 bane and creatures make challenge rolls to resist your Forbidden spells with 1 boon. If the target remains alive, it is compelled for a number of rounds equal to its Insanity score. When compelled in this way, the target cannot willingly move more than 20 yards away from you. If it is forcibly moved beyond this distance, it falls prone and becomes unconscious until it is within 20 yards of you once more. When the target removes the compelled affliction from itself, it gains 1 Corruption. Attack Roll 20+ The target gains 1d6 extra Insanity.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "2d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 60,
@@ -8493,8 +8484,7 @@
   "description": "You besiege the target’s mind with unsettling noises and visions. Make an Intellect attack roll with 1 boon against the target’s Perception. On a success, the target becomes impaired for 1 minute. When impaired in this way, whenever the target gets a failure on an attack roll or a challenge roll, it becomes frightened for 1 round. In addition, the target grants 2 boons on attack rolls made against it until the spell ends. Attack Roll 20+ The target also gains 1d3 Insanity.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Perception",
-   "damage": "1d3"
+   "against": "Perception"
   },
   "source": "occult",
   "page": 63,
@@ -8565,8 +8555,7 @@
   "description": "Your illusion attacks the minds of your targets, causing them to believe they have suffered some ghastly injury. For each target, make an Intellect attack roll with 1 boon against its Perception. On a success, the target takes a –4d6 penalty to its Health for 1 minute. A target that dies from this reduction to Health did so because it believed that it had sustained a mortal injury.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Perception",
-   "damage": "4d6"
+   "against": "Perception"
   },
   "source": "occult",
   "page": 63,
@@ -8709,6 +8698,22 @@
   ]
  },
  {
+  "name": "Investiture of the Brute",
+  "tradition": "Invocation",
+  "type": "Utility",
+  "rank": 0,
+  "requirement": "You must have a talisman of the Brute.",
+  "duration": "1 minute",
+  "description": "You bind the daemon known as the Brute, causing you to appear strange and misshapen. Until the spell ends, you have a +4 bonus to Health. Aftereffect You must get a success on an Intellect challenge roll or gain 1 Insanity.",
+  "source": "dlc2",
+  "page": 37,
+  "tags": [
+   "defense-buff",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
   "name": "Investiture of the Messenger",
   "tradition": "Invocation",
   "type": "Utility",
@@ -8725,7 +8730,23 @@
   ]
  },
  {
-  "name": "The Watcher",
+  "name": "Investiture of the Stalwart",
+  "tradition": "Invocation",
+  "type": "Utility",
+  "rank": 0,
+  "requirement": "You must have a talisman of the Stalwart.",
+  "duration": "1 minute",
+  "description": "You bind the daemon known as the Stalwart, causing knobby growths to appear all over your body. Until the spell ends, you have a +1 bonus to Defense. Aftereffect You must get a success on an Intellect challenge roll or gain 1 Insanity.",
+  "source": "dlc2",
+  "page": 37,
+  "tags": [
+   "defense-buff",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the Watcher",
   "tradition": "Invocation",
   "type": "Utility",
   "rank": 0,
@@ -8740,7 +8761,24 @@
   ]
  },
  {
-  "name": "The Dwarf Lord",
+  "name": "Investiture of the Betrayer",
+  "tradition": "Invocation",
+  "type": "Utility",
+  "rank": 1,
+  "requirement": "You must have a talisman of the Betrayer.",
+  "duration": "1 minute",
+  "description": "You bind the daemon known as the Betrayer, causing shadows to gather about your body. Until the spell ends, you have the following benefits: • You gain the shadowsight trait, which lets you see in areas obscured by shadows as if those areas are lit. • Magical shadows spread from a point in your space out to a 5-yard radius. The shadows partially obscure their area. • When the result of your attack roll is a failure, you can turn the failure into a success. When you do so, you or a member of your group that you choose takes 1d6 + 1 damage. Aftereffect You must get a success on an Intellect challenge roll or gain 1d3 Insanity.",
+  "source": "dlc2",
+  "page": 37,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the Dwarf Lord",
   "tradition": "Invocation",
   "type": "Utility",
   "rank": 1,
@@ -8757,7 +8795,29 @@
   ]
  },
  {
-  "name": "The Goblin King",
+  "name": "Investiture of the Fire Prince",
+  "tradition": "Invocation",
+  "type": "Attack",
+  "rank": 1,
+  "requirement": "You must have a talisman of the Fire Prince.",
+  "duration": "1 minute",
+  "description": "You bind the daemon known as the Fire Prince, causing the flesh on your face to disappear and a crown of fire to burn above your head. When you cast the spell, fire rushes out in a 2-yard radius centered on a point in your space. The fire deals 1d6 damage to everything in the area other than you. A creature in the area that gets a success on an Agility challenge roll takes half the damage. Until the spell ends, you have the following benefits: • You take half damage from fire. • You can use an action to hurl a fiery bolt at one creature or object within short range. Make an Intellect attack roll against the target’s Agility. On a success, the bolt hits and deals 1d6 + 2 damage. Aftereffect You must get a success on an Intellect challenge roll or gain 1d3 Insanity.",
+  "attack": {
+   "attribute": "Intellect",
+   "against": "Agility",
+   "damage": "1d6"
+  },
+  "source": "dlc2",
+  "page": 37,
+  "tags": [
+   "damage",
+   "protection",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the Goblin King",
   "tradition": "Invocation",
   "type": "Utility",
   "rank": 1,
@@ -8775,7 +8835,24 @@
   ]
  },
  {
-  "name": "The Storm Queen",
+  "name": "Investiture of the Radiant Champion",
+  "tradition": "Invocation",
+  "type": "Attack",
+  "rank": 1,
+  "requirement": "You must have a talisman of the Radiant Champion.",
+  "duration": "1 minute",
+  "description": "You bind the daemon known as the Radiant Champion, causing light to dapple your body and your weapons to shine. When you bind the daemon, bright light erupts from a point in your space out into a 5-yard radius. Each sighted creature in the area must get a success on an Agility challenge roll, or become impaired for 1 round. Until the spell ends, you have the following benefits: • You cause shadows and darkness within 5 yards of you to become lit areas. • When you make an attack with a weapon, the weapon’s light intensifies, causing the attack to deal 1d3 extra damage. Aftereffect You must get a success on an Intellect challenge roll or gain 1d3 Insanity.",
+  "source": "dlc2",
+  "page": 38,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the Storm Queen",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 1,
@@ -8796,7 +8873,25 @@
   ]
  },
  {
-  "name": "The Grand Druid",
+  "name": "Investiture of the Deceiver",
+  "tradition": "Invocation",
+  "type": "Attack",
+  "rank": 2,
+  "requirement": "You must have a talisman of the Deceiver.",
+  "duration": "1 minute",
+  "description": "You bind the daemon known as the Deceiver, causing you to become weirdly tall and impossibly thin, and to move like a spider. Until the spell ends, you have the following benefits: • You make attack rolls in social situations with 3 boons. In addition, when the total of the attack roll is 20 or higher and exceeds the target number by 5 or more, the target is also charmed for 1 minute. • At the end of the round, you can move each creature you choose within 2 yards of you up to 2 yards in any direction by luring them with your whispery words. • You can use an action to make an Intellect attack roll against the Will of one creature within short range that can see you. On a success, the target becomes frightened for 1 minute. Aftereffect You must get a success on an Intellect challenge roll or gain 1d6 Insanity.",
+  "source": "dlc2",
+  "page": 38,
+  "tags": [
+   "buff-attack",
+   "fear",
+   "mind-control",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the Grand Druid",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 2,
@@ -8819,7 +8914,7 @@
   ]
  },
  {
-  "name": "The Robin Prince",
+  "name": "Investiture of the Robin Prince",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 2,
@@ -8838,12 +8933,52 @@
   ]
  },
  {
-  "name": "Laughing Scoundrel",
+  "name": "Investiture of the Warlord",
+  "tradition": "Invocation",
+  "type": "Utility",
+  "rank": 2,
+  "requirement": "You must have a talisman of the Warlord.",
+  "duration": "1 minute",
+  "description": "You bind the daemon known as the Warlord, causing blood to drip from your pores and stain your body. Until the spell ends, you have the following benefits: • Each creature within 2 yards of you deals 1d6 extra damage on weapon attacks. • You can use a triggered action on your turn to choose one creature that can see and hear you within short range. The target creature can use a triggered action to make an attack with a weapon. That attack deals 1d6 extra damage. Aftereffect You must get a success on an Intellect challenge roll or gain 1d6 Insanity.",
+  "source": "dlc2",
+  "page": 38,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "action-economy",
+   "self-risk",
+   "sustained",
+   "area"
+  ]
+ },
+ {
+  "name": "Investiture of Desire in Flesh",
+  "tradition": "Invocation",
+  "type": "Attack",
+  "rank": 3,
+  "requirement": "You must have a talisman of Desire in Flesh.",
+  "duration": "10 minutes",
+  "description": "You bind the daemon known as the Desire in Flesh, causing other creatures to perceive you as a vision of beauty. When you cast the spell, each creature within short range that can see you must get a success on a Will challenge roll or become charmed until the spell ends or until that creature takes any damage. Until the spell ends, you have the following benefits: • You make attack rolls in social situations with 3 boons. In addition, if the total of your roll is 20 or higher and exceeds the target number by 5 or more, the target also becomes charmed until the spell ends or the target takes any damage. • When a creature would attack you with a weapon, you can use a triggered action to make an Intellect attack roll against the triggering creature’s Will. On a success, the triggering creature becomes charmed for 1 round. Aftereffect You must get a success on an Intellect challenge roll or gain 1d6 + 1 Insanity.",
+  "source": "dlc2",
+  "page": 38,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "buff-attack",
+   "mind-control",
+   "action-economy",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the Laughing Scoundrel",
   "tradition": "Invocation",
   "type": "Utility",
   "rank": 3,
-  "requirement": "You must have a talisman of the Laughing",
-  "description": "Scoundrel Duration 1 hour Your face twists up into an unnerving grin, and the daemon forces you to howl with laughter for the duration. The Laughing Scoundrel grants the following benefits: • At the end of each round, each creature you choose within short range of you that can hear your laughter must make a Will challenge roll with 1 bane. On a failure, a creature gains 1 Insanity; on a success, it becomes immune to this effect until it completes a rest. • You cannot gain Insanity, and you are immune to the compelled and frightened afflictions. • You can use an action, or a triggered action on your turn, to pause your laughter and tell a horrible joke to one creature within short range that can see and hear you. Make an Intellect attack roll against the creature’s Will. On a success, the target gains 1 Insanity and deals 1d6 damage to itself. If the total of your attack roll is 20 or higher and beats the target number by at least 5, the target also becomes impaired for 1 round. You then resume laughing. Aftereffect You must get a success on an Intellect challenge roll or gain 1d6 + 1 Insanity.",
+  "requirement": "You must have a talisman of the Laughing Scoundrel",
+  "duration": "1 hour",
+  "description": "Your face twists up into an unnerving grin, and the daemon forces you to howl with laughter for the duration. The Laughing Scoundrel grants the following benefits: • At the end of each round, each creature you choose within short range of you that can hear your laughter must make a Will challenge roll with 1 bane. On a failure, a creature gains 1 Insanity; on a success, it becomes immune to this effect until it completes a rest. • You cannot gain Insanity, and you are immune to the compelled and frightened afflictions. • You can use an action, or a triggered action on your turn, to pause your laughter and tell a horrible joke to one creature within short range that can see and hear you. Make an Intellect attack roll against the creature’s Will. On a success, the target gains 1 Insanity and deals 1d6 damage to itself. If the total of your attack roll is 20 or higher and beats the target number by at least 5, the target also becomes impaired for 1 round. You then resume laughing. Aftereffect You must get a success on an Intellect challenge roll or gain 1d6 + 1 Insanity.",
   "attack": {
    "attribute": "Intellect",
    "against": "Will",
@@ -8859,7 +8994,25 @@
   ]
  },
  {
-  "name": "The One-eyed God",
+  "name": "Investiture of the Moon Maiden",
+  "tradition": "Invocation",
+  "type": "Utility",
+  "rank": 3,
+  "requirement": "You must have a talisman of the Moon Maiden.",
+  "duration": "10 minutes",
+  "description": "You bind the daemon of the Moon Maiden, causing motes of starlight to swirl around you. Until the spell ends, you have the following benefits: • If a creature uses a spell to attack you or another creature within short range of you, you can impose 1 bane on the attack roll or grant 1 boon on the challenge roll to resist the spell. • When you cast an attack spell, you make the attack roll with 1 boon and creatures make challenge rolls to resist the spell with 1 bane. • When a creature attacks you with a weapon and gets a failure on the attack roll, you can use a triggered action to teleport to an open space you can see within short range. Aftereffect You must get a success on an Intellect challenge roll or gain 1d6 + 1 Insanity.",
+  "source": "dlc2",
+  "page": 38,
+  "tags": [
+   "buff-challenge",
+   "debuff-rolls",
+   "teleport",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the One-eyed God",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 3,
@@ -8879,7 +9032,30 @@
   ]
  },
  {
-  "name": "The Summer Queen",
+  "name": "Investiture of the Horned One",
+  "tradition": "Invocation",
+  "type": "Attack",
+  "rank": 4,
+  "requirement": "You must have a talisman of the Horned One.",
+  "duration": "10 minutes",
+  "description": "You bind the daemon of the Horned One, causing you to grow larger, horns to extend out from the sides of your head, and fur to cover your legs. In addition, your feet become hooves. When you bind the daemon, if there is a creature within medium range, you immediately move until you can reach it and make an Intellect attack roll with 3 boons against its Defense. On a success, the target takes 5d6 damage, moves 1d6 yards in a straight line away from you, and then falls prone. Until the spell ends, you have the following benefits: • Your Size increases by 1, rounding up to the nearest whole number. • You gain a +10 bonus to Health. • You can use an action to sweep your horns against one creature you can reach. Make an Intellect attack roll with 2 boons against the target’s Defense. On a success, the horns strike the target and deal 2d6 damage. Then, you move the target up to 3 yards in a direction you choose. Aftereffect You must get a success on an Intellect challenge roll or gain 1d6 + 2 Insanity.",
+  "attack": {
+   "attribute": "Intellect",
+   "against": "Defense",
+   "damage": "5d6"
+  },
+  "source": "dlc2",
+  "page": 39,
+  "tags": [
+   "damage",
+   "control",
+   "defense-buff",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the Summer Queen",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 4,
@@ -8905,7 +9081,7 @@
   ]
  },
  {
-  "name": "The Winter King",
+  "name": "Investiture of the Winter King",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 4,
@@ -8928,7 +9104,7 @@
   ]
  },
  {
-  "name": "The Death Angel",
+  "name": "Investiture of the Death Angel",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 5,
@@ -8953,7 +9129,7 @@
   ]
  },
  {
-  "name": "The Diviner",
+  "name": "Investiture of the Diviner",
   "tradition": "Invocation",
   "type": "Utility",
   "rank": 5,
@@ -8962,8 +9138,7 @@
   "description": "When you cast this spell, your eyes turn black and your body begins to float a few inches off the ground, though you remain able to move normally. The Diviner grants the following benefits for the duration: • You can’t be knocked prone, and you take no damage from landing after a fall. • You impose 3 banes on the attack roll of any creature attacking you, and you make challenge rolls to resist attacks with 3 boons. • Whenever a creature within medium range makes an attack roll or a challenge roll, you can use a triggered action to grant the creature 2 boons on the roll. • You can use an action to issue a dire prophecy to one creature you can see within medium range. Make an Intellect attack roll against the creature’s Will. On a success, you impose 3 banes on the target’s attack rolls and challenge rolls for 1 round. If the total of your attack roll is 20 or higher and beats the target number by at least 5, the effect lasts for 1 minute instead of 1 round. • At the end of each round, the GM moves you 1 yard in a randomly determined direction parallel to the ground. This movement triggers free attacks. Aftereffect You must get a success on an Intellect challenge roll or gain 2d6 Insanity",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "2d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 68,
@@ -8976,7 +9151,30 @@
   ]
  },
  {
-  "name": "The Dark Lady",
+  "name": "Investiture of the World Mother",
+  "tradition": "Invocation",
+  "type": "Utility",
+  "rank": 5,
+  "requirement": "You must have a talisman of the World Mother.",
+  "duration": "10 minutes",
+  "description": "You bind the daemon of the World Mother, causing you to assume the appearance of a naked, heavyset woman with a dozen breasts. When you cast the spell, a wave of healing energy rushes out from you. Each living creature within 5 yards of you gains a +10 bonus to Health that lasts until the spell ends. Furthermore, while a creature has this bonus, it cannot be fatigued. Until the spell ends, you have the following benefits: • You have a +10 bonus to Health. • You can use an action on your turn to remove one of the following afflictions from one creature you can see within short range: blinded, charmed, compelled, dazed, deafened, diseased, fatigued, frightened, impaired, poisoned, or stunned. • At the end of each round, you can choose up to three injured creatures within short range. Each target heals damage equal to its healing rate. Aftereffect You must get a success on an Intellect challenge roll or gain 2d6 Insanity.",
+  "source": "dlc2",
+  "page": 39,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "control",
+   "fear",
+   "mind-control",
+   "heal",
+   "cure",
+   "defense-buff",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Investiture of the Dark Lady",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 6,
@@ -8997,7 +9195,7 @@
   ]
  },
  {
-  "name": "The Witch-king",
+  "name": "Investiture of the Witch-king",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 6,
@@ -9018,7 +9216,7 @@
   ]
  },
  {
-  "name": "The Archmage",
+  "name": "Investiture of the Archmage",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 7,
@@ -9037,7 +9235,7 @@
   ]
  },
  {
-  "name": "The Great Dragon",
+  "name": "Investiture of the Great Dragon",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 8,
@@ -9058,7 +9256,7 @@
   ]
  },
  {
-  "name": "The Ascended One",
+  "name": "Investiture of the Ascended One",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 9,
@@ -9084,7 +9282,7 @@
   ]
  },
  {
-  "name": "The Devil",
+  "name": "Investiture of the Devil",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 10,
@@ -9094,7 +9292,7 @@
   "attack": {
    "attribute": "Intellect",
    "against": "Defense",
-   "damage": "1d6"
+   "damage": "5d6"
   },
   "source": "occult",
   "page": 69,
@@ -9505,7 +9703,7 @@
   "attack": {
    "attribute": "Will",
    "against": "Will",
-   "damage": "1d6"
+   "damage": "10d6"
   },
   "source": "occult",
   "page": 71,
@@ -9808,7 +10006,7 @@
   ]
  },
  {
-  "name": "Ninth Dimension",
+  "name": "Worms From the Ninth Dimension",
   "tradition": "Madness",
   "type": "Attack",
   "rank": 4,
@@ -9890,8 +10088,7 @@
   "description": "When you cast the spell, you must burn the required possession or material in a dung fire and waft the smoke into the air, a process that takes 1 minute. When you finish, make an Intellect attack roll against the target’s Will. On a success, the target falls asleep for 8 hours and cannot be awakened by any means except as described below. When the creature is asleep in this way, extradimensional entities of monstrous form and sinister intent torment its dreams. At the end of each hour the target sleeps, roll a d6. On an even number, the target gains 1d6 Insanity. Whenever the target gains Insanity from this spell, it can make a Will challenge roll with 3 banes. On a success, it wakes up and the effect ends. If the target is asleep and goes mad as a result of gaining Insanity in this way, it dies. Aftereffect You must get a success on a Will challenge roll with 3 banes or be prevented from sleeping for a number of days equal to your Insanity total. While prevented from sleeping, you cannot derive any benefit from resting and you can become subject to the effects of deprivation if you are not immune to the asleep affliction.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "1d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 74,
@@ -9933,8 +10130,7 @@
   "description": "Reality ripples around the target. Each creature that can see the target must get a success on a Will challenge roll or gain 1 Insanity. Then, make an Intellect attack roll against the target’s Will. You make the roll with 3 boons if the target has a Health score of 50 or lower. You also make the roll with 1 boon if the target’s Insanity score is 1 or higher. On a success, the target disappears, dragged into a maddening dimension where it remains until it can find its way free. At the end of each round, the target must make a Will challenge roll with 3 banes if its Health is 50 or lower and 1 bane if it has at least 1 Insanity. On a failure, the target gains 1d6 Insanity. If the target goes mad as a result of gaining Insanity in this way, it is lost inside that dimension. If the target gets three successes, it reappears in the space it left or an open space nearest to that space. Attack Roll 20+ The target gains 1d6 Insanity.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "1d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 74,
@@ -10007,6 +10203,17 @@
   ]
  },
  {
+  "name": "Shape Metal",
+  "tradition": "Metal",
+  "type": "Utility",
+  "rank": 0,
+  "target": "One metal object you can reach and could hold with both hands",
+  "description": "You touch the target, causing it to become like putty in your hands for as long as you remain in physical contact with it. You can cause the object to assume any shape you choose by molding, twisting, or pinching off pieces. Any piece of the target that is not in contact with you resumes its normal hardness.",
+  "source": "dlc2",
+  "page": 39,
+  "tags": []
+ },
+ {
   "name": "Steel Skin",
   "tradition": "Metal",
   "type": "Utility",
@@ -10018,6 +10225,36 @@
   "page": 75,
   "tags": [
    "defense-buff",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Unbreakable",
+  "tradition": "Metal",
+  "type": "Utility",
+  "rank": 0,
+  "target": "One object you can reach",
+  "duration": "1 minute",
+  "description": "You touch the target. For the duration, the target’s Health is doubled and the target takes half damage from weapons.",
+  "source": "dlc2",
+  "page": 39,
+  "tags": [
+   "protection",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Barbed Hide",
+  "tradition": "Metal",
+  "type": "Utility",
+  "rank": 1,
+  "duration": "1 minute",
+  "description": "Steel barbs emerge from your skin until you are covered completely in razor-sharp spikes. The barbs last for the duration, after which time they recede into your flesh and disappear. Until the spell ends, your unarmed attacks deal 1d6 extra damage. Furthermore, when you become grabbed by a creature, that creature takes 1d6 damage.",
+  "source": "dlc2",
+  "page": 39,
+  "tags": [
+   "damage",
+   "auto-damage",
    "sustained"
   ]
  },
@@ -10057,6 +10294,53 @@
   ]
  },
  {
+  "name": "Rust",
+  "tradition": "Metal",
+  "type": "Utility",
+  "rank": 1,
+  "duration": "1 minute",
+  "description": "The skin on one of your hands reddens and flakes like rust whenever you move it. The change lasts for the duration. When you cast this spell and whenever you use an action to do so before the spell ends, you can touch an object made from iron that you can reach. You can also attempt to touch an object made from iron that’s worn or carried by a creature other than you, but you must get a success on a Strength or Agility attack roll against the target’s Agility to do so. When you touch such an object, it takes 2d6 damage as rust spots bloom all over it. If the damage destroys the object, it disintegrates.",
+  "source": "dlc2",
+  "page": 39,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "self-risk",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Sharpen",
+  "tradition": "Metal",
+  "type": "Utility",
+  "rank": 1,
+  "target": "One weapon you can reach that has an edge or point that’s made of metal",
+  "duration": "1 minute",
+  "description": "You touch the target and cause it to become supernaturally sharp for the duration. Whenever a creature attacks with the weapon, gets a 20 or higher on its attack roll, and exceeds the target number by 5 or more, the target of the attack takes 1d6 extra damage.",
+  "source": "dlc2",
+  "page": 39,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Fusillade",
+  "tradition": "Metal",
+  "type": "Attack",
+  "rank": 2,
+  "area": "A 5-yard cone originating from a point you can reach",
+  "description": "A barrage of iron needles flies from your outstretched hand, dealing 2d6 + 1 damage to everything in the area. A creature in the area can make an Agility challenge roll and takes half the damage on a success. Faeries in the area make the challenge roll with 1 bane and take 1d6 extra damage on a success or a failure.",
+  "source": "dlc2",
+  "page": 39,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "area"
+  ]
+ },
+ {
   "name": "Memory of the Forge",
   "tradition": "Metal",
   "type": "Attack",
@@ -10069,6 +10353,24 @@
   "tags": [
    "damage",
    "auto-damage",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Strength of Steel",
+  "tradition": "Metal",
+  "type": "Utility",
+  "rank": 2,
+  "target": "One creature you can reach",
+  "duration": "1 minute",
+  "description": "You touch the target and imbue it with the strength of steel. For the duration, the target gains a +1 bonus to Defense and a +5 bonus to Health, and deals 1d6 extra damage with melee weapon attacks. In addition, the target’s Speed drops to 2, if it’s not lower than 2 already, and creatures attacking the target gain 1 boon on their attack rolls.",
+  "source": "dlc2",
+  "page": 40,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "buff-attack",
+   "defense-buff",
    "sustained"
   ]
  },
@@ -10087,6 +10389,22 @@
   ]
  },
  {
+  "name": "Cage of Iron",
+  "tradition": "Metal",
+  "type": "Attack",
+  "rank": 3,
+  "area": "A cube of space, 3 yards on a side, resting on the ground and originating from a point within short range",
+  "duration": "1 hour (see effect)",
+  "description": "You form a cage of iron bars that appear around the leading edge of the area and remain for the duration. The cage is a Size 3 object that has Defense 5 and Health 60. If it is destroyed, the spell ends immediately. The bars are spaced wide enough to enable a Size 1/2 or smaller creature to pass between them. The bars can be bent to create a wider gap by someone who gets a success on a Strength challenge roll with 3 banes. Any creature in the area when you cast the spell can use a triggered action to make an Agility challenge roll. On a success, the creature leaps out of the area before the cage forms, moving to an unoccupied space adjacent to the area. If no unoccupied spaces are available, the creature moves into an occupied space of the GM’s choice and then falls prone.",
+  "source": "dlc2",
+  "page": 40,
+  "tags": [
+   "control",
+   "sustained",
+   "area"
+  ]
+ },
+ {
   "name": "Iron Cloud",
   "tradition": "Metal",
   "type": "Attack",
@@ -10100,6 +10418,23 @@
    "auto-damage",
    "control",
    "area"
+  ]
+ },
+ {
+  "name": "Magnetize",
+  "tradition": "Metal",
+  "type": "Attack",
+  "rank": 3,
+  "target": "One object made of metal you can see within medium range, which can be worn or carried by a creature other than you",
+  "duration": "1 minute",
+  "description": "You create a powerful magnetic field centered on and emanating from the object that persists for the duration. Any Size 1/2 or smaller metal objects within 5 yards of the target that are neither worn nor carried by a creature fly unerringly toward the target, provided they have a straight and unobstructed path to it. Such objects stick to the target and cannot be removed unless a creature gets a success on a Strength challenge roll with 2 banes, rolling once per object. If the target is worn by a creature, the creature takes 1 damage for each object that strikes it. The target, as well as any creature within 10 yards of the target that is wearing metal armor or that is made of metal, moves at half Speed. Any creature within 10 yards of the target that attacks with a melee weapon made of metal makes the attack roll with 3 banes. Finally, ranged attacks against the target using ammunition made at least partly from metal automatically result in a success. But the spell imposes 3 banes on attack rolls made using ranged weapons with metal ammunition against creatures and objects within 10 yards of the spell’s target.",
+  "source": "dlc2",
+  "page": 40,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "debuff-rolls",
+   "sustained"
   ]
  },
  {
@@ -10132,6 +10467,21 @@
    "mind-control",
    "defense-buff",
    "sustained"
+  ]
+ },
+ {
+  "name": "Repel Metal",
+  "tradition": "Metal",
+  "type": "Utility",
+  "rank": 4,
+  "area": "A 3-yard-radius sphere centered on a point within long range",
+  "description": "You attempt to force all metal objects and creatures made from metal out of the area, as described below. Creatures and Armor Any creature made from metal and any creature wearing metal armor must make a Strength challenge roll with 3 banes. On a failure, the creature moves 1d6 + 3 yards in a straight line away from the area’s origin point. For each yard it is prevented from moving in this way, because it encounters a solid surface, the creature takes 1d6 damage from the impact. Unsecured Objects Unsecured metal objects move 2d6 + 3 yards in a straight line away from the area’s origin point. Any creature in an object’s path must get a success on an Agility challenge roll or take 1d6 damage from the impact. Secured metal objects, such as those held in one’s hands or containers or are otherwise affixed to a solid surface, might bend, warp, or twist away from the origin point, based on their composition, at the GM’s discretion. Carried and Worn Metal Objects The spell might strip carried and worn metal objects away from creatures in the area. A creature holding such an item in its hand must get a success on a Strength challenge roll with 3 banes or the object flies away, as described under Unsecured Objects, above. In addition, jewelry, coin purses, and metal ammunition all tear away from their bearers, with the same effects as described above.",
+  "source": "dlc2",
+  "page": 40,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "area"
   ]
  },
  {
@@ -10168,6 +10518,26 @@
    "buff-attack",
    "control",
    "teleport",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Flesh to Iron",
+  "tradition": "Metal",
+  "type": "Utility",
+  "rank": 5,
+  "duration": "1 minute",
+  "description": "Your flesh turns gray and hardens to the consistency of iron, though you can still move as if your body was made from flesh. The transformation lasts for the duration. Until the spell ends, you gain the following benefits and drawbacks. • You gain a +3 bonus to Defense (maximum 25). • Your Speed becomes 4. • You make Strength and Agility attack rolls and challenge rolls with 1 bane. • You take half damage from all sources. • You cannot be moved against your will. • Your unarmed attacks deal 2d6 extra damage.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "debuff-rolls",
+   "defense-buff",
+   "protection",
+   "movement",
+   "transform",
    "sustained"
   ]
  },
@@ -10758,8 +11128,7 @@
   "description": "Earth churns in the area as it rises up to become an incarnation of nature (see page 138) that stands up in the area and remains for the duration or until it becomes incapacitated, which ends the spell. When the creature appears, you must make a Will attack roll with 1 bane against its Will. On a success, the incarnation becomes compelled for as long as you concentrate. On a failure, the incarnation is free to act as it chooses. The incarnation is hostile to all creatures other than animals and plants. If not compelled, it takes the next available turn to attack the nearest creature that it perceives as a threat. When the spell ends, the incarnation collapses to the ground in its space and nourishes the soil for 1d6 years. Until this effect ends, all plants in the area grow three times their normal size and the area counts as difficult terrain. Aftereffect You must make a Will challenge roll with 4 banes. On a failure, you take a –1d6 penalty to Power that lasts for 1 month and 1 day. If the total of your roll is 0 or lower, you are transformed into an ordinary tree and remain in that form until the tree is cut down, which kills you.",
   "attack": {
    "attribute": "Will",
-   "against": "Will",
-   "damage": "1d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 80,
@@ -10821,7 +11190,7 @@
   ]
  },
  {
-  "name": "Necromancer",
+  "name": "Mark of the Necromancer",
   "tradition": "Necromancy",
   "type": "Attack",
   "rank": 0,
@@ -11224,8 +11593,7 @@
   "description": "Upon casting this spell, you must concentrate for 1 minute. When you finish, your body falls prone, and your soul climbs free from the flesh. You control your soul as if it were your body, while your body counts as being asleep. The spell ends when your soul moves back into the space occupied by your body. For the duration, your soul is equivalent to you, and you have the following benefits and drawbacks: Darksight You gain darksight if you do not have it already. Darksight lets you see into areas within medium range that are obscured by shadows and darkness as if those areas were lit and into areas beyond this distance that are obscured by darkness as if those areas were obscured by shadows. Invisible You are invisible to all creatures other than spirits, animals, and children. Strength You lack a Strength score, which makes you immune to attacks against your Strength or effects that require a Strength roll. You cannot, however, interact with physical objects. Health Any damage sustained by your body or your soul is counted against your Health score. Insubstantial You take half damage from weapons, you can move through solid objects and through other creatures, and you ignore the effects of moving across difficult terrain. Possess Corpse If you move into a space occupied by a corpse, you can possess it. You and the corpse combine to become a zombie (Shadow, page 259) until you use an action to leave the corpse, at which point it becomes an ordinary corpse once more. If the zombie becomes incapacitated, your soul is forced out, and you cannot possess that corpse again. Possess the Living You can use an action to attempt to possess one creature you can reach that has a soul. Make an Intellect attack roll against the creature’s Will. On a success, your soul moves into the creature’s body. For as long as you possess the creature, you retain your Intellect, Will, and Health, languages, professions, and all of your talents from paths and spells, but you gain the traits of the creature’s ancestry. In addition, you replace the creature’s personality with your own. While possessing a creature, you can use an action to attempt to draw memories and experience from the hostage soul. Make an Intellect challenge roll. On a success, you can ask the soul a question and receive a true answer. You can use an action to abandon the body and return to your soul state. Alternatively, if the body dies while your soul inhabits it, you can either use the possess corpse option or move out of the body. Incapacitated If you become incapacitated while under the effect of this spell, roll a d6. On a 4 or higher, your soul returns to your body. On a 3 or lower, your body dies, and your soul becomes a shadow (Shadow, page 253), retaining none of the statistics you had in life. Either way, the spell ends. Aftereffect You must get a success on a Will challenge roll with 3 banes or gain 3d6 Insanity. Sacrifice You can use an action and expend a casting of this spell to cast the awaken graveyard spell (previous page).",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "3d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 83,
@@ -11304,6 +11672,35 @@
   ]
  },
  {
+  "name": "Impose Predictability",
+  "tradition": "Order",
+  "type": "Utility",
+  "rank": 0,
+  "target": "One creature you can reach",
+  "duration": "1 minute",
+  "description": "You touch the target. Choose a number between 1 and 6. Once per round for the duration, when the target rolls at least one boon or bane, the spell replaces the number rolled with the number you chose.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "debuff-rolls",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Negate Chaos",
+  "tradition": "Order",
+  "type": "Utility",
+  "rank": 0,
+  "target": "One creature within short range",
+  "duration": "1 minute",
+  "description": "For the duration, whenever the target rolls a 20, it replaces the number rolled with a 10. Or, if the target rolls a 10 on the die, it instead replaces the number rolled with a 20.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "sustained"
+  ]
+ },
+ {
   "name": "Ordered Strike",
   "tradition": "Order",
   "type": "Utility",
@@ -11315,6 +11712,21 @@
    "damage",
    "auto-damage",
    "triggered"
+  ]
+ },
+ {
+  "name": "Consistency",
+  "tradition": "Order",
+  "type": "Utility",
+  "rank": 1,
+  "area": "A 5-yard-radius sphere centered on a point you can reach",
+  "duration": "1 minute",
+  "description": "A thin, gray light permeates the area for the duration. The area moves with you, remaining centered on a point you can reach. When you cast this spell, choose a number between 1 and 6. Until the spell ends, you can replace the number on any d6 rolled by a creature in the area with the number you chose.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "sustained",
+   "area"
   ]
  },
  {
@@ -11349,6 +11761,53 @@
   ]
  },
  {
+  "name": "Order’s Shield",
+  "tradition": "Order",
+  "type": "Utility",
+  "rank": 1,
+  "target": "One creature you can reach",
+  "duration": "1 minute",
+  "description": "You touch the target and surround it with a nimbus of pale light that lasts for the duration. Until the spell ends, the light imposes 2 banes on attack rolls made against the target. The number of banes increases by 1 if the attack roll is made as part of the casting of a spell, and by 1 more if the spell is a Chaos spell.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "debuff-rolls",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Rationality",
+  "tradition": "Order",
+  "type": "Utility",
+  "rank": 1,
+  "target": "One creature you can reach",
+  "duration": "1 minute",
+  "description": "You touch the target and remove all the following afflictions from it: charmed, compelled, dazed, frightened, and surprised. If the target is suffering from the effects of madness, the madness ends. Furthermore, if the target is subject to any emotional trait gained from a talent or a trait, such as the berserker’s Berserk talent, that effect ends as well. Afterward, for the duration, the target feels no extreme emotions such as anger, love, or hatred. The target is immune to any effect that would bring about these emotional states.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "control",
+   "fear",
+   "cure",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Conformity",
+  "tradition": "Order",
+  "type": "Attack",
+  "rank": 2,
+  "area": "A 3-yard-radius sphere centered on a point in your space",
+  "duration": "Concentration, up to 1 minute",
+  "description": "A droning sound comes out of your mouth and lasts for the duration. When you cast the spell and each time you use an action to concentrate on it, you can designate one use of an action, such as attack with a weapon, attack with a spell, or help. Until the end of the round, each creature in the area that can hear you makes any attack roll or challenge roll to perform the stated action with 3 boons. Any such creature that does something else on its turn makes the attack roll or the challenge roll with 3 banes.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "concentration",
+   "area"
+  ]
+ },
+ {
   "name": "Demand",
   "tradition": "Order",
   "type": "Attack",
@@ -11380,6 +11839,25 @@
   ]
  },
  {
+  "name": "Immobility",
+  "tradition": "Order",
+  "type": "Attack",
+  "rank": 2,
+  "target": "One creature you can see within short range",
+  "description": "Make a Will attack roll against the target’s Will. If the target’s Health is 15 or lower, you make the attack roll with 1 boon. If the target’s Health is 25 or higher, you make the attack roll with 1 bane. On a success, the target is immobilized for 1 minute. While immobilized in this way, the target is also defenseless, but it takes half damage from all sources.",
+  "attack": {
+   "attribute": "Will",
+   "against": "Will"
+  },
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "control",
+   "protection",
+   "sustained"
+  ]
+ },
+ {
   "name": "Command Truth",
   "tradition": "Order",
   "type": "Attack",
@@ -11399,6 +11877,21 @@
   ]
  },
  {
+  "name": "Even the Scales",
+  "tradition": "Order",
+  "type": "Utility",
+  "rank": 3,
+  "area": "A 3-yard radius sphere centered on a point in your space",
+  "duration": "1 minute",
+  "description": "Strange glyphs fill the area and remain for the duration. The area moves with you, staying centered on a point in your space. Until the spell ends, whenever a creature in the area, including you, takes damage, you can choose a different creature in the area to take an equal amount of damage.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "sustained",
+   "area"
+  ]
+ },
+ {
   "name": "Safeguard",
   "tradition": "Order",
   "type": "Utility",
@@ -11413,6 +11906,25 @@
   ]
  },
  {
+  "name": "Stillness",
+  "tradition": "Order",
+  "type": "Attack",
+  "rank": 3,
+  "area": "A 5-yard-long cone originating from a point in your space",
+  "description": "You shout a command. Each creature in the area that can hear you must get a success on a Will challenge roll or become immobilized for 1 minute. While immobilized in this way, a creature grants 1 boon on attack rolls against it and makes Agility challenge rolls to resist attacks with 3 banes.",
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "buff-attack",
+   "buff-challenge",
+   "debuff-rolls",
+   "control",
+   "self-risk",
+   "sustained",
+   "area"
+  ]
+ },
+ {
   "name": "Depower",
   "tradition": "Order",
   "type": "Attack",
@@ -11421,8 +11933,7 @@
   "description": "You intone fragmented words of creation to strip the target of its ability to wield magic. Make a Will attack roll against the target’s Will. On a success, the target becomes impaired for 1 hour. While impaired in this way, the target has a –1d6 penalty to Power (minimum score of 0). An affected target can use an action to make a Will challenge roll with 3 banes. On a success, it removes the impaired affliction from itself and ends the spell. Attack Roll 20+ The target is also stunned for 1 round. Sacrifice You can use an action and expend a casting of this spell to heal all your damage and remove 1 Insanity from yourself.",
   "attack": {
    "attribute": "Will",
-   "against": "Will",
-   "damage": "1d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 85,
@@ -11430,6 +11941,24 @@
    "control",
    "heal",
    "sacrifice",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Dictum",
+  "tradition": "Order",
+  "type": "Attack",
+  "rank": 4,
+  "target": "One creature within medium range that can hear you",
+  "description": "Describe one course of activity that can be accomplished used an action. If the target understands what you say, make a Will attack roll against the target’s Will. If the target’s Health is 30 or lower, you get an automatic success. On a success, for 1 minute, whenever the target would use an action to perform the activity you described, it must make a Will challenge roll with 2 banes. On a success, the target performs the acuity, but makes any attack roll ro challenge roll related to it with 1 bane. On a failure, the target gains 1d6 Insanity and the action is wasted.",
+  "attack": {
+   "attribute": "Will",
+   "against": "Will"
+  },
+  "source": "dlc2",
+  "page": 41,
+  "tags": [
+   "insanity",
    "sustained"
   ]
  },
@@ -11466,6 +11995,22 @@
    "control",
    "teleport",
    "summon",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Mantle of Law",
+  "tradition": "Order",
+  "type": "Utility",
+  "rank": 5,
+  "duration": "1 minute",
+  "description": "Bright glyphs appear in the air around you and remain for the duration, moving with you to surround you. Until the spell ends, you cannot gain Insanity, and you are immune to the charmed, compelled, dazed, frightened, stunned, and surprised afflictions. You are also immune to the effects of Chaos spells. Finally, you impose 1 bane on attack rolls made against you, and you make challenge rolls to resist attacks with 1 boon.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "buff-challenge",
+   "debuff-rolls",
+   "control",
    "sustained"
   ]
  },
@@ -12430,22 +12975,6 @@
   ]
  },
  {
-  "name": "From Corruption",
-  "tradition": "Protection",
-  "type": "Utility",
-  "rank": 5,
-  "target": "One creature you can reach",
-  "duration": "8 hours",
-  "description": "Until the spell ends, the target cannot gain Corruption from other creatures. The spell also imposes a number of banes on attack rolls made against the target by creatures that have Corruption, and grants the target a number of boons on challenge rolls made to resist attacks from such creatures. The number of boons or banes is equal to half the attacking creature’s Corruption score (minimum 1).",
-  "source": "occult",
-  "page": 91,
-  "tags": [
-   "buff-challenge",
-   "debuff-rolls",
-   "sustained"
-  ]
- },
- {
   "name": "Globe of Negation",
   "tradition": "Protection",
   "type": "Utility",
@@ -12471,6 +13000,22 @@
   "page": 23,
   "tags": [
    "control",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Protection From Corruption",
+  "tradition": "Protection",
+  "type": "Utility",
+  "rank": 5,
+  "target": "One creature you can reach",
+  "duration": "8 hours",
+  "description": "Until the spell ends, the target cannot gain Corruption from other creatures. The spell also imposes a number of banes on attack rolls made against the target by creatures that have Corruption, and grants the target a number of boons on challenge rolls made to resist attacks from such creatures. The number of boons or banes is equal to half the attacking creature’s Corruption score (minimum 1).",
+  "source": "occult",
+  "page": 91,
+  "tags": [
+   "buff-challenge",
+   "debuff-rolls",
    "sustained"
   ]
  },
@@ -14036,6 +14581,29 @@
   ]
  },
  {
+  "name": "Overcome Affliction",
+  "tradition": "Soul",
+  "type": "Utility",
+  "rank": 0,
+  "description": "Make a Will challenge roll. On a success, you remove one affliction affecting you. Triggered When you would gain an affliction, you can use a triggered action to cast this spell. Make a Will challenge roll with 1 bane. On a success, you do not gain the affliction.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": []
+ },
+ {
+  "name": "Recall Past Success",
+  "tradition": "Soul",
+  "type": "Utility",
+  "rank": 0,
+  "duration": "1 round",
+  "description": "The next time you make an attack roll or a challenge roll before the spell ends, you make the roll with 2 boons.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "sustained"
+  ]
+ },
+ {
   "name": "Guarded Soul",
   "tradition": "Soul",
   "type": "Utility",
@@ -14065,6 +14633,62 @@
    "movement",
    "sacrifice",
    "sustained"
+  ]
+ },
+ {
+  "name": "Negate Harm",
+  "tradition": "Soul",
+  "type": "Utility",
+  "rank": 1,
+  "duration": "1 minute",
+  "description": "For the duration, whenever you take damage, you reduce the amount of damage you would take by 1d3 (minimum 0). Triggered When you would take damage, you can use a triggered action to cast this spell. You reduce the damage to 0, and the spell ends.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "sustained"
+  ]
+ },
+ {
+  "name": "Open the Third Eye",
+  "tradition": "Soul",
+  "type": "Utility",
+  "rank": 1,
+  "duration": "1 minute",
+  "description": "For the duration, your attack rolls ignore banes imposed by obscurement or invisibility. In addition, you cannot become blinded.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "concealment",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Strike the Soul",
+  "tradition": "Soul",
+  "type": "Attack",
+  "rank": 1,
+  "target": "One creature you can reach",
+  "description": "When you cast this spell, you attack the target with an unarmed strike. You make the attack roll with 3 boons, and you can substitute Will for the attribute you would normally use. On a success, the target takes 1d6 extra damage. If the target is living, is made of flesh and blood, and has a soul, the target also gains 1 Insanity and becomes impaired for 1 round. Attack Roll 20+ Increase the extra damage to 2d6.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Shattering Strike",
+  "tradition": "Soul",
+  "type": "Attack",
+  "rank": 2,
+  "target": "One creature or object you can reach",
+  "description": "When you cast this spell, you attack the target with an unarmed strike. You make the attack roll with 3 boons, and you can substitute Will for the attribute you would normally use. On a success, the target takes 2d6 extra damage. If the target is a construct or an object, increase the extra damage by 2d6. Attack Roll 20+ Increase the extra damage to 3d6.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "damage",
+   "auto-damage"
   ]
  },
  {
@@ -14101,6 +14725,20 @@
   ]
  },
  {
+  "name": "Walk the Sky",
+  "tradition": "Soul",
+  "type": "Utility",
+  "rank": 2,
+  "duration": "1 round",
+  "description": "For the duration, you can move by flying. At the end of each round, you can use a triggered action to extend the duration by 1 round (to a maximum duration of 1 minute).",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "fly",
+   "sustained"
+  ]
+ },
+ {
   "name": "Introspective Trance",
   "tradition": "Soul",
   "type": "Utility",
@@ -14116,6 +14754,22 @@
   ]
  },
  {
+  "name": "Phase Shift",
+  "tradition": "Soul",
+  "type": "Utility",
+  "rank": 3,
+  "duration": "1 minute",
+  "description": "For the duration, you take half damage from weapons, and your attacks deal half damage. You can move through solid objects and other creatures, and you ignore the effects of moving through difficult terrain.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "protection",
+   "sustained"
+  ]
+ },
+ {
   "name": "Soul Shivers",
   "tradition": "Soul",
   "type": "Attack",
@@ -14127,6 +14781,21 @@
    "damage",
    "auto-damage",
    "control",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Velocity",
+  "tradition": "Soul",
+  "type": "Utility",
+  "rank": 3,
+  "duration": "1 minute",
+  "description": "When you cast this spell, you regain the ability to use an action during the same turn. For the duration, when you take a fast turn, you can move up to your Speed and use an action at any point during your movement. When you take a slow turn, you can move up to twice your Speed and use an action at any point during your movement. You can use two triggered actions per round, and you impose 1 bane on attack rolls made against you.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "debuff-rolls",
+   "movement",
    "sustained"
   ]
  },
@@ -14149,6 +14818,22 @@
    "debuff-rolls",
    "cure",
    "sacrifice",
+   "sustained"
+  ]
+ },
+ {
+  "name": "Rend Soul",
+  "tradition": "Soul",
+  "type": "Attack",
+  "rank": 4,
+  "target": "One creature or object you can reach",
+  "description": "When you cast this spell, you attack the target with an unarmed strike. You make the attack roll with 3 boons, and you can substitute Will for the attribute you would normally use. On a success, the target takes 2d6 extra damage. If the target is living, mortal, and made of flesh and blood, the target also gains 2d6 Insanity and must get a success on a Will challenge roll or become stunned for 1 minute. Attack Roll 20+ Increase the extra damage to 4d6.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "damage",
+   "auto-damage",
+   "control",
    "sustained"
   ]
  },
@@ -14197,6 +14882,22 @@
    "auto-damage",
    "control",
    "insanity"
+  ]
+ },
+ {
+  "name": "Transcendent Recovery",
+  "tradition": "Soul",
+  "type": "Utility",
+  "rank": 5,
+  "description": "You call upon the power of your soul to restore you to health and vitality. You heal all damage, remove all afflictions, remove any penalties to attributes and characteristics, and reduce your Insanity total by 1d3. Aftereffect For 1 minute after the spell ends, you make attack rolls and challenge rolls with 1 boon.",
+  "source": "dlc2",
+  "page": 42,
+  "tags": [
+   "buff-attack",
+   "buff-challenge",
+   "heal",
+   "cure",
+   "sustained"
   ]
  },
  {
@@ -14335,7 +15036,7 @@
   ]
  },
  {
-  "name": "Spirit World",
+  "name": "Peer Into the Spirit World",
   "tradition": "Spiritualism",
   "type": "Utility",
   "rank": 0,
@@ -14373,8 +15074,7 @@
   "description": "Make a Will attack roll against the target’s Will. On a success, a shadowy spirit appears and plunges into the target’s body, where it remains for 1 minute. Until the effect ends, the target is frightened, and whenever it gets a failure on an attack roll or challenge roll, you can move the target up to 3 yards in any direction the target can ordinarily move. Attack Roll 20+ The target also gains 1d3 Insanity.",
   "attack": {
    "attribute": "Will",
-   "against": "Will",
-   "damage": "1d3"
+   "against": "Will"
   },
   "source": "occult",
   "page": 105,
@@ -14450,6 +15150,25 @@
   ]
  },
  {
+  "name": "Horror of the Spirit World",
+  "tradition": "Spiritualism",
+  "type": "Attack",
+  "rank": 4,
+  "target": "One creature you can see within medium range",
+  "description": "Spectral hands reach out and around the target to grasp its body. Make a Will attack roll against the target’s Agility. On a success, the target is dragged into the Underworld, where it remains for 1d6 rounds. On a failure, the target takes 2d6 damage as it tears free from the grasping hands. A target dragged into the Underworld gains 1d3 Insanity each round it spends there. At the end of each round, the target can make a Strength challenge roll with 2 banes. On a success, the target ends the effect. When the time is up or when the target ends the effect, it returns to the space it vacated and suffers the effects of gaining Insanity from that point. When it is frightened from gaining Insanity in this way, the target is also impaired.",
+  "attack": {
+   "attribute": "Will",
+   "against": "Agility",
+   "damage": "2d6"
+  },
+  "source": "occult",
+  "page": 106,
+  "tags": [
+   "damage",
+   "fear"
+  ]
+ },
+ {
   "name": "Host of Spirits",
   "tradition": "Spiritualism",
   "type": "Utility",
@@ -14521,7 +15240,7 @@
   "attack": {
    "attribute": "Will",
    "against": "Will",
-   "damage": "2d6+3"
+   "damage": "3d6"
   },
   "source": "occult",
   "page": 106,
@@ -14541,8 +15260,7 @@
   "description": "A random spirit from the Underworld answers your call and tries to invade the target’s body. Make a Will attack roll against the target’s Will. On a success, the target becomes charmed. When it is charmed in this way, the spirit you called dominates the target’s soul, with effects as described below. On a failure, the spirit becomes a specter (see page 142) that appears in an open space within 2 yards of the target. The specter acts in accordance to its nature and remains until it is destroyed. A charmed target becomes possessed by the spirit. The spirit has complete control over the host body and decides when it acts, what actions it takes, and how it moves. The spirit can draw upon the host body’s memories and experiences, so it can use any talent or trait the host possesses. Make the following changes to the host’s statistics box: • Roll 2d6 + 3 twice; replace the target’s Intellect with one result and its Will with the other. • Give the target two random professions. Once the spirit possesses the target, the target becomes friendly to you. The target can take the next available turn, fights on your side, and tries to help you. At the end of each round, the target can make a Will challenge roll, using its original Will modifier. On a success, the spell’s effect becomes suppressed for 1 round. After the third success, the spell ends, and the spirit returns to the Underworld. If the target gets three failures, its original soul is displaced from its body and sent to the Underworld, which makes the effect of the spell permanent.",
   "attack": {
    "attribute": "Will",
-   "against": "Will",
-   "damage": "2d6+3"
+   "against": "Will"
   },
   "source": "occult",
   "page": 106,
@@ -14572,7 +15290,7 @@
   ]
  },
  {
-  "name": "Underworld",
+  "name": "Vision of the Underworld",
   "tradition": "Spiritualism",
   "type": "Attack",
   "rank": 8,
@@ -14615,7 +15333,7 @@
   ]
  },
  {
-  "name": "Underworld’s Gates",
+  "name": "Open the Underworld’s Gates",
   "tradition": "Spiritualism",
   "type": "Attack",
   "rank": 10,
@@ -15672,8 +16390,7 @@
   "description": "You reach out with your mind to snare the target. Make a Will attack roll against the target’s Strength. On a success, you move the target up to 1d6 + 5 yards toward you. Attack Roll 20+ The target also falls prone.",
   "attack": {
    "attribute": "Will",
-   "against": "Strength",
-   "damage": "1d6+5"
+   "against": "Strength"
   },
   "source": "occult",
   "page": 115,
@@ -16038,8 +16755,7 @@
   "description": "Your thoughts become as knives that you use to rend the target’s mind. Make an Intellect attack roll against the target’s Will. On a success, the target gains 1d6 Insanity. When the target is frightened from gaining Insanity in this way, it makes Intellect and Will attack rolls and challenge rolls with 3 banes, and the target cannot cast spells. Attack Roll 20+ The target also becomes dazed for 1 round.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "1d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 117,
@@ -16192,8 +16908,7 @@
   "description": "You reach into the target’s mind to destroy it. Make an Intellect attack roll against the target’s Will. For every 60 points of the target’s Health score, you make the attack roll with 2 banes. On a success, the target gains 2d6 Insanity. If this gain would cause the target to go mad, do not roll on the madness table. Instead, the target becomes defenseless until all of its Insanity has been removed. Attack Roll 20+ The target gains another 1d6 Insanity. Aftereffect You must get a success on a Will challenge roll with 3 banes or gain 1d6 Insanity.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "2d6"
+   "against": "Will"
   },
   "source": "occult",
   "page": 118,
@@ -16453,8 +17168,7 @@
   "description": "Make a Will attack roll against the target’s Will. On a success, the target goes out of phase for as long as you concentrate, up to 1 minute. While out of phase, the target takes half damage from all attacks, and its attacks deal half damage. The target can use an action to make a Will challenge roll with 1 bane plus 1 bane for each round you used an action to concentrate on the spell. On a success, the effect ends. If you concentrate on the effect for 1 minute, the target disappears. If it had been summoned, the target returns to where it was when you summoned it. Otherwise, the target teleports to a point the GM chooses 5d20 miles away.",
   "attack": {
    "attribute": "Will",
-   "against": "Will",
-   "damage": "5d20"
+   "against": "Will"
   },
   "source": "terrible",
   "page": 23,
@@ -16527,8 +17241,7 @@
   "description": "You attempt to dislodge the target from this dimension. Make an Intellect attack roll against the target’s Will. On a success, the target goes out of phase for 1 minute. While out of phase, the target is slowed, the target deals half damage, heals half damage, and takes half damage from all sources. The target can move through solid objects and other creatures, and it ignores the effects of moving across difficult terrain. At the end of each round until the spell ends, the target must make a Will challenge roll. On a failure, the target disappears into another dimension until the end of the next round, when it reappears in the space it left and gains 1d3 Insanity. When disappeared in this way, the target cannot use actions or triggered actions, move, perform minor activities, or be targeted by any effect. Attack Roll 20+ The target also gains 1d3 Insanity.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "1d3"
+   "against": "Will"
   },
   "source": "occult",
   "page": 119,
@@ -16627,8 +17340,7 @@
   "description": "You attempt to remove the targets from reality. For each target, make an Intellect attack roll against its Will. On a success, the target disappears from reality for 1 minute. When removed from reality in this way, the target cannot use actions use triggered actions, move, perform minor activities, or be targeted by any effect. When the effect ends, the target returns to the space from which it disappeared or the space nearest to it, and it must get a success on a Will challenge roll with 1 bane or gain 1d3 Insanity. Attack Roll 20+ The target disappears for 1 hour instead of 1 minute, and the target gains 1d6 Insanity instead of 1d3 Insanity if it gets a failure on the Will challenge roll.",
   "attack": {
    "attribute": "Intellect",
-   "against": "Will",
-   "damage": "1d3"
+   "against": "Will"
   },
   "source": "occult",
   "page": 120,
@@ -18578,7 +19290,7 @@
   "attack": {
    "attribute": "Will",
    "against": "Agility",
-   "damage": "1d6"
+   "damage": "5d6"
   },
   "source": "occult",
   "page": 132,

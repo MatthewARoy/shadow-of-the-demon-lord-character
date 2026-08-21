@@ -790,6 +790,18 @@
   "targeting": "one-enemy",
   "tempo": "sustained"
  },
+ "barbed hide|metal": {
+  "archetypes": [
+   "duelist",
+   "tank"
+  ],
+  "role": "buff",
+  "synergy": "Raises an unarmed brawler's damage floor and punishes grapplers, so it rewards builds that want to be grabbed and grapple back.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "setup"
+ },
  "basilisk form|transformation": {
   "archetypes": [
    "controller",
@@ -1841,6 +1853,18 @@
   "targeting": "area-enemy",
   "tempo": "burst"
  },
+ "cage of iron|metal": {
+  "archetypes": [
+   "controller",
+   "debuffer"
+  ],
+  "role": "control",
+  "synergy": "Locks a single dangerous melee threat out of the fight for an hour; the Agility escape is the only counterplay, so open with it.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "area-enemy",
+  "tempo": "sustained"
+ },
  "call arion charger|primal": {
   "archetypes": [
    "summoner",
@@ -2874,6 +2898,23 @@
   "targeting": "object",
   "tempo": "setup"
  },
+ "conformity|order": {
+  "archetypes": [
+   "support",
+   "enabler",
+   "controller"
+  ],
+  "role": "buff",
+  "synergy": "Name the action your party is already taking so allies swing with 3 boons while enemies doing anything else eat 3 banes.",
+  "tag_add": [
+   "buff-attack",
+   "buff-challenge",
+   "debuff-rolls"
+  ],
+  "tag_remove": [],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
+ },
  "confound the soul|soul": {
   "archetypes": [
    "skirmisher",
@@ -3137,6 +3178,18 @@
   "tag_remove": [],
   "targeting": "self",
   "tempo": "reaction"
+ },
+ "consistency|order": {
+  "archetypes": [
+   "support",
+   "enabler"
+  ],
+  "role": "buff",
+  "synergy": "A mobile aura that maxes allied boon and damage d6s at 6 (or floors enemy d6 damage at 1); stay adjacent to the melee line.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
  },
  "control flame|fire": {
   "archetypes": [],
@@ -4123,6 +4176,20 @@
   "tag_remove": [],
   "targeting": "several-enemies",
   "tempo": "sustained"
+ },
+ "dictum|order": {
+  "archetypes": [
+   "controller",
+   "debuffer"
+  ],
+  "role": "control",
+  "synergy": "Name an enemy caster's spell attack or a brute's charge to tax it with banes and stack Insanity on every attempt.",
+  "tag_add": [
+   "debuff-rolls"
+  ],
+  "tag_remove": [],
+  "targeting": "one-enemy",
+  "tempo": "setup"
  },
  "dimensional banishment|madness": {
   "archetypes": [
@@ -5309,6 +5376,21 @@
   "targeting": "one-enemy",
   "tempo": "burst"
  },
+ "even the scales|order": {
+  "archetypes": [
+   "tank",
+   "nuker"
+  ],
+  "role": "damage",
+  "synergy": "Frontliner aura that converts every hit your party absorbs into unavoidable damage on an enemy sharing the sphere.",
+  "tag_add": [
+   "damage",
+   "auto-damage"
+  ],
+  "tag_remove": [],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
+ },
  "evoke gale|air": {
   "archetypes": [
    "controller",
@@ -5910,6 +5992,25 @@
   "targeting": "one-enemy",
   "tempo": "burst"
  },
+ "flesh to iron|metal": {
+  "archetypes": [
+   "tank",
+   "duelist"
+  ],
+  "role": "protection",
+  "synergy": "Turns a caster into a front-line brawler: half damage and +3 Defense at the cost of Speed and 1 bane on Strength/Agility rolls.",
+  "tag_add": [
+   "self-risk"
+  ],
+  "tag_remove": [
+   "damage",
+   "auto-damage",
+   "debuff-rolls",
+   "movement"
+  ],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
  "flesh-bursting curse|curse": {
   "archetypes": [
    "nuker",
@@ -6358,18 +6459,6 @@
   "targeting": "area-mixed",
   "tempo": "sustained"
  },
- "from corruption|protection": {
-  "archetypes": [
-   "support",
-   "tank"
-  ],
-  "role": "protection",
-  "synergy": "Scales hard against high-Corruption bosses, stacking attack banes and save boons that grow with the enemy's Corruption score.",
-  "tag_add": [],
-  "tag_remove": [],
-  "targeting": "ally",
-  "tempo": "sustained"
- },
  "fugue|telepathy": {
   "archetypes": [
    "controller",
@@ -6446,6 +6535,18 @@
   ],
   "tag_remove": [],
   "targeting": "one-enemy",
+  "tempo": "burst"
+ },
+ "fusillade|metal": {
+  "archetypes": [
+   "blaster",
+   "nuker"
+  ],
+  "role": "damage",
+  "synergy": "Rank 2 cone nuke that punishes packed groups and is the default opener against faerie-heavy encounters.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "area-enemy",
   "tempo": "burst"
  },
  "gatecrasher|technomancy": {
@@ -7316,6 +7417,20 @@
   "targeting": "area-enemy",
   "tempo": "burst"
  },
+ "horror of the spirit world|spiritualism": {
+  "archetypes": [
+   "controller",
+   "debuffer"
+  ],
+  "role": "control",
+  "synergy": "Removes one enemy from the fight for up to 6 rounds while piling on Insanity; the 2 banes make escaping it unlikely.",
+  "tag_add": [
+   "insanity"
+  ],
+  "tag_remove": [],
+  "targeting": "one-enemy",
+  "tempo": "burst"
+ },
  "host of spirits|spiritualism": {
   "archetypes": [
    "duelist",
@@ -7517,6 +7632,18 @@
   "targeting": "point",
   "tempo": "ritual"
  },
+ "immobility|order": {
+  "archetypes": [
+   "controller",
+   "debuffer"
+  ],
+  "role": "control",
+  "synergy": "Boon against low-Health targets; the half damage means park a threat with it rather than set one up for allied burst.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "one-enemy",
+  "tempo": "setup"
+ },
  "immolate|fire": {
   "archetypes": [
    "blaster",
@@ -7575,6 +7702,20 @@
   ],
   "targeting": "one-enemy",
   "tempo": "burst"
+ },
+ "impose predictability|order": {
+  "archetypes": [
+   "support",
+   "enabler"
+  ],
+  "role": "buff",
+  "synergy": "Fixes an ally's boon die at 6 (or their bane die at 1) once a round, making a boon-stacking striker's damage floor reliable.",
+  "tag_add": [],
+  "tag_remove": [
+   "debuff-rolls"
+  ],
+  "targeting": "ally",
+  "tempo": "sustained"
  },
  "impregnable rune|rune": {
   "archetypes": [
@@ -7750,6 +7891,272 @@
   "targeting": "self",
   "tempo": "ritual"
  },
+ "investiture of desire in flesh|invocation": {
+  "archetypes": [
+   "face",
+   "controller"
+  ],
+  "role": "control",
+  "synergy": "Opens a fight or a parley by charming everyone who can see you; keep damage off the charmed targets or the effect drops immediately.",
+  "tag_add": [
+   "area"
+  ],
+  "tag_remove": [
+   "damage",
+   "auto-damage"
+  ],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
+ },
+ "investiture of the archmage|invocation": {
+  "archetypes": [
+   "blaster",
+   "nuker",
+   "support"
+  ],
+  "role": "buff",
+  "synergy": "+2 boons on all attack-spell rolls and 2 banes on enemy challenge rolls dramatically amplifies every offensive spell cast during the duration.",
+  "tag_add": [
+   "buff-attack"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the ascended one|invocation": {
+  "archetypes": [
+   "tank",
+   "blaster",
+   "controller"
+  ],
+  "role": "transform",
+  "synergy": "Near-invincible combat form; half damage plus 3-bane attacker debuff frees the caster to blast with a 5d6 beam and auto-damage all demons.",
+  "tag_add": [
+   "auto-damage",
+   "area"
+  ],
+  "tag_remove": [
+   "fear"
+  ],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the betrayer|invocation": {
+  "archetypes": [
+   "duelist",
+   "skirmisher"
+  ],
+  "role": "buff",
+  "synergy": "Converts whiffed attacks into hits for a weapon invoker; pay the 1d6+1 from a durable ally, and use the shadows you alone see through.",
+  "tag_add": [
+   "concealment"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the brute|invocation": {
+  "archetypes": [
+   "tank",
+   "duelist"
+  ],
+  "role": "buff",
+  "synergy": "Cheap rank-0 Health padding for a frontline invoker; cast it before the fight and budget an Intellect roll for the aftereffect.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "setup"
+ },
+ "investiture of the dark lady|invocation": {
+  "archetypes": [
+   "summoner",
+   "tank",
+   "controller"
+  ],
+  "role": "summon",
+  "synergy": "Necromancer anchor; three free corpses bypass undead control limits and feed any ability that buffs, explodes, or recycles undead.",
+  "tag_add": [
+   "summon",
+   "insanity",
+   "area"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the death angel|invocation": {
+  "archetypes": [
+   "nuker",
+   "duelist",
+   "blaster"
+  ],
+  "role": "damage",
+  "synergy": "Lethal-presence chip-damage pairs with life-draining scythe; kills restore Health, making the caster self-sustaining in melee attrition.",
+  "tag_add": [
+   "insanity",
+   "auto-damage",
+   "area"
+  ],
+  "tag_remove": [
+   "control"
+  ],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the deceiver|invocation": {
+  "archetypes": [
+   "face",
+   "controller",
+   "debuffer"
+  ],
+  "role": "social",
+  "synergy": "Face invoker's interrogation mode: 3 boons on social attacks that charm on big rolls, with an at-will fear to break a holdout.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the devil|invocation": {
+  "archetypes": [
+   "nuker",
+   "tank",
+   "controller"
+  ],
+  "role": "transform",
+  "synergy": "Nuclear rank-10 button: maximized stats, 25 Defense, half-damage reduction, and mass-prone kneeling make any build nearly invincible for 4 hours.",
+  "tag_add": [
+   "debuff-rolls",
+   "insanity",
+   "area"
+  ],
+  "tag_remove": [
+   "summon",
+   "fear"
+  ],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the diviner|invocation": {
+  "archetypes": [
+   "tank",
+   "support",
+   "controller"
+  ],
+  "role": "protection",
+  "synergy": "Dire prophecy cripples one enemy per round with 3 banes on all rolls while the 3-bane aura on incoming attacks makes the caster nearly untouchable.",
+  "tag_add": [
+   "buff-attack"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "setup"
+ },
+ "investiture of the dwarf lord|invocation": {
+  "archetypes": [
+   "support",
+   "tank",
+   "enabler"
+  ],
+  "role": "buff",
+  "synergy": "Pairs with melee weapon builds; Strength boons on attacks and challenges plus triggered ally attack boon rewards aggressive front-line positioning.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the fire prince|invocation": {
+  "archetypes": [
+   "blaster",
+   "duelist"
+  ],
+  "role": "damage",
+  "synergy": "One cast buys an opening burst plus a full minute of at-will 1d6+2 bolts, so a caster short on ranked spells gets sustained offense.",
+  "tag_add": [
+   "auto-damage",
+   "area"
+  ],
+  "tag_remove": [],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
+ },
+ "investiture of the goblin king|invocation": {
+  "archetypes": [
+   "face",
+   "controller",
+   "skirmisher"
+  ],
+  "role": "utility",
+  "synergy": "Bundles +3-boon social/stealth attacks, two goblin summons, and owl-form mobility into one binding for versatile off-combat utility.",
+  "tag_add": [
+   "buff-attack"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the grand druid|invocation": {
+  "archetypes": [
+   "tank",
+   "controller"
+  ],
+  "role": "transform",
+  "synergy": "Melee caster anchor; difficult terrain locks enemies in place while the immobilize action punishes anything that stays adjacent.",
+  "tag_add": [
+   "transform",
+   "area"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the great dragon|invocation": {
+  "archetypes": [
+   "nuker",
+   "tank",
+   "blaster"
+  ],
+  "role": "transform",
+  "synergy": "8d6 fire cone punishes clustered enemies; fire immunity and Defense 21 enable front-line brawling while the dragon form's +10 Speed aids repositioning.",
+  "tag_add": [
+   "transform",
+   "area",
+   "insanity"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "setup"
+ },
+ "investiture of the horned one|invocation": {
+  "archetypes": [
+   "duelist",
+   "tank"
+  ],
+  "role": "damage",
+  "synergy": "Melee invoker opener: closes the gap, knocks the target prone, then chains horn sweeps while +10 Health absorbs the counterattack.",
+  "tag_add": [
+   "transform"
+  ],
+  "tag_remove": [],
+  "targeting": "one-enemy",
+  "tempo": "sustained"
+ },
+ "investiture of the laughing scoundrel|invocation": {
+  "archetypes": [
+   "debuffer",
+   "controller",
+   "nuker"
+  ],
+  "role": "debuff",
+  "synergy": "Passive Insanity aura imposes 1 bane on Will saves each round; joke attack stacks Insanity and forces self-harm, punishing clustered enemies.",
+  "tag_add": [
+   "sustained",
+   "debuff-rolls",
+   "area"
+  ],
+  "tag_remove": [],
+  "targeting": "area-enemy",
+  "tempo": "sustained"
+ },
  "investiture of the messenger|invocation": {
   "archetypes": [
    "skirmisher",
@@ -7763,6 +8170,190 @@
   "tag_remove": [],
   "targeting": "self",
   "tempo": "setup"
+ },
+ "investiture of the moon maiden|invocation": {
+  "archetypes": [
+   "blaster",
+   "controller",
+   "support"
+  ],
+  "role": "buff",
+  "synergy": "Caster stance that boons your attack spells and banes the rolls to resist them, blunts enemy magic, and teleports you clear of melee.",
+  "tag_add": [
+   "buff-attack"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the one-eyed god|invocation": {
+  "archetypes": [
+   "nuker",
+   "blaster",
+   "debuffer"
+  ],
+  "role": "damage",
+  "synergy": "Pre-wound targets to trigger the 2-boon attack buff versus injured foes; the opening AoE and attack bane create a strong sustained damage identity.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "burst"
+ },
+ "investiture of the radiant champion|invocation": {
+  "archetypes": [
+   "duelist",
+   "debuffer"
+  ],
+  "role": "buff",
+  "synergy": "Weapon builds gain +1d3 per hit for a minute; the opening light impairs everything sighted nearby, allies included, so lead with it.",
+  "tag_add": [
+   "debuff-rolls",
+   "area"
+  ],
+  "tag_remove": [
+   "auto-damage"
+  ],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the robin prince|invocation": {
+  "archetypes": [
+   "skirmisher",
+   "duelist"
+  ],
+  "role": "mobility",
+  "synergy": "Lets Intellect casters make weapon attacks then teleport to safety each round; shadowsight and speed bonus amplify hit-and-run tactics.",
+  "tag_add": [],
+  "tag_remove": [
+   "auto-damage"
+  ],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the stalwart|invocation": {
+  "archetypes": [
+   "tank",
+   "duelist"
+  ],
+  "role": "buff",
+  "synergy": "Rank-0 Defense bump for a talisman-carrying melee invoker; best on a build that already stacks Defense to push attackers into miss range.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "setup"
+ },
+ "investiture of the storm queen|invocation": {
+  "archetypes": [
+   "blaster",
+   "skirmisher"
+  ],
+  "role": "damage",
+  "synergy": "Initial bolt plus repeatable lightning actions make this a sustained ranged blaster; difficult terrain immunity lets you kite enemies safely.",
+  "tag_add": [
+   "movement",
+   "protection"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the summer queen|invocation": {
+  "archetypes": [
+   "face",
+   "controller",
+   "blaster"
+  ],
+  "role": "transform",
+  "synergy": "Social-combat hybrid; AoE daze on cast disrupts initiative while social boons and the charm-on-20 close non-combat encounters.",
+  "tag_add": [
+   "area"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the warlord|invocation": {
+  "archetypes": [
+   "support",
+   "enabler"
+  ],
+  "role": "buff",
+  "synergy": "Rewards a clustered melee party with a +1d6 weapon damage aura, and the triggered call hands your best striker an off-turn swing.",
+  "tag_add": [],
+  "tag_remove": [
+   "auto-damage"
+  ],
+  "targeting": "allies",
+  "tempo": "sustained"
+ },
+ "investiture of the watcher|invocation": {
+  "archetypes": [
+   "support"
+  ],
+  "role": "divination",
+  "synergy": "Pre-scouting Perception boost; low-rank setup for explorers who can absorb the Insanity aftereffect tax.",
+  "tag_add": [
+   "buff-challenge"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "setup"
+ },
+ "investiture of the winter king|invocation": {
+  "archetypes": [
+   "blaster",
+   "controller"
+  ],
+  "role": "damage",
+  "synergy": "On-cast cold cone auto-damages and slows a cluster; sustained ice shard presses advantage on already-slowed targets with no dodge possible on the cone.",
+  "tag_add": [
+   "auto-damage",
+   "area",
+   "debuff-rolls",
+   "movement"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the witch-king|invocation": {
+  "archetypes": [
+   "blaster",
+   "nuker"
+  ],
+  "role": "damage",
+  "synergy": "Every dark-magic attack gains boons while enemies resist with banes; each hit forces a Will save or Insanity+compelled, enabling cascading crowd control.",
+  "tag_add": [
+   "buff-attack",
+   "insanity",
+   "area",
+   "corruption"
+  ],
+  "tag_remove": [
+   "buff-challenge"
+  ],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "investiture of the world mother|invocation": {
+  "archetypes": [
+   "healer",
+   "support"
+  ],
+  "role": "heal",
+  "synergy": "Party sustain engine: the Health bonus plus a free heal for three creatures each round lets a frontline trade hits for ten minutes.",
+  "tag_add": [
+   "area"
+  ],
+  "tag_remove": [
+   "damage",
+   "auto-damage",
+   "control",
+   "fear",
+   "mind-control"
+  ],
+  "targeting": "allies",
+  "tempo": "sustained"
  },
  "invigorate|life": {
   "archetypes": [
@@ -8040,23 +8631,6 @@
   "tag_remove": [],
   "targeting": "point",
   "tempo": "ritual"
- },
- "laughing scoundrel|invocation": {
-  "archetypes": [
-   "debuffer",
-   "controller",
-   "nuker"
-  ],
-  "role": "debuff",
-  "synergy": "Passive Insanity aura imposes 1 bane on Will saves each round; joke attack stacks Insanity and forces self-harm, punishing clustered enemies.",
-  "tag_add": [
-   "sustained",
-   "debuff-rolls",
-   "area"
-  ],
-  "tag_remove": [],
-  "targeting": "area-enemy",
-  "tempo": "sustained"
  },
  "lay bare the cosmic mysteries|madness": {
   "archetypes": [
@@ -8483,6 +9057,21 @@
   "targeting": "area-mixed",
   "tempo": "sustained"
  },
+ "magnetize|metal": {
+  "archetypes": [
+   "debuffer",
+   "controller",
+   "enabler"
+  ],
+  "role": "debuff",
+  "synergy": "Marks an armored enemy so allied archers auto-hit it while its melee escort swings at 3 banes; pairs with ranged party comps.",
+  "tag_add": [
+   "area"
+  ],
+  "tag_remove": [],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
+ },
  "maim|destruction": {
   "archetypes": [
    "blaster",
@@ -8637,6 +9226,20 @@
   "targeting": "self",
   "tempo": "sustained"
  },
+ "mantle of law|order": {
+  "archetypes": [
+   "tank",
+   "duelist"
+  ],
+  "role": "protection",
+  "synergy": "Pre-cast to walk into charm, fear, and stun chains untouched while shaving enemy accuracy against you.",
+  "tag_add": [],
+  "tag_remove": [
+   "control"
+  ],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
  "mantle of thanatos|death": {
   "archetypes": [
    "tank",
@@ -8669,6 +9272,21 @@
   ],
   "targeting": "one-enemy",
   "tempo": "sustained"
+ },
+ "mark of the necromancer|necromancy": {
+  "archetypes": [
+   "debuffer",
+   "enabler",
+   "blaster"
+  ],
+  "role": "debuff",
+  "synergy": "Marks a target so any ally's next hit deals 1d6 bonus damage; opens burst-round combos in coordinated parties.",
+  "tag_add": [],
+  "tag_remove": [
+   "damage"
+  ],
+  "targeting": "one-enemy",
+  "tempo": "setup"
  },
  "mask|transformation": {
   "archetypes": [
@@ -9287,21 +9905,6 @@
   "targeting": "self",
   "tempo": "sustained"
  },
- "necromancer|necromancy": {
-  "archetypes": [
-   "debuffer",
-   "enabler",
-   "blaster"
-  ],
-  "role": "debuff",
-  "synergy": "Marks a target so any ally's next hit deals 1d6 bonus damage; opens burst-round combos in coordinated parties.",
-  "tag_add": [],
-  "tag_remove": [
-   "damage"
-  ],
-  "targeting": "one-enemy",
-  "tempo": "setup"
- },
  "necromantic power|necromancy": {
   "archetypes": [
    "summoner"
@@ -9312,6 +9915,30 @@
   "tag_remove": [],
   "targeting": "self",
   "tempo": "passive"
+ },
+ "negate chaos|order": {
+  "archetypes": [],
+  "role": "utility",
+  "synergy": "Swaps a target's natural 20s and 10s, mostly used to strip critical hits off a heavy attacker for a minute.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "one-enemy",
+  "tempo": "sustained"
+ },
+ "negate harm|soul": {
+  "archetypes": [
+   "tank",
+   "duelist"
+  ],
+  "role": "protection",
+  "synergy": "Open a fight with it for chip reduction, or keep the slot open to trigger-cast and zero one incoming spike.",
+  "tag_add": [
+   "protection",
+   "triggered"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "reaction"
  },
  "night terrors|madness": {
   "archetypes": [
@@ -9359,20 +9986,6 @@
   ],
   "targeting": "area-mixed",
   "tempo": "setup"
- },
- "ninth dimension|madness": {
-  "archetypes": [
-   "controller",
-   "debuffer"
-  ],
-  "role": "control",
-  "synergy": "The moving worm-mass forces repositioning each round; immobilized targets from Insanity cannot escape the area's repeated damage.",
-  "tag_add": [
-   "insanity"
-  ],
-  "tag_remove": [],
-  "targeting": "area-enemy",
-  "tempo": "sustained"
  },
  "nova|celestial": {
   "archetypes": [
@@ -9496,6 +10109,36 @@
   "targeting": "allies",
   "tempo": "sustained"
  },
+ "open the third eye|soul": {
+  "archetypes": [
+   "duelist",
+   "skirmisher"
+  ],
+  "role": "buff",
+  "synergy": "Pre-fight self-buff for a melee soul-caster; keeps unarmed-strike attack spells from eating banes against hidden or invisible foes.",
+  "tag_add": [],
+  "tag_remove": [
+   "concealment"
+  ],
+  "targeting": "self",
+  "tempo": "setup"
+ },
+ "open the underworld’s gates|spiritualism": {
+  "archetypes": [
+   "summoner",
+   "controller",
+   "nuker"
+  ],
+  "role": "summon",
+  "synergy": "Opens a 1-hour portal that spawns random Underworld creatures each minute and strips Insanity from every mortal in sight; devastating in confined spaces.",
+  "tag_add": [
+   "insanity",
+   "summon"
+  ],
+  "tag_remove": [],
+  "targeting": "point",
+  "tempo": "setup"
+ },
  "ordered defense|order": {
   "archetypes": [
    "tank",
@@ -9541,6 +10184,18 @@
   "targeting": "one-enemy",
   "tempo": "reaction"
  },
+ "order’s shield|order": {
+  "archetypes": [
+   "support",
+   "tank"
+  ],
+  "role": "protection",
+  "synergy": "Stacks 2-4 banes on everything attacking one ally; put it on the front-liner soaking hits or on a caster facing Chaos spells.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "ally",
+  "tempo": "sustained"
+ },
  "ore thralls|metal": {
   "archetypes": [
    "summoner",
@@ -9570,6 +10225,21 @@
   ],
   "targeting": "area-mixed",
   "tempo": "burst"
+ },
+ "overcome affliction|soul": {
+  "archetypes": [
+   "tank",
+   "duelist"
+  ],
+  "role": "protection",
+  "synergy": "Rank 0 self-cleanse that, held for its triggered cast, refuses an incoming affliction before it ever lands.",
+  "tag_add": [
+   "cure",
+   "triggered"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "reaction"
  },
  "overgrowth|nature": {
   "archetypes": [
@@ -9711,6 +10381,20 @@
   "targeting": "point",
   "tempo": "ritual"
  },
+ "peer into the spirit world|spiritualism": {
+  "archetypes": [
+   "support",
+   "controller"
+  ],
+  "role": "divination",
+  "synergy": "Hard counter to invisible or ethereal enemies; cast proactively when expecting spirits, undead, or stealthed foes within short range.",
+  "tag_add": [
+   "divination"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "setup"
+ },
  "penumbral blade|shadow": {
   "archetypes": [
    "duelist",
@@ -9807,6 +10491,23 @@
    "damage"
   ],
   "targeting": "one-enemy",
+  "tempo": "sustained"
+ },
+ "phase shift|soul": {
+  "archetypes": [
+   "tank",
+   "skirmisher"
+  ],
+  "role": "protection",
+  "synergy": "Best on a build that controls or debuffs rather than swings weapons, since only your own attack damage is halved.",
+  "tag_add": [
+   "movement"
+  ],
+  "tag_remove": [
+   "damage",
+   "auto-damage"
+  ],
+  "targeting": "self",
   "tempo": "sustained"
  },
  "phasing missile|battle": {
@@ -10268,6 +10969,18 @@
   "targeting": "point",
   "tempo": "ritual"
  },
+ "protection from corruption|protection": {
+  "archetypes": [
+   "support",
+   "tank"
+  ],
+  "role": "protection",
+  "synergy": "Scales hard against high-Corruption bosses, stacking attack banes and save boons that grow with the enemy's Corruption score.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "ally",
+  "tempo": "sustained"
+ },
  "protection from spells|protection": {
   "archetypes": [
    "support",
@@ -10566,6 +11279,21 @@
   "targeting": "ally",
   "tempo": "ritual"
  },
+ "rationality|order": {
+  "archetypes": [
+   "healer",
+   "support"
+  ],
+  "role": "protection",
+  "synergy": "One-touch cleanse for charm, compulsion, daze, fear and madness, then a minute of immunity; answers mind-control-heavy encounters.",
+  "tag_add": [],
+  "tag_remove": [
+   "control",
+   "fear"
+  ],
+  "targeting": "ally",
+  "tempo": "sustained"
+ },
  "ravenous blot|shadow": {
   "archetypes": [
    "nuker",
@@ -10692,6 +11420,21 @@
   "tag_remove": [],
   "targeting": "self",
   "tempo": "sustained"
+ },
+ "recall past success|soul": {
+  "archetypes": [
+   "duelist",
+   "nuker"
+  ],
+  "role": "buff",
+  "synergy": "Cheap pre-roll setup for the one swing or opposed roll that matters; spend a spare action before a high-rank cast.",
+  "tag_add": [
+   "buff-attack",
+   "buff-challenge"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "setup"
  },
  "reeking fog|alchemy": {
   "archetypes": [
@@ -10861,6 +11604,22 @@
   "targeting": "one-enemy",
   "tempo": "burst"
  },
+ "rend soul|soul": {
+  "archetypes": [
+   "duelist",
+   "controller"
+  ],
+  "role": "damage",
+  "synergy": "Melee finisher that can stun for a full minute; the Insanity dump stacks with other Soul attack spells to break a target.",
+  "tag_add": [
+   "insanity"
+  ],
+  "tag_remove": [
+   "auto-damage"
+  ],
+  "targeting": "one-enemy",
+  "tempo": "burst"
+ },
  "rend|destruction": {
   "archetypes": [
    "blaster",
@@ -10887,6 +11646,18 @@
   ],
   "tag_remove": [],
   "targeting": "several-enemies",
+  "tempo": "burst"
+ },
+ "repel metal|metal": {
+  "archetypes": [
+   "controller",
+   "debuffer"
+  ],
+  "role": "control",
+  "synergy": "Scatters armored enemies and strips their weapons and ammunition; best against heavily equipped foes near walls or drops.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "area-mixed",
   "tempo": "burst"
  },
  "resilient beast|primal": {
@@ -11524,6 +12295,19 @@
   ],
   "targeting": "object",
   "tempo": "setup"
+ },
+ "rust|metal": {
+  "archetypes": [
+   "debuffer"
+  ],
+  "role": "utility",
+  "synergy": "Strips armored or iron-armed foes of their gear over several rounds and opens iron doors, portcullises, and shackles.",
+  "tag_add": [],
+  "tag_remove": [
+   "self-risk"
+  ],
+  "targeting": "object",
+  "tempo": "sustained"
  },
  "sacred grove|nature": {
   "archetypes": [
@@ -12194,6 +12978,17 @@
   "targeting": "point",
   "tempo": "burst"
  },
+ "shape metal|metal": {
+  "archetypes": [],
+  "role": "utility",
+  "synergy": "Rank 0 answer to locks, manacles, and iron bars, and it reshapes gear for a Crafting or disguise play out of combat.",
+  "tag_add": [
+   "transform"
+  ],
+  "tag_remove": [],
+  "targeting": "object",
+  "tempo": "setup"
+ },
  "shape reality|illusion": {
   "archetypes": [
    "face",
@@ -12227,6 +13022,34 @@
   ],
   "targeting": "self",
   "tempo": "sustained"
+ },
+ "sharpen|metal": {
+  "archetypes": [
+   "support",
+   "duelist"
+  ],
+  "role": "buff",
+  "synergy": "Cheap pre-fight rider best on an ally stacking boons, since the extra die only lands when the attack roll clears by 5 or more.",
+  "tag_add": [],
+  "tag_remove": [
+   "auto-damage"
+  ],
+  "targeting": "object",
+  "tempo": "setup"
+ },
+ "shattering strike|soul": {
+  "archetypes": [
+   "duelist",
+   "nuker"
+  ],
+  "role": "damage",
+  "synergy": "The anti-construct pick for an unarmed soul-caster, doubling its dice against golems, armored doors, and barriers.",
+  "tag_add": [],
+  "tag_remove": [
+   "auto-damage"
+  ],
+  "targeting": "one-enemy",
+  "tempo": "burst"
  },
  "shed the mortal coil|necromancy": {
   "archetypes": [
@@ -13070,20 +13893,6 @@
   "targeting": "self",
   "tempo": "sustained"
  },
- "spirit world|spiritualism": {
-  "archetypes": [
-   "support",
-   "controller"
-  ],
-  "role": "divination",
-  "synergy": "Hard counter to invisible or ethereal enemies; cast proactively when expecting spirits, undead, or stealthed foes within short range.",
-  "tag_add": [
-   "divination"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "setup"
- },
  "splinter|destruction": {
   "archetypes": [
    "blaster",
@@ -13313,6 +14122,22 @@
   "targeting": "area-mixed",
   "tempo": "setup"
  },
+ "stillness|order": {
+  "archetypes": [
+   "controller",
+   "debuffer",
+   "enabler"
+  ],
+  "role": "control",
+  "synergy": "Cone lockdown that hands allies boons to hit and cripples the Agility rolls that dodge follow-up area attacks.",
+  "tag_add": [],
+  "tag_remove": [
+   "buff-challenge",
+   "self-risk"
+  ],
+  "targeting": "area-enemy",
+  "tempo": "setup"
+ },
  "stir the air|air": {
   "archetypes": [
    "controller",
@@ -13539,6 +14364,21 @@
   "targeting": "battlefield",
   "tempo": "sustained"
  },
+ "strength of steel|metal": {
+  "archetypes": [
+   "tank",
+   "support"
+  ],
+  "role": "buff",
+  "synergy": "Turns a melee ally into an immobile bruiser, so it belongs on a defender holding a chokepoint who never needs to reposition.",
+  "tag_add": [],
+  "tag_remove": [
+   "auto-damage",
+   "buff-attack"
+  ],
+  "targeting": "ally",
+  "tempo": "setup"
+ },
  "strike like lightning|battle": {
   "archetypes": [
    "blaster",
@@ -13555,6 +14395,22 @@
    "auto-damage"
   ],
   "targeting": "area-enemy",
+  "tempo": "burst"
+ },
+ "strike the soul|soul": {
+  "archetypes": [
+   "duelist",
+   "debuffer"
+  ],
+  "role": "damage",
+  "synergy": "Lets a Will-based caster hit hard in melee; the impaired round softens the target for allied follow-up attacks.",
+  "tag_add": [
+   "insanity"
+  ],
+  "tag_remove": [
+   "auto-damage"
+  ],
+  "targeting": "one-enemy",
   "tempo": "burst"
  },
  "strobe light|celestial": {
@@ -13914,170 +14770,6 @@
   "targeting": "area-mixed",
   "tempo": "burst"
  },
- "the archmage|invocation": {
-  "archetypes": [
-   "blaster",
-   "nuker",
-   "support"
-  ],
-  "role": "buff",
-  "synergy": "+2 boons on all attack-spell rolls and 2 banes on enemy challenge rolls dramatically amplifies every offensive spell cast during the duration.",
-  "tag_add": [
-   "buff-attack"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the ascended one|invocation": {
-  "archetypes": [
-   "tank",
-   "blaster",
-   "controller"
-  ],
-  "role": "transform",
-  "synergy": "Near-invincible combat form; half damage plus 3-bane attacker debuff frees the caster to blast with a 5d6 beam and auto-damage all demons.",
-  "tag_add": [
-   "auto-damage",
-   "area"
-  ],
-  "tag_remove": [
-   "fear"
-  ],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the dark lady|invocation": {
-  "archetypes": [
-   "summoner",
-   "tank",
-   "controller"
-  ],
-  "role": "summon",
-  "synergy": "Necromancer anchor; three free corpses bypass undead control limits and feed any ability that buffs, explodes, or recycles undead.",
-  "tag_add": [
-   "summon",
-   "insanity",
-   "area"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the death angel|invocation": {
-  "archetypes": [
-   "nuker",
-   "duelist",
-   "blaster"
-  ],
-  "role": "damage",
-  "synergy": "Lethal-presence chip-damage pairs with life-draining scythe; kills restore Health, making the caster self-sustaining in melee attrition.",
-  "tag_add": [
-   "insanity",
-   "auto-damage",
-   "area"
-  ],
-  "tag_remove": [
-   "control"
-  ],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the devil|invocation": {
-  "archetypes": [
-   "nuker",
-   "tank",
-   "controller"
-  ],
-  "role": "transform",
-  "synergy": "Nuclear rank-10 button: maximized stats, 25 Defense, half-damage reduction, and mass-prone kneeling make any build nearly invincible for 4 hours.",
-  "tag_add": [
-   "debuff-rolls",
-   "insanity",
-   "area"
-  ],
-  "tag_remove": [
-   "summon",
-   "fear"
-  ],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the diviner|invocation": {
-  "archetypes": [
-   "tank",
-   "support",
-   "controller"
-  ],
-  "role": "protection",
-  "synergy": "Dire prophecy cripples one enemy per round with 3 banes on all rolls while the 3-bane aura on incoming attacks makes the caster nearly untouchable.",
-  "tag_add": [
-   "buff-attack"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "setup"
- },
- "the dwarf lord|invocation": {
-  "archetypes": [
-   "support",
-   "tank",
-   "enabler"
-  ],
-  "role": "buff",
-  "synergy": "Pairs with melee weapon builds; Strength boons on attacks and challenges plus triggered ally attack boon rewards aggressive front-line positioning.",
-  "tag_add": [],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the goblin king|invocation": {
-  "archetypes": [
-   "face",
-   "controller",
-   "skirmisher"
-  ],
-  "role": "utility",
-  "synergy": "Bundles +3-boon social/stealth attacks, two goblin summons, and owl-form mobility into one binding for versatile off-combat utility.",
-  "tag_add": [
-   "buff-attack"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the grand druid|invocation": {
-  "archetypes": [
-   "tank",
-   "controller"
-  ],
-  "role": "transform",
-  "synergy": "Melee caster anchor; difficult terrain locks enemies in place while the immobilize action punishes anything that stays adjacent.",
-  "tag_add": [
-   "transform",
-   "area"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the great dragon|invocation": {
-  "archetypes": [
-   "nuker",
-   "tank",
-   "blaster"
-  ],
-  "role": "transform",
-  "synergy": "8d6 fire cone punishes clustered enemies; fire immunity and Defense 21 enable front-line brawling while the dragon form's +10 Speed aids repositioning.",
-  "tag_add": [
-   "transform",
-   "area",
-   "insanity"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "setup"
- },
  "the old ones awaken|madness": {
   "archetypes": [
    "nuker",
@@ -14090,19 +14782,6 @@
   ],
   "tag_remove": [],
   "targeting": "area-enemy",
-  "tempo": "burst"
- },
- "the one-eyed god|invocation": {
-  "archetypes": [
-   "nuker",
-   "blaster",
-   "debuffer"
-  ],
-  "role": "damage",
-  "synergy": "Pre-wound targets to trigger the 2-boon attack buff versus injured foes; the opening AoE and attack bane create a strong sustained damage identity.",
-  "tag_add": [],
-  "tag_remove": [],
-  "targeting": "self",
   "tempo": "burst"
  },
  "the past revealed|divination": {
@@ -14119,99 +14798,6 @@
   "tag_remove": [],
   "targeting": "area-mixed",
   "tempo": "ritual"
- },
- "the robin prince|invocation": {
-  "archetypes": [
-   "skirmisher",
-   "duelist"
-  ],
-  "role": "mobility",
-  "synergy": "Lets Intellect casters make weapon attacks then teleport to safety each round; shadowsight and speed bonus amplify hit-and-run tactics.",
-  "tag_add": [],
-  "tag_remove": [
-   "auto-damage"
-  ],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the storm queen|invocation": {
-  "archetypes": [
-   "blaster",
-   "skirmisher"
-  ],
-  "role": "damage",
-  "synergy": "Initial bolt plus repeatable lightning actions make this a sustained ranged blaster; difficult terrain immunity lets you kite enemies safely.",
-  "tag_add": [
-   "movement",
-   "protection"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the summer queen|invocation": {
-  "archetypes": [
-   "face",
-   "controller",
-   "blaster"
-  ],
-  "role": "transform",
-  "synergy": "Social-combat hybrid; AoE daze on cast disrupts initiative while social boons and the charm-on-20 close non-combat encounters.",
-  "tag_add": [
-   "area"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the watcher|invocation": {
-  "archetypes": [
-   "support"
-  ],
-  "role": "divination",
-  "synergy": "Pre-scouting Perception boost; low-rank setup for explorers who can absorb the Insanity aftereffect tax.",
-  "tag_add": [
-   "buff-challenge"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "setup"
- },
- "the winter king|invocation": {
-  "archetypes": [
-   "blaster",
-   "controller"
-  ],
-  "role": "damage",
-  "synergy": "On-cast cold cone auto-damages and slows a cluster; sustained ice shard presses advantage on already-slowed targets with no dodge possible on the cone.",
-  "tag_add": [
-   "auto-damage",
-   "area",
-   "debuff-rolls",
-   "movement"
-  ],
-  "tag_remove": [],
-  "targeting": "self",
-  "tempo": "sustained"
- },
- "the witch-king|invocation": {
-  "archetypes": [
-   "blaster",
-   "nuker"
-  ],
-  "role": "damage",
-  "synergy": "Every dark-magic attack gains boons while enemies resist with banes; each hit forces a Will save or Insanity+compelled, enabling cascading crowd control.",
-  "tag_add": [
-   "buff-attack",
-   "insanity",
-   "area",
-   "corruption"
-  ],
-  "tag_remove": [
-   "buff-challenge"
-  ],
-  "targeting": "self",
-  "tempo": "sustained"
  },
  "thimblerig|illusion": {
   "archetypes": [
@@ -14596,6 +15182,18 @@
   "targeting": "self",
   "tempo": "sustained"
  },
+ "transcendent recovery|soul": {
+  "archetypes": [
+   "tank",
+   "healer"
+  ],
+  "role": "heal",
+  "synergy": "Emergency self-reset for a front-line soul-caster: wipes damage, afflictions, and Insanity, then leaves a minute of boons.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "burst"
+ },
  "translate anything|rune": {
   "archetypes": [
    "face",
@@ -14890,6 +15488,20 @@
   "targeting": "self",
   "tempo": "sustained"
  },
+ "unbreakable|metal": {
+  "archetypes": [
+   "support",
+   "tank"
+  ],
+  "role": "protection",
+  "synergy": "Pre-cast on a door, shield, or vehicle to stall a siege or chase, since doubled Health plus half damage blunts mundane weapons.",
+  "tag_add": [
+   "defense-buff"
+  ],
+  "tag_remove": [],
+  "targeting": "object",
+  "tempo": "setup"
+ },
  "unchained probabilities|chaos": {
   "archetypes": [
    "controller",
@@ -14960,41 +15572,6 @@
   "tag_remove": [],
   "targeting": "area-mixed",
   "tempo": "sustained"
- },
- "underworld|spiritualism": {
-  "archetypes": [
-   "controller",
-   "support"
-  ],
-  "role": "control",
-  "synergy": "Anchor within medium range for 2-boon Spiritualism attacks and a free triggered-action cast each turn while enemies suffer Insanity and fear.",
-  "tag_add": [
-   "insanity",
-   "action-economy"
-  ],
-  "tag_remove": [
-   "damage",
-   "auto-damage",
-   "buff-challenge"
-  ],
-  "targeting": "area-mixed",
-  "tempo": "sustained"
- },
- "underworld’s gates|spiritualism": {
-  "archetypes": [
-   "summoner",
-   "controller",
-   "nuker"
-  ],
-  "role": "summon",
-  "synergy": "Opens a 1-hour portal that spawns random Underworld creatures each minute and strips Insanity from every mortal in sight; devastating in confined spaces.",
-  "tag_add": [
-   "insanity",
-   "summon"
-  ],
-  "tag_remove": [],
-  "targeting": "point",
-  "tempo": "setup"
  },
  "undo constitution|death": {
   "archetypes": [
@@ -15305,6 +15882,37 @@
   "targeting": "area-enemy",
   "tempo": "burst"
  },
+ "velocity|soul": {
+  "archetypes": [
+   "duelist",
+   "skirmisher",
+   "blaster"
+  ],
+  "role": "buff",
+  "synergy": "Effectively free since it refunds your action; chain straight into a big attack spell and bank two triggered actions per round.",
+  "tag_add": [
+   "action-economy"
+  ],
+  "tag_remove": [],
+  "targeting": "self",
+  "tempo": "sustained"
+ },
+ "vengeance of the wee free men|fey": {
+  "archetypes": [
+   "blaster",
+   "controller"
+  ],
+  "role": "damage",
+  "synergy": "Repeating damage plus impaired punishes clustered foes each round; sustain while allies focus-fire weakest targets to maximize efficiency.",
+  "tag_add": [
+   "debuff-rolls"
+  ],
+  "tag_remove": [
+   "auto-damage"
+  ],
+  "targeting": "several-enemies",
+  "tempo": "sustained"
+ },
  "venomous dart|alchemy": {
   "archetypes": [
    "debuffer",
@@ -15414,6 +16022,25 @@
   "tag_remove": [],
   "targeting": "one-enemy",
   "tempo": "burst"
+ },
+ "vision of the underworld|spiritualism": {
+  "archetypes": [
+   "controller",
+   "support"
+  ],
+  "role": "control",
+  "synergy": "Anchor within medium range for 2-boon Spiritualism attacks and a free triggered-action cast each turn while enemies suffer Insanity and fear.",
+  "tag_add": [
+   "insanity",
+   "action-economy"
+  ],
+  "tag_remove": [
+   "damage",
+   "auto-damage",
+   "buff-challenge"
+  ],
+  "targeting": "area-mixed",
+  "tempo": "sustained"
  },
  "vision|divination": {
   "archetypes": [
@@ -15565,6 +16192,17 @@
    "debuff-rolls"
   ],
   "targeting": "one-enemy",
+  "tempo": "sustained"
+ },
+ "walk the sky|soul": {
+  "archetypes": [
+   "skirmisher"
+  ],
+  "role": "mobility",
+  "synergy": "Cheap in-combat flight for a Will-caster, but the per-round upkeep competes with any other triggered-action spell.",
+  "tag_add": [],
+  "tag_remove": [],
+  "targeting": "self",
   "tempo": "sustained"
  },
  "wall of darkness|shadow": {
@@ -15798,22 +16436,6 @@
   "targeting": "self",
   "tempo": "sustained"
  },
- "wee free men|fey": {
-  "archetypes": [
-   "blaster",
-   "controller"
-  ],
-  "role": "damage",
-  "synergy": "Repeating damage plus impaired punishes clustered foes each round; sustain while allies focus-fire weakest targets to maximize efficiency.",
-  "tag_add": [
-   "debuff-rolls"
-  ],
-  "tag_remove": [
-   "auto-damage"
-  ],
-  "targeting": "several-enemies",
-  "tempo": "sustained"
- },
  "weight of years|death": {
   "archetypes": [
    "debuffer",
@@ -16006,6 +16628,20 @@
   "tag_remove": [],
   "targeting": "area-enemy",
   "tempo": "ritual"
+ },
+ "worms from the ninth dimension|madness": {
+  "archetypes": [
+   "controller",
+   "debuffer"
+  ],
+  "role": "control",
+  "synergy": "The moving worm-mass forces repositioning each round; immobilized targets from Insanity cannot escape the area's repeated damage.",
+  "tag_add": [
+   "insanity"
+  ],
+  "tag_remove": [],
+  "targeting": "area-enemy",
+  "tempo": "sustained"
  },
  "wrath of god|theurgy": {
   "archetypes": [

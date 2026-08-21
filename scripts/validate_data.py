@@ -20,11 +20,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
-# Corpus sizes as parsed from the three rulebooks. If a parser or the source
+# Corpus sizes as parsed from the four rulebooks. If a parser or the source
 # text changes these on purpose, update them here in the same commit.
-EXPECTED_SPELLS_BY_SOURCE = {"core": 331, "occult": 761, "terrible": 28}
-EXPECTED_SPELL_COUNT = sum(EXPECTED_SPELLS_BY_SOURCE.values())  # 1120
-EXPECTED_PATH_COUNT = 165
+EXPECTED_SPELLS_BY_SOURCE = {"core": 331, "occult": 762, "terrible": 28,
+                             "dlc2": 44}
+EXPECTED_SPELL_COUNT = sum(EXPECTED_SPELLS_BY_SOURCE.values())  # 1165
+EXPECTED_PATH_COUNT = 177
 EXPECTED_TRADITION_COUNT = 42
 
 # Character slot IDs resolve positionally into these files, so an exported

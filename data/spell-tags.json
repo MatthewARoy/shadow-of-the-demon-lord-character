@@ -13,25 +13,25 @@
    "id": "damage",
    "facet": "offense",
    "label": "Damage",
-   "count": 536
+   "count": 556
   },
   {
    "id": "auto-damage",
    "facet": "offense",
    "label": "Auto-damage (no attack roll)",
-   "count": 394
+   "count": 411
   },
   {
    "id": "buff-attack",
    "facet": "support",
    "label": "Buff: attack rolls",
-   "count": 86
+   "count": 91
   },
   {
    "id": "buff-challenge",
    "facet": "support",
    "label": "Buff: challenge rolls",
-   "count": 69
+   "count": 73
   },
   {
    "id": "reroll",
@@ -43,37 +43,37 @@
    "id": "debuff-rolls",
    "facet": "control",
    "label": "Debuff: imposes banes",
-   "count": 122
+   "count": 130
   },
   {
    "id": "control",
    "facet": "control",
    "label": "Control (stun/immobilize/etc.)",
-   "count": 333
+   "count": 341
   },
   {
    "id": "fear",
    "facet": "control",
    "label": "Fear",
-   "count": 38
+   "count": 42
   },
   {
    "id": "mind-control",
    "facet": "control",
    "label": "Mind control",
-   "count": 55
+   "count": 58
   },
   {
    "id": "insanity",
    "facet": "control",
    "label": "Inflicts Insanity",
-   "count": 54
+   "count": 55
   },
   {
    "id": "heal",
    "facet": "support",
    "label": "Healing",
-   "count": 62
+   "count": 64
   },
   {
    "id": "heal-support",
@@ -85,43 +85,43 @@
    "id": "cure",
    "facet": "support",
    "label": "Cure / remove condition",
-   "count": 18
+   "count": 21
   },
   {
    "id": "defense-buff",
    "facet": "support",
    "label": "Defense / Health buff",
-   "count": 53
+   "count": 59
   },
   {
    "id": "action-economy",
    "facet": "support",
    "label": "Action economy",
-   "count": 9
+   "count": 11
   },
   {
    "id": "protection",
    "facet": "support",
    "label": "Damage protection",
-   "count": 64
+   "count": 69
   },
   {
    "id": "teleport",
    "facet": "mobility",
    "label": "Teleport",
-   "count": 45
+   "count": 46
   },
   {
    "id": "fly",
    "facet": "mobility",
    "label": "Flight",
-   "count": 30
+   "count": 31
   },
   {
    "id": "movement",
    "facet": "mobility",
    "label": "Movement",
-   "count": 47
+   "count": 49
   },
   {
    "id": "summon",
@@ -133,7 +133,7 @@
    "id": "concealment",
    "facet": "utility",
    "label": "Concealment / invisibility",
-   "count": 40
+   "count": 41
   },
   {
    "id": "divination",
@@ -145,7 +145,7 @@
    "id": "transform",
    "facet": "utility",
    "label": "Transformation",
-   "count": 64
+   "count": 65
   },
   {
    "id": "sacrifice",
@@ -163,7 +163,7 @@
    "id": "self-risk",
    "facet": "cost",
    "label": "Self-risk / drawback",
-   "count": 150
+   "count": 163
   },
   {
    "id": "triggered",
@@ -175,13 +175,13 @@
    "id": "concentration",
    "facet": "timing",
    "label": "Concentration",
-   "count": 68
+   "count": 69
   },
   {
    "id": "sustained",
    "facet": "timing",
    "label": "Sustained duration",
-   "count": 762
+   "count": 800
   },
   {
    "id": "permanent",
@@ -193,7 +193,7 @@
    "id": "area",
    "facet": "timing",
    "label": "Area effect",
-   "count": 357
+   "count": 365
   }
  ]
 }

@@ -22,9 +22,10 @@ folder `/ (root)`, and save.
   optional second expert path and its either-path level 9 choice.
 * Enforces the actual rules: religion-locked traditions, Power-capped spell
   rank, no dark magic for Magisters, Corruption on dark discoveries.
-* 1,120 spells and 42 traditions parsed from the Core Rulebook, Occult
-  Philosophy, and Terrible Beauty, plus the four novice paths and 165 expert
-  and master paths with their full per-level benefits.
+* 1,165 spells and 42 traditions parsed from the Core Rulebook, Occult
+  Philosophy, Terrible Beauty, and Demon Lord's Companion 2, plus the four
+  novice paths and 177 expert and master paths with their full per-level
+  benefits.
 * Derived stats with provenance: every point of Health, Power, and Defense
   knows where it came from.
 * Castings tracker built on the real castings table.
@@ -96,6 +97,7 @@ The design of the effects/decisions engine is documented in the
 * *Shadow of the Demon Lord Core Rulebook*
 * *Occult Philosophy*
 * *Terrible Beauty*
+* *Demon Lord's Companion 2*
 
 *Shadow of the Demon Lord is © Schwalb Entertainment. This is an unofficial
 character tool.*

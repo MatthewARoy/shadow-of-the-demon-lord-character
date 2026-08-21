@@ -77,8 +77,9 @@ class TestSpellsInvariants(unittest.TestCase):
         by_source = {}
         for s in self.spells:
             by_source[s["source"]] = by_source.get(s["source"], 0) + 1
-        self.assertEqual(len(self.spells), 1120)
-        self.assertEqual(by_source, {"core": 331, "occult": 761, "terrible": 28})
+        self.assertEqual(len(self.spells), 1165)
+        self.assertEqual(by_source, {"core": 331, "occult": 762,
+                                     "terrible": 28, "dlc2": 44})
 
     def test_every_spell_keeps_its_enrichment(self):
         """parse_spells.py alone strips tags; the chain is + tag_spells.py."""

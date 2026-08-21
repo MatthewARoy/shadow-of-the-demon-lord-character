@@ -240,6 +240,95 @@
   "description": "Assassins specialize in the art of murder. They learn the best ways to speed their victims to the grave, whether using a strangling cord, poison in a cup, or a knife slid between the ribs. Assassins avoid fair fights, preferring to skulk in the shadows, where they can watch for the perfect time to strike. They might spend weeks or even months gathering information about their victims, learning all they can to overcome their defenses and to attack when their targets are least prepared. Most assassins take contracts to eliminate specific targets. Assassins can be freelancers or members of a secret society of professional killers, such as the Black Hand. For them, killing is nothing more than upholding their end of a business transaction. Of course, others come to this path for a variety of reasons. Some are simply cold-blooded killers, spies, or even skilled snipers. A few belong to death cults who see each kill as a prayer offered to the sinister power they serve."
  },
  {
+  "name": "Auspex",
+  "levels": {
+   "3": {
+    "attributes": {
+     "choose": 2,
+     "increase": 1
+    },
+    "characteristics": {
+     "perception": 1,
+     "health": 4,
+     "power": 1
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "magic": {
+     "raw": "You discover the Divination tradition, or you learn one Divination spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "discover_tradition",
+        "learn_spell"
+       ],
+       "traditions": [
+        "Divination"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Read the Signs",
+      "text": "When you would use an action, you can use a triggered action to search for omens. Make a Perception challenge roll with 1 bane. On a success, you gain 1 Insanity. Instead of becoming frightened from gaining Insanity in this way, you instead make attack rolls and challenge rolls with 1 boon and you impose 1 bane on attack rolls made against you. The benefit lasts for a number of rounds equal to your Insanity total. On a failure, you must wait 1 minute before you can use Read the Signs again."
+     }
+    ]
+   },
+   "6": {
+    "characteristics": {
+     "perception": 1,
+     "health": 4
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Watchful",
+      "text": "If you would be surprised, you can use a triggered action to make a Perception challenge roll. On a success, you are not surprised."
+     }
+    ]
+   },
+   "9": {
+    "characteristics": {
+     "perception": 1,
+     "health": 4,
+     "power": 1
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Masterful Interpretation",
+      "text": "When you use Read the Signs and get a success, you increase the number of boons gained by 1 and the number of banes imposed by 1."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 28,
+  "type": "expert",
+  "description": "One merely has to look with open eyes to see the signs, the omens hinting at what’s to come, the dangers ahead. Auspexes have trained their senses to see these warnings and interpret their meanings in an instant. The information they gain from their powers of observation enables them to shift their tactics and adjust their actions to produce the most advantageous outcome. The gift of prophecy lies at the heart of an auspex’s capabilities. Many have always had the talent, seeing strange things in their environment without understanding the meaning of them. In others, the ability lay dormant until some stressful event shattered the mental lock that contained it. In any event, auspexes see the signs around them, odd warnings that others overlook or simply cannot perceive. Such a warning could be a pattern in the arrangement of rocks, a whisper in the wind, or the ominous and unusual behavior of an ordinary animal. Auspexes can come from all professions and backgrounds. Warriors and rogues, especially, profit from walking this path, as the techniques of the path create opportunities to thwart their foes’ defenses and to avoid danger. Priests devoted to the Seer sometimes go on to become auspexes, finding the path a natural outgrowth of their religious devotion. Magicians too might choose this path to better arm themselves against the challenges ahead, while also further developing their magical abilities."
+ },
+ {
   "name": "Avowed",
   "levels": {
    "3": {
@@ -1921,7 +2010,11 @@
     "talents": [
      {
       "name": "See Spirits",
-      "text": "You can see invisible spirits. Preserver’s Art Death spells you cast that deal damage deal 1d6 extra damage. Life spells you cast that heal damage heal 1d6 extra damage."
+      "text": "You can see invisible spirits."
+     },
+     {
+      "name": "Preserver’s Art",
+      "text": "Death spells you cast that deal damage deal 1d6 extra damage. Life spells you cast that heal damage heal 1d6 extra damage."
      }
     ]
    },
@@ -2454,6 +2547,104 @@
   "page": 161,
   "type": "expert",
   "description": "Illusion magic works by tricking the senses. Its spells fool other creatures and confound their efforts to discern reality from fantasy, but there are some students of the tradition who seek to create illusions with more substantive effects. While some focus on their art, others search for solutions within other traditions, such as Shadow. Shadowmancers learn to weave threads of shadowstuff into their illusions and to enhance the darkness they wield with false images and sounds. The combination of these traditions allows shadowmancers to alter reality around themselves to terrorize their enemies. Whether they spawn hideous monsters of living darkness or loose darkness filled with terrifying noises, they command magic that plunges others into waking nightmares."
+ },
+ {
+  "name": "Silhouette",
+  "levels": {
+   "3": {
+    "attributes": {
+     "choose": 2,
+     "increase": 1
+    },
+    "characteristics": {
+     "health": 3,
+     "power": 1
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "magic": {
+     "raw": "You discover the Shadow tradition, or you learn one Shadow spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "discover_tradition",
+        "learn_spell"
+       ],
+       "traditions": [
+        "Shadow"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Gather Shadows",
+      "text": "You can use an action to gather a number of shadows equal to 1 + your Power score. You retain these shadows until you expend them or you use this talent again."
+     },
+     {
+      "name": "Shadow Blend",
+      "text": "When you are in an area obscured by shadows or darkness, you can use a triggered action to become invisible for 1 minute. If you move or use an action, the effect ends immediately."
+     },
+     {
+      "name": "Shadow Guard",
+      "text": "When you are attacked by a creature that can see you, you can use a triggered action to expend a shadow and impose 1 bane on the triggering attack roll."
+     },
+     {
+      "name": "Shadowed Eyes",
+      "text": "When you are in an area obscured by shadows or darkness, you can use a triggered action to expend a shadow and gain the darksight trait for 1 minute."
+     }
+    ]
+   },
+   "6": {
+    "characteristics": {
+     "health": 3
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Shadow Dance",
+      "text": "When you move into a space obscured by shadows or darkness, you can use a triggered action to expend a shadow and teleport to another open space within short range that’s also obscured by shadows or darkness. You do not have to see the target space, and upon your use of this talent, you are made aware of all eligible spaces within this talent’s range."
+     }
+    ]
+   },
+   "9": {
+    "characteristics": {
+     "health": 3,
+     "power": 1
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Shadow Weapon",
+      "text": "When you use a weapon to attack a creature while you are obscured by shadows or darkness, you can use a triggered action to expend a shadow and attack the target’s Agility instead of its Defense. Your attack deals 1d6 extra damage."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 29,
+  "type": "expert",
+  "description": "Although the Shadow tradition does not fall under dark magic, it often attracts those who would exploit magic for diabolical ends. Whether they use spells to mask activities, to keep them concealed from the pure light of day, or to aid them in dealing with fell beings called forth from the Underworld or beyond, the people who practice Shadow magic often walk the narrow path between innocence and corruption, and many of those find themselves tempted to take up even darker expressions of magic. One thing common to nearly all users of Shadow magic is a tendency to be altered by its nature, to become more comfortable in the twilit hours and darkness, while shunning the light. Silhouettes embody this tendency, for they are individuals who have sought to understand Shadow magic in order to abet their criminal activities. Though it is false to assume that all who become silhouettes are drawn to acts of thievery, assassination, or worse, the vast majority are, and the tendency is so widespread that most outsiders paint all followers of this path with the same black brush. Becoming a silhouette requires knowledge of Shadow magic. It is not enough to learn the mystic words or gestures to walk this gloomy path, however; one must become as shadow, embracing the darkness and rejecting the light. Learning the appropriate magic and achieving the proper state of mind ushers the student into a dark world of flickering shadows that bend to her commands. The gathered shadows can then be used to cloak the character in darkness, to cause her to vanish, or even to coalesce shadows into blots of magical darkness to confound her enemies."
  },
  {
   "name": "Skindancer",
@@ -3242,7 +3433,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Conjuration"
@@ -3410,6 +3602,248 @@
   "page": 168,
   "type": "expert",
   "description": "Although the mages of the Tower Arcane are fully capable of protecting themselves from their enemies, they rely on an elite force to guard them so they can direct their attention more fully to their studies and duties. These guards, known as vanguards, are warriors trained in the arts of magic, specifically the Battle and Protection traditions. These combatants use spells to enhance their fighting techniques and safeguard themselves and their charges from counterattacks. Many vanguards in the world today learned their methods from those guarding the Tower Arcane, but devotees of the techniques can be found almost anywhere in the Empire. Vanguards might serve as bodyguards for the great magicians of Lij, might sell their services to the petty warlords of the Patchwork Lands, or seek their fortunes in the faeries scattered across the Northern Reach. For many who pursue this path, the techniques come as a natural progression of their magical training. A vanguard typically has some sort of military or magical background. Warriors might become vanguards to enhance their combat prowess, while magicians and magic-using rogues, especially those with a martial bent, can enhance their fighting prowess by channeling simple spells into their attacks and defenses. Priests of the Honored Dead who become vanguards usually protect the sacred vaults that hold the lore of their ancestors, while priests of Father Death safeguard the cemeteries entrusted to their order against tampering by cultists and necromancers. Priests of Old Man Winter and the Dark Gods use the vanguards’ talents to bolster their combat ability and become ferocious killers on the battlefield."
+ },
+ {
+  "name": "Wangateur",
+  "levels": {
+   "3": {
+    "attributes": {
+     "choose": 2,
+     "increase": 1
+    },
+    "characteristics": {
+     "health": 3,
+     "power": 1
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "magic": {
+     "raw": "You discover the Curse tradition or the Spiritualism tradition. If you have discovered both traditions already, you instead learn one spell from either tradition.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "discover_tradition",
+        "learn_spell"
+       ],
+       "traditions": [
+        "Curse",
+        "Spiritualism"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Ensnare Spirit",
+      "text": "If you are carrying a totem as your implement of magic when a spirit within short range becomes incapacitated, you can use a triggered action to ensnare it with your totem. The spirit remains ensnared until you release it. As long as you have at least one ensnared spirit, you make all Perception rolls with 1 boon."
+     },
+     {
+      "name": "Unravel Magic",
+      "text": "You can use an action to make an Intellect challenge roll to end an effect created by a spell you did not cast. If the spell is of a rank higher than you can cast, you make the roll with 2 banes. You can release a spirit you ensnared with your Ensnare Spirit talent to get an automatic success."
+     }
+    ]
+   },
+   "6": {
+    "characteristics": {
+     "health": 3
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Spirit-Bound Curse",
+      "text": "When you cast a Curse attack spell, you make the attack roll with 1 boon and the target makes any challenge rolls to resist the attack with 1 bane. You can release a spirit you ensnared with your Ensnare Spirit talent to increase the number of boons or banes to 3."
+     }
+    ]
+   },
+   "9": {
+    "characteristics": {
+     "health": 3,
+     "power": 1
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Beneficent Spirit",
+      "text": "When you cast a Life spell on a target, the target makes challenge rolls with 1 boon for 1 minute. If you release a spirit you ensnared with your Ensnare Spirit talent, you can also remove one of the following afflictions from the target: charmed, compelled, diseased, frightened, or poisoned."
+     },
+     {
+      "name": "Menacing Presence",
+      "text": "Whenever you cast a Curse spell or a Spiritualism spell, you can choose one creature within short range that can see you. The target must get a success on a Will challenge roll or gain 1 Insanity."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 30,
+  "type": "expert",
+  "description": "Many wizards, mages, priests, and others of their ilk claim that modern magic began with the establishment of their traditions and institutions. But anyone who has traveled through the gloom of Spiderwood or in the depths of Balgrendia knows better. Magic and its practice have thrived across Rûl for as long as people have lived here. Many of the present-day magical societies owe their insights to these primitive systems and have adapted them to suit their needs. In some parts of the world, however, the old ways hold, and the students of these ancient techniques strive to prove that their methods are the equal of any of those used in the civilized world. Wangateurs are a class of wise men and women who tend to the needs of the tribes to which they belong, offering guidance in difficult situations and using their magic to drive off evil spirits, foster healing, and protect their people from the gathering dark. Although many act as agents of good for their kind, many wangateurs dabble in dark magic and become corrupted by their studies. Wangateurs often begin their careers as magicians, having discovered several traditions with which to mold the foundation of their work as wangateurs. Others might have begun as rogues, tricksters, and scoundrels who stumbled onto the art or learned it from a master. Few priests become wangateurs, because this path eschews the trappings of organized religion in any form."
+ },
+ {
+  "name": "Wardscribe",
+  "levels": {
+   "3": {
+    "attributes": {
+     "choose": 2,
+     "increase": 1
+    },
+    "characteristics": {
+     "health": 2,
+     "power": 1
+    },
+    "languages_professions": "If you cannot do so already, you can read and write every language you can speak.",
+    "magic": {
+     "raw": "You discover the Protection tradition or the Rune tradition. If you have discovered both traditions already, you instead learn one spell from either tradition.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "discover_tradition",
+        "learn_spell"
+       ],
+       "traditions": [
+        "Protection",
+        "Rune"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Learn Sigil",
+      "text": "Choose a basic sigil when you gain this talent and another sigil every time your group level increases. You know how to draw each of your sigils using the Draw Sigil talent."
+     },
+     {
+      "name": "Draw Sigil",
+      "text": "Choose one of your sigils. You spend 1 minute using a stylus to draw the sigil on a soft surface such as dirt or sand or a writing kit to paint the sigil on a hard surface. When you finish, expend the casting of one spell you have learned to imbue it with power. The sigil remains imbued until something damages its appearance, the sigil is triggered, or the magic fades away (see below). When you inscribe the sigil, you can do so in such a way as to exclude creatures of a particular sort from triggering its magic. The criterion for exclusion can be Size, descriptor, or identity. Choosing Size lets you exclude creatures of a certain Size or Sizes, such as 2 or smaller. Descriptor lets you exclude entire categories of creatures such as faerie, demon, or human. Finally, identity lets you exclude individuals whose names you know. A sigil is triggered when a creature other than you that is not excluded from the sigil’s effect moves to a space within 1 yard of it. If you are within 5 yards of the sigil, you can use a triggered action at any time to trigger the sigil instead. Once a sigil is triggered, you resolve the sigil’s effects immediately. The magic in an imbued sigil that has not been triggered fades over time. The amount of time it takes to fade away depends on the rank of the spell you expended to imbue it with power, as shown on the following table. Spell Rank Duration Spell Rank Duration 1 minute 1 week 10 minutes 1 month 1 hour 1 year 4 hours 10 years 8 hours 100 years 24 hours"
+     }
+    ]
+   },
+   "6": {
+    "characteristics": {
+     "health": 2
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Decipher",
+      "text": "If you spend at least 1 minute studying text written in a language you cannot read, you can make an Intellect challenge roll. On a success, you learn enough to get the gist of what the writing says. Each use of this talent allows you to examine up to 200 words of text."
+     },
+     {
+      "name": "Learn Advanced Sigil",
+      "text": "When you would learn a sigil, you can choose to learn an advanced sigil."
+     }
+    ]
+   },
+   "9": {
+    "characteristics": {
+     "health": 2,
+     "power": 1
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Hasty Sigil",
+      "text": "You have mastered the art of drawing sigils, such that it takes you just 1 round to draw a sigil instead of 1 minute."
+     },
+     {
+      "name": "Learn Master Sigil",
+      "text": "When you would learn a sigil, you can choose to learn a master sigil. Basic Sigils Every wardscribe starts out by learning at least three of the four basic sigils, since they are the ones available at levels 3 through 5 in this path."
+     },
+     {
+      "name": "Alarum",
+      "text": "A loud ringing sounds from the sigil and continues for the sigil’s duration. Creatures within 10 yards of the sigil are deafened for as long as they remain there. The noise can be heard from up to 1 mile away."
+     },
+     {
+      "name": "Dazzling Radiance",
+      "text": "When this sigil is triggered, it glows with intense light that lasts for the sigil’s duration. When the light first shines, each sighted creature within 5 yards of the sigil must get a success on an Agility challenge roll with 1 bane or become blinded for 1 round."
+     },
+     {
+      "name": "Flames of Vengeance",
+      "text": "When this sigil is triggered, roaring flames rush out from it to spread through a 5-yard-radius sphere and then dissipate; the magic of the sigil is spent immediately. The flames deal 3d6 damage to everything in the area, igniting combustibles. A creature in the area can make an Agility challenge roll and takes half the damage on a success."
+     },
+     {
+      "name": "Glyphic Protection",
+      "text": "Shimmering glyphs appear on and orbit around the leading edge of a 5-yard-radius sphere centered on the sigil for the sigil’s duration. The glyphs impose 1 bane on attack rolls made by creatures outside the area against targets inside it and grant 1 boon on challenge rolls made by creatures inside the area to resist attacks from outside it. Advanced Sigils The four advanced sigils are more powerful than their basic counterparts. They become available to a wardscribe at level 6."
+     },
+     {
+      "name": "Confusion and Discord",
+      "text": "A warbling pulse spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature becomes dazed for 1 minute and gains 1 Insanity."
+     },
+     {
+      "name": "Crushing Terror",
+      "text": "A howling noise spreads through a 5-yard- radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature gains 1d6 Insanity and, as a result of gaining this Insanity, the creature becomes frightened for a number of minutes equal to twice its Insanity total. While frightened in this way, the creature must move away from the sigil on each of its turns."
+     },
+     {
+      "name": "Mental Compulsion",
+      "text": "A bright flash of golden light spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make an Intellect challenge roll with 1 bane. On a failure, a creature becomes compelled for 1 minute and gains 1 Insanity."
+     },
+     {
+      "name": "Waves of Lethargy",
+      "text": "A soft blue light spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature becomes fatigued until it completes a rest, and while fatigued in this way, the creature is slowed. On a success, the creature becomes fatigued for 1 round. Master Sigils Master sigils are the pinnacle of a wardscribe’s achievements. They become available at level 9."
+     },
+     {
+      "name": "Crippling Pain",
+      "text": "Lurid red light spreads through a 5-yard- radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature gains 2d6 Insanity. While frightened from gaining Insanity in this way, the creature is also dazed."
+     },
+     {
+      "name": "Gibbering Madness",
+      "text": "Mad laughter fills a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must get a success on a Will challenge roll with 1 bane or gain Insanity equal to its Will score. If a creature goes mad as a result of gaining Insanity in this way, the creature rolls twice on the Madness table and you choose the result."
+     },
+     {
+      "name": "Sudden Death",
+      "text": "A wave of black energy spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area takes 7d6 damage."
+     },
+     {
+      "name": "Swift Transit",
+      "text": "The air inside a 5-yard-radius sphere centered on the sigil wavers for 1 minute. All creatures in the area when the sigil is triggered or that enter it before the effect ends are teleported to a single location of the GM’s choice 1d6 miles away."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 31,
+  "type": "expert",
+  "description": "From the traditions of Protection and Rune was born a new method of using magic, one that imbues magical energy into sigils and glyphs to make them produce a specific magical effect when activated. The Banker’s Guild in Kem sponsored the development of wardscribing centuries ago and, until recently, restricted knowledge of the art to those admitted to the Academy of Magic, an institution created by the Vault for the purposes of protecting its interests and creating a cabal of magicians loyal to the powerful financial institution. No matter how guarded a secret might be, however, knowledge has a way of leaking into the world. Even though the techniques are fairly widely known, few individuals make the effort to master them, because wardscribing involves considerable study and practice before one can flawlessly illustrate the sigils. One error, even the most minor one, can thwart the ability of the sign to hold the magic that brings to life the desired effect. For this reason, the people who know the craft are in high demand for their specialized capabilities. Most who come to wardscribing already have some talent for magic, either from formal training or an inborn gift. Magicians are the most likely to pursue this path, though adepts (see Forbidden Rules) and some rogues might also take it up. Rogues who become wardscribes might learn the techniques to cover a retreat or as a way to get a better sense of the wards they might face. Warriors too could become wardscribes, especially those who value protection and defense more than offense and assault. Such warriors who become wardscribes began their careers as temple guardians, defenders of powerful magicians, or students of esoteric knowledge. Wardscribe"
  },
  {
   "name": "Warlock",
@@ -3960,7 +4394,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Madness"
@@ -4026,7 +4461,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Destruction"
@@ -4088,7 +4524,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Theurgy"
@@ -4286,7 +4723,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Telekinesis"
@@ -4526,7 +4964,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Primal"
@@ -4613,7 +5052,7 @@
      "health": 2
     },
     "magic": {
-     "raw": "You learn one spell. Primal Power Animals charmed by you make attack rolls and challenge rolls with 1 boon. In addition, their attacks deal 1d6 extra damage.",
+     "raw": "You learn one spell.",
      "choices": [
       {
        "pick": 1,
@@ -4622,7 +5061,13 @@
        ]
       }
      ]
-    }
+    },
+    "talents": [
+     {
+      "name": "Primal Power",
+      "text": "Animals charmed by you make attack rolls and challenge rolls with 1 boon. In addition, their attacks deal 1d6 extra damage."
+     }
+    ]
    }
   },
   "source": "core",
@@ -4755,7 +5200,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Necromancy"
@@ -4821,7 +5267,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Necromancy"
@@ -4918,7 +5365,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Conjuration"
@@ -5050,6 +5498,75 @@
   "page": 83,
   "type": "master",
   "description": "Cavaliers exploit every advantage they can from fighting astride their steeds. Although many cavaliers are knights of the realm, they also include horse barbarians, raiders, and anyone else who would fight from the back of a beast."
+ },
+ {
+  "name": "Cenobite",
+  "levels": {
+   "7": {
+    "attributes": {
+     "choose": 3,
+     "increase": 1
+    },
+    "characteristics": {
+     "health": 3,
+     "power": 1,
+     "speed": 2
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "magic": {
+     "raw": "You discover the Soul tradition, or you learn one Soul spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "discover_tradition",
+        "learn_spell"
+       ],
+       "traditions": [
+        "Soul"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Countless Lives",
+      "text": "Memories of all the lives you have experienced flood your mind. You make all challenge rolls with 1 boon."
+     },
+     {
+      "name": "Purified Soul",
+      "text": "Reduce your Corruption total to 0 and remove any marks of darkness you have gained. If you gain Corruption, you can reduce the amount of Corruption gained to 0, if you permanently reduce your Health by 1d6."
+     }
+    ]
+   },
+   "10": {
+    "characteristics": {
+     "health": 3,
+     "speed": 2
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Transcendent",
+      "text": "You cannot be blinded, charmed, compelled, dazed, deafened, diseased, fatigued, frightened, immobilized, impaired, poisoned, slowed, stunned, or surprised. You never take damage from disease or poison. Whenever you gain Insanity, you can use a triggered action to make a Will challenge roll. On a success, you reduce the amount of Insanity you gain by 1 (minimum 0)."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 33,
+  "type": "master",
+  "description": "Discovering the Soul tradition was but the first step on the road to the enlightenment that all cenobites seek. After spending their lives exploring the mysteries of their inner selves and reclaiming memories from their past lives, cenobites become more than what they were born to, attaining a truly enlightened state that enables them to overcome the limits of their bodies and triumph over any challenge they might face."
  },
  {
   "name": "Champion",
@@ -5209,7 +5726,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Time"
@@ -5378,7 +5896,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Invocation"
@@ -5444,7 +5963,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Celestial"
@@ -5583,12 +6103,13 @@
     },
     "languages_professions": "You can speak another language or add a profession to your list of professions.",
     "magic": {
-     "raw": "You discover the Forbidden tradition or you learn one Forbidden spell. Appalling Abasement Rather than sacrifice a creature to dark powers to regain the castings of your Forbidden spells, you can perform an act of utter and foul depravity that might include just yourself or others as you see fit. The act should take at least 1 hour to perform. In addition, if you gain 1 Corruption or more, you neither need to sacrifice a creature or perform an appalling act to regain expended castings of your Forbidden spells. You simply regain them for a number of rests equal to your Corruption score.",
+     "raw": "You discover the Forbidden tradition or you learn one Forbidden spell.",
      "choices": [
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Forbidden"
@@ -5597,6 +6118,10 @@
      ]
     },
     "talents": [
+     {
+      "name": "Appalling Abasement",
+      "text": "Rather than sacrifice a creature to dark powers to regain the castings of your Forbidden spells, you can perform an act of utter and foul depravity that might include just yourself or others as you see fit. The act should take at least 1 hour to perform. In addition, if you gain 1 Corruption or more, you neither need to sacrifice a creature or perform an appalling act to regain expended castings of your Forbidden spells. You simply regain them for a number of rests equal to your Corruption score."
+     },
      {
       "name": "Self-Sacrifice",
       "text": "When you cast a Forbidden spell, you can choose to take 1d6 damage per rank of the spell to make the attack roll with 3 boons or impose 3 banes on the challenge roll made to resist the spell."
@@ -5756,7 +6281,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Storm"
@@ -5810,8 +6336,12 @@
     "characteristics": {
      "health": 3
     },
-    "languages_professions": "You can speak another language or add a profession. Master of Diplomacy In social settings, you make Intellect and Will attack rolls with 1 boon.",
+    "languages_professions": "You can speak another language or add a profession.",
     "talents": [
+     {
+      "name": "Master of Diplomacy",
+      "text": "In social settings, you make Intellect and Will attack rolls with 1 boon."
+     },
      {
       "name": "Stay the Hand",
       "text": "When a creature gets a success on an attack roll against you, you can use a triggered action to beg for mercy. If the creature can hear you and understand what you say, make a Will attack roll against the triggering creature’s Will. On a success, you turn the triggering creature’s success into a failure, and the triggering creature becomes charmed for 1 minute or until it’s attacked. On a failure, the triggering creature becomes immune to this talent until it completes a rest."
@@ -5962,7 +6492,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Alchemy"
@@ -6182,7 +6713,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Soul"
@@ -6398,6 +6930,43 @@
   "description": "For explorers, no horizon is too far, no expedition too dangerous, no mission too impossible. Explorers have the survival skills needed to withstand the hardships and difficulties they face on their journeys. Many who become explorers have extensive experience in wilderness environments, such as scouts and rangers."
  },
  {
+  "name": "Fencer",
+  "levels": {
+   "7": {
+    "attributes": {
+     "choose": 3,
+     "increase": 1
+    },
+    "characteristics": {
+     "defense": 1,
+     "health": 4
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "talents": [
+     {
+      "name": "Swift Weapon Mastery",
+      "text": "When you attack with a swift weapon, you make the attack roll with 1 boon and the attack deals 1d3 extra damage."
+     }
+    ]
+   },
+   "10": {
+    "characteristics": {
+     "health": 4
+    },
+    "talents": [
+     {
+      "name": "Swift Riposte",
+      "text": "When a creature you can reach attacks you and gets a failure on the attack roll, you can use a triggered action to attack the creature with a swift weapon you are wielding. You make the attack roll with 1 boon, and the attack deals 1d6 extra damage."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 33,
+  "type": "master",
+  "description": "Adept with daggers, rapiers, and everything in between, fencers pursue mastery in the art of fighting with these swift weapons. Favoring speed and precision over brute force, fencers can slip their weapons through their enemies’ defenses to land telling blows. While so armed, they can make deadly counterstrikes."
+ },
+ {
   "name": "Firebrand",
   "levels": {
    "7": {
@@ -6416,7 +6985,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Fire"
@@ -6479,7 +7049,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Metal"
@@ -6603,7 +7174,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Spiritualism"
@@ -6705,7 +7277,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Rune"
@@ -6716,7 +7289,11 @@
     "talents": [
      {
       "name": "Runic Protection",
-      "text": "While you are not wearing armor, you can add your Intellect modifier (minimum +0) to your Defense. Tattooed Runes Runic tattoos cover your body. On your turn, you can use a triggered action to cast any spell you have learned that targets one creature, provided the spell’s target is you. Once you use this talent, you must wait 1 minute before you can use it again."
+      "text": "While you are not wearing armor, you can add your Intellect modifier (minimum +0) to your Defense."
+     },
+     {
+      "name": "Tattooed Runes",
+      "text": "Runic tattoos cover your body. On your turn, you can use a triggered action to cast any spell you have learned that targets one creature, provided the spell’s target is you. Once you use this talent, you must wait 1 minute before you can use it again."
      }
     ]
    },
@@ -6787,6 +7364,50 @@
   "page": 90,
   "type": "master",
   "description": "Gunslingers know everything there is to know about firearms. Excellent shots and cunning gunsmiths, they tinker with these weapons, modifying them to improve their accuracy and to reduce the time needed to reload them. Gunslingers come from all paths, though they typically have some background in engineering, artifice, or another technical profession."
+ },
+ {
+  "name": "Halberdier",
+  "levels": {
+   "7": {
+    "attributes": {
+     "choose": 3,
+     "increase": 1
+    },
+    "characteristics": {
+     "health": 5
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "talents": [
+     {
+      "name": "Hafted Weapon Expertise",
+      "text": "When you attack with a polearm or a staff, you make the attack roll with 1 boon."
+     },
+     {
+      "name": "Haft Attack",
+      "text": "When you make an attack with a polearm or a staff, you can use a triggered action to make an attack with the other end of the weapon. You make the attack roll with 1 bane, and the attack deals 1d6 damage."
+     },
+     {
+      "name": "Hafted Defense",
+      "text": "If you are wielding a polearm, a staff, or a similar hafted weapon when a creature you can reach attacks you with a melee weapon, you can use a triggered action to impose 1 bane on the attack roll. If the attack results in a failure, you make your next attack against the triggering creature with 1 boon."
+     }
+    ]
+   },
+   "10": {
+    "characteristics": {
+     "health": 5
+    },
+    "talents": [
+     {
+      "name": "Hafted Weapon Mastery",
+      "text": "You can use two triggered actions per round, but at least one of those triggered actions must be used for your Haft Attack or Hafted Defense talent."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 33,
+  "type": "master",
+  "description": "Before the orc uprising, the emperor relied for protection on an elite cadre of soldiers armed with halberds. It is their distinctive fighting style that other halberdiers emulate, one that exploits the long weapon’s assets to great effect. Although most who come to this path prefer halberds, the techniques can apply to any kind of polearm or staff."
  },
  {
   "name": "Harbinger",
@@ -6930,7 +7551,7 @@
      "health": 2
     },
     "magic": {
-     "raw": "You learn one spell. Exacting Curse Targets under the effects of your Curse spells take 1d6 extra damage from your attacks.",
+     "raw": "You learn one spell.",
      "choices": [
       {
        "pick": 1,
@@ -6939,7 +7560,13 @@
        ]
       }
      ]
-    }
+    },
+    "talents": [
+     {
+      "name": "Exacting Curse",
+      "text": "Targets under the effects of your Curse spells take 1d6 extra damage from your attacks."
+     }
+    ]
    }
   },
   "source": "core",
@@ -7095,7 +7722,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Alteration"
@@ -7156,19 +7784,26 @@
     },
     "languages_professions": "You can speak another language or add a profession to your list of professions.",
     "magic": {
-     "raw": "You discover the Order tradition or you learn one Order spell. Ordered Magic After you make an attack roll as a result of casting a spell, you can choose to replace the number you rolled on the d20 with a 10.",
+     "raw": "You discover the Order tradition or you learn one Order spell.",
      "choices": [
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Order"
        ]
       }
      ]
-    }
+    },
+    "talents": [
+     {
+      "name": "Ordered Magic",
+      "text": "After you make an attack roll as a result of casting a spell, you can choose to replace the number you rolled on the d20 with a 10."
+     }
+    ]
    },
    "10": {
     "characteristics": {
@@ -7282,6 +7917,77 @@
   "page": 92,
   "type": "master",
   "description": "Nearly all inquisitors serve the cult of the New God, working to expose corruption in the religion’s ranks and to flush out the demon-sworn, the damned, and the wicked. Key to their work is the ability to ferret out the truth. Not only do they know when people lie to them, but they also know numerous torture techniques to get their victims to reveal all their secrets."
+ },
+ {
+  "name": "Invoker",
+  "levels": {
+   "7": {
+    "attributes": {
+     "choose": 3,
+     "increase": 1
+    },
+    "characteristics": {
+     "health": 2,
+     "power": 1
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "magic": {
+     "raw": "You discover the Invocation tradition, or you learn one Invocation spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "discover_tradition",
+        "learn_spell"
+       ],
+       "traditions": [
+        "Invocation"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Restorative Casting",
+      "text": "When you cast an Invocation spell of rank 1 or higher, you heal damage equal to the spell’s rank."
+     },
+     {
+      "name": "Steely Resolve",
+      "text": "You no longer gain Insanity from learning Invocation spells. In addition, you make challenge rolls to resist gaining Insanity with 1 boon."
+     }
+    ]
+   },
+   "10": {
+    "characteristics": {
+     "health": 2
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Dual Invocations",
+      "text": "You can be under the effects of two Invocation spells at the same time. If you cast another Invocation spell while you are already under the effects of two, the oldest Invocation spell ends."
+     },
+     {
+      "name": "Eschew Talisman",
+      "text": "You can ignore the requirements for all Invocation spells you have learned."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 34,
+  "type": "master",
+  "description": "The invoker lays bare the secrets of Invocation magic, learning how to command the daemons she binds with great efficiency and effect. Having grown accustomed to the mental trauma that comes from from invoking daemons, the invoker can deepen her knowledge of the tradition without fear of going mad. In time, invokers can break all the rules for binding daemons, enabling them to adapt to almost any situation."
  },
  {
   "name": "Jack-of-all-Trades",
@@ -7398,6 +8104,73 @@
   "description": "The fey were the first to bind genies in an eﬀ ort to harness their power. That act earned them the enmity of those ancient spirits—a resentment that endures to this day. From their eﬀ orts, the faeries learned advanced techniques for controlling the elements, many of which have been disseminated to other peoples all over the world. The Keepers of the Flame, in contrast, guard their secrets and remain an insular society, suspicious of outsiders and reluctant to welcome new blood into their ranks. While almost all Keepers are faerie, a talented mortal might gain entry to their ranks."
  },
  {
+  "name": "Legalist",
+  "levels": {
+   "7": {
+    "attributes": {
+     "choose": 3,
+     "increase": 1
+    },
+    "characteristics": {
+     "health": 3,
+     "power": 1
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "magic": {
+     "raw": "You discover the Order tradition, or you learn one Order spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "discover_tradition",
+        "learn_spell"
+       ],
+       "traditions": [
+        "Order"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Ordered Body",
+      "text": "You never take damage from disease or poison, and you cannot gain the diseased or poisoned afflictions."
+     },
+     {
+      "name": "Restore Body",
+      "text": "You can use an action and expend a casting of a rank 1 or higher Order spell to heal damage. You heal 1d6 damage per rank of the spell whose casting you expended."
+     }
+    ]
+   },
+   "10": {
+    "characteristics": {
+     "health": 3
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Eternal",
+      "text": "You stop aging, and you ignore any effect that would age you. If you die, you continue to make fate rolls for 1 minute afterward. If you roll a 6, you return to life and heal 1 damage."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 34,
+  "type": "master",
+  "description": "Students of the Order tradition find that the magic affects their minds, causing them to become rigid and inflexible. Continued study, however, can bring about other changes of a beneficial nature. As the masters of the tradition become steeped in its lore, they find their bodies growing resistant to the ravages of time and injury, as they transform into embodiments of order. The greatest legalists, as they call themselves, become fixtures in the world, eternal champions of the natural order of things."
+ },
+ {
   "name": "Librarian",
   "levels": {
    "7": {
@@ -7483,7 +8256,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Technomancy"
@@ -7609,7 +8383,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Battle"
@@ -7753,6 +8528,73 @@
   "description": "Hailing from lands barbaric and brutal, marauders bound into battle, sweeping their weapons before them to lay low their enemies. They fight without regard for their own safety, as many believe they earn their place alongside the gods by finding a glorious death in combat."
  },
  {
+  "name": "Metallurgist",
+  "levels": {
+   "7": {
+    "attributes": {
+     "choose": 3,
+     "increase": 1
+    },
+    "characteristics": {
+     "defense": 1,
+     "health": 4,
+     "power": 1,
+     "speed": -2
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "magic": {
+     "raw": "You discover the Metal tradition, or you learn one Metal spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "discover_tradition",
+        "learn_spell"
+       ],
+       "traditions": [
+        "Metal"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Metallic Sheen",
+      "text": "Whenever you cast a Metal spell of rank 1 or higher, you gain a bonus to Defense equal to the rank of the spell whose casting you expended. The bonus lasts until the end of the next round."
+     }
+    ]
+   },
+   "10": {
+    "characteristics": {
+     "defense": 1,
+     "health": 4,
+     "speed": -2
+    },
+    "magic": {
+     "raw": "You learn one spell.",
+     "choices": [
+      {
+       "pick": 1,
+       "options": [
+        "learn_spell"
+       ]
+      }
+     ]
+    },
+    "talents": [
+     {
+      "name": "Shatter Steel",
+      "text": "Whenever a creature attacks you with a weapon made of metal and gets a success on its attack roll, you roll a d6. On an even number, the weapon takes damage equal to its Health and shatters. This talent does not affect relics, enchanted objects, and weapons under the effect of spells."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 35,
+  "type": "master",
+  "description": "The greatest users of Metal magic complete their studies when they join the ranks of the metallurgists, a society of master spellcasters. The magic they have studied becomes part of them, suffusing them with the strength of steel. Shiny gray skin and brittle hair betray the true nature of metallurgists, evidence of the effect their knowledge has had on them."
+ },
+ {
   "name": "Mindwitch",
   "levels": {
    "7": {
@@ -7771,7 +8613,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Telepathy"
@@ -7872,7 +8715,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Transformation"
@@ -8252,19 +9096,26 @@
     },
     "languages_professions": "You can speak another language or add a profession to your list of professions.",
     "magic": {
-     "raw": "You discover the Illusion tradition or you learn one Illusion spell. Aggressive Illusions Illusion spells you cast that deal damage deal 1d6 extra damage.",
+     "raw": "You discover the Illusion tradition or you learn one Illusion spell.",
      "choices": [
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Illusion"
        ]
       }
      ]
-    }
+    },
+    "talents": [
+     {
+      "name": "Aggressive Illusions",
+      "text": "Illusion spells you cast that deal damage deal 1d6 extra damage."
+     }
+    ]
    },
    "10": {
     "characteristics": {
@@ -8313,7 +9164,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Teleportation"
@@ -8375,7 +9227,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Curse"
@@ -8473,7 +9326,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Enchantment"
@@ -8598,7 +9452,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Life"
@@ -8812,7 +9667,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Shadow"
@@ -8974,7 +9830,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Death"
@@ -9041,7 +9898,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Air"
@@ -9084,6 +9942,52 @@
   "page": 181,
   "type": "master",
   "description": "Using Air spells to lift themselves off the ground, skydancers move with incredible speed and grace, able to swoop, climb, dive, and perform other aerial stunts. Skydancers specialize in a fighting technique devised by the sylphs that gives them a decided advantage in aerial combat. The combination of magic with this fighting style makes them formidable adversaries whenever they take to the air."
+ },
+ {
+  "name": "Sleuth",
+  "levels": {
+   "7": {
+    "attributes": {
+     "choose": 3,
+     "increase": 1
+    },
+    "characteristics": {
+     "perception": 1,
+     "health": 3
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "talents": [
+     {
+      "name": "Size Up",
+      "text": "You can use an action to assess one creature within short range that you can see. You learn one score, trait, special attack, special action, other ability, or some other piece of information about the target. The GM chooses what you discover."
+     },
+     {
+      "name": "Uncanny Alertness",
+      "text": "You make all Perception rolls with 1 boon. In addition, you cannot be surprised while you are not unconscious. If you are already immune to the surprised affliction, you instead increase the number of boons granted by this talent to 2."
+     }
+    ]
+   },
+   "10": {
+    "characteristics": {
+     "perception": 1,
+     "health": 3
+    },
+    "talents": [
+     {
+      "name": "Heightened Instincts",
+      "text": "At the end of each round, you can make a Perception challenge roll. On a success, you can use the total of your roll in place of your Defense for the first attack made against you during the next round. If no creature attacks you by the end of the round, this effect ends."
+     },
+     {
+      "name": "Perfect Assessment",
+      "text": "When you enter a room in which you have been before, you can make a Perception challenge roll. On a success, you immediately notice any changes to the room since you were last here, including the presence or absence of hidden or invisible creatures or objects. The GM will tell you any pertinent details that warrant your attention."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 35,
+  "type": "master",
+  "description": "Superior observation skills are the domain of sleuths, who can unravel any mystery and solve almost any puzzle. Although many sleuths use their talents to help maintain law and order, others are driven by personal gain, becoming criminal masterminds adept at staying one step ahead of their enemies."
  },
  {
   "name": "Soulbound",
@@ -9159,19 +10063,26 @@
     },
     "languages_professions": "You can speak another language or add a profession to your list of professions.",
     "magic": {
-     "raw": "You discover the Arcana tradition or you learn one Arcana spell. Reliable Magic After you make an attack roll from casting a spell, you can use this talent to replace the result of your roll with 15. You can use this talent a number of times equal to your Power score. You regain expended uses when you complete a rest.",
+     "raw": "You discover the Arcana tradition or you learn one Arcana spell.",
      "choices": [
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Arcana"
        ]
       }
      ]
-    }
+    },
+    "talents": [
+     {
+      "name": "Reliable Magic",
+      "text": "After you make an attack roll from casting a spell, you can use this talent to replace the result of your roll with 15. You can use this talent a number of times equal to your Power score. You regain expended uses when you complete a rest."
+     }
+    ]
    },
    "10": {
     "characteristics": {
@@ -9220,7 +10131,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Song"
@@ -9403,7 +10315,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Earth"
@@ -9487,7 +10400,7 @@
      "health": 2
     },
     "magic": {
-     "raw": "You learn one spell. Powered by Storm Whenever you would take damage from lightning or thunder, you reduce the damage to 0 and gain a +5 bonus to Health that lasts for 1 minute. The bonus is cumulative with other bonuses gained from this talent. As well, when you attack with a Storm spell while you have this bonus, you make the attack roll with 1 boon and creatures make challenge rolls to resist the spell with 1 bane.",
+     "raw": "You learn one spell.",
      "choices": [
       {
        "pick": 1,
@@ -9496,7 +10409,13 @@
        ]
       }
      ]
-    }
+    },
+    "talents": [
+     {
+      "name": "Powered by Storm",
+      "text": "Whenever you would take damage from lightning or thunder, you reduce the damage to 0 and gain a +5 bonus to Health that lasts for 1 minute. The bonus is cumulative with other bonuses gained from this talent. As well, when you attack with a Storm spell while you have this bonus, you make the attack roll with 1 boon and creatures make challenge rolls to resist the spell with 1 bane."
+     }
+    ]
    }
   },
   "source": "core",
@@ -9858,6 +10777,50 @@
   "description": "Found almost exclusively among the ranks of the New God’s followers, theurges claim a direct line to their deity, invoking power from their patron to fight against the Demon Lord and its horrid servants. Most theurges occupy positions of great honor and reverence in their religions, though the Inquisition deems the few renegade theurges at large to be as dangerous as the Demon Lord’s disciples for the heretical positions they hold, foremost of which is a denial that the New God exists at all."
  },
  {
+  "name": "Tormentor",
+  "levels": {
+   "7": {
+    "attributes": {
+     "choose": 3,
+     "increase": 1
+    },
+    "characteristics": {
+     "health": 5
+    },
+    "languages_professions": "You can speak another language or add a new profession.",
+    "talents": [
+     {
+      "name": "Escalating Threat",
+      "text": "You can use an action, or a triggered action on your turn, to make a Will attack roll with 1 boon against the Will of one frightened creature within short range that can see you. On a success, the creature gains 1 Insanity."
+     },
+     {
+      "name": "Frightening Assault",
+      "text": "When you make an attack roll against a creature that can see you and the total of the roll is 20 or higher and exceeds the target number by 5 or more, the target becomes frightened for 1 minute."
+     }
+    ]
+   },
+   "10": {
+    "characteristics": {
+     "health": 5
+    },
+    "talents": [
+     {
+      "name": "Cull the Weak",
+      "text": "Against frightened targets, you make attack rolls with 1 boon and your attacks deal 1d6 extra damage."
+     },
+     {
+      "name": "Unshakable",
+      "text": "You cannot be frightened. If you are already immune to the frightened affliction, you instead make challenge rolls to resist the effects of the horrifying trait with 2 boons."
+     }
+    ]
+   }
+  },
+  "source": "dlc2",
+  "page": 35,
+  "type": "master",
+  "description": "True terrors on the battlefield, tormentors thrive on filling their enemies with fear and loathing, eroding their courage and sending them fleeing from them. Most tormentors achieve their objective of domination by making threats against those nearest to them and by making their foes suffer before dispatching them. Many festoon their bodies with the skulls of fallen foes, daub their bodies with blood and excrement, and do whatever else they see fit to enhance their frightening appearance."
+ },
+ {
   "name": "Transmuter",
   "levels": {
    "7": {
@@ -10005,7 +10968,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Nature"
@@ -10072,7 +11036,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Fey"
@@ -10186,7 +11151,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Chaos"
@@ -10252,7 +11218,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Demonology"
@@ -10267,7 +11234,11 @@
      },
      {
       "name": "Void Sight",
-      "text": "You can see clearly in shadows and darkness out to the normal range of your vision. Void Shadows Magical shadows spread from your body out to a number of yards equal to your Power score. The shadows thwart shadowsight and darksight."
+      "text": "You can see clearly in shadows and darkness out to the normal range of your vision."
+     },
+     {
+      "name": "Void Shadows",
+      "text": "Magical shadows spread from your body out to a number of yards equal to your Power score. The shadows thwart shadowsight and darksight."
      }
     ]
    },
@@ -10319,7 +11290,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Protection"
@@ -10445,7 +11417,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Divination"
@@ -10507,7 +11480,8 @@
       {
        "pick": 1,
        "options": [
-        "discover_tradition"
+        "discover_tradition",
+        "learn_spell"
        ],
        "traditions": [
         "Water"

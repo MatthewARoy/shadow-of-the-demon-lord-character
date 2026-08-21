@@ -189,7 +189,7 @@ class TestPathsInvariants(unittest.TestCase):
         by_type = {"expert": 0, "master": 0}
         for p in self.paths:
             by_type[p["type"]] += 1
-        self.assertEqual(by_type, {"expert": 42, "master": 123})
+        self.assertEqual(by_type, {"expert": 46, "master": 131})
         total = sum(len(e.get("talents", []))
                     for p in self.paths for e in p["levels"].values())
         self.assertGreaterEqual(total, 545, "talents were lost")

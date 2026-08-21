@@ -27,11 +27,14 @@ WILL = [
 ]
 DARK = {"Curse", "Death", "Demonology", "Forbidden", "Madness", "Necromancy"}
 
-# Traditions introduced outside the core rulebook.
+# Traditions introduced outside the core rulebook, credited to the book that
+# introduced them. Invocation, Metal, Order and Soul debuted in Demon Lord's
+# Companion 2; Occult Philosophy later reprinted their intros and added a
+# second, non-overlapping set of spells to each.
 SOURCES = {
     "Alchemy": "occult", "Death": "occult", "Demonology": "occult",
-    "Fey": "terrible", "Invocation": "occult", "Madness": "occult",
-    "Metal": "occult", "Order": "occult", "Soul": "occult",
+    "Fey": "terrible", "Invocation": "dlc2", "Madness": "occult",
+    "Metal": "dlc2", "Order": "dlc2", "Soul": "dlc2",
     "Spiritualism": "occult", "Telekinesis": "occult", "Telepathy": "occult",
 }
 
