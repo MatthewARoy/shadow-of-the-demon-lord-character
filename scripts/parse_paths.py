@@ -18,11 +18,14 @@ their choice structures are too bespoke to regex.
 
 Outputs data/paths.json.
 """
+
 import json
 import os
 import re
 import sys
 from collections import OrderedDict
+
+import tables
 
 CACHE = os.path.join(os.path.dirname(__file__), "cache")
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "paths.json")
@@ -40,8 +43,13 @@ FIELDS = ("Attributes", "Characteristics", "Languages and Professions", "Magic")
 # let "PLaying the Game" into seven rules-index chunk bodies. "Paths of Magic"
 # heads every page of Occult Philosophy's chapter 3 and was missing outright.
 RUNNING_HEADS = {
-    "Paths", "Novice Paths", "Expert Paths", "Master Paths", "Paths of Magic",
-    "Terrible Beauty", "Occult Philosophy",
+    "Paths",
+    "Novice Paths",
+    "Expert Paths",
+    "Master Paths",
+    "Paths of Magic",
+    "Terrible Beauty",
+    "Occult Philosophy",
 }
 
 RUNNING_HEADS_LOWER = {h.lower() for h in RUNNING_HEADS}
@@ -52,8 +60,13 @@ RUNNING_HEADS_LOWER = {h.lower() for h in RUNNING_HEADS}
 # they are recognised by position: a head within the first HEAD_ZONE content
 # lines of a page is furniture, the same words deeper in are a heading. Terrible
 # Beauty prints its head twice per page, hence 2 rather than 1.
-SECTION_HEADS_LOWER = {"novice paths", "expert paths", "master paths",
-                       "paths of magic", "paths of skill"}
+SECTION_HEADS_LOWER = {
+    "novice paths",
+    "expert paths",
+    "master paths",
+    "paths of magic",
+    "paths of skill",
+}
 HEAD_ZONE = 2
 
 FURNITURE = re.compile(
@@ -79,6 +92,7 @@ def is_furniture(s, page_line_no, book=""):
     if s.lower() not in RUNNING_HEADS_LOWER:
         return False
     return page_line_no <= HEAD_ZONE or s.lower() not in SECTION_HEADS_LOWER
+
 
 TALENT_START = re.compile(
     r"^((?:[A-Z][\w’'!\-]*|of|the|a|an|and|with|in|for|to|from)"
@@ -109,13 +123,48 @@ TALENT_START_LOOSE = re.compile(
 MIN_LOOSE_TALENT_TEXT = 30
 
 TRADITIONS = {
-    "Air", "Alchemy", "Alteration", "Arcana", "Battle", "Celestial", "Chaos",
-    "Conjuration", "Curse", "Death", "Demonology", "Destruction", "Divination",
-    "Earth", "Enchantment", "Fey", "Fire", "Forbidden", "Illusion",
-    "Invocation", "Life", "Madness", "Metal", "Nature", "Necromancy", "Order",
-    "Primal", "Protection", "Rune", "Shadow", "Song", "Soul", "Spiritualism",
-    "Storm", "Technomancy", "Telekinesis", "Telepathy", "Teleportation",
-    "Theurgy", "Time", "Transformation", "Water",
+    "Air",
+    "Alchemy",
+    "Alteration",
+    "Arcana",
+    "Battle",
+    "Celestial",
+    "Chaos",
+    "Conjuration",
+    "Curse",
+    "Death",
+    "Demonology",
+    "Destruction",
+    "Divination",
+    "Earth",
+    "Enchantment",
+    "Fey",
+    "Fire",
+    "Forbidden",
+    "Illusion",
+    "Invocation",
+    "Life",
+    "Madness",
+    "Metal",
+    "Nature",
+    "Necromancy",
+    "Order",
+    "Primal",
+    "Protection",
+    "Rune",
+    "Shadow",
+    "Song",
+    "Soul",
+    "Spiritualism",
+    "Storm",
+    "Technomancy",
+    "Telekinesis",
+    "Telepathy",
+    "Teleportation",
+    "Theurgy",
+    "Time",
+    "Transformation",
+    "Water",
 }
 
 NUMBER_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
@@ -126,6 +175,16 @@ NAME_FIXES = {"Enchantment": "Enchanter"}
 
 
 def lines_for(book):
+    """Every line of the book as (page, text, furniture?).
+
+    Furniture is flagged rather than dropped. It used to be dropped here,
+    and that is what reduced the wardscribe's sigil-duration table to
+    "Spell Rank Duration Spell Rank Duration 1 minute 1 week ...": a table's
+    row keys are bare numbers, which is also the shape of a page number, so
+    the filter took the ranks out before anything could read them. Every
+    prose consumer below skips the flagged lines; scripts/tables.py reads
+    past them and bounds a table by its page instead.
+    """
     path = os.path.join(CACHE, f"{book}.txt")
     page = 0
     page_line_no = 0
@@ -139,16 +198,16 @@ def lines_for(book):
             continue
         if line.strip():
             page_line_no += 1
-        if is_furniture(line, page_line_no, book):
-            continue
-        out.append((page, line.rstrip()))
+        out.append((page, line.rstrip(), is_furniture(line, page_line_no, book)))
     return out
 
 
 def find_level_blocks(lines):
     """Return [(index, level, name)] for path level headers."""
     headers = []
-    for i, (_, line) in enumerate(lines):
+    for i, (_, line, furniture) in enumerate(lines):
+        if furniture:
+            continue
         m = LEVEL_RE.match(line.strip())
         if m and int(m.group(1)) in PATH_LEVELS:
             name = m.group(2).strip()
@@ -193,18 +252,26 @@ SIDEBAR_HOLDS_TALENTS = re.compile(r"(?i) Talents$")
 
 def is_path_sidebar_title(s, path_name):
     """True for a sidebar heading titled with this path's own name."""
-    return (len(s) <= 40
-            and s.lower().startswith(path_name.lower() + " ")
-            and bool(PATH_SIDEBAR_TITLE.match(s)))
+    return (
+        len(s) <= 40
+        and s.lower().startswith(path_name.lower() + " ")
+        and bool(PATH_SIDEBAR_TITLE.match(s))
+    )
 
 
 def is_stop_heading(s, path_name=""):
     """True for the headings that close whatever level block is open."""
-    return (s in STOP_HEADINGS
-            or s.lower() in SECTION_HEADS_LOWER
-            or bool(STORY_DEVELOPMENT_TITLE.match(s))
-            or (bool(path_name) and is_path_sidebar_title(s, path_name)
-                and not SIDEBAR_HOLDS_TALENTS.search(s)))
+    return (
+        s in STOP_HEADINGS
+        or s.lower() in SECTION_HEADS_LOWER
+        or bool(STORY_DEVELOPMENT_TITLE.match(s))
+        or (
+            bool(path_name)
+            and is_path_sidebar_title(s, path_name)
+            and not SIDEBAR_HOLDS_TALENTS.search(s)
+        )
+    )
+
 
 # Last PDF page of path content per book; the next chapter follows. Without the
 # dlc2 bound the tormentor's last talent ran off p.35 into the Magic chapter and
@@ -215,6 +282,9 @@ PATH_PAGE_LIMIT = {"core": 99, "occult": 9999, "terrible": 9999, "dlc2": 35}
 def starts_spell_block(lines, j, limit):
     """True when the next non-blank line is a spell's tradition/rank header."""
     while j < limit:
+        if lines[j][2]:
+            j += 1
+            continue
         s = lines[j][1].strip()
         if s:
             return bool(SPELL_HEADER.match(s))
@@ -229,14 +299,24 @@ def block_end(lines, start, headers, h_idx, path_names, book):
     start_page = lines[start][0]
     limit = min(start_page + 1, PATH_PAGE_LIMIT[book])
     name = headers[h_idx][2]
+    catalog_captions = catalog_captions_for(name)
+    texts = [t for _, t, _ in lines]
     # Compared case-insensitively: Occult Philosophy prints the blizzard mage's
     # name as "Blizzard MAge", and an exact match walked straight past it.
     names_lower = {n.lower() for n in path_names}
     for j in range(start + 1, nxt):
         if lines[j][0] > limit:
             return j
+        if lines[j][2]:
+            continue
         s = lines[j][1].strip()
-        if re.match(r"^d\d+$", s) or is_stop_heading(s, name):
+        # A die line ends the block when it opens the story-development or
+        # sample-quests sidebar printed after the path. A die line that opens
+        # a table belonging to the talent above it — the farseer's d6 of
+        # unspeakable revelations — does not; parse_block captures that.
+        if re.match(r"^d\d+$", s) and not tables.opens_die_table(texts, j, nxt):
+            return j
+        if s in catalog_captions or is_stop_heading(s, name):
             return j
         if SPELL_NAME.match(s) and starts_spell_block(lines, j + 1, nxt):
             return j
@@ -250,11 +330,12 @@ def drop_clipped_duplicates(block_lines):
     whose tail already appeared (same approach as parse_spells)."""
     seen = ""
     out = []
-    for line in block_lines:
+    for entry in block_lines:
+        line = entry[1]
         probe = line[5:].strip() if len(line) > 30 else line
         if len(probe) >= 25 and probe in seen:
             continue
-        out.append(line)
+        out.append(entry)
         seen += " " + line
     return out
 
@@ -287,20 +368,173 @@ def split_field_talents(value):
     talents = []
     for k, m in enumerate(cuts):
         text_end = cuts[k + 1].start() if k + 1 < len(cuts) else len(value)
-        talents.append({"name": m.group(1), "text": value[m.end():text_end].strip()})
-    return value[:cuts[0].start()].strip(), talents
+        talents.append({"name": m.group(1), "text": value[m.end() : text_end].strip()})
+    return value[: cuts[0].start()].strip(), talents
+
+
+# Two paths print their choosable options as a catalogue rather than as
+# talents: a captioned sidebar of named entries, printed once at the end of
+# the path instead of at each level that grants a pick. Read as talents they
+# all landed on the last level — a level-9 wardscribe was credited with all
+# twelve sigils outright, including the four it can only learn at level 3,
+# and a lorekeeper with all eight esoteric discoveries when the path grants
+# three. The captions also glued themselves onto whichever talent came last
+# ("...you can choose to learn a master sigil. Basic Sigils Every wardscribe
+# starts out by learning...").
+#
+# Declared by caption rather than detected, for the reason
+# scripts/table_manifest.py declares its table regions: a catalogue entry
+# and a talent are the same shape on the page, so no heuristic separates
+# them. #19 records the two that were tried and reverted.
+#
+# Fighter's "Fighter Talents" and Thief's "Thievery Talents" print the same
+# way but parse cleanly today, and their level placement is a deliberate,
+# tested decision (see SIDEBAR_HOLDS_TALENTS); they stay as talents.
+PATH_CATALOGS = {
+    "wardscribe": ("Sigils", ("Basic Sigils", "Advanced Sigils", "Master Sigils")),
+    "lorekeeper": ("Esoteric Discoveries", ("Esoteric Discoveries",)),
+}
+
+
+def catalog_captions_for(path_name):
+    spec = PATH_CATALOGS.get(path_name.lower())
+    return set(spec[1]) if spec else set()
+
+
+def catalog_region_end(lines, start, path_names, book, captions):
+    """A catalogue group runs to the next group, path, or chapter."""
+    names_lower = {n.lower() for n in path_names}
+    for j in range(start + 1, len(lines)):
+        if lines[j][0] > PATH_PAGE_LIMIT[book]:
+            return j
+        if lines[j][2]:
+            continue
+        s = lines[j][1].strip()
+        if (
+            s in captions
+            or s in STOP_HEADINGS
+            or LEVEL_RE.match(s)
+            or s.lower() in SECTION_HEADS_LOWER
+            or s.lower() in names_lower
+        ):
+            return j
+    return len(lines)
+
+
+def parse_catalog_group(lines, start, end):
+    """Split a catalogue group into its blurb and its named entries.
+
+    Entries are recognised exactly as talents are, which is what they are
+    printed as; the only difference is where they end up.
+    """
+    blurb = []
+    entries = []
+    current = None
+    for j in range(start + 1, end):
+        if lines[j][2]:
+            continue
+        line = lines[j][1].strip()
+        if not line:
+            continue
+        tm = TALENT_START.match(line)
+        if not tm:
+            lm = TALENT_START_LOOSE.match(line)
+            if lm and len(line) - lm.end() >= MIN_LOOSE_TALENT_TEXT:
+                tm = lm
+        is_continuation = bool(re.match(r"^[a-z0-9(••\-]|^or |^and ", line))
+        if tm and not is_continuation:
+            entries.append({"name": tm.group(1), "text": line[len(tm.group(1)) + 1 :]})
+            current = entries[-1]
+        elif current is None:
+            blurb.append(line)
+        else:
+            current["text"] += " " + line
+    for e in entries:
+        e["text"] = re.sub(r"\s+", " ", e["text"]).strip()
+    return re.sub(r"\s+", " ", " ".join(blurb)).strip(), entries
+
+
+def parse_catalog(lines, path_name, path_names, book):
+    """The declared option catalogue for this path, if it has one."""
+    spec = PATH_CATALOGS.get(path_name.lower())
+    if not spec:
+        return None
+    label, captions = spec
+    groups = []
+    for j, (_, line, furniture) in enumerate(lines):
+        if furniture or line.strip() not in captions:
+            continue
+        end = catalog_region_end(lines, j, path_names, book, set(captions))
+        blurb, entries = parse_catalog_group(lines, j, end)
+        if not entries:
+            continue
+        group = OrderedDict(name=line.strip())
+        # The blurb states when the group becomes available ("They become
+        # available to a wardscribe at level 6"), which is the level the
+        # entries were wrongly credited to before.
+        m = re.search(r"\blevels? (\d+)", blurb)
+        if m:
+            group["level"] = int(m.group(1))
+        if blurb:
+            group["description"] = blurb
+        group["entries"] = entries
+        groups.append(group)
+    if not groups:
+        return None
+    return OrderedDict(name=label, groups=groups)
+
+
+def next_content(lines, j, end):
+    """Index of the next line with prose on it, or end."""
+    while j < end and (lines[j][2] or not lines[j][1].strip()):
+        j += 1
+    return j
 
 
 def parse_block(lines, start, end, book, path_name=""):
     """Split a level block into labelled fields and talents."""
     fields = {}
     talents = []
-    current = None     # ("field", name) or ("talent", idx)
-    block_lines = [lines[j][1].strip() for j in range(start + 1, end)]
+    current = None  # ("field", name) or ("talent", idx)
+    texts = [t for _, t, _ in lines]
+    pages = [p for p, _, _ in lines]
+
+    def stop_table(k):
+        s = texts[k].strip()
+        return bool(LEVEL_RE.match(s)) or is_stop_heading(s, path_name)
+
+    block_lines = [
+        (j, lines[j][1].strip()) for j in range(start + 1, end) if not lines[j][2]
+    ]
     if book == "terrible":
         block_lines = drop_clipped_duplicates(block_lines)
-    for line in block_lines:
+    # A caption sits on the line above its table ("Building Blocks"); it is
+    # held here until the table below it is captured, rather than joining the
+    # talent's prose the way "Building Blocks Spell Rank Blocks 5+" used to.
+    caption = None
+    resume = start
+    for j, line in block_lines:
+        if j < resume:
+            continue
         if not line:
+            continue
+        if tables.opens_table(texts, j, end):
+            table, after = tables.capture(texts, pages, j, end, stop_table, caption)
+            caption = None
+            if table:
+                if current and current[0] == "talent":
+                    talents[current[1]].setdefault("tables", []).append(table)
+                else:
+                    print(
+                        f"{path_name}: table with no talent to attach to",
+                        file=sys.stderr,
+                    )
+                resume = after
+                continue
+        if len(line) <= tables.CELL_MAX and tables.opens_table(
+            texts, next_content(lines, j + 1, end), end
+        ):
+            caption = line
             continue
         # "Fighter Talents" heads the talents that follow, so it does not end
         # the block — but it is still a heading, and left in place it glued
@@ -312,18 +546,36 @@ def parse_block(lines, start, end, book, path_name=""):
             # Field values start uppercase; a lowercase follower means a
             # wrapped line that merely begins with the field word
             # ("...with Life / Magic to heal this thrall...").
-            if line.startswith(f + " ") and line[len(f) + 1:len(f) + 2].isupper():
+            if line.startswith(f + " ") and line[len(f) + 1 : len(f) + 2].isupper():
                 matched_field = f
                 break
         if matched_field:
-            rest = line[len(matched_field) + 1:]
+            rest = line[len(matched_field) + 1 :]
             # Talents named "Magic Mask", "Magic Wand", etc. would otherwise
             # be swallowed by the Magic field.
             tm = TALENT_START.match(rest)
-            if matched_field == "Magic" and tm and not rest.startswith(
-                    ("You", "Your", "Make", "Choose", "Increase", "Learn", "Whenever", "When")):
-                talents.append({"name": "Magic " + tm.group(1),
-                                "text": rest[len(tm.group(1)) + 1:]})
+            if (
+                matched_field == "Magic"
+                and tm
+                and not rest.startswith(
+                    (
+                        "You",
+                        "Your",
+                        "Make",
+                        "Choose",
+                        "Increase",
+                        "Learn",
+                        "Whenever",
+                        "When",
+                    )
+                )
+            ):
+                talents.append(
+                    {
+                        "name": "Magic " + tm.group(1),
+                        "text": rest[len(tm.group(1)) + 1 :],
+                    }
+                )
                 current = ("talent", len(talents) - 1)
                 continue
             fields[matched_field] = rest
@@ -336,7 +588,7 @@ def parse_block(lines, start, end, book, path_name=""):
                 tm = lm
         is_continuation = bool(re.match(r"^[a-z0-9(••\-]|^or |^and ", line))
         if tm and not is_continuation:
-            talents.append({"name": tm.group(1), "text": line[len(tm.group(1)) + 1:]})
+            talents.append({"name": tm.group(1), "text": line[len(tm.group(1)) + 1 :]})
             current = ("talent", len(talents) - 1)
             continue
         # Continuation of whatever came last.
@@ -358,20 +610,28 @@ def parse_block(lines, start, end, book, path_name=""):
     # A few blocks omit the "Characteristics" label and the values get glued
     # onto Attributes ("Increase each by 1 Health +2"); split them apart.
     if "Attributes" in fields and "Characteristics" not in fields:
-        m = re.search(r"\b(Health|Power|Speed|Defense)\s*[+\u2212\u2013-]", fields["Attributes"])
+        m = re.search(
+            r"\b(Health|Power|Speed|Defense)\s*[+\u2212\u2013-]", fields["Attributes"]
+        )
         if m:
-            fields["Characteristics"] = fields["Attributes"][m.start():]
-            fields["Attributes"] = fields["Attributes"][:m.start()].strip()
+            fields["Characteristics"] = fields["Attributes"][m.start() :]
+            fields["Attributes"] = fields["Attributes"][: m.start()].strip()
     return fields, talents
 
 
 def parse_attributes(text):
     if not text:
         return None
-    m = re.search(r"[Ii]ncrease (one|two|three|four)(?: attributes?(?: of your choice)?)? by 1", text)
+    m = re.search(
+        r"[Ii]ncrease (one|two|three|four)(?: attributes?(?: of your choice)?)? by 1",
+        text,
+    )
     if m:
         return {"choose": NUMBER_WORDS[m.group(1)], "increase": 1}
-    m = re.search(r"[Cc]hoose (one|two|three|four) attributes? and increase (?:each|it) by 1", text)
+    m = re.search(
+        r"[Cc]hoose (one|two|three|four) attributes? and increase (?:each|it) by 1",
+        text,
+    )
     if m:
         return {"choose": NUMBER_WORDS[m.group(1)], "increase": 1}
     if re.search(r"[Ii]ncrease each by 1", text):
@@ -404,15 +664,27 @@ def parse_magic(text):
     # learn one X or Y spell"
     m = re.search(r"discover the (\w+) or (\w+) tradition or (?:you )?learn one", t)
     if m and m.group(1) in TRADITIONS and m.group(2) in TRADITIONS:
-        result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
-                              "traditions": [m.group(1), m.group(2)]}]
+        result["choices"] = [
+            {
+                "pick": 1,
+                "options": ["discover_tradition", "learn_spell"],
+                "traditions": [m.group(1), m.group(2)],
+            }
+        ]
         return result
     # Constrained to three traditions: "discover the X, Y, or Z tradition,
     # or learn one spell from one of those traditions"
-    m = re.search(r"discover the (\w+), (\w+), or (\w+) tradition,? or (?:you )?learn", t, re.I)
+    m = re.search(
+        r"discover the (\w+), (\w+), or (\w+) tradition,? or (?:you )?learn", t, re.I
+    )
     if m and all(g.capitalize() in TRADITIONS for g in m.groups()):
-        result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
-                              "traditions": [g.capitalize() for g in m.groups()]}]
+        result["choices"] = [
+            {
+                "pick": 1,
+                "options": ["discover_tradition", "learn_spell"],
+                "traditions": [g.capitalize() for g in m.groups()],
+            }
+        ]
         return result
     # Either of two named traditions, as Demon Lord's Companion 2 phrases it:
     # "You discover the Curse tradition or the Spiritualism tradition. If you
@@ -423,8 +695,9 @@ def parse_magic(text):
         options = ["discover_tradition"]
         if re.search(r"instead learn one spell", t):
             options.append("learn_spell")
-        result["choices"] = [{"pick": 1, "options": options,
-                              "traditions": [m.group(1), m.group(2)]}]
+        result["choices"] = [
+            {"pick": 1, "options": options, "traditions": [m.group(1), m.group(2)]}
+        ]
         return result
     # Tradition-constrained variants: "discover the X tradition or learn one X
     # spell", plus the ", or you learn one X spell" wording of the same offer —
@@ -432,13 +705,21 @@ def parse_magic(text):
     # fell through to the discover-only rule below and silently lost the option
     # to learn a spell instead.
     m = re.search(
-        r"discover the (\w+) tradition,? or (?:you )?learn (?:one|a) (\w+) spell", t)
+        r"discover the (\w+) tradition,? or (?:you )?learn (?:one|a) (\w+) spell", t
+    )
     if m and m.group(1) in TRADITIONS:
-        result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
-                              "traditions": [m.group(1)]}]
+        result["choices"] = [
+            {
+                "pick": 1,
+                "options": ["discover_tradition", "learn_spell"],
+                "traditions": [m.group(1)],
+            }
+        ]
         return result
     # "You discover two traditions and learn one spell."
-    m = re.search(r"discover (one|two|three) traditions? and learn (one|two) spells?", t, re.I)
+    m = re.search(
+        r"discover (one|two|three) traditions? and learn (one|two) spells?", t, re.I
+    )
     if m:
         result["choices"] = [
             {"pick": NUMBER_WORDS[m.group(1)], "options": ["discover_tradition"]},
@@ -447,21 +728,41 @@ def parse_magic(text):
         return result
     # "discover a new tradition other than a dark magic tradition or learn
     # one spell other than a dark magic spell"
-    if re.search(r"discover a new tradition other than a dark magic tradition or (?:you )?learn", t, re.I):
-        result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"],
-                              "exclude_dark": True}]
+    if re.search(
+        r"discover a new tradition other than a dark magic tradition or (?:you )?learn",
+        t,
+        re.I,
+    ):
+        result["choices"] = [
+            {
+                "pick": 1,
+                "options": ["discover_tradition", "learn_spell"],
+                "exclude_dark": True,
+            }
+        ]
         return result
     m = re.search(r"[Mm]ake (one|two|three|four) choices?", t)
     if m:
-        result["choices"] = [{"pick": NUMBER_WORDS[m.group(1)],
-                              "options": ["discover_tradition", "learn_spell"]}]
+        result["choices"] = [
+            {
+                "pick": NUMBER_WORDS[m.group(1)],
+                "options": ["discover_tradition", "learn_spell"],
+            }
+        ]
         return result
-    if re.search(r"discover (?:a|one|a new|another) tradition or (?:you )?learn (?:one|a) spell", t):
-        result["choices"] = [{"pick": 1, "options": ["discover_tradition", "learn_spell"]}]
+    if re.search(
+        r"discover (?:a|one|a new|another) tradition or (?:you )?learn (?:one|a) spell",
+        t,
+    ):
+        result["choices"] = [
+            {"pick": 1, "options": ["discover_tradition", "learn_spell"]}
+        ]
         return result
     m = re.search(r"discover the (\w+) tradition", t)
     if m and m.group(1) in TRADITIONS:
-        result["choices"] = [{"pick": 1, "options": ["discover_tradition"], "traditions": [m.group(1)]}]
+        result["choices"] = [
+            {"pick": 1, "options": ["discover_tradition"], "traditions": [m.group(1)]}
+        ]
         return result
     if re.search(r"discover (?:a|one) tradition", t):
         result["choices"] = [{"pick": 1, "options": ["discover_tradition"]}]
@@ -469,8 +770,13 @@ def parse_magic(text):
     # "You learn one Alchemy spell" / "learn one spell from the X tradition"
     m = re.search(r"[Ll]earn (one|two|three) (\w+) spells?", t)
     if m and m.group(2) in TRADITIONS:
-        result["choices"] = [{"pick": NUMBER_WORDS[m.group(1)], "options": ["learn_spell"],
-                              "traditions": [m.group(2)]}]
+        result["choices"] = [
+            {
+                "pick": NUMBER_WORDS[m.group(1)],
+                "options": ["learn_spell"],
+                "traditions": [m.group(2)],
+            }
+        ]
         return result
     m = re.search(r"[Ll]earn (one|two|three) spells?(?: from the (\w+) tradition)?", t)
     if m:
@@ -499,14 +805,17 @@ def gather_intro(lines, name, first_header_idx):
     # The sidebar copy is the one followed by the table, not by prose.
     name_idx = None
     for j in range(first_header_idx - 1, max(first_header_idx - 120, -1), -1):
-        if lines[j][1].strip().lower() != name.lower():
+        if lines[j][2] or lines[j][1].strip().lower() != name.lower():
             continue
         k = j + 1
-        while k < first_header_idx and not lines[k][1].strip():
+        while k < first_header_idx and (lines[k][2] or not lines[k][1].strip()):
             k += 1
         nxt = lines[k][1].strip() if k < first_header_idx else ""
-        if re.match(r"^d\d+$", nxt) or "Story Development" in nxt \
-           or nxt.endswith("Training"):
+        if (
+            re.match(r"^d\d+$", nxt)
+            or "Story Development" in nxt
+            or nxt.endswith("Training")
+        ):
             continue
         name_idx = j
         break
@@ -515,6 +824,9 @@ def gather_intro(lines, name, first_header_idx):
     parts = []
     j = name_idx + 1
     while j < first_header_idx:
+        if lines[j][2]:
+            j += 1
+            continue
         s = lines[j][1].strip()
         # Stop at training/story tables.
         if re.match(r"^d\d+$", s) or "Story Development" in s or s.endswith("Training"):
@@ -563,10 +875,16 @@ def parse_book(book):
             p["type"] = "master"
         else:
             continue  # novice/ancestry fragments; hand-curated elsewhere
-        first_idx = next(i for i, (idx, lv, nm) in enumerate(find_level_blocks(lines))
-                         if nm.lower() == key)
+        first_idx = next(
+            i
+            for i, (idx, lv, nm) in enumerate(find_level_blocks(lines))
+            if nm.lower() == key
+        )
         header_line_idx = find_level_blocks(lines)[first_idx][0]
         p["description"] = gather_intro(lines, p["name"], header_line_idx)
+        catalog = parse_catalog(lines, p["name"], path_names, book)
+        if catalog:
+            p["catalog"] = catalog
         out.append(p)
     return out
 
@@ -584,15 +902,20 @@ def main():
     # Drop clipped-text-layer duplicates: a path missing required levels whose
     # name is a prefix of a complete path from the same book (e.g. "Troll H").
     complete = {
-        p["name"].lower() for p in all_paths
-        if set(p["levels"]) >= ({"3", "6", "9"} if p["type"] == "expert" else {"7", "10"})
+        p["name"].lower()
+        for p in all_paths
+        if set(p["levels"])
+        >= ({"3", "6", "9"} if p["type"] == "expert" else {"7", "10"})
     }
+
     def is_clipped(p):
         want = {"3", "6", "9"} if p["type"] == "expert" else {"7", "10"}
         if set(p["levels"]) >= want:
             return False
-        return any(c.startswith(p["name"].lower()) and c != p["name"].lower()
-                   for c in complete)
+        return any(
+            c.startswith(p["name"].lower()) and c != p["name"].lower() for c in complete
+        )
+
     dropped = [p["name"] for p in all_paths if is_clipped(p)]
     if dropped:
         print(f"clipped duplicates dropped: {dropped}", file=sys.stderr)

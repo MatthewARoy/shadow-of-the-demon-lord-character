@@ -1154,7 +1154,41 @@
     "talents": [
      {
       "name": "Unspeakable Revelation",
-      "text": "Whenever you cast a Divination spell or a Madness spell, you can choose to gain 1 Insanity and roll on the following table. You do not become frightened from gaining Insanity in this way."
+      "text": "Whenever you cast a Divination spell or a Madness spell, you can choose to gain 1 Insanity and roll on the following table. You do not become frightened from gaining Insanity in this way.",
+      "tables": [
+       {
+        "columns": [
+         "d6",
+         "Effect"
+        ],
+        "rows": [
+         [
+          "1",
+          "You gain Insanity equal to your Will score."
+         ],
+         [
+          "2",
+          "You sweat, twitch, or giggle, but nothing otherwise happens."
+         ],
+         [
+          "3",
+          "For 1 minute, you make all Intellect, Will, and Perception rolls with 1 boon."
+         ],
+         [
+          "4",
+          "For 1 minute, you ignore the effects of the frightening and horrifying traits and you cannot become charmed, compelled, or frightened."
+         ],
+         [
+          "5",
+          "For 1 minute, you take half damage from all sources, as your mind becomes partly detached from your body."
+         ],
+         [
+          "6",
+          "You regain the casting of the triggering spell."
+         ]
+        ]
+       }
+      ]
      }
     ]
    },
@@ -1378,39 +1412,7 @@
      },
      {
       "name": "Esoteric Discovery",
-      "text": "You make one esoteric discovery. Choose one you have not already chosen from the ones listed below. Esoteric Discoveries As you explore the mysteries of reality, you have the opportunity to make certain discoveries that reflect your deeper understanding of reality. Upon making such a discovery, you can do something others cannot."
-     },
-     {
-      "name": "Lore of Tongues",
-      "text": "Whenever you hear a language spoken that you do not know how to speak, you can add that language to the list of languages you can speak."
-     },
-     {
-      "name": "Lore of Secret Knowledge",
-      "text": "Add two areas of scholarship to your list of professions."
-     },
-     {
-      "name": "Lore of Casting",
-      "text": "Choose one spell you have learned and increase the number of castings for that spell by 1. The spell’s rank cannot exceed half your Power score."
-     },
-     {
-      "name": "Lore of Vitality",
-      "text": "Increase your Health by 5."
-     },
-     {
-      "name": "Lore of Displacement",
-      "text": "When a creature you can see makes an attack roll against you, you can use a triggered action to impose 1 bane on the roll."
-     },
-     {
-      "name": "Lore of Magical Knowledge",
-      "text": "Choose one spell from any tradition whose rank is no more than half your Power score. You learn this spell."
-     },
-     {
-      "name": "Lore of True Magic",
-      "text": "When you cast a spell, you do not need to speak or wield an implement."
-     },
-     {
-      "name": "Lore of Salvation",
-      "text": "When you make a challenge roll to resist an attack, you make the roll with 1 boon."
+      "text": "You make one esoteric discovery. Choose one you have not already chosen from the ones listed below."
      }
     ]
    }
@@ -1418,7 +1420,50 @@
   "source": "occult",
   "page": 154,
   "type": "expert",
-  "description": "Lorekeepers gather and preserve esoteric knowledge. They scour the world for lost lore, travel widely to witness the greatest events to capture them in the records they meticulously keep, and keep safe the secrets of old lest they fall into the wrong hands. Considered the most learned of people in the Empire’s lands, lorekeepers can be found in the courts of kings and queens, watching over great libraries and accompanying some of the greatest heroes. Lorekeepers know much already, but their insatiable appetite for knowledge drives them ever onward. They like nothing more than to dig into old records or leaf through ancient texts to discover facts about lost peoples and lands. For them, no secret is too dangerous, no subject forbidden. Knowledge is all that matters, and lorekeepers stop at nothing to discover all they can in the time they have been given."
+  "description": "Lorekeepers gather and preserve esoteric knowledge. They scour the world for lost lore, travel widely to witness the greatest events to capture them in the records they meticulously keep, and keep safe the secrets of old lest they fall into the wrong hands. Considered the most learned of people in the Empire’s lands, lorekeepers can be found in the courts of kings and queens, watching over great libraries and accompanying some of the greatest heroes. Lorekeepers know much already, but their insatiable appetite for knowledge drives them ever onward. They like nothing more than to dig into old records or leaf through ancient texts to discover facts about lost peoples and lands. For them, no secret is too dangerous, no subject forbidden. Knowledge is all that matters, and lorekeepers stop at nothing to discover all they can in the time they have been given.",
+  "catalog": {
+   "name": "Esoteric Discoveries",
+   "groups": [
+    {
+     "name": "Esoteric Discoveries",
+     "description": "As you explore the mysteries of reality, you have the opportunity to make certain discoveries that reflect your deeper understanding of reality. Upon making such a discovery, you can do something others cannot.",
+     "entries": [
+      {
+       "name": "Lore of Tongues",
+       "text": "Whenever you hear a language spoken that you do not know how to speak, you can add that language to the list of languages you can speak."
+      },
+      {
+       "name": "Lore of Secret Knowledge",
+       "text": "Add two areas of scholarship to your list of professions."
+      },
+      {
+       "name": "Lore of Casting",
+       "text": "Choose one spell you have learned and increase the number of castings for that spell by 1. The spell’s rank cannot exceed half your Power score."
+      },
+      {
+       "name": "Lore of Vitality",
+       "text": "Increase your Health by 5."
+      },
+      {
+       "name": "Lore of Displacement",
+       "text": "When a creature you can see makes an attack roll against you, you can use a triggered action to impose 1 bane on the roll."
+      },
+      {
+       "name": "Lore of Magical Knowledge",
+       "text": "Choose one spell from any tradition whose rank is no more than half your Power score. You learn this spell."
+      },
+      {
+       "name": "Lore of True Magic",
+       "text": "When you cast a spell, you do not need to speak or wield an implement."
+      },
+      {
+       "name": "Lore of Salvation",
+       "text": "When you make a challenge roll to resist an attack, you make the roll with 1 boon."
+      }
+     ]
+    }
+   ]
+  }
  },
  {
   "name": "Magister",
@@ -3734,7 +3779,61 @@
      },
      {
       "name": "Draw Sigil",
-      "text": "Choose one of your sigils. You spend 1 minute using a stylus to draw the sigil on a soft surface such as dirt or sand or a writing kit to paint the sigil on a hard surface. When you finish, expend the casting of one spell you have learned to imbue it with power. The sigil remains imbued until something damages its appearance, the sigil is triggered, or the magic fades away (see below). When you inscribe the sigil, you can do so in such a way as to exclude creatures of a particular sort from triggering its magic. The criterion for exclusion can be Size, descriptor, or identity. Choosing Size lets you exclude creatures of a certain Size or Sizes, such as 2 or smaller. Descriptor lets you exclude entire categories of creatures such as faerie, demon, or human. Finally, identity lets you exclude individuals whose names you know. A sigil is triggered when a creature other than you that is not excluded from the sigil’s effect moves to a space within 1 yard of it. If you are within 5 yards of the sigil, you can use a triggered action at any time to trigger the sigil instead. Once a sigil is triggered, you resolve the sigil’s effects immediately. The magic in an imbued sigil that has not been triggered fades over time. The amount of time it takes to fade away depends on the rank of the spell you expended to imbue it with power, as shown on the following table. Spell Rank Duration Spell Rank Duration 1 minute 1 week 10 minutes 1 month 1 hour 1 year 4 hours 10 years 8 hours 100 years 24 hours"
+      "text": "Choose one of your sigils. You spend 1 minute using a stylus to draw the sigil on a soft surface such as dirt or sand or a writing kit to paint the sigil on a hard surface. When you finish, expend the casting of one spell you have learned to imbue it with power. The sigil remains imbued until something damages its appearance, the sigil is triggered, or the magic fades away (see below). When you inscribe the sigil, you can do so in such a way as to exclude creatures of a particular sort from triggering its magic. The criterion for exclusion can be Size, descriptor, or identity. Choosing Size lets you exclude creatures of a certain Size or Sizes, such as 2 or smaller. Descriptor lets you exclude entire categories of creatures such as faerie, demon, or human. Finally, identity lets you exclude individuals whose names you know. A sigil is triggered when a creature other than you that is not excluded from the sigil’s effect moves to a space within 1 yard of it. If you are within 5 yards of the sigil, you can use a triggered action at any time to trigger the sigil instead. Once a sigil is triggered, you resolve the sigil’s effects immediately. The magic in an imbued sigil that has not been triggered fades over time. The amount of time it takes to fade away depends on the rank of the spell you expended to imbue it with power, as shown on the following table.",
+      "tables": [
+       {
+        "columns": [
+         "Spell Rank",
+         "Duration"
+        ],
+        "rows": [
+         [
+          "0",
+          "1 minute"
+         ],
+         [
+          "1",
+          "10 minutes"
+         ],
+         [
+          "2",
+          "1 hour"
+         ],
+         [
+          "3",
+          "4 hours"
+         ],
+         [
+          "4",
+          "8 hours"
+         ],
+         [
+          "5",
+          "24 hours"
+         ],
+         [
+          "6",
+          "1 week"
+         ],
+         [
+          "7",
+          "1 month"
+         ],
+         [
+          "8",
+          "1 year"
+         ],
+         [
+          "9",
+          "10 years"
+         ],
+         [
+          "10",
+          "100 years"
+         ]
+        ]
+       }
+      ]
      }
     ]
    },
@@ -3787,55 +3886,7 @@
      },
      {
       "name": "Learn Master Sigil",
-      "text": "When you would learn a sigil, you can choose to learn a master sigil. Basic Sigils Every wardscribe starts out by learning at least three of the four basic sigils, since they are the ones available at levels 3 through 5 in this path."
-     },
-     {
-      "name": "Alarum",
-      "text": "A loud ringing sounds from the sigil and continues for the sigil’s duration. Creatures within 10 yards of the sigil are deafened for as long as they remain there. The noise can be heard from up to 1 mile away."
-     },
-     {
-      "name": "Dazzling Radiance",
-      "text": "When this sigil is triggered, it glows with intense light that lasts for the sigil’s duration. When the light first shines, each sighted creature within 5 yards of the sigil must get a success on an Agility challenge roll with 1 bane or become blinded for 1 round."
-     },
-     {
-      "name": "Flames of Vengeance",
-      "text": "When this sigil is triggered, roaring flames rush out from it to spread through a 5-yard-radius sphere and then dissipate; the magic of the sigil is spent immediately. The flames deal 3d6 damage to everything in the area, igniting combustibles. A creature in the area can make an Agility challenge roll and takes half the damage on a success."
-     },
-     {
-      "name": "Glyphic Protection",
-      "text": "Shimmering glyphs appear on and orbit around the leading edge of a 5-yard-radius sphere centered on the sigil for the sigil’s duration. The glyphs impose 1 bane on attack rolls made by creatures outside the area against targets inside it and grant 1 boon on challenge rolls made by creatures inside the area to resist attacks from outside it. Advanced Sigils The four advanced sigils are more powerful than their basic counterparts. They become available to a wardscribe at level 6."
-     },
-     {
-      "name": "Confusion and Discord",
-      "text": "A warbling pulse spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature becomes dazed for 1 minute and gains 1 Insanity."
-     },
-     {
-      "name": "Crushing Terror",
-      "text": "A howling noise spreads through a 5-yard- radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature gains 1d6 Insanity and, as a result of gaining this Insanity, the creature becomes frightened for a number of minutes equal to twice its Insanity total. While frightened in this way, the creature must move away from the sigil on each of its turns."
-     },
-     {
-      "name": "Mental Compulsion",
-      "text": "A bright flash of golden light spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make an Intellect challenge roll with 1 bane. On a failure, a creature becomes compelled for 1 minute and gains 1 Insanity."
-     },
-     {
-      "name": "Waves of Lethargy",
-      "text": "A soft blue light spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature becomes fatigued until it completes a rest, and while fatigued in this way, the creature is slowed. On a success, the creature becomes fatigued for 1 round. Master Sigils Master sigils are the pinnacle of a wardscribe’s achievements. They become available at level 9."
-     },
-     {
-      "name": "Crippling Pain",
-      "text": "Lurid red light spreads through a 5-yard- radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature gains 2d6 Insanity. While frightened from gaining Insanity in this way, the creature is also dazed."
-     },
-     {
-      "name": "Gibbering Madness",
-      "text": "Mad laughter fills a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must get a success on a Will challenge roll with 1 bane or gain Insanity equal to its Will score. If a creature goes mad as a result of gaining Insanity in this way, the creature rolls twice on the Madness table and you choose the result."
-     },
-     {
-      "name": "Sudden Death",
-      "text": "A wave of black energy spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area takes 7d6 damage."
-     },
-     {
-      "name": "Swift Transit",
-      "text": "The air inside a 5-yard-radius sphere centered on the sigil wavers for 1 minute. All creatures in the area when the sigil is triggered or that enter it before the effect ends are teleported to a single location of the GM’s choice 1d6 miles away."
+      "text": "When you would learn a sigil, you can choose to learn a master sigil."
      }
     ]
    }
@@ -3843,7 +3894,81 @@
   "source": "dlc2",
   "page": 31,
   "type": "expert",
-  "description": "From the traditions of Protection and Rune was born a new method of using magic, one that imbues magical energy into sigils and glyphs to make them produce a specific magical effect when activated. The Banker’s Guild in Kem sponsored the development of wardscribing centuries ago and, until recently, restricted knowledge of the art to those admitted to the Academy of Magic, an institution created by the Vault for the purposes of protecting its interests and creating a cabal of magicians loyal to the powerful financial institution. No matter how guarded a secret might be, however, knowledge has a way of leaking into the world. Even though the techniques are fairly widely known, few individuals make the effort to master them, because wardscribing involves considerable study and practice before one can flawlessly illustrate the sigils. One error, even the most minor one, can thwart the ability of the sign to hold the magic that brings to life the desired effect. For this reason, the people who know the craft are in high demand for their specialized capabilities. Most who come to wardscribing already have some talent for magic, either from formal training or an inborn gift. Magicians are the most likely to pursue this path, though adepts (see Forbidden Rules) and some rogues might also take it up. Rogues who become wardscribes might learn the techniques to cover a retreat or as a way to get a better sense of the wards they might face. Warriors too could become wardscribes, especially those who value protection and defense more than offense and assault. Such warriors who become wardscribes began their careers as temple guardians, defenders of powerful magicians, or students of esoteric knowledge. Wardscribe"
+  "description": "From the traditions of Protection and Rune was born a new method of using magic, one that imbues magical energy into sigils and glyphs to make them produce a specific magical effect when activated. The Banker’s Guild in Kem sponsored the development of wardscribing centuries ago and, until recently, restricted knowledge of the art to those admitted to the Academy of Magic, an institution created by the Vault for the purposes of protecting its interests and creating a cabal of magicians loyal to the powerful financial institution. No matter how guarded a secret might be, however, knowledge has a way of leaking into the world. Even though the techniques are fairly widely known, few individuals make the effort to master them, because wardscribing involves considerable study and practice before one can flawlessly illustrate the sigils. One error, even the most minor one, can thwart the ability of the sign to hold the magic that brings to life the desired effect. For this reason, the people who know the craft are in high demand for their specialized capabilities. Most who come to wardscribing already have some talent for magic, either from formal training or an inborn gift. Magicians are the most likely to pursue this path, though adepts (see Forbidden Rules) and some rogues might also take it up. Rogues who become wardscribes might learn the techniques to cover a retreat or as a way to get a better sense of the wards they might face. Warriors too could become wardscribes, especially those who value protection and defense more than offense and assault. Such warriors who become wardscribes began their careers as temple guardians, defenders of powerful magicians, or students of esoteric knowledge. Wardscribe",
+  "catalog": {
+   "name": "Sigils",
+   "groups": [
+    {
+     "name": "Basic Sigils",
+     "level": 3,
+     "description": "Every wardscribe starts out by learning at least three of the four basic sigils, since they are the ones available at levels 3 through 5 in this path.",
+     "entries": [
+      {
+       "name": "Alarum",
+       "text": "A loud ringing sounds from the sigil and continues for the sigil’s duration. Creatures within 10 yards of the sigil are deafened for as long as they remain there. The noise can be heard from up to 1 mile away."
+      },
+      {
+       "name": "Dazzling Radiance",
+       "text": "When this sigil is triggered, it glows with intense light that lasts for the sigil’s duration. When the light first shines, each sighted creature within 5 yards of the sigil must get a success on an Agility challenge roll with 1 bane or become blinded for 1 round."
+      },
+      {
+       "name": "Flames of Vengeance",
+       "text": "When this sigil is triggered, roaring flames rush out from it to spread through a 5-yard-radius sphere and then dissipate; the magic of the sigil is spent immediately. The flames deal 3d6 damage to everything in the area, igniting combustibles. A creature in the area can make an Agility challenge roll and takes half the damage on a success."
+      },
+      {
+       "name": "Glyphic Protection",
+       "text": "Shimmering glyphs appear on and orbit around the leading edge of a 5-yard-radius sphere centered on the sigil for the sigil’s duration. The glyphs impose 1 bane on attack rolls made by creatures outside the area against targets inside it and grant 1 boon on challenge rolls made by creatures inside the area to resist attacks from outside it."
+      }
+     ]
+    },
+    {
+     "name": "Advanced Sigils",
+     "level": 6,
+     "description": "The four advanced sigils are more powerful than their basic counterparts. They become available to a wardscribe at level 6.",
+     "entries": [
+      {
+       "name": "Confusion and Discord",
+       "text": "A warbling pulse spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature becomes dazed for 1 minute and gains 1 Insanity."
+      },
+      {
+       "name": "Crushing Terror",
+       "text": "A howling noise spreads through a 5-yard- radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature gains 1d6 Insanity and, as a result of gaining this Insanity, the creature becomes frightened for a number of minutes equal to twice its Insanity total. While frightened in this way, the creature must move away from the sigil on each of its turns."
+      },
+      {
+       "name": "Mental Compulsion",
+       "text": "A bright flash of golden light spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make an Intellect challenge roll with 1 bane. On a failure, a creature becomes compelled for 1 minute and gains 1 Insanity."
+      },
+      {
+       "name": "Waves of Lethargy",
+       "text": "A soft blue light spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature becomes fatigued until it completes a rest, and while fatigued in this way, the creature is slowed. On a success, the creature becomes fatigued for 1 round."
+      }
+     ]
+    },
+    {
+     "name": "Master Sigils",
+     "level": 9,
+     "description": "Master sigils are the pinnacle of a wardscribe’s achievements. They become available at level 9.",
+     "entries": [
+      {
+       "name": "Crippling Pain",
+       "text": "Lurid red light spreads through a 5-yard- radius sphere centered on the sigil and then dissipates. Each creature in the area must make a Will challenge roll with 1 bane. On a failure, a creature gains 2d6 Insanity. While frightened from gaining Insanity in this way, the creature is also dazed."
+      },
+      {
+       "name": "Gibbering Madness",
+       "text": "Mad laughter fills a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area must get a success on a Will challenge roll with 1 bane or gain Insanity equal to its Will score. If a creature goes mad as a result of gaining Insanity in this way, the creature rolls twice on the Madness table and you choose the result."
+      },
+      {
+       "name": "Sudden Death",
+       "text": "A wave of black energy spreads through a 5-yard-radius sphere centered on the sigil and then dissipates. Each creature in the area takes 7d6 damage."
+      },
+      {
+       "name": "Swift Transit",
+       "text": "The air inside a 5-yard-radius sphere centered on the sigil wavers for 1 minute. All creatures in the area when the sigil is triggered or that enter it before the effect ends are teleported to a single location of the GM’s choice 1d6 miles away."
+      }
+     ]
+    }
+   ]
+  }
  },
  {
   "name": "Warlock",
@@ -5377,7 +5502,42 @@
     "talents": [
      {
       "name": "Magic Construction",
-      "text": "You can use an action and expend a casting of one of your Conjuration spells to create structures in your environment. The rank of the spell whose casting you expend determines the amount of material you have to work with, as shown on the following table. The material is in the form of a number of blocks, each a cube 1 yard on a side. Building Blocks Spell Rank Blocks 5+ Each block is an object with Defense 10 and Health 20. You can arrange the blocks in any way you choose within medium range, but they must be placed in open spaces. You can stack them, set them in a row, or scatter them. You can choose to make the blocks transparent or opaque. Blocks created by this talent last for a number of minutes equal to your Power score x 10."
+      "text": "You can use an action and expend a casting of one of your Conjuration spells to create structures in your environment. The rank of the spell whose casting you expend determines the amount of material you have to work with, as shown on the following table. The material is in the form of a number of blocks, each a cube 1 yard on a side. Each block is an object with Defense 10 and Health 20. You can arrange the blocks in any way you choose within medium range, but they must be placed in open spaces. You can stack them, set them in a row, or scatter them. You can choose to make the blocks transparent or opaque. Blocks created by this talent last for a number of minutes equal to your Power score x 10.",
+      "tables": [
+       {
+        "columns": [
+         "Spell Rank",
+         "Blocks"
+        ],
+        "rows": [
+         [
+          "0",
+          "1"
+         ],
+         [
+          "1",
+          "8"
+         ],
+         [
+          "2",
+          "16"
+         ],
+         [
+          "3",
+          "32"
+         ],
+         [
+          "4",
+          "64"
+         ],
+         [
+          "5+",
+          "128"
+         ]
+        ],
+        "caption": "Building Blocks"
+       }
+      ]
      }
     ]
    },
