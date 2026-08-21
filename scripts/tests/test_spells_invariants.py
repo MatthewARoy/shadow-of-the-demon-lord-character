@@ -89,3 +89,131 @@ class TestSpellsInvariants(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSpellTables(unittest.TestCase):
+    """The random tables printed inside a spell (#20).
+
+    Before capture, eight of these were dropped whole at the "d6" marker —
+    strange changes, whose entire effect is its table, stored a description
+    ending "...consult the following table." and then jumped to its Attack
+    Roll entry. Three more were flattened into the description instead:
+    bewilder and query the void ran their rows together as prose, and wild
+    magic kept only its caption ("...Roll a d20 to see what happens. Wild
+    Magic").
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.spells = {s["name"]: s for s in load("spells.json")}
+
+    def table_of(self, name):
+        spell = self.spells.get(name)
+        self.assertIsNotNone(spell, f"spell missing: {name}")
+        self.assertIn("tables", spell, f"{name} lost its table")
+        self.assertEqual(len(spell["tables"]), 1)
+        return spell["tables"][0]
+
+    def test_every_captured_table_is_whole(self):
+        """A die-keyed table's rows cover its die, end to end.
+
+        A row missing from the middle, or a table truncated at the last row,
+        is the failure this class of parse produces and the one a reader
+        cannot see: the table still looks complete.
+        """
+        expected = {
+            "Scintillating Worms": ("d6", 6),
+            "Wild Magic": ("d20", 9),           # nine ranged rows spanning 1–20
+            "Strange Changes": ("d6", 6),
+            "Chaos Vortex": ("d6", 6),
+            "Scintillating Barrier": ("d6", 6),
+            "Query the Void": ("3d6", 7),       # ranged rows spanning 3–18
+            "Call Greater Demon": ("d6", 3),      # 1 / 2–5 / 6
+            "Into the Void": ("d6", 6),
+            "Call Titanic Demon": ("d6", 3),
+            "Bewilder": ("1d6", 6),
+            "Open the Underworld’s Gates": ("d6", 6),
+        }
+        for name, (die, rows) in expected.items():
+            table = self.table_of(name)
+            self.assertEqual(table["columns"][0], die, name)
+            self.assertEqual(len(table["rows"]), rows, f"{name} row count")
+            count, _, size = die.partition("d")
+            low = int(count or 1)
+            high = low * int(size)
+            self.assertEqual(int(re.findall(r"\d+", table["rows"][0][0])[0]), low,
+                             f"{name} does not start at {low}")
+            self.assertEqual(int(re.findall(r"\d+", table["rows"][-1][0])[-1]), high,
+                             f"{name} does not reach {high}")
+            for key, text in table["rows"]:
+                self.assertTrue(text.strip(), f"{name} row {key} has no text")
+
+    def test_prose_below_a_table_is_not_a_row(self):
+        """The paragraph a spell resumes with sits directly under the table.
+
+        Into the void's sixth row read "3d6 tiny demons A demon that emerges
+        from the hole acts according to its nature..." until the extraction's
+        leading-tab paragraph marker became a table boundary. The prose is not
+        lost — it belongs to the description.
+        """
+        rows = dict(self.table_of("Into the Void")["rows"])
+        self.assertEqual(rows["6"], "3d6 tiny demons")
+        for name in ("Into the Void", "Call Greater Demon", "Call Titanic Demon"):
+            self.assertIn("acts according to its nature",
+                          self.spells[name]["description"], name)
+
+    def test_strange_changes_effects_are_readable(self):
+        """The clearest loss: a player could not resolve the spell at all."""
+        rows = dict(self.table_of("Strange Changes")["rows"])
+        self.assertIn("becomes a monster", rows["1"])
+        self.assertIn("horrifying trait", rows["2"])
+        self.assertIn("teleports", rows["5"])
+
+    def test_no_table_row_absorbed_the_next_spells_name(self):
+        """A spell's all-caps name sits directly below the last row.
+
+        Scintillating worms' sixth outcome ended "...3 boons until the end of
+        its turn. STRANGE CHANGES" before the stop test looked at position.
+        """
+        for name, s in self.spells.items():
+            for table in s.get("tables", []):
+                for row in table["rows"]:
+                    for cell in row:
+                        self.assertFalse(
+                            len(cell) > 3 and cell == cell.upper() and cell != cell.lower(),
+                            f"{name}: all-caps debris in a table cell: {cell!r}")
+
+    def test_captions_left_the_description(self):
+        """Wild magic's description ended on its own table's caption."""
+        self.assertTrue(
+            self.spells["Wild Magic"]["description"].rstrip().endswith(
+                "Roll a d20 to see what happens."))
+        self.assertEqual(self.table_of("Wild Magic").get("caption"), "Wild Magic")
+        self.assertEqual(self.table_of("Bewilder").get("caption"), "Bewilder Effects")
+
+    def test_flattened_table_prose_is_gone_from_descriptions(self):
+        """Bewilder and query the void ran their rows together as prose."""
+        self.assertNotIn("Bewilder Effects", self.spells["Bewilder"]["description"])
+        self.assertNotIn("16–17", self.spells["Query the Void"]["description"])
+
+    def test_table_text_still_reaches_the_tagger(self):
+        """Bewilder only mentions damage and fear inside its table.
+
+        While the table was flattened the keyword rules saw that text by
+        accident. tag_spells.taggable_text() now hands it to them on purpose;
+        without it the spell silently loses three true tags.
+        """
+        tags = set(self.spells["Bewilder"]["tags"])
+        self.assertTrue({"damage", "auto-damage", "fear"} <= tags, sorted(tags))
+
+    def test_prose_keyed_tables_are_left_alone(self):
+        """Out of scope, deliberately, and recorded so it stays a decision.
+
+        Creation's materials and brew longevity potion's age categories are
+        keyed by prose, not by a number, and both columns wrap over several
+        lines — there is no line-level row boundary to key on. Their text
+        stays flattened in the description rather than being guessed at.
+        """
+        for name in ("Creation", "Brew Longevity Potion"):
+            self.assertNotIn("tables", self.spells[name])
+        self.assertIn("Fog or vapor", self.spells["Creation"]["description"])

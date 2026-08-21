@@ -92,10 +92,17 @@ def _next(lines, pages, j, end, page, stop):
     table in the corpus straddles a page break, so the first line printed on
     another page is past the end of the table — and that is also where the
     running head and the page number live.
+
+    The other end is the entry's own prose resuming below its table. The
+    extraction marks the first line of every paragraph with a leading tab —
+    1727 of them across the four books — so a tab-led line is a new
+    paragraph, never the continuation of a row. Without that test, into the
+    void's sixth row read "3d6 tiny demons A demon that emerges from the hole
+    acts according to its nature...".
     """
     while j < end and not lines[j].strip():
         j += 1
-    if j >= end or pages[j] != page or stop(j):
+    if j >= end or pages[j] != page or lines[j].startswith("\t") or stop(j):
         return j, False
     return j, True
 

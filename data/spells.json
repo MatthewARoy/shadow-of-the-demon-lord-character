@@ -4900,7 +4900,7 @@
   "type": "Utility",
   "rank": 6,
   "area": "A cube of space, 3 yards on a side, originating from a point within short range",
-  "description": "You take 4d6 damage. You tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens.",
+  "description": "You take 4d6 damage. You tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens. The hole then closes. A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed.",
   "tables": [
    {
     "columns": [
@@ -4918,7 +4918,7 @@
      ],
      [
       "6",
-      "Nothing happens. The hole then closes. A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed."
+      "Nothing happens."
      ]
     ]
    }
@@ -4980,7 +4980,7 @@
   "type": "Attack",
   "rank": 8,
   "target": "One creature you can see within medium range",
-  "description": "You take 8d6 damage. Make an Intellect attack roll against the target’s Strength. On a success, you tear a hole in reality, which then sucks the target into the Void. A target drawn into the Void is unlikely to be seen again. You then gain 1 Corruption. Make a Will challenge roll with 4 banes. On a failure, you gain an additional 1d3 Corruption and 3d6 Insanity. Attack Roll 20+ One or more demons come spilling out of the hole before it closes. The GM can roll on the following table to determine how many demons and of what kinds appear. (The titanic demon is presented in The Hunger in the Void, page 53; all the others can be found in Shadow, page 237.)",
+  "description": "You take 8d6 damage. Make an Intellect attack roll against the target’s Strength. On a success, you tear a hole in reality, which then sucks the target into the Void. A target drawn into the Void is unlikely to be seen again. You then gain 1 Corruption. Make a Will challenge roll with 4 banes. On a failure, you gain an additional 1d3 Corruption and 3d6 Insanity. Attack Roll 20+ One or more demons come spilling out of the hole before it closes. The GM can roll on the following table to determine how many demons and of what kinds appear. (The titanic demon is presented in The Hunger in the Void, page 53; all the others can be found in Shadow, page 237.) A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed.",
   "attack": {
    "attribute": "Intellect",
    "against": "Strength",
@@ -5015,7 +5015,7 @@
      ],
      [
       "6",
-      "3d6 tiny demons A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed."
+      "3d6 tiny demons"
      ]
     ]
    }
@@ -5034,7 +5034,7 @@
   "type": "Utility",
   "rank": 9,
   "area": "A cube of space, 6 yards on a side, originating from a point within short range",
-  "description": "Upon casting this spell, you must concentrate for 1 hour, during which time you must violate your body. When you finish, you take 10d6 damage and gain 1d6 Corruption, and you tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens. Aftereffect Make a Will challenge roll with 4 banes. On a failure, you are possessed by a huge demon (Shadow, page 227).",
+  "description": "Upon casting this spell, you must concentrate for 1 hour, during which time you must violate your body. When you finish, you take 10d6 damage and gain 1d6 Corruption, and you tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens. The hole then closes. A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed. Aftereffect Make a Will challenge roll with 4 banes. On a failure, you are possessed by a huge demon (Shadow, page 227).",
   "tables": [
    {
     "columns": [
@@ -5052,7 +5052,7 @@
      ],
      [
       "6",
-      "Nothing happens. The hole then closes. A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed."
+      "Nothing happens."
      ]
     ]
    }
