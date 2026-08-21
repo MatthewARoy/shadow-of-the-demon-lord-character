@@ -78,6 +78,17 @@ python3 scripts/parse_creatures.py   # -> data/creatures.json
 python3 scripts/parse_rules_index.py # -> data/rules-index.json
 ```
 
+`scripts/tables.py` is a module rather than a stage: `parse_spells.py` and
+`parse_paths.py` both call it to capture the random tables the books print
+*inside* an entry (a spell's `tables`, a talent's `tables`). It captures only
+tables whose rows are keyed by a die result or a rank, and refuses anything it
+cannot validate rather than emit a half-built table — see its docstring for
+what is deliberately left flattened.
+
+`parse_paths.py` also gives a path a `catalog` where the book prints its
+options as a sidebar list rather than as talents (the wardscribe's sigils, the
+lorekeeper's esoteric discoveries), grouped, with the level each group unlocks.
+
 After regenerating, verify the result:
 
 ```bash
