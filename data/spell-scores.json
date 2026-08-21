@@ -572,8 +572,8 @@
     "flags": {},
     "rank": 10,
     "cohort": "mitigation|temp-health|rank10",
-    "cohort_n": 2,
-    "percentile": 0.5
+    "cohort_n": 3,
+    "percentile": 0.667
    }
   ],
   "magic dart|arcana": [
@@ -938,8 +938,8 @@
     "flags": {},
     "rank": 10,
     "cohort": "mitigation|temp-health|rank10",
-    "cohort_n": 2,
-    "percentile": 0.5
+    "cohort_n": 3,
+    "percentile": 0.667
    }
   ],
   "burning beam|celestial": [
@@ -6873,6 +6873,19 @@
     "percentile": 0.269
    }
   ],
+  "open the underworld’s gates|spiritualism": [
+   {
+    "kind": "mitigation",
+    "value": 20,
+    "unit": "temp-health",
+    "expr": "+20 HP buffer",
+    "flags": {},
+    "rank": 10,
+    "cohort": "mitigation|temp-health|rank10",
+    "cohort_n": 3,
+    "percentile": 0.167
+   }
+  ],
   "electric eel skin|storm": [
    {
     "kind": "damage",
@@ -8696,8 +8709,8 @@
    "max": 80
   },
   "mitigation|temp-health|10": {
-   "n": 2,
-   "median": 50.0,
+   "n": 3,
+   "median": 50,
    "max": 50
   },
   "damage|damage|9": {

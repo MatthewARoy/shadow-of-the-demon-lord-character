@@ -1273,7 +1273,7 @@
      }
     },
     {
-     "name": "Investiture of the One-eyed God",
+     "name": "Investiture of the One-Eyed God",
      "tradition": "Invocation",
      "rank": 3,
      "lever": "attacker-banes",
@@ -1696,7 +1696,7 @@
      "precast": true
     },
     {
-     "name": "Investiture of the One-eyed God",
+     "name": "Investiture of the One-Eyed God",
      "tradition": "Invocation",
      "rank": 3,
      "lever": "attacker-banes",
@@ -4125,7 +4125,7 @@
      "precast": false
     },
     {
-     "name": "Investiture of the One-eyed God",
+     "name": "Investiture of the One-Eyed God",
      "tradition": "Invocation",
      "rank": 3,
      "lever": "self-attack-boons",
@@ -5245,7 +5245,7 @@
      "precast": true
     },
     {
-     "name": "Investiture of the One-eyed God",
+     "name": "Investiture of the One-Eyed God",
      "tradition": "Invocation",
      "rank": 3,
      "lever": "extra-damage",

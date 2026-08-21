@@ -13,31 +13,31 @@
    "id": "damage",
    "facet": "offense",
    "label": "Damage",
-   "count": 556
+   "count": 557
   },
   {
    "id": "auto-damage",
    "facet": "offense",
    "label": "Auto-damage (no attack roll)",
-   "count": 411
+   "count": 412
   },
   {
    "id": "buff-attack",
    "facet": "support",
    "label": "Buff: attack rolls",
-   "count": 91
+   "count": 92
   },
   {
    "id": "buff-challenge",
    "facet": "support",
    "label": "Buff: challenge rolls",
-   "count": 73
+   "count": 74
   },
   {
    "id": "reroll",
    "facet": "support",
    "label": "Reroll / roll twice",
-   "count": 6
+   "count": 7
   },
   {
    "id": "debuff-rolls",
@@ -49,7 +49,7 @@
    "id": "control",
    "facet": "control",
    "label": "Control (stun/immobilize/etc.)",
-   "count": 341
+   "count": 342
   },
   {
    "id": "fear",
@@ -91,7 +91,7 @@
    "id": "defense-buff",
    "facet": "support",
    "label": "Defense / Health buff",
-   "count": 59
+   "count": 60
   },
   {
    "id": "action-economy",
@@ -157,13 +157,13 @@
    "id": "corruption",
    "facet": "cost",
    "label": "Corruption cost",
-   "count": 7
+   "count": 8
   },
   {
    "id": "self-risk",
    "facet": "cost",
    "label": "Self-risk / drawback",
-   "count": 163
+   "count": 164
   },
   {
    "id": "triggered",

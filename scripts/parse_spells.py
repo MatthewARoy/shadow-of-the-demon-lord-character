@@ -90,6 +90,18 @@ PATH_TRADITIONS = {
 
 FIELD_NAMES = ("Requirement", "Target", "Area", "Duration", "Prerequisite")
 
+# A random table can sit *inside* a spell rather than after it — the d6 of
+# creatures that come through open the underworld's gates, the d6 of mutations
+# from strange changes. Breaking at the "d6" marker threw away everything the
+# spell printed below its table. The rows themselves are table data and stay
+# dropped; what is recovered is the spell's own labelled sub-entries, which is
+# where the lost rules text lives (two Aftereffects among them). Resuming on
+# line width instead was tried and reverted: strange changes has prose-length
+# table rows, so it resumed mid-row and read as a run-on sentence.
+TABLE_RESUME = re.compile(
+    r"^(Aftereffect|Attack Roll|Triggered|Sacrifice|Permanence|In addition|Special)\b"
+)
+
 ATTACK_ROLL_RE = re.compile(
     r"[Mm]ake (?:an?|one) (Strength|Agility|Intellect|Will|Perception) "
     r"(?:attack roll|challenge roll)[^.]*?against (?:the target(?:’|')s|its|each target(?:’|')s|"
@@ -206,8 +218,14 @@ def parse_book(book):
             # tradition's intro, a path level entry, a random table, a
             # Title-Case section heading ("Celestial Spells"), or an
             # all-caps heading that is not the next spell's name.
+            if re.match(r"^d\d+$", nxt):
+                k = skip_table(lines, j + 1, n, min(limit, page + 1))
+                if k is None:
+                    break
+                j = k
+                continue
             if nxt in tradition_names or re.match(r"^Level \d+ ", nxt) \
-               or re.match(r"^d\d+$", nxt) or nxt == "Story Development" \
+               or nxt == "Story Development" \
                or SECTION_HEADING.match(nxt) \
                or nxt.lower() in PATH_CHAPTER_HEADS \
                or STORY_DEVELOPMENT_TITLE.match(nxt):
@@ -222,6 +240,18 @@ def parse_book(book):
         spells.append(spell)
         i = j if j > i else i + 1
     return spells
+
+
+def skip_table(lines, j, n, limit):
+    """Walk past a table's rows to the spell's next labelled sub-entry."""
+    while j < n and lines[j][0] <= limit:
+        s = lines[j][1].strip()
+        if HEADER_RE.match(s):
+            return None
+        if TABLE_RESUME.match(s):
+            return j
+        j += 1
+    return None
 
 
 def clean_body(body_lines):
@@ -281,7 +311,7 @@ def build_spell(name, tradition, sptype, rank, body_lines, book, page):
     desc = re.sub(r" {2,}", " ", desc)
 
     spell = OrderedDict()
-    spell["name"] = title_case(name)
+    spell["name"] = NAME_CASE_FIXES.get(title_case(name), title_case(name))
     spell["tradition"] = title_case(tradition)
     spell["type"] = sptype.capitalize()
     spell["rank"] = rank
@@ -318,6 +348,17 @@ def drop_clipped_duplicates(body):
         out.append(line)
         seen += " " + line
     return out
+
+
+# title_case() lowercases the all-caps header before recapitalising, which
+# leaves the second half of a hyphenated word lowercase. That is right for
+# "flesh-bursting", "self-destruct" and "will-o'-wisp", which the books also
+# print that way, but wrong for these two daemons: their own spell blocks write
+# "a talisman of the One-Eyed God" and "The Witch-King grants...".
+NAME_CASE_FIXES = {
+    "Investiture of the One-eyed God": "Investiture of the One-Eyed God",
+    "Investiture of the Witch-king": "Investiture of the Witch-King",
+}
 
 
 def title_case(s):

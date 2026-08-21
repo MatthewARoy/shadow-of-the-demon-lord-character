@@ -2925,10 +2925,11 @@
   "type": "Utility",
   "rank": 4,
   "area": "A cube of space, up to 5 yards on a side, originating from a point within short range",
-  "description": "Chaos afflicts everything in the area. Each object in it that is not worn or carried by a creature warps, twists, and changes color. The object’s functionality is unchanged, however. Each creature in the area must make a Will challenge roll with 1 bane. A creature gains 1 Insanity on a failure, or on a success becomes subject to a random change. Roll a d6 for each creature that gets a success and consult the following table.",
+  "description": "Chaos afflicts everything in the area. Each object in it that is not worn or carried by a creature warps, twists, and changes color. The object’s functionality is unchanged, however. Each creature in the area must make a Will challenge roll with 1 bane. A creature gains 1 Insanity on a failure, or on a success becomes subject to a random change. Roll a d6 for each creature that gets a success and consult the following table. Attack Roll 20+ Roll twice to see what happens to the creature and apply both effects to it.",
   "source": "occult",
   "page": 31,
   "tags": [
+   "reroll",
    "insanity",
    "area"
   ]
@@ -4731,7 +4732,7 @@
   "type": "Utility",
   "rank": 9,
   "area": "A cube of space, 6 yards on a side, originating from a point within short range",
-  "description": "Upon casting this spell, you must concentrate for 1 hour, during which time you must violate your body. When you finish, you take 10d6 damage and gain 1d6 Corruption, and you tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens.",
+  "description": "Upon casting this spell, you must concentrate for 1 hour, during which time you must violate your body. When you finish, you take 10d6 damage and gain 1d6 Corruption, and you tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens. Aftereffect Make a Will challenge roll with 4 banes. On a failure, you are possessed by a huge demon (Shadow, page 227).",
   "source": "occult",
   "page": 44,
   "tags": [
@@ -9012,7 +9013,7 @@
   ]
  },
  {
-  "name": "Investiture of the One-eyed God",
+  "name": "Investiture of the One-Eyed God",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 3,
@@ -9195,7 +9196,7 @@
   ]
  },
  {
-  "name": "Investiture of the Witch-king",
+  "name": "Investiture of the Witch-King",
   "tradition": "Invocation",
   "type": "Attack",
   "rank": 6,
@@ -15339,10 +15340,18 @@
   "rank": 10,
   "area": "A cube of space, 3 yards on a side, originating from a point you can see within long range",
   "duration": "1 hour",
-  "description": "A great iron gate appears inside the area and remains for the duration. When the gate appears, it opens, revealing a shadowy road that twists and turns down into the Underworld. Each living and mortal creature that can see the gate must get a success on a Will challenge roll with 3 banes or gain 1d6 Insanity. When the gate appears and at the end of each minute thereafter, roll a d6 and consult the following table to see what emerges from the opened portal.",
+  "description": "A great iron gate appears inside the area and remains for the duration. When the gate appears, it opens, revealing a shadowy road that twists and turns down into the Underworld. Each living and mortal creature that can see the gate must get a success on a Will challenge roll with 3 banes or gain 1d6 Insanity. When the gate appears and at the end of each minute thereafter, roll a d6 and consult the following table to see what emerges from the opened portal. In addition, all spirits within 1 mile of the area gain a +2 bonus to Defense and a +20 bonus to Health, make attack rolls and challenge rolls with 3 boons, and deal 2d6 extra damage on their attacks. Living creatures within 1 mile of the area that are or become incapacitated, diseased, or poisoned die immediately. Aftereffect You must make a Will challenge roll with 5 banes On a success, you gain 1 Corruption and become stunned for 1 hour. On a failure, you gain 1d3 Corruption and 2d6 Insanity, and you cannot cast this spell again for 1 year and 1 day.",
   "source": "occult",
   "page": 107,
   "tags": [
+   "damage",
+   "auto-damage",
+   "buff-attack",
+   "buff-challenge",
+   "control",
+   "defense-buff",
+   "corruption",
+   "self-risk",
    "sustained",
    "area"
   ]
