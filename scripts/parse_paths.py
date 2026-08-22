@@ -654,12 +654,43 @@ def parse_characteristics(text):
     return out
 
 
+# A path can both offer a choice and hand over a specific spell, in that
+# order: the spellbinder's level 3 reads "You either discover a new tradition
+# or learn one spell from a tradition you have already discovered. In
+# addition, you learn the spellbound weapon spell, described below." Every
+# choice rule below returns as soon as it matches, so the grant clause was
+# never reached and a spellbinder never received the spell its whole path is
+# built around — Invest Power and Magic Weapon both key off "the target weapon
+# of your spellbound weapon spell". The clause is read separately for that
+# reason.
+#
+# Deliberately narrow. The preserver's level 3 also says "you learn the life
+# sense spell", but inside a bulleted choice of two benefits, each granting a
+# different spell; recording either one would hand the character a spell it
+# may not have chosen. A bullet in the Magic line means the grant is an option
+# rather than a given, and those stay as raw text for the player to read.
+IN_ADDITION_GRANT = re.compile(
+    r"In addition, (?:you )?learn the ([\w ’']+?) spell\b")
+
+
+def parse_grant(text):
+    """The spell a Magic line hands over outright, if it hands over one."""
+    if "•" in text:
+        return None
+    m = IN_ADDITION_GRANT.search(text)
+    return m.group(1).strip() if m else None
+
+
 def parse_magic(text):
     """Turn a Magic line into structured choice slots."""
     if not text:
         return None
     t = text.strip()
     result = {"raw": t}
+    granted = parse_grant(t)
+    if granted:
+        # Attached before the choice rules run, since each of them returns.
+        result["grants"] = [granted]
     # Constrained to two traditions: "discover the X or Y tradition or
     # learn one X or Y spell"
     m = re.search(r"discover the (\w+) or (\w+) tradition or (?:you )?learn one", t)

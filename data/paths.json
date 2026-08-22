@@ -2995,6 +2995,9 @@
     },
     "magic": {
      "raw": "You either discover a new tradition or learn one spell from a tradition you have already discovered. In addition, you learn the spellbound weapon spell, described below.",
+     "grants": [
+      "spellbound weapon"
+     ],
      "choices": [
       {
        "pick": 1,

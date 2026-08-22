@@ -338,3 +338,42 @@ class TestPathTablesAndCatalogs(unittest.TestCase):
             entries = {e["name"] for g in p.get("catalog", {}).get("groups", [])
                        for e in g["entries"]}
             self.assertEqual(talents & entries, set(), name)
+
+
+class TestMagicGrants(unittest.TestCase):
+    """A Magic line can offer a choice *and* hand over a named spell."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.paths = {p["name"]: p for p in load("paths.json")}
+        cls.spells = {s["name"].lower() for s in load("spells.json")}
+
+    def test_spellbinder_receives_the_spell_its_path_is_built_around(self):
+        """Every choice rule in parse_magic returns as soon as it matches, so
+        the "In addition, you learn the spellbound weapon spell" clause was
+        never reached. A spellbinder never got the spell, while both its
+        talents key off "the target weapon of your spellbound weapon spell".
+        """
+        magic = self.paths["Spellbinder"]["levels"]["3"]["magic"]
+        self.assertEqual(magic.get("grants"), ["spellbound weapon"])
+        # The choice on the same line has to survive alongside the grant.
+        self.assertEqual(magic["choices"],
+                         [{"pick": 1,
+                           "options": ["discover_tradition", "learn_spell"]}])
+
+    def test_an_optional_grant_is_not_recorded_as_a_given(self):
+        """The preserver picks one of two benefits, each granting a different
+        spell. Recording either hands the character a spell it may not have
+        chosen, so a bulleted Magic line grants nothing outright."""
+        magic = self.paths["Preserver"]["levels"]["3"]["magic"]
+        self.assertIn("you learn the life sense spell", magic["raw"])
+        self.assertNotIn("grants", magic)
+
+    def test_every_granted_spell_resolves(self):
+        """A grant naming a spell that is not in the archive is a dead end —
+        the engine can only leave the player a note to add it by hand."""
+        for name, p in self.paths.items():
+            for level, entry in p["levels"].items():
+                for grant in (entry.get("magic") or {}).get("grants", []):
+                    self.assertIn(grant.lower(), self.spells,
+                                  f"{name} L{level} grants unknown spell {grant!r}")
