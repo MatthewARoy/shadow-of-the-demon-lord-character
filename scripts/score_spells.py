@@ -2,9 +2,10 @@
 """Per-spell effectiveness scoring for the SotDL archive.
 
 Reads data/spells.json and emits data/spell-scores.json: for each spell that has
-a measurable output — damage dealt, health restored, damage mitigated — an
-expected value and where it sits among its peers. Re-run after parse_spells.py /
-tag_spells.py. Deterministic and offline, like the tagger and combo detector.
+a measurable output — damage dealt, health restored, damage mitigated, boons
+granted — an expected value and where it sits among its peers. Re-run after
+parse_spells.py / tag_spells.py. Deterministic and offline, like the tagger and
+combo detector.
 
 ## What "efficient" means here (the modelling choices)
 
@@ -181,6 +182,185 @@ def score_mitigation(spell):
     return None
 
 
+# --------------------------------------------------------------------------- #
+# Boons. What the spell adds to a d20 roll, and whose roll it is.
+#
+# A boon is a d6 added to the roll, keeping the highest across all boon dice, so
+# the expected swing is E[max(n d6)]: 1 boon is +3.50, but a 2nd adds only +0.97
+# and a 3rd +0.49. Scoring the *swing* rather than the boon count is what stops
+# "3 boons on one ally" outranking "1 boon on the whole party" — the count says
+# the former is 3x better, the dice say it is 1.4x better on a single roll and
+# worse the moment a second ally exists.
+#
+# Three kinds, kept apart because they answer different questions and must not
+# share a cohort:
+#   buff       boons handed to somebody else            (Blessing, Foretell)
+#   self-buff  boons on the caster's own rolls          (Mighty Attack)
+#   mark       the target grants boons to anyone
+#              attacking it — a party buff worn by
+#              the enemy                                (Saint Astrid's Flame)
+#
+# Breadth and upkeep ride along as flags, never folded into the number, exactly
+# as `area` does for damage: one boon on five allies and one boon on yourself
+# have the same swing and very different worth, and only the reader knows the
+# party size. `multi`/`unlimited` say how many can receive it, `concentration`
+# says whether holding it costs an action every round (core p49).
+#
+# Unlike the other kinds this gates on the rules keyword rather than a tag:
+# "boon" is unambiguous mechanical vocabulary, whereas the reviewed buff-attack
+# / buff-challenge tags reach only 125 of the 243 spells whose text mentions one.
+# --------------------------------------------------------------------------- #
+
+BOON_RX = re.compile(r"\b(?P<n>\d+|1d3|a number of)\s+boons?\b")
+
+# A boon aiding whoever resists the spell being cast is the enemy's benefit.
+# "to resist a spell's effect" (generic) stays in; "to resist your/that spell"
+# and every "must get a success on ... with 1 boon" saving throw drops out.
+BOON_RESIST = re.compile(r"must get a success on|to resist (?:your|that|this)\b")
+
+BOON_SELF = re.compile(
+    r"\byou (?:make|gain|receive|can make|impose|roll)\b"
+    r"|grants? you \d+ boons?"
+    r"|granting you \d+ boons?"
+    r"|on your (?:attack|challenge|perception) rolls")
+
+# The enemy carries the boon: everyone attacking it benefits.
+BOON_MARK = re.compile(
+    r"grants?\s+\d+\s+boons?\s+(?:on|to)[^.]*?(?:to attack it|against it"
+    r"|against an affected target|against the target)"
+    r"|attack rolls against it are made with \d+ boons?"
+    r"|creatures? (?:make|attacking)[^.]*?against it[^.]*?\d+ boons?"
+    r"|creatures? attacking the target[^.]*?\d+ boons?"
+    r"|granting any creature that attacks[^.]*?\d+ boons?")
+
+# Somebody else makes the roll.
+BOON_OTHER = re.compile(
+    r"\b(?:the |each |a )?targets? makes?\b"
+    r"|\bit makes\b"
+    r"|\bthe creature makes\b"
+    r"|you (?:can )?grant (?:the|that|any|it)\b"
+    r"|grant the triggering creature"
+    r"|chosen creatures"
+    r"|creatures? (?:in|within) the area makes?"
+    r"|a creature that wears"
+    r"|creatures? you choose"
+    r"|rolls? made by creatures")
+BOON_OTHER_WEAK = re.compile(r"\bthe target\b|\beach target\b")
+# On an Attack spell the "other" is the enemy, so only an explicit hand-off counts.
+BOON_GRANT = re.compile(r"you (?:can )?grant\b|grant the triggering creature")
+
+BOON_ATK = re.compile(r"attack rolls?")
+BOON_CHAL = re.compile(r"challenge rolls?|perception rolls?|rolls to resist")
+
+
+def boon_swing(n):
+    """Expected addition to a d20 from n boons: E[max(n d6)]."""
+    return sum(k * ((k / 6) ** n - ((k - 1) / 6) ** n) for k in range(1, 7))
+
+
+def clauses(text):
+    """Sentences, bullet items, and conjoined independent clauses.
+
+    Bullets because several spells list benefits that way; ", and " / "; "
+    because one sentence often pairs a boon for you with a bane for everyone
+    resisting you, and the resist guard must judge only the boon's own half.
+    """
+    for part in re.split(r"(?<=[.!?])\s+|\s*•\s*", text):
+        part = part.strip()
+        for seg in re.split(r",\s+and\s+|;\s+", part):
+            seg = seg.strip()
+            if seg:
+                yield seg, part
+
+
+def boon_count(token):
+    """Boons named in the text -> (swing, expression). None swing = unreadable."""
+    if token == "1d3":                      # Consequence: 1d3 boons
+        return sum(boon_swing(n) for n in (1, 2, 3)) / 3, "1d3 boons"
+    if token == "a number of":              # scales with an attribute or Size
+        return None, "see text"             # same convention as the heal scorer
+    n = int(token)
+    return (boon_swing(n), f"{n} boon" + ("s" if n != 1 else "")) if 1 <= n <= 10 else (None, None)
+
+
+def score_boons(spell):
+    """Zero or more of buff / self-buff / mark, keeping the best of each kind."""
+    desc = spell.get("description") or ""
+    is_attack = spell.get("type") == "Attack"
+    tgt = (spell.get("target") or spell.get("area") or "").lower()
+    tags = spell.get("tags", [])
+    dur = (spell.get("duration") or "").lower()
+
+    # Description-level fallback for clauses that just say "the roll".
+    doc_atk, doc_chal = bool(BOON_ATK.search(desc.lower())), bool(BOON_CHAL.search(desc.lower()))
+
+    best = {}
+    for clause, parent in clauses(desc):
+        c = clause.lower()
+        m = BOON_RX.search(c)
+        if not m or BOON_RESIST.search(c):
+            continue
+        if re.search(r"boons? or banes?", c):   # Randomness, Impose Predictability
+            continue
+
+        # Whose roll is it? Read the boon's own segment first; a segment that
+        # names no subject ("...and makes all Perception rolls with 2 boons")
+        # inherits the sentence that introduced one ("A creature that wears...").
+        subj = c
+        if not (BOON_SELF.search(c) or BOON_MARK.search(c)
+                or BOON_OTHER.search(c) or BOON_OTHER_WEAK.search(c)):
+            ctx = parent.lower()
+            if BOON_RESIST.search(ctx):
+                continue
+            subj = ctx
+
+        if BOON_SELF.search(subj):
+            kind = "self-buff"
+        elif BOON_MARK.search(subj):
+            kind = "mark"
+        elif BOON_OTHER.search(subj) or BOON_OTHER_WEAK.search(subj):
+            if is_attack and not BOON_GRANT.search(subj):
+                continue                        # the "other" is the enemy
+            kind = "buff"
+        elif not is_attack and "creature" in tgt:
+            kind = "buff"                       # unattributed boon on a touched ally
+        else:
+            continue
+
+        swing, expr = boon_count(m.group("n"))
+        if expr is None:
+            continue
+        atk, chal = bool(BOON_ATK.search(c)), bool(BOON_CHAL.search(c))
+        if not atk and not chal:
+            atk, chal = doc_atk, doc_chal
+
+        rec = {
+            "kind": kind,
+            "value": round(swing, 2) if swing is not None else None,
+            "unit": "boon-swing",
+            "expr": expr,
+            "flags": {
+                "atk": atk,
+                "chal": chal,
+                "multi": bool(tgt.startswith("any number")
+                              or re.search(r"up to |each |eight points", tgt)
+                              or spell.get("area")
+                              or "creatures you choose" in c
+                              or "chosen creatures" in c) if kind != "self-buff" else False,
+                "unlimited": tgt.startswith("any number"),
+                "concentration": "concentration" in dur or "concentration" in tags,
+                "area": "area" in tags,
+            },
+        }
+        prev = best.get(kind)
+        if prev is None or (rec["value"] or 0) > (prev["value"] or 0):
+            best[kind] = rec
+        elif prev["value"] == rec["value"]:     # same magnitude, wider coverage
+            prev["flags"]["atk"] |= rec["flags"]["atk"]
+            prev["flags"]["chal"] |= rec["flags"]["chal"]
+    return list(best.values())
+
+
 def score_spell(spell):
     # A spell can do several things; keep each measurable output.
     out = []
@@ -188,6 +368,7 @@ def score_spell(spell):
         r = fn(spell)
         if r:
             out.append(r)
+    out.extend(score_boons(spell))
     return out
 
 
@@ -243,7 +424,15 @@ def build(spells):
             "comparison": "percentile is within the spell's (kind, unit, rank) cohort — a "
                           "top-quartile rank-3 damage spell scores ~0.75. Compares like with like.",
             "units": "damage/health are expected points (d6=3.5, d3=2); healing-rate is a multiple "
-                     "of the caster's healing rate; %damage is reduction; temp-health is a buffer.",
+                     "of the caster's healing rate; %damage is reduction; temp-health is a buffer; "
+                     "boon-swing is the expected addition to a d20, E[max(n d6)] — 1 boon 3.50, "
+                     "2 boons 4.47, 3 boons 4.96.",
+            "boons": "buff = boons given to someone else, self-buff = boons on your own rolls, "
+                     "mark = the target grants boons to anyone attacking it. Breadth (multi, "
+                     "unlimited) and upkeep (concentration) are flags, not multipliers: one boon "
+                     "on five allies and one on yourself score the same swing, and only the reader "
+                     "knows the party size. Rank a support spell on swing AND flags, never swing "
+                     "alone, or Foretell's 3 boons on one ally will outrank Blessing's 1 on everyone.",
             "reliability": "Damage is the expected value assuming it lands. `auto` = no attack roll "
                            "(reliable); `area` = multi-target upside; `attack` = needs to hit. These "
                            "are flags, not folded into the number.",
@@ -258,7 +447,7 @@ def report(data):
         for sc in scores:
             by_kind[sc["kind"]] += 1
     print(f"{len(sp)} spells scored — " + ", ".join(f"{k}: {n}" for k, n in sorted(by_kind.items())))
-    for kind in ("damage", "heal", "mitigation"):
+    for kind in ("damage", "heal", "mitigation", "buff", "self-buff", "mark"):
         rows = [(k.split("|")[0], sc) for k, scores in sp.items() for sc in scores
                 if sc["kind"] == kind and sc["value"] is not None]
         rows.sort(key=lambda r: (r[1]["percentile"] or 0), reverse=True)
