@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "comment": "Hand-curated SotDL core rules data, verified against the rulebook text. Effects use the V2 choice-engine vocabulary; see docs for the schema.",
+  "version": "2.1.0",
+  "comment": "Hand-curated SotDL rules data, verified against the rulebook text. Effects use the V2 choice-engine vocabulary; see docs for the schema.",
 
   "castings": [
     [1],
@@ -52,7 +52,7 @@
   },
 
   "languages": [
-    "Common Tongue", "Dark Speech", "Dwarfish", "Elvish", "High Archaic", "Trollish", "Secret Language"
+    "Common Tongue", "Dark Speech", "Dwarfish", "Elvish", "High Archaic", "Molekin", "Naga", "Sylphen", "Trollish", "Yerath", "Secret Language"
   ],
 
   "professions": {
@@ -383,6 +383,221 @@
           "options": [
             { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
             { "label": "Dilate", "effects": [{ "type": "talent", "name": "Dilate", "text": "You can use an action to increase your Size to 1/2 until you use an action to return to normal. While dilated you lose Flutter, Naturally Invisible, and Glow, but gain +5 Strength, a Health bonus equal to 2 per group level, and your weapon attacks deal normal damage." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ferren",
+      "source": "dlc2",
+      "description": "Feline shapeshifters who have lived among humans for generations, hiding their nature by assuming the forms of ordinary cats.",
+      "creation": {
+        "attributes": { "strength": 9, "agility": 11, "intellect": 10, "will": 9 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue.",
+        "traits": [
+          { "name": "Shadowsight", "text": "You see in areas obscured by shadows as if those areas were lit." },
+          { "name": "Clawed Hands", "text": "In human form, your unarmed strikes deal 1d3 damage instead of 1 damage." },
+          { "name": "Cat Form", "text": "You can use an action to assume the form of a cat or return to your human form. You remain in the new form until you use this talent again. If you become incapacitated while in cat form, you automatically return to human form. Everything you wear and carry is absorbed and cannot be used until you return. In cat form, your Size becomes 1/4; Perception increases by 2; Defense becomes 12; Strength becomes 8 (–2); Agility becomes 12 (+2); Speed becomes 12; you gain the climber trait; your claws and teeth are finesse natural weapons that deal 1 damage; you make rolls to hide or sneak with 2 boons; and you are indistinguishable from an ordinary cat, although you can still talk." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 4 },
+        "choice": {
+          "name": "Level 4 Ferren Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Lynx Form", "effects": [{ "type": "talent", "name": "Lynx Form", "text": "When you would assume cat form, you can assume the form of a lynx instead. In lynx form, your Size becomes 1/2; Perception increases by 2; Defense becomes 13; Strength becomes 11 (+1); Agility becomes 13 (+3); Speed becomes 12; your claws and teeth are finesse natural weapons that deal 1d6 damage and attack with 1 boon; you make rolls to hide or sneak with 2 boons; and you are indistinguishable from an ordinary lynx, although you can still talk." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Hamadryad",
+      "source": "dlc2",
+      "description": "Ancient daughters of the World Mother who can flow between humanoid and tree forms to defend the natural world.",
+      "creation": {
+        "attributes": { "strength": 9, "agility": 10, "intellect": 9, "will": 11 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue and Elvish.",
+        "traits": [
+          { "name": "Shadowsight", "text": "You see in areas obscured by shadows as if those areas were lit." },
+          { "name": "Immune", "text": "Damage from disease; charmed, diseased." },
+          { "name": "Nature Stride", "text": "You ignore the effects of moving across difficult terrain caused by roots, undergrowth, and trees." },
+          { "name": "Vulnerable to Fire", "text": "You take double damage from fire." },
+          { "name": "Iron Vulnerability", "text": "You are impaired while you are in contact with iron." },
+          { "name": "Tree Form", "text": "If you are standing on an earthen or rocky surface, you can use an action to return to your true form, a Size 3 tree. Everything you wear and carry transforms with you. In this form, you are blinded and immobilized, though you can perceive your surroundings and the passage of time. You cannot be moved unless incapacitated, at which point you die. The only action you can take is to assume your humanoid form." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 4 },
+        "choice": {
+          "name": "Level 4 Hamadryad Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Deep Roots", "effects": [{ "type": "talent", "name": "Deep Roots", "text": "While standing on an earthen or rocky surface, you can use an action or a triggered action on your turn to root yourself. You become immobilized and cannot be moved by nonmagical means; your Defense becomes 15 if lower; and your weapon attacks deal 1d6 extra damage. The effect lasts until you become incapacitated or use an action or triggered action on your turn to end it." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Molekin",
+      "source": "dlc2",
+      "description": "Small subterranean delvers driven to the surface after monsters overran their ancient tunnels beneath the Firepeaks.",
+      "creation": {
+        "attributes": { "strength": 11, "agility": 9, "intellect": 10, "will": 10 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1/2",
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue and Molekin. You have the miner profession.",
+        "traits": [
+          { "name": "Darksight", "text": "You see in areas obscured by shadows and darkness within medium range as if those areas were lit. Beyond this distance, you treat darkness as shadows and shadows as lit." },
+          { "name": "Claws", "text": "Your unarmed strikes deal 1d3 damage instead of 1 damage." },
+          { "name": "Deep Sense", "text": "You cannot become lost while traveling underground." },
+          { "name": "Nearsighted", "text": "You make attack rolls against creatures beyond short range with 1 bane. You also make rolls involving anything you see beyond short range with 1 bane." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 5 },
+        "choice": {
+          "name": "Level 4 Molekin Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Burrower", "effects": [{ "type": "talent", "name": "Burrower", "text": "You can dig through earth or sand, moving at half Speed. You leave behind a tunnel large enough to accommodate a Size 1/4 or smaller creature." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Naga",
+      "source": "dlc2",
+      "description": "Serpentine refugees from a destroyed world who guard the Cosmic Egg and carry an innate gift for magic.",
+      "creation": {
+        "attributes": { "strength": 9, "agility": 10, "intellect": 10, "will": 11 },
+        "perception_bonus": 0,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 8,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue and Naga.",
+        "traits": [
+          { "name": "Venomous Bite", "text": "When you make an unarmed strike, you can attack with your fangs. A success against a living creature forces it to make a Strength challenge roll. On a failure, it becomes poisoned for 1 minute. At the end of each round while poisoned in this way, it must succeed on a Will challenge roll or gain 1 Insanity." }
+        ],
+        "effects": [
+          { "type": "discover_tradition", "count": 1 }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 4 },
+        "choice": {
+          "name": "Level 4 Naga Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Invoke the Cosmic Egg", "effects": [{ "type": "talent", "name": "Invoke the Cosmic Egg", "text": "You can use an action or a triggered action on your turn to invoke the Cosmic Egg for 1 minute. You impose 1 bane on attack rolls against you, make challenge rolls to resist attacks with 1 boon, recognize illusions, and see invisible creatures and objects within your vision. You can use this talent a number of times per day equal to 1 + your Power score and regain expended uses after a rest." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Sylph",
+      "source": "dlc2",
+      "description": "Soulless people shaped from wind and cloud who once served the genies as wardens of the skies.",
+      "creation": {
+        "attributes": { "strength": 8, "agility": 11, "intellect": 9, "will": 11 },
+        "perception_bonus": 1,
+        "defense": null,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak Sylphen.",
+        "traits": [
+          { "name": "Immune", "text": "Damage from disease or poison; diseased, poisoned." },
+          { "name": "Light as a Feather", "text": "You never take damage from landing after a fall." },
+          { "name": "Whirling Evasion", "text": "When you would take damage from a creature you can see, you can use a triggered action to take half the damage and move up to 1d3 yards without triggering a free attack. This movement ignores difficult terrain." },
+          { "name": "Dying Winds", "text": "When you die, your body becomes a screaming whirlwind and dissipates. Each creature within 1 yard must make a Strength challenge roll. On a failure, it takes damage equal to your healing rate, moves 1d6 yards away, and falls prone. On a success, it takes half the damage." }
+        ]
+      },
+      "level4": {
+        "characteristics": { "health": 4 },
+        "choice": {
+          "name": "Level 4 Sylph Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Zephyr Form", "effects": [{ "type": "talent", "name": "Zephyr Form", "text": "When not submerged in liquid, you can use an action or a triggered action on your turn to become a zephyr for as long as you concentrate, up to 1 hour. You are invisible, gain +6 Speed and the flier trait, cannot fall while flying, are immune to all damage, can pass through air-sized openings and occupied spaces, and treat liquids as solid. Moving through a creature of your Size or smaller forces it to make a Strength challenge roll or move 1d3 yards away and fall prone." }] }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Yerath",
+      "source": "dlc2",
+      "description": "Peace-seeking insect people from the Patchwork Lands whose bodies and duties are shaped by a rigid hive caste system.",
+      "creation": {
+        "attributes": { "strength": 9, "agility": 10, "intellect": 10, "will": 9 },
+        "perception_bonus": 0,
+        "defense": 12,
+        "health_bonus": 0,
+        "healing_divisor": 4,
+        "size": "1",
+        "speed": 10,
+        "power": 0,
+        "insanity": 0,
+        "corruption": 0,
+        "languages_professions": "You speak the Common Tongue and Yerath.",
+        "traits": [
+          { "name": "Extra Arms", "text": "Your second pair of arms is useful only for fine manipulation, carrying small lightweight objects, or minor activities. On your turn, you can use a triggered action to reload a weapon." },
+          { "name": "Flutter", "text": "You can use an action to unfurl your wings and move by flying at half Speed until the end of the round. While your wings are unfurled, you grant 1 boon on attack rolls against you." },
+          { "name": "Musk", "text": "You can use an action, or a triggered action when you take damage, to spray musk into a 1-yard cube you can reach. A creature there must succeed on a Strength challenge roll or become impaired for 1 round. You must wait 1 minute before using Musk again. The scent can communicate one concept to yerathi within 5 yards." }
+        ],
+        "effects": [
+          {
+            "type": "option_choice",
+            "name": "Yerath Caste",
+            "options": [
+              { "label": "Drone", "effects": [{ "type": "attributes", "strength": 2, "will": 1 }, { "type": "lang_prof", "text": "You add laborer to your list of professions.", "fixed": true }] },
+              { "label": "Scout", "effects": [{ "type": "attributes", "agility": 1 }, { "type": "characteristics", "perception": 1 }, { "type": "lang_prof", "text": "You add guide to your list of professions.", "fixed": true }] },
+              { "label": "Soldier", "effects": [{ "type": "attributes", "strength": 2 }, { "type": "set_defense", "value": 13 }, { "type": "lang_prof", "text": "You add soldier to your list of professions.", "fixed": true }] }
+            ]
+          }
+        ]
+      },
+      "level4": {
+        "characteristics": { "defense": 1, "health": 4 },
+        "choice": {
+          "name": "Level 4 Yerath Benefit",
+          "options": [
+            { "label": "Learn one spell", "effects": [{ "type": "learn_spell", "count": 1 }] },
+            { "label": "Swift Wings", "effects": [{ "type": "talent", "name": "Swift Wings", "text": "You can use a triggered action on your turn to use Flutter." }] }
           ]
         }
       }

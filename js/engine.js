@@ -198,7 +198,7 @@ export function compute(char) {
     provenance: { health: [], power: [], defense: [], speed: [], perception: [], corruption: [], insanity: [] },
     traits: (c.traits || []).map((t) => ({ ...t, source: ancestry.name, book: ancestry.source || "core" })),
     talents: [],
-    languagesProfessions: [{ text: c.languages_professions, source: ancestry.name }],
+    languagesProfessions: [{ text: c.languages_professions, source: ancestry.name, book: ancestry.source || "core" }],
     discovered: [],            // [{tradition, source, level}]
     spells: [],                // [{spell, source, level}]
     pending: [],               // pending decision descriptors
@@ -253,6 +253,20 @@ export function compute(char) {
         rollable: true, origin: ancestry.name, book: ancestry.source || "core", level: 0,
       });
     }
+  }
+
+  // A few ancestries have structured creation choices or magic grants that
+  // cannot be represented by their starting-stat fields alone (for example,
+  // Naga magic and Yerath caste). Replay them through the same decision
+  // engine as level benefits, but before any path talents can affect them.
+  if (c.effects?.length) {
+    applyEffects(out, char, c.effects, {
+      sourceKey: `creation[${ancestry.name}]`,
+      label: ancestry.name,
+      book: ancestry.source || "core",
+      level: 0,
+      hooks: [],
+    });
   }
 
   addHealthSource(out, `${ancestry.name}`, null, c.health_bonus || 0);
@@ -408,10 +422,18 @@ function applyEffects(out, char, effects, ctx) {
         }
         break;
       }
+      case "attributes": {
+        for (const attr of ATTRS) out.attributes[attr] += eff[attr] || 0;
+        break;
+      }
+      case "set_defense": {
+        out.defenseFixed = eff.value;
+        break;
+      }
       case "lang_prof": {
         const res = char.decisions[baseId];
         out.languagesProfessions.push({ text: eff.text, source: ctx.label, book: ctx.book, value: res?.text || null });
-        if (!res?.text) {
+        if (!eff.fixed && !res?.text) {
           out.pending.push({ id: baseId, kind: "lang_prof", title: "Languages & Professions", desc: eff.text, suggest: eff.suggest || [], origin: ctx.label, book: ctx.book, level: ctx.level });
         }
         break;
@@ -543,7 +565,7 @@ function resolveDiscoverSlot(out, char, id, eff, ctx, forced) {
       id, kind: "discover", title: "Discover a Tradition",
       constraint: eff.constraint || null, traditions: eff.traditions || null,
       excludeDark: !!eff.excludeDark,
-      origin: ctx.label, level: ctx.level,
+      origin: ctx.label, book: ctx.book, level: ctx.level,
     });
   }
 }
@@ -553,7 +575,7 @@ function resolveDiscoverSlot(out, char, id, eff, ctx, forced) {
 function resolveDiscovery(out, char, id, traditionName, eff, ctx) {
   const trad = rules.traditionByName.get(traditionName);
   if (!trad || out.discovered.some((d) => d.tradition === traditionName)) {
-    out.pending.push({ id, kind: "discover", title: "Discover a Tradition", constraint: eff.constraint || null, traditions: eff.traditions || null, origin: ctx.label, level: ctx.level, invalid: true });
+    out.pending.push({ id, kind: "discover", title: "Discover a Tradition", constraint: eff.constraint || null, traditions: eff.traditions || null, origin: ctx.label, book: ctx.book, level: ctx.level, invalid: true });
     return;
   }
   out.discovered.push({ tradition: traditionName, source: ctx.label, level: ctx.level });
@@ -577,7 +599,7 @@ function materializeRank0Pick(out, char, id, traditionName, ctx, title) {
   } else {
     out.pending.push({
       id, kind: "learn_spell", title, traditions: [traditionName], maxRank: 0,
-      origin: `${traditionName} discovery (${ctx.label})`, level: ctx.level,
+      origin: `${traditionName} discovery (${ctx.label})`, book: ctx.book, level: ctx.level,
     });
   }
 }
