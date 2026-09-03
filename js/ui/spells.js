@@ -8,7 +8,7 @@ import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
 import { statBlockHtml } from "./statblock.js";
 import { esc, gatedText, searchableText, rulesTables, tablesSearchText } from "./util.js";
-import { consentGranted } from "../consent.js";
+import { consentGranted, proseAllowed } from "../consent.js";
 
 // Lowercased text of a spell's captured tables, memoised — the search runs
 // this over the whole corpus on every keystroke. Memoised per consent state,
@@ -571,14 +571,25 @@ function enrichBlock(s) {
   </div>`;
 }
 
+// Requirement, target and area are sentences off the page, so they ride the
+// same gate as the description; duration is a parameter ("1 minute") and stays.
+// Withheld rows are dropped rather than each showing its own placeholder —
+// the card already carries one for the description.
+function metaRows(s) {
+  const rows = [];
+  if (proseAllowed(s.source)) {
+    if (s.requirement) rows.push(["Requirement", s.requirement]);
+    if (s.target) rows.push(["Target", s.target]);
+    if (s.area) rows.push(["Area", s.area]);
+  }
+  if (s.duration) rows.push(["Duration", s.duration]);
+  return rows;
+}
+
 export function spellCard(s, opts = {}) {
   const trad = rules.traditionByName.get(s.tradition);
   const attrClass = trad ? trad.attribute.toLowerCase() : "";
-  const meta = [];
-  if (s.requirement) meta.push(`<b>Requirement</b> ${esc(s.requirement)}`);
-  if (s.target) meta.push(`<b>Target</b> ${esc(s.target)}`);
-  if (s.area) meta.push(`<b>Area</b> ${esc(s.area)}`);
-  if (s.duration) meta.push(`<b>Duration</b> ${esc(s.duration)}`);
+  const meta = metaRows(s).map(([label, value]) => `<b>${esc(label)}</b> ${esc(value)}`);
   const castingsRow = opts.learned && opts.castings != null ? castingsPips(s, opts) : "";
   const attackBtn = s.attack
     ? `<button class="btn btn-small" data-cast-roll="${esc(s.name)}|${esc(s.tradition)}" title="Roll ${esc(s.attack.attribute)} attack${s.attack.damage ? `, then ${esc(s.attack.damage)} damage` : ""}">⚔ ${esc(s.attack.attribute)} roll</button>`
@@ -687,11 +698,7 @@ function lensStatic(s) {
 function spellModalHtml(s) {
   const trad = rules.traditionByName.get(s.tradition);
   const attrClass = trad ? trad.attribute.toLowerCase() : "";
-  const stats = [];
-  if (s.requirement) stats.push(["Requirement", s.requirement]);
-  if (s.target) stats.push(["Target", s.target]);
-  if (s.area) stats.push(["Area", s.area]);
-  if (s.duration) stats.push(["Duration", s.duration]);
+  const stats = metaRows(s);
   if (s.attack) {
     const a = s.attack;
     stats.push(["Attack", `${a.attribute} vs ${a.against}${a.damage ? ` · ${a.damage} damage` : ""}`]);

@@ -63,3 +63,19 @@ test("catalog entry text is gated", async () => {
   assert.ok(src.includes("gatedText(e.text, book)"), "catalog entries should be gated");
   assert.ok(!/esc\(\s*e\.text\s*\)/.test(src), "catalog entries should not be escaped raw");
 });
+
+// Area, target and requirement read as sentences lifted from the page
+// ("A shapeable line, 5 yards long, … that originates from a point within
+// short range"), not as numbers, so they belong behind the gate with the
+// description. Duration ("1 minute") genuinely is a parameter and stays open.
+test("a spell's sentence-shaped metadata is not rendered raw", async () => {
+  const src = await readFile(new URL("spells.js", UI_DIR), "utf8");
+  const offenders = [];
+  for (const field of ["area", "target", "requirement"]) {
+    for (const m of src.matchAll(new RegExp(`esc\\(\\s*s\\.${field}\\s*\\)`, "g"))) offenders.push(m[0]);
+    if (src.includes(`stats.push(["${field[0].toUpperCase()}${field.slice(1)}", s.${field}])`)) {
+      offenders.push(`stats.push raw s.${field}`);
+    }
+  }
+  assert.deepEqual(offenders, [], `gate these:\n${offenders.join("\n")}`);
+});
