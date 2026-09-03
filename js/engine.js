@@ -100,13 +100,13 @@ function levelPlan(char) {
   // resolutions instead of corrupting or destroying them; switching back
   // restores them intact.
   const pathLevel = (p, lvl, kind) =>
-    p ? { key: `${kind}[${p.name}]`, label: `${p.name} (Level ${lvl})`, effects: effectsFromParsedLevel(p.levels[lvl] || {}) } : null;
+    p ? { key: `${kind}[${p.name}]`, label: `${p.name} (Level ${lvl})`, book: p.source || "core", effects: effectsFromParsedLevel(p.levels[lvl] || {}) } : null;
 
   for (let lvl = 1; lvl <= char.level; lvl++) {
     let src = null;
     switch (lvl) {
       case 1: case 2: case 5: case 8: {
-        if (novice) src = { key: `novice[${novice.name}]`, label: `${novice.name} (Level ${lvl})`, effects: (novice.levels[lvl] || { effects: [] }).effects };
+        if (novice) src = { key: `novice[${novice.name}]`, label: `${novice.name} (Level ${lvl})`, book: novice.source || "core", effects: (novice.levels[lvl] || { effects: [] }).effects };
         else src = { key: "novice", label: "Novice path not chosen", effects: [], missing: "novice" };
         break;
       }
@@ -115,10 +115,12 @@ function levelPlan(char) {
           // Level 9: choose which expert path's level 9 benefits you gain.
           src = {
             key: `expert9choice[${expert.name}|${second.name}]`, label: "Second Expert Path (Level 9)",
+            book: expert.source || "core",
             effects: [{
               type: "option_choice", name: "Level 9 Benefits From Which Path?",
               options: [expert, second].map((p) => ({
                 label: p.name,
+                book: p.source || "core",
                 effects: effectsFromParsedLevel(p.levels["9"] || {}),
               })),
             }],
@@ -138,13 +140,13 @@ function levelPlan(char) {
             effects.push({ type: "characteristics", ...l4.characteristics });
           }
           if (l4.choice) effects.push({ type: "option_choice", ...l4.choice });
-          src = { key: `ancestry4[${ancestry.name}]`, label: `${ancestry.name} (Level 4)`, effects };
+          src = { key: `ancestry4[${ancestry.name}]`, label: `${ancestry.name} (Level 4)`, book: ancestry.source || "core", effects };
         }
         break;
       }
       case 7: {
         if (useSecond) {
-          if (second) src = { key: `second[${second.name}]`, label: `${second.name} (2nd Expert, Level 3 benefits)`, effects: effectsFromParsedLevel(second.levels["3"] || {}) };
+          if (second) src = { key: `second[${second.name}]`, label: `${second.name} (2nd Expert, Level 3 benefits)`, book: second.source || "core", effects: effectsFromParsedLevel(second.levels["3"] || {}) };
           else src = { key: "second", label: "Second expert path not chosen", effects: [], missing: "second" };
         } else if (master) {
           src = pathLevel(master, 7, "master");
@@ -155,7 +157,7 @@ function levelPlan(char) {
       }
       case 10: {
         if (useSecond) {
-          if (second) src = { key: `second[${second.name}]`, label: `${second.name} (2nd Expert, Level 6 benefits)`, effects: effectsFromParsedLevel(second.levels["6"] || {}) };
+          if (second) src = { key: `second[${second.name}]`, label: `${second.name} (2nd Expert, Level 6 benefits)`, book: second.source || "core", effects: effectsFromParsedLevel(second.levels["6"] || {}) };
         } else if (master) {
           src = pathLevel(master, 10, "master");
         } else {
@@ -233,7 +235,7 @@ export function compute(char) {
         id: slotId, kind: "lang_prof", title: `Starting Profession (${pick + 1} of 2)`,
         desc: "You begin with two professions — choose any you like, or roll. You can trade a profession out to speak another language, or to read a language you already speak.",
         suggest: ["academic", "common", "criminal", "martial", "religious", "wilderness"],
-        rollable: true, origin: "Background", level: 0,
+        rollable: true, origin: "Background", book: "core", level: 0,
       });
     }
   }
@@ -248,7 +250,7 @@ export function compute(char) {
       out.pending.push({
         id: slotId, kind: "lang_prof", title: "Ancestry Language or Profession",
         desc: c.languages_professions, suggest: ["academic", "common", "criminal", "martial", "religious", "wilderness"],
-        rollable: true, origin: ancestry.name, level: 0,
+        rollable: true, origin: ancestry.name, book: ancestry.source || "core", level: 0,
       });
     }
   }
@@ -262,7 +264,7 @@ export function compute(char) {
   for (const { level, source } of plan) {
     if (!source) continue;
     for (const eff of source.effects) {
-      if (eff.type === "hook_cantrip") hooks.push({ level, name: eff.name, text: eff.text });
+      if (eff.type === "hook_cantrip") hooks.push({ level, name: eff.name, text: eff.text, book: source.book || "core" });
     }
   }
 
@@ -273,7 +275,7 @@ export function compute(char) {
       out.pending.push({ id: `choose-path:${source.missing}:${level}`, kind: "choose_path", level, which: source.missing, title: pathChoiceTitle(source.missing), origin: `Level ${level}` });
       continue;
     }
-    applyEffects(out, char, source.effects, { sourceKey: `${source.key}`, label: source.label, level, hooks });
+    applyEffects(out, char, source.effects, { sourceKey: `${source.key}`, label: source.label, book: source.book || "core", level, hooks });
   }
 
   // --- derived stats
@@ -408,18 +410,18 @@ function applyEffects(out, char, effects, ctx) {
       }
       case "lang_prof": {
         const res = char.decisions[baseId];
-        out.languagesProfessions.push({ text: eff.text, source: ctx.label, value: res?.text || null });
+        out.languagesProfessions.push({ text: eff.text, source: ctx.label, book: ctx.book, value: res?.text || null });
         if (!res?.text) {
-          out.pending.push({ id: baseId, kind: "lang_prof", title: "Languages & Professions", desc: eff.text, suggest: eff.suggest || [], origin: ctx.label, level: ctx.level });
+          out.pending.push({ id: baseId, kind: "lang_prof", title: "Languages & Professions", desc: eff.text, suggest: eff.suggest || [], origin: ctx.label, book: ctx.book, level: ctx.level });
         }
         break;
       }
       case "talent": {
-        out.talents.push({ name: eff.name, text: eff.text, source: ctx.label, level: ctx.level });
+        out.talents.push({ name: eff.name, text: eff.text, source: ctx.label, book: ctx.book, level: ctx.level });
         break;
       }
       case "note": {
-        out.notes.push({ text: `${ctx.label}: ${eff.text}`, level: ctx.level });
+        out.notes.push({ text: `${ctx.label}: ${eff.text}`, book: ctx.book, level: ctx.level });
         break;
       }
       case "grant_spell": {
@@ -480,12 +482,12 @@ function applyEffects(out, char, effects, ctx) {
           const talent = pool.find((t) => t.name === res.talent);
           if (talent) {
             const prior = countPriorPicks(char, out, baseId, res.talent);
-            out.talents.push({ name: `${talent.name}${prior > 0 ? " (2nd)" : ""}`, text: talent.text, source: ctx.label, level: ctx.level });
+            out.talents.push({ name: `${talent.name}${prior > 0 ? " (2nd)" : ""}`, text: talent.text, source: ctx.label, book: "core", level: ctx.level });
             const effectsToApply = prior > 0 ? talent.second_pick_effects || [] : talent.effects || [];
             applyEffects(out, char, effectsToApply, { ...ctx, sourceKey: `${ctx.sourceKey}-rt${effIdx}`, label: `${talent.name} (${ctx.label})` });
           }
         } else {
-          out.pending.push({ id: baseId, kind: "talent_choice", title: "Choose a Roguery Talent", pool: pool.map((t) => ({ name: t.name, text: t.text })), origin: ctx.label, level: ctx.level });
+          out.pending.push({ id: baseId, kind: "talent_choice", title: "Choose a Roguery Talent", pool: pool.map((t) => ({ name: t.name, text: t.text, book: "core" })), origin: ctx.label, book: "core", level: ctx.level });
         }
         break;
       }
@@ -493,15 +495,15 @@ function applyEffects(out, char, effects, ctx) {
         const res = char.decisions[baseId];
         if (res?.option != null && eff.options[res.option]) {
           const opt = eff.options[res.option];
-          out.notes.push({ text: `${eff.name}: chose “${opt.label}”.`, level: ctx.level });
-          applyEffects(out, char, opt.effects, { ...ctx, sourceKey: `${ctx.sourceKey}-opt${effIdx}` });
+          out.notes.push({ text: `${eff.name}: chose “${opt.label}”.`, book: opt.book || ctx.book, level: ctx.level });
+          applyEffects(out, char, opt.effects, { ...ctx, sourceKey: `${ctx.sourceKey}-opt${effIdx}`, book: opt.book || ctx.book });
         } else {
-          out.pending.push({ id: baseId, kind: "option_choice", title: eff.name, options: eff.options.map((o) => o.label), origin: ctx.label, level: ctx.level });
+          out.pending.push({ id: baseId, kind: "option_choice", title: eff.name, options: eff.options.map((o) => o.label), origin: ctx.label, book: ctx.book, level: ctx.level });
         }
         break;
       }
       case "hook_cantrip": {
-        out.talents.push({ name: eff.name, text: eff.text, source: ctx.label, level: ctx.level });
+        out.talents.push({ name: eff.name, text: eff.text, source: ctx.label, book: ctx.book, level: ctx.level });
         break;
       }
     }

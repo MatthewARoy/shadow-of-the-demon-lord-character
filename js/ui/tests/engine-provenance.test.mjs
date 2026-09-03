@@ -1,0 +1,56 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+
+// data.js fetches over HTTP in the browser; shim it onto the filesystem the
+// same way scripts/build_samples.mjs does.
+globalThis.fetch = async (path) => {
+  const text = await readFile(new URL("../../../" + path, import.meta.url), "utf8");
+  return { ok: true, json: async () => JSON.parse(text) };
+};
+
+const { loadRules } = await import("../../data.js");
+const { compute, newCharacter } = await import("../../engine.js");
+await loadRules();
+
+// The consent gate is a render-time decision, so every piece of prose the
+// engine emits has to carry the book it came from. Without this the sheet
+// cannot tell an Occult Philosophy talent from a core one.
+function build(expertPath) {
+  const c = newCharacter("Provenance Probe");
+  c.level = 3;
+  c.novicePath = "Magician";
+  c.expertPath = expertPath;
+  return compute(c);
+}
+
+test("talents emitted from a supplement path carry that book", () => {
+  const out = build("Ascendant");           // Occult Philosophy expert path
+  const talents = out.talents.filter((t) => t.text);
+  assert.ok(talents.length > 0, "expected the path to contribute talents");
+  assert.ok(
+    talents.some((t) => t.book === "occult"),
+    `no talent carried book "occult"; saw ${JSON.stringify(talents.map((t) => t.book))}`
+  );
+});
+
+test("every emitted talent carries some book tag", () => {
+  const out = build("Ascendant");
+  for (const t of out.talents.filter((t) => t.text)) {
+    assert.ok(typeof t.book === "string" && t.book, `talent ${t.name} has no book tag`);
+  }
+});
+
+test("pending decisions carrying prose carry their book too", () => {
+  const out = build("Ascendant");
+  for (const p of out.pending.filter((p) => p.desc || (p.pool || []).some((x) => x.text))) {
+    assert.ok(typeof p.book === "string" && p.book, `pending ${p.id} has no book tag`);
+  }
+});
+
+test("notes emitted from path effects carry their book", () => {
+  const out = build("Ascendant");
+  for (const n of out.notes.filter((n) => n.text)) {
+    assert.ok(typeof n.book === "string" && n.book, `note "${n.text.slice(0, 30)}" has no book tag`);
+  }
+});
