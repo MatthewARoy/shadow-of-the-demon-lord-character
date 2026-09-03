@@ -244,6 +244,25 @@ PATH_SIDEBAR_TITLE = re.compile(r"^[A-Z][\w’'\-]*( [A-Z][\w’'\-]*){1,3}$")
 SPELL_NAME = re.compile(r"^[A-Z][A-Z0-9’'\-, ]*$")
 SPELL_HEADER = re.compile(r"^[A-Z][A-Z’'\- ]*?\s+(ATTACK|UTILITY)\s+\d+\s*$")
 
+# Companion, construct, and alternate-form statistics printed inside path
+# level blocks have no DIFFICULTY line. They are identified by an all-caps
+# name followed by Size, then parsed into the same shape as creature records
+# so the shared renderer can display them.
+PATH_STAT_SECTIONS = {
+    "ATTACK OPTIONS": "attack_options",
+    "SPECIAL ATTACKS": "special_attacks",
+    "SPECIAL ACTIONS": "special_actions",
+    "END OF THE ROUND": "end_of_round",
+    "MAGIC": "magic",
+}
+
+# The eidolon's attack block is followed by another Engineer talent with no
+# printed delimiter. Stat-block actions and path talents share the same prose
+# shape, so this one boundary is declared rather than guessed.
+PATH_STAT_END_TALENTS = {
+    ("Engineer", 7, "Eidolon"): "Spare Parts",
+}
+
 # The one path sidebar whose contents belong to the block that opened it:
 # core prints the fighter's level-9 talent list under "Fighter Talents".
 # Stopping there costs seven real talents, so it is not a boundary.
@@ -491,7 +510,140 @@ def next_content(lines, j, end):
     return j
 
 
-def parse_block(lines, start, end, book, path_name=""):
+def path_stat_name(line):
+    """Display case for an all-caps embedded stat-block name."""
+    small = {"a", "an", "and", "of", "or", "the"}
+    words = line.strip().lower().split()
+    return " ".join(w if i and w in small else w.capitalize()
+                    for i, w in enumerate(words))
+
+
+def is_path_stat_start(block_lines, i):
+    """An all-caps name whose next content line is Size."""
+    line = block_lines[i][1]
+    if line in PATH_STAT_SECTIONS or not SPELL_NAME.match(line):
+        return False
+    i += 1
+    while i < len(block_lines) and not block_lines[i][1]:
+        i += 1
+    return i < len(block_lines) and block_lines[i][1].startswith("Size ")
+
+
+def stat_item_start(line):
+    """True when a wrapped stat-block item begins on this line."""
+    if TALENT_START.match(line):
+        return True
+    return re.match(
+        r"^[A-Z][\w’'\-]*(?: [A-Z][\w’'\-]*){0,4} \(", line
+    ) is not None
+
+
+def append_stat_item(items, line):
+    if not items or stat_item_start(line):
+        items.append(line)
+    else:
+        items[-1] += " " + line
+
+
+def parse_path_stat_block(block_lines, start, end, lines, book):
+    """Parse one NAME + Size embedded block into creature-shaped data."""
+    name = path_stat_name(block_lines[start][1])
+    page = lines[block_lines[start][0]][0]
+    block = OrderedDict(
+        name=name,
+        book=book,
+        page=page,
+        descriptor=None,
+        perception=None,
+        defense_line=None,
+        attributes=None,
+        speed=None,
+        traits=[],
+        attack_options=[],
+        special_attacks=[],
+        special_actions=[],
+        end_of_round=[],
+        magic=[],
+    )
+    section = None
+    items = block["traits"]
+    for _, line in block_lines[start + 1:end]:
+        if not line:
+            continue
+        if line in PATH_STAT_SECTIONS:
+            section = PATH_STAT_SECTIONS[line]
+            items = block[section]
+            continue
+        if section is None:
+            if line.startswith("Size "):
+                block["descriptor"] = line[5:]
+            elif line.startswith("Perception "):
+                block["perception"] = line[11:]
+            elif line.startswith("Defense "):
+                block["defense_line"] = line
+            elif line.startswith("Strength "):
+                block["attributes"] = line
+            elif line.startswith("Speed "):
+                block["speed"] = line[6:]
+                section = "traits"
+                items = block["traits"]
+            continue
+        append_stat_item(items, line)
+    return block
+
+
+def extract_path_stat_blocks(block_lines, lines, book, path_name, level):
+    """Remove embedded stat-block spans and return their structured records."""
+    removed = set()
+    blocks = []
+    i = 0
+    while i < len(block_lines):
+        if not is_path_stat_start(block_lines, i):
+            i += 1
+            continue
+        name = path_stat_name(block_lines[i][1])
+        stop_talent = PATH_STAT_END_TALENTS.get((path_name, level, name))
+        j = i + 1
+        while j < len(block_lines):
+            if is_path_stat_start(block_lines, j):
+                break
+            if stop_talent and block_lines[j][1].startswith(stop_talent + " "):
+                break
+            j += 1
+        blocks.append(parse_path_stat_block(block_lines, i, j, lines, book))
+        removed.update(range(i, j))
+        i = j
+    clean = [entry for k, entry in enumerate(block_lines) if k not in removed]
+    return clean, blocks
+
+
+def attach_path_stat_blocks(talents, blocks, path_name, level):
+    """Attach each block to the talent that names or describes granting it."""
+    for block in blocks:
+        target = block["name"].lower()
+        scored = []
+        for i, talent in enumerate(talents):
+            talent_name = talent["name"].lower()
+            text = talent["text"].lower()
+            if talent_name == target:
+                score = 3
+            elif target in talent_name:
+                score = 2
+            elif target in text:
+                score = 1
+            else:
+                score = 0
+            if score:
+                scored.append((score, -i, talent))
+        if not scored:
+            raise ValueError(
+                f"{path_name} L{level}: no granting talent found for {block['name']}"
+            )
+        owner = max(scored, key=lambda candidate: candidate[:2])[2]
+        owner.setdefault("stat_blocks", []).append(block)
+
+
+def parse_block(lines, start, end, book, path_name="", level=None):
     """Split a level block into labelled fields and talents."""
     fields = {}
     talents = []
@@ -508,6 +660,9 @@ def parse_block(lines, start, end, book, path_name=""):
     ]
     if book == "terrible":
         block_lines = drop_clipped_duplicates(block_lines)
+    block_lines, stat_blocks = extract_path_stat_blocks(
+        block_lines, lines, book, path_name, level
+    )
     # A caption sits on the line above its table ("Building Blocks"); it is
     # held here until the table below it is captured, rather than joining the
     # talent's prose the way "Building Blocks Spell Rank Blocks 5+" used to.
@@ -616,6 +771,7 @@ def parse_block(lines, start, end, book, path_name=""):
         if m:
             fields["Characteristics"] = fields["Attributes"][m.start() :]
             fields["Attributes"] = fields["Attributes"][: m.start()].strip()
+    attach_path_stat_blocks(talents, stat_blocks, path_name, level)
     return fields, talents
 
 
@@ -875,7 +1031,7 @@ def parse_book(book):
     paths = OrderedDict()
     for h_idx, (i, level, name) in enumerate(headers):
         end = block_end(lines, i, headers, h_idx, path_names, book)
-        fields, talents = parse_block(lines, i, end, book, name)
+        fields, talents = parse_block(lines, i, end, book, name, level)
         key = name.lower()
         if key not in paths:
             paths[key] = OrderedDict(

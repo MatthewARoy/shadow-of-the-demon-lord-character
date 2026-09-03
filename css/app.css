@@ -462,6 +462,12 @@ dl.kv dd { margin: 0; }
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
   overflow: hidden; cursor: pointer;
 }
+.path-statblock { margin-top: 6px; }
+.path-statblock > summary {
+  cursor: pointer; color: var(--bronze-bright); font-family: var(--caps);
+  font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+}
+.path-statblock > summary:hover { color: var(--text); }
 .path-focus { margin: -2px 0 2px; }
 /* Option catalogue (wardscribe sigils, lorekeeper discoveries) — printed once
    for the whole path, so it sits below the level blocks rather than inside
