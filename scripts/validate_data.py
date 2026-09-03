@@ -27,6 +27,8 @@ EXPECTED_SPELLS_BY_SOURCE = {"core": 331, "occult": 762, "terrible": 28,
 EXPECTED_SPELL_COUNT = sum(EXPECTED_SPELLS_BY_SOURCE.values())  # 1165
 EXPECTED_PATH_COUNT = 177
 EXPECTED_TRADITION_COUNT = 42
+EXPECTED_ANCESTRIES_BY_SOURCE = {"core": 6, "terrible": 3, "dlc2": 6}
+EXPECTED_ANCESTRY_COUNT = sum(EXPECTED_ANCESTRIES_BY_SOURCE.values())
 
 # Character slot IDs resolve positionally into these files, so an exported
 # character is only exactly replayable against the same snapshot of them.
@@ -127,6 +129,34 @@ def check_paths(paths, spells):
                          f"{grant!r} not found in spells.json")
 
 
+def check_curated(curated):
+    ancestries = curated.get("ancestries") or []
+    if len(ancestries) != EXPECTED_ANCESTRY_COUNT:
+        fail(f"curated.json: expected {EXPECTED_ANCESTRY_COUNT} ancestries, "
+             f"got {len(ancestries)}")
+    names = [a.get("name") for a in ancestries]
+    dupes = {name for name in names if names.count(name) > 1}
+    if dupes:
+        fail(f"curated.json: duplicate ancestry names: {sorted(dupes)}")
+    by_source = {}
+    for ancestry in ancestries:
+        name = ancestry.get("name") or "<unnamed>"
+        source = ancestry.get("source")
+        by_source[source] = by_source.get(source, 0) + 1
+        creation = ancestry.get("creation") or {}
+        for field in ("attributes", "size", "speed", "languages_professions", "traits"):
+            if field not in creation:
+                fail(f"curated.json: {name}: creation missing {field!r}")
+        if set(creation.get("attributes") or {}) != {"strength", "agility", "intellect", "will"}:
+            fail(f"curated.json: {name}: incomplete starting attributes")
+        if not ancestry.get("level4"):
+            fail(f"curated.json: {name}: missing level 4 benefits")
+    for source, want in EXPECTED_ANCESTRIES_BY_SOURCE.items():
+        if by_source.get(source, 0) != want:
+            fail(f"curated.json: expected {want} {source} ancestries, "
+                 f"got {by_source.get(source, 0)}")
+
+
 def check_scores(scores, spell_keys):
     for key in scores.get("spells", {}):
         if key not in spell_keys:
@@ -172,6 +202,8 @@ def check_tag_sidecar(taxonomy, spells):
 
 def main():
     check_revision()
+    curated = load("curated.json")
+    check_curated(curated)
     spells = load("spells.json")
     spell_keys = check_spells(spells)
     check_traditions(load("traditions.json"), spells)
@@ -188,7 +220,8 @@ def main():
         sys.exit(1)
     print(f"✓ data OK — {len(spells)} spells "
           f"({', '.join(f'{v} {k}' for k, v in EXPECTED_SPELLS_BY_SOURCE.items())}), "
-          f"{EXPECTED_PATH_COUNT} paths, {EXPECTED_TRADITION_COUNT} traditions; "
+          f"{EXPECTED_PATH_COUNT} paths, {EXPECTED_TRADITION_COUNT} traditions, "
+          f"{EXPECTED_ANCESTRY_COUNT} ancestries; "
           "scores/enrichment/combos/grants all resolve")
 
 
