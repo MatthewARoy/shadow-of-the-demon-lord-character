@@ -1,9 +1,20 @@
 import os
 import sys
+import json
+import tempfile
 import unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from scan_parse_quality import SIGNATURES, key, scan_records
+from scan_parse_quality import (
+    SIGNATURES,
+    key,
+    load_baseline,
+    reviewed_keys,
+    scan_records,
+    update_baseline_entries,
+)
+
+BLED_TEXT = "It ends here. Conjuration Spells"
 
 
 class TestSignatures(unittest.TestCase):
@@ -80,25 +91,80 @@ class TestScanRecords(unittest.TestCase):
 
 
 class TestBaselineKey(unittest.TestCase):
-    BLED = "It ends here. Conjuration Spells"
-
     def test_key_is_stable_when_records_are_reordered(self):
         """A parser change that adds or removes records must not invalidate
         the baseline for hits whose content is unchanged."""
-        before = scan_records("spells.json", [{"d": self.BLED}])
+        before = scan_records("spells.json", [{"d": BLED_TEXT}])
         after = scan_records("spells.json",
                              [{"d": "filler that matches nothing at all"},
-                              {"d": self.BLED}])
+                              {"d": BLED_TEXT}])
         self.assertEqual(key(before[0]), key(after[-1]))
 
     def test_key_changes_when_content_changes(self):
-        a = scan_records("spells.json", [{"d": self.BLED}])
+        a = scan_records("spells.json", [{"d": BLED_TEXT}])
         b = scan_records("spells.json", [{"d": "Something else. Nature Spells"}])
         self.assertNotEqual(key(a[0]), key(b[0]))
 
+
+class TestBaselineMetadata(unittest.TestCase):
+    def write_baseline(self, payload):
+        tmp = tempfile.NamedTemporaryFile(mode="w", delete=False)
+        json.dump(payload, tmp)
+        tmp.close()
+        self.addCleanup(lambda: os.unlink(tmp.name))
+        return tmp.name
+
+    def test_only_reviewed_reasons_suppress_a_hit(self):
+        path = self.write_baseline({"accepted": [
+            {"key": "false", "reason": "false-positive", "note": "prose"},
+            {"key": "defect", "reason": "known-defect", "issue": 35,
+             "note": "tracked"},
+            {"key": "new", "reason": "unreviewed", "note": "triage me"},
+        ]})
+        self.assertEqual(reviewed_keys(load_baseline(path)), {"false", "defect"})
+
+    def test_update_preserves_review_metadata_and_marks_new_hits_unreviewed(self):
+        old_hit = scan_records("spells.json", [{"d": BLED_TEXT}])[0]
+        new_hit = scan_records(
+            "paths.json", [{"d": "Something else. Nature Spells"}]
+        )[0]
+        old_key = key(old_hit)
+        existing = {
+            old_key: {
+                "key": old_key,
+                "reason": "false-positive",
+                "note": "Reviewed ordinary prose.",
+            }
+        }
+
+        updated = update_baseline_entries([new_hit, old_hit], existing)
+        by_key = {entry["key"]: entry for entry in updated}
+
+        self.assertEqual(by_key[old_key], existing[old_key])
+        self.assertEqual(by_key[key(new_hit)]["reason"], "unreviewed")
+        self.assertIn("requires triage", by_key[key(new_hit)]["note"])
+
+    def test_update_deduplicates_identical_content_hits(self):
+        hit = scan_records("spells.json", [{"d": BLED_TEXT}])[0]
+        updated = update_baseline_entries([hit, hit], {})
+        self.assertEqual(len(updated), 1)
+
+    def test_known_defect_requires_issue(self):
+        path = self.write_baseline({"accepted": [{
+            "key": "defect", "reason": "known-defect", "note": "tracked"
+        }]})
+        with self.assertRaisesRegex(ValueError, "needs a positive issue"):
+            load_baseline(path)
+
+    def test_legacy_flat_entries_fail_closed(self):
+        path = self.write_baseline({"accepted": ["legacy"]})
+        entries = load_baseline(path)
+        self.assertEqual(entries["legacy"]["reason"], "unreviewed")
+        self.assertEqual(reviewed_keys(entries), set())
+
     def test_key_separates_files_and_signatures(self):
-        a = scan_records("spells.json", [{"d": self.BLED}])
-        b = scan_records("paths.json", [{"d": self.BLED}])
+        a = scan_records("spells.json", [{"d": BLED_TEXT}])
+        b = scan_records("paths.json", [{"d": BLED_TEXT}])
         self.assertNotEqual(key(a[0]), key(b[0]))
 
 

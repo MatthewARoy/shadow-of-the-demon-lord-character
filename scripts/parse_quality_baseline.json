@@ -1,16 +1,66 @@
 {
  "accepted": [
-  "curated.json|bleed|d26361e27913",
-  "rules-index.json|bleed|2bc7fce04196",
-  "rules-index.json|bleed|34c24d67c605",
-  "rules-index.json|bleed|66ee25cb8c93",
-  "rules-index.json|bleed|84d75e5fa90e",
-  "rules-index.json|bleed|8e5ad53ed32c",
-  "rules-index.json|bleed|d0151b251898",
-  "rules-index.json|dice_table|1e35afe2501e",
-  "rules-index.json|dice_table|43a8501b1b9b",
-  "rules-index.json|dice_table|5e0ac07fcd2d",
-  "rules-index.json|dice_table|b57c8223bdfe",
-  "traditions.json|bleed|68cd5831cb71"
+  {
+   "key": "curated.json|bleed|d26361e27913",
+   "reason": "false-positive",
+   "note": "Hand-written second-path rule uses 'expert paths' as ordinary prose."
+  },
+  {
+   "key": "rules-index.json|bleed|2bc7fce04196",
+   "reason": "false-positive",
+   "note": "Occult Philosophy introduction legitimately cross-references its Spell Index."
+  },
+  {
+   "key": "rules-index.json|bleed|34c24d67c605",
+   "reason": "false-positive",
+   "note": "Story Development is the title of a legitimate rules-index section."
+  },
+  {
+   "key": "rules-index.json|bleed|66ee25cb8c93",
+   "reason": "false-positive",
+   "note": "Advancement prose legitimately says 'playing the game'."
+  },
+  {
+   "key": "rules-index.json|bleed|84d75e5fa90e",
+   "reason": "false-positive",
+   "note": "Occult Philosophy introduction legitimately names Shadow of the Demon Lord and Terrible Beauty."
+  },
+  {
+   "key": "rules-index.json|bleed|8e5ad53ed32c",
+   "reason": "false-positive",
+   "note": "Profession prose legitimately says 'during character creation'."
+  },
+  {
+   "key": "rules-index.json|bleed|d0151b251898",
+   "reason": "false-positive",
+   "note": "Level-selection prose legitimately says 'playing the game'."
+  },
+  {
+   "key": "rules-index.json|dice_table|1e35afe2501e",
+   "reason": "false-positive",
+   "note": "Boons and banes rules necessarily repeat d20 and d6 notation."
+  },
+  {
+   "key": "rules-index.json|dice_table|43a8501b1b9b",
+   "reason": "known-defect",
+   "note": "Interesting Things table outcomes are flattened into a prose chunk.",
+   "issue": 35
+  },
+  {
+   "key": "rules-index.json|dice_table|5e0ac07fcd2d",
+   "reason": "known-defect",
+   "note": "Interesting Things introduction retains the next table caption.",
+   "issue": 35
+  },
+  {
+   "key": "rules-index.json|dice_table|b57c8223bdfe",
+   "reason": "false-positive",
+   "note": "Example-play dialogue legitimately repeats d20 rolls."
+  },
+  {
+   "key": "traditions.json|bleed|68cd5831cb71",
+   "reason": "false-positive",
+   "note": "Necromancy guidance legitimately references Blood Magic, Creating Undead, and the Spell Index."
+  }
  ]
 }

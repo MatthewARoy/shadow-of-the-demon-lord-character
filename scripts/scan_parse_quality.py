@@ -9,9 +9,10 @@ defect that was MISSED was missed because the scan only looked for
 signatures already known. This script exists so that failure mode stops
 recurring.
 
-Signatures are tuned for recall; false positives are expected and absorbed
-by scripts/parse_quality_baseline.json. The gate fails only on hits that are
-not in that baseline.
+Signatures are tuned for recall; false positives are expected and reviewed in
+scripts/parse_quality_baseline.json. Reviewed false positives and tracked
+known defects do not fail the gate. Unreviewed entries do: updating the
+baseline records new hits, but cannot silently approve them.
 """
 import hashlib
 import json
@@ -22,6 +23,8 @@ import sys
 HERE = os.path.dirname(__file__)
 DATA = os.path.join(HERE, "..", "data")
 BASELINE = os.path.join(HERE, "parse_quality_baseline.json")
+REVIEWED_REASONS = {"false-positive", "known-defect"}
+VALID_REASONS = REVIEWED_REASONS | {"unreviewed"}
 
 FILES = [
     "rules-index.json", "spells.json", "paths.json",
@@ -128,30 +131,108 @@ def key(hit):
     return f"{hit['file']}|{hit['signature']}|{digest}"
 
 
+def load_baseline(path=BASELINE):
+    """Load and validate baseline metadata, keyed by content identity.
+
+    String entries from the original schema are deliberately treated as
+    unreviewed. This keeps the migration fail-closed: an old flat allowlist
+    cannot accidentally regain approved status merely by being loaded.
+    """
+    if not os.path.exists(path):
+        return {}
+    with open(path) as f:
+        raw = json.load(f)
+    if not isinstance(raw, dict) or not isinstance(raw.get("accepted"), list):
+        raise ValueError("baseline must contain an 'accepted' array")
+
+    entries = {}
+    for item in raw["accepted"]:
+        if isinstance(item, str):
+            item = {
+                "key": item,
+                "reason": "unreviewed",
+                "note": "Legacy flat entry; requires triage.",
+            }
+        if not isinstance(item, dict):
+            raise ValueError("baseline entries must be strings or objects")
+        entry_key = item.get("key")
+        reason = item.get("reason")
+        note = item.get("note")
+        if not isinstance(entry_key, str) or not entry_key:
+            raise ValueError("baseline entry is missing a non-empty 'key'")
+        if reason not in VALID_REASONS:
+            raise ValueError(
+                f"baseline entry {entry_key!r} has invalid reason {reason!r}"
+            )
+        if not isinstance(note, str) or not note.strip():
+            raise ValueError(
+                f"baseline entry {entry_key!r} is missing a review note"
+            )
+        if (reason == "known-defect" and
+                (not isinstance(item.get("issue"), int) or item["issue"] < 1)):
+            raise ValueError(
+                f"known-defect baseline entry {entry_key!r} needs a positive issue number"
+            )
+        if entry_key in entries:
+            raise ValueError(f"duplicate baseline entry {entry_key!r}")
+        entries[entry_key] = dict(item)
+    return entries
+
+
+def update_baseline_entries(hits, existing):
+    """Preserve reviewed metadata and add new current hits as unreviewed."""
+    entries = []
+    for hit_key in sorted({key(hit) for hit in hits}):
+        entries.append(existing.get(hit_key, {
+            "key": hit_key,
+            "reason": "unreviewed",
+            "note": "Added by --update-baseline; requires triage.",
+        }))
+    return entries
+
+
+def reviewed_keys(entries):
+    return {
+        entry_key for entry_key, entry in entries.items()
+        if entry["reason"] in REVIEWED_REASONS
+    }
+
+
 def main():
     results = scan()
 
+    try:
+        entries = load_baseline()
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        print(f"invalid parse-quality baseline: {exc}", file=sys.stderr)
+        return 2
+
     if "--update-baseline" in sys.argv:
-        accepted = sorted(key(h) for hits in results.values() for h in hits)
+        hits = [h for file_hits in results.values() for h in file_hits]
+        accepted = update_baseline_entries(hits, entries)
         with open(BASELINE, "w") as f:
             json.dump({"accepted": accepted}, f, indent=1)
-        print(f"baseline updated: {len(accepted)} accepted hits", file=sys.stderr)
+            f.write("\n")
+        unreviewed = sum(e["reason"] == "unreviewed" for e in accepted)
+        print(
+            f"baseline updated: {len(accepted)} current hits, "
+            f"{unreviewed} unreviewed",
+            file=sys.stderr,
+        )
         return 0
 
-    baseline = set()
-    if os.path.exists(BASELINE):
-        with open(BASELINE) as f:
-            baseline = set(json.load(f)["accepted"])
+    baseline = reviewed_keys(entries)
 
     new = []
     for name, hits in results.items():
         unbaselined = [h for h in hits if key(h) not in baseline]
         new.extend(unbaselined)
-        state = "clean" if not hits else f"{len(hits)} hit(s), {len(unbaselined)} new"
+        state = ("clean" if not hits else
+                 f"{len(hits)} hit(s), {len(unbaselined)} unreviewed")
         print(f"{name:<22} {state}")
 
     if new:
-        print(f"\n{len(new)} hit(s) not in baseline:\n", file=sys.stderr)
+        print(f"\n{len(new)} hit(s) not reviewed:\n", file=sys.stderr)
         for h in new[:40]:
             print(f"  [{h['signature']}] {h['file']}{h['path']}", file=sys.stderr)
             print(f"      ...{h['excerpt']}", file=sys.stderr)
