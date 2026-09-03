@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Field-level diff of data/spells.json against the frozen baseline.
+"""Field-level diff of data/spells.json against the reviewed baseline.
 
 data/spells.json carries light human verification, so a parser change must
 be shown to alter only what it intends to alter. Exit 0 only when every
@@ -30,13 +30,21 @@ def load(path):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--baseline", default=BASELINE,
+                    help="reviewed spells JSON (default: scripts/baseline/spells.json)")
+    ap.add_argument("--current", default=CURRENT,
+                    help="spells JSON to check (default: data/spells.json)")
     ap.add_argument("--expect-field", action="append", default=[],
                     help="field name allowed to differ")
     ap.add_argument("--max-changed", type=int, default=None,
                     help="fail if more than this many records changed in a field")
     args = ap.parse_args()
 
-    old, new = load(BASELINE), load(CURRENT)
+    try:
+        old, new = load(args.baseline), load(args.current)
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        print(f"cannot diff spells: {exc}", file=sys.stderr)
+        return 2
     added, removed = sorted(set(new) - set(old)), sorted(set(old) - set(new))
     changed = Counter()
     examples = {}
