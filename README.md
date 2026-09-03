@@ -44,6 +44,11 @@ folder `/ (root)`, and save.
   the option to trade a profession for a language.
 * Local-first roster: multiple characters in localStorage with JSON export and
   import. No server, no build step, just vanilla ES modules.
+* Supplement text sits behind a consent gate: names, ranks and numbers are
+  always shown, but prose from *Occult Philosophy*, *Terrible Beauty* and
+  *Demon Lord's Companion 2* is withheld until you confirm you own those
+  books. Core Rulebook material is not gated, so the builder works fully on
+  first open. Withdraw the confirmation any time from the ⋯ menu.
 
 ## Local development
 
