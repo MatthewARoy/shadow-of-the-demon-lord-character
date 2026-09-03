@@ -111,6 +111,29 @@ class TestAnchorTerminatedRanges(unittest.TestCase):
 
 
 @needs_cache
+class TestDlc2SubsystemRules(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.chunks = [c for c in p.chunk() if c["b"] == "dlc2"]
+        cls.text = " ".join(c["x"] for c in cls.chunks)
+
+    def test_invocation_and_soul_rules_are_indexed(self):
+        for phrase in (
+            "effect that takes place immediately after the spell ends",
+            "Invocation Talisman",
+            "Growing Madness",
+            "One Invocation at a Time",
+            "Transcendent Mind",
+            "creatures that don’t have souls",
+        ):
+            self.assertIn(phrase, self.text, f"missing DLC2 rule: {phrase}")
+
+    def test_dlc2_spell_entries_and_index_do_not_leak(self):
+        self.assertNotIn("You bind the daemon known as the Brute", self.text)
+        self.assertNotIn("Auspex................................................................", self.text)
+
+
+@needs_cache
 class TestTableManifest(unittest.TestCase):
     def test_weapon_rows_are_not_sections(self):
         titles = {c["t"] for c in p.chunk()}
