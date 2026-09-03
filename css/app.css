@@ -417,6 +417,30 @@ dl.kv dd { margin: 0; }
 .talent .src { font-size: 11.5px; color: var(--text-dim); font-family: var(--caps); margin-left: 6px; }
 .talent p { margin: 2px 0 0; font-size: 14px; }
 
+/* Random tables printed inside a spell or a talent ------------ */
+.rules-table-wrap { overflow-x: auto; margin: 6px 0 2px; }
+.rules-table {
+  border-collapse: collapse; font-size: 13px; width: 100%;
+  border: 1px solid var(--line); background: rgba(176,141,79,.04);
+}
+.rules-table caption {
+  caption-side: top; text-align: left; padding: 0 0 3px;
+  font-family: var(--caps); font-size: 11px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--bronze-bright);
+}
+.rules-table th, .rules-table td {
+  border: 1px solid var(--line); padding: 3px 8px; text-align: left; vertical-align: top;
+}
+.rules-table thead th {
+  font-family: var(--caps); font-size: 11px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--text-dim); font-weight: 700;
+  background: rgba(176,141,79,.07); white-space: nowrap;
+}
+/* The key column is narrow and never wraps; the effect column takes the rest. */
+.rules-table tbody th {
+  font-weight: 700; color: var(--bronze-bright); white-space: nowrap; width: 1%;
+}
+
 /* Paths ------------------------------------------------------ */
 .path-card .spell-name { font-size: 17px; }
 .path-level {
@@ -439,6 +463,15 @@ dl.kv dd { margin: 0; }
   overflow: hidden; cursor: pointer;
 }
 .path-focus { margin: -2px 0 2px; }
+/* Option catalogue (wardscribe sigils, lorekeeper discoveries) — printed once
+   for the whole path, so it sits below the level blocks rather than inside
+   one. */
+.path-catalog { border-top: 1px solid var(--line-bright); margin-top: 10px; padding-top: 8px; }
+.path-catalog h4 {
+  margin: 0 0 4px; font-family: var(--caps); font-size: 12px; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--bronze-bright); font-weight: 700;
+}
+.path-catalog .path-level:first-of-type { border-top: none; padding-top: 0; }
 /* Analysis strip (advanced view) */
 .path-analysis { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin: 2px 0; }
 .path-rating {

@@ -12,7 +12,7 @@
 
 import { rules, BOOKS, BOOKS_SHORT } from "../data.js";
 import { analyzeAllPaths } from "../path-eval.js";
-import { esc } from "./util.js";
+import { esc, rulesTables } from "./util.js";
 
 
 const TYPE_LABEL = { novice: "Novice", expert: "Expert", master: "Master" };
@@ -75,6 +75,7 @@ function levelBlock(level, e) {
     <div class="talent">
       <b>${esc(t.name)}</b>
       <p class="path-talent clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(t.text)}</p>
+      ${rulesTables(t.tables)}
     </div>`).join("");
   return `
     <div class="path-level">
@@ -82,6 +83,29 @@ function levelBlock(level, e) {
       ${chipRow}
       ${talents ? `<div class="talent-list">${talents}</div>` : ""}
     </div>`;
+}
+
+// A path's option catalogue — the wardscribe's sigils, the lorekeeper's
+// esoteric discoveries. The book prints these once, as a sidebar below the
+// path's last level, and the character picks from them at several levels; they
+// are not benefits of the level they happen to be printed under, so they get
+// their own section rather than joining the level blocks above.
+function catalogBlock(c) {
+  if (!c?.groups?.length) return "";
+  const groups = c.groups.map((g) => {
+    const entries = g.entries.map((e) => `
+      <div class="talent">
+        <b>${esc(e.name)}</b>
+        <p class="path-talent clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(e.text)}</p>
+      </div>`).join("");
+    return `
+      <div class="path-level">
+        <span class="path-lvl-pip">${esc(g.name)}${g.level ? ` · Level ${g.level}+` : ""}</span>
+        ${g.description ? `<div class="path-gains"><span class="path-gain">${esc(g.description)}</span></div>` : ""}
+        <div class="talent-list">${entries}</div>
+      </div>`;
+  }).join("");
+  return `<div class="path-catalog"><h4>${esc(c.name)}</h4>${groups}</div>`;
 }
 
 // The analysis strip shown on cards in advanced view: the Caster Rating plus
@@ -121,6 +145,7 @@ function pathCard(p) {
     ${filters.advanced ? analysisStrip(p) : ""}
     <p class="spell-desc clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(p.description)}</p>
     ${levels.map((lvl) => levelBlock(lvl, p.levels[lvl])).join("")}
+    ${catalogBlock(p.catalog)}
     <div class="spell-foot">
       <span class="small dim">${BOOKS[p.source] || p.source}${p.page ? ` · p.${p.page}` : ""}</span>
     </div>
@@ -134,7 +159,15 @@ function haystack(p) {
   for (const f of evalOf(p)?.focus || []) parts.push(f.name);
   for (const e of Object.values(p.levels)) {
     if (e.magic?.raw) parts.push(e.magic.raw);
-    for (const t of e.talents || []) parts.push(t.name, t.text);
+    for (const t of e.talents || []) {
+      parts.push(t.name, t.text);
+      for (const tb of t.tables || []) for (const r of tb.rows) parts.push(...r);
+    }
+  }
+  // Searching "alarum" has to find the wardscribe; the sigils are the path.
+  for (const g of p.catalog?.groups || []) {
+    parts.push(g.name, g.description || "");
+    for (const e of g.entries) parts.push(e.name, e.text);
   }
   return parts.join(" ").toLowerCase();
 }

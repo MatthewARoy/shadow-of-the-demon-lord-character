@@ -221,3 +221,159 @@ class TestPathsInvariants(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestPathTablesAndCatalogs(unittest.TestCase):
+    """Tables and option catalogues printed inside a path entry (#20, #19)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.paths = {p["name"]: p for p in load("paths.json")}
+
+    def talent(self, path, level, name):
+        found = [t for t in self.paths[path]["levels"][level].get("talents", [])
+                 if t["name"] == name]
+        self.assertTrue(found, f"{path} L{level} lost talent {name}")
+        return found[0]
+
+    def test_draw_sigil_carries_its_duration_table(self):
+        """The reported defect.
+
+        Draw Sigil ended "...as shown on the following table. Spell Rank
+        Duration Spell Rank Duration 1 minute 1 week 10 minutes 1 month ..."
+        — the ranks dropped as page-number furniture, the durations run
+        together in the order the two column pairs were printed. The table is
+        two pairs side by side, so reading order is not rank order.
+        """
+        t = self.talent("Wardscribe", "3", "Draw Sigil")
+        self.assertTrue(t["text"].rstrip().endswith(
+            "as shown on the following table."))
+        self.assertNotIn("Spell Rank", t["text"])
+        self.assertEqual(len(t["tables"]), 1)
+        table = t["tables"][0]
+        self.assertEqual(table["columns"], ["Spell Rank", "Duration"])
+        self.assertEqual(len(table["rows"]), 11)
+        self.assertEqual(table["rows"][0], ["0", "1 minute"])
+        self.assertEqual(table["rows"][6], ["6", "1 week"])
+        self.assertEqual(table["rows"][-1], ["10", "100 years"])
+
+    def test_farseer_revelation_table_survived_the_die_marker(self):
+        """block_end stopped dead at the d6, dropping the table entirely."""
+        t = self.talent("Farseer", "3", "Unspeakable Revelation")
+        table = t["tables"][0]
+        self.assertEqual(table["columns"], ["d6", "Effect"])
+        self.assertEqual([r[0] for r in table["rows"]], list("123456"))
+        self.assertIn("Insanity equal to your Will score", table["rows"][0][1])
+
+    def test_builder_table_no_longer_splits_its_own_talent(self):
+        """Magic Construction read "...1 yard on a side. Building Blocks
+        Spell Rank Blocks 5+ Each block is an object with Defense 10...".
+        Its prose resumes below the table and has to rejoin the talent."""
+        t = self.talent("Builder", "7", "Magic Construction")
+        self.assertNotIn("Building Blocks", t["text"])
+        self.assertIn("each a cube 1 yard on a side. Each block is an object",
+                      t["text"])
+        table = t["tables"][0]
+        self.assertEqual(table["caption"], "Building Blocks")
+        self.assertEqual(table["columns"], ["Spell Rank", "Blocks"])
+        self.assertEqual(table["rows"][-1], ["5+", "128"])
+
+    def test_sigils_are_a_catalogue_not_level_nine_talents(self):
+        """All twelve sigils were credited to level 9 outright.
+
+        They are chosen one at a time from level 3 on, so a level-9 wardscribe
+        was shown nine sigils it had not learned and four it could have had
+        since level 3. Level 9 grants exactly two talents.
+        """
+        ward = self.paths["Wardscribe"]
+        self.assertEqual([t["name"] for t in ward["levels"]["9"]["talents"]],
+                         ["Hasty Sigil", "Learn Master Sigil"])
+        groups = ward["catalog"]["groups"]
+        self.assertEqual([(g["name"], g["level"], len(g["entries"])) for g in groups],
+                         [("Basic Sigils", 3, 4),
+                          ("Advanced Sigils", 6, 4),
+                          ("Master Sigils", 9, 4)])
+        names = [e["name"] for g in groups for e in g["entries"]]
+        for sigil in ("Alarum", "Glyphic Protection", "Crippling Pain",
+                      "Gibbering Madness", "Swift Transit"):
+            self.assertIn(sigil, names)
+
+    def test_lorekeeper_discoveries_are_a_catalogue(self):
+        """The identical defect: eight options, three picks, all on level 9."""
+        lore = self.paths["Lorekeeper"]
+        self.assertEqual([t["name"] for t in lore["levels"]["9"]["talents"]],
+                         ["Epiphany", "Esoteric Discovery"])
+        groups = lore["catalog"]["groups"]
+        self.assertEqual(len(groups), 1)
+        self.assertEqual(len(groups[0]["entries"]), 8)
+        self.assertIn("Lore of Tongues", [e["name"] for e in groups[0]["entries"]])
+
+    def test_catalogue_captions_left_the_talents_they_glued_onto(self):
+        """Three talents ended on a sidebar caption and its blurb (#19)."""
+        self.assertEqual(
+            self.talent("Wardscribe", "9", "Learn Master Sigil")["text"],
+            "When you would learn a sigil, you can choose to learn a master sigil.")
+        entries = {e["name"]: e["text"]
+                   for g in self.paths["Wardscribe"]["catalog"]["groups"]
+                   for e in g["entries"]}
+        for name, caption in (("Glyphic Protection", "Advanced Sigils"),
+                              ("Waves of Lethargy", "Master Sigils")):
+            self.assertNotIn(caption, entries[name])
+
+    def test_fighter_and_thief_option_lists_stay_talents(self):
+        """The same printed shape, but not corrupted — left as they were.
+
+        Moving them too would change a representation that parses cleanly and
+        is asserted above in test_sidebar_talents_are_kept. Recorded here so
+        the inconsistency is a decision rather than an oversight.
+        """
+        for path in ("Fighter", "Thief"):
+            self.assertNotIn("catalog", self.paths[path])
+
+    def test_no_catalogue_entry_is_also_a_talent(self):
+        """A catalogue that failed to end its block leaves both copies."""
+        for name, p in self.paths.items():
+            talents = {t["name"] for e in p["levels"].values()
+                       for t in e.get("talents", [])}
+            entries = {e["name"] for g in p.get("catalog", {}).get("groups", [])
+                       for e in g["entries"]}
+            self.assertEqual(talents & entries, set(), name)
+
+
+class TestMagicGrants(unittest.TestCase):
+    """A Magic line can offer a choice *and* hand over a named spell."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.paths = {p["name"]: p for p in load("paths.json")}
+        cls.spells = {s["name"].lower() for s in load("spells.json")}
+
+    def test_spellbinder_receives_the_spell_its_path_is_built_around(self):
+        """Every choice rule in parse_magic returns as soon as it matches, so
+        the "In addition, you learn the spellbound weapon spell" clause was
+        never reached. A spellbinder never got the spell, while both its
+        talents key off "the target weapon of your spellbound weapon spell".
+        """
+        magic = self.paths["Spellbinder"]["levels"]["3"]["magic"]
+        self.assertEqual(magic.get("grants"), ["spellbound weapon"])
+        # The choice on the same line has to survive alongside the grant.
+        self.assertEqual(magic["choices"],
+                         [{"pick": 1,
+                           "options": ["discover_tradition", "learn_spell"]}])
+
+    def test_an_optional_grant_is_not_recorded_as_a_given(self):
+        """The preserver picks one of two benefits, each granting a different
+        spell. Recording either hands the character a spell it may not have
+        chosen, so a bulleted Magic line grants nothing outright."""
+        magic = self.paths["Preserver"]["levels"]["3"]["magic"]
+        self.assertIn("you learn the life sense spell", magic["raw"])
+        self.assertNotIn("grants", magic)
+
+    def test_every_granted_spell_resolves(self):
+        """A grant naming a spell that is not in the archive is a dead end —
+        the engine can only leave the player a note to add it by hand."""
+        for name, p in self.paths.items():
+            for level, entry in p["levels"].items():
+                for grant in (entry.get("magic") or {}).get("grants", []):
+                    self.assertIn(grant.lower(), self.spells,
+                                  f"{name} L{level} grants unknown spell {grant!r}")

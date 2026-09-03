@@ -19,6 +19,8 @@ import re
 import sys
 from collections import OrderedDict
 
+import tables
+
 CACHE = os.path.join(os.path.dirname(__file__), "cache")
 OUT = os.path.join(os.path.dirname(__file__), "..", "data", "spells.json")
 
@@ -90,17 +92,43 @@ PATH_TRADITIONS = {
 
 FIELD_NAMES = ("Requirement", "Target", "Area", "Duration", "Prerequisite")
 
+# Mixed-case callout boxes (sidebars) sit inside the spell columns, so when a
+# spell straddles the column/page break around one, its lowercase title and
+# body bleed into the description mid-sentence. They are fixed rules text, so
+# splice them back out. Add new sidebars here as they surface.
+SIDEBARS = [
+    # "Dark Magic, Dark Speech" — bleeds into Forbidden spells that span the
+    # break (Ravenous Maggots, core p.130; Hook the Soul, occult p.60).
+    re.compile(
+        r"\s*Dark Magic, Dark Speech Casting Forbidden spells requires "
+        r"speaking mystic phrases in Dark Speech\. If you don[’'`]t know this "
+        r"language, you make attack rolls using Forbidden spells with 1 bane "
+        r"and creatures make challenge rolls to resist your Forbidden spells "
+        r"with 1 boon\.\s*"
+    ),
+]
+
 # A random table can sit *inside* a spell rather than after it — the d6 of
 # creatures that come through open the underworld's gates, the d6 of mutations
 # from strange changes. Breaking at the "d6" marker threw away everything the
-# spell printed below its table. The rows themselves are table data and stay
-# dropped; what is recovered is the spell's own labelled sub-entries, which is
-# where the lost rules text lives (two Aftereffects among them). Resuming on
-# line width instead was tried and reverted: strange changes has prose-length
-# table rows, so it resumed mid-row and read as a run-on sentence.
+# spell printed below its table; adf7ae8 fixed that by resuming at the spell's
+# next labelled sub-entry, which is where the lost rules text lived (two
+# Aftereffects among them). Resuming on line width instead was tried and
+# reverted: strange changes has prose-length table rows, so it resumed mid-row
+# and read as a run-on sentence.
+#
+# The rows themselves are now captured by scripts/tables.py into the spell's
+# "tables". TABLE_RESUME remains the resume point for a table that module
+# declines to vouch for, so a refusal costs no more than it did before.
 TABLE_RESUME = re.compile(
     r"^(Aftereffect|Attack Roll|Triggered|Sacrifice|Permanence|In addition|Special)\b"
 )
+
+# A table's caption is printed on the line above it and reads as a fragment of
+# the description until the table below it is recognised — which is how the
+# wild magic spell came to end on the words "Wild Magic". A caption is a short
+# capitalised phrase carrying no sentence punctuation.
+TABLE_CAPTION = re.compile(r"^[A-Z][\w’'\-]*(?: [\w’'\-]+){0,3}$")
 
 ATTACK_ROLL_RE = re.compile(
     r"[Mm]ake (?:an?|one) (Strength|Agility|Intellect|Will|Perception) "
@@ -140,6 +168,22 @@ def collect_tradition_names(lines):
 
 def parse_book(book):
     lines = lines_for(book)
+    # Raw text and page views for scripts/tables.py, which reads past the
+    # furniture clean_body() drops: a table's row keys are bare numbers, and
+    # so is the page number that would otherwise filter them out.
+    texts = [t for _, t in lines]
+    pages = [p for p, _ in lines]
+
+    def ends_table(k):
+        # The line below the last row of a spell's table is the next spell's
+        # all-caps name, its rank header, or the spell's own next labelled
+        # sub-entry. Without the name test, "STRANGE CHANGES" was read as more
+        # of scintillating worms' sixth outcome.
+        s = texts[k].strip()
+        if HEADER_RE.match(s) or TABLE_RESUME.match(s):
+            return True
+        return bool(re.match(r"^[A-Z][A-Z’'\-, ]+$", s)) and not FURNITURE.match(s)
+
     tradition_names = collect_tradition_names(lines)
     spells = []
     i = 0
@@ -197,6 +241,7 @@ def parse_book(book):
         # Collect the body until the next spell header (peeking one line
         # ahead, since the next header is preceded by its own name line).
         body_lines = []
+        spell_tables = []
         j = tail_idx + 1 if tail_idx is not None else i + 1
         limit = SPELL_PAGE_LIMIT[book]
         while j < n:
@@ -218,7 +263,23 @@ def parse_book(book):
             # tradition's intro, a path level entry, a random table, a
             # Title-Case section heading ("Celestial Spells"), or an
             # all-caps heading that is not the next spell's name.
-            if re.match(r"^d\d+$", nxt):
+            if re.match(r"^d\d+$", nxt) or tables.opens_table(texts, j, n):
+                caption = None
+                last = body_lines[-1].strip() if body_lines else ""
+                if last and TABLE_CAPTION.match(last):
+                    caption = body_lines.pop().strip()
+                table, after = tables.capture(
+                    texts, pages, j, n, ends_table, caption)
+                if table:
+                    spell_tables.append(table)
+                    j = after
+                    continue
+                if caption is not None:
+                    body_lines.append(caption)
+                if not re.match(r"^d\d+$", nxt):
+                    body_lines.append(lines[j][1])
+                    j += 1
+                    continue
                 k = skip_table(lines, j + 1, n, min(limit, page + 1))
                 if k is None:
                     break
@@ -236,7 +297,8 @@ def parse_book(book):
                     break
             body_lines.append(lines[j][1])
             j += 1
-        spell = build_spell(name, tradition, sptype, rank, body_lines, book, page)
+        spell = build_spell(name, tradition, sptype, rank, body_lines, book,
+                            page, spell_tables)
         spells.append(spell)
         i = j if j > i else i + 1
     return spells
@@ -270,7 +332,8 @@ def starts_field(line):
                for f in FIELD_NAMES)
 
 
-def build_spell(name, tradition, sptype, rank, body_lines, book, page):
+def build_spell(name, tradition, sptype, rank, body_lines, book, page,
+                spell_tables=()):
     body = clean_body(body_lines)
     if book == "terrible":
         body = drop_clipped_duplicates(body)
@@ -306,9 +369,12 @@ def build_spell(name, tradition, sptype, rank, body_lines, book, page):
         break
     desc = " ".join(body[idx:])
     desc = re.sub(r"\s+", " ", desc).strip()
+    # Splice out any callout box that bled into the description.
+    for sidebar in SIDEBARS:
+        desc = sidebar.sub(" ", desc)
     # Tab markers from extraction become noise; drop them.
     desc = desc.replace("\t", " ")
-    desc = re.sub(r" {2,}", " ", desc)
+    desc = re.sub(r" {2,}", " ", desc).strip()
 
     spell = OrderedDict()
     spell["name"] = NAME_CASE_FIXES.get(title_case(name), title_case(name))
@@ -327,6 +393,8 @@ def build_spell(name, tradition, sptype, rank, body_lines, book, page):
         dm = DAMAGE_RE.search(desc)
         if dm:
             spell["attack"]["damage"] = dm.group(1).replace(" ", "")
+    if spell_tables:
+        spell["tables"] = list(spell_tables)
     spell["source"] = book
     spell["page"] = page
     return spell

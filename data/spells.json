@@ -2883,10 +2883,50 @@
    "attribute": "Will",
    "against": "Agility"
   },
+  "tables": [
+   {
+    "columns": [
+     "d6",
+     "Effect"
+    ],
+    "rows": [
+     [
+      "1",
+      "The target cannot use an action or move. Instead, it experiences maddening revelations and gains 1d3 Insanity."
+     ],
+     [
+      "2",
+      "The target becomes immobilized for 1 round, during which time it floats 1d6 yards in the air. When the effect ends, the target falls to the ground."
+     ],
+     [
+      "3",
+      "The target can act normally, but it makes attack rolls and challenge rolls with 1 bane."
+     ],
+     [
+      "4",
+      "The light shining from the target causes it to catch fire. The target takes 1d6 damage at the end of each round until a creature uses an action to extinguish the flames. The target can act normally."
+     ],
+     [
+      "5",
+      "The target teleports to an open space of its choice within short range and then can act normally."
+     ],
+     [
+      "6",
+      "The target can act normally. It makes attack rolls and challenge rolls with 3 boons until the end of its turn."
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 31,
   "tags": [
+   "damage",
    "buff-attack",
+   "buff-challenge",
+   "debuff-rolls",
+   "control",
+   "teleport",
+   "fly",
    "sustained"
   ]
  },
@@ -2896,10 +2936,65 @@
   "type": "Utility",
   "rank": 3,
   "area": "A sphere with a radius of 1d6 yards centered on a point you can reach",
-  "description": "Weird lights, strange sounds, and other oddness spreads out through the area. Roll a d20 to see what happens. Wild Magic",
+  "description": "Weird lights, strange sounds, and other oddness spreads out through the area. Roll a d20 to see what happens.",
+  "tables": [
+   {
+    "columns": [
+     "d20",
+     "Effect"
+    ],
+    "rows": [
+     [
+      "1",
+      "1d6 small demons appear in open spaces within the area. They are not friendly."
+     ],
+     [
+      "2–3",
+      "Each creature in the area gains 1 Insanity."
+     ],
+     [
+      "4–5",
+      "Each creature in the area makes attack rolls and challenge rolls with 1 bane for 1 round."
+     ],
+     [
+      "6–8",
+      "Each creature in the area takes 3d6 + 5 damage, or half the damage with a success on a Strength challenge roll."
+     ],
+     [
+      "9–13",
+      "You regain the casting of this spell."
+     ],
+     [
+      "14–15",
+      "Each creature in the area heals 3d6 + 5 damage."
+     ],
+     [
+      "16–17",
+      "Each creature in the area makes attack rolls and challenge rolls with 1 boon for 1 round."
+     ],
+     [
+      "18–19",
+      "Each creature in the area can take one extra turn before the end of the next round."
+     ],
+     [
+      "20",
+      "You regain the casting of one rank 3 or lower spell."
+     ]
+    ],
+    "caption": "Wild Magic"
+   }
+  ],
   "source": "core",
   "page": 122,
   "tags": [
+   "damage",
+   "auto-damage",
+   "buff-attack",
+   "buff-challenge",
+   "debuff-rolls",
+   "action-economy",
+   "summon",
+   "sustained",
    "area"
   ]
  },
@@ -2926,11 +3021,53 @@
   "rank": 4,
   "area": "A cube of space, up to 5 yards on a side, originating from a point within short range",
   "description": "Chaos afflicts everything in the area. Each object in it that is not worn or carried by a creature warps, twists, and changes color. The object’s functionality is unchanged, however. Each creature in the area must make a Will challenge roll with 1 bane. A creature gains 1 Insanity on a failure, or on a success becomes subject to a random change. Roll a d6 for each creature that gets a success and consult the following table. Attack Roll 20+ Roll twice to see what happens to the creature and apply both effects to it.",
+  "tables": [
+   {
+    "columns": [
+     "d6",
+     "Effect"
+    ],
+    "rows": [
+     [
+      "1",
+      "The creature becomes a monster (Shadow, page 246) of its Size and uses the statistics of its new form in place of its own. The effect lasts until the target becomes injured or incapacitated, or until you complete a rest."
+     ],
+     [
+      "2",
+      "The creature gains the horrifying trait for 1 minute."
+     ],
+     [
+      "3",
+      "The creature’s Size increases by 1d6 for 1 minute. If there is not sufficient space for a creature of its new Size, the target takes 5d6 damage and the effect ends immediately."
+     ],
+     [
+      "4",
+      "The creature’s Size, but nothing it wears or carries, becomes 1/2 for 1 minute."
+     ],
+     [
+      "5",
+      "The creature teleports to an open space of your choosing within 1 mile of you."
+     ],
+     [
+      "6",
+      "The creature gains a +20 bonus to its Health and makes all attack rolls and challenge rolls with 1 boon. The effect lasts for 1 minute."
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 31,
   "tags": [
+   "damage",
+   "auto-damage",
+   "buff-attack",
+   "buff-challenge",
    "reroll",
+   "control",
    "insanity",
+   "teleport",
+   "transform",
+   "sustained",
    "area"
   ]
  },
@@ -2957,6 +3094,40 @@
   "area": "A cylinder, 10 yards tall with a 5-yard radius, centered on a point within long range",
   "duration": "Concentration, up to 1 minute",
   "description": "Brightly glowing vapors and flashing lights spread through the area and swirl around to heavily obscure it. The vortex remains for the duration. Each time you use an action to concentrate on this spell, you can make a Will challenge roll and move it up to 5 yards across the ground on a success. On a failure, the GM moves the vortex up to 5 yards in any direction. Any creature with a Health score of 15 or lower in the vortex’s space when it appears or that enters it dies, and its body along with everything it wears and carries, except for relics, breaks apart into colorful clouds that join the vortex. Relics fall to the ground in the vortex’s space, unharmed. Creatures with Health scores higher than 15 in the vortex’s space when it appears or that enter it must make a Will challenge roll. A creature takes 4d6 damage from the wild energy on a failure, or half the damage on a success. A creature can take this damage only once per round per casting of the spell, regardless of how many times it enters the vortex’s space during that round. Finally, whenever a creature within medium range of the vortex casts a spell, roll a d6 and consult the following table.",
+  "tables": [
+   {
+    "columns": [
+     "d6",
+     "Effect"
+    ],
+    "rows": [
+     [
+      "1",
+      "A pulse of energy spreads 1d6 yards out from the vortex and dissipates. Everything in the area of the pulse and outside the space of the vortex must get a success on an Agility challenge roll or take 2d6 damage."
+     ],
+     [
+      "2",
+      "The vortex moves 1d6 yards toward the triggering creature."
+     ],
+     [
+      "3",
+      "Nothing happens."
+     ],
+     [
+      "4",
+      "The vortex moves 1d6 yards away from the triggering creature."
+     ],
+     [
+      "5",
+      "The vortex adds 1d3 yards to its radius."
+     ],
+     [
+      "6",
+      "A pulse of energy spreads 2d6 yards out from the vortex and dissipates. The energy deals 5d6 damage to everything it touches. A creature that would take this damage can make an Agility challenge roll and takes half the damage on a success."
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 31,
   "tags": [
@@ -3037,11 +3208,48 @@
   "area": "A shapeable line 35 yards long, 10 yards tall, and 1 yard wide, originating from a point within long range",
   "duration": "Concentration, up to 1 minute; see the effect",
   "description": "Shimmering opaque colors spread through the area to become a wall that totally obscures everything behind it for the duration. The wall emits light out to a range of 20 yards. If you concentrate for the full minute, the wall remains for 1 additional hour without requiring your attention. Any object in the wall’s space that is not a relic takes damage equal to its Health and disappears. For any creature in the wall’s space when it appears or that enters it, roll a d6 and consult the following table. A creature can be affected by the wall only once per round per casting of this spell, regardless of how many times it enters the wall’s space.",
+  "tables": [
+   {
+    "columns": [
+     "d6",
+     "Effect"
+    ],
+    "rows": [
+     [
+      "1",
+      "Nothing happens."
+     ],
+     [
+      "2",
+      "The creature must make a Perception challenge roll with 1 bane. On a failure, the creature teleports to an open space of your choice within 2d6 yards of the wall and becomes dazed for 1 round."
+     ],
+     [
+      "3",
+      "The creature must get a success on a Will challenge roll with 2 banes or become compelled by you until the spell ends."
+     ],
+     [
+      "4",
+      "The creature must get a success on an Intellect challenge roll with 3 banes or become immobilized for 1 round and be subject to the wall’s effect again on its next turn."
+     ],
+     [
+      "5",
+      "The creature must make an Agility challenge roll with 4 banes. On a failure, the creature takes 5d6 damage, flies 2d6 yards away from the wall, lands prone, and becomes stunned for 1 round. On a success, the creature teleports to a space of your choice within 2d6 yards of the wall."
+     ],
+     [
+      "6",
+      "The creature must make a Strength challenge roll with 5 banes. The creature takes damage equal to its Health and disappears forever on a failure, or on a success it takes damage equal to half its Health and teleports 1d6 miles away to an open space of the GM’s choice."
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 32,
   "tags": [
    "damage",
    "auto-damage",
+   "control",
+   "mind-control",
+   "teleport",
    "concentration",
    "area"
   ]
@@ -4599,7 +4807,45 @@
   "rank": 4,
   "target": "One defenseless or unconscious creature within medium range",
   "duration": "6 minutes",
-  "description": "You take 1d6 + 2 damage. The target heals 1 damage, removes the defenseless and unconscious afflictions from itself, and becomes possessed by a demon for the duration. Until the spell ends, the demon has full control over the target’s body and can speak using its mouth. You can ask the demon up to three questions. Each time you ask the demon a question, the GM secretly rolls 3d6 and consults the following table to see what the demon does. 3d6 Response A medium demon (Shadow, page 227) tears free from the target’s body, killing it instantly, and then attacks the creature nearest to it. The demon then acts according to its nature and remains until it’s destroyed. 4–5 The demon violates the body it occupies and then forces it to vomit noxious green fluids from its mouth and defecate the same from its anus. 6–8 The demon answers, but it lies. 9–12 The demon reveals some other piece of information related to the question without answering it. 13–15 The demon answers the question truthfully. 16–17 The demon answers the question truthfully and might provide additional information at the GM’s discretion. A compelled medium demon (Shadow, page 227) emerges from the target’s body, killing it instantly. The demon remains compelled by you until you cast this spell again, you become incapacitated, or the demon is destroyed. Sacrifice You can use an action and expend a casting of this spell to cast the possession spell (Demon Lord’s Companion, page 38).",
+  "description": "You take 1d6 + 2 damage. The target heals 1 damage, removes the defenseless and unconscious afflictions from itself, and becomes possessed by a demon for the duration. Until the spell ends, the demon has full control over the target’s body and can speak using its mouth. You can ask the demon up to three questions. Each time you ask the demon a question, the GM secretly rolls 3d6 and consults the following table to see what the demon does. Sacrifice You can use an action and expend a casting of this spell to cast the possession spell (Demon Lord’s Companion, page 38).",
+  "tables": [
+   {
+    "columns": [
+     "3d6",
+     "Response"
+    ],
+    "rows": [
+     [
+      "3",
+      "A medium demon (Shadow, page 227) tears free from the target’s body, killing it instantly, and then attacks the creature nearest to it. The demon then acts according to its nature and remains until it’s destroyed."
+     ],
+     [
+      "4–5",
+      "The demon violates the body it occupies and then forces it to vomit noxious green fluids from its mouth and defecate the same from its anus."
+     ],
+     [
+      "6–8",
+      "The demon answers, but it lies."
+     ],
+     [
+      "9–12",
+      "The demon reveals some other piece of information related to the question without answering it."
+     ],
+     [
+      "13–15",
+      "The demon answers the question truthfully."
+     ],
+     [
+      "16–17",
+      "The demon answers the question truthfully and might provide additional information at the GM’s discretion."
+     ],
+     [
+      "18",
+      "A compelled medium demon (Shadow, page 227) emerges from the target’s body, killing it instantly. The demon remains compelled by you until you cast this spell again, you become incapacitated, or the demon is destroyed."
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 43,
   "tags": [
@@ -4654,7 +4900,29 @@
   "type": "Utility",
   "rank": 6,
   "area": "A cube of space, 3 yards on a side, originating from a point within short range",
-  "description": "You take 4d6 damage. You tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens.",
+  "description": "You take 4d6 damage. You tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens. The hole then closes. A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed.",
+  "tables": [
+   {
+    "columns": [
+     "d6",
+     "Effect"
+    ],
+    "rows": [
+     [
+      "1",
+      "A huge demon (Shadow, page 227) emerges from the hole and moves onto a solid surface nearest to the area."
+     ],
+     [
+      "2–5",
+      "A large demon (Shadow, page 227) emerges from the hole and moves onto a solid surface nearest to the area."
+     ],
+     [
+      "6",
+      "Nothing happens."
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 44,
   "tags": [
@@ -4712,12 +4980,46 @@
   "type": "Attack",
   "rank": 8,
   "target": "One creature you can see within medium range",
-  "description": "You take 8d6 damage. Make an Intellect attack roll against the target’s Strength. On a success, you tear a hole in reality, which then sucks the target into the Void. A target drawn into the Void is unlikely to be seen again. You then gain 1 Corruption. Make a Will challenge roll with 4 banes. On a failure, you gain an additional 1d3 Corruption and 3d6 Insanity. Attack Roll 20+ One or more demons come spilling out of the hole before it closes. The GM can roll on the following table to determine how many demons and of what kinds appear. (The titanic demon is presented in The Hunger in the Void, page 53; all the others can be found in Shadow, page 237.)",
+  "description": "You take 8d6 damage. Make an Intellect attack roll against the target’s Strength. On a success, you tear a hole in reality, which then sucks the target into the Void. A target drawn into the Void is unlikely to be seen again. You then gain 1 Corruption. Make a Will challenge roll with 4 banes. On a failure, you gain an additional 1d3 Corruption and 3d6 Insanity. Attack Roll 20+ One or more demons come spilling out of the hole before it closes. The GM can roll on the following table to determine how many demons and of what kinds appear. (The titanic demon is presented in The Hunger in the Void, page 53; all the others can be found in Shadow, page 237.) A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed.",
   "attack": {
    "attribute": "Intellect",
    "against": "Strength",
    "damage": "8d6"
   },
+  "tables": [
+   {
+    "columns": [
+     "d6",
+     "Effect"
+    ],
+    "rows": [
+     [
+      "1",
+      "1 titanic demon"
+     ],
+     [
+      "2",
+      "1 huge demon"
+     ],
+     [
+      "3",
+      "1d3 large demons"
+     ],
+     [
+      "4",
+      "1d6 medium demons"
+     ],
+     [
+      "5",
+      "2d6 small demons"
+     ],
+     [
+      "6",
+      "3d6 tiny demons"
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 44,
   "tags": [
@@ -4732,7 +5034,29 @@
   "type": "Utility",
   "rank": 9,
   "area": "A cube of space, 6 yards on a side, originating from a point within short range",
-  "description": "Upon casting this spell, you must concentrate for 1 hour, during which time you must violate your body. When you finish, you take 10d6 damage and gain 1d6 Corruption, and you tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens. Aftereffect Make a Will challenge roll with 4 banes. On a failure, you are possessed by a huge demon (Shadow, page 227).",
+  "description": "Upon casting this spell, you must concentrate for 1 hour, during which time you must violate your body. When you finish, you take 10d6 damage and gain 1d6 Corruption, and you tear a hole in reality inside the area. Roll a d6 and consult the following table to see what happens. The hole then closes. A demon that emerges from the hole acts according to its nature, takes the next available turn, and remains until it’s destroyed. Aftereffect Make a Will challenge roll with 4 banes. On a failure, you are possessed by a huge demon (Shadow, page 227).",
+  "tables": [
+   {
+    "columns": [
+     "d6",
+     "Effect"
+    ],
+    "rows": [
+     [
+      "1",
+      "1d3 titanic demons (The Hunger in the Void, page 53) emerge from the hole and move onto a solid surface nearest to the space."
+     ],
+     [
+      "2–5",
+      "A titanic demon emerges from the hole and moves onto a solid surface nearest to the space."
+     ],
+     [
+      "6",
+      "Nothing happens."
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 44,
   "tags": [
@@ -6898,7 +7222,42 @@
   "type": "Attack",
   "rank": 3,
   "target": "A sphere with a 2-yard radius centered on a point within medium range",
-  "description": "Multicolored lights spread through the area. Each living creature in the area must make a Will challenge roll. A creature with 1 or more Insanity makes the challenge roll with 2 banes. On a failure, the creature becomes confused for 1 minute. On a success, the creature becomes impaired for 1 round. A confused creature must take a fast turn each round and on that turn roll a d6 to see what it does. Bewilder Effects 1d6 Behavior The creature spends its turn laughing or weeping. The creature moves up to its Speed along a straight line in a random direction. The creature uses an action to charge the creature nearest to it. The creature uses an action to claw at itself, taking 1d6 damage as a result. The creature is frightened for 1 round but otherwise decides what it does on its turn. The creature decides what it does on its turn.",
+  "description": "Multicolored lights spread through the area. Each living creature in the area must make a Will challenge roll. A creature with 1 or more Insanity makes the challenge roll with 2 banes. On a failure, the creature becomes confused for 1 minute. On a success, the creature becomes impaired for 1 round. A confused creature must take a fast turn each round and on that turn roll a d6 to see what it does.",
+  "tables": [
+   {
+    "columns": [
+     "1d6",
+     "Behavior"
+    ],
+    "rows": [
+     [
+      "1",
+      "The creature spends its turn laughing or weeping."
+     ],
+     [
+      "2",
+      "The creature moves up to its Speed along a straight line in a random direction."
+     ],
+     [
+      "3",
+      "The creature uses an action to charge the creature nearest to it."
+     ],
+     [
+      "4",
+      "The creature uses an action to claw at itself, taking 1d6 damage as a result."
+     ],
+     [
+      "5",
+      "The creature is frightened for 1 round but otherwise decides what it does on its turn."
+     ],
+     [
+      "6",
+      "The creature decides what it does on its turn."
+     ]
+    ],
+    "caption": "Bewilder Effects"
+   }
+  ],
   "source": "terrible",
   "page": 20,
   "tags": [
@@ -7875,14 +8234,12 @@
   "rank": 2,
   "target": "One living creature within medium range",
   "duration": "1 minute",
-  "description": "Hungry maggots fill the target’s belly, dealing 2d6 damage to it. At the end of each round for the duration, the target must Dark Magic, Dark Speech Casting Forbidden spells requires speaking mystic phrases in Dark Speech. If you don’t know this language, you make attack rolls using Forbidden spells with 1 bane and creatures make challenge rolls to resist your Forbidden spells with 1 boon. make a Strength challenge roll; on a failure, it takes 1d6 damage and becomes impaired for 1 round. On a success, there is no effect; on the third success, the target vomits a knot of squirming maggots and the effect ends. A target that becomes incapacitated from the spell’s damage dies instantly, and a cloud of black flies spreads through a 5-yard-radius sphere from a point within its space. The flies heavily obscure the area and remain for 1 minute or until dispersed by fire or wind.",
+  "description": "Hungry maggots fill the target’s belly, dealing 2d6 damage to it. At the end of each round for the duration, the target must make a Strength challenge roll; on a failure, it takes 1d6 damage and becomes impaired for 1 round. On a success, there is no effect; on the third success, the target vomits a knot of squirming maggots and the effect ends. A target that becomes incapacitated from the spell’s damage dies instantly, and a cloud of black flies spreads through a 5-yard-radius sphere from a point within its space. The flies heavily obscure the area and remain for 1 minute or until dispersed by fire or wind.",
   "source": "core",
   "page": 130,
   "tags": [
    "damage",
    "auto-damage",
-   "buff-challenge",
-   "debuff-rolls",
    "control",
    "sustained"
   ]
@@ -8055,7 +8412,7 @@
   "type": "Attack",
   "rank": 5,
   "target": "One living, mortal creature you can see within medium range",
-  "description": "You reach out and curl your fingers into hooks. Make an Intellect attack roll against the target’s Will. You make the roll with 3 banes against a target with a Health score of 50 or higher. On a success, the target gains 2d6 Insanity. If the Insanity gained would cause the target to go mad, you wrench its soul from its body, killing it instantly and causing the soul to become a shadow (Shadow, page 253) that appears inside an open space within 1 yard of the target. The shadow can take the next available turn and is hostile to all creatures other than you. Dark Magic, Dark Speech Casting Forbidden spells requires speaking mystic phrases in Dark Speech. If you don’t know this language, you make attack rolls using Forbidden spells with 1 bane and creatures make challenge rolls to resist your Forbidden spells with 1 boon. If the target remains alive, it is compelled for a number of rounds equal to its Insanity score. When compelled in this way, the target cannot willingly move more than 20 yards away from you. If it is forcibly moved beyond this distance, it falls prone and becomes unconscious until it is within 20 yards of you once more. When the target removes the compelled affliction from itself, it gains 1 Corruption. Attack Roll 20+ The target gains 1d6 extra Insanity.",
+  "description": "You reach out and curl your fingers into hooks. Make an Intellect attack roll against the target’s Will. You make the roll with 3 banes against a target with a Health score of 50 or higher. On a success, the target gains 2d6 Insanity. If the Insanity gained would cause the target to go mad, you wrench its soul from its body, killing it instantly and causing the soul to become a shadow (Shadow, page 253) that appears inside an open space within 1 yard of the target. The shadow can take the next available turn and is hostile to all creatures other than you. If the target remains alive, it is compelled for a number of rounds equal to its Insanity score. When compelled in this way, the target cannot willingly move more than 20 yards away from you. If it is forcibly moved beyond this distance, it falls prone and becomes unconscious until it is within 20 yards of you once more. When the target removes the compelled affliction from itself, it gains 1 Corruption. Attack Roll 20+ The target gains 1d6 extra Insanity.",
   "attack": {
    "attribute": "Intellect",
    "against": "Will"
@@ -8063,8 +8420,6 @@
   "source": "occult",
   "page": 60,
   "tags": [
-   "buff-challenge",
-   "debuff-rolls",
    "control",
    "mind-control",
    "insanity",
@@ -15341,6 +15696,40 @@
   "area": "A cube of space, 3 yards on a side, originating from a point you can see within long range",
   "duration": "1 hour",
   "description": "A great iron gate appears inside the area and remains for the duration. When the gate appears, it opens, revealing a shadowy road that twists and turns down into the Underworld. Each living and mortal creature that can see the gate must get a success on a Will challenge roll with 3 banes or gain 1d6 Insanity. When the gate appears and at the end of each minute thereafter, roll a d6 and consult the following table to see what emerges from the opened portal. In addition, all spirits within 1 mile of the area gain a +2 bonus to Defense and a +20 bonus to Health, make attack rolls and challenge rolls with 3 boons, and deal 2d6 extra damage on their attacks. Living creatures within 1 mile of the area that are or become incapacitated, diseased, or poisoned die immediately. Aftereffect You must make a Will challenge roll with 5 banes On a success, you gain 1 Corruption and become stunned for 1 hour. On a failure, you gain 1d3 Corruption and 2d6 Insanity, and you cannot cast this spell again for 1 year and 1 day.",
+  "tables": [
+   {
+    "columns": [
+     "d6",
+     "Creatures"
+    ],
+    "rows": [
+     [
+      "1",
+      "1d6 manes (Shadow, page 246)"
+     ],
+     [
+      "2",
+      "1d6 mobs of manes (see page 139)"
+     ],
+     [
+      "3",
+      "2d6 mobs of manes"
+     ],
+     [
+      "4",
+      "1d6 mobs of phantoms (see page 141)"
+     ],
+     [
+      "5",
+      "2d6 mobs of phantoms"
+     ],
+     [
+      "6",
+      "1 grim reaper (see page 137)"
+     ]
+    ]
+   }
+  ],
   "source": "occult",
   "page": 107,
   "tags": [
