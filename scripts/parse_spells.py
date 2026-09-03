@@ -92,6 +92,22 @@ PATH_TRADITIONS = {
 
 FIELD_NAMES = ("Requirement", "Target", "Area", "Duration", "Prerequisite")
 
+# Mixed-case callout boxes (sidebars) sit inside the spell columns, so when a
+# spell straddles the column/page break around one, its lowercase title and
+# body bleed into the description mid-sentence. They are fixed rules text, so
+# splice them back out. Add new sidebars here as they surface.
+SIDEBARS = [
+    # "Dark Magic, Dark Speech" — bleeds into Forbidden spells that span the
+    # break (Ravenous Maggots, core p.130; Hook the Soul, occult p.60).
+    re.compile(
+        r"\s*Dark Magic, Dark Speech Casting Forbidden spells requires "
+        r"speaking mystic phrases in Dark Speech\. If you don[’'`]t know this "
+        r"language, you make attack rolls using Forbidden spells with 1 bane "
+        r"and creatures make challenge rolls to resist your Forbidden spells "
+        r"with 1 boon\.\s*"
+    ),
+]
+
 # A random table can sit *inside* a spell rather than after it — the d6 of
 # creatures that come through open the underworld's gates, the d6 of mutations
 # from strange changes. Breaking at the "d6" marker threw away everything the
@@ -353,9 +369,12 @@ def build_spell(name, tradition, sptype, rank, body_lines, book, page,
         break
     desc = " ".join(body[idx:])
     desc = re.sub(r"\s+", " ", desc).strip()
+    # Splice out any callout box that bled into the description.
+    for sidebar in SIDEBARS:
+        desc = sidebar.sub(" ", desc)
     # Tab markers from extraction become noise; drop them.
     desc = desc.replace("\t", " ")
-    desc = re.sub(r" {2,}", " ", desc)
+    desc = re.sub(r" {2,}", " ", desc).strip()
 
     spell = OrderedDict()
     spell["name"] = NAME_CASE_FIXES.get(title_case(name), title_case(name))

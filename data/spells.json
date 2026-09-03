@@ -8234,14 +8234,12 @@
   "rank": 2,
   "target": "One living creature within medium range",
   "duration": "1 minute",
-  "description": "Hungry maggots fill the target’s belly, dealing 2d6 damage to it. At the end of each round for the duration, the target must Dark Magic, Dark Speech Casting Forbidden spells requires speaking mystic phrases in Dark Speech. If you don’t know this language, you make attack rolls using Forbidden spells with 1 bane and creatures make challenge rolls to resist your Forbidden spells with 1 boon. make a Strength challenge roll; on a failure, it takes 1d6 damage and becomes impaired for 1 round. On a success, there is no effect; on the third success, the target vomits a knot of squirming maggots and the effect ends. A target that becomes incapacitated from the spell’s damage dies instantly, and a cloud of black flies spreads through a 5-yard-radius sphere from a point within its space. The flies heavily obscure the area and remain for 1 minute or until dispersed by fire or wind.",
+  "description": "Hungry maggots fill the target’s belly, dealing 2d6 damage to it. At the end of each round for the duration, the target must make a Strength challenge roll; on a failure, it takes 1d6 damage and becomes impaired for 1 round. On a success, there is no effect; on the third success, the target vomits a knot of squirming maggots and the effect ends. A target that becomes incapacitated from the spell’s damage dies instantly, and a cloud of black flies spreads through a 5-yard-radius sphere from a point within its space. The flies heavily obscure the area and remain for 1 minute or until dispersed by fire or wind.",
   "source": "core",
   "page": 130,
   "tags": [
    "damage",
    "auto-damage",
-   "buff-challenge",
-   "debuff-rolls",
    "control",
    "sustained"
   ]
@@ -8414,7 +8412,7 @@
   "type": "Attack",
   "rank": 5,
   "target": "One living, mortal creature you can see within medium range",
-  "description": "You reach out and curl your fingers into hooks. Make an Intellect attack roll against the target’s Will. You make the roll with 3 banes against a target with a Health score of 50 or higher. On a success, the target gains 2d6 Insanity. If the Insanity gained would cause the target to go mad, you wrench its soul from its body, killing it instantly and causing the soul to become a shadow (Shadow, page 253) that appears inside an open space within 1 yard of the target. The shadow can take the next available turn and is hostile to all creatures other than you. Dark Magic, Dark Speech Casting Forbidden spells requires speaking mystic phrases in Dark Speech. If you don’t know this language, you make attack rolls using Forbidden spells with 1 bane and creatures make challenge rolls to resist your Forbidden spells with 1 boon. If the target remains alive, it is compelled for a number of rounds equal to its Insanity score. When compelled in this way, the target cannot willingly move more than 20 yards away from you. If it is forcibly moved beyond this distance, it falls prone and becomes unconscious until it is within 20 yards of you once more. When the target removes the compelled affliction from itself, it gains 1 Corruption. Attack Roll 20+ The target gains 1d6 extra Insanity.",
+  "description": "You reach out and curl your fingers into hooks. Make an Intellect attack roll against the target’s Will. You make the roll with 3 banes against a target with a Health score of 50 or higher. On a success, the target gains 2d6 Insanity. If the Insanity gained would cause the target to go mad, you wrench its soul from its body, killing it instantly and causing the soul to become a shadow (Shadow, page 253) that appears inside an open space within 1 yard of the target. The shadow can take the next available turn and is hostile to all creatures other than you. If the target remains alive, it is compelled for a number of rounds equal to its Insanity score. When compelled in this way, the target cannot willingly move more than 20 yards away from you. If it is forcibly moved beyond this distance, it falls prone and becomes unconscious until it is within 20 yards of you once more. When the target removes the compelled affliction from itself, it gains 1 Corruption. Attack Roll 20+ The target gains 1d6 extra Insanity.",
   "attack": {
    "attribute": "Intellect",
    "against": "Will"
@@ -8422,8 +8420,6 @@
   "source": "occult",
   "page": 60,
   "tags": [
-   "buff-challenge",
-   "debuff-rolls",
    "control",
    "mind-control",
    "insanity",

@@ -13,8 +13,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.89
+    "cohort_n": 57,
+    "percentile": 0.886
    }
   ],
   "glide|air": [
@@ -43,8 +43,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.314
+    "cohort_n": 57,
+    "percentile": 0.307
    }
   ],
   "explosive exhalation|air": [
@@ -60,8 +60,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.398
+    "cohort_n": 63,
+    "percentile": 0.405
    }
   ],
   "thunderclap|air": [
@@ -77,8 +77,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.344
+    "cohort_n": 63,
+    "percentile": 0.349
    }
   ],
   "bedeviling winds|air": [
@@ -94,8 +94,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "fling|air": [
@@ -111,8 +111,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.088
+    "cohort_n": 56,
+    "percentile": 0.089
    }
   ],
   "create cyclone|air": [
@@ -128,8 +128,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "suffocate|air": [
@@ -145,8 +145,28 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.062
+    "cohort_n": 46,
+    "percentile": 0.054
+   }
+  ],
+  "control winds|air": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.767
    }
   ],
   "vacuum|air": [
@@ -162,8 +182,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.181
+    "cohort_n": 46,
+    "percentile": 0.185
    }
   ],
   "cacophony|air": [
@@ -179,8 +199,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.769
+    "cohort_n": 37,
+    "percentile": 0.757
    }
   ],
   "skyfall|air": [
@@ -196,8 +216,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.053
+    "cohort_n": 18,
+    "percentile": 0.083
    }
   ],
   "become the wind|air": [
@@ -213,8 +233,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.324
+    "cohort_n": 16,
+    "percentile": 0.406
    },
    {
     "kind": "mitigation",
@@ -243,8 +263,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.405
+    "cohort_n": 20,
+    "percentile": 0.425
    }
   ],
   "venomous dart|alchemy": [
@@ -260,8 +280,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.29
+    "cohort_n": 28,
+    "percentile": 0.25
    }
   ],
   "fire bottle|alchemy": [
@@ -277,8 +297,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "oil slick|alchemy": [
@@ -294,8 +314,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "manikins|alchemy": [
@@ -311,8 +331,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.175
+    "cohort_n": 56,
+    "percentile": 0.188
    }
   ],
   "spew poison|alchemy": [
@@ -328,8 +348,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.684
+    "cohort_n": 56,
+    "percentile": 0.705
    }
   ],
   "brew dragon fire|alchemy": [
@@ -345,8 +365,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.167
+    "cohort_n": 46,
+    "percentile": 0.152
    }
   ],
   "universal solvent|alchemy": [
@@ -362,8 +382,48 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.923
+    "cohort_n": 37,
+    "percentile": 0.919
+   }
+  ],
+  "distort appearance|alteration": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "buff|boon-swing|rank0",
+    "cohort_n": 3,
+    "percentile": 0.167
+   }
+  ],
+  "unlock potential|alteration": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "buff|boon-swing|rank0",
+    "cohort_n": 3,
+    "percentile": 0.667
    }
   ],
   "warp flesh|alteration": [
@@ -379,8 +439,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "malform|alteration": [
@@ -396,8 +456,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.424
+    "cohort_n": 57,
+    "percentile": 0.421
    }
   ],
   "steal hearing|alteration": [
@@ -413,8 +473,46 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.517
+    "cohort_n": 57,
+    "percentile": 0.518
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.786
+   }
+  ],
+  "bolster attribute|alteration": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.222
    }
   ],
   "bolster defense|alteration": [
@@ -445,6 +543,26 @@
     "percentile": 0.857
    }
   ],
+  "steal sight|alteration": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
+   }
+  ],
   "alter size|alteration": [
    {
     "kind": "damage",
@@ -458,8 +576,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.816
+    "cohort_n": 56,
+    "percentile": 0.848
    },
    {
     "kind": "mitigation",
@@ -471,6 +589,44 @@
     "cohort": "mitigation|temp-health|rank3",
     "cohort_n": 3,
     "percentile": 0.333
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.273
+   }
+  ],
+  "elasticity|alteration": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.273
    }
   ],
   "regeneration|alteration": [
@@ -486,6 +642,26 @@
     "cohort": "heal|healing-rate|rank3",
     "cohort_n": 6,
     "percentile": 0.167
+   }
+  ],
+  "steal strength|alteration": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.227
    }
   ],
   "bolster health|alteration": [
@@ -514,8 +690,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.167
+    "cohort_n": 46,
+    "percentile": 0.152
    }
   ],
   "diminish|alteration": [
@@ -531,8 +707,26 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.351
+    "cohort_n": 46,
+    "percentile": 0.359
+   },
+   {
+    "kind": "mark",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "mark|boon-swing|rank5",
+    "cohort_n": 3,
+    "percentile": 0.833
    }
   ],
   "awaken the giant|alteration": [
@@ -548,8 +742,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.947
+    "cohort_n": 18,
+    "percentile": 0.944
    },
    {
     "kind": "mitigation",
@@ -589,8 +783,28 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.29
+    "cohort_n": 28,
+    "percentile": 0.25
+   }
+  ],
+  "potent magic|arcana": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.786
    }
   ],
   "unerring darts|arcana": [
@@ -606,8 +820,28 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.008
+    "cohort_n": 57,
+    "percentile": 0.009
+   }
+  ],
+  "empowered magic|arcana": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
    }
   ],
   "explosive darts|arcana": [
@@ -623,8 +857,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.344
+    "cohort_n": 63,
+    "percentile": 0.349
    }
   ],
   "inevitable blade|arcana": [
@@ -640,8 +874,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.641
+    "cohort_n": 63,
+    "percentile": 0.651
    }
   ],
   "arcane lightning|arcana": [
@@ -657,8 +891,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.816
+    "cohort_n": 56,
+    "percentile": 0.848
+   }
+  ],
+  "well of magic|arcana": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 4,
+    "cohort": "buff|boon-swing|rank4",
+    "cohort_n": 5,
+    "percentile": 0.5
    }
   ],
   "arcane conflagration|arcana": [
@@ -674,8 +928,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.564
+    "cohort_n": 46,
+    "percentile": 0.576
    }
   ],
   "arcane retribution|arcana": [
@@ -691,8 +945,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.926
+    "cohort_n": 46,
+    "percentile": 0.946
    }
   ],
   "darts of annihilation|arcana": [
@@ -708,8 +962,28 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.885
+    "cohort_n": 10,
+    "percentile": 0.85
+   }
+  ],
+  "augmented attack|battle": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
    }
   ],
   "close wounds|battle": [
@@ -727,6 +1001,124 @@
     "percentile": 0.389
    }
   ],
+  "fangs of the serpent|battle": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
+  "killing urge|battle": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "buff|boon-swing|rank1",
+    "cohort_n": 8,
+    "percentile": 0.312
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.786
+   }
+  ],
+  "mighty attack|battle": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
+  "phasing missile|battle": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
+  "resounding attack|battle": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
   "arc of death|battle": [
    {
     "kind": "damage",
@@ -740,8 +1132,28 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.852
+    "cohort_n": 63,
+    "percentile": 0.865
+   }
+  ],
+  "distant doom|battle": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
    }
   ],
   "mountain fall|battle": [
@@ -757,8 +1169,28 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "climb the mountain|battle": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.636
    }
   ],
   "iron grasp|battle": [
@@ -774,8 +1206,26 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.088
+    "cohort_n": 56,
+    "percentile": 0.089
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.227
    }
   ],
   "drive them before you|battle": [
@@ -791,8 +1241,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.167
+    "cohort_n": 46,
+    "percentile": 0.152
    }
   ],
   "wall of swords|battle": [
@@ -808,8 +1258,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.833
+    "cohort_n": 46,
+    "percentile": 0.848
    }
   ],
   "paint the field red|battle": [
@@ -825,8 +1275,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.436
+    "cohort_n": 46,
+    "percentile": 0.446
    }
   ],
   "reaper’s harvest|battle": [
@@ -842,8 +1292,26 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.755
+    "cohort_n": 46,
+    "percentile": 0.815
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.767
    }
   ],
   "strike like lightning|battle": [
@@ -859,8 +1327,28 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.5
+    "cohort_n": 46,
+    "percentile": 0.511
+   }
+  ],
+  "cast down from heaven|battle": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.208
    }
   ],
   "savage rebuke|battle": [
@@ -876,8 +1364,26 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.346
+    "cohort_n": 37,
+    "percentile": 0.365
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.833
    }
   ],
   "whirlwind of death|battle": [
@@ -893,8 +1399,28 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.474
+    "cohort_n": 18,
+    "percentile": 0.556
+   }
+  ],
+  "battle fervor|battle": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "self-buff|boon-swing|rank8",
+    "cohort_n": 6,
+    "percentile": 0.583
    }
   ],
   "surge of slaughter|battle": [
@@ -910,8 +1436,8 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.692
+    "cohort_n": 10,
+    "percentile": 0.65
    }
   ],
   "god of war|battle": [
@@ -927,8 +1453,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.119
+    "cohort_n": 20,
+    "percentile": 0.175
    },
    {
     "kind": "mitigation",
@@ -940,6 +1466,24 @@
     "cohort": "mitigation|temp-health|rank10",
     "cohort_n": 3,
     "percentile": 0.667
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 10,
+    "cohort": "self-buff|boon-swing|rank10",
+    "cohort_n": 3,
+    "percentile": 0.333
    }
   ],
   "burning beam|celestial": [
@@ -955,8 +1499,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "sun shard|celestial": [
@@ -972,8 +1516,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.856
+    "cohort_n": 57,
+    "percentile": 0.851
    }
   ],
   "focused light|celestial": [
@@ -989,8 +1533,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.641
+    "cohort_n": 63,
+    "percentile": 0.651
    }
   ],
   "sunrays|celestial": [
@@ -1006,8 +1550,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "radiation|celestial": [
@@ -1023,8 +1567,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.088
+    "cohort_n": 56,
+    "percentile": 0.089
    }
   ],
   "rainbow|celestial": [
@@ -1040,8 +1584,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "starfall|celestial": [
@@ -1057,8 +1601,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.412
+    "cohort_n": 56,
+    "percentile": 0.42
    }
   ],
   "crown of stars|celestial": [
@@ -1074,8 +1618,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.167
+    "cohort_n": 46,
+    "percentile": 0.152
    }
   ],
   "nova|celestial": [
@@ -1091,8 +1635,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.302
+    "cohort_n": 46,
+    "percentile": 0.293
    }
   ],
   "sword of the dawn|celestial": [
@@ -1108,8 +1652,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.729
+    "cohort_n": 46,
+    "percentile": 0.739
    }
   ],
   "falling stars|celestial": [
@@ -1125,8 +1669,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.436
+    "cohort_n": 46,
+    "percentile": 0.446
    }
   ],
   "sunbeam|celestial": [
@@ -1142,8 +1686,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.287
+    "cohort_n": 46,
+    "percentile": 0.293
    }
   ],
   "raiment of the sun|celestial": [
@@ -1159,8 +1703,26 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.436
+    "cohort_n": 37,
+    "percentile": 0.432
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "buff|boon-swing|rank6",
+    "cohort_n": 4,
+    "percentile": 0.25
    }
   ],
   "sunburst|celestial": [
@@ -1176,8 +1738,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.769
+    "cohort_n": 37,
+    "percentile": 0.757
    }
   ],
   "invisible sun|celestial": [
@@ -1193,8 +1755,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.263
+    "cohort_n": 18,
+    "percentile": 0.361
    }
   ],
   "blaze in the northern sky|celestial": [
@@ -1210,8 +1772,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.441
+    "cohort_n": 16,
+    "percentile": 0.531
    }
   ],
   "call down the heavens|celestial": [
@@ -1227,8 +1789,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.786
+    "cohort_n": 20,
+    "percentile": 0.775
    }
   ],
   "erratic bolt|chaos": [
@@ -1244,8 +1806,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "capricious devastation|chaos": [
@@ -1261,8 +1823,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "chaos unleashed|chaos": [
@@ -1278,8 +1840,26 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
+   },
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.722
    }
   ],
   "chromatic lance|chaos": [
@@ -1295,8 +1875,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.836
+    "cohort_n": 63,
+    "percentile": 0.849
    }
   ],
   "color of magic|chaos": [
@@ -1312,8 +1892,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.344
+    "cohort_n": 63,
+    "percentile": 0.349
    }
   ],
   "chaos orb|chaos": [
@@ -1329,8 +1909,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
+    "cohort_n": 56,
+    "percentile": 0.545
    }
   ],
   "chaotic lance|chaos": [
@@ -1346,8 +1926,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
+    "cohort_n": 56,
     "percentile": 0.991
+   }
+  ],
+  "scintillating worms|chaos": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "mark|boon-swing|rank3",
+    "cohort_n": 4,
+    "percentile": 0.375
    }
   ],
   "chaos vortex|chaos": [
@@ -1363,8 +1963,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.351
+    "cohort_n": 46,
+    "percentile": 0.359
    }
   ],
   "shape magic|chaos": [
@@ -1380,8 +1980,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.702
+    "cohort_n": 46,
+    "percentile": 0.739
    }
   ],
   "singularity|chaos": [
@@ -1397,8 +1997,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.926
+    "cohort_n": 46,
+    "percentile": 0.946
    }
   ],
   "power of chaos|chaos": [
@@ -1414,8 +2014,26 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.295
+    "cohort_n": 37,
+    "percentile": 0.311
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.542
    }
   ],
   "undo reality|chaos": [
@@ -1431,8 +2049,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.738
+    "cohort_n": 20,
+    "percentile": 0.725
    }
   ],
   "energy burst|conjuration": [
@@ -1448,8 +2066,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "flying knives|conjuration": [
@@ -1465,8 +2083,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "sticky strands|conjuration": [
@@ -1482,8 +2100,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "forest of spikes|conjuration": [
@@ -1499,8 +2117,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "passage|conjuration": [
@@ -1516,8 +2134,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.181
+    "cohort_n": 46,
+    "percentile": 0.185
    }
   ],
   "simulacrum|conjuration": [
@@ -1535,21 +2153,24 @@
     "percentile": null
    }
   ],
-  "true conjuration|conjuration": [
+  "hex|curse": [
    {
-    "kind": "damage",
-    "value": 35.0,
-    "unit": "damage",
-    "expr": "10d6",
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
     "flags": {
-     "auto": true,
-     "area": true,
-     "attack": false
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
     },
-    "rank": 10,
-    "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.571
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
    }
   ],
   "pox|curse": [
@@ -1565,8 +2186,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.194
+    "cohort_n": 28,
+    "percentile": 0.143
    }
   ],
   "curse of the emerald hand|curse": [
@@ -1582,8 +2203,46 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "vulnerability|curse": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
+   },
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "mark|boon-swing|rank2",
+    "cohort_n": 2,
+    "percentile": 0.5
    }
   ],
   "flesh-bursting curse|curse": [
@@ -1599,8 +2258,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.074
+    "cohort_n": 46,
+    "percentile": 0.087
    }
   ],
   "petrify|curse": [
@@ -1616,8 +2275,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.883
+    "cohort_n": 46,
+    "percentile": 0.902
    }
   ],
   "terror|curse": [
@@ -1633,8 +2292,26 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.181
+    "cohort_n": 46,
+    "percentile": 0.185
+   },
+   {
+    "kind": "mark",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 5,
+    "cohort": "mark|boon-swing|rank5",
+    "cohort_n": 3,
+    "percentile": 0.5
    }
   ],
   "accursed land|curse": [
@@ -1650,8 +2327,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.051
+    "cohort_n": 37,
+    "percentile": 0.054
    }
   ],
   "plaguebearer|curse": [
@@ -1667,8 +2344,26 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.679
+    "cohort_n": 37,
+    "percentile": 0.662
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.833
    }
   ],
   "curse of eight torments|curse": [
@@ -1684,25 +2379,26 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.235
-   }
-  ],
-  "mouth of madness|curse": [
+    "cohort_n": 16,
+    "percentile": 0.312
+   },
    {
-    "kind": "damage",
-    "value": 3.5,
-    "unit": "damage",
-    "expr": "1d6",
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
     "flags": {
-     "auto": true,
-     "area": false,
-     "attack": false
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
     },
-    "rank": 9,
-    "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.038
+    "rank": 8,
+    "cohort": "self-buff|boon-swing|rank8",
+    "cohort_n": 6,
+    "percentile": 0.583
    }
   ],
   "arrow of endings|death": [
@@ -1718,8 +2414,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "dead one walking|death": [
@@ -1735,8 +2431,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.969
+    "cohort_n": 63,
+    "percentile": 0.984
    }
   ],
   "mantle of thanatos|death": [
@@ -1752,8 +2448,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
    }
   ],
   "soul wrench|death": [
@@ -1769,8 +2465,26 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.088
+    "cohort_n": 56,
+    "percentile": 0.089
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.636
    }
   ],
   "destroy spirits|death": [
@@ -1786,8 +2500,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "warden of the underworld|death": [
@@ -1803,8 +2517,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "toll the bell|death": [
@@ -1820,8 +2534,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.67
+    "cohort_n": 46,
+    "percentile": 0.685
    }
   ],
   "unlife|death": [
@@ -1835,6 +2549,24 @@
     "cohort": "mitigation|%damage|rank5",
     "cohort_n": 3,
     "percentile": 0.667
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.5
    }
   ],
   "life siphon|death": [
@@ -1850,8 +2582,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.051
+    "cohort_n": 37,
+    "percentile": 0.054
    }
   ],
   "angel of death|death": [
@@ -1867,8 +2599,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.263
+    "cohort_n": 18,
+    "percentile": 0.361
    }
   ],
   "inhume|death": [
@@ -1884,8 +2616,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.059
+    "cohort_n": 16,
+    "percentile": 0.094
    }
   ],
   "unmake|death": [
@@ -1901,8 +2633,8 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.154
+    "cohort_n": 10,
+    "percentile": 0.1
    }
   ],
   "kill them all|death": [
@@ -1918,59 +2650,28 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.31
-   }
-  ],
-  "otherworldly scream|demonology": [
-   {
-    "kind": "damage",
-    "value": 1.0,
-    "unit": "damage",
-    "expr": "1",
-    "flags": {
-     "auto": true,
-     "area": true,
-     "attack": false
-    },
-    "rank": 0,
-    "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.065
+    "cohort_n": 20,
+    "percentile": 0.375
    }
   ],
   "written in blood|demonology": [
    {
-    "kind": "damage",
-    "value": 1.0,
-    "unit": "damage",
-    "expr": "1",
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
     "flags": {
-     "auto": true,
-     "area": false,
-     "attack": false
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
     },
     "rank": 0,
-    "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.065
-   }
-  ],
-  "mark of the beast|demonology": [
-   {
-    "kind": "damage",
-    "value": 2.0,
-    "unit": "damage",
-    "expr": "1d3",
-    "flags": {
-     "auto": false,
-     "area": false,
-     "attack": true
-    },
-    "rank": 1,
-    "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.042
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.842
    }
   ],
   "minor demon|demonology": [
@@ -1986,8 +2687,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.941
+    "cohort_n": 57,
+    "percentile": 0.939
    }
   ],
   "bestow mark of darkness|demonology": [
@@ -2003,8 +2704,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.781
+    "cohort_n": 63,
+    "percentile": 0.794
    }
   ],
   "blood harvest|demonology": [
@@ -2020,8 +2721,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.781
+    "cohort_n": 63,
+    "percentile": 0.794
    }
   ],
   "demon seed|demonology": [
@@ -2037,25 +2738,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
-   }
-  ],
-  "vision of nowhere|demonology": [
-   {
-    "kind": "damage",
-    "value": 4.5,
-    "unit": "damage",
-    "expr": "1d6+1",
-    "flags": {
-     "auto": false,
-     "area": false,
-     "attack": true
-    },
-    "rank": 3,
-    "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.175
+    "cohort_n": 56,
+    "percentile": 0.545
    }
   ],
   "demonic maw|demonology": [
@@ -2071,26 +2755,29 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.771
+    "cohort_n": 46,
+    "percentile": 0.783
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": true,
+     "area": true
+    },
+    "rank": 4,
+    "cohort": "buff|boon-swing|rank4",
+    "cohort_n": 5,
+    "percentile": 0.2
    }
   ],
   "query the void|demonology": [
-   {
-    "kind": "damage",
-    "value": 5.5,
-    "unit": "damage",
-    "expr": "1d6+2",
-    "flags": {
-     "auto": true,
-     "area": false,
-     "attack": false
-    },
-    "rank": 4,
-    "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.062
-   },
    {
     "kind": "heal",
     "value": 1.0,
@@ -2108,74 +2795,6 @@
   "steal form from substance|demonology": [
    {
     "kind": "damage",
-    "value": 30.0,
-    "unit": "damage",
-    "expr": "30",
-    "flags": {
-     "auto": true,
-     "area": true,
-     "attack": false
-    },
-    "rank": 5,
-    "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.83
-   }
-  ],
-  "unholy chorus|demonology": [
-   {
-    "kind": "damage",
-    "value": 7.0,
-    "unit": "damage",
-    "expr": "2d6",
-    "flags": {
-     "auto": true,
-     "area": false,
-     "attack": false
-    },
-    "rank": 5,
-    "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.074
-   }
-  ],
-  "call greater demon|demonology": [
-   {
-    "kind": "damage",
-    "value": 14.0,
-    "unit": "damage",
-    "expr": "4d6",
-    "flags": {
-     "auto": true,
-     "area": true,
-     "attack": false
-    },
-    "rank": 6,
-    "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.436
-   }
-  ],
-  "create demon spawn|demonology": [
-   {
-    "kind": "damage",
-    "value": 14.0,
-    "unit": "damage",
-    "expr": "4d6",
-    "flags": {
-     "auto": false,
-     "area": false,
-     "attack": true
-    },
-    "rank": 6,
-    "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.436
-   }
-  ],
-  "demonic horde|demonology": [
-   {
-    "kind": "damage",
     "value": 21.0,
     "unit": "damage",
     "expr": "6d6",
@@ -2184,44 +2803,45 @@
      "area": true,
      "attack": false
     },
-    "rank": 7,
-    "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.474
+    "rank": 5,
+    "cohort": "damage|damage|rank5",
+    "cohort_n": 46,
+    "percentile": 0.739
    }
   ],
-  "into the void|demonology": [
+  "create demon spawn|demonology": [
    {
     "kind": "damage",
-    "value": 28.0,
+    "value": 3.5,
     "unit": "damage",
-    "expr": "8d6",
+    "expr": "1d6",
     "flags": {
      "auto": false,
      "area": false,
      "attack": true
     },
-    "rank": 8,
-    "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.765
-   }
-  ],
-  "call titanic demon|demonology": [
+    "rank": 6,
+    "cohort": "damage|damage|rank6",
+    "cohort_n": 37,
+    "percentile": 0.054
+   },
    {
-    "kind": "damage",
-    "value": 35.0,
-    "unit": "damage",
-    "expr": "10d6",
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
     "flags": {
-     "auto": true,
-     "area": true,
-     "attack": false
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
     },
-    "rank": 9,
-    "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.692
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.833
    }
   ],
   "herald of the demon lord|demonology": [
@@ -2237,8 +2857,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.167
+    "cohort_n": 20,
+    "percentile": 0.225
    }
   ],
   "break|destruction": [
@@ -2254,8 +2874,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.065
+    "cohort_n": 28,
+    "percentile": 0.036
    }
   ],
   "burst|destruction": [
@@ -2271,8 +2891,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.952
+    "cohort_n": 28,
+    "percentile": 0.982
    }
   ],
   "ruin|destruction": [
@@ -2288,8 +2908,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "splinter|destruction": [
@@ -2305,8 +2925,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.903
+    "cohort_n": 28,
+    "percentile": 0.929
    }
   ],
   "dissolve|destruction": [
@@ -2322,8 +2942,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.314
+    "cohort_n": 57,
+    "percentile": 0.307
    }
   ],
   "maim|destruction": [
@@ -2339,8 +2959,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.814
+    "cohort_n": 57,
+    "percentile": 0.807
    }
   ],
   "rend|destruction": [
@@ -2356,8 +2976,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.992
+    "cohort_n": 57,
+    "percentile": 0.991
    }
   ],
   "snap bone|destruction": [
@@ -2373,8 +2993,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "sunder|destruction": [
@@ -2390,16 +3010,16 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.941
+    "cohort_n": 57,
+    "percentile": 0.939
    }
   ],
   "clear the path|destruction": [
    {
     "kind": "damage",
-    "value": 15.0,
+    "value": 14.0,
     "unit": "damage",
-    "expr": "15",
+    "expr": "4d6",
     "flags": {
      "auto": true,
      "area": true,
@@ -2407,8 +3027,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.906
+    "cohort_n": 63,
+    "percentile": 0.897
    }
   ],
   "entropic power|destruction": [
@@ -2424,8 +3044,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.023
+    "cohort_n": 63,
+    "percentile": 0.024
    }
   ],
   "erode|destruction": [
@@ -2441,8 +3061,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "ruinous presence|destruction": [
@@ -2458,8 +3078,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.641
+    "cohort_n": 63,
+    "percentile": 0.651
    }
   ],
   "crack the earth|destruction": [
@@ -2475,8 +3095,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.816
+    "cohort_n": 56,
+    "percentile": 0.848
    }
   ],
   "detonate|destruction": [
@@ -2492,16 +3112,16 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.939
+    "cohort_n": 56,
+    "percentile": 0.946
    }
   ],
   "evaporate|destruction": [
    {
     "kind": "damage",
-    "value": 21.0,
+    "value": 4.0,
     "unit": "damage",
-    "expr": "6d6",
+    "expr": "4",
     "flags": {
      "auto": false,
      "area": false,
@@ -2509,16 +3129,16 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.939
+    "cohort_n": 56,
+    "percentile": 0.17
    }
   ],
   "path of ruin|destruction": [
    {
     "kind": "damage",
-    "value": 20.0,
+    "value": 14.0,
     "unit": "damage",
-    "expr": "20",
+    "expr": "4d6",
     "flags": {
      "auto": true,
      "area": true,
@@ -2526,8 +3146,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.886
+    "cohort_n": 56,
+    "percentile": 0.705
    }
   ],
   "destroy|destruction": [
@@ -2543,25 +3163,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.99
-   }
-  ],
-  "fragility|destruction": [
-   {
-    "kind": "damage",
-    "value": 5.0,
-    "unit": "damage",
-    "expr": "5",
-    "flags": {
-     "auto": true,
-     "area": false,
-     "attack": false
-    },
-    "rank": 4,
-    "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.031
+    "cohort_n": 46,
+    "percentile": 0.989
    }
   ],
   "tear asunder|destruction": [
@@ -2577,16 +3180,16 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.958
+    "cohort_n": 46,
+    "percentile": 0.957
    }
   ],
   "brutal concussion|destruction": [
    {
     "kind": "damage",
-    "value": 30.0,
+    "value": 21.0,
     "unit": "damage",
-    "expr": "30",
+    "expr": "6d6",
     "flags": {
      "auto": true,
      "area": true,
@@ -2594,16 +3197,16 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.83
+    "cohort_n": 46,
+    "percentile": 0.739
    }
   ],
   "demolition|destruction": [
    {
     "kind": "damage",
-    "value": 100.0,
+    "value": 3.5,
     "unit": "damage",
-    "expr": "100",
+    "expr": "1d6",
     "flags": {
      "auto": true,
      "area": false,
@@ -2611,8 +3214,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.989
+    "cohort_n": 46,
+    "percentile": 0.033
    }
   ],
   "disintegrate|destruction": [
@@ -2628,16 +3231,16 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.862
+    "cohort_n": 46,
+    "percentile": 0.88
    }
   ],
   "cascading ruin|destruction": [
    {
     "kind": "damage",
-    "value": 8.0,
+    "value": 7.0,
     "unit": "damage",
-    "expr": "8",
+    "expr": "2d6",
     "flags": {
      "auto": false,
      "area": false,
@@ -2645,8 +3248,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.218
+    "cohort_n": 37,
+    "percentile": 0.176
    }
   ],
   "obliterate|destruction": [
@@ -2662,8 +3265,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.821
+    "cohort_n": 37,
+    "percentile": 0.811
    }
   ],
   "bring it down|destruction": [
@@ -2679,8 +3282,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.763
+    "cohort_n": 18,
+    "percentile": 0.75
    }
   ],
   "annihilate|destruction": [
@@ -2696,16 +3299,16 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.912
+    "cohort_n": 16,
+    "percentile": 0.906
    }
   ],
   "cataclysm|destruction": [
    {
     "kind": "damage",
-    "value": 26.0,
+    "value": 25.0,
     "unit": "damage",
-    "expr": "26",
+    "expr": "25",
     "flags": {
      "auto": true,
      "area": true,
@@ -2713,8 +3316,226 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.423
+    "cohort_n": 10,
+    "percentile": 0.45
+   }
+  ],
+  "precognitive attack|divination": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
+   }
+  ],
+  "precognitive defense|divination": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
+   }
+  ],
+  "foretell|divination": [
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": true,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "buff|boon-swing|rank1",
+    "cohort_n": 8,
+    "percentile": 0.938
+   }
+  ],
+  "anticipate attack|divination": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.781
+   }
+  ],
+  "reading|divination": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": true,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.722
+   }
+  ],
+  "see the end|divination": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.227
+   },
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.909
+   }
+  ],
+  "see the future|divination": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.636
+   }
+  ],
+  "third eye|divination": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "self-buff|boon-swing|rank4",
+    "cohort_n": 6,
+    "percentile": 0.5
+   }
+  ],
+  "thwart danger|divination": [
+   {
+    "kind": "self-buff",
+    "value": 5.43,
+    "unit": "boon-swing",
+    "expr": "5 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.967
+   }
+  ],
+  "cosmic awareness|divination": [
+   {
+    "kind": "self-buff",
+    "value": 5.43,
+    "unit": "boon-swing",
+    "expr": "5 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 10,
+    "cohort": "self-buff|boon-swing|rank10",
+    "cohort_n": 3,
+    "percentile": 0.833
    }
   ],
   "earth spike|earth": [
@@ -2730,8 +3551,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "ensnare|earth": [
@@ -2747,8 +3568,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "stone armor|earth": [
@@ -2764,8 +3585,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "stone blades|earth": [
@@ -2781,8 +3602,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "avalanche|earth": [
@@ -2798,16 +3619,16 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.875
+    "cohort_n": 63,
+    "percentile": 0.897
    }
   ],
   "earth wave|earth": [
    {
     "kind": "damage",
-    "value": 24.0,
+    "value": 3.5,
     "unit": "damage",
-    "expr": "4d6+10",
+    "expr": "1d6",
     "flags": {
      "auto": true,
      "area": true,
@@ -2815,8 +3636,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.992
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "eruption|earth": [
@@ -2832,16 +3653,16 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.816
+    "cohort_n": 56,
+    "percentile": 0.848
    }
   ],
   "earthquake|earth": [
    {
     "kind": "damage",
-    "value": 24.0,
+    "value": 3.5,
     "unit": "damage",
-    "expr": "4d6+10",
+    "expr": "1d6",
     "flags": {
      "auto": true,
      "area": true,
@@ -2849,8 +3670,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.927
+    "cohort_n": 46,
+    "percentile": 0.022
    }
   ],
   "voracious earth|earth": [
@@ -2866,8 +3687,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.167
+    "cohort_n": 46,
+    "percentile": 0.152
    }
   ],
   "crystal shards|earth": [
@@ -2883,8 +3704,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.074
+    "cohort_n": 46,
+    "percentile": 0.087
    }
   ],
   "fissure|earth": [
@@ -2900,16 +3721,16 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.564
+    "cohort_n": 37,
+    "percentile": 0.541
    }
   ],
   "major earthquake|earth": [
    {
     "kind": "damage",
-    "value": 24.0,
+    "value": 3.5,
     "unit": "damage",
-    "expr": "4d6+10",
+    "expr": "1d6",
     "flags": {
      "auto": true,
      "area": false,
@@ -2917,8 +3738,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.605
+    "cohort_n": 18,
+    "percentile": 0.083
    }
   ],
   "become the mountain|earth": [
@@ -2934,8 +3755,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.618
+    "cohort_n": 16,
+    "percentile": 0.688
    },
    {
     "kind": "mitigation",
@@ -2952,9 +3773,9 @@
   "crack the world|earth": [
    {
     "kind": "damage",
-    "value": 24.0,
+    "value": 3.5,
     "unit": "damage",
-    "expr": "4d6+10",
+    "expr": "1d6",
     "flags": {
      "auto": true,
      "area": false,
@@ -2962,8 +3783,266 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
+    "cohort_n": 20,
+    "percentile": 0.075
+   }
+  ],
+  "distraction|enchantment": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "mark|boon-swing|rank0",
+    "cohort_n": 2,
+    "percentile": 0.5
+   }
+  ],
+  "attraction|enchantment": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
     "cohort_n": 21,
-    "percentile": 0.357
+    "percentile": 0.786
+   }
+  ],
+  "command|enchantment": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
+  "awaken passion|enchantment": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": true,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.722
+   }
+  ],
+  "mind bondage|enchantment": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
+   }
+  ],
+  "forbid|enchantment": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "self-buff|boon-swing|rank4",
+    "cohort_n": 6,
+    "percentile": 0.167
+   }
+  ],
+  "enslave|enchantment": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.5
+   }
+  ],
+  "zeal|enchantment": [
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "buff|boon-swing|rank5",
+    "cohort_n": 7,
+    "percentile": 0.857
+   }
+  ],
+  "awaken the hero|enchantment": [
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "buff|boon-swing|rank6",
+    "cohort_n": 4,
+    "percentile": 0.75
+   }
+  ],
+  "devotion|enchantment": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.208
+   }
+  ],
+  "ennui|enchantment": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 7,
+    "cohort": "self-buff|boon-swing|rank7",
+    "cohort_n": 3,
+    "percentile": 0.667
+   }
+  ],
+  "self-destruct|enchantment": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "self-buff|boon-swing|rank8",
+    "cohort_n": 6,
+    "percentile": 0.583
+   },
+   {
+    "kind": "mark",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "mark|boon-swing|rank8",
+    "cohort_n": 2,
+    "percentile": 0.75
    }
   ],
   "prick|fey": [
@@ -2979,8 +4058,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.065
+    "cohort_n": 28,
+    "percentile": 0.036
    }
   ],
   "faerie gold|fey": [
@@ -2998,6 +4077,26 @@
     "percentile": 0.357
    }
   ],
+  "erase memory|fey": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.227
+   }
+  ],
   "vengeance of the wee free men|fey": [
    {
     "kind": "damage",
@@ -3011,8 +4110,28 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.302
+    "cohort_n": 46,
+    "percentile": 0.293
+   }
+  ],
+  "strange delusions|fey": [
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "buff|boon-swing|rank5",
+    "cohort_n": 7,
+    "percentile": 0.857
    }
   ],
   "beget changeling|fey": [
@@ -3028,8 +4147,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.244
+    "cohort_n": 37,
+    "percentile": 0.257
    }
   ],
   "gift of immortality|fey": [
@@ -3045,6 +4164,24 @@
     "cohort": "heal|health|rank8",
     "cohort_n": 0,
     "percentile": null
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "buff|boon-swing|rank8",
+    "cohort_n": 2,
+    "percentile": 0.5
    }
   ],
   "imagine a hidden kingdom|fey": [
@@ -3060,8 +4197,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.238
+    "cohort_n": 20,
+    "percentile": 0.3
    }
   ],
   "create flame|fire": [
@@ -3077,8 +4214,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.823
+    "cohort_n": 28,
+    "percentile": 0.839
    }
   ],
   "flame missile|fire": [
@@ -3094,8 +4231,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "blazing columns|fire": [
@@ -3111,8 +4248,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "fire blast|fire": [
@@ -3128,8 +4265,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.941
+    "cohort_n": 57,
+    "percentile": 0.939
    }
   ],
   "meteor|fire": [
@@ -3145,8 +4282,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.856
+    "cohort_n": 57,
+    "percentile": 0.851
    }
   ],
   "sword of fire|fire": [
@@ -3162,8 +4299,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.424
+    "cohort_n": 57,
+    "percentile": 0.421
    }
   ],
   "fiery volley|fire": [
@@ -3179,8 +4316,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.344
+    "cohort_n": 63,
+    "percentile": 0.349
    }
   ],
   "flaming shroud|fire": [
@@ -3196,8 +4333,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "ignite|fire": [
@@ -3213,8 +4350,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "cloak of cinders|fire": [
@@ -3230,8 +4367,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    },
    {
     "kind": "mitigation",
@@ -3258,8 +4395,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.816
+    "cohort_n": 56,
+    "percentile": 0.848
    }
   ],
   "immolate|fire": [
@@ -3275,8 +4412,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.684
+    "cohort_n": 56,
+    "percentile": 0.705
    }
   ],
   "living inferno|fire": [
@@ -3292,8 +4429,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.167
+    "cohort_n": 46,
+    "percentile": 0.152
    }
   ],
   "wall of flames|fire": [
@@ -3309,8 +4446,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "circle of fire|fire": [
@@ -3326,8 +4463,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.479
+    "cohort_n": 46,
+    "percentile": 0.489
    }
   ],
   "rain of fire|fire": [
@@ -3343,8 +4480,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.564
+    "cohort_n": 46,
+    "percentile": 0.576
    }
   ],
   "blood of the earth|fire": [
@@ -3360,8 +4497,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.821
+    "cohort_n": 37,
+    "percentile": 0.811
    }
   ],
   "wildfire|fire": [
@@ -3377,8 +4514,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.564
+    "cohort_n": 37,
+    "percentile": 0.541
    }
   ],
   "swarm of fireballs|fire": [
@@ -3394,8 +4531,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.342
+    "cohort_n": 18,
+    "percentile": 0.472
    }
   ],
   "become the conflagration|fire": [
@@ -3411,8 +4548,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.441
+    "cohort_n": 16,
+    "percentile": 0.531
    },
    {
     "kind": "mitigation",
@@ -3441,8 +4578,28 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.881
+    "cohort_n": 20,
+    "percentile": 0.9
+   }
+  ],
+  "black tongue|forbidden": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
    }
   ],
   "carve the flesh|forbidden": [
@@ -3458,8 +4615,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.758
+    "cohort_n": 28,
+    "percentile": 0.768
    }
   ],
   "face rip|forbidden": [
@@ -3475,8 +4632,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "hateful defecation|forbidden": [
@@ -3492,8 +4649,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.424
+    "cohort_n": 57,
+    "percentile": 0.421
    }
   ],
   "obedience|forbidden": [
@@ -3509,8 +4666,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "seal the cavity|forbidden": [
@@ -3526,8 +4683,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "serpent tongue|forbidden": [
@@ -3543,8 +4700,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.424
+    "cohort_n": 57,
+    "percentile": 0.421
    }
   ],
   "grotesque fantasies|forbidden": [
@@ -3560,7 +4717,7 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
+    "cohort_n": 63,
     "percentile": 0.008
    }
   ],
@@ -3577,8 +4734,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
    }
   ],
   "vision’s end|forbidden": [
@@ -3594,8 +4751,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
    }
   ],
   "desire’s end|forbidden": [
@@ -3611,8 +4768,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
+    "cohort_n": 56,
+    "percentile": 0.545
    }
   ],
   "part bone from flesh|forbidden": [
@@ -3628,8 +4785,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.939
+    "cohort_n": 56,
+    "percentile": 0.946
    }
   ],
   "unruly organs|forbidden": [
@@ -3645,8 +4802,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "vivisection|forbidden": [
@@ -3662,8 +4819,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.816
+    "cohort_n": 56,
+    "percentile": 0.848
    }
   ],
   "spectacular expulsion|forbidden": [
@@ -3679,8 +4836,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "horrid joining|forbidden": [
@@ -3696,8 +4853,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.181
+    "cohort_n": 46,
+    "percentile": 0.185
    }
   ],
   "part soul from flesh|forbidden": [
@@ -3713,8 +4870,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.923
+    "cohort_n": 37,
+    "percentile": 0.919
    }
   ],
   "desecrate|forbidden": [
@@ -3743,8 +4900,28 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.235
+    "cohort_n": 16,
+    "percentile": 0.312
+   }
+  ],
+  "befuddle|illusion": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "mark|boon-swing|rank1",
+    "cohort_n": 4,
+    "percentile": 0.5
    }
   ],
   "false healing|illusion": [
@@ -3760,8 +4937,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    },
    {
     "kind": "mitigation",
@@ -3788,8 +4965,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
    }
   ],
   "phantasm|illusion": [
@@ -3805,8 +4982,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.684
+    "cohort_n": 56,
+    "percentile": 0.705
+   }
+  ],
+  "tormenting hallucinations|illusion": [
+   {
+    "kind": "mark",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "mark|boon-swing|rank3",
+    "cohort_n": 4,
+    "percentile": 0.875
    }
   ],
   "waking nightmare|illusion": [
@@ -3822,8 +5019,28 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.021
+    "cohort_n": 46,
+    "percentile": 0.033
+   }
+  ],
+  "accursed double|illusion": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 7,
+    "cohort": "buff|boon-swing|rank7",
+    "cohort_n": 2,
+    "percentile": 0.25
    }
   ],
   "investiture of the brute|invocation": [
@@ -3839,6 +5056,26 @@
     "percentile": 0.75
    }
   ],
+  "investiture of the watcher|invocation": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.842
+   }
+  ],
   "investiture of the betrayer|invocation": [
    {
     "kind": "damage",
@@ -3852,8 +5089,46 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.314
+    "cohort_n": 57,
+    "percentile": 0.307
+   }
+  ],
+  "investiture of the dwarf lord|invocation": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "buff|boon-swing|rank1",
+    "cohort_n": 8,
+    "percentile": 0.312
    }
   ],
   "investiture of the fire prince|invocation": [
@@ -3869,8 +5144,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.424
+    "cohort_n": 57,
+    "percentile": 0.421
    },
    {
     "kind": "mitigation",
@@ -3886,6 +5161,26 @@
     "percentile": 0.25
    }
   ],
+  "investiture of the goblin king|invocation": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.952
+   }
+  ],
   "investiture of the storm queen|invocation": [
    {
     "kind": "damage",
@@ -3899,8 +5194,28 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
+   }
+  ],
+  "investiture of the deceiver|invocation": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.938
    }
   ],
   "investiture of the grand druid|invocation": [
@@ -3916,8 +5231,28 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "investiture of desire in flesh|invocation": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.909
    }
   ],
   "investiture of the laughing scoundrel|invocation": [
@@ -3933,8 +5268,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.088
+    "cohort_n": 56,
+    "percentile": 0.089
+   }
+  ],
+  "investiture of the moon maiden|invocation": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.227
    }
   ],
   "investiture of the one-eyed god|invocation": [
@@ -3950,8 +5305,26 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
+    "cohort_n": 56,
+    "percentile": 0.545
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.636
    }
   ],
   "investiture of the horned one|invocation": [
@@ -3967,8 +5340,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.833
+    "cohort_n": 46,
+    "percentile": 0.848
    },
    {
     "kind": "mitigation",
@@ -3995,8 +5368,26 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.302
+    "cohort_n": 46,
+    "percentile": 0.293
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "self-buff|boon-swing|rank4",
+    "cohort_n": 6,
+    "percentile": 0.833
    }
   ],
   "investiture of the winter king|invocation": [
@@ -4012,8 +5403,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    },
    {
     "kind": "mitigation",
@@ -4042,8 +5433,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.266
+    "cohort_n": 46,
+    "percentile": 0.272
    },
    {
     "kind": "heal",
@@ -4070,6 +5461,24 @@
     "cohort": "mitigation|%damage|rank5",
     "cohort_n": 3,
     "percentile": 0.667
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.767
    }
   ],
   "investiture of the world mother|invocation": [
@@ -4111,8 +5520,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.436
+    "cohort_n": 37,
+    "percentile": 0.432
    },
    {
     "kind": "mitigation",
@@ -4141,8 +5550,46 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.679
+    "cohort_n": 37,
+    "percentile": 0.662
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.208
+   }
+  ],
+  "investiture of the archmage|invocation": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 7,
+    "cohort": "self-buff|boon-swing|rank7",
+    "cohort_n": 3,
+    "percentile": 0.167
    }
   ],
   "investiture of the great dragon|invocation": [
@@ -4158,8 +5605,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.765
+    "cohort_n": 16,
+    "percentile": 0.781
    },
    {
     "kind": "mitigation",
@@ -4188,8 +5635,8 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.154
+    "cohort_n": 10,
+    "percentile": 0.1
    }
   ],
   "investiture of the devil|invocation": [
@@ -4205,8 +5652,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.238
+    "cohort_n": 20,
+    "percentile": 0.3
    }
   ],
   "death ward|life": [
@@ -4237,8 +5684,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.903
+    "cohort_n": 28,
+    "percentile": 0.929
    },
    {
     "kind": "heal",
@@ -4312,6 +5759,24 @@
     "cohort": "heal|healing-rate|rank1",
     "cohort_n": 9,
     "percentile": 0.389
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "buff|boon-swing|rank1",
+    "cohort_n": 8,
+    "percentile": 0.312
    }
   ],
   "light healing|life": [
@@ -4327,6 +5792,26 @@
     "cohort": "heal|healing-rate|rank1",
     "cohort_n": 9,
     "percentile": 0.889
+   }
+  ],
+  "augmented vitality|life": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.722
    }
   ],
   "moderate healing|life": [
@@ -4398,8 +5883,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.684
+    "cohort_n": 56,
+    "percentile": 0.705
    }
   ],
   "greater cure|life": [
@@ -4505,6 +5990,24 @@
     "cohort": "heal|health|rank5",
     "cohort_n": 3,
     "percentile": null
+   },
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "buff|boon-swing|rank5",
+    "cohort_n": 7,
+    "percentile": 0.429
    }
   ],
   "resurrect|life": [
@@ -4550,8 +6053,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.923
+    "cohort_n": 37,
+    "percentile": 0.919
    }
   ],
   "house of healing|life": [
@@ -4586,21 +6089,6 @@
   ],
   "ashes to ashes|life": [
    {
-    "kind": "damage",
-    "value": 28.0,
-    "unit": "damage",
-    "expr": "8d6",
-    "flags": {
-     "auto": true,
-     "area": true,
-     "attack": false
-    },
-    "rank": 9,
-    "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.5
-   },
-   {
     "kind": "heal",
     "value": null,
     "unit": "health",
@@ -4629,6 +6117,26 @@
     "percentile": null
    }
   ],
+  "reveal unspeakable truth|madness": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
+   }
+  ],
   "black breath|madness": [
    {
     "kind": "damage",
@@ -4642,8 +6150,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "dream worm|madness": [
@@ -4659,8 +6167,28 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
+   }
+  ],
+  "forbidden knowledge|madness": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.786
    }
   ],
   "hoary tentacle|madness": [
@@ -4676,8 +6204,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.781
+    "cohort_n": 63,
+    "percentile": 0.794
    }
   ],
   "bedeviling colors|madness": [
@@ -4693,8 +6221,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "eye of the outer god|madness": [
@@ -4710,8 +6238,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.088
+    "cohort_n": 56,
+    "percentile": 0.089
    }
   ],
   "mind shatter|madness": [
@@ -4727,8 +6255,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "dark star|madness": [
@@ -4744,8 +6272,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.771
+    "cohort_n": 46,
+    "percentile": 0.783
    }
   ],
   "worms from the ninth dimension|madness": [
@@ -4761,8 +6289,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "chant of the lost|madness": [
@@ -4778,8 +6306,28 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.154
+    "cohort_n": 37,
+    "percentile": 0.176
+   }
+  ],
+  "dimensional banishment|madness": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "self-buff|boon-swing|rank8",
+    "cohort_n": 6,
+    "percentile": 0.583
    }
   ],
   "barbed hide|metal": [
@@ -4795,8 +6343,28 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
+   }
+  ],
+  "draw iron|metal": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
    }
   ],
   "pinning spike|metal": [
@@ -4812,25 +6380,26 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.814
-   }
-  ],
-  "rust|metal": [
+    "cohort_n": 57,
+    "percentile": 0.807
+   },
    {
-    "kind": "damage",
-    "value": 7.0,
-    "unit": "damage",
-    "expr": "2d6",
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
     "flags": {
-     "auto": true,
-     "area": false,
-     "attack": false
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
     },
     "rank": 1,
-    "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort": "buff|boon-swing|rank1",
+    "cohort_n": 8,
+    "percentile": 0.312
    }
   ],
   "fusillade|metal": [
@@ -4846,8 +6415,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.641
+    "cohort_n": 63,
+    "percentile": 0.651
    }
   ],
   "memory of the forge|metal": [
@@ -4863,8 +6432,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "strength of steel|metal": [
@@ -4878,6 +6447,24 @@
     "cohort": "mitigation|temp-health|rank2",
     "cohort_n": 6,
     "percentile": 0.25
+   },
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "mark|boon-swing|rank2",
+    "cohort_n": 2,
+    "percentile": 0.5
    }
   ],
   "iron cloud|metal": [
@@ -4893,8 +6480,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
+    "cohort_n": 56,
+    "percentile": 0.545
    }
   ],
   "magnetize|metal": [
@@ -4910,8 +6497,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
+    "cohort_n": 56,
     "percentile": 0.009
+   }
+  ],
+  "riddle of steel|metal": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.682
    }
   ],
   "repel metal|metal": [
@@ -4927,8 +6534,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.01
+    "cohort_n": 46,
+    "percentile": 0.022
    }
   ],
   "spike burst|metal": [
@@ -4944,8 +6551,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.896
+    "cohort_n": 46,
+    "percentile": 0.913
    }
   ],
   "adamantine chains|metal": [
@@ -4961,8 +6568,26 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.564
+    "cohort_n": 46,
+    "percentile": 0.576
+   },
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "mark|boon-swing|rank5",
+    "cohort_n": 3,
+    "percentile": 0.167
    }
   ],
   "invincible panoply|metal": [
@@ -4978,8 +6603,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.021
+    "cohort_n": 46,
+    "percentile": 0.033
    }
   ],
   "river of molten metal|metal": [
@@ -4995,8 +6620,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.571
+    "cohort_n": 20,
+    "percentile": 0.575
    }
   ],
   "magic acorns|nature": [
@@ -5012,8 +6637,28 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.194
+    "cohort_n": 28,
+    "percentile": 0.143
+   }
+  ],
+  "oak hide|nature": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
    }
   ],
   "green tongue|nature": [
@@ -5044,8 +6689,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "thorny skin|nature": [
@@ -5061,8 +6706,26 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
    }
   ],
   "brambles|nature": [
@@ -5078,8 +6741,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.088
+    "cohort_n": 56,
+    "percentile": 0.089
+   }
+  ],
+  "circle of stones|nature": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.273
    }
   ],
   "tumescent puffballs|nature": [
@@ -5095,8 +6778,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "sacred grove|nature": [
@@ -5127,8 +6810,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "wrath of nature|nature": [
@@ -5144,8 +6827,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "bramble hedge|nature": [
@@ -5161,8 +6844,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.181
+    "cohort_n": 46,
+    "percentile": 0.185
    }
   ],
   "form of the oak guardian|nature": [
@@ -5178,8 +6861,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.181
+    "cohort_n": 46,
+    "percentile": 0.185
    },
    {
     "kind": "mitigation",
@@ -5191,6 +6874,24 @@
     "cohort": "mitigation|temp-health|rank5",
     "cohort_n": 9,
     "percentile": 0.278
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.2
    }
   ],
   "reincarnation|nature": [
@@ -5221,8 +6922,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.154
+    "cohort_n": 37,
+    "percentile": 0.176
    },
    {
     "kind": "mitigation",
@@ -5234,6 +6935,24 @@
     "cohort": "mitigation|temp-health|rank6",
     "cohort_n": 2,
     "percentile": 0.25
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.208
    }
   ],
   "abundance|nature": [
@@ -5264,8 +6983,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.194
+    "cohort_n": 28,
+    "percentile": 0.143
    }
   ],
   "bone armor|necromancy": [
@@ -5281,8 +7000,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.042
+    "cohort_n": 57,
+    "percentile": 0.035
    }
   ],
   "grave grasp|necromancy": [
@@ -5298,8 +7017,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "harvest soul|necromancy": [
@@ -5330,8 +7049,28 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.938
+    "cohort_n": 63,
+    "percentile": 0.952
+   }
+  ],
+  "funeral shroud|necromancy": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
    }
   ],
   "shrieking skull|necromancy": [
@@ -5347,8 +7086,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.344
+    "cohort_n": 63,
+    "percentile": 0.349
    }
   ],
   "cannibalize magic|necromancy": [
@@ -5364,8 +7103,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
+    "cohort_n": 56,
+    "percentile": 0.545
    }
   ],
   "keening|necromancy": [
@@ -5381,8 +7120,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.684
+    "cohort_n": 56,
+    "percentile": 0.705
    }
   ],
   "spectral scythe|necromancy": [
@@ -5398,8 +7137,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.412
+    "cohort_n": 56,
+    "percentile": 0.42
    }
   ],
   "drown in maggots|necromancy": [
@@ -5415,8 +7154,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "soul blight|necromancy": [
@@ -5462,8 +7201,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.628
+    "cohort_n": 46,
+    "percentile": 0.641
    }
   ],
   "awaken graveyard|necromancy": [
@@ -5494,8 +7233,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.154
+    "cohort_n": 37,
+    "percentile": 0.176
    }
   ],
   "unleash bone machine|necromancy": [
@@ -5541,8 +7280,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.571
+    "cohort_n": 20,
+    "percentile": 0.575
    }
   ],
   "demand|order": [
@@ -5558,8 +7297,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.781
+    "cohort_n": 63,
+    "percentile": 0.794
    }
   ],
   "forbidden zone|order": [
@@ -5575,8 +7314,28 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.875
+    "cohort_n": 63,
+    "percentile": 0.897
+   }
+  ],
+  "immobility|order": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
    }
   ],
   "command truth|order": [
@@ -5592,8 +7351,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.088
+    "cohort_n": 56,
+    "percentile": 0.089
+   }
+  ],
+  "stillness|order": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 3,
+    "cohort": "mark|boon-swing|rank3",
+    "cohort_n": 4,
+    "percentile": 0.375
    }
   ],
   "depower|order": [
@@ -5624,8 +7403,46 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.181
+    "cohort_n": 46,
+    "percentile": 0.185
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.2
+   }
+  ],
+  "mantle of law|order": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.2
    }
   ],
   "ordered space|order": [
@@ -5641,8 +7458,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.564
+    "cohort_n": 46,
+    "percentile": 0.576
    },
    {
     "kind": "mitigation",
@@ -5671,16 +7488,16 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.679
+    "cohort_n": 37,
+    "percentile": 0.662
    }
   ],
   "purge chaos|order": [
    {
     "kind": "damage",
-    "value": 21.0,
+    "value": 10.5,
     "unit": "damage",
-    "expr": "6d6",
+    "expr": "3d6",
     "flags": {
      "auto": true,
      "area": true,
@@ -5688,8 +7505,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.474
+    "cohort_n": 18,
+    "percentile": 0.361
    }
   ],
   "restore reality|order": [
@@ -5705,8 +7522,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.571
+    "cohort_n": 20,
+    "percentile": 0.575
    }
   ],
   "lick your wounds|primal": [
@@ -5722,6 +7539,24 @@
     "cohort": "heal|healing-rate|rank0",
     "cohort_n": 2,
     "percentile": 0.5
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
    }
   ],
   "primal might|primal": [
@@ -5737,6 +7572,46 @@
     "percentile": 0.25
    }
   ],
+  "befriend animal|primal": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
+  "primal scream|primal": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 1,
+    "cohort": "mark|boon-swing|rank1",
+    "cohort_n": 4,
+    "percentile": 0.5
+   }
+  ],
   "venomous fangs|primal": [
    {
     "kind": "damage",
@@ -5750,8 +7625,28 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.314
+    "cohort_n": 57,
+    "percentile": 0.307
+   }
+  ],
+  "darting claw|primal": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.781
    }
   ],
   "rabid beast|primal": [
@@ -5765,6 +7660,24 @@
     "cohort": "mitigation|temp-health|rank3",
     "cohort_n": 3,
     "percentile": 0.333
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.273
    }
   ],
   "resilient beast|primal": [
@@ -5780,6 +7693,24 @@
     "cohort": "heal|healing-rate|rank3",
     "cohort_n": 6,
     "percentile": 0.167
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.273
    }
   ],
   "call of the wild|primal": [
@@ -5806,6 +7737,24 @@
     "cohort": "mitigation|temp-health|rank5",
     "cohort_n": 9,
     "percentile": 0.611
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.2
    }
   ],
   "savagery|primal": [
@@ -5849,8 +7798,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.474
+    "cohort_n": 18,
+    "percentile": 0.556
    },
    {
     "kind": "heal",
@@ -5905,6 +7854,24 @@
     "cohort": "mitigation|temp-health|rank9",
     "cohort_n": 1,
     "percentile": 0.5
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 9,
+    "cohort": "self-buff|boon-swing|rank9",
+    "cohort_n": 1,
+    "percentile": 0.5
    }
   ],
   "binding shackles|protection": [
@@ -5920,8 +7887,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "perfect target|protection": [
@@ -5937,8 +7904,26 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.941
+    "cohort_n": 57,
+    "percentile": 0.939
+   },
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "mark|boon-swing|rank1",
+    "cohort_n": 4,
+    "percentile": 0.5
    }
   ],
   "electrify|protection": [
@@ -5954,8 +7939,28 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
+   }
+  ],
+  "vigilance|protection": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.222
    }
   ],
   "vigor|protection": [
@@ -5984,8 +7989,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.684
+    "cohort_n": 56,
+    "percentile": 0.705
    }
   ],
   "magic trap|protection": [
@@ -6001,8 +8006,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.939
+    "cohort_n": 56,
+    "percentile": 0.946
+   }
+  ],
+  "protection from spells|protection": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.273
    }
   ],
   "force shield|protection": [
@@ -6018,8 +8043,28 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.729
+    "cohort_n": 46,
+    "percentile": 0.739
+   }
+  ],
+  "protection from corruption|protection": [
+   {
+    "kind": "buff",
+    "value": null,
+    "unit": "boon-swing",
+    "expr": "see text",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "buff|boon-swing|rank5",
+    "cohort_n": 7,
+    "percentile": null
    }
   ],
   "reflective cube|protection": [
@@ -6035,8 +8080,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.158
+    "cohort_n": 18,
+    "percentile": 0.222
    }
   ],
   "ultimate security|protection": [
@@ -6052,8 +8097,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.059
+    "cohort_n": 16,
+    "percentile": 0.094
    }
   ],
   "refuge|protection": [
@@ -6099,8 +8144,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.424
+    "cohort_n": 57,
+    "percentile": 0.421
    }
   ],
   "detonating rune|rune": [
@@ -6116,8 +8161,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.781
+    "cohort_n": 63,
+    "percentile": 0.794
    }
   ],
   "glyphic prison|rune": [
@@ -6133,8 +8178,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.969
+    "cohort_n": 63,
+    "percentile": 0.984
    }
   ],
   "sickening rune|rune": [
@@ -6150,8 +8195,28 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "rune of might|rune": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.682
    }
   ],
   "sigil trap|rune": [
@@ -6167,8 +8232,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "pulsing glyph|rune": [
@@ -6184,8 +8249,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "rune of thunder|rune": [
@@ -6201,8 +8266,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.354
+    "cohort_n": 46,
+    "percentile": 0.348
    }
   ],
   "rune of power|rune": [
@@ -6216,6 +8281,44 @@
     "cohort": "mitigation|temp-health|rank5",
     "cohort_n": 9,
     "percentile": 0.611
+   },
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "buff|boon-swing|rank5",
+    "cohort_n": 7,
+    "percentile": 0.429
+   }
+  ],
+  "rune of speed|rune": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "buff|boon-swing|rank5",
+    "cohort_n": 7,
+    "percentile": 0.429
    }
   ],
   "rune of the giant|rune": [
@@ -6244,8 +8347,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.923
+    "cohort_n": 37,
+    "percentile": 0.919
    }
   ],
   "runic inscription|rune": [
@@ -6261,8 +8364,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.912
+    "cohort_n": 16,
+    "percentile": 0.906
    }
   ],
   "rune of damning light|rune": [
@@ -6278,8 +8381,8 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.346
+    "cohort_n": 10,
+    "percentile": 0.35
    }
   ],
   "rune of annihilation|rune": [
@@ -6295,8 +8398,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.048
+    "cohort_n": 20,
+    "percentile": 0.075
    }
   ],
   "nightfall blade|shadow": [
@@ -6312,8 +8415,28 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
+   }
+  ],
+  "steal shadow|shadow": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
    }
   ],
   "darkening blades|shadow": [
@@ -6329,8 +8452,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "shadow dart|shadow": [
@@ -6346,8 +8469,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "penumbral blade|shadow": [
@@ -6363,8 +8486,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.695
+    "cohort_n": 63,
+    "percentile": 0.706
    }
   ],
   "shadow snakes|shadow": [
@@ -6380,8 +8503,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "shadow stride|shadow": [
@@ -6397,8 +8520,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
    }
   ],
   "strangling twin|shadow": [
@@ -6414,8 +8537,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
+    "cohort_n": 56,
+    "percentile": 0.545
    }
   ],
   "chilling darkness|shadow": [
@@ -6431,8 +8554,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "void tentacles|shadow": [
@@ -6448,8 +8571,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "shadow horror|shadow": [
@@ -6465,6 +8588,26 @@
     "percentile": 0.611
    }
   ],
+  "nightfall|shadow": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.833
+   }
+  ],
   "obsidian serpents|shadow": [
    {
     "kind": "damage",
@@ -6478,8 +8621,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.436
+    "cohort_n": 37,
+    "percentile": 0.432
    }
   ],
   "shade|shadow": [
@@ -6495,8 +8638,48 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.618
+    "cohort_n": 16,
+    "percentile": 0.688
+   }
+  ],
+  "filthy limerick|song": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "mark|boon-swing|rank0",
+    "cohort_n": 2,
+    "percentile": 0.5
+   }
+  ],
+  "uplifting melody|song": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": true,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "buff|boon-swing|rank0",
+    "cohort_n": 3,
+    "percentile": 0.667
    }
   ],
   "cacophonous utterance|song": [
@@ -6512,8 +8695,68 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
+   }
+  ],
+  "song of inspiration|song": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "buff|boon-swing|rank1",
+    "cohort_n": 8,
+    "percentile": 0.75
+   }
+  ],
+  "battle chant|song": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": true,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.222
+   }
+  ],
+  "rousing ballad|song": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.222
    }
   ],
   "song of healing|song": [
@@ -6531,6 +8774,26 @@
     "percentile": 0.357
    }
   ],
+  "maddening drone|song": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": true,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "mark|boon-swing|rank4",
+    "cohort_n": 1,
+    "percentile": 0.5
+   }
+  ],
   "song of heroes|song": [
    {
     "kind": "mitigation",
@@ -6542,6 +8805,24 @@
     "cohort": "mitigation|temp-health|rank5",
     "cohort_n": 9,
     "percentile": 0.611
+   },
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "buff|boon-swing|rank5",
+    "cohort_n": 7,
+    "percentile": 0.429
    }
   ],
   "hymn of rebirth|song": [
@@ -6572,8 +8853,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.763
+    "cohort_n": 18,
+    "percentile": 0.75
    }
   ],
   "heavenly choir|song": [
@@ -6585,6 +8866,24 @@
     "flags": {},
     "rank": 8,
     "cohort": "mitigation|temp-health|rank8",
+    "cohort_n": 2,
+    "percentile": 0.25
+   },
+   {
+    "kind": "mark",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": true,
+     "area": true
+    },
+    "rank": 8,
+    "cohort": "mark|boon-swing|rank8",
     "cohort_n": 2,
     "percentile": 0.25
    }
@@ -6602,8 +8901,8 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.962
+    "cohort_n": 10,
+    "percentile": 0.95
    }
   ],
   "music of the spheres|song": [
@@ -6621,6 +8920,46 @@
     "percentile": 0.5
    }
   ],
+  "focused strike|soul": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
+   }
+  ],
+  "recall past success|soul": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.842
+   }
+  ],
   "guarded soul|soul": [
    {
     "kind": "heal",
@@ -6634,6 +8973,64 @@
     "cohort": "heal|healing-rate|rank1",
     "cohort_n": 9,
     "percentile": 0.389
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
+  "strike the soul|soul": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.952
+   }
+  ],
+  "shattering strike|soul": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.938
    }
   ],
   "topple the mountain|soul": [
@@ -6649,8 +9046,26 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
+   },
+   {
+    "kind": "self-buff",
+    "value": null,
+    "unit": "boon-swing",
+    "expr": "see text",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": null
    }
   ],
   "introspective trance|soul": [
@@ -6668,6 +9083,86 @@
     "percentile": null
    }
   ],
+  "soul shivers|soul": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "self-buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.909
+   }
+  ],
+  "quiet the soul|soul": [
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "buff|boon-swing|rank4",
+    "cohort_n": 5,
+    "percentile": 0.8
+   }
+  ],
+  "rend soul|soul": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "self-buff|boon-swing|rank4",
+    "cohort_n": 6,
+    "percentile": 0.833
+   }
+  ],
+  "soul dissonance|soul": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.767
+   }
+  ],
   "transcendent recovery|soul": [
    {
     "kind": "heal",
@@ -6681,6 +9176,24 @@
     "cohort": "heal|health|rank5",
     "cohort_n": 3,
     "percentile": null
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.2
    }
   ],
   "become the soul|soul": [
@@ -6696,8 +9209,28 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.564
+    "cohort_n": 37,
+    "percentile": 0.541
+   }
+  ],
+  "displace soul|soul": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 7,
+    "cohort": "self-buff|boon-swing|rank7",
+    "cohort_n": 3,
+    "percentile": 0.667
    }
   ],
   "enlightenment|soul": [
@@ -6713,6 +9246,44 @@
     "cohort": "heal|healing-rate|rank10",
     "cohort_n": 2,
     "percentile": 0.5
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 10,
+    "cohort": "self-buff|boon-swing|rank10",
+    "cohort_n": 3,
+    "percentile": 0.333
+   }
+  ],
+  "spellbound weapon|spellbinder": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
    }
   ],
   "lion spirit|spiritualism": [
@@ -6741,8 +9312,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
+    "cohort_n": 56,
+    "percentile": 0.545
    }
   ],
   "horror of the spirit world|spiritualism": [
@@ -6758,8 +9329,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.167
+    "cohort_n": 46,
+    "percentile": 0.152
    }
   ],
   "host of spirits|spiritualism": [
@@ -6775,8 +9346,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.167
+    "cohort_n": 46,
+    "percentile": 0.152
    },
    {
     "kind": "heal",
@@ -6805,8 +9376,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.351
+    "cohort_n": 46,
+    "percentile": 0.359
    }
   ],
   "guiding spirits|spiritualism": [
@@ -6822,8 +9393,26 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.295
+    "cohort_n": 37,
+    "percentile": 0.311
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.542
    }
   ],
   "hero spirit|spiritualism": [
@@ -6837,6 +9426,44 @@
     "cohort": "mitigation|temp-health|rank7",
     "cohort_n": 3,
     "percentile": 0.5
+   },
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 7,
+    "cohort": "buff|boon-swing|rank7",
+    "cohort_n": 2,
+    "percentile": 0.75
+   }
+  ],
+  "vision of the underworld|spiritualism": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 8,
+    "cohort": "self-buff|boon-swing|rank8",
+    "cohort_n": 6,
+    "percentile": 0.083
    }
   ],
   "dragon spirit|spiritualism": [
@@ -6852,8 +9479,26 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.269
+    "cohort_n": 10,
+    "percentile": 0.25
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 9,
+    "cohort": "buff|boon-swing|rank9",
+    "cohort_n": 1,
+    "percentile": 0.5
    }
   ],
   "open the underworld’s gates|spiritualism": [
@@ -6882,8 +9527,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "shock|storm": [
@@ -6899,8 +9544,26 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
    }
   ],
   "forked lightning|storm": [
@@ -6916,8 +9579,26 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.424
+    "cohort_n": 57,
+    "percentile": 0.421
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
    }
   ],
   "freezing fog|storm": [
@@ -6933,8 +9614,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.042
+    "cohort_n": 57,
+    "percentile": 0.035
    }
   ],
   "jolt|storm": [
@@ -6950,8 +9631,46 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.517
+    "cohort_n": 57,
+    "percentile": 0.518
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
+  "saint astrid’s flame|storm": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "mark|boon-swing|rank1",
+    "cohort_n": 4,
+    "percentile": 0.5
    }
   ],
   "call lightning|storm": [
@@ -6967,8 +9686,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.938
+    "cohort_n": 63,
+    "percentile": 0.952
    }
   ],
   "poisonous fog|storm": [
@@ -6984,8 +9703,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "ride the lightning|storm": [
@@ -7001,8 +9720,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
    }
   ],
   "hailstorm|storm": [
@@ -7018,8 +9737,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.535
+    "cohort_n": 56,
+    "percentile": 0.545
    }
   ],
   "lightning bolt|storm": [
@@ -7035,8 +9754,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.816
+    "cohort_n": 56,
+    "percentile": 0.848
    }
   ],
   "acid rain|storm": [
@@ -7052,8 +9771,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.833
+    "cohort_n": 46,
+    "percentile": 0.848
    }
   ],
   "smog|storm": [
@@ -7069,8 +9788,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.26
+    "cohort_n": 46,
+    "percentile": 0.25
    }
   ],
   "dancing lightning|storm": [
@@ -7086,8 +9805,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.702
+    "cohort_n": 46,
+    "percentile": 0.739
    }
   ],
   "leaping lightning|storm": [
@@ -7103,8 +9822,46 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.798
+    "cohort_n": 46,
+    "percentile": 0.859
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.2
+   }
+  ],
+  "power of the storm|storm": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.542
    }
   ],
   "summon storm|storm": [
@@ -7120,8 +9877,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.295
+    "cohort_n": 37,
+    "percentile": 0.311
    }
   ],
   "lightning storm|storm": [
@@ -7137,16 +9894,16 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.763
+    "cohort_n": 18,
+    "percentile": 0.75
    }
   ],
   "heart of winter|storm": [
    {
     "kind": "damage",
-    "value": 21.0,
+    "value": 3.5,
     "unit": "damage",
-    "expr": "6d6",
+    "expr": "1d6",
     "flags": {
      "auto": true,
      "area": true,
@@ -7154,8 +9911,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.618
+    "cohort_n": 16,
+    "percentile": 0.094
    }
   ],
   "hurricane|storm": [
@@ -7171,25 +9928,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.571
-   }
-  ],
-  "gatecrasher|technomancy": [
-   {
-    "kind": "damage",
-    "value": 14.0,
-    "unit": "damage",
-    "expr": "4d6",
-    "flags": {
-     "auto": true,
-     "area": true,
-     "attack": false
-    },
-    "rank": 0,
-    "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.984
+    "cohort_n": 20,
+    "percentile": 0.575
    }
   ],
   "jury-rig|technomancy": [
@@ -7205,8 +9945,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "magic wrench|technomancy": [
@@ -7222,8 +9962,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.823
+    "cohort_n": 28,
+    "percentile": 0.839
    }
   ],
   "bolt thrower|technomancy": [
@@ -7239,8 +9979,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "caltrops|technomancy": [
@@ -7256,8 +9996,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.314
+    "cohort_n": 57,
+    "percentile": 0.307
    }
   ],
   "electrified chain|technomancy": [
@@ -7273,8 +10013,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "incandescent bomb|technomancy": [
@@ -7290,8 +10030,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "sparking shield|technomancy": [
@@ -7307,8 +10047,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.169
+    "cohort_n": 57,
+    "percentile": 0.158
    }
   ],
   "detonation marbles|technomancy": [
@@ -7324,8 +10064,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.781
+    "cohort_n": 63,
+    "percentile": 0.794
    }
   ],
   "flamethrower|technomancy": [
@@ -7341,8 +10081,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
    }
   ],
   "grenades|technomancy": [
@@ -7358,8 +10098,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.344
+    "cohort_n": 63,
+    "percentile": 0.349
    }
   ],
   "mines|technomancy": [
@@ -7375,8 +10115,28 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
+   }
+  ],
+  "dark helmet|technomancy": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.682
    }
   ],
   "flying blades|technomancy": [
@@ -7392,8 +10152,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "watchful eyes|technomancy": [
@@ -7409,8 +10169,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.447
+    "cohort_n": 56,
+    "percentile": 0.455
    }
   ],
   "artillery turrets|technomancy": [
@@ -7426,8 +10186,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.354
+    "cohort_n": 46,
+    "percentile": 0.348
    }
   ],
   "iron boots|technomancy": [
@@ -7443,8 +10203,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
    }
   ],
   "bladed whirligig|technomancy": [
@@ -7460,8 +10220,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.351
+    "cohort_n": 46,
+    "percentile": 0.359
    }
   ],
   "gatling gun|technomancy": [
@@ -7477,8 +10237,28 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.351
+    "cohort_n": 46,
+    "percentile": 0.359
+   }
+  ],
+  "magic item|technomancy": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "buff|boon-swing|rank5",
+    "cohort_n": 7,
+    "percentile": 0.071
    }
   ],
   "stonebreaker bomb|technomancy": [
@@ -7494,8 +10274,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.923
+    "cohort_n": 37,
+    "percentile": 0.919
    }
   ],
   "wall of gears|technomancy": [
@@ -7511,8 +10291,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.679
+    "cohort_n": 37,
+    "percentile": 0.662
    }
   ],
   "mobile fortress|technomancy": [
@@ -7528,8 +10308,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.912
+    "cohort_n": 16,
+    "percentile": 0.906
    },
    {
     "kind": "mitigation",
@@ -7558,8 +10338,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.881
+    "cohort_n": 20,
+    "percentile": 0.9
    }
   ],
   "smash|telekinesis": [
@@ -7575,8 +10355,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.906
+    "cohort_n": 63,
+    "percentile": 0.929
    }
   ],
   "catch projectiles|telekinesis": [
@@ -7592,8 +10372,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.684
+    "cohort_n": 56,
+    "percentile": 0.705
    }
   ],
   "force missile|telekinesis": [
@@ -7609,8 +10389,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.684
+    "cohort_n": 56,
+    "percentile": 0.705
    }
   ],
   "sweep aside|telekinesis": [
@@ -7626,8 +10406,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.833
+    "cohort_n": 46,
+    "percentile": 0.848
    }
   ],
   "enemy to weapon|telekinesis": [
@@ -7643,8 +10423,26 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.436
+    "cohort_n": 46,
+    "percentile": 0.446
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.5
    }
   ],
   "mind fist|telekinesis": [
@@ -7660,8 +10458,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.777
+    "cohort_n": 46,
+    "percentile": 0.837
    }
   ],
   "explode|telekinesis": [
@@ -7677,8 +10475,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.679
+    "cohort_n": 37,
+    "percentile": 0.662
    }
   ],
   "telekinetic might|telekinesis": [
@@ -7694,8 +10492,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.564
+    "cohort_n": 37,
+    "percentile": 0.541
    }
   ],
   "mental armor|telekinesis": [
@@ -7711,8 +10509,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.053
+    "cohort_n": 18,
+    "percentile": 0.083
    }
   ],
   "implode|telekinesis": [
@@ -7728,16 +10526,16 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.808
+    "cohort_n": 10,
+    "percentile": 0.75
    }
   ],
   "catastrophic outburst|telekinesis": [
    {
     "kind": "damage",
-    "value": 120.0,
+    "value": 70.0,
     "unit": "damage",
-    "expr": "120",
+    "expr": "20d6",
     "flags": {
      "auto": true,
      "area": true,
@@ -7745,8 +10543,108 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
+    "cohort_n": 20,
+    "percentile": 0.9
+   }
+  ],
+  "empty mind|telepathy": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.842
+   }
+  ],
+  "anticipation|telepathy": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
     "cohort_n": 21,
-    "percentile": 0.976
+    "percentile": 0.333
+   }
+  ],
+  "intellectual defense|telepathy": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
+   }
+  ],
+  "fugue|telepathy": [
+   {
+    "kind": "mark",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 3,
+    "cohort": "mark|boon-swing|rank3",
+    "cohort_n": 4,
+    "percentile": 0.375
+   }
+  ],
+  "shielded minds|telepathy": [
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 3,
+    "cohort": "buff|boon-swing|rank3",
+    "cohort_n": 11,
+    "percentile": 0.909
    }
   ],
   "bury the hatchet|teleportation": [
@@ -7762,8 +10660,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ],
   "division|teleportation": [
@@ -7779,25 +10677,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.941
-   }
-  ],
-  "relocate object|teleportation": [
-   {
-    "kind": "damage",
-    "value": 3.5,
-    "unit": "damage",
-    "expr": "1d6",
-    "flags": {
-     "auto": true,
-     "area": false,
-     "attack": false
-    },
-    "rank": 2,
-    "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 57,
+    "percentile": 0.939
    }
   ],
   "fuse|teleportation": [
@@ -7813,8 +10694,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.939
+    "cohort_n": 56,
+    "percentile": 0.946
    }
   ],
   "dismember|teleportation": [
@@ -7830,8 +10711,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.896
+    "cohort_n": 46,
+    "percentile": 0.913
    }
   ],
   "travel|teleportation": [
@@ -7847,25 +10728,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.926
-   }
-  ],
-  "remove obstacle|teleportation": [
-   {
-    "kind": "damage",
-    "value": 3.5,
-    "unit": "damage",
-    "expr": "1d6",
-    "flags": {
-     "auto": true,
-     "area": false,
-     "attack": false
-    },
-    "rank": 6,
-    "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.051
+    "cohort_n": 46,
+    "percentile": 0.946
    }
   ],
   "dismantle|teleportation": [
@@ -7881,8 +10745,68 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
+    "cohort_n": 18,
+    "percentile": 0.75
+   }
+  ],
+  "create holy symbol|theurgy": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
     "cohort_n": 19,
-    "percentile": 0.763
+    "percentile": 0.368
+   }
+  ],
+  "righteous smite|theurgy": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.368
+   }
+  ],
+  "blessing|theurgy": [
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": true,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "buff|boon-swing|rank1",
+    "cohort_n": 8,
+    "percentile": 0.312
    }
   ],
   "mantle of holiness|theurgy": [
@@ -7898,6 +10822,44 @@
     "cohort": "heal|healing-rate|rank1",
     "cohort_n": 9,
     "percentile": 0.389
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
+   }
+  ],
+  "omen|theurgy": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": true,
+     "area": true
+    },
+    "rank": 1,
+    "cohort": "buff|boon-swing|rank1",
+    "cohort_n": 8,
+    "percentile": 0.75
    }
   ],
   "divine shield|theurgy": [
@@ -7928,8 +10890,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.508
+    "cohort_n": 63,
+    "percentile": 0.516
    }
   ],
   "holy armaments|theurgy": [
@@ -7945,8 +10907,46 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.695
+    "cohort_n": 63,
+    "percentile": 0.706
+   },
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
+   }
+  ],
+  "revelation|theurgy": [
+   {
+    "kind": "buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "buff|boon-swing|rank2",
+    "cohort_n": 9,
+    "percentile": 0.722
    }
   ],
   "divine aid|theurgy": [
@@ -7990,8 +10990,28 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.412
+    "cohort_n": 56,
+    "percentile": 0.42
+   }
+  ],
+  "altar of faith|theurgy": [
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 4,
+    "cohort": "buff|boon-swing|rank4",
+    "cohort_n": 5,
+    "percentile": 0.8
    }
   ],
   "anoint the faithful|theurgy": [
@@ -8005,6 +11025,24 @@
     "cohort": "mitigation|temp-health|rank4",
     "cohort_n": 5,
     "percentile": 0.3
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "buff|boon-swing|rank4",
+    "cohort_n": 5,
+    "percentile": 0.2
    }
   ],
   "divine justice|theurgy": [
@@ -8020,8 +11058,26 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.968
+    "cohort_n": 46,
+    "percentile": 0.989
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 5,
+    "cohort": "self-buff|boon-swing|rank5",
+    "cohort_n": 15,
+    "percentile": 0.767
    }
   ],
   "fire from heaven|theurgy": [
@@ -8037,8 +11093,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.734
+    "cohort_n": 46,
+    "percentile": 0.793
    }
   ],
   "holy ground|theurgy": [
@@ -8054,8 +11110,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.436
+    "cohort_n": 37,
+    "percentile": 0.432
    },
    {
     "kind": "heal",
@@ -8080,6 +11136,62 @@
     "cohort": "mitigation|temp-health|rank6",
     "cohort_n": 2,
     "percentile": 0.75
+   },
+   {
+    "kind": "buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 6,
+    "cohort": "buff|boon-swing|rank6",
+    "cohort_n": 4,
+    "percentile": 0.75
+   },
+   {
+    "kind": "self-buff",
+    "value": null,
+    "unit": "boon-swing",
+    "expr": "see text",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": true
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": null
+   }
+  ],
+  "paragon of faith|theurgy": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "self-buff|boon-swing|rank6",
+    "cohort_n": 12,
+    "percentile": 0.208
    }
   ],
   "purge the unclean|theurgy": [
@@ -8095,8 +11207,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.763
+    "cohort_n": 18,
+    "percentile": 0.75
    }
   ],
   "apocalypse|theurgy": [
@@ -8112,8 +11224,48 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.571
+    "cohort_n": 20,
+    "percentile": 0.575
+   }
+  ],
+  "precognition|time": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.344
+   }
+  ],
+  "time skip|time": [
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 2,
+    "cohort": "self-buff|boon-swing|rank2",
+    "cohort_n": 16,
+    "percentile": 0.781
    }
   ],
   "time dilation|time": [
@@ -8129,8 +11281,26 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.154
+    "cohort_n": 37,
+    "percentile": 0.176
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": true,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 6,
+    "cohort": "buff|boon-swing|rank6",
+    "cohort_n": 4,
+    "percentile": 0.25
    }
   ],
   "temporal bubble|time": [
@@ -8146,8 +11316,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.947
+    "cohort_n": 18,
+    "percentile": 0.944
    }
   ],
   "erase from existence|time": [
@@ -8163,8 +11333,8 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.147
+    "cohort_n": 16,
+    "percentile": 0.219
    }
   ],
   "stop time|time": [
@@ -8180,8 +11350,8 @@
     },
     "rank": 9,
     "cohort": "damage|damage|rank9",
-    "cohort_n": 13,
-    "percentile": 0.577
+    "cohort_n": 10,
+    "percentile": 0.55
    }
   ],
   "time gate|time": [
@@ -8197,8 +11367,28 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.048
+    "cohort_n": 20,
+    "percentile": 0.075
+   }
+  ],
+  "chameleon|transformation": [
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": false,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 0,
+    "cohort": "self-buff|boon-swing|rank0",
+    "cohort_n": 19,
+    "percentile": 0.974
    }
   ],
   "weapon appendage|transformation": [
@@ -8214,8 +11404,28 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.823
+    "cohort_n": 28,
+    "percentile": 0.839
+   }
+  ],
+  "devolve|transformation": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 1,
+    "cohort": "self-buff|boon-swing|rank1",
+    "cohort_n": 21,
+    "percentile": 0.333
    }
   ],
   "hulk|transformation": [
@@ -8229,6 +11439,24 @@
     "cohort": "mitigation|temp-health|rank4",
     "cohort_n": 5,
     "percentile": 0.9
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.47,
+    "unit": "boon-swing",
+    "expr": "2 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "self-buff|boon-swing|rank4",
+    "cohort_n": 6,
+    "percentile": 0.5
    }
   ],
   "griffon form|transformation": [
@@ -8257,8 +11485,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.194
+    "cohort_n": 28,
+    "percentile": 0.143
    }
   ],
   "icicle|water": [
@@ -8274,8 +11502,8 @@
     },
     "rank": 0,
     "cohort": "damage|damage|rank0",
-    "cohort_n": 31,
-    "percentile": 0.532
+    "cohort_n": 28,
+    "percentile": 0.518
    }
   ],
   "drown|water": [
@@ -8291,8 +11519,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.424
+    "cohort_n": 57,
+    "percentile": 0.421
    }
   ],
   "ice blast|water": [
@@ -8308,8 +11536,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.856
+    "cohort_n": 57,
+    "percentile": 0.851
    }
   ],
   "water burst|water": [
@@ -8325,8 +11553,8 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.517
+    "cohort_n": 57,
+    "percentile": 0.518
    }
   ],
   "geyser|water": [
@@ -8342,8 +11570,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.695
+    "cohort_n": 63,
+    "percentile": 0.706
    }
   ],
   "watery serpent|water": [
@@ -8359,8 +11587,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.727
+    "cohort_n": 63,
+    "percentile": 0.738
    }
   ],
   "wave|water": [
@@ -8376,8 +11604,8 @@
     },
     "rank": 2,
     "cohort": "damage|damage|rank2",
-    "cohort_n": 64,
-    "percentile": 0.164
+    "cohort_n": 63,
+    "percentile": 0.167
    }
   ],
   "flood|water": [
@@ -8393,8 +11621,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "restorative waters|water": [
@@ -8425,8 +11653,8 @@
     },
     "rank": 3,
     "cohort": "damage|damage|rank3",
-    "cohort_n": 57,
-    "percentile": 0.289
+    "cohort_n": 56,
+    "percentile": 0.295
    }
   ],
   "cold snap|water": [
@@ -8442,8 +11670,8 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.958
+    "cohort_n": 46,
+    "percentile": 0.957
    }
   ],
   "wall of ice|water": [
@@ -8459,8 +11687,28 @@
     },
     "rank": 4,
     "cohort": "damage|damage|rank4",
-    "cohort_n": 48,
-    "percentile": 0.542
+    "cohort_n": 46,
+    "percentile": 0.543
+   }
+  ],
+  "watery form|water": [
+   {
+    "kind": "self-buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": false,
+     "area": false
+    },
+    "rank": 4,
+    "cohort": "self-buff|boon-swing|rank4",
+    "cohort_n": 6,
+    "percentile": 0.167
    }
   ],
   "caustic waters|water": [
@@ -8476,8 +11724,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.564
+    "cohort_n": 46,
+    "percentile": 0.576
    }
   ],
   "parch|water": [
@@ -8493,8 +11741,8 @@
     },
     "rank": 5,
     "cohort": "damage|damage|rank5",
-    "cohort_n": 47,
-    "percentile": 0.649
+    "cohort_n": 46,
+    "percentile": 0.663
    }
   ],
   "control water|water": [
@@ -8510,8 +11758,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.051
+    "cohort_n": 37,
+    "percentile": 0.054
    }
   ],
   "seething sea|water": [
@@ -8527,8 +11775,8 @@
     },
     "rank": 6,
     "cohort": "damage|damage|rank6",
-    "cohort_n": 39,
-    "percentile": 0.923
+    "cohort_n": 37,
+    "percentile": 0.919
    }
   ],
   "elemental ice|water": [
@@ -8544,8 +11792,8 @@
     },
     "rank": 7,
     "cohort": "damage|damage|rank7",
-    "cohort_n": 19,
-    "percentile": 0.158
+    "cohort_n": 18,
+    "percentile": 0.222
    }
   ],
   "become the sea|water": [
@@ -8561,8 +11809,44 @@
     },
     "rank": 8,
     "cohort": "damage|damage|rank8",
-    "cohort_n": 17,
-    "percentile": 0.441
+    "cohort_n": 16,
+    "percentile": 0.531
+   },
+   {
+    "kind": "buff",
+    "value": 3.5,
+    "unit": "boon-swing",
+    "expr": "1 boon",
+    "flags": {
+     "atk": true,
+     "chal": false,
+     "multi": false,
+     "unlimited": false,
+     "concentration": true,
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "buff|boon-swing|rank8",
+    "cohort_n": 2,
+    "percentile": 0.5
+   },
+   {
+    "kind": "self-buff",
+    "value": 4.96,
+    "unit": "boon-swing",
+    "expr": "3 boons",
+    "flags": {
+     "atk": true,
+     "chal": true,
+     "multi": false,
+     "unlimited": false,
+     "concentration": true,
+     "area": false
+    },
+    "rank": 8,
+    "cohort": "self-buff|boon-swing|rank8",
+    "cohort_n": 6,
+    "percentile": 0.583
    }
   ],
   "tsunami|water": [
@@ -8578,8 +11862,8 @@
     },
     "rank": 10,
     "cohort": "damage|damage|rank10",
-    "cohort_n": 21,
-    "percentile": 0.881
+    "cohort_n": 20,
+    "percentile": 0.9
    }
   ],
   "witch fire|witch": [
@@ -8595,14 +11879,14 @@
     },
     "rank": 1,
     "cohort": "damage|damage|rank1",
-    "cohort_n": 59,
-    "percentile": 0.669
+    "cohort_n": 57,
+    "percentile": 0.667
    }
   ]
  },
  "cohorts": {
   "damage|damage|1": {
-   "n": 59,
+   "n": 57,
    "median": 6.5,
    "max": 11.5
   },
@@ -8612,37 +11896,42 @@
    "max": 100
   },
   "damage|damage|2": {
-   "n": 64,
+   "n": 63,
    "median": 7.0,
-   "max": 24.0
+   "max": 21.0
   },
   "damage|damage|3": {
-   "n": 57,
+   "n": 56,
    "median": 10.5,
    "max": 22.5
   },
   "damage|damage|4": {
-   "n": 48,
+   "n": 46,
    "median": 10.5,
    "max": 30.0
   },
+  "self-buff|boon-swing|5": {
+   "n": 15,
+   "median": 4.47,
+   "max": 5.43
+  },
   "damage|damage|5": {
-   "n": 47,
-   "median": 17.0,
-   "max": 100.0
+   "n": 46,
+   "median": 16.25,
+   "max": 36.0
   },
   "damage|damage|6": {
-   "n": 39,
-   "median": 14.0,
+   "n": 37,
+   "median": 17.5,
    "max": 35.0
   },
   "damage|damage|7": {
-   "n": 19,
-   "median": 21.0,
+   "n": 18,
+   "median": 19.25,
    "max": 35.0
   },
   "damage|damage|8": {
-   "n": 17,
+   "n": 16,
    "median": 17.5,
    "max": 35.0
   },
@@ -8652,14 +11941,29 @@
    "max": 50
   },
   "damage|damage|10": {
-   "n": 21,
+   "n": 20,
    "median": 35.0,
-   "max": 120.0
+   "max": 70.0
   },
   "damage|damage|0": {
-   "n": 31,
+   "n": 28,
    "median": 3.5,
-   "max": 14.0
+   "max": 7.0
+  },
+  "buff|boon-swing|0": {
+   "n": 3,
+   "median": 4.47,
+   "max": 4.47
+  },
+  "self-buff|boon-swing|1": {
+   "n": 21,
+   "median": 3.5,
+   "max": 4.96
+  },
+  "buff|boon-swing|2": {
+   "n": 9,
+   "median": 4.47,
+   "max": 4.47
   },
   "mitigation|temp-health|2": {
    "n": 6,
@@ -8671,20 +11975,40 @@
    "median": 1.0,
    "max": 2.0
   },
+  "self-buff|boon-swing|2": {
+   "n": 16,
+   "median": 3.5,
+   "max": 4.96
+  },
   "mitigation|temp-health|3": {
    "n": 3,
    "median": 10,
    "max": 15
+  },
+  "buff|boon-swing|3": {
+   "n": 11,
+   "median": 3.5,
+   "max": 4.96
   },
   "heal|healing-rate|3": {
    "n": 6,
    "median": 1.0,
    "max": 2.0
   },
+  "self-buff|boon-swing|3": {
+   "n": 11,
+   "median": 4.47,
+   "max": 4.96
+  },
   "mitigation|temp-health|4": {
    "n": 5,
    "median": 10,
    "max": 40
+  },
+  "mark|boon-swing|5": {
+   "n": 3,
+   "median": 4.47,
+   "max": 4.96
   },
   "mitigation|temp-health|7": {
    "n": 3,
@@ -8696,15 +12020,60 @@
    "median": 50,
    "max": 50
   },
+  "buff|boon-swing|4": {
+   "n": 5,
+   "median": 4.47,
+   "max": 4.96
+  },
   "damage|damage|9": {
-   "n": 13,
-   "median": 28.0,
+   "n": 10,
+   "median": 28.25,
    "max": 78.0
+  },
+  "self-buff|boon-swing|0": {
+   "n": 19,
+   "median": 3.5,
+   "max": 4.96
   },
   "heal|healing-rate|1": {
    "n": 9,
    "median": 0.5,
    "max": 1.0
+  },
+  "buff|boon-swing|1": {
+   "n": 8,
+   "median": 3.5,
+   "max": 4.96
+  },
+  "self-buff|boon-swing|6": {
+   "n": 12,
+   "median": 4.47,
+   "max": 4.96
+  },
+  "self-buff|boon-swing|8": {
+   "n": 6,
+   "median": 4.96,
+   "max": 4.96
+  },
+  "self-buff|boon-swing|10": {
+   "n": 3,
+   "median": 4.96,
+   "max": 5.43
+  },
+  "buff|boon-swing|6": {
+   "n": 4,
+   "median": 4.23,
+   "max": 4.96
+  },
+  "mark|boon-swing|3": {
+   "n": 4,
+   "median": 3.5,
+   "max": 4.47
+  },
+  "mark|boon-swing|2": {
+   "n": 2,
+   "median": 3.5,
+   "max": 3.5
   },
   "mitigation|%damage|5": {
    "n": 3,
@@ -8716,15 +12085,55 @@
    "median": 4.0,
    "max": 7.0
   },
+  "self-buff|boon-swing|4": {
+   "n": 6,
+   "median": 4.47,
+   "max": 4.96
+  },
   "mitigation|temp-health|8": {
    "n": 2,
    "median": 25.0,
    "max": 40
   },
+  "mark|boon-swing|0": {
+   "n": 2,
+   "median": 3.5,
+   "max": 3.5
+  },
+  "buff|boon-swing|5": {
+   "n": 7,
+   "median": 4.47,
+   "max": 4.96
+  },
+  "self-buff|boon-swing|7": {
+   "n": 3,
+   "median": 4.96,
+   "max": 4.96
+  },
+  "mark|boon-swing|8": {
+   "n": 2,
+   "median": 4.71,
+   "max": 4.96
+  },
+  "buff|boon-swing|8": {
+   "n": 2,
+   "median": 3.5,
+   "max": 3.5
+  },
   "mitigation|%damage|3": {
    "n": 1,
    "median": 100,
    "max": 100
+  },
+  "mark|boon-swing|1": {
+   "n": 4,
+   "median": 3.5,
+   "max": 3.5
+  },
+  "buff|boon-swing|7": {
+   "n": 2,
+   "median": 4.23,
+   "max": 4.96
   },
   "mitigation|temp-health|0": {
    "n": 2,
@@ -8801,20 +12210,36 @@
    "median": 50,
    "max": 50
   },
+  "self-buff|boon-swing|9": {
+   "n": 1,
+   "median": 4.47,
+   "max": 4.47
+  },
   "heal|health|10": {
    "n": 1,
    "median": 1.0,
    "max": 1.0
   },
+  "mark|boon-swing|4": {
+   "n": 1,
+   "median": 3.5,
+   "max": 3.5
+  },
   "heal|healing-rate|10": {
    "n": 2,
    "median": 1.0,
    "max": 1.0
+  },
+  "buff|boon-swing|9": {
+   "n": 1,
+   "median": 3.5,
+   "max": 3.5
   }
  },
  "notes": {
   "comparison": "percentile is within the spell's (kind, unit, rank) cohort — a top-quartile rank-3 damage spell scores ~0.75. Compares like with like.",
-  "units": "damage/health are expected points (d6=3.5, d3=2); healing-rate is a multiple of the caster's healing rate; %damage is reduction; temp-health is a buffer.",
+  "units": "damage/health are expected points (d6=3.5, d3=2); healing-rate is a multiple of the caster's healing rate; %damage is reduction; temp-health is a buffer; boon-swing is the expected addition to a d20, E[max(n d6)] — 1 boon 3.50, 2 boons 4.47, 3 boons 4.96.",
+  "boons": "buff = boons given to someone else, self-buff = boons on your own rolls, mark = the target grants boons to anyone attacking it. Breadth (multi, unlimited) and upkeep (concentration) are flags, not multipliers: one boon on five allies and one on yourself score the same swing, and only the reader knows the party size. Rank a support spell on swing AND flags, never swing alone, or Foretell's 3 boons on one ally will outrank Blessing's 1 on everyone.",
   "reliability": "Damage is the expected value assuming it lands. `auto` = no attack roll (reliable); `area` = multi-target upside; `attack` = needs to hit. These are flags, not folded into the number."
  }
 }

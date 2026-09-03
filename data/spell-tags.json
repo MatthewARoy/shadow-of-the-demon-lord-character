@@ -31,7 +31,7 @@
    "id": "buff-challenge",
    "facet": "support",
    "label": "Buff: challenge rolls",
-   "count": 77
+   "count": 75
   },
   {
    "id": "reroll",
@@ -43,7 +43,7 @@
    "id": "debuff-rolls",
    "facet": "control",
    "label": "Debuff: imposes banes",
-   "count": 132
+   "count": 130
   },
   {
    "id": "control",

@@ -67,6 +67,49 @@ def dice_ev(count, sides, flat=0):
 DMG_DICE = re.compile(r"(\d+)d(\d+)(?:\s*\+\s*(\d+))?\s+damage")
 DMG_FLAT = re.compile(r"takes?\s+(\d+)\s+damage")
 
+# A spell's *offensive* output is damage dealt to creatures. The rules text also
+# states damage dealt to objects/structures ("objects … take 4d6 damage",
+# "Objects in the area take 120 damage instead") and damage the caster pays
+# ("You take 18 damage") — none of which is the spell's attack. We read the
+# clause around each match and drop it when the thing taking the damage isn't a
+# creature, so the `max` below can't be hijacked by a structure-collapse number.
+_OBJ_SUBJ = re.compile(r"\b(?:object|structure|building|wall|door|bridge|gate|barrier|statue)s?\b")
+_CREATURE_SUBJ = re.compile(r"\b(?:creatures?|targets?|everything|anything|enem(?:y|ies)|"
+                            r"all(?:y|ies)|monsters?|characters?|demons?|undead|victims?)\b")
+# Damage that only happens once a structure/object is destroyed is collateral,
+# not the spell's own line (e.g. Earthquake's "everything inside or under it").
+_DESTRUCT = re.compile(r"destroyed by (?:this|the) damage|destroys the object|"
+                       r"collapses?,? and|when (?:it|the structure|the building) collapses|"
+                       r"(?:object|structure) destroyed")
+# Self-/sacrifice damage the caster pays ("You take 10d6 damage"). Checked on a
+# short window ending at the match so it drops only that number, not a real
+# attack stated in the same sentence ("You take 8 damage and … deal 8d6 damage").
+# "take" (not "takes"): when *you* are the subject the verb is "you take"; the
+# plural "you takes" only appears when you're an object ("each creature other
+# than you takes …"), which is the target's damage, not the caster's cost.
+_SELF_TAKE = re.compile(r"\byou\s+take\s+\d")
+
+
+def _clause(description, start, end):
+    """Return the clause containing a damage match."""
+    begin = max(description.rfind(". ", 0, start),
+                description.rfind("; ", 0, start),
+                description.rfind("• ", 0, start),
+                description.rfind(": ", 0, start)) + 1
+    return description[begin:end]
+
+
+def _is_creature_damage(description, start, end):
+    if _SELF_TAKE.search(description[max(0, start - 16):end]):
+        return False
+    clause = _clause(description, start, end)
+    if (_DESTRUCT.search(clause)
+            or _DESTRUCT.search(description[end:end + 50])):
+        return False
+    if _OBJ_SUBJ.search(clause) and not _CREATURE_SUBJ.search(clause):
+        return False
+    return True
+
 
 def score_damage(spell):
     d = low(spell)
@@ -83,11 +126,15 @@ def score_damage(spell):
         pre = d[max(0, m.start() - 8):m.start()]
         if "extra" in pre:
             continue
+        if not _is_creature_damage(d, m.start(), m.end()):
+            continue
         n, sides, flat = int(m.group(1)), int(m.group(2)), int(m.group(3) or 0)
         ev = dice_ev(n, sides, flat)
         if ev > best:
             best, detail = ev, f"{n}d{sides}" + (f"+{flat}" if flat else "")
     for m in DMG_FLAT.finditer(d):
+        if not _is_creature_damage(d, m.start(), m.end()):
+            continue
         n = int(m.group(1))
         if n > best:
             best, detail = float(n), str(n)

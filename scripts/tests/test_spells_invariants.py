@@ -27,6 +27,7 @@ RUNNING_HEADS = [
 ]
 HEAD_RE = re.compile(r"(?i)(?<!see )\b(" + "|".join(RUNNING_HEADS) + r")\b")
 STORY_DEVELOPMENT_RE = re.compile(r"(?i)\bStory Development\b")
+DARK_MAGIC_SIDEBAR_RE = re.compile(r"(?i)\bDark Magic, Dark Speech\b")
 
 
 def load(name):
@@ -57,6 +58,18 @@ class TestSpellsInvariants(unittest.TestCase):
         bad = [label for label, text in texts(self.spells)
                if STORY_DEVELOPMENT_RE.search(text)]
         self.assertEqual(bad, [], f"story-development titles in spells: {bad}")
+
+    def test_no_dark_magic_sidebar_text(self):
+        bad = [label for label, text in texts(self.spells)
+               if DARK_MAGIC_SIDEBAR_RE.search(text)]
+        self.assertEqual(bad, [], f"dark-magic sidebar in spells: {bad}")
+
+    def test_sidebar_splice_preserves_surrounding_spell_text(self):
+        by_name = {spell["name"]: spell for spell in self.spells}
+        self.assertIn("target must make a Strength challenge roll",
+                      by_name["Ravenous Maggots"]["description"])
+        self.assertIn("If the target remains alive, it is compelled",
+                      by_name["Hook the Soul"]["description"])
 
     def test_spellbound_weapon_is_whole_but_not_more(self):
         """The reported case, both directions.
