@@ -37,6 +37,7 @@ STAT_LINE = re.compile(
     r"^(Size |Perception \d|Defense |Strength [\d+–-]|Speed [\d+–-])")
 PAGE_MARK = re.compile(r"^===PAGE (\d+)===$")
 DIFF = re.compile(r"^DIFFICULTY ([\d,]+|STEP)\s*$")
+DIFF_ADJUSTMENT = re.compile(r"^(ADD|SUBTRACT)\s+(\d+)\s*$")
 # A stat block name: an all-caps line (allowing digits, commas, apostrophes,
 # hyphens) — "LASH CRAWLER", "MOB OF MEDIUM MONSTERS", "VAPOR, KILLING".
 NAME = re.compile(r"^[A-Z][A-Z0-9 ,'’\-]{2,40}\s*$")
@@ -92,15 +93,29 @@ def parse_book(book):
             if j < len(lines) and DIFF.match(lines[j].strip()):
                 name = ln.strip()
                 diff = DIFF.match(lines[j].strip()).group(1)
+                k = i - 1
+                while k >= 0 and not lines[k].strip():
+                    k -= 1
+                adjustment = None
+                if k >= 0:
+                    am = DIFF_ADJUSTMENT.match(lines[k].strip())
+                    if am:
+                        amount = int(am.group(2))
+                        adjustment = -amount if am.group(1) == "SUBTRACT" else amount
                 i = j + 1
         if name is None:
             i += 1
             continue
-        cr = {"name": title_case(name), "book": book, "page": pdf_page - off,
-              "difficulty": diff, "descriptor": None, "perception": None,
-              "defense_line": None, "attributes": None, "speed": None,
-              "traits": [], "attack_options": [], "special_attacks": [],
-              "special_actions": [], "end_of_round": [], "magic": []}
+        cr = {"name": title_case(name), "book": book, "page": pdf_page - off}
+        if diff == "STEP":
+            cr["kind"] = "template"
+            cr["difficulty_adjustment"] = adjustment
+        cr.update({
+            "difficulty": diff, "descriptor": None, "perception": None,
+            "defense_line": None, "attributes": None, "speed": None,
+            "traits": [], "attack_options": [], "special_attacks": [],
+            "special_actions": [], "end_of_round": [], "magic": [],
+        })
         section = None     # None => stat header area, then traits
         items = cr["traits"]
         while i < len(lines):
@@ -136,6 +151,11 @@ def parse_book(book):
                 elif s.startswith("Defense "):
                     cr["defense_line"] = s
                 elif s.startswith("Strength "):
+                    cr["attributes"] = s
+                elif cr.get("kind") == "template" and s.startswith("Insanity "):
+                    cr["defense_line"] = s
+                elif (cr.get("kind") == "template"
+                      and re.match(r"^(Agility|Intellect|Will) ", s)):
                     cr["attributes"] = s
                 elif s.startswith("Speed "):
                     cr["speed"] = s[6:]
@@ -246,6 +266,8 @@ def starts_a_heading(lines, i, s):
 def new_item_start(s):
     """Heuristic: items open with a Title Case name run ("Radiant Sword
     (melee) …", "Two Attacks The angel…")."""
+    if s.startswith("Traits and Talents "):
+        return True
     return re.match(
         r"^[A-Z][a-zA-Z’']*( [A-Z][a-zA-Z’']*){0,4}( \(|—| [A-Z]| \+|\d)",
         s) is not None

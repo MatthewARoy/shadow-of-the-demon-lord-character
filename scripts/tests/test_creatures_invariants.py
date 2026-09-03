@@ -115,14 +115,29 @@ class TestCreaturesInvariants(unittest.TestCase):
     def test_every_creature_has_its_stat_header(self):
         """A page limit that fires early would truncate a block's header.
 
-        defense_line and attributes are not checked: Animated Corpse is a
-        template block that leads with prose instead of a stat line and has
-        neither, which predates this guard.
+        Templates carry modifier lines rather than absolute statistics, but
+        those lines still populate the same display fields.
         """
         for c in self.creatures:
-            for field in ("difficulty", "descriptor", "speed"):
+            for field in ("difficulty", "descriptor", "defense_line",
+                          "attributes", "speed"):
                 self.assertTrue(c.get(field),
                                 f"{c['name']} is missing {field}")
+
+    def test_animated_corpse_template_preserves_all_modifiers(self):
+        animated = [c for c in self.creatures if c["name"] == "Animated Corpse"]
+        self.assertEqual(len(animated), 2)
+        core = next(c for c in animated if c["book"] == "core")
+        occult = next(c for c in animated if c["book"] == "occult")
+
+        self.assertNotIn("kind", core)
+        self.assertEqual(occult.get("kind"), "template")
+        self.assertEqual(occult.get("difficulty_adjustment"), -1)
+        self.assertEqual(occult["defense_line"], "Insanity —; Corruption —")
+        self.assertEqual(occult["attributes"], "Agility –2, Intellect —, Will +5")
+        self.assertIn("Immune damage from cold", occult["traits"][0])
+        self.assertEqual(occult["traits"][1],
+                         "Traits and Talents The creature loses all talents.")
 
 
 if __name__ == "__main__":

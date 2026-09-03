@@ -12,8 +12,13 @@ const SECTIONS = [
 ];
 
 export function statBlockHtml(cr) {
+  const template = cr.kind === "template";
+  const adjustment = cr.difficulty_adjustment;
+  const difficulty = template && Number.isFinite(adjustment)
+    ? `Difficulty ${adjustment < 0 ? "−" : "+"}${Math.abs(adjustment)} step`
+    : cr.difficulty ? `Difficulty ${esc(cr.difficulty)}` : null;
   const head = [
-    cr.descriptor ? `Size ${esc(cr.descriptor)}` : null,
+    cr.descriptor ? template ? esc(cr.descriptor) : `Size ${esc(cr.descriptor)}` : null,
     cr.perception ? `Perception ${esc(cr.perception)}` : null,
     cr.defense_line ? esc(cr.defense_line) : null,
     cr.attributes ? esc(cr.attributes) : null,
@@ -23,7 +28,7 @@ export function statBlockHtml(cr) {
   <div class="statblock">
     <div class="sb-head">
       <b>${esc(cr.name)}</b>
-      <span class="sb-diff">Difficulty ${esc(cr.difficulty)}</span>
+      ${difficulty ? `<span class="sb-diff">${template ? "Template · " : ""}${difficulty}</span>` : ""}
       <span class="small dim">${bookName(cr.book)} · p.${cr.page}</span>
     </div>
     ${head.map((h) => `<div class="sb-line">${h}</div>`).join("")}
