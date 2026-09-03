@@ -100,7 +100,7 @@ After regenerating, verify the result:
 npm test    # data counts and cross-file integrity, then sample-character regression
 ```
 
-`data/curated.json` is hand-written from the rulebook text. It holds the
+`data/curated.json` is hand-written from the rulebook text. It holds 15
 ancestries with their creation rules and level 4 choices, the four novice paths
 as full effect lists, the castings matrix, the advancement table, religions,
 roguery talents, professions, and starting wealth.

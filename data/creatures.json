@@ -3420,10 +3420,10 @@
   "descriptor": "2 horrifying spirit",
   "perception": "25 (+15); truesight",
   "defense_line": "Defense 20; Health 100; Insanity —; Corruption 0",
-  "attributes": "Strength 20 (+10), Agility 20 (+10), Intellect 20 (+10), Will",
+  "attributes": "Strength 20 (+10), Agility 20 (+10), Intellect 20 (+10), Will 20 (+10)",
   "speed": "12; flier",
   "traits": [
-   "20 (+10) Immune damage from cold, disease, or poison; asleep, charmed, diseased, fatigued, poisoned",
+   "Immune damage from cold, disease, or poison; asleep, charmed, diseased, fatigued, poisoned",
    "Insubstantial A grim reaper takes half damage from weapons, can move through solid objects and other creatures, and ignores the effects of moving across difficult terrain.",
    "Spell Defense A grim reaper takes half damage from spells and makes any challenge roll to resist a spell with 1 boon. A creature attacking a grim reaper with a spell makes the attack roll with 1 bane. Revealed in Death A grim reaper is invisible to all creatures other than spirits and incapacitated creatures. If the grim reaper uses an action to attack, it loses this trait for 1 round.",
    "Eternal When a grim reaper becomes incapacitated, it collapses into streams of dissipating shadow. It returns to existence, 24 hours later, in the Underworld with no damage."
