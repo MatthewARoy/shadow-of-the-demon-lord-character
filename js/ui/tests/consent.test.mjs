@@ -48,3 +48,54 @@ test("consentGranted reports the current flag", () => {
 test("GATED_BOOKS names exactly the three supplements", () => {
   assert.deepEqual([...GATED_BOOKS].sort(), ["dlc2", "occult", "terrible"]);
 });
+
+// --- persistence -----------------------------------------------------------
+// Storage is injected so this runs under node, and so a browser that blocks
+// localStorage degrades to "not consented" rather than throwing on boot.
+import { hydrateConsent, persistConsent, CONSENT_KEY } from "../../consent.js";
+
+const fakeStore = (initial = {}) => {
+  const map = { ...initial };
+  return {
+    getItem: (k) => (k in map ? map[k] : null),
+    setItem: (k, v) => { map[k] = String(v); },
+    removeItem: (k) => { delete map[k]; },
+    _map: map,
+  };
+};
+
+test("hydrateConsent restores a previously granted consent", () => {
+  setConsent(false);
+  hydrateConsent(fakeStore({ [CONSENT_KEY]: "granted" }));
+  assert.equal(consentGranted(), true);
+});
+
+test("hydrateConsent leaves consent off when nothing is stored", () => {
+  setConsent(true);
+  hydrateConsent(fakeStore());
+  assert.equal(consentGranted(), false);
+});
+
+test("hydrateConsent treats an unrecognised stored value as no consent", () => {
+  setConsent(true);
+  hydrateConsent(fakeStore({ [CONSENT_KEY]: "maybe" }));
+  assert.equal(consentGranted(), false);
+});
+
+test("a storage that throws leaves the reader un-consented rather than crashing", () => {
+  setConsent(true);
+  const hostile = { getItem() { throw new Error("blocked"); }, setItem() { throw new Error("blocked"); }, removeItem() { throw new Error("blocked"); } };
+  assert.doesNotThrow(() => hydrateConsent(hostile));
+  assert.equal(consentGranted(), false);
+  assert.doesNotThrow(() => persistConsent(true, hostile));
+});
+
+test("persistConsent writes the grant and clears it on withdrawal", () => {
+  const store = fakeStore();
+  persistConsent(true, store);
+  assert.equal(store.getItem(CONSENT_KEY), "granted");
+  assert.equal(consentGranted(), true);
+  persistConsent(false, store);
+  assert.equal(store.getItem(CONSENT_KEY), null);
+  assert.equal(consentGranted(), false);
+});

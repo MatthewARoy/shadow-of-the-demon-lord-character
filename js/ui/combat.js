@@ -9,8 +9,8 @@
 import { active } from "../state.js";
 import { compute } from "../engine.js";
 import { BOOKS } from "../data.js";
+import { esc, gatedText, searchableText } from "./util.js";
 
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 const LINK_LABELS = [
   ["inflicts", "inflicts"],
@@ -39,7 +39,7 @@ export function filterEntries(entries, groupId, query) {
   return entries.filter((e) => {
     if (groupId && groupId !== "all" && e.group !== groupId) return false;
     if (!q) return true;
-    return e.name.toLowerCase().includes(q) || e.text.toLowerCase().includes(q);
+    return e.name.toLowerCase().includes(q) || searchableText(e.text, e.source?.book).toLowerCase().includes(q);
   });
 }
 
@@ -226,7 +226,7 @@ function card(entry, computed) {
 
   const rows = entry.rows ? `
     <table class="cb-rows">
-      <tbody>${entry.rows.map((r) => `<tr><th scope="row">${esc(r.label)}</th><td>${esc(r.effect)}</td></tr>`).join("")}</tbody>
+      <tbody>${entry.rows.map((r) => `<tr><th scope="row">${esc(r.label)}</th><td>${gatedText(r.effect, entry.source?.book)}</td></tr>`).join("")}</tbody>
     </table>` : "";
 
   const defender = Array.isArray(entry.defender)
@@ -234,14 +234,14 @@ function card(entry, computed) {
     : esc(entry.defender || "");
   const roll = entry.attacker
     ? `<p class="small dim cb-roll">${esc(entry.attacker)} attack roll vs ${defender}</p>` : "";
-  const sizeRule = entry.size_rule ? `<p class="small dim">Size: ${esc(entry.size_rule)}</p>` : "";
+  const sizeRule = entry.size_rule ? `<p class="small dim">Size: ${gatedText(entry.size_rule, entry.source?.book)}</p>` : "";
 
   return `
   <div class="talent cb-card ${state === "unavailable" ? "cb-dim" : ""}" style="margin-bottom:14px">
     <b>${esc(entry.name)}</b>
     <span class="src">${BOOKS[entry.source.book]} · p.${entry.source.page}</span>
     ${roll}
-    <p>${esc(entry.text)}</p>
+    <p>${gatedText(entry.text, entry.source?.book)}</p>
     ${sizeRule}
     ${rows}
     ${chips.length ? `<div class="chip-row" style="margin-top:6px">${chips.join("")}</div>` : ""}

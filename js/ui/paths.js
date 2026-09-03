@@ -12,7 +12,7 @@
 
 import { rules, BOOKS, BOOKS_SHORT } from "../data.js";
 import { analyzeAllPaths } from "../path-eval.js";
-import { esc } from "./util.js";
+import { esc, gatedText, searchableText } from "./util.js";
 
 
 const TYPE_LABEL = { novice: "Novice", expert: "Expert", master: "Master" };
@@ -61,20 +61,22 @@ function charBits(c) {
 }
 
 // One level entry → a labeled block of benefit chips plus its talents.
-function levelBlock(level, e) {
+function levelBlock(level, e, book) {
+  // Chips derived from numbers are always safe to show; the magic and
+  // language lines are verbatim book text, so they carry the path's book.
   const chips = [];
   const attr = attrText(e.attributes);
-  if (attr) chips.push(attr);
-  for (const b of charBits(e.characteristics)) chips.push(b);
-  if (e.magic?.raw) chips.push(e.magic.raw);
-  if (e.languages_professions) chips.push(e.languages_professions);
+  if (attr) chips.push({ text: attr, book: "core" });
+  for (const b of charBits(e.characteristics)) chips.push({ text: b, book: "core" });
+  if (e.magic?.raw) chips.push({ text: e.magic.raw, book });
+  if (e.languages_professions) chips.push({ text: e.languages_professions, book });
   const chipRow = chips.length
-    ? `<div class="path-gains">${chips.map((c) => `<span class="path-gain">${esc(c)}</span>`).join("")}</div>`
+    ? `<div class="path-gains">${chips.map((c) => `<span class="path-gain">${gatedText(c.text, c.book)}</span>`).join("")}</div>`
     : "";
   const talents = (e.talents || []).map((t) => `
     <div class="talent">
       <b>${esc(t.name)}</b>
-      <p class="path-talent clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(t.text)}</p>
+      <p class="path-talent clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${gatedText(t.text, book)}</p>
     </div>`).join("");
   return `
     <div class="path-level">
@@ -119,8 +121,8 @@ function pathCard(p) {
     </div>
     ${focusTags ? `<div class="spell-tags path-focus">${focusTags}</div>` : ""}
     ${filters.advanced ? analysisStrip(p) : ""}
-    <p class="spell-desc clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${esc(p.description)}</p>
-    ${levels.map((lvl) => levelBlock(lvl, p.levels[lvl])).join("")}
+    <p class="spell-desc clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${gatedText(p.description, p.source)}</p>
+    ${levels.map((lvl) => levelBlock(lvl, p.levels[lvl], p.source)).join("")}
     <div class="spell-foot">
       <span class="small dim">${BOOKS[p.source] || p.source}${p.page ? ` · p.${p.page}` : ""}</span>
     </div>
@@ -130,11 +132,11 @@ function pathCard(p) {
 // Build the haystack a path is searched against: name, description, focus
 // tradition names, and every talent name + text.
 function haystack(p) {
-  const parts = [p.name, p.description];
+  const parts = [p.name, searchableText(p.description, p.source)];
   for (const f of evalOf(p)?.focus || []) parts.push(f.name);
   for (const e of Object.values(p.levels)) {
-    if (e.magic?.raw) parts.push(e.magic.raw);
-    for (const t of e.talents || []) parts.push(t.name, t.text);
+    if (e.magic?.raw) parts.push(searchableText(e.magic.raw, p.source));
+    for (const t of e.talents || []) parts.push(t.name, searchableText(t.text, p.source));
   }
   return parts.join(" ").toLowerCase();
 }

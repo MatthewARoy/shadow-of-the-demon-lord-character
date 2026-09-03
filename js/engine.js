@@ -196,7 +196,7 @@ export function compute(char) {
     speedBonus: 0,
     armor: null,               // best equipped armor: {name, base}
     provenance: { health: [], power: [], defense: [], speed: [], perception: [], corruption: [], insanity: [] },
-    traits: (c.traits || []).map((t) => ({ ...t, source: ancestry.name })),
+    traits: (c.traits || []).map((t) => ({ ...t, source: ancestry.name, book: ancestry.source || "core" })),
     talents: [],
     languagesProfessions: [{ text: c.languages_professions, source: ancestry.name }],
     discovered: [],            // [{tradition, source, level}]

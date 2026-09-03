@@ -8,7 +8,7 @@ import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
 
-import { esc } from "./util.js";
+import { esc, gatedText } from "./util.js";
 
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const sign = (n) => (n >= 0 ? "+" : "") + n;
@@ -62,16 +62,16 @@ export function renderSheet(el) {
         <span class="ink-label">Professions &amp; Languages</span>
         ${computed.languagesProfessions.map((lp) => `
           <div class="ink-small" style="margin-bottom:5px"><b style="color:var(--ink-red)">${esc(lp.source)}.</b>
-          ${esc(lp.value || lp.text)}</div>`).join("")}
+          ${lp.value ? esc(lp.value) : gatedText(lp.text, lp.book)}</div>`).join("")}
       </div>
 
       <div class="pg-talents ink-box">
         <span class="ink-label">Talents</span>
         ${computed.talents.map((t) => `
-          <div class="talent-ink"><b>${esc(t.name)}.</b> <span>${esc(t.text)}</span></div>`).join("") || `<div class="ink-small">None yet.</div>`}
+          <div class="talent-ink"><b>${esc(t.name)}.</b> <span>${gatedText(t.text, t.book)}</span></div>`).join("") || `<div class="ink-small">None yet.</div>`}
         ${computed.traits.length ? `<span class="ink-label" style="margin-top:10px">Ancestry Traits</span>
         ${computed.traits.map((t) => `
-          <div class="talent-ink"><b>${esc(t.name)}.</b> <span>${esc(t.text)}</span></div>`).join("")}` : ""}
+          <div class="talent-ink"><b>${esc(t.name)}.</b> <span>${gatedText(t.text, t.book)}</span></div>`).join("")}` : ""}
       </div>
 
       <div class="pg-pentagram">
@@ -140,7 +140,7 @@ export function renderSheet(el) {
       <div class="panel">
         <h2 class="rubric">Marginalia</h2>
         ${computed.notes.length
-          ? computed.notes.map((n) => `<p class="small dim">• ${esc(n.text)}</p>`).join("")
+          ? computed.notes.map((n) => `<p class="small dim">• ${gatedText(n.text, n.book)}</p>`).join("")
           : `<p class="empty">Nothing in the margins.</p>`}
       </div>
     </div>

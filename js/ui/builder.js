@@ -3,7 +3,7 @@
 import { rules, expertPaths, masterPaths } from "../data.js";
 import { compute, legalTraditionsFor, legalSpellsFor, ATTRS, activeDecisionIds } from "../engine.js";
 import { active, save } from "../state.js";
-import { esc } from "./util.js";
+import { esc, gatedText } from "./util.js";
 
 export function renderBuilder(el) {
   const char = active();
@@ -80,8 +80,8 @@ function identityPanel(char, computed) {
         </select>
       </div>`}
     </div>
-    <p class="small dim">${esc(c.languages_professions)}</p>
-    ${a.description ? `<p class="flavor small">${esc(a.description)}</p>` : ""}
+    <p class="small dim">${gatedText(c.languages_professions, a.source)}</p>
+    ${a.description ? `<p class="flavor small">${gatedText(a.description, a.source)}</p>` : ""}
   </div>`;
 }
 
@@ -151,10 +151,10 @@ function pathsPanel(char, computed) {
 function pathBlurb(char) {
   const parts = [];
   const novice = rules.novicePathByName.get(char.novicePath);
-  if (novice) parts.push(`<p class="flavor small"><b class="bronze">${novice.name}.</b> ${esc(novice.description)}</p>`);
+  if (novice) parts.push(`<p class="flavor small"><b class="bronze">${novice.name}.</b> ${gatedText(novice.description, novice.source || "core")}</p>`);
   for (const name of [char.expertPath, char.masterMode === "second-expert" ? char.secondExpertPath : char.masterPath]) {
     const p = name && rules.pathByName.get(name);
-    if (p?.description) parts.push(`<p class="flavor small"><b class="bronze">${p.name}.</b> ${esc(p.description.slice(0, 260))}${p.description.length > 260 ? "…" : ""}</p>`);
+    if (p?.description) parts.push(`<p class="flavor small"><b class="bronze">${p.name}.</b> ${gatedText(p.description.slice(0, 260), p.source)}${p.description.length > 260 ? "…" : ""}</p>`);
   }
   return parts.join("");
 }
@@ -322,7 +322,7 @@ function langProfCard(p) {
      <datalist id="lp-${esc(p.id)}">${suggestions.map((s) => `<option value="${esc(s)}">`).join("")}</datalist>
      ${p.rollable ? `<button class="btn btn-small" data-langprof-roll title="Let the dice decide: d6 for the profession type, then its table">🎲</button>` : ""}
      <button class="btn btn-small btn-resolve" data-langprof-save>Inscribe</button>`,
-    `<p class="desc dim small">${esc(p.desc)}</p>`);
+    `<p class="desc dim small">${gatedText(p.desc, p.book)}</p>`);
 }
 
 /* ---------------- resolved decisions ---------------- */

@@ -1,10 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { filterEntries, resolveDerive, eligibility, resolveLinks } from "../combat.js";
+import { setConsent } from "../../consent.js";
 
-const PRONE = { id: "affliction-prone", kind: "condition", name: "Prone", group: "afflictions", text: "A prone creature lies on the ground." };
-const SHOVE = { id: "attack-shove", kind: "attack", name: "Shove", group: "attack-options", text: "Make a Strength attack roll against the target’s Strength." };
-const ESCAPE = { id: "attack-escape", kind: "attack", name: "Escape", group: "attack-options", text: "You can use this action if you are grabbed.", requires: [{ type: "condition", label: "you are grabbed" }], removes: ["affliction-grabbed"], see_also: ["attack-grab"] };
+const PRONE = { source: { book: "core", page: 1 }, id: "affliction-prone", kind: "condition", name: "Prone", group: "afflictions", text: "A prone creature lies on the ground." };
+const SHOVE = { source: { book: "core", page: 1 }, id: "attack-shove", kind: "attack", name: "Shove", group: "attack-options", text: "Make a Strength attack roll against the target’s Strength." };
+const ESCAPE = { source: { book: "core", page: 1 }, id: "attack-escape", kind: "attack", name: "Escape", group: "attack-options", text: "You can use this action if you are grabbed.", requires: [{ type: "condition", label: "you are grabbed" }], removes: ["affliction-grabbed"], see_also: ["attack-grab"] };
 const ENTRIES = [PRONE, SHOVE, ESCAPE];
 
 test("filterEntries returns every entry for the all group and an empty query", () => {
@@ -80,4 +81,23 @@ test("resolveLinks returns all four arrays even when the entry has none", () => 
   const links = resolveLinks(PRONE, new Map());
   assert.deepEqual(Object.keys(links).sort(), ["inflicts", "removes", "requires_condition", "see_also"]);
   assert.deepEqual(links.inflicts, []);
+});
+
+// The gate must not leak through the search box: a supplement entry can be
+// found by name, but its text is not matchable until consent is given.
+const GATED = {
+  source: { book: "occult", page: 200 }, id: "attack-hex", kind: "attack",
+  name: "Hex", group: "attack-options", text: "A singular incantation of the outer dark.",
+};
+
+test("gated entry text is not matchable until consent is given", () => {
+  setConsent(false);
+  assert.equal(filterEntries([GATED], "all", "incantation").length, 0);
+  assert.deepEqual(filterEntries([GATED], "all", "hex").map((e) => e.id), ["attack-hex"]);
+});
+
+test("consent makes gated entry text matchable again", () => {
+  setConsent(true);
+  assert.deepEqual(filterEntries([GATED], "all", "incantation").map((e) => e.id), ["attack-hex"]);
+  setConsent(false);
 });

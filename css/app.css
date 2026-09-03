@@ -1057,3 +1057,34 @@ mark {
 .cb-rows { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 14px; }
 .cb-rows th { text-align: left; font-family: var(--caps); color: var(--bronze); font-weight: 400; padding: 2px 10px 2px 0; vertical-align: top; white-space: nowrap; }
 .cb-rows td { padding: 2px 0; vertical-align: top; }
+
+/* ---------------- rulebook-content consent gate ---------------- */
+
+/* Withheld prose. Reads as an absence rather than an error: the reader has
+   not done anything wrong, they just have not said the books are theirs. */
+.gated {
+  display: inline-block;
+  font-family: var(--caps); font-size: 11px; letter-spacing: .05em;
+  color: var(--text-dim); cursor: pointer;
+  border: 1px dashed var(--line-bright); border-radius: 3px;
+  padding: 2px 8px; background: rgba(176,141,79,.05);
+}
+.gated:hover, .gated:focus { color: var(--bronze-bright); border-color: var(--bronze); }
+.gated:focus-visible { outline: 1px solid var(--bronze); outline-offset: 1px; }
+
+.consent-modal {
+  position: fixed; inset: 0; z-index: 90;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 12vh 16px; overflow-y: auto;
+  background: rgba(8,6,5,.78); backdrop-filter: blur(3px);
+}
+.consent-modal[hidden] { display: none; }
+.consent-box {
+  width: 100%; max-width: 460px;
+  border: 1px solid var(--line-bright); border-radius: 6px;
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  box-shadow: 0 18px 60px rgba(0,0,0,.6), inset 0 0 30px rgba(176,141,79,.05);
+  padding: 20px 22px; display: flex; flex-direction: column; gap: 10px;
+}
+.consent-box p { margin: 0; }
+.consent-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 6px; }

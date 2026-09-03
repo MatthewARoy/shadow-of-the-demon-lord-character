@@ -13,6 +13,8 @@ import { renderDice } from "./ui/dice.js";
 import { renderCombat } from "./ui/combat.js";
 import { renderLookup } from "./ui/lookup.js";
 import { esc } from "./ui/util.js";
+import { hydrateConsent, consentGranted } from "./consent.js";
+import { wireConsentGate, withdrawConsent } from "./ui/consent-gate.js";
 
 const tabs = {
   build: renderBuilder,
@@ -32,6 +34,12 @@ function renderCurrent() {
   if (panel) tabs[current](panel);
 }
 
+// The withdraw action only makes sense once consent has been given.
+function renderConsentMenuItem() {
+  const btn = document.getElementById("ov-consent-btn");
+  if (btn) btn.hidden = !consentGranted();
+}
+
 function renderRoster() {
   const sel = document.getElementById("roster-select");
   sel.innerHTML = store.characters.map((c) =>
@@ -48,6 +56,10 @@ async function boot() {
     return;
   }
   load();
+  // Before the first render: a gated placeholder must never flash the prose
+  // it is meant to withhold.
+  hydrateConsent();
+  wireConsentGate(() => { renderCurrent(); renderConsentMenuItem(); });
   document.getElementById("loading").remove();
   renderRoster();
   renderCurrent();
@@ -294,6 +306,11 @@ function setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink }) {
   document.getElementById("ov-share-btn").addEventListener("click", wrap(shareLink));
   document.getElementById("ov-import-btn").addEventListener("click", wrap(importClick));
   document.getElementById("ov-delete-btn").addEventListener("click", wrap(deleteSoul));
+  document.getElementById("ov-consent-btn").addEventListener("click", wrap(() => {
+    withdrawConsent();
+    showToast({ total: "✓", label: "Book text hidden", detail: "Supplement text is withheld again on this device." });
+  }));
+  renderConsentMenuItem();
 
   // Outside click and Escape dismiss the popover.
   document.addEventListener("click", (e) => {

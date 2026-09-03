@@ -16,9 +16,10 @@ await loadRules();
 // The consent gate is a render-time decision, so every piece of prose the
 // engine emits has to carry the book it came from. Without this the sheet
 // cannot tell an Occult Philosophy talent from a core one.
-function build(expertPath) {
+function build(expertPath, ancestry = "Human") {
   const c = newCharacter("Provenance Probe");
   c.level = 3;
+  c.ancestry = ancestry;
   c.novicePath = "Magician";
   c.expertPath = expertPath;
   return compute(c);
@@ -52,5 +53,21 @@ test("notes emitted from path effects carry their book", () => {
   const out = build("Ascendant");
   for (const n of out.notes.filter((n) => n.text)) {
     assert.ok(typeof n.book === "string" && n.book, `note "${n.text.slice(0, 30)}" has no book tag`);
+  }
+});
+
+test("traits from a supplement ancestry carry that book", () => {
+  const out = build("Ascendant", "Elf");   // Elf is Terrible Beauty
+  assert.ok(out.traits.length > 0, "expected the ancestry to contribute traits");
+  for (const t of out.traits.filter((t) => t.text)) {
+    assert.equal(t.book, "terrible", `trait ${t.name} carried book ${t.book}`);
+  }
+});
+
+test("traits from a core ancestry are not gated by accident", () => {
+  const out = build("Ascendant", "Changeling");
+  assert.ok(out.traits.length > 0);
+  for (const t of out.traits.filter((t) => t.text)) {
+    assert.equal(t.book, "core", `trait ${t.name} carried book ${t.book}`);
   }
 });

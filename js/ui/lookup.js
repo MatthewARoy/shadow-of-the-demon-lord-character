@@ -9,7 +9,8 @@
 
 import { rules as ruleData, BOOKS } from "../data.js";
 import { equipmentCard, equipmentKey } from "./equipment-card.js";
-import { esc } from "./util.js";
+import { esc, gatedText } from "./util.js";
+import { proseAllowed } from "../consent.js";
 
 // Separate quotas rather than one merged ranking. The prose scorer and a
 // gear scorer cannot be compared directly — a corrupt "Sling" chunk and a
@@ -122,19 +123,23 @@ function tokenize(s) {
   return meaningful.length ? meaningful : words;
 }
 
+// A withheld body must not be searchable either, or the gate leaks through
+// hit counts and snippets. Titles stay matchable — a name is not prose.
+const bodyLower = (c) => (proseAllowed(c.b) ? c.xl : "");
+
 function score(chunk, terms, phrase) {
   let s = 0;
   let present = 0;
   for (const t of terms) {
     let body = 0;
     let i = -1;
-    while ((i = chunk.xl.indexOf(t, i + 1)) !== -1 && body < 5) body++;
+    while ((i = bodyLower(chunk).indexOf(t, i + 1)) !== -1 && body < 5) body++;
     const title = chunk.tl.includes(t) ? 4 : 0;
     if (body || title) present++;
     s += Math.min(body, 5) + title;
   }
   if (present === terms.length && terms.length > 1) s += 6;
-  if (phrase && (chunk.xl.includes(phrase) || chunk.tl.includes(phrase))) s += 10;
+  if (phrase && (bodyLower(chunk).includes(phrase) || chunk.tl.includes(phrase))) s += 10;
   if (chunk.tl === phrase) s += 12;
   return present ? s : 0;
 }
@@ -232,10 +237,12 @@ function runSearch(el) {
   const rulesSection = ruleHits.length ? `
     ${gearHits.length ? `<h3 class="rubric small" style="margin-top:18px">Rules</h3>` : ""}
     ${ruleHits.map((c) => {
-      const win = snippetWindow(c, terms);
+      const allowed = proseAllowed(c.b);
+      const win = allowed ? snippetWindow(c, terms) : "";
       // Only long bodies clamp, and only those are interactive: expose them as
       // keyboard-reachable toggle buttons (collapsed = aria-expanded false).
-      const clamped = c.x.length > 460;
+      // A withheld body is neither long nor expandable.
+      const clamped = allowed && c.x.length > 460;
       const toggle = clamped ? ` tabindex="0" role="button" aria-expanded="false"` : "";
       // Equipment records have no book or page; guard the citation.
       const cite = c.b && c.p ? `<span class="src">${BOOKS[c.b]} · p.${c.p}</span>` : "";
@@ -243,7 +250,7 @@ function runSearch(el) {
       <div class="talent" style="margin-bottom:14px">
         <b>${highlight(esc(c.t), terms)}</b>
         ${cite}
-        <p class="lk-body ${clamped ? "lk-clamp" : ""}"${toggle}>${highlight(esc(win), terms)}</p>
+        <p class="lk-body ${clamped ? "lk-clamp" : ""}"${toggle}>${allowed ? highlight(esc(win), terms) : gatedText(c.x, c.b)}</p>
       </div>`;
     }).join("")}` : "";
 
