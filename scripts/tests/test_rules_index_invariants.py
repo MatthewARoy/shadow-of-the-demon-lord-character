@@ -95,12 +95,26 @@ class TestRulesIndexInvariants(unittest.TestCase):
                   "Retreat", "Prepare", "Defend", "Concentrate"):
             self.assertIn(t, self.titles, f"missing combat action: {t}")
 
+    def test_dlc2_subsystem_rules_are_searchable(self):
+        text = " ".join(c["x"] for c in self.index if c["b"] == "dlc2")
+        for phrase in (
+            "effect that takes place immediately after the spell ends",
+            "Invocation Talisman",
+            "Growing Madness",
+            "One Invocation at a Time",
+            "Transcendent Mind",
+            "creatures that don’t have souls",
+        ):
+            self.assertIn(phrase, text, f"missing DLC2 rule: {phrase}")
+        self.assertNotIn("You bind the daemon known as the Brute", text)
+        self.assertNotIn("Auspex................................................................", text)
+
     def test_every_chunk_has_required_fields_and_a_body(self):
         for c in self.index:
             for f in ("t", "b", "p", "x"):
                 self.assertIn(f, c, f"chunk missing field {f}: {c.get('t')}")
             self.assertTrue(c["x"].strip(), f"empty body: {c['t']}")
-            self.assertIn(c["b"], ("core", "occult", "terrible"))
+            self.assertIn(c["b"], ("core", "occult", "terrible", "dlc2"))
 
 
 if __name__ == "__main__":
