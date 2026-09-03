@@ -3117,15 +3117,17 @@
   "name": "Animated Corpse",
   "book": "occult",
   "page": 133,
+  "kind": "template",
+  "difficulty_adjustment": -1,
   "difficulty": "STEP",
   "descriptor": "frightening (if Size 2 or smaller) or horrifying (if Size 3 or larger) undead",
   "perception": "5 (–5); sightless",
-  "defense_line": null,
-  "attributes": null,
+  "defense_line": "Insanity —; Corruption —",
+  "attributes": "Agility –2, Intellect —, Will +5",
   "speed": "–4",
   "traits": [
-   "Insanity —; Corruption —",
-   "Agility –2, Intellect —, Will +5 Immune damage from cold, disease, or poison; asleep, blinded, charmed, dazed, deafened, diseased, fatigued, frightened, poisoned, stunned Traits and Talents The creature loses all talents."
+   "Immune damage from cold, disease, or poison; asleep, blinded, charmed, dazed, deafened, diseased, fatigued, frightened, poisoned, stunned",
+   "Traits and Talents The creature loses all talents."
   ],
   "attack_options": [
    "Natural Weapon Animated corpses attack with their natural weapons or unarmed strikes. These attacks deal 1d6 extra damage. The base creature loses any boons and banes it normally has on its attack rolls for using these weapons."
