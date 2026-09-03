@@ -23,11 +23,17 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "data", "rules-index.json")
 # records leaked into the index and duplicated the Spells tab.
 SPELL_LIST_START = re.compile(r"^[A-Z][A-Z’'\- ]*\s+(ATTACK|UTILITY)\s+\d+\s*$")
 
-# (book, first pdf page, last pdf page, end anchor or None)
+# (book, first pdf page, last pdf page, start anchor, end anchor)
+#
+# Start anchors let a rules section begin partway down a page without pulling
+# in the tail of the preceding spell list. End anchors stop immediately when
+# the first spell header begins, even when the book has no running head.
 RANGES = [
-    ("core", 6, 53, None),                 # ch1 character creation + ch2 playing the game
-    ("core", 100, 118, SPELL_LIST_START),  # ch6 equipment + ch7 magic rules (pre spell lists)
-    ("occult", 6, 12, None),               # restated/updated casting, learning, exchanging
+    ("core", 6, 53, None, None),                 # ch1 character creation + ch2 playing the game
+    ("core", 100, 118, None, SPELL_LIST_START),  # ch6 equipment + ch7 magic rules (pre spell lists)
+    ("occult", 6, 12, None, None),               # restated/updated casting, learning, exchanging
+    ("dlc2", 36, 37, None, SPELL_LIST_START),    # new traditions + Invocation rules
+    ("dlc2", 42, 42, re.compile(r"^Soul$"), SPELL_LIST_START),
 ]
 
 RUNNING_HEADS = {
@@ -64,8 +70,9 @@ def lines_in_ranges():
     next — including across books. That is how chunks titled EXPLOSIVE DARTS
     (core p.118) came to end with Occult Philosophy p.6 text.
     """
-    for book, lo, hi, end_anchor in RANGES:
+    for book, lo, hi, start_anchor, end_anchor in RANGES:
         page = 0
+        started = start_anchor is None
         with open(os.path.join(CACHE, f"{book}.txt")) as f:
             for raw in f:
                 s = raw.rstrip("\n")
@@ -74,7 +81,12 @@ def lines_in_ranges():
                     page = int(m.group(1))
                     continue
                 if lo <= page <= hi:
-                    if end_anchor and end_anchor.match(s.strip()):
+                    stripped = s.strip()
+                    if not started:
+                        if not start_anchor.match(stripped):
+                            continue
+                        started = True
+                    if end_anchor and end_anchor.match(stripped):
                         break
                     yield book, page, s
         yield BOUNDARY

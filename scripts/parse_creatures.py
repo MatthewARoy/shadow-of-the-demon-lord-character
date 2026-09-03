@@ -38,6 +38,10 @@ STAT_LINE = re.compile(
 PAGE_MARK = re.compile(r"^===PAGE (\d+)===$")
 DIFF = re.compile(r"^DIFFICULTY ([\d,]+|STEP)\s*$")
 DIFF_ADJUSTMENT = re.compile(r"^(ADD|SUBTRACT)\s+(\d+)\s*$")
+ATTRIBUTE_NAME_AT_END = re.compile(r"(?:Strength|Agility|Intellect|Will)\s*$")
+ATTRIBUTE_VALUE_CONTINUATION = re.compile(
+    r"^(?:\d+|[+–−-]\d+|—)(?:\s+\([+–−-]?\d+\))?$"
+)
 # A stat block name: an all-caps line (allowing digits, commas, apostrophes,
 # hyphens) — "LASH CRAWLER", "MOB OF MEDIUM MONSTERS", "VAPOR, KILLING".
 NAME = re.compile(r"^[A-Z][A-Z0-9 ,'’\-]{2,40}\s*$")
@@ -157,6 +161,12 @@ def parse_book(book):
                 elif (cr.get("kind") == "template"
                       and re.match(r"^(Agility|Intellect|Will) ", s)):
                     cr["attributes"] = s
+                elif (cr["attributes"]
+                      and ATTRIBUTE_NAME_AT_END.search(cr["attributes"])
+                      and ATTRIBUTE_VALUE_CONTINUATION.match(s)
+                      and (following := next_nonblank(lines, i, 1))
+                      and following[0].startswith("Speed ")):
+                    cr["attributes"] += " " + s
                 elif s.startswith("Speed "):
                     cr["speed"] = s[6:]
                     section = "traits"
