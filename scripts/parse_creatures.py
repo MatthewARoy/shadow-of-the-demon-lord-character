@@ -165,6 +165,48 @@ def next_nonblank(lines, i, count):
     return out
 
 
+def next_stat_block_name(lines, i, limit=100):
+    """The first NAME + DIFFICULTY block within `limit` content lines."""
+    seen = 0
+    while i < len(lines) and seen < limit:
+        s = lines[i].strip()
+        i += 1
+        if not s:
+            continue
+        seen += 1
+        if NAME.match(s) and s not in SECTIONS:
+            j = i
+            while j < len(lines) and not lines[j].strip():
+                j += 1
+            if j < len(lines) and DIFF.match(lines[j].strip()):
+                return title_case(s)
+    return None
+
+
+def heading_matches_stat_block(heading, stat_block_name):
+    """A family heading names all or part of its first stat block.
+
+    "Genie" introduces EARTH GENIE, while "Incarnation / of Nature" and
+    "Muttering Maw" repeat the complete name. Matching the words keeps stat
+    lines such as "Immune frightened" from becoming false boundaries merely
+    because another creature appears later on the page.
+    """
+    def words(value):
+        out = set()
+        for word in re.findall(r"[A-Za-z’']+", value.lower()):
+            if word in {"a", "an", "and", "of", "or", "the"}:
+                continue
+            if word.endswith("ies"):
+                word = word[:-3] + "y"
+            elif word.endswith("s") and not word.endswith("ss"):
+                word = word[:-1]
+            out.add(word)
+        return out
+
+    heading_words = words(heading)
+    return bool(heading_words) and heading_words <= words(stat_block_name)
+
+
 def starts_a_heading(lines, i, s):
     """True when `s` opens a sidebar or the next creature's prose entry.
 
@@ -180,9 +222,25 @@ def starts_a_heading(lines, i, s):
         return False
     if len(following[0]) > 40:
         return True
-    # A wrapped heading: a second short Title Case line, then the prose.
-    return (len(following) == 2 and len(following[0]) <= 32
-            and PROSE_HEADER.match(following[0]) and len(following[1]) > 40)
+    # A wrapped heading: a second short line, then the prose. Test the joined
+    # title so connector-led continuations such as "of Nature" are accepted.
+    joined = f"{s} {following[0]}"
+    if (len(following) == 2 and len(following[0]) <= 32
+            and PROSE_HEADER.match(joined) and len(following[1]) > 40):
+        return True
+
+    # Narrow PDF columns can keep every introductory prose line below the old
+    # 40-character threshold. In that case, confirm the candidate against the
+    # first actual stat block that follows. A family heading can be the whole
+    # name ("Sprite") or a shared family suffix ("Genie" → EARTH GENIE).
+    stat_block_name = next_stat_block_name(lines, i)
+    candidates = [s]
+    if len(following[0]) <= 32 and PROSE_HEADER.match(joined):
+        candidates.insert(0, joined)
+    return bool(stat_block_name) and any(
+        heading_matches_stat_block(candidate, stat_block_name)
+        for candidate in candidates
+    )
 
 
 def new_item_start(s):
