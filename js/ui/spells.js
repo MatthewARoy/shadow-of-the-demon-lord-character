@@ -7,7 +7,28 @@ import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
 import { showToast } from "./toast.js";
 import { statBlockHtml } from "./statblock.js";
-import { esc, gatedText, searchableText } from "./util.js";
+import { esc, gatedText, searchableText, rulesTables, tablesSearchText } from "./util.js";
+import { consentGranted } from "../consent.js";
+
+// Lowercased text of a spell's captured tables, memoised — the search runs
+// this over the whole corpus on every keystroke. Memoised per consent state,
+// since a withheld table contributes nothing to the haystack.
+let tableTextCache = new WeakMap();
+let tableCacheConsent = null;
+function tableText(s) {
+  // Consent changes what the haystack contains, so the memo is thrown away
+  // when it flips rather than serving text the gate now withholds.
+  if (consentGranted() !== tableCacheConsent) {
+    tableTextCache = new WeakMap();
+    tableCacheConsent = consentGranted();
+  }
+  let t = tableTextCache.get(s);
+  if (t === undefined) {
+    t = tablesSearchText(s.tables, s.source).toLowerCase();
+    tableTextCache.set(s, t);
+  }
+  return t;
+}
 
 // Ranks above 5 effectively never come up in play, so the Archive — and the
 // theorycrafting it feeds (combos, sorting) — only ever considers spells up to
@@ -380,7 +401,10 @@ function renderResults(el, char, computed) {
       if (filters.tempo && e.tempo !== filters.tempo) return false;
     }
     if (learnableKeys && !learnableKeys.has(spellKey(s.name, s.tradition))) return false;
-    if (q && !s.name.toLowerCase().includes(q) && !searchableText(s.description, s.source).toLowerCase().includes(q)) return false;
+    // Table rows are rules text: "grim reaper" is only in the underworld
+    // gates table, "vomit noxious green fluids" only in query the void's.
+    if (q && !s.name.toLowerCase().includes(q) && !searchableText(s.description, s.source).toLowerCase().includes(q)
+        && !tableText(s).includes(q)) return false;
     return true;
   });
   if (filters.sort === "efficiency") {
@@ -590,6 +614,7 @@ export function spellCard(s, opts = {}) {
     ${filters.advanced ? scoreBadge(s) : ""}
     ${filters.advanced ? enrichBlock(s) : ""}
     <p class="spell-desc clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${gatedText(s.description, s.source)}</p>
+    ${rulesTables(s.tables, s.source)}
     ${summonBtns ? `<div class="chip-row" style="margin:4px 0 6px">${summonBtns}</div>` : ""}
     ${openCreature ? statBlockHtml(openCreature) : ""}
     ${opts.learned && exchangeOpen === key ? exchangePicker(opts.char, opts.computed, s) : ""}
@@ -697,7 +722,7 @@ function spellModalHtml(s) {
     ${cats}
     ${scoreSec}
     ${lensSec}
-    <div class="sm-section"><h4>Description</h4><p class="sm-desc">${gatedText(s.description, s.source)}</p></div>
+    <div class="sm-section"><h4>Description</h4><p class="sm-desc">${gatedText(s.description, s.source)}</p>${rulesTables(s.tables, s.source)}</div>
     <div class="sm-foot">
       <span class="small dim">${src} · p.${s.page}</span>
       <a class="btn btn-small btn-resolve" href="${relabelIssueUrl(s)}" target="_blank" rel="noopener"

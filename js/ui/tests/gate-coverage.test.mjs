@@ -47,3 +47,19 @@ test("every module that renders book prose imports the gate", async () => {
     assert.match(src, /import \{[^}]*gatedText[^}]*\} from "\.\/util\.js"/, `${name} should import gatedText`);
   }
 });
+
+// Rules tables and path catalogs arrived after the gate did; they are rulebook
+// text too, so they must not be rendered or searched raw.
+test("rules tables are rendered through the gate, never raw", async () => {
+  const offenders = [];
+  for (const [name, src] of await uiSources()) {
+    for (const m of src.matchAll(/rulesTables?\(\s*[^,)]+\)/g)) offenders.push(`${name}: ${m[0]}`);
+  }
+  assert.deepEqual(offenders, [], `rulesTables() needs a book argument:\n${offenders.join("\n")}`);
+});
+
+test("catalog entry text is gated", async () => {
+  const src = await readFile(new URL("paths.js", UI_DIR), "utf8");
+  assert.ok(src.includes("gatedText(e.text, book)"), "catalog entries should be gated");
+  assert.ok(!/esc\(\s*e\.text\s*\)/.test(src), "catalog entries should not be escaped raw");
+});

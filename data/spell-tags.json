@@ -13,25 +13,25 @@
    "id": "damage",
    "facet": "offense",
    "label": "Damage",
-   "count": 557
+   "count": 560
   },
   {
    "id": "auto-damage",
    "facet": "offense",
    "label": "Auto-damage (no attack roll)",
-   "count": 412
+   "count": 414
   },
   {
    "id": "buff-attack",
    "facet": "support",
    "label": "Buff: attack rolls",
-   "count": 92
+   "count": 94
   },
   {
    "id": "buff-challenge",
    "facet": "support",
    "label": "Buff: challenge rolls",
-   "count": 74
+   "count": 75
   },
   {
    "id": "reroll",
@@ -49,7 +49,7 @@
    "id": "control",
    "facet": "control",
    "label": "Control (stun/immobilize/etc.)",
-   "count": 342
+   "count": 345
   },
   {
    "id": "fear",
@@ -61,7 +61,7 @@
    "id": "mind-control",
    "facet": "control",
    "label": "Mind control",
-   "count": 58
+   "count": 59
   },
   {
    "id": "insanity",
@@ -97,7 +97,7 @@
    "id": "action-economy",
    "facet": "support",
    "label": "Action economy",
-   "count": 11
+   "count": 12
   },
   {
    "id": "protection",
@@ -109,13 +109,13 @@
    "id": "teleport",
    "facet": "mobility",
    "label": "Teleport",
-   "count": 46
+   "count": 49
   },
   {
    "id": "fly",
    "facet": "mobility",
    "label": "Flight",
-   "count": 31
+   "count": 32
   },
   {
    "id": "movement",
@@ -127,7 +127,7 @@
    "id": "summon",
    "facet": "utility",
    "label": "Summon / conjure",
-   "count": 37
+   "count": 38
   },
   {
    "id": "concealment",
@@ -145,7 +145,7 @@
    "id": "transform",
    "facet": "utility",
    "label": "Transformation",
-   "count": 65
+   "count": 66
   },
   {
    "id": "sacrifice",
@@ -181,7 +181,7 @@
    "id": "sustained",
    "facet": "timing",
    "label": "Sustained duration",
-   "count": 800
+   "count": 802
   },
   {
    "id": "permanent",
