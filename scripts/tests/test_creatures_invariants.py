@@ -139,6 +139,15 @@ class TestCreaturesInvariants(unittest.TestCase):
         self.assertEqual(occult["traits"][1],
                          "Traits and Talents The creature loses all talents.")
 
+    def test_grim_reaper_preserves_wrapped_will_and_first_trait(self):
+        grim = next(c for c in self.creatures
+                    if c["book"] == "occult" and c["name"] == "Grim Reaper")
+        self.assertEqual(
+            grim["attributes"],
+            "Strength 20 (+10), Agility 20 (+10), Intellect 20 (+10), Will 20 (+10)",
+        )
+        self.assertTrue(grim["traits"][0].startswith("Immune damage from cold"))
+
 
 if __name__ == "__main__":
     unittest.main()
