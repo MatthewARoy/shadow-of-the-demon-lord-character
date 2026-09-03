@@ -181,9 +181,9 @@ class TestPathsInvariants(unittest.TestCase):
     def test_corpus_has_not_shrunk(self):
         """A stop heading firing too early drops paths or empties blocks.
 
-        545, not the original 550: five spell fields that had been parsed as
-        talents are gone — three "Attack" lines, temple of faith's "Area",
-        and spellbound weapon's "Sacrifice", which spells.json carries.
+        Five spell fields and fourteen embedded stat-block entries that had
+        been parsed as talents are gone. The focused spell and stat-block
+        tests prove those removals independently.
         Lower this only alongside proof that what vanished was never a talent.
         """
         by_type = {"expert": 0, "master": 0}
@@ -338,6 +338,75 @@ class TestPathTablesAndCatalogs(unittest.TestCase):
             entries = {e["name"] for g in p.get("catalog", {}).get("groups", [])
                        for e in g["entries"]}
             self.assertEqual(talents & entries, set(), name)
+
+
+class TestPathStatBlocks(unittest.TestCase):
+    """Companions and alternate forms printed inside path level blocks."""
+
+    EXPECTED = {
+        ("Soulcatcher", "3", "Daemonic Vessel"): ["Daemonic Vessel"],
+        ("Spiritcaller", "3", "Spirit Guide"): ["Raven Spirit", "Wolf Spirit"],
+        ("Spiritcaller", "6", "Greater Spirit Guide"): ["Boar Spirit", "Lizard Spirit"],
+        ("Spiritcaller", "9", "Elder Spirit Guide"): ["Bear Spirit", "Lion Spirit"],
+        ("Thrallbinder", "3", "Conjured Thrall"): ["Conjured Thrall"],
+        ("Thrallbinder", "6", "Improved Conjured Thrall"): ["Improved Conjured Thrall"],
+        ("Thrallbinder", "9", "Greater Conjured Thrall"): ["Greater Conjured Thrall"],
+        ("Engineer", "7", "Eidolon"): ["Eidolon"],
+        ("Cat Sith", "7", "Form of the Black Cat"): ["Black Cat"],
+        ("Keeper of the Flame", "10", "Control Flame"): ["Controlled Flame"],
+    }
+
+    @classmethod
+    def setUpClass(cls):
+        cls.paths = {p["name"]: p for p in load("paths.json")}
+
+    def talent(self, path, level, name):
+        talents = self.paths[path]["levels"][level].get("talents", [])
+        return next(t for t in talents if t["name"] == name)
+
+    def test_all_thirteen_blocks_attach_to_the_granting_talent(self):
+        found = []
+        for key, names in self.EXPECTED.items():
+            blocks = self.talent(*key).get("stat_blocks", [])
+            self.assertEqual([b["name"] for b in blocks], names, key)
+            found.extend(blocks)
+        self.assertEqual(len(found), 13)
+
+    def test_stat_blocks_have_complete_headers_and_source(self):
+        blocks = [b for key in self.EXPECTED for b in self.talent(*key)["stat_blocks"]]
+        for block in blocks:
+            for field in ("name", "book", "page", "descriptor", "perception",
+                          "defense_line", "attributes", "speed"):
+                self.assertTrue(block.get(field), f"{block['name']} missing {field}")
+            self.assertNotIn("difficulty", block)
+        lizard = next(b for b in blocks if b["name"] == "Lizard Spirit")
+        self.assertEqual(lizard["defense_line"],
+                         "Defense 15; Health 20; Insanity —; Corruption 0")
+
+    def test_stat_block_text_is_not_also_talent_text(self):
+        stat_names = {name.upper() for names in self.EXPECTED.values() for name in names}
+        contaminated = []
+        for path in self.paths.values():
+            for level, entry in path["levels"].items():
+                for talent in entry.get("talents", []):
+                    for name in stat_names:
+                        if name in talent["text"]:
+                            contaminated.append(f"{path['name']} L{level} {talent['name']}: {name}")
+        self.assertEqual(contaminated, [])
+
+    def test_stat_entries_are_not_promoted_to_path_talents(self):
+        expected = {
+            ("Spiritcaller", "3"): ["Spirit Guide"],
+            ("Spiritcaller", "6"): ["Greater Spirit Guide"],
+            ("Spiritcaller", "9"): ["Elder Spirit Guide"],
+            ("Thrallbinder", "9"): ["Greater Conjured Thrall"],
+            ("Engineer", "7"): ["Eidolon", "Spare Parts"],
+            ("Cat Sith", "7"): ["Form of the Black Cat"],
+            ("Keeper of the Flame", "10"): ["Fiery Resurgence", "Control Flame"],
+        }
+        for (path, level), names in expected.items():
+            actual = [t["name"] for t in self.paths[path]["levels"][level]["talents"]]
+            self.assertEqual(actual, names, f"{path} L{level}")
 
 
 class TestMagicGrants(unittest.TestCase):

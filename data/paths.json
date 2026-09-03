@@ -2922,11 +2922,33 @@
     "talents": [
      {
       "name": "Daemonic Vessel",
-      "text": "You create a daemonic vessel from body parts harvested from dead bodies and tattoo it with mystic symbols associated with the daemons you have identified from learning Invocation spells. The daemonic vessel’s statistics are given below. You control the vessel, deciding when it takes its turn and what it does on each of its turns. If the vessel is destroyed, you can create a new one. Doing so takes 8 hours of work, 3 gc of special materials, and body parts sufficient for creating a Size 1 creature."
+      "text": "You create a daemonic vessel from body parts harvested from dead bodies and tattoo it with mystic symbols associated with the daemons you have identified from learning Invocation spells. The daemonic vessel’s statistics are given below. You control the vessel, deciding when it takes its turn and what it does on each of its turns. If the vessel is destroyed, you can create a new one. Doing so takes 8 hours of work, 3 gc of special materials, and body parts sufficient for creating a Size 1 creature.",
+      "stat_blocks": [
+       {
+        "name": "Daemonic Vessel",
+        "book": "occult",
+        "page": 163,
+        "descriptor": "1 undead",
+        "perception": "5 (–5)",
+        "defense_line": "Defense 9; Health 100; Insanity —; Corruption —",
+        "attributes": "Strength 12 (+2), Agility 9 (–1), Intellect 5 (–5), Will 15 (+5)",
+        "speed": "8",
+        "traits": [
+         "Immune damage from cold, disease, or poison; asleep, blinded, charmed, dazed, deafened, diseased, fatigued, poisoned, stunned"
+        ],
+        "attack_options": [
+         "Fist (melee) +2 with 1 boon (2d6)"
+        ],
+        "special_attacks": [],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      },
      {
       "name": "Evoke Daemon",
-      "text": "When you cast an Invocation spell, you can choose your daemonic vessel to be the target, provided it is within short range. You are still subject to the spell’s aftereffect, but you make the roll with 3 boons. DAEMONIC VESSEL Size 1 undead Perception 5 (–5) Defense 9; Health 100; Insanity —; Corruption — Strength 12 (+2), Agility 9 (–1), Intellect 5 (–5), Will 15 (+5) Speed 8 Immune damage from cold, disease, or poison; asleep, blinded, charmed, dazed, deafened, diseased, fatigued, poisoned, stunned ATTACK OPTIONS Fist (melee) +2 with 1 boon (2d6)"
+      "text": "When you cast an Invocation spell, you can choose your daemonic vessel to be the target, provided it is within short range. You are still subject to the spell’s aftereffect, but you make the roll with 3 boons."
      }
     ]
    },
@@ -3185,23 +3207,56 @@
     "talents": [
      {
       "name": "Spirit Guide",
-      "text": "You forge a bond with an animal spirit. You can choose either a raven spirit or a wolf spirit. The spirit can speak to you and you alone in a language you understand. The statistics boxes for each are given below. You can use an action and expend the casting of a rank 2 or higher Primal or Spiritualism spell to call forth your spirit guide. It appears in an open space of your choice within medium range. The spirit remains until you use an action to dismiss it, until you complete a rest, or the spirit becomes incapacitated, in which case it disappears. The spirit is under your control, and you decide when it takes its turn and what it does on its turn. If the spirit disappears as a result of becoming incapacitated, you must wait until you complete a rest to use this talent again. RAVEN SPIRIT Size 1/2 spirit Perception 14 (+4) Defense 13; Health 16; Insanity —; Corruption 0 Strength 8 (–2), Agility 13 (+3), Intellect 8 (–2), Will 11 (+1) Speed 10; flier (swoop) Immune damage from disease or poison; asleep, diseased, fatigued, poisoned ATTACK OPTIONS Talons (melee) +3 with 1 boon (1d6 + 1) Beak (melee) +3 with 1 boon (1d6) SPECIAL ATTACKS"
-     },
-     {
-      "name": "Double Attack",
-      "text": "The raven spirit makes two attacks, one with its talons and one with its beak. WOLF SPIRIT Size 1 spirit Perception 14 (+4); shadowsight Defense 11; Health 16; Insanity —; Corruption 0 Strength 12 (+2), Agility 11 (+1), Intellect 8 (–2), Will 13 (+3) Speed 12 Immune damage from disease or poison; asleep, diseased, fatigued, poisoned"
-     },
-     {
-      "name": "Teamwork Tactics",
-      "text": "When the wolf spirit attacks a target that one of its allies can reach and that ally is not incapacitated, the wolf spirit makes the attack roll with 1 boon. ATTACK OPTIONS Teeth (melee) +2 with 1 boon (1d6 + 1 plus Knock Down on 20+)"
-     },
-     {
-      "name": "Knock Down",
-      "text": "If the target is a creature, it falls prone. SPECIAL ATTACKS"
-     },
-     {
-      "name": "Go for the Throat",
-      "text": "When a wolf spirit attacks a prone creature, it makes the attack roll with 1 boon and the attack deals 1d6 extra damage."
+      "text": "You forge a bond with an animal spirit. You can choose either a raven spirit or a wolf spirit. The spirit can speak to you and you alone in a language you understand. The statistics boxes for each are given below. You can use an action and expend the casting of a rank 2 or higher Primal or Spiritualism spell to call forth your spirit guide. It appears in an open space of your choice within medium range. The spirit remains until you use an action to dismiss it, until you complete a rest, or the spirit becomes incapacitated, in which case it disappears. The spirit is under your control, and you decide when it takes its turn and what it does on its turn. If the spirit disappears as a result of becoming incapacitated, you must wait until you complete a rest to use this talent again.",
+      "stat_blocks": [
+       {
+        "name": "Raven Spirit",
+        "book": "occult",
+        "page": 164,
+        "descriptor": "1/2 spirit",
+        "perception": "14 (+4)",
+        "defense_line": "Defense 13; Health 16; Insanity —; Corruption 0",
+        "attributes": "Strength 8 (–2), Agility 13 (+3), Intellect 8 (–2), Will 11 (+1)",
+        "speed": "10; flier (swoop)",
+        "traits": [
+         "Immune damage from disease or poison; asleep, diseased, fatigued, poisoned"
+        ],
+        "attack_options": [
+         "Talons (melee) +3 with 1 boon (1d6 + 1)",
+         "Beak (melee) +3 with 1 boon (1d6)"
+        ],
+        "special_attacks": [
+         "Double Attack The raven spirit makes two attacks, one with its talons and one with its beak."
+        ],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       },
+       {
+        "name": "Wolf Spirit",
+        "book": "occult",
+        "page": 164,
+        "descriptor": "1 spirit",
+        "perception": "14 (+4); shadowsight",
+        "defense_line": "Defense 11; Health 16; Insanity —; Corruption 0",
+        "attributes": "Strength 12 (+2), Agility 11 (+1), Intellect 8 (–2), Will 13 (+3)",
+        "speed": "12",
+        "traits": [
+         "Immune damage from disease or poison; asleep, diseased, fatigued, poisoned",
+         "Teamwork Tactics When the wolf spirit attacks a target that one of its allies can reach and that ally is not incapacitated, the wolf spirit makes the attack roll with 1 boon."
+        ],
+        "attack_options": [
+         "Teeth (melee) +2 with 1 boon (1d6 + 1 plus Knock Down on 20+)",
+         "Knock Down If the target is a creature, it falls prone."
+        ],
+        "special_attacks": [
+         "Go for the Throat When a wolf spirit attacks a prone creature, it makes the attack roll with 1 boon and the attack deals 1d6 extra damage."
+        ],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      }
     ]
    },
@@ -3223,11 +3278,50 @@
     "talents": [
      {
       "name": "Greater Spirit Guide",
-      "text": "You forge a bond with another animal spirit. You can choose either a boar spirit or a lizard spirit. When you use your Spirit Guide talent and expend the casting of a rank 3 or higher Primal or Spiritualism spell, you can call a greater spirit instead of your normal spirit. BOAR SPIRIT Size 1 spirit Perception 14 (+4); shadowsight Defense 11; Health 30; Insanity —; Corruption 0 Strength 14 (+4), Agility 10 (+0), Intellect 8 (–2), Will 14 (+4) Speed 10 Immune damage from disease or poison; asleep, diseased, fatigued, poisoned"
-     },
-     {
-      "name": "Relentless",
-      "text": "If the boar’s damage total equals its Health, the boar does not become incapacitated until the end of the next round. If the boar takes any more damage before then, it becomes incapacitated. ATTACK OPTIONS Tusks (melee) +4 with 1 boon (2d6) LIZARD SPIRIT Size 1 spirit Perception 14 (+4) Defense 15; Health 20; Insanity —; Corruption 0 Strength 13 (+3), Agility 11 (+1), Intellect 8 (–2), Will 13 (+3) Speed 12 Immune damage from disease or poison; asleep, diseased, fatigued, poisoned ATTACK OPTIONS Teeth (melee) +3 with 1 boon (3d6)"
+      "text": "You forge a bond with another animal spirit. You can choose either a boar spirit or a lizard spirit. When you use your Spirit Guide talent and expend the casting of a rank 3 or higher Primal or Spiritualism spell, you can call a greater spirit instead of your normal spirit.",
+      "stat_blocks": [
+       {
+        "name": "Boar Spirit",
+        "book": "occult",
+        "page": 164,
+        "descriptor": "1 spirit",
+        "perception": "14 (+4); shadowsight",
+        "defense_line": "Defense 11; Health 30; Insanity —; Corruption 0",
+        "attributes": "Strength 14 (+4), Agility 10 (+0), Intellect 8 (–2), Will 14 (+4)",
+        "speed": "10",
+        "traits": [
+         "Immune damage from disease or poison; asleep, diseased, fatigued, poisoned",
+         "Relentless If the boar’s damage total equals its Health, the boar does not become incapacitated until the end of the next round. If the boar takes any more damage before then, it becomes incapacitated."
+        ],
+        "attack_options": [
+         "Tusks (melee) +4 with 1 boon (2d6)"
+        ],
+        "special_attacks": [],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       },
+       {
+        "name": "Lizard Spirit",
+        "book": "occult",
+        "page": 164,
+        "descriptor": "1 spirit",
+        "perception": "14 (+4)",
+        "defense_line": "Defense 15; Health 20; Insanity —; Corruption 0",
+        "attributes": "Strength 13 (+3), Agility 11 (+1), Intellect 8 (–2), Will 13 (+3)",
+        "speed": "12",
+        "traits": [
+         "Immune damage from disease or poison; asleep, diseased, fatigued, poisoned"
+        ],
+        "attack_options": [
+         "Teeth (melee) +3 with 1 boon (3d6)"
+        ],
+        "special_attacks": [],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      }
     ]
    },
@@ -3250,19 +3344,56 @@
     "talents": [
      {
       "name": "Elder Spirit Guide",
-      "text": "You forge a bond with another animal spirit. You can choose either a bear spirit or a lion spirit. When you use your Spirit Guide talent and expend the casting of a rank 4 or higher Primal or Spiritualism spell, you can call a greater spirit instead of your normal spirit. BEAR SPIRIT Size 2 spirit Perception 14 (+4); shadowsight Defense 13; Health 60; Insanity —; Corruption 0 Strength 14 (+4), Agility 10 (+0), Intellect 9 (–1), Will 14 (+4) Speed 10 Immune damage from disease or poison; asleep, diseased, fatigued, poisoned"
-     },
-     {
-      "name": "Devoted Protector",
-      "text": "While the bear spirit is within 1 yard of a creature friendly to it, the bear spirit imposes 1 bane on attack rolls made against that creature. ATTACK OPTIONS Claws (melee) +4 with 1 boon (1d6 + 2) Teeth (melee) +4 with 1 boon (2d6 + 1) SPECIAL ATTACKS"
-     },
-     {
-      "name": "Maul",
-      "text": "The bear spirit makes a claws attack and a teeth attack. If it deals damage to the same target with both attacks, the target takes 1d6 extra damage. LION SPIRIT Size 2 spirit Perception 14 (+4); shadowsight Defense 13; Health 50; Insanity —; Corruption 0 Strength 14 (+4), Agility 13 (+3), Intellect 9 (–1), Will 14 (+4) Speed 12 Immune damage from disease or poison; asleep, diseased, fatigued, poisoned ATTACK OPTIONS Teeth (melee) +4 with 1 boon (3d6) Claws (melee) +4 with 1 boon (1d6 + 2) SPECIAL ATTACKS"
-     },
-     {
-      "name": "Pouncing Charge",
-      "text": "The lion spirit moves up to half its Speed, and this movement does not trigger free attacks. At the end of this movement, it makes two claw attacks against a creature it can reach. If it deals damage with both attacks, the target falls prone."
+      "text": "You forge a bond with another animal spirit. You can choose either a bear spirit or a lion spirit. When you use your Spirit Guide talent and expend the casting of a rank 4 or higher Primal or Spiritualism spell, you can call a greater spirit instead of your normal spirit.",
+      "stat_blocks": [
+       {
+        "name": "Bear Spirit",
+        "book": "occult",
+        "page": 165,
+        "descriptor": "2 spirit",
+        "perception": "14 (+4); shadowsight",
+        "defense_line": "Defense 13; Health 60; Insanity —; Corruption 0",
+        "attributes": "Strength 14 (+4), Agility 10 (+0), Intellect 9 (–1), Will 14 (+4)",
+        "speed": "10",
+        "traits": [
+         "Immune damage from disease or poison; asleep, diseased, fatigued, poisoned",
+         "Devoted Protector While the bear spirit is within 1 yard of a creature friendly to it, the bear spirit imposes 1 bane on attack rolls made against that creature."
+        ],
+        "attack_options": [
+         "Claws (melee) +4 with 1 boon (1d6 + 2)",
+         "Teeth (melee) +4 with 1 boon (2d6 + 1)"
+        ],
+        "special_attacks": [
+         "Maul The bear spirit makes a claws attack and a teeth attack. If it deals damage to the same target with both attacks, the target takes 1d6 extra damage."
+        ],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       },
+       {
+        "name": "Lion Spirit",
+        "book": "occult",
+        "page": 165,
+        "descriptor": "2 spirit",
+        "perception": "14 (+4); shadowsight",
+        "defense_line": "Defense 13; Health 50; Insanity —; Corruption 0",
+        "attributes": "Strength 14 (+4), Agility 13 (+3), Intellect 9 (–1), Will 14 (+4)",
+        "speed": "12",
+        "traits": [
+         "Immune damage from disease or poison; asleep, diseased, fatigued, poisoned"
+        ],
+        "attack_options": [
+         "Teeth (melee) +4 with 1 boon (3d6)",
+         "Claws (melee) +4 with 1 boon (1d6 + 2)"
+        ],
+        "special_attacks": [
+         "Pouncing Charge The lion spirit moves up to half its Speed, and this movement does not trigger free attacks. At the end of this movement, it makes two claw attacks against a creature it can reach. If it deals damage with both attacks, the target falls prone."
+        ],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      }
     ]
    }
@@ -3493,7 +3624,29 @@
     "talents": [
      {
       "name": "Conjured Thrall",
-      "text": "You can use an action to conjure a thrall. Choose a cube of space originating from a point within short range, and the thrall appears in that space. The thrall counts as a creature you have created by a Conjuration spell you have cast. It remains until you complete a rest or until the thrall is destroyed, at which point it disappears. The thrall is friendly to you and members of your group. It takes one turn per round, acting when you do, and performs as you direct it (not an action) provided it remains within medium range. You can use this talent a number of times equal to your Power, but you cannot have more than one thrall at a time. You regain expended uses of this talent when you complete a rest."
+      "text": "You can use an action to conjure a thrall. Choose a cube of space originating from a point within short range, and the thrall appears in that space. The thrall counts as a creature you have created by a Conjuration spell you have cast. It remains until you complete a rest or until the thrall is destroyed, at which point it disappears. The thrall is friendly to you and members of your group. It takes one turn per round, acting when you do, and performs as you direct it (not an action) provided it remains within medium range. You can use this talent a number of times equal to your Power, but you cannot have more than one thrall at a time. You regain expended uses of this talent when you complete a rest.",
+      "stat_blocks": [
+       {
+        "name": "Conjured Thrall",
+        "book": "occult",
+        "page": 167,
+        "descriptor": "1/2 construct",
+        "perception": "6 (–4); darksight",
+        "defense_line": "Defense 11; Health 14; Insanity —; Corruption —",
+        "attributes": "Strength 12 (+2), Agility 9 (–1), Intellect 6 (–4), Will 12 (+2)",
+        "speed": "8",
+        "traits": [
+         "Immune damage from disease or poison; asleep, charmed, diseased, fatigued, frightened, poisoned"
+        ],
+        "attack_options": [
+         "Appendage (melee) +2 (1d6)"
+        ],
+        "special_attacks": [],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      },
      {
       "name": "Directed Strike",
@@ -3501,7 +3654,7 @@
      },
      {
       "name": "Infusion of Magic",
-      "text": "If a thrall you have created using a talent gained from this path is within short range of you, you can use an action and expend the casting of a rank 1 or higher Conjuration spell to heal the thrall. The thrall heals 1d6 damage per rank of the spell whose casting you expended. CONJURED THRALL Size 1/2 construct Perception 6 (–4); darksight Defense 11; Health 14; Insanity —; Corruption — Strength 12 (+2), Agility 9 (–1), Intellect 6 (–4), Will 12 (+2) Speed 8 Immune damage from disease or poison; asleep, charmed, diseased, fatigued, frightened, poisoned ATTACK OPTIONS Appendage (melee) +2 (1d6)"
+      "text": "If a thrall you have created using a talent gained from this path is within short range of you, you can use an action and expend the casting of a rank 1 or higher Conjuration spell to heal the thrall. The thrall heals 1d6 damage per rank of the spell whose casting you expended."
      }
     ]
    },
@@ -3520,7 +3673,29 @@
     "talents": [
      {
       "name": "Improved Conjured Thrall",
-      "text": "When you use your Conjured Thrall talent, you can create an improved conjured thrall instead of a conjured thrall. Whenever you use Infusion of Magic to heal this thrall, you instead heal damage equal to 2d6 per rank of the spell whose casting you expended. IMPROVED CONJURED THRALL Size 1 construct Perception 6 (–4); darksight Defense 11; Health 42; Insanity —; Corruption — Strength 13 (+3), Agility 9 (–1), Intellect 7 (–3), Will 13 (+3) Speed 10 Immune damage from disease or poison; asleep, charmed, diseased, fatigued, frightened, poisoned ATTACK OPTIONS Appendage (melee) +3 plus 1 boon (2d6)"
+      "text": "When you use your Conjured Thrall talent, you can create an improved conjured thrall instead of a conjured thrall. Whenever you use Infusion of Magic to heal this thrall, you instead heal damage equal to 2d6 per rank of the spell whose casting you expended.",
+      "stat_blocks": [
+       {
+        "name": "Improved Conjured Thrall",
+        "book": "occult",
+        "page": 167,
+        "descriptor": "1 construct",
+        "perception": "6 (–4); darksight",
+        "defense_line": "Defense 11; Health 42; Insanity —; Corruption —",
+        "attributes": "Strength 13 (+3), Agility 9 (–1), Intellect 7 (–3), Will 13 (+3)",
+        "speed": "10",
+        "traits": [
+         "Immune damage from disease or poison; asleep, charmed, diseased, fatigued, frightened, poisoned"
+        ],
+        "attack_options": [
+         "Appendage (melee) +3 plus 1 boon (2d6)"
+        ],
+        "special_attacks": [],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      }
     ]
    },
@@ -3542,11 +3717,31 @@
     "talents": [
      {
       "name": "Greater Conjured Thrall",
-      "text": "When you use your Conjured Thrall talent, you can create a greater conjured thrall instead of a conjured thrall. Whenever you use Infusion of Magic to heal this thrall, you instead heal damage equal to 3d6 per rank of the spell whose casting you expended. GREATER CONJURED THRALL Size 2 construct Perception 6 (–4); darksight Defense 11; Health 84; Insanity —; Corruption — Strength 15 (+5), Agility 9 (–1), Intellect 8 (–2), Will 14 (+4) Speed 10; flier Immune damage from disease or poison; asleep, charmed, diseased, fatigued, frightened, poisoned ATTACK OPTIONS Appendage (melee) +5 plus 1 boon (3d6) SPECIAL ACTIONS"
-     },
-     {
-      "name": "Double Attack",
-      "text": "The thrall makes two appendage attacks."
+      "text": "When you use your Conjured Thrall talent, you can create a greater conjured thrall instead of a conjured thrall. Whenever you use Infusion of Magic to heal this thrall, you instead heal damage equal to 3d6 per rank of the spell whose casting you expended.",
+      "stat_blocks": [
+       {
+        "name": "Greater Conjured Thrall",
+        "book": "occult",
+        "page": 167,
+        "descriptor": "2 construct",
+        "perception": "6 (–4); darksight",
+        "defense_line": "Defense 11; Health 84; Insanity —; Corruption —",
+        "attributes": "Strength 15 (+5), Agility 9 (–1), Intellect 8 (–2), Will 14 (+4)",
+        "speed": "10; flier",
+        "traits": [
+         "Immune damage from disease or poison; asleep, charmed, diseased, fatigued, frightened, poisoned"
+        ],
+        "attack_options": [
+         "Appendage (melee) +5 plus 1 boon (3d6)"
+        ],
+        "special_attacks": [],
+        "special_actions": [
+         "Double Attack The thrall makes two appendage attacks."
+        ],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      }
     ]
    }
@@ -5589,19 +5784,35 @@
     "talents": [
      {
       "name": "Form of the Black Cat",
-      "text": "You can use an action to assume the form of a large cat, covered in black fur with a white spot on your chest. While in this form, you use the following statistics box in place of your own. You can remain in this form for up to 1 hour, and you can revert to your normal form by using an action or a triggered action on your turn. You also revert to your normal form if you become incapacitated. You can use this talent a number of times equal to your Power score. You regain expended uses after you complete a rest. BLACK CAT Size 1 faerie Perception 13 (+3); darksight Defense 15; Health 20 + your Health score Strength 14 (+4), Agility 14 (+4), Intellect 8 (–2), Will 11 (+1) Speed 12 Immune gaining Insanity; frightened ATTACK OPTIONS Teeth (melee) +4 with 2 boons (1d6) Claw (melee) +4 with 2 boons (1d3) SPECIAL ATTACKS"
-     },
-     {
-      "name": "Claws and Teeth",
-      "text": "You attack twice with your claws and once with your teeth."
-     },
-     {
-      "name": "Pouncing Attack",
-      "text": "You move up to your Speed and attack twice with your claws, dealing 1d6 extra damage on each success. SPECIAL ACTIONS"
-     },
-     {
-      "name": "Dire Crossing",
-      "text": "While moving, you can use a triggered action to lay a curse on one creature within 1 yard of you. The target must get a success on a Will challenge roll or become cursed for 1 minute or until you use Dire Crossing again. While cursed, the target makes all attack rolls and challenge rolls with 1 bane. Furthermore, whenever the total of an attack roll or a challenge roll made by the target is 0 or lower, the target gains 1 Insanity."
+      "text": "You can use an action to assume the form of a large cat, covered in black fur with a white spot on your chest. While in this form, you use the following statistics box in place of your own. You can remain in this form for up to 1 hour, and you can revert to your normal form by using an action or a triggered action on your turn. You also revert to your normal form if you become incapacitated. You can use this talent a number of times equal to your Power score. You regain expended uses after you complete a rest.",
+      "stat_blocks": [
+       {
+        "name": "Black Cat",
+        "book": "terrible",
+        "page": 16,
+        "descriptor": "1 faerie",
+        "perception": "13 (+3); darksight",
+        "defense_line": "Defense 15; Health 20 + your Health score",
+        "attributes": "Strength 14 (+4), Agility 14 (+4), Intellect 8 (–2), Will 11 (+1)",
+        "speed": "12",
+        "traits": [
+         "Immune gaining Insanity; frightened"
+        ],
+        "attack_options": [
+         "Teeth (melee) +4 with 2 boons (1d6)",
+         "Claw (melee) +4 with 2 boons (1d3)"
+        ],
+        "special_attacks": [
+         "Claws and Teeth You attack twice with your claws and once with your teeth.",
+         "Pouncing Attack You move up to your Speed and attack twice with your claws, dealing 1d6 extra damage on each success."
+        ],
+        "special_actions": [
+         "Dire Crossing While moving, you can use a triggered action to lay a curse on one creature within 1 yard of you. The target must get a success on a Will challenge roll or become cursed for 1 minute or until you use Dire Crossing again. While cursed, the target makes all attack rolls and challenge rolls with 1 bane. Furthermore, whenever the total of an attack roll or a challenge roll made by the target is 0 or lower, the target gains 1 Insanity."
+        ],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      }
     ]
    },
@@ -6828,7 +7039,29 @@
     "talents": [
      {
       "name": "Eidolon",
-      "text": "You create a construct that has a humanoid shape but can otherwise have any appearance you choose. The eidolon is 12 feet tall and weighs 2,000 pounds. You can have only one eidolon at a time. If your eidolon is destroyed, you can build a new one to replace it. Doing so requires you to work at least eight hours using parts you create or harvested from your old eidolon. At the end of this time, you have a new eidolon. The eidolon is not alive. It is never affected by deprivation or exposure, and it ignores any effect that would age it. When incapacitated, the eidolon ceases to be a creature and becomes an object. The eidolon is under your control. You decide what it does on each of its turns. The eidolon’s statistics follow. EIDOLON Size 2 construct Perception 10 (+0); darksight Defense 11; Health 50 Strength 16 (+6), Agility 8 (–2), Intellect 5 (–5), Will 11 (+1) Speed 6 Immune damage from disease and poison; gaining Insanity; asleep, charmed, diseased, fatigued, frightened, poisoned ATTACK OPTIONS Appendage (melee) +6 (2d6)"
+      "text": "You create a construct that has a humanoid shape but can otherwise have any appearance you choose. The eidolon is 12 feet tall and weighs 2,000 pounds. You can have only one eidolon at a time. If your eidolon is destroyed, you can build a new one to replace it. Doing so requires you to work at least eight hours using parts you create or harvested from your old eidolon. At the end of this time, you have a new eidolon. The eidolon is not alive. It is never affected by deprivation or exposure, and it ignores any effect that would age it. When incapacitated, the eidolon ceases to be a creature and becomes an object. The eidolon is under your control. You decide what it does on each of its turns. The eidolon’s statistics follow.",
+      "stat_blocks": [
+       {
+        "name": "Eidolon",
+        "book": "core",
+        "page": 88,
+        "descriptor": "2 construct",
+        "perception": "10 (+0); darksight",
+        "defense_line": "Defense 11; Health 50",
+        "attributes": "Strength 16 (+6), Agility 8 (–2), Intellect 5 (–5), Will 11 (+1)",
+        "speed": "6",
+        "traits": [
+         "Immune damage from disease and poison; gaining Insanity; asleep, charmed, diseased, fatigued, frightened, poisoned"
+        ],
+        "attack_options": [
+         "Appendage (melee) +6 (2d6)"
+        ],
+        "special_attacks": [],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      },
      {
       "name": "Spare Parts",
@@ -8248,15 +8481,31 @@
      },
      {
       "name": "Control Flame",
-      "text": "You can use an action to take control of one flame of Size 2 or smaller that you can see within medium range. The target flame can be part of a larger fire. The controlled flame becomes a compelled creature with any shape you choose for as long as you concentrate, up to 1 minute. When the effect ends or when the controlled flame becomes incapacitated, the flame gutters out. CONTROLLED FLAME Size 2 or smaller construct Perception 5 (–5); truesight Defense 10; Health 20 Strength 10 (+0), Agility 14 (+4), Intellect 5 (–5), Will 5 (–5) Speed 12 Immune damage from disease, fire, or poison; gaining Insanity; asleep, blinded, dazed, deafened, diseased, fatigued, frightened, immobilized, poisoned, prone, slowed, stunned"
-     },
-     {
-      "name": "Fiery Form",
-      "text": "A controlled flame takes half damage from weapons. In addition, it blazes brightly, emitting light out to 10 yards around it. ATTACK OPTIONS Fiery Touch (melee + 1) +4 with 1 boon (2d6 plus Ignite)"
-     },
-     {
-      "name": "Ignite",
-      "text": "The target must get a success on a Agility challenge roll with 1 bane or catch fire."
+      "text": "You can use an action to take control of one flame of Size 2 or smaller that you can see within medium range. The target flame can be part of a larger fire. The controlled flame becomes a compelled creature with any shape you choose for as long as you concentrate, up to 1 minute. When the effect ends or when the controlled flame becomes incapacitated, the flame gutters out.",
+      "stat_blocks": [
+       {
+        "name": "Controlled Flame",
+        "book": "terrible",
+        "page": 17,
+        "descriptor": "2 or smaller construct",
+        "perception": "5 (–5); truesight",
+        "defense_line": "Defense 10; Health 20",
+        "attributes": "Strength 10 (+0), Agility 14 (+4), Intellect 5 (–5), Will 5 (–5)",
+        "speed": "12",
+        "traits": [
+         "Immune damage from disease, fire, or poison; gaining Insanity; asleep, blinded, dazed, deafened, diseased, fatigued, frightened, immobilized, poisoned, prone, slowed, stunned",
+         "Fiery Form A controlled flame takes half damage from weapons. In addition, it blazes brightly, emitting light out to 10 yards around it."
+        ],
+        "attack_options": [
+         "Fiery Touch (melee + 1) +4 with 1 boon (2d6 plus Ignite)",
+         "Ignite The target must get a success on a Agility challenge roll with 1 bane or catch fire."
+        ],
+        "special_attacks": [],
+        "special_actions": [],
+        "end_of_round": [],
+        "magic": []
+       }
+      ]
      }
     ]
    }

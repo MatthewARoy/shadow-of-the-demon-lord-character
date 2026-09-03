@@ -13,6 +13,7 @@
 import { rules, BOOKS, BOOKS_SHORT } from "../data.js";
 import { analyzeAllPaths } from "../path-eval.js";
 import { esc, gatedText, searchableText, rulesTables, tablesSearchText } from "./util.js";
+import { statBlockHtml } from "./statblock.js";
 
 
 const TYPE_LABEL = { novice: "Novice", expert: "Expert", master: "Master" };
@@ -61,7 +62,7 @@ function charBits(c) {
 }
 
 // One level entry → a labeled block of benefit chips plus its talents.
-function levelBlock(level, e, book) {
+export function levelBlock(level, e, book) {
   // Chips derived from numbers are always safe to show; the magic and
   // language lines are verbatim book text, so they carry the path's book.
   const chips = [];
@@ -73,12 +74,20 @@ function levelBlock(level, e, book) {
   const chipRow = chips.length
     ? `<div class="path-gains">${chips.map((c) => `<span class="path-gain">${gatedText(c.text, c.book)}</span>`).join("")}</div>`
     : "";
-  const talents = (e.talents || []).map((t) => `
-    <div class="talent">
-      <b>${esc(t.name)}</b>
-      <p class="path-talent clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${gatedText(t.text, book)}</p>
-      ${rulesTables(t.tables, book)}
-    </div>`).join("");
+  const talents = (e.talents || []).map((t) => {
+    const statBlocks = (t.stat_blocks || []).map((cr) => `
+      <details class="path-statblock">
+        <summary>${esc(cr.name)} stat block</summary>
+        ${statBlockHtml(cr)}
+      </details>`).join("");
+    return `
+      <div class="talent">
+        <b>${esc(t.name)}</b>
+        <p class="path-talent clamp" title="Click to expand" tabindex="0" role="button" aria-expanded="false">${gatedText(t.text, book)}</p>
+        ${rulesTables(t.tables, book)}
+        ${statBlocks}
+      </div>`;
+  }).join("");
   return `
     <div class="path-level">
       <span class="path-lvl-pip">Level ${level}</span>
@@ -156,7 +165,7 @@ function pathCard(p) {
 
 // Build the haystack a path is searched against: name, description, focus
 // tradition names, and every talent name + text.
-function haystack(p) {
+export function haystack(p) {
   const parts = [p.name, searchableText(p.description, p.source)];
   for (const f of evalOf(p)?.focus || []) parts.push(f.name);
   for (const e of Object.values(p.levels)) {
@@ -164,6 +173,13 @@ function haystack(p) {
     for (const t of e.talents || []) {
       parts.push(t.name, searchableText(t.text, p.source));
       parts.push(tablesSearchText(t.tables, p.source));
+      for (const cr of t.stat_blocks || []) {
+        parts.push(cr.name, cr.descriptor, cr.perception, cr.defense_line,
+          cr.attributes, cr.speed, ...(cr.traits || []),
+          ...(cr.attack_options || []), ...(cr.special_attacks || []),
+          ...(cr.special_actions || []), ...(cr.end_of_round || []),
+          ...(cr.magic || []));
+      }
     }
   }
   // Searching "alarum" has to find the wardscribe; the sigils are the path.
