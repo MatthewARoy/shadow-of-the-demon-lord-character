@@ -1106,7 +1106,7 @@
    "Oath of Ruin The fury can use an action or a triggered action when it takes damage to swear to destroy one target creature it can see. Until it or the target becomes incapacitated, the fury makes attack rolls with 1 boon against the target. Once the fury uses Oath of Ruin, it cannot do so again until the target is dead."
   ],
   "end_of_round": [
-   "Dread Each creature that is not a faerie within 1 yard of the fury must make a Will challenge roll. On a failure, the creature becomes frightened for 1 round. If it is already frightened, it instead becomes dazed for 1 round. Genie When the universe sprang into existence eons ago, it brought with it bodiless entities, awakened by creation’s magic. Such spirits usually drift through the worlds, unseen, unfelt, unnoticed but for a tingling of the skin, a sensation of someone or something nearby, or a faint noise that has no obvious source. Genies live in dancing flames, stirring breezes, hulking mountains, and crashing waves, heedless of the oblivious mortals. Rarely do genies trouble other creatures, unless compelled by magic. Practitioners of elemental magic summon them to learn the spells that manipulate these primal forces. When summoned, a genie assumes a physical form infused with elemental power to become a wild, dangerous entity."
+   "Dread Each creature that is not a faerie within 1 yard of the fury must make a Will challenge roll. On a failure, the creature becomes frightened for 1 round. If it is already frightened, it instead becomes dazed for 1 round."
   ],
   "magic": []
  },
@@ -2040,8 +2040,7 @@
    "Natural Weapon (melee) +4 with 1 boon (1d3)"
   ],
   "special_attacks": [
-   "Leaping Attack The monster jumps up to 6 yards and attacks with its natural weapon. This movement does not trigger free attacks.",
-   "Muttering Maw Glistening trails of slime mark the passage of muttering maws. Purposeless, strange, and utterly wrong, they seemingly exist only as a remark on the perils of dabbling with forbidden magic. These hulking brutes are headless but sport wide, vertical slashes down the center of their fleshy bodies. The slick opening is filled with rotten, brown teeth, the gaps clotted with bits of rotting flesh and caked with yellow-white plaque. A muttering maw lumbers about on elephantine legs and swings club-like appendages ending in three-fingered hands that grab creatures and stuff them into its maw."
+   "Leaping Attack The monster jumps up to 6 yards and attacks with its natural weapon. This movement does not trigger free attacks."
   ],
   "special_actions": [],
   "end_of_round": [],
@@ -3439,7 +3438,7 @@
   "end_of_round": [
    "Shed Affliction A grim reaper removes all afflictions from itself.",
    "Death Knell Each living creature within short range must get a success on a Strength challenge roll or take 2d6 + 2 damage. A creature that takes this damage heals half damage for 1 round.",
-   "Harvest Soul The grim reaper kills one dying creature within short range. During the next round, the grim reaper can take one additional action and one additional triggered action. Incarnation of Nature In the view of many druids, the world is a living organism, a being on which all other life depends. They can feel the restless spirit of the world beneath their feet, hear its sigh in the wind passing through the canopy overhead, and sense its presence in the grumbles and quakes heaving in the depths. One of the most powerful spells known to the druids enables them to call forth an incarnation of nature itself, a towering man-shaped thing created from earth and plant material. Such is the world’s wrath that it takes a supreme act of will for its summoner to control it. Otherwise, the incarnation wades across the landscape, destroying the parasites that have so sorely abused Urth. An incarnation of nature stands 21 feet tall and weighs several thousand pounds. It has a humanoid shape, though its form obeys no laws of anatomy, able to be bent and reshaped into whatever form or unlikely position it needs to accomplish its goals. Flowering vines cover its body, and as those flowers open, they spray the land with pollen that inspires sickness and madness in any who sample the world’s nectar."
+   "Harvest Soul The grim reaper kills one dying creature within short range. During the next round, the grim reaper can take one additional action and one additional triggered action."
   ],
   "magic": [
    "Power 5 Death killing touch (6), injure (3), life drain (2), decay (2), feast of souls (2), death fog (1), stop heart (1)"
@@ -3702,7 +3701,7 @@
    "Manifestation The specter uses an action, or a triggered action on its turn, to become visible. It remains visible until it uses an action, or a triggered action on its turn, to become invisible once more."
   ],
   "end_of_round": [
-   "Lethal Presence Each living creature within short range of the specter must get a success on a Strength challenge roll or take 1d6 damage. Sprite Sprites dwell in the forests of the hidden kingdoms and the mortal world, their laughter sounding like the ring of tiny bells. A joyful and wild people, sprites delight in playing games, chasing each other and small animals, or tricking and frustrating bears, deer, and other larger creatures. Although they intend no harm, they can become quite dangerous if angered. One prick from a sprite’s magical arrow is enough to send a creature into a deep and lasting sleep. Most sprites stand about 6 inches tall and weigh a few ounces. All sprites have large and colorful butterfly wings. Some look like tiny people with large, pointed ears and jewel-bright eyes. Others have dandelion fluff for hair or have bodies that appear to be made from wood. Sprites speak Elvish."
+   "Lethal Presence Each living creature within short range of the specter must get a success on a Strength challenge roll or take 1d6 damage."
   ],
   "magic": []
  },

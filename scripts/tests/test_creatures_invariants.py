@@ -56,15 +56,30 @@ class TestCreaturesInvariants(unittest.TestCase):
         """An unterminated block absorbs the rest of the chapter.
 
         The wyvern's Instinctive Sting reached 2,128 characters this way.
-        The ceiling is 1,500 rather than something tighter because four
-        entries (Fury, Harpy, Specter, Grim Reaper at 1,307) legitimately
-        sit between 900 and 1,400 — those are consecutive traits that
-        new_item_start merged into one string, a different defect that
-        predates this guard and does not involve chapter bleed.
+        Harpy's 920-character special action is the longest legitimate item in
+        the current corpus. Known shorter family-introduction leaks have exact
+        assertions below; this ceiling catches a new large runaway as well.
         """
         long = [f"{label} ({len(text)} chars)"
-                for label, text in texts(self.creatures) if len(text) > 1500]
+                for label, text in texts(self.creatures) if len(text) > 950]
         self.assertEqual(long, [], f"stat-block entries that ran away: {long}")
+
+    def test_family_introductions_do_not_bleed_into_previous_stat_block(self):
+        """Narrow-column family prose still has to close the previous block."""
+        previous_to_next_family = {
+            "Fury": "Genie When the universe sprang",
+            "Tiny Monster": "Muttering Maw Glistening trails",
+            "Grim Reaper": "Incarnation of Nature In the view",
+            "Specter": "Sprite Sprites dwell",
+        }
+        by_name = {c["name"]: c for c in self.creatures}
+        for previous, leaked_intro in previous_to_next_family.items():
+            joined = " ".join(text for _, text in texts([by_name[previous]]))
+            self.assertNotIn(
+                leaked_intro,
+                joined,
+                f"{previous} absorbed the {leaked_intro.split()[0]} family intro",
+            )
 
     def test_no_wrapped_sidebar_heading_glued_on(self):
         """"Customizing" was the first line of a two-line sidebar heading."""
