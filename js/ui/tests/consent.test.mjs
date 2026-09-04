@@ -45,6 +45,13 @@ test("consentGranted reports the current flag", () => {
   assert.equal(consentGranted(), true);
 });
 
+// Text the app writes itself — equipment warnings, "pick again" diagnostics —
+// is nobody's copyright and must never be withheld.
+test("app-authored text is never gated", () => {
+  setConsent(false);
+  assert.equal(proseAllowed("app"), true);
+});
+
 test("GATED_BOOKS names exactly the three supplements", () => {
   assert.deepEqual([...GATED_BOOKS].sort(), ["dlc2", "occult", "terrible"]);
 });

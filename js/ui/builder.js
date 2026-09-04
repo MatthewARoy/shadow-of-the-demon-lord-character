@@ -307,7 +307,7 @@ function talentCard(p) {
       <option value="">choose a talent…</option>
       ${p.pool.map((t) => `<option value="${esc(t.name)}">${esc(t.name)}</option>`).join("")}
     </select>`,
-    `<p class="desc dim small">${p.pool.map((t) => `<b class="bronze">${esc(t.name)}.</b> ${esc(t.text.slice(0, 110))}…`).join("<br>")}</p>`);
+    `<p class="desc dim small">${p.pool.map((t) => `<b class="bronze">${esc(t.name)}.</b> ${gatedText(t.text.slice(0, 110), t.book)}…`).join("<br>")}</p>`);
 }
 
 function optionCard(p) {

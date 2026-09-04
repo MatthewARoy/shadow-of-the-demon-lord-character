@@ -13,8 +13,10 @@
 export const GATED_BOOKS = new Set(["occult", "dlc2", "terrible"]);
 
 // Allowlist, so a book added to the corpus later is gated until someone says
-// otherwise rather than leaking on the day its parser lands.
-export const UNGATED_BOOKS = new Set(["core"]);
+// otherwise rather than leaking on the day its parser lands. "app" marks text
+// this application wrote — equipment warnings, "pick again" diagnostics — which
+// belongs to nobody's rulebook and must never be withheld.
+export const UNGATED_BOOKS = new Set(["core", "app"]);
 
 let consented = false;
 

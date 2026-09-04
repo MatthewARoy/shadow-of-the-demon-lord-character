@@ -2,6 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { statBlockHtml } from "../statblock.js";
+import { setConsent } from "../../consent.js";
+
+// Supplement fixtures; these tests assert layout, not gating (see
+// statblock-gate.test.mjs for that), so they run with consent established.
+test.beforeEach(() => setConsent(true));
 
 const emptySections = {
   traits: [], attack_options: [], special_attacks: [], special_actions: [],

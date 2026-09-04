@@ -366,7 +366,7 @@ function applyEquippedGear(out, char) {
       if (!meetsRequirement(it.requirement, out.attributes)) {
         out.speedBonus -= 2;
         out.provenance.speed.push({ source: `${it.name} (requirement unmet)`, level: null, amount: -2 });
-        out.notes.push({ text: `${it.name}: requires ${it.requirement} — all Strength and Agility rolls take 1 bane and Speed is reduced by 2.`, level: null });
+        out.notes.push({ text: `${it.name}: requires ${it.requirement} — all Strength and Agility rolls take 1 bane and Speed is reduced by 2.`, book: "app", level: null });
       }
     }
     const def = String(it.properties || "").match(/defensive\s*\+\s*(\d+)/i);
@@ -416,7 +416,7 @@ function applyEffects(out, char, effects, ctx) {
       case "attribute_choice": {
         if (eff.each) {
           ATTRS.forEach((a) => { out.attributes[a] += eff.amount || 1; });
-          out.notes.push({ text: `${ctx.label}: all four attributes increased by ${eff.amount || 1}.`, level: ctx.level });
+          out.notes.push({ text: `${ctx.label}: all four attributes increased by ${eff.amount || 1}.`, book: "app", level: ctx.level });
         } else {
           materializeAttributeChoice(out, char, baseId, eff.count, eff.amount || 1, ctx.label, char.decisions[baseId], ctx.level);
         }
@@ -609,7 +609,7 @@ function materializeRank0Pick(out, char, id, traditionName, ctx, title) {
 function grantSpell(out, name, tradition, ctx, why) {
   const spell = findSpell(name, tradition) || findSpell(name);
   if (!spell) {
-    out.notes.push({ text: `${ctx.label}: grants the “${name}” spell (not found in the archive — add manually).`, level: ctx.level });
+    out.notes.push({ text: `${ctx.label}: grants the “${name}” spell (not found in the archive — add manually).`, book: "app", level: ctx.level });
     return;
   }
   if (out.spells.some((s) => s.name === spell.name && s.tradition === spell.tradition)) return;
@@ -619,7 +619,7 @@ function grantSpell(out, name, tradition, ctx, why) {
 function learnSpellFromResolution(out, char, id, res, ctx, opts = {}) {
   const spell = findSpell(res.spell, res.tradition) || findSpell(res.spell);
   if (!spell) {
-    out.notes.push({ text: `Unknown spell “${res.spell}” (${ctx.label}) — pick again.`, level: ctx.level });
+    out.notes.push({ text: `Unknown spell “${res.spell}” (${ctx.label}) — pick again.`, book: "app", level: ctx.level });
     return false;
   }
   // A stored pick can go stale when earlier choices change (e.g. the
@@ -628,7 +628,7 @@ function learnSpellFromResolution(out, char, id, res, ctx, opts = {}) {
     return false;
   }
   if (out.spells.some((s) => s.name === spell.name && s.tradition === spell.tradition)) {
-    out.notes.push({ text: `“${spell.name}” chosen twice — duplicate ignored (${ctx.label}).`, level: ctx.level });
+    out.notes.push({ text: `“${spell.name}” chosen twice — duplicate ignored (${ctx.label}).`, book: "app", level: ctx.level });
     return true;
   }
   out.spells.push({ name: spell.name, tradition: spell.tradition, source: ctx.label, level: ctx.level, slotId: id });
@@ -646,7 +646,7 @@ function applyExchanges(out, char) {
     const discovered = out.discovered.some((d) => d.tradition === ex.gain.tradition);
     const known = out.spells.some((s) => s.name === ex.gain.name && s.tradition === ex.gain.tradition);
     if (dropIdx === -1 || !gain || !discovered || known || gain.rank > out.power) {
-      out.notes.push({ text: `Exchange of “${ex.drop.name}” for “${ex.gain.name}” is no longer legal — remove it in the Spells tab.`, level: null });
+      out.notes.push({ text: `Exchange of “${ex.drop.name}” for “${ex.gain.name}” is no longer legal — remove it in the Spells tab.`, book: "app", level: null });
       continue;
     }
     const old = out.spells[dropIdx];
@@ -661,7 +661,7 @@ function noteDarkLearning(out, spell, label) {
   const trad = rules.traditionByName.get(spell.tradition);
   if (!trad?.dark) return;
   const darkCount = out.spells.filter((s) => rules.traditionByName.get(s.tradition)?.dark).length + 1;
-  out.notes.push({ text: `Learned the dark magic spell “${spell.name}” (${label}): roll a d6 — on less than ${darkCount} (your dark spells known), gain 1 Corruption. Each dark spell grants 1 boon on rolls to avoid Insanity.`, level: null });
+  out.notes.push({ text: `Learned the dark magic spell “${spell.name}” (${label}): roll a d6 — on less than ${darkCount} (your dark spells known), gain 1 Corruption. Each dark spell grants 1 boon on rolls to avoid Insanity.`, book: "app", level: null });
 }
 
 function countPriorPicks(char, out, currentSlotId, talentName) {

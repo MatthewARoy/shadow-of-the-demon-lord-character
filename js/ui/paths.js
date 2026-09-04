@@ -174,11 +174,16 @@ export function haystack(p) {
       parts.push(t.name, searchableText(t.text, p.source));
       parts.push(tablesSearchText(t.tables, p.source));
       for (const cr of t.stat_blocks || []) {
-        parts.push(cr.name, cr.descriptor, cr.perception, cr.defense_line,
+        // The block carries its own book, which need not be the path's.
+        // The creature's name stays findable; its lines do not.
+        parts.push(cr.name);
+        for (const line of [cr.descriptor, cr.perception, cr.defense_line,
           cr.attributes, cr.speed, ...(cr.traits || []),
           ...(cr.attack_options || []), ...(cr.special_attacks || []),
           ...(cr.special_actions || []), ...(cr.end_of_round || []),
-          ...(cr.magic || []));
+          ...(cr.magic || [])]) {
+          parts.push(searchableText(line, cr.book));
+        }
       }
     }
   }

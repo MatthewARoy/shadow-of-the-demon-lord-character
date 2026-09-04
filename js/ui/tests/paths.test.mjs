@@ -2,6 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { haystack, levelBlock } from "../paths.js";
+import { setConsent } from "../../consent.js";
+
+// These fixtures are supplement material and these tests are about stat-block
+// rendering and search mechanics, not about the consent gate — so they run as
+// a reader who has confirmed the books. Gating itself is covered in
+// statblock-gate.test.mjs.
+test.beforeEach(() => setConsent(true));
 
 test("path talents render attached stat blocks without a difficulty label", () => {
   const html = levelBlock("3", {
@@ -40,6 +47,7 @@ test("attached stat blocks remain searchable after leaving talent prose", () => 
           text: "You forge another bond.",
           stat_blocks: [{
             name: "Lizard Spirit",
+            book: "occult",
             descriptor: "1 spirit",
             attack_options: ["Teeth (melee) +3 with 1 boon (3d6)"],
           }],

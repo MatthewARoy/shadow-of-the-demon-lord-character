@@ -1,6 +1,7 @@
 // Renders a parsed creature stat block, parchment-style.
 
-import { esc } from "./util.js";
+import { esc, gatedText } from "./util.js";
+import { proseAllowed } from "../consent.js";
 import { bookName } from "../data.js";
 
 const SECTIONS = [
@@ -17,7 +18,11 @@ export function statBlockHtml(cr) {
   const difficulty = template && Number.isFinite(adjustment)
     ? `Difficulty ${adjustment < 0 ? "−" : "+"}${Math.abs(adjustment)} step`
     : cr.difficulty ? `Difficulty ${esc(cr.difficulty)}` : null;
-  const head = [
+  // A creature's lines are rulebook prose. Withheld, the block keeps its name
+  // and citation — those are labels, and they tell the reader which book to
+  // own — and offers the consent prompt in place of the body.
+  const open = proseAllowed(cr.book);
+  const head = !open ? [] : [
     cr.descriptor ? template ? esc(cr.descriptor) : `Size ${esc(cr.descriptor)}` : null,
     cr.perception ? `Perception ${esc(cr.perception)}` : null,
     cr.defense_line ? esc(cr.defense_line) : null,
@@ -32,9 +37,10 @@ export function statBlockHtml(cr) {
       <span class="small dim">${bookName(cr.book)} · p.${cr.page}</span>
     </div>
     ${head.map((h) => `<div class="sb-line">${h}</div>`).join("")}
+    ${!open ? `<p class="sb-item">${gatedText("", cr.book)}</p>` : `
     ${cr.traits.map((t) => `<p class="sb-item">${esc(t)}</p>`).join("")}
     ${SECTIONS.map(([k, label]) => cr[k]?.length ? `
       <div class="sb-section">${label}</div>
-      ${cr[k].map((t) => `<p class="sb-item">${esc(t)}</p>`).join("")}` : "").join("")}
+      ${cr[k].map((t) => `<p class="sb-item">${esc(t)}</p>`).join("")}` : "").join("")}`}
   </div>`;
 }
