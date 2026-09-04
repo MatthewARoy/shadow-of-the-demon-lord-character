@@ -106,3 +106,37 @@ test("persistConsent writes the grant and clears it on withdrawal", () => {
   assert.equal(store.getItem(CONSENT_KEY), null);
   assert.equal(consentGranted(), false);
 });
+
+// --- the one-time guarantee ------------------------------------------------
+// Confirming ownership is a one-off, not a toll paid on every view. These
+// tests describe that promise directly, so breaking it fails loudly rather
+// than showing up as a prompt someone has to notice.
+
+test("a granted consent survives a reload — the reader is asked once", () => {
+  const disk = fakeStore();
+  persistConsent(true, disk);              // the reader confirms, once
+
+  setConsent(false);                        // a fresh page load starts closed
+  hydrateConsent(disk);                     // …and boot reads the stored grant
+  assert.equal(consentGranted(), true, "the reader would have been asked again");
+  assert.equal(proseAllowed("occult"), true);
+});
+
+test("consent survives many reloads, not just the first", () => {
+  const disk = fakeStore();
+  persistConsent(true, disk);
+  for (let boot = 0; boot < 5; boot++) {
+    setConsent(false);
+    hydrateConsent(disk);
+    assert.equal(consentGranted(), true, `re-prompted on boot ${boot + 1}`);
+  }
+});
+
+test("only an explicit withdrawal brings the prompt back", () => {
+  const disk = fakeStore();
+  persistConsent(true, disk);
+  persistConsent(false, disk);              // the ⋯ menu action
+  setConsent(false);
+  hydrateConsent(disk);
+  assert.equal(consentGranted(), false, "withdrawal must persist too");
+});
