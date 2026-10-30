@@ -3,8 +3,10 @@
 import { loadRules, rules } from "./data.js";
 import {
   store, load, save, active, addCharacter, deleteActive, removeCharacter, exportActive, importCharacter, onChange,
-  isViewing, viewingEntry, viewParty, stopViewing,
+  isViewing, viewingEntry, viewParty, stopViewing, importRoster,
 } from "./state.js";
+import { encodeTransfer, decodeTransfer } from "./transfer.js";
+import { isPristine } from "./sync/plan.js";
 import { shareSupported, encodeShare, decodeShare } from "./share.js";
 import { showToast } from "./ui/toast.js";
 import { renderBuilder } from "./ui/builder.js";
@@ -176,6 +178,51 @@ async function boot() {
     }
   };
 
+  // Move a whole roster to another copy of the app (the party site, another
+  // device): a pasteable code rather than a link, so neither copy has to
+  // name the other's address.
+  const copyAll = async () => {
+    const characters = store.characters.filter((c) => !isPristine(c));
+    if (!characters.length) {
+      showToast({ total: "✕", label: "Nothing to copy", detail: "This device has no characters yet." });
+      return;
+    }
+    const code = await encodeTransfer(characters, rules.dataRev);
+    const what = characters.length === 1 ? "1 character" : `${characters.length} characters`;
+    try {
+      await navigator.clipboard.writeText(code);
+      showToast({ total: "⧉", label: `Copied ${what}`, detail: "Where they should go, open ⋯ → Paste characters and paste." });
+    } catch {
+      prompt(`Copy this code (${what}), then paste it with ⋯ → Paste characters:`, code);
+    }
+  };
+
+  const pasteAll = async () => {
+    const text = prompt("Paste the code from ⋯ → Copy all characters:");
+    if (text === null) return;
+    let incoming;
+    try {
+      incoming = await decodeTransfer(text);
+    } catch (err) {
+      showToast({ total: "✕", label: "Could not read that code", detail: err.message });
+      return;
+    }
+    const names = incoming.characters.map((c) => (typeof c?.name === "string" && c.name) || "Unnamed Soul");
+    const list = names.slice(0, 12).join(", ") + (names.length > 12 ? `, and ${names.length - 12} more` : "");
+    if (!confirm(`Add ${names.length === 1 ? "this character" : `these ${names.length} characters`} to this device?\n\n${list}`)) return;
+    const { added, already, skipped } = importRoster(incoming.characters, { dataRev: incoming.dataRev });
+    renderRoster();
+    renderCurrent();
+    const notes = [];
+    if (already) notes.push(`${already} already here (this device's copy kept)`);
+    if (skipped.length) notes.push(`skipped ${skipped.map((s) => `${s.name} (${s.why})`).join(", ")}`);
+    showToast({
+      total: added.length ? "✦" : "·",
+      label: added.length ? `Added ${added.length === 1 ? "1 character" : `${added.length} characters`}` : "Nothing new to add",
+      detail: notes.join("; "),
+    });
+  };
+
   document.getElementById("new-char-btn").addEventListener("click", newSoul);
   document.getElementById("delete-btn").addEventListener("click", deleteSoul);
   document.getElementById("export-btn").addEventListener("click", exportActive);
@@ -187,9 +234,11 @@ async function boot() {
     // Pre-2023 browsers lack CompressionStream: hide rather than break.
     document.getElementById("share-btn").hidden = true;
     document.getElementById("ov-share-btn").hidden = true;
+    document.getElementById("ov-copy-all-btn").hidden = true;
+    document.getElementById("ov-paste-btn").hidden = true;
   }
 
-  setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink });
+  setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink, copyAll, pasteAll });
 
   document.getElementById("import-file").addEventListener("change", async (e) => {
     const file = e.target.files[0];
@@ -313,7 +362,7 @@ function closeOverflowMenu() {
   btn.setAttribute("aria-expanded", "false");
 }
 
-function setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink }) {
+function setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink, copyAll, pasteAll }) {
   const btn = document.getElementById("overflow-btn");
   const menu = document.getElementById("overflow-menu");
   if (!btn || !menu) return;
@@ -335,6 +384,8 @@ function setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink }) {
   document.getElementById("ov-export-btn").addEventListener("click", wrap(exportActive));
   document.getElementById("ov-share-btn").addEventListener("click", wrap(shareLink));
   document.getElementById("ov-import-btn").addEventListener("click", wrap(importClick));
+  document.getElementById("ov-copy-all-btn").addEventListener("click", wrap(copyAll));
+  document.getElementById("ov-paste-btn").addEventListener("click", wrap(pasteAll));
   document.getElementById("ov-delete-btn").addEventListener("click", wrap(deleteSoul));
   document.getElementById("ov-consent-btn").addEventListener("click", wrap(() => {
     withdrawConsent();

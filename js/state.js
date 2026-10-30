@@ -6,7 +6,8 @@ import { rules } from "./data.js";
 import { showToast } from "./ui/toast.js";
 import { revMismatch } from "./share.js";
 import { SITE } from "./site.js";
-import { CHARACTER_KEYS, isValidDecision } from "./sync/validate.js";
+import { CHARACTER_KEYS, isValidDecision, validateCharacter } from "./sync/validate.js";
+import { isPristine } from "./sync/plan.js";
 
 const KEY = "sotdl_ledger_v2";
 export const ROSTER_KEY = KEY;
@@ -310,6 +311,54 @@ export function importCharacter(json) {
   store.viewingId = null;
   save();
   return c;
+}
+
+// A whole roster from a transfer code (js/transfer.js). Unlike
+// importCharacter, ids are kept, so pasting the same code twice adds nothing
+// the second time, and a character already here is skipped rather than
+// copied. An untouched placeholder (the blank soul a fresh device starts
+// with) gives way to the arrivals. Returns {added, already, skipped}.
+export function importRoster(characters, { dataRev = null } = {}) {
+  const result = { added: [], already: 0, skipped: [] };
+  const placeholder = store.characters.length === 1 && isPristine(store.characters[0]) ? store.characters[0] : null;
+  // An id a party member owns cannot be this player's too; it arrives as a copy.
+  const partyIds = new Set(store.party.map((e) => e.id));
+  for (const data of Array.isArray(characters) ? characters : []) {
+    const name = typeof data?.name === "string" && data.name ? data.name : "Unnamed Soul";
+    if (!isPlainObject(data) || typeof data.ancestry !== "string" || !data.ancestry.trim()) {
+      result.skipped.push({ name, why: "not a character" });
+      continue;
+    }
+    if (store.characters.some((c) => c.id === data.id)) {
+      result.already++;
+      continue;
+    }
+    const c = normalizeCharacter(data, { keepId: !partyIds.has(data.id) });
+    if (isPristine(c)) {
+      result.skipped.push({ name, why: "blank" });
+      continue;
+    }
+    if (!validateCharacter(c).ok || !isUsable(c)) {
+      result.skipped.push({ name, why: "could not be read" });
+      continue;
+    }
+    c.name = uniqueName(c.name);
+    store.characters.push(c);
+    result.added.push(c);
+  }
+  if (!result.added.length) return result;
+  if (placeholder) store.characters = store.characters.filter((c) => c !== placeholder);
+  store.activeId = result.added[0].id;
+  store.viewingId = null;
+  if (revMismatch(dataRev, rules.dataRev)) {
+    showToast({
+      total: "⚠",
+      label: "Different rules version",
+      detail: "These characters were saved under another data revision — review their choices, some may have shifted.",
+    });
+  }
+  save();
+  return result;
 }
 
 // Keep the roster select legible: if a character with this exact name already
