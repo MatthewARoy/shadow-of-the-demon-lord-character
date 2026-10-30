@@ -30,6 +30,10 @@ export function rollD20(label, modifier = 0, opts = {}) {
   return entry;
 }
 
+const MAX_DICE = 100;
+const MAX_SIDES = 1000;
+const MAX_BONUS = 10000;
+
 export function rollDamage(expr, label) {
   // e.g. "1d6+1", "2d6", "1", "3d6 + 2"
   const m = String(expr).replace(/\s/g, "").match(/^(\d+)(?:d(\d+))?(?:\+(\d+))?(?:-(\d+))?$/);
@@ -38,6 +42,9 @@ export function rollDamage(expr, label) {
   const sides = m[2] ? parseInt(m[2], 10) : 0;
   const plus = m[3] ? parseInt(m[3], 10) : 0;
   const minus = m[4] ? parseInt(m[4], 10) : 0;
+  // Far beyond any weapon or spell, and small enough to roll at once: the
+  // expression can come from another party member's character.
+  if (count > MAX_DICE || sides > MAX_SIDES || plus > MAX_BONUS || minus > MAX_BONUS) return null;
   let dice = [];
   let total;
   if (sides) {
