@@ -64,6 +64,7 @@ function playedCharacter() {
   c.damage = 4;
   c.insanityAdjust = 2;
   c.corruptionAdjust = -1;
+  c.fateDice = 2;
   c.coins = "3 gc, 14 ss, a stolen reliquary";
   c.notes = Array.from({ length: 40 }, (_, i) =>
     `Session ${i + 1}. The party crossed the marsh road at dusk — “never again,” said Syrah.\n`
@@ -202,6 +203,9 @@ test("each wrong type fails with a message naming the field", () => {
     ["damage", { damage: "0" }],
     ["insanityAdjust", { insanityAdjust: "2" }],
     ["corruptionAdjust", { corruptionAdjust: Number.NaN }],
+    ["fateDice", { fateDice: -1 }],
+    ["fateDice", { fateDice: 1.5 }],
+    ["fateDice", { fateDice: "2" }],
     ["expended", { expended: [] }],
     ["expended[\"a|b\"]", { expended: { "a|b": -1 } }],
     ["expended[\"a|b\"]", { expended: { "a|b": "1" } }],

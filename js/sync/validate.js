@@ -305,6 +305,7 @@ const FIELDS = {
   damage: integer(0),
   insanityAdjust: integer(),
   corruptionAdjust: integer(),
+  fateDice: integer(0),
   expended: checkExpended,
   inventory: checkInventory,
   coins: string(MAX_TEXT_LENGTH),

@@ -77,15 +77,21 @@ export function renderSheet(el) {
       <div class="pg-pentagram">
         ${pentagram(char, computed, incapacitated)}
         <div class="stepper-row">
-          ${stepper("Damage", char.damage, `of ${computed.health} health`,
-            `data-dmg="-1"`, `data-dmg="1"`, "Remove damage", "Add damage")}
-          ${stepper("Insanity", computed.insanity + (computed.insanityNote ? "*" : ""),
-            `of ${computed.attributes.will} will`,
-            `data-adj="insanityAdjust:-1"`, `data-adj="insanityAdjust:1"`,
-            "Remove a point of insanity", "Mark insanity gained")}
-          ${stepper("Corruption", computed.corruption, "marks of darkness",
-            `data-adj="corruptionAdjust:-1"`, `data-adj="corruptionAdjust:1"`,
-            "Remove a point of corruption", "Mark corruption gained")}
+          <div class="stepper-pair">
+            ${stepper("Damage", char.damage, `of ${computed.health} health`,
+              `data-dmg="-1"`, `data-dmg="1"`, "Remove damage", "Add damage")}
+            ${stepper("Insanity", computed.insanity + (computed.insanityNote ? "*" : ""),
+              `of ${computed.attributes.will} will`,
+              `data-adj="insanityAdjust:-1"`, `data-adj="insanityAdjust:1"`,
+              "Remove a point of insanity", "Mark insanity gained")}
+          </div>
+          <div class="stepper-pair">
+            ${stepper("Corruption", computed.corruption, "marks of darkness",
+              `data-adj="corruptionAdjust:-1"`, `data-adj="corruptionAdjust:1"`,
+              "Remove a point of corruption", "Mark corruption gained")}
+            ${stepper("Fate Dice", char.fateDice || 0, "left to spend",
+              `data-fate="-1"`, `data-fate="1"`, "Spend a fate die", "Gain a fate die")}
+          </div>
         </div>
         <div style="display:flex;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap">
           <button class="btn-ink" data-heal title="Heal your healing rate">heal ${computed.healingRate}</button>
@@ -214,7 +220,7 @@ function node(cls, pos, label, value, sub, attrs = "", title = "") {
 // A grouped stepper card: small-caps name, − value + row of real buttons, and
 // a one-line subnote. The buttons carry the same data-dmg / data-adj hooks the
 // old chips used, so the existing mutation handlers (with their clamp rules)
-// drive them unchanged.
+// drive them unchanged; Fate Dice has its own data-fate hook.
 function stepper(name, value, sub, minusAttr, plusAttr, minusLabel, plusLabel) {
   return `
   <div class="stepper">
@@ -313,6 +319,10 @@ function wireSheet(el, char, computed) {
   });
   el.querySelectorAll("[data-dmg]").forEach((b) => b.addEventListener("click", () => {
     char.damage = Math.max(0, Math.min(computed.health, char.damage + parseInt(b.dataset.dmg, 10)));
+    save(); renderSheet(el);
+  }));
+  el.querySelectorAll("[data-fate]").forEach((b) => b.addEventListener("click", () => {
+    char.fateDice = Math.max(0, (char.fateDice || 0) + parseInt(b.dataset.fate, 10));
     save(); renderSheet(el);
   }));
   el.querySelector("[data-heal]")?.addEventListener("click", () => {

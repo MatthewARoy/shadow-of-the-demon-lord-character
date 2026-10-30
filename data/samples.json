@@ -76,6 +76,7 @@
   "damage": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [],
   "coins": "",
@@ -172,6 +173,7 @@
   "damage": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [],
   "coins": "",
@@ -236,6 +238,7 @@
   "damage": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [
    {
@@ -301,6 +304,7 @@
   "damage": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [
    {
@@ -382,6 +386,7 @@
   "damage": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [
    {
@@ -570,6 +575,7 @@
   "damage": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [
    {
