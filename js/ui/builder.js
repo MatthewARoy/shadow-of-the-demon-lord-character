@@ -227,7 +227,8 @@ const card = (p, body, extra = "") => `
 
 function attrCard(char, p) {
   const res = char.decisions[p.id];
-  const chosen = new Set(res?.attrs || []);
+  // Stored data can be older or hand-edited: only an array is a pick list.
+  const chosen = new Set(Array.isArray(res?.attrs) ? res.attrs : []);
   return card(p, ATTRS.map((a) =>
     `<button class="chip ${chosen.has(a) ? "on" : ""}" data-attr-pick="${a}">${a}</button>`).join("") +
     `<span class="small dim">pick ${p.count}</span>`);
@@ -333,7 +334,8 @@ function resolvedPanel(char, computed) {
   if (!entries.length) return "";
   const lines = entries.map(([id, res]) => {
     let text = "";
-    if (res.attrs) text = `Attributes: ${res.attrs.join(", ")}`;
+    if (!res || typeof res !== "object") return { id, text };   // not a shape this tab writes
+    if (Array.isArray(res.attrs)) text = `Attributes: ${res.attrs.join(", ")}`;
     else if (res.kind === "discover" || (res.tradition && !res.spell)) text = `Discovered ${res.tradition}`;
     else if (res.spell) text = `Learned ${res.spell}`;
     else if (res.talent) text = `Talent: ${res.talent}`;
@@ -405,7 +407,8 @@ function wireDelegated(el) {
     const attrBtn = e.target.closest("[data-attr-pick]");
     if (attrBtn) {
       const a = attrBtn.dataset.attrPick;
-      const res = char.decisions[id] || { attrs: [] };
+      const prev = char.decisions[id];
+      const res = Array.isArray(prev?.attrs) ? prev : { attrs: [] };
       const count = parseInt(slotEl.querySelector(".dim")?.textContent.replace(/\D/g, "") || "2", 10);
       if (res.attrs.includes(a)) res.attrs = res.attrs.filter((x) => x !== a);
       else { res.attrs.push(a); if (res.attrs.length > count) res.attrs.shift(); }

@@ -207,7 +207,7 @@ function wire(el, char, computed) {
 
   el.querySelector("#g-custom-add")?.addEventListener("click", () => {
     const name = el.querySelector("#g-custom-name").value.trim();
-    const qty = parseInt(el.querySelector("#g-custom-qty").value, 10) || 1;
+    const qty = Math.max(1, parseInt(el.querySelector("#g-custom-qty").value, 10) || 1);
     if (!name) return;
     char.inventory.push({ id: crypto.randomUUID(), name, qty });
     save(); renderGear(el);

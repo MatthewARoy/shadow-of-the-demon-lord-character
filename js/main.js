@@ -1,7 +1,10 @@
 // Boot: load data, wire the chrome, route tabs.
 
 import { loadRules, rules } from "./data.js";
-import { store, load, save, active, addCharacter, deleteActive, removeCharacter, exportActive, importCharacter, onChange } from "./state.js";
+import {
+  store, load, save, active, addCharacter, deleteActive, removeCharacter, exportActive, importCharacter, onChange,
+  isViewing, viewingEntry, viewParty, stopViewing,
+} from "./state.js";
 import { shareSupported, encodeShare, decodeShare } from "./share.js";
 import { showToast } from "./ui/toast.js";
 import { renderBuilder } from "./ui/builder.js";
@@ -15,6 +18,7 @@ import { renderLookup } from "./ui/lookup.js";
 import { esc } from "./ui/util.js";
 import { hydrateConsent, consentGranted } from "./consent.js";
 import { wireConsentGate, withdrawConsent } from "./ui/consent-gate.js";
+import { setupParty, renderViewState, captureInvite } from "./ui/party.js";
 
 const tabs = {
   build: renderBuilder,
@@ -40,13 +44,23 @@ function renderConsentMenuItem() {
   if (btn) btn.hidden = !consentGranted();
 }
 
+// Own characters, then (party sync only) everyone else's under "Party" with a
+// "party:" value, so the change handler can tell the two apart.
 function renderRoster() {
   const sel = document.getElementById("roster-select");
-  sel.innerHTML = store.characters.map((c) =>
-    `<option value="${esc(c.id)}" ${c.id === store.activeId ? "selected" : ""}>${esc(c.name || "Unnamed Soul")} — L${esc(c.level)}</option>`).join("");
+  const viewing = viewingEntry();
+  const own = store.characters.map((c) =>
+    `<option value="${esc(c.id)}" ${!viewing && c.id === store.activeId ? "selected" : ""}>${esc(c.name || "Unnamed Soul")} — L${esc(c.level)}</option>`).join("");
+  const party = store.party.length
+    ? `<optgroup label="Party">${store.party.map((e) =>
+      `<option value="party:${esc(e.id)}" ${viewing?.id === e.id ? "selected" : ""}>${esc(e.character.name || "Unnamed Soul")} — L${esc(e.character.level)} · ${esc(e.ownerName)}</option>`).join("")}</optgroup>`
+    : "";
+  sel.innerHTML = own + party;
+  renderViewState();
 }
 
 async function boot() {
+  captureInvite();
   try {
     await loadRules();
   } catch (err) {
@@ -62,7 +76,13 @@ async function boot() {
   wireConsentGate(() => { renderCurrent(); renderConsentMenuItem(); });
   document.getElementById("loading").remove();
   renderRoster();
-  renderCurrent();
+  // A stored character the app cannot draw must not stop boot() before the
+  // roster switcher and the rest of the controls are wired.
+  try {
+    renderCurrent();
+  } catch (err) {
+    console.error("Could not render the current character", err);
+  }
 
   const tabsNav = document.getElementById("tabs");
 
@@ -105,7 +125,15 @@ async function boot() {
   });
 
   document.getElementById("roster-select").addEventListener("change", (e) => {
-    store.activeId = e.target.value;
+    // A party character is only viewed: store.activeId keeps pointing at the
+    // own character to come back to.
+    const value = e.target.value;
+    if (value.startsWith("party:")) {
+      viewParty(value.slice("party:".length));
+    } else {
+      stopViewing();
+      store.activeId = value;
+    }
     save();
     renderCurrent();
   });
@@ -119,6 +147,7 @@ async function boot() {
     renderCurrent();
   };
   const deleteSoul = () => {
+    if (isViewing()) return;
     const c = active();
     if (!c) return;
     if (confirm(`Strike “${c.name}” from the ledger forever?`)) {
@@ -178,6 +207,7 @@ async function boot() {
   onChange(renderRoster);
   setupSamples();
   maybeImportFromLink();
+  setupParty({ renderRoster, renderCurrent, closeMenu: closeOverflowMenu });
 }
 
 // A #c=<payload> fragment is a share link: offer to import the character it
