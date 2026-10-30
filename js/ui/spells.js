@@ -10,6 +10,7 @@ import { showToast } from "./toast.js";
 import { statBlockHtml } from "./statblock.js";
 import { esc, gatedText, searchableText, rulesTables, tablesSearchText } from "./util.js";
 import { consentGranted, proseAllowed } from "../consent.js";
+import { SITE } from "../site.js";
 
 // Lowercased text of a spell's captured tables, memoised — the search runs
 // this over the whole corpus on every keystroke. Memoised per consent state,
@@ -646,7 +647,8 @@ export function spellCard(s, opts = {}) {
 // (e.g. Evoke Gale is typed Attack when it is really utility / crowd control),
 // and this gives players a one-click way to report the correction.
 
-const GH_REPO = "MatthewARoy/shadow-of-the-demon-lord-character";
+// Where relabel reports go; null on deployments that link no repository.
+const GH_REPO = SITE.issueRepo;
 
 function infoBtn(s) {
   return `<button class="btn btn-small spell-info-btn" data-info="${esc(spellKey(s.name, s.tradition))}" title="Detailed info — tags, stats & relabel">ⓘ</button>`;
@@ -733,8 +735,8 @@ function spellModalHtml(s) {
     <div class="sm-section"><h4>Description</h4><p class="sm-desc">${gatedText(s.description, s.source)}</p>${rulesTables(s.tables, s.source)}</div>
     <div class="sm-foot">
       <span class="small dim">${src} · p.${s.page}</span>
-      <a class="btn btn-small btn-resolve" href="${relabelIssueUrl(s)}" target="_blank" rel="noopener"
-         title="Open a prefilled GitHub issue to suggest a corrected label for this spell">⚑ Relabel…</a>
+      ${GH_REPO ? `<a class="btn btn-small btn-resolve" href="${relabelIssueUrl(s)}" target="_blank" rel="noopener"
+         title="Open a prefilled GitHub issue to suggest a corrected label for this spell">⚑ Relabel…</a>` : ""}
     </div>
   </div>`;
 }

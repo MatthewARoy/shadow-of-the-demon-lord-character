@@ -20,6 +20,7 @@
   </div>
   <div class="roster-bar">
     <select id="roster-select" title="Choose a soul"></select>
+    <button id="sync-chip" class="sync-chip" type="button" hidden><span class="sync-icon" aria-hidden="true">☁</span> <span class="sync-label"></span></button>
     <button id="new-char-btn" class="btn" title="Inscribe a new soul">+ New</button>
     <select id="sample-select" title="Load a sample build">
       <option value="">Samples…</option>
@@ -45,7 +46,11 @@
         <button id="ov-export-btn" class="ov-item" type="button">Export</button>
         <button id="ov-share-btn" class="ov-item" type="button">Copy Link</button>
         <button id="ov-import-btn" class="ov-item" type="button">Import</button>
+        <button id="ov-copy-all-btn" class="ov-item" type="button" title="Copy every character on this device as one code, to paste into another copy of the app">Copy all characters</button>
+        <button id="ov-paste-btn" class="ov-item" type="button" title="Add the characters from a code made with Copy all characters">Paste characters</button>
         <button id="ov-consent-btn" class="ov-item" type="button" hidden>Hide Book Text</button>
+        <button id="ov-refresh-btn" class="ov-item" type="button" hidden>Refresh party</button>
+        <button id="ov-leave-btn" class="ov-item" type="button" hidden>Leave party on this device</button>
         <button id="ov-delete-btn" class="ov-item ov-danger" type="button">Delete Soul</button>
       </div>
     </div>
@@ -62,6 +67,11 @@
   <button class="tab" data-tab="combat" role="tab" aria-selected="false" aria-controls="tab-combat">Combat</button>
   <button class="tab" data-tab="lookup" role="tab" aria-selected="false" aria-controls="tab-lookup">Lookup</button>
 </nav>
+
+<div id="view-banner" class="view-banner" hidden>
+  <p>Viewing <strong id="view-name"></strong> — <span id="view-owner"></span>’s character. Changes here aren’t saved.</p>
+  <button id="view-copy-btn" class="btn btn-small" type="button">Make my copy</button>
+</div>
 
 <main id="app">
   <section id="tab-build" class="tab-panel active" role="tabpanel" aria-label="Build"></section>

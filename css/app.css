@@ -113,6 +113,62 @@ header.masthead { z-index: 21; }
   background: rgba(142,31,31,.14); border-color: var(--blood-bright);
 }
 
+/* Party sync (Cloudflare build only; js/ui/party.js) --------- */
+/* Delete is disabled while a party member's character is on screen. */
+#delete-btn:disabled, #ov-delete-btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+#ov-delete-btn:disabled:hover { background: transparent; border-color: transparent; }
+
+.sync-chip {
+  display: inline-flex; align-items: center; gap: 5px; flex: 0 0 auto;
+  font-family: var(--caps); font-size: 13px; letter-spacing: .04em; white-space: nowrap;
+  color: var(--text-dim); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px;
+  cursor: pointer; transition: all .15s ease;
+}
+.sync-chip[hidden] { display: none; }
+.sync-chip:hover, .sync-chip:focus-visible { color: var(--bronze-bright); border-color: var(--bronze); outline: none; }
+.sync-chip .sync-icon { font-size: 15px; line-height: 1; }
+.sync-chip[data-state="synced"] .sync-icon { color: var(--good); }
+.sync-chip[data-state="syncing"] .sync-icon { color: var(--bronze-bright); animation: sync-pulse 1.2s ease-in-out infinite; }
+.sync-chip[data-state="offline"] { border-style: dashed; }
+.sync-chip[data-state="error"] { color: var(--blood-bright); border-color: #4a2020; }
+@keyframes sync-pulse { 50% { opacity: .35; } }
+
+/* On desktop the ⋯ menu holds only the rites with no button of their own
+   (Copy all / Paste characters, Hide Book Text, party Refresh/Leave). */
+@media (min-width: 721px) {
+  .roster-overflow { display: block; }
+  #ov-new-btn, .ov-sample, #ov-export-btn, #ov-share-btn, #ov-import-btn, #ov-delete-btn { display: none; }
+  /* Every one of those rites hidden: no ⋯ at all (js/main.js). */
+  body.overflow-empty .roster-overflow { display: none; }
+}
+
+/* Viewing another member's character: nothing here is saved. */
+.view-banner {
+  position: relative; z-index: 1;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px;
+  padding: 10px 34px;
+  border-bottom: 1px solid #5c2424;
+  background: linear-gradient(180deg, rgba(142,31,31,.16), rgba(142,31,31,.06));
+  font-size: 15px;
+}
+.view-banner[hidden] { display: none; }
+.view-banner p { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.view-banner strong { font-family: var(--caps); letter-spacing: .03em; color: var(--parchment); }
+body.viewing :is(#tab-build, #tab-sheet, #tab-spells, #tab-paths, #tab-gear, #tab-combat) :is(input, select, textarea):disabled {
+  opacity: .6; cursor: not-allowed;
+}
+
+@media (max-width: 720px) {
+  .sync-chip { padding: 6px 9px; }
+  .sync-chip .sync-label { display: none; }
+  .view-banner { padding: 10px 16px; font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sync-chip { transition: none; }
+  .sync-chip[data-state="syncing"] .sync-icon { animation: none; }
+}
+
 /* Controls --------------------------------------------------- */
 select, input[type="text"], input[type="number"], textarea {
   background: var(--panel); color: var(--parchment);

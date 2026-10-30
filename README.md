@@ -115,5 +115,126 @@ The design of the effects/decisions engine is documented in the
 * *Terrible Beauty*
 * *Demon Lord's Companion 2*
 
+## Shared party storage (Cloudflare)
+
+An optional second copy of the app, hosted on a free Cloudflare Workers
+address (`<worker>.<subdomain>.workers.dev`), where an invited party's
+characters are stored server-side in Cloudflare D1. Everyone in the party can
+open everyone else's characters (view-only, with **Make my copy** to import
+one), and your own characters follow you across devices. Visitors without an
+invite get the app exactly as it is on GitHub Pages: local only. The GitHub
+Pages copy is unchanged and never syncs. The design is in
+[the shared party storage spec](docs/superpowers/specs/2026-10-29-shared-party-storage-design.md).
+
+Everything goes through `scripts/cf/cf.mjs` (`npm run cf -- <command>`), which
+fetches wrangler on demand with `npx wrangler@4`; nothing is installed into
+the repo. Use a Cloudflare account set aside for this, not a work account.
+
+### One-time setup
+
+```bash
+npm run cf -- login     # sign in; opens the browser
+npm run cf -- setup     # choose the account, name the worker and database, create the database
+npm run cf -- deploy    # stage, scan, migrate and deploy; prints the site address
+```
+
+- **login** keeps its own wrangler login in `~/.config/sotdl-cf`, separate from
+  any other wrangler login on the machine, and ignores `CLOUDFLARE_*` / `CF_*` /
+  `WRANGLER_*` variables in your shell. It refuses to run while a `~/.wrangler`
+  directory exists, because wrangler would use that login instead. To sign in
+  from a private window, run `npm run cf -- login --browser=false` and open the
+  printed link there. It also refuses while the checkout has a `.env` or
+  `.env.local`, which wrangler would read credentials from.
+- **setup** asks you to pick the account (it lists them when the login can see
+  more than one) and to name the worker and the database. The worker name
+  becomes the first part of the public address, so choose something that does
+  not identify you; a random name is suggested. The answers, the account id and
+  the database id are saved to `~/.config/sotdl-cf/deploy.json`, outside the
+  repo. Never commit them or paste them into issues, pull requests or commit
+  messages. To start over, delete that file (the database stays in the account).
+- **deploy** copies only what the browser loads (`index.html`, `css/`, `js/`
+  without tests, the runtime `data/*.json`) into the gitignored `.cf-dist/public`,
+  swaps in a `js/site.js` that turns sync on and names no GitHub repo, and adds
+  a `_headers` file with a Content-Security-Policy. It then scans the staged
+  files and the built Worker for identifying strings (the owner's public
+  account names, the worker name, the site's host, the account and database
+  ids, your home directory path, and any private strings you list in
+  `~/.config/sotdl-cf/leak-patterns.json`, a JSON array that is never
+  committed) and stops on any hit. It applies database migrations, deploys,
+  and records the site address in `deploy.json`. The first deploy may ask you
+  to register the account's workers.dev subdomain, which also becomes part of
+  the public address: choose it with the same care. (Wrangler picks one
+  without asking when it thinks a coding agent is running it; `cf.mjs` hides
+  those signals from wrangler so it asks.) If the deployed address contains an
+  identifying string anyway (your names, the repo or package name), deploy
+  stops without recording it: change the subdomain in the Cloudflare
+  dashboard and delete the worker before sharing anything. Run
+  `npm run cf -- deploy` again after every change you want live.
+  `node scripts/cf/stage.mjs` runs the staging and scan on their own.
+
+### Members
+
+```bash
+npm run cf -- invite Sam     # prints <your-site>/#invite=<token>; for an existing Sam, a new link
+npm run cf -- members        # names, active or revoked, ids
+npm run cf -- revoke Sam     # or the id shown by `members`
+```
+
+Each invite link is printed once, in your terminal; the database keeps only a
+hash of its token. Send it privately: whoever opens it joins as that member
+and can change that member's characters. Opening the link asks the player to
+confirm before anything is uploaded. A player can forget the link on one
+device with **Leave party on this device** (their characters stay in that
+browser). If a link leaks or is lost, run `invite` again with the same name:
+after you confirm, it prints a new link for that same member (their
+characters stay theirs) and the old link stops working. Opening the new link
+on a device that is already in the party just swaps in the new link. Revoking stops the
+link working; the member's characters stay visible to the party, and inviting
+the same name again lets them back in with a new link. Two active members
+cannot share a name.
+
+### Moving existing characters in
+
+Browsers keep each site's characters separately, so characters made on
+another copy of the app (the GitHub Pages one, say) don't appear on the party
+site by themselves. On the device that has them, open the old copy and choose
+**⋯ → Copy all characters**; then, on the party site, **⋯ → Paste
+characters** and paste. They keep their identity, so pasting the same code
+twice adds nothing new, and once you've joined the party they upload like any
+other character. The code is plain text: to move characters between devices,
+send it to yourself in a note or chat. There is deliberately no link between
+the two copies, since either would then have to name the other's address.
+
+### Local development
+
+```bash
+npm run cf -- dev                      # Worker + local database on port 8787
+npm run cf -- invite Tester --local    # http://localhost:8787/#invite=...
+npm run cf -- members --local
+```
+
+No login is needed. The local database lives in `.cf-dist/state` (gitignored).
+The dev server listens on all network interfaces so a phone on the same
+network can reach it, which also lets anyone on that network use the dev
+party's API; wrangler's Local Explorer (a database console) is turned off. `http://localhost:8787` and `http://127.0.0.1:8787` keep
+separate browser storage, so they behave like two devices.
+
+### Known limits
+
+- **The public repo is a trail back.** It contains the same code, and the
+  GitHub Pages copy stays up, so anyone who searches GitHub for a distinctive
+  string from the Cloudflare site can find the repo. Only making the repo
+  private (or moving the code to an unlinked repo) closes that.
+- **Wider sharing means wider exposure** of the core-rulebook text the app
+  ships ungated.
+- **Invite tokens live in the browser's `localStorage`**, where any script
+  running on the site's origin could read them. The Content-Security-Policy
+  narrows that to the app's own files.
+- **Free tier quotas**: 100,000 API requests and 100,000 database row writes per
+  day. A flood of junk `/api/*` requests could use up the day's quota and pause
+  sync (not the app) until 00:00 UTC.
+- **Unverified until first sign-in**: whether the free Workers plan asks for a
+  card, and which workers.dev subdomain the first deploy registers.
+
 *Shadow of the Demon Lord is © Schwalb Entertainment. This is an unofficial
 character tool.*
