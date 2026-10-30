@@ -233,7 +233,12 @@ export function setupParty({ renderRoster, renderCurrent: render, closeMenu = ()
       renderChrome();
       return;
     }
-    showToast({ total: "☁", label: `Joined as ${member.name}`, detail: "Party characters appear at the end of the roster list." });
+    showToast({
+      total: "☁",
+      label: `Joined as ${member.name}`,
+      detail: "Party characters appear at the end of the roster list. Characters in another copy of the app? "
+        + "There, ⋯ → Copy all characters; here, ⋯ → Paste characters.",
+    });
   }
 
   // --- wiring --------------------------------------------------------------

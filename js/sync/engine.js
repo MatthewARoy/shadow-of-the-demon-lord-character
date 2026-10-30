@@ -580,6 +580,12 @@ export function createSync({
 
     member: () => readState()?.member ?? null,
 
+    // Ids another member owns, as of the last list() (tombstones included)
+    // plus any upload refused with a 403. A copy: callers may not change it.
+    // Pasting a roster (state.js importRoster) gives these new ids, since one
+    // kept could never be uploaded.
+    foreignIds: () => new Set(blocked),
+
     // The party as of the last good sync, for an offline boot. Re-checked on
     // the way out: the cache is plain localStorage, and isUsable may have
     // changed with the app.

@@ -6,7 +6,10 @@ import { rules } from "./data.js";
 import { showToast } from "./ui/toast.js";
 import { revMismatch } from "./share.js";
 import { SITE } from "./site.js";
-import { CHARACTER_KEYS, isValidDecision } from "./sync/validate.js";
+import {
+  CHARACTER_KEYS, MAX_CHARACTER_BYTES, MAX_NOTES_LENGTH, isValidDecision, validateCharacter,
+} from "./sync/validate.js";
+import { isPristine } from "./sync/plan.js";
 
 const KEY = "sotdl_ledger_v2";
 export const ROSTER_KEY = KEY;
@@ -312,11 +315,82 @@ export function importCharacter(json) {
   return c;
 }
 
+// A whole roster from a transfer code (js/transfer.js). Unlike
+// importCharacter, ids are kept, so pasting the same code twice adds nothing
+// the second time, and a character already here is skipped rather than
+// copied. (The exception: an arrival whose id another member owns gets a new
+// id, so pasting it again adds it again.) An untouched placeholder (the blank soul a fresh device starts
+// with) gives way to the arrivals. foreignIds: ids another party member owns
+// beyond the live ones in store.party (the sync engine's foreignIds()).
+// Arrivals are staged and the roster changes only once all are checked, so
+// one unreadable entry cannot leave half a paste behind. Returns {added,
+// already, skipped}.
+export function importRoster(characters, { dataRev = null, foreignIds = new Set() } = {}) {
+  const result = { added: [], already: 0, skipped: [] };
+  const placeholder = store.characters.length === 1 && isPristine(store.characters[0]) ? store.characters[0] : null;
+  // An id a party member owns cannot be this player's too; it arrives as a copy.
+  const othersIds = new Set([...store.party.map((e) => e.id), ...foreignIds]);
+  const ids = new Set(store.characters.map((c) => c.id));
+  // The placeholder is about to go, so its name is free.
+  const names = new Set(store.characters.filter((c) => c !== placeholder).map((c) => c.name));
+  for (const data of Array.isArray(characters) ? characters : []) {
+    const name = typeof data?.name === "string" && data.name ? data.name : "Unnamed Soul";
+    if (!isPlainObject(data) || typeof data.ancestry !== "string" || !data.ancestry.trim()) {
+      result.skipped.push({ name, why: "not a character" });
+      continue;
+    }
+    if (ids.has(data.id)) {
+      result.already++;
+      continue;
+    }
+    let c;
+    let why;
+    try {
+      c = normalizeCharacter(data, { keepId: !othersIds.has(data.id) });
+      why = isPristine(c) ? "blank" : unfit(c);
+    } catch {
+      why = "could not be read";   // e.g. a field nested too deep to copy
+    }
+    if (why) {
+      result.skipped.push({ name, why });
+      continue;
+    }
+    c.name = uniqueName(c.name, names);
+    names.add(c.name);
+    ids.add(c.id);
+    result.added.push(c);
+  }
+  if (!result.added.length) return result;
+  store.characters = [...store.characters.filter((c) => c !== placeholder), ...result.added];
+  store.activeId = result.added[0].id;
+  store.viewingId = null;
+  if (revMismatch(dataRev, rules.dataRev)) {
+    showToast({
+      total: "⚠",
+      label: "Different rules version",
+      detail: "These characters were saved under another data revision — review their choices, some may have shifted.",
+    });
+  }
+  save();
+  return result;
+}
+
+// Why a normalized arrival cannot join the roster, or null. Only the party
+// site uploads, so only there must it pass the sync validator; the GitHub
+// Pages copy takes what Import would.
+function unfit(c) {
+  if (SITE.syncEnabled && !validateCharacter(c).ok) {
+    const bytes = new TextEncoder().encode(JSON.stringify(c)).length;
+    return bytes > MAX_CHARACTER_BYTES || c.notes.length > MAX_NOTES_LENGTH ? "too large to store online" : "could not be read";
+  }
+  return isUsable(c) ? null : "could not be read";
+}
+
 // Keep the roster select legible: if a character with this exact name already
 // exists, append " (2)", " (3)", … Counts collisions against the base name so
 // re-importing the same soul climbs the numbering rather than stacking suffixes.
-function uniqueName(name) {
-  const taken = new Set(store.characters.map((c) => c.name));
+// `taken` defaults to the roster's names.
+function uniqueName(name, taken = new Set(store.characters.map((c) => c.name))) {
   if (!taken.has(name)) return name;
   for (let n = 2; ; n++) {
     const candidate = `${name} (${n})`;

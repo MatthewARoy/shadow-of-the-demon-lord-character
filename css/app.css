@@ -134,12 +134,13 @@ header.masthead { z-index: 21; }
 .sync-chip[data-state="error"] { color: var(--blood-bright); border-color: #4a2020; }
 @keyframes sync-pulse { 50% { opacity: .35; } }
 
-/* Desktop has no ⋯ menu, but a party member needs Leave/Refresh: show it,
-   holding only the items with no desktop button of their own. */
+/* On desktop the ⋯ menu holds only the rites with no button of their own
+   (Copy all / Paste characters, Hide Book Text, party Refresh/Leave). */
 @media (min-width: 721px) {
-  body.party-joined .roster-overflow { display: block; }
-  body.party-joined #ov-new-btn, body.party-joined .ov-sample, body.party-joined #ov-export-btn,
-  body.party-joined #ov-share-btn, body.party-joined #ov-import-btn, body.party-joined #ov-delete-btn { display: none; }
+  .roster-overflow { display: block; }
+  #ov-new-btn, .ov-sample, #ov-export-btn, #ov-share-btn, #ov-import-btn, #ov-delete-btn { display: none; }
+  /* Every one of those rites hidden: no ⋯ at all (js/main.js). */
+  body.overflow-empty .roster-overflow { display: none; }
 }
 
 /* Viewing another member's character: nothing here is saved. */

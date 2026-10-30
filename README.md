@@ -193,6 +193,18 @@ link working; the member's characters stay visible to the party, and inviting
 the same name again lets them back in with a new link. Two active members
 cannot share a name.
 
+### Moving existing characters in
+
+Browsers keep each site's characters separately, so characters made on
+another copy of the app (the GitHub Pages one, say) don't appear on the party
+site by themselves. On the device that has them, open the old copy and choose
+**⋯ → Copy all characters**; then, on the party site, **⋯ → Paste
+characters** and paste. They keep their identity, so pasting the same code
+twice adds nothing new, and once you've joined the party they upload like any
+other character. The code is plain text: to move characters between devices,
+send it to yourself in a note or chat. There is deliberately no link between
+the two copies, since either would then have to name the other's address.
+
 ### Local development
 
 ```bash
