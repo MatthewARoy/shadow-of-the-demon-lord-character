@@ -110,11 +110,12 @@ export function importCharacter(json) {
   for (const it of c.inventory) {
     if (typeof it.id !== "string" || !it.id) it.id = crypto.randomUUID();
   }
-  for (const k of ["damage", "level", "insanityAdjust", "corruptionAdjust"]) {
+  for (const k of ["damage", "bonusHealth", "level", "insanityAdjust", "corruptionAdjust"]) {
     if (!Number.isFinite(c[k])) c[k] = fresh[k];
   }
   c.level = Math.max(0, Math.min(10, Math.trunc(c.level)));
   c.damage = Math.max(0, Math.trunc(c.damage));
+  c.bonusHealth = Math.max(0, Math.trunc(c.bonusHealth));
   for (const k of ["name", "coins", "notes"]) {
     if (typeof c[k] !== "string") c[k] = fresh[k];
   }

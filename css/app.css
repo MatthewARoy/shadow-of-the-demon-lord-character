@@ -982,7 +982,7 @@ button.pent-node:focus-visible { outline: 2px solid var(--ink-red); outline-offs
 .paper textarea.ink-area::-webkit-scrollbar-thumb:hover { background: var(--ink-red); }
 .paper textarea.ink-area:focus { outline: 1px dashed var(--ink-red-soft); }
 
-/* Play-tracking steppers (Damage / Insanity / Corruption) ------ */
+/* Play-tracking steppers (Damage / Bonus Health / Insanity / Corruption) */
 .stepper-row {
   display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
   margin-top: 10px;
