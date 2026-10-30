@@ -4,11 +4,16 @@
 // copies would have to name the other's address in code. Pure functions over
 // js/share.js's gzip + base64url, so node --test exercises them directly.
 
-import { encodeShare, decodeShare } from "./share.js";
+import { encodeShare, decodeShare, TooLargeError } from "./share.js";
 
 // base64url never contains ":", so the prefix cannot be part of a payload.
 const PREFIX = "roster1:";
 const KIND = "sotdl-roster";
+
+// What a pasted code may inflate to. A roster is a few KB per character, so
+// this is far above any real one; it stops a small code that would unpack
+// into gigabytes.
+export const MAX_TRANSFER_BYTES = 8 * 1024 * 1024;
 
 export async function encodeTransfer(characters, dataRev = null) {
   const envelope = { kind: KIND, v: 1, characters };
@@ -26,8 +31,9 @@ export async function decodeTransfer(text) {
   const payload = compact.startsWith(PREFIX) ? compact.slice(PREFIX.length) : (share ? share[1] : compact);
   let data;
   try {
-    data = JSON.parse(await decodeShare(payload));
-  } catch {
+    data = JSON.parse(await decodeShare(payload, MAX_TRANSFER_BYTES));
+  } catch (err) {
+    if (err instanceof TooLargeError) throw err;
     throw new Error("That isn't a transfer code. Copy it again with ⋯ → Copy all characters.");
   }
   if (data && data.kind === KIND && Array.isArray(data.characters)) {

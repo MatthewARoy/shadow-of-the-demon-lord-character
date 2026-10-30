@@ -38,11 +38,46 @@ export async function encodeShare(character) {
   return toBase64url(await pipe(bytes, new CompressionStream("gzip")));
 }
 
-export async function decodeShare(payload) {
+// Thrown by decodeShare when the payload inflates past its maxBytes.
+export class TooLargeError extends Error {
+  constructor() {
+    super("That code is too large.");
+  }
+}
+
+// Inflate chunk by chunk, giving up (and cancelling the rest) as soon as the
+// output passes maxBytes: a few KB of gzip can expand to gigabytes.
+async function inflate(bytes, maxBytes) {
+  const reader = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip")).getReader();
+  const chunks = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.length;
+    if (total > maxBytes) {
+      reader.cancel().catch(() => {});
+      throw new TooLargeError();
+    }
+    chunks.push(value);
+  }
+  const out = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    out.set(chunk, offset);
+    offset += chunk.length;
+  }
+  return out;
+}
+
+// maxBytes caps the inflated size (js/transfer.js sets one for pasted codes);
+// share links pass none and decode as they always have.
+export async function decodeShare(payload, maxBytes = Infinity) {
   let bytes;
   try {
-    bytes = await pipe(fromBase64url(payload), new DecompressionStream("gzip"));
-  } catch {
+    bytes = await inflate(fromBase64url(payload), maxBytes);
+  } catch (err) {
+    if (err instanceof TooLargeError) throw err;
     throw new Error("This link’s character data is damaged or incomplete.");
   }
   return new TextDecoder().decode(bytes);

@@ -53,3 +53,13 @@ test("revMismatch: false when theirs is undefined or null", () => {
 test("revMismatch: false when ours is null", () => {
   assert.equal(revMismatch("abc123", null), false);
 });
+
+// decodeShare(payload, maxBytes): js/transfer.js caps what a pasted code may
+// inflate to. Share links pass no cap and decode exactly as before.
+test("decodeShare stops at maxBytes; with no cap it inflates everything", async () => {
+  const text = "[" + " ".repeat(2 * 1024 * 1024 - 1);
+  const payload = await encodeShare(text);   // a JSON string of 2 MiB
+  await assert.rejects(decodeShare(payload, 64 * 1024), /too large/);
+  assert.equal(JSON.parse(await decodeShare(payload)), text);
+  assert.equal(JSON.parse(await decodeShare(payload, 4 * 1024 * 1024)), text);
+});

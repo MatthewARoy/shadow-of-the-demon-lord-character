@@ -35,6 +35,9 @@ const tabs = {
 
 let current = "build";
 
+// The party sync engine (js/ui/party.js), or null when sync is off.
+let partyEngine = null;
+
 function renderCurrent() {
   const panel = document.getElementById(`tab-${current}`);
   if (panel) tabs[current](panel);
@@ -207,15 +210,38 @@ async function boot() {
       showToast({ total: "✕", label: "Could not read that code", detail: err.message });
       return;
     }
+    // A code can hold hundreds: name the first dozen.
+    const firstFew = (items) => items.slice(0, 12).join(", ") + (items.length > 12 ? `, and ${items.length - 12} more` : "");
     const names = incoming.characters.map((c) => (typeof c?.name === "string" && c.name) || "Unnamed Soul");
-    const list = names.slice(0, 12).join(", ") + (names.length > 12 ? `, and ${names.length - 12} more` : "");
-    if (!confirm(`Add ${names.length === 1 ? "this character" : `these ${names.length} characters`} to this device?\n\n${list}`)) return;
-    const { added, already, skipped } = importRoster(incoming.characters, { dataRev: incoming.dataRev });
+    if (!confirm(`Add ${names.length === 1 ? "this character" : `these ${names.length} characters`} to this device?\n\n${firstFew(names)}`)) return;
+    // In a party, an id another member owns (even one they deleted) has to
+    // arrive with a new id or it could never upload. Ask the server who owns
+    // what first; offline, the last sync's answer stands.
+    let foreignIds;
+    if (partyEngine?.isJoined()) {
+      // Fresh ownership, but a slow or silent server must not hold the paste
+      // hostage: after a few seconds go ahead with what is already known.
+      try {
+        await Promise.race([partyEngine.sync(), new Promise((resolve) => setTimeout(resolve, 5000))]);
+      } catch (err) {
+        console.warn("Could not sync before pasting", err);
+      }
+      foreignIds = partyEngine.foreignIds();
+    }
+    let result;
+    try {
+      result = importRoster(incoming.characters, { dataRev: incoming.dataRev, foreignIds });
+    } catch (err) {
+      console.error("Paste failed", err);
+      showToast({ total: "✕", label: "Could not add those characters", detail: err.message });
+      return;
+    }
+    const { added, already, skipped } = result;
     renderRoster();
     renderCurrent();
     const notes = [];
     if (already) notes.push(`${already} already here (this device's copy kept)`);
-    if (skipped.length) notes.push(`skipped ${skipped.map((s) => `${s.name} (${s.why})`).join(", ")}`);
+    if (skipped.length) notes.push(`skipped ${firstFew(skipped.map((s) => `${s.name} (${s.why})`))}`);
     showToast({
       total: added.length ? "✦" : "·",
       label: added.length ? `Added ${added.length === 1 ? "1 character" : `${added.length} characters`}` : "Nothing new to add",
@@ -256,7 +282,8 @@ async function boot() {
   onChange(renderRoster);
   setupSamples();
   maybeImportFromLink();
-  setupParty({ renderRoster, renderCurrent, closeMenu: closeOverflowMenu });
+  partyEngine = setupParty({ renderRoster, renderCurrent, closeMenu: closeOverflowMenu });
+  trackOverflowEmpty();
 }
 
 // A #c=<payload> fragment is a share link: offer to import the character it
@@ -360,6 +387,22 @@ function closeOverflowMenu() {
   if (!btn || !menu || menu.hidden) return;
   menu.hidden = true;
   btn.setAttribute("aria-expanded", "false");
+}
+
+// The ⋯ items desktop shows (the rest have a desktop button; css/app.css).
+const DESKTOP_MENU_ITEMS = ["ov-copy-all-btn", "ov-paste-btn", "ov-consent-btn", "ov-refresh-btn", "ov-leave-btn"];
+
+// With every one of them hidden (no CompressionStream, no Book Text consent,
+// not in a party), desktop's ⋯ would open an empty menu: body.overflow-empty
+// hides the button there. Kept current as items are shown and hidden.
+function trackOverflowEmpty() {
+  const menu = document.getElementById("overflow-menu");
+  const update = () => {
+    const empty = DESKTOP_MENU_ITEMS.every((id) => document.getElementById(id)?.hidden !== false);
+    document.body.classList.toggle("overflow-empty", empty);
+  };
+  update();
+  if (menu) new MutationObserver(update).observe(menu, { attributes: true, attributeFilter: ["hidden"], subtree: true });
 }
 
 function setupOverflowMenu({ newSoul, deleteSoul, importClick, shareLink, copyAll, pasteAll }) {

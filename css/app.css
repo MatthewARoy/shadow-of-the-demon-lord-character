@@ -139,6 +139,8 @@ header.masthead { z-index: 21; }
 @media (min-width: 721px) {
   .roster-overflow { display: block; }
   #ov-new-btn, .ov-sample, #ov-export-btn, #ov-share-btn, #ov-import-btn, #ov-delete-btn { display: none; }
+  /* Every one of those rites hidden: no ⋯ at all (js/main.js). */
+  body.overflow-empty .roster-overflow { display: none; }
 }
 
 /* Viewing another member's character: nothing here is saved. */

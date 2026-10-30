@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { encodeTransfer, decodeTransfer } from "../../transfer.js";
+import { encodeTransfer, decodeTransfer, MAX_TRANSFER_BYTES } from "../../transfer.js";
 import { encodeShare } from "../../share.js";
 
 const SAMPLES = JSON.parse(await readFile(new URL("../../../data/samples.json", import.meta.url), "utf8"))
@@ -48,4 +48,41 @@ test("well-formed codes that hold no characters are refused", async () => {
   for (const value of [{ kind: "something-else" }, [1, 2, 3], { kind: "sotdl-roster", characters: "x" }]) {
     await assert.rejects(decodeTransfer(await encodeShare(value)), /holds no characters/);
   }
+});
+
+// A few KB of gzip that inflates to megabytes of whitespace. The decompressor
+// is wrapped to count what it hands out, so the test can tell "stopped at the
+// cap" from "inflated everything, then refused".
+async function gzipBomb(bytes) {
+  const text = new Uint8Array(bytes).fill(0x20);
+  text[0] = 0x5b;   // "[", so it would not even parse
+  const stream = new Blob([text]).stream().pipeThrough(new CompressionStream("gzip"));
+  return Buffer.from(await new Response(stream).arrayBuffer()).toString("base64url");
+}
+
+test("a code that inflates past the cap is refused as too large, without inflating it all", async () => {
+  const size = 9 * 1024 * 1024;
+  assert.ok(size > MAX_TRANSFER_BYTES);
+  const code = `roster1:${await gzipBomb(size)}`;
+  assert.ok(code.length < 20_000, `the bomb is ${code.length} characters`);
+  const Real = globalThis.DecompressionStream;
+  let inflated = 0;
+  globalThis.DecompressionStream = class {
+    constructor(format) {
+      const inner = new Real(format);
+      this.writable = inner.writable;
+      this.readable = inner.readable.pipeThrough(new TransformStream({
+        transform(chunk, out) {
+          inflated += chunk.length;
+          out.enqueue(chunk);
+        },
+      }));
+    }
+  };
+  try {
+    await assert.rejects(decodeTransfer(code), /too large/);
+  } finally {
+    globalThis.DecompressionStream = Real;
+  }
+  assert.ok(inflated < size, `inflated ${inflated} of ${size} bytes`);
 });

@@ -709,6 +709,33 @@ test("a local character owned by another member is reported, not silently left u
   assert.equal(server.body(syrah.id).level, syrah.level, "the edit stayed local");
 });
 
+// Pasting a roster (state.js importRoster) re-ids anything another member
+// owns. The party list only shows live rows, so the engine says which ids
+// are taken, tombstones included: a pasted id that matches one could never
+// be uploaded.
+test("foreignIds() holds every id another member owns, tombstones included, as a copy", async () => {
+  const server = partyServer();
+  const retired = hero("Bo's retired rogue");
+  const rogue = hero("Bo's rogue");
+  const bo = device(server, [retired, rogue]);
+  await bo.engine.join("tok-bo", BO);
+  bo.remove(retired.id);
+  await bo.engine.sync();
+  assert.equal(server.rows.get(retired.id).deleted, true);
+
+  const syrah = hero("Syrah");
+  const ash = device(server, [syrah]);
+  assert.equal(ash.engine.foreignIds().size, 0, "nothing known before joining");
+  await ash.engine.join("tok-ash", ASH);
+  assert.deepEqual(ash.party.map((e) => e.id), [rogue.id], "the tombstone is not a party entry");
+  const ids = ash.engine.foreignIds();
+  assert.deepEqual([...ids].sort(), [retired.id, rogue.id].sort());
+  ids.clear();
+  assert.equal(ash.engine.foreignIds().size, 2, "callers get a copy");
+  ash.engine.leave();
+  assert.equal(ash.engine.foreignIds().size, 0);
+});
+
 // --- two tabs of the app ------------------------------------------------------------------------
 // Tabs share one localStorage: the roster (js/state.js) and the sync meta
 // (SYNC_KEY) alike. The engine re-reads meta on every run, so the roster it
