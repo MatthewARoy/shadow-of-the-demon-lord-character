@@ -28,6 +28,7 @@ export function newCharacter(name = "Unnamed Soul") {
     exchanges: [],                // [{drop:{name,tradition}, gain:{name,tradition}}]
     wishlist: [],                 // spell keys ("name|tradition") flagged for Future Studies
     damage: 0,
+    bonusHealth: 0,               // temporary bonus to Health (Divine Ecstasy, Bolster Health…)
     insanityAdjust: 0,            // gameplay marks beyond computed effects
     corruptionAdjust: 0,
     expended: {},                 // spell key -> castings used
