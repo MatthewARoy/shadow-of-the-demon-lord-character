@@ -303,6 +303,7 @@ const FIELDS = {
   exchanges: checkExchanges,
   wishlist: checkWishlist,
   damage: integer(0),
+  bonusHealth: integer(0),
   insanityAdjust: integer(),
   corruptionAdjust: integer(),
   fateDice: integer(0),
@@ -318,8 +319,15 @@ const OPTIONAL = {
   dataRev: string(MAX_NAME_LENGTH),
 };
 
+// Character fields added after party sync shipped. Bodies stored before the
+// field existed, and uploads from a tab still running the older app, lack
+// them; normalizeCharacter() fills them in. Present, they are checked like
+// any other field. Add a field here whenever one is added to FIELDS.
+const ADDED_LATER = new Set(["bonusHealth"]);
+
 export const CHARACTER_KEYS = Object.freeze(Object.keys(FIELDS));
 export const OPTIONAL_KEYS = Object.freeze(Object.keys(OPTIONAL));
+export const ADDED_LATER_KEYS = Object.freeze([...ADDED_LATER]);
 
 export function validateCharacter(obj) {
   const errors = [];
@@ -338,8 +346,8 @@ export function validateCharacter(obj) {
     }
   }
   for (const [k, check] of Object.entries(FIELDS)) {
-    if (!hasOwn(obj, k)) fail(k, "is missing");
-    else check(obj[k], k, fail);
+    if (hasOwn(obj, k)) check(obj[k], k, fail);
+    else if (!ADDED_LATER.has(k)) fail(k, "is missing");
   }
   for (const [k, check] of Object.entries(OPTIONAL)) {
     if (hasOwn(obj, k)) check(obj[k], k, fail);

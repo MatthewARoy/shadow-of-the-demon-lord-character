@@ -5,6 +5,7 @@ import { rules, spellKey, bookName, BOOKS_SHORT } from "../data.js";
 import { compute } from "../engine.js";
 import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
+import { restHealth } from "../health.js";
 import { showToast } from "./toast.js";
 import { statBlockHtml } from "./statblock.js";
 import { esc, gatedText, searchableText, rulesTables, tablesSearchText } from "./util.js";
@@ -949,9 +950,7 @@ function wire(el, char, computed) {
 
     const rest = e.target.closest("[data-rest]");
     if (rest) {
-      const comp = compute(c);
-      const healed = Math.min(c.damage, comp.healingRate);
-      c.damage -= healed;
+      const healed = restHealth(c, compute(c));
       c.expended = {};
       save(); renderSpells(el);
       showToast({ total: "☾", label: "Rest completed", detail: `Healed ${healed} damage and regained all castings.` });

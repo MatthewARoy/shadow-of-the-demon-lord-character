@@ -1038,13 +1038,14 @@ button.pent-node:focus-visible { outline: 2px solid var(--ink-red); outline-offs
 .paper textarea.ink-area::-webkit-scrollbar-thumb:hover { background: var(--ink-red); }
 .paper textarea.ink-area:focus { outline: 1px dashed var(--ink-red-soft); }
 
-/* Play-tracking steppers (Damage / Insanity / Corruption / Fate) */
+/* Play-tracking steppers (Damage / Bonus Health / Insanity / Corruption / Fate) */
 .stepper-row {
   display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
   margin-top: 10px;
 }
-/* Pairs wrap as units: four across, then two by two, then one column —
-   never three and a straggler. */
+/* Damage/Bonus Health and Insanity/Corruption wrap as pairs, so a narrow
+   row breaks between topics, never inside one; Fate Dice, a resource of
+   its own, fills in wherever there is room. */
 .stepper-pair { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
 .stepper {
   display: flex; flex-direction: column; align-items: center; gap: 3px;

@@ -6,6 +6,7 @@
 import { compute, ATTRS } from "../engine.js";
 import { active, save } from "../state.js";
 import { rollD20, rollDamage } from "../dice.js";
+import { totalHealth, isIncapacitated, adjustDamage, adjustBonusHealth, restHealth, hasDivineEcstasy } from "../health.js";
 import { showToast } from "./toast.js";
 
 import { esc, gatedText } from "./util.js";
@@ -26,7 +27,8 @@ export function renderSheet(el) {
   const char = active();
   if (!char) return;
   const computed = compute(char);
-  const incapacitated = computed.health > 0 && char.damage >= computed.health;
+  const incapacitated = isIncapacitated(char, computed);
+  const bonus = char.bonusHealth || 0;
   const masterName = char.masterMode === "second-expert" ? char.secondExpertPath : char.masterPath;
 
   el.innerHTML = `
@@ -78,24 +80,28 @@ export function renderSheet(el) {
         ${pentagram(char, computed, incapacitated)}
         <div class="stepper-row">
           <div class="stepper-pair">
-            ${stepper("Damage", char.damage, `of ${computed.health} health`,
+            ${stepper("Damage", char.damage, `of ${totalHealth(char, computed)} health`,
               `data-dmg="-1"`, `data-dmg="1"`, "Remove damage", "Add damage")}
+            ${stepper("Bonus Health", bonus, "added to health",
+              `data-bonus="-1"`, `data-bonus="1"`,
+              "Remove a point of bonus Health", "Add a point of bonus Health")}
+          </div>
+          <div class="stepper-pair">
             ${stepper("Insanity", computed.insanity + (computed.insanityNote ? "*" : ""),
               `of ${computed.attributes.will} will`,
               `data-adj="insanityAdjust:-1"`, `data-adj="insanityAdjust:1"`,
               "Remove a point of insanity", "Mark insanity gained")}
-          </div>
-          <div class="stepper-pair">
             ${stepper("Corruption", computed.corruption, "marks of darkness",
               `data-adj="corruptionAdjust:-1"`, `data-adj="corruptionAdjust:1"`,
               "Remove a point of corruption", "Mark corruption gained")}
-            ${stepper("Fate Dice", char.fateDice || 0, "left to spend",
-              `data-fate="-1"`, `data-fate="1"`, "Spend a fate die", "Gain a fate die")}
           </div>
+          ${stepper("Fate Dice", char.fateDice || 0, "left to spend",
+            `data-fate="-1"`, `data-fate="1"`, "Spend a fate die", "Gain a fate die")}
         </div>
         <div style="display:flex;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap">
           <button class="btn-ink" data-heal title="Heal your healing rate">heal ${computed.healingRate}</button>
-          <button class="btn-ink" data-rest title="Complete a rest (8 hours): heal your healing rate and regain all expended castings">rest</button>
+          <button class="btn-ink" data-rest title="Complete a rest (8 hours): end any bonus Health, heal your healing rate and regain all expended castings">rest</button>
+          ${hasDivineEcstasy(computed) ? `<button class="btn-ink" data-ecstasy title="Divine Ecstasy: +10 bonus to Health for 1 minute">ecstasy +10</button>` : ""}
         </div>
         ${incapacitated ? `<p style="text-align:center;color:var(--ink-red);font-family:var(--caps);margin:6px 0 0">Incapacitated — roll a fate die each round.</p>` : ""}
         ${computed.insanityNote ? `<p class="ink-small" style="text-align:center;margin:4px 0 0">Insanity * plus ${esc(computed.insanityNote)}</p>` : ""}
@@ -173,7 +179,9 @@ function pentagram(char, computed, incapacitated) {
     nodes.push(node("pn-med rollable", p, cap(a), computed.attributes[a], null, `data-roll-attr="${a}"`, `Roll ${cap(a)}`));
     nodes.push(node("pn-mod", modPos(a), null, sign(m[a])));
   }
-  nodes.push(node("pn-med", STAR.health, "Health", computed.health, null, provAttr("Health", computed)));
+  const bonus = char.bonusHealth || 0;
+  const bonusRows = bonus ? [{ source: "Bonus Health", amount: bonus }] : [];
+  nodes.push(node("pn-med", STAR.health, "Health", totalHealth(char, computed), bonus ? `+${bonus}` : null, provAttr("Health", computed, bonusRows)));
   nodes.push(node("pn-mod", { x: 50, y: 73.5 }, "Healing", computed.healingRate));
   nodes.push(node(`pn-large pn-damage`, { x: 50, y: 50 }, "Damage", char.damage, incapacitated ? "DOWN" : null));
   // satellites, mirroring the paper sheet's outer circles
@@ -298,11 +306,13 @@ function provBlock(name, list, base = []) {
 // tooltip. Rows come straight from the same base + engine provenance the print
 // block uses; the total is the authoritative computed stat. Empty when there's
 // nothing to explain. esc() keeps user-derived sources (armor names) safe once
-// the value is read back and re-inserted as text by the tooltip.
-function provAttr(name, computed) {
-  const rows = [...provBase(name, computed), ...(computed.provenance[name.toLowerCase()] || [])];
+// the value is read back and re-inserted as text by the tooltip. `extra` rows
+// are play-time additions on top of the computed stat (bonus Health).
+function provAttr(name, computed, extra = []) {
+  const rows = [...provBase(name, computed), ...(computed.provenance[name.toLowerCase()] || []), ...extra];
   if (!rows.length) return "";
-  const payload = { name, total: provTotal(name, computed), rows: rows.map((r) => ({ source: r.source, amount: r.amount })) };
+  const total = provTotal(name, computed) + extra.reduce((sum, r) => sum + r.amount, 0);
+  const payload = { name, total, rows: rows.map((r) => ({ source: r.source, amount: r.amount })) };
   return `data-prov="${esc(JSON.stringify(payload))}"`;
 }
 
@@ -318,9 +328,17 @@ function wireSheet(el, char, computed) {
     showToast(rollD20("Perception challenge", computed.perception - 10));
   });
   el.querySelectorAll("[data-dmg]").forEach((b) => b.addEventListener("click", () => {
-    char.damage = Math.max(0, Math.min(computed.health, char.damage + parseInt(b.dataset.dmg, 10)));
+    adjustDamage(char, computed, parseInt(b.dataset.dmg, 10));
     save(); renderSheet(el);
   }));
+  el.querySelectorAll("[data-bonus]").forEach((b) => b.addEventListener("click", () => {
+    adjustBonusHealth(char, computed, parseInt(b.dataset.bonus, 10));
+    save(); renderSheet(el);
+  }));
+  el.querySelector("[data-ecstasy]")?.addEventListener("click", () => {
+    adjustBonusHealth(char, computed, 10);
+    save(); renderSheet(el);
+  });
   el.querySelectorAll("[data-fate]").forEach((b) => b.addEventListener("click", () => {
     char.fateDice = Math.max(0, (char.fateDice || 0) + parseInt(b.dataset.fate, 10));
     save(); renderSheet(el);
@@ -330,8 +348,7 @@ function wireSheet(el, char, computed) {
     save(); renderSheet(el);
   });
   el.querySelector("[data-rest]")?.addEventListener("click", () => {
-    const healed = Math.min(char.damage, computed.healingRate);
-    char.damage -= healed;
+    const healed = restHealth(char, computed);
     char.expended = {};
     save(); renderSheet(el);
     showToast({ total: "☾", label: "Rest completed", detail: `Healed ${healed} damage and regained all castings. A full 24-hour rest heals double — press heal once more.` });

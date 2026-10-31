@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
-  validateCharacter, CHARACTER_KEYS, OPTIONAL_KEYS, MAX_BODY_BYTES, MAX_ID_LENGTH,
+  validateCharacter, CHARACTER_KEYS, OPTIONAL_KEYS, ADDED_LATER_KEYS, MAX_BODY_BYTES, MAX_ID_LENGTH,
   MAX_NAME_LENGTH, MAX_TEXT_LENGTH, MAX_NOTES_LENGTH, MAX_INVENTORY_ITEMS, MAX_LOG_ENTRIES,
   MAX_DECISION_KEYS, MAX_DEPTH, MAX_ERRORS,
 } from "../../sync/validate.js";
@@ -201,6 +201,10 @@ test("each wrong type fails with a message naming the field", () => {
     ["damage", { damage: -1 }],
     ["damage", { damage: 1.5 }],
     ["damage", { damage: "0" }],
+    ["bonusHealth", { bonusHealth: -1 }],
+    ["bonusHealth", { bonusHealth: 1.5 }],
+    ["bonusHealth", { bonusHealth: "10" }],
+    ["bonusHealth", { bonusHealth: null }],
     ["insanityAdjust", { insanityAdjust: "2" }],
     ["corruptionAdjust", { corruptionAdjust: Number.NaN }],
     ["fateDice", { fateDice: -1 }],
@@ -245,10 +249,25 @@ test("a __proto__ key from JSON.parse is rejected, at the top and inside decisio
 
 test("a missing field fails, naming it", () => {
   for (const k of CHARACTER_KEYS) {
+    if (ADDED_LATER_KEYS.includes(k)) continue;
     const c = newCharacter();
     delete c[k];
     assertRejects(c, `${k} is missing`);
   }
+});
+
+// Rows stored before the field existed, and uploads from a tab still running
+// the older app, must keep validating once the new app is deployed.
+test("a field added after party sync shipped may be missing, and is checked when present", () => {
+  assert.deepEqual([...ADDED_LATER_KEYS], ["bonusHealth"]);
+  for (const k of ADDED_LATER_KEYS) {
+    assert.ok(CHARACTER_KEYS.includes(k), `${k} is a character field`);
+    const c = newCharacter();
+    delete c[k];
+    assertValid(c, `a character without ${k}`);
+  }
+  assertValid(withField({ bonusHealth: 10 }));
+  assertRejects(withField({ bonusHealth: -1 }), "bonusHealth");
 });
 
 test("a non-object root fails", () => {

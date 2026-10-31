@@ -91,6 +91,7 @@ test("normalizeCharacter repairs a legacy character so it validates, keeping its
   assert.deepEqual(c.wishlist, []);
   assert.equal(c.insanityAdjust, 0);
   assert.equal(c.corruptionAdjust, 0);
+  assert.equal(c.bonusHealth, 0);
   assert.equal(c.fateDice, 0);
   assert.deepEqual(c.inventory.map((it) => it.qty), [3, 1, undefined]);
   assert.equal(typeof c.inventory[2].id, "string");
@@ -98,6 +99,15 @@ test("normalizeCharacter repairs a legacy character so it validates, keeping its
   assert.equal("favouriteColour" in c, false);
   assert.equal("dataRev" in c, false);
   assert.deepEqual(legacy, before, "the input is not modified");
+});
+
+// load() normalizes the roster on every boot of the sync build, so a field
+// normalizeCharacter does not carry is wiped on reload.
+test("normalizeCharacter keeps bonus Health and snaps a malformed one", () => {
+  assert.equal(normalizeCharacter({ ...newCharacter(), bonusHealth: 10 }).bonusHealth, 10);
+  assert.equal(normalizeCharacter({ ...newCharacter(), bonusHealth: 2.7 }).bonusHealth, 2);
+  assert.equal(normalizeCharacter({ ...newCharacter(), bonusHealth: -4 }).bonusHealth, 0);
+  assert.equal(normalizeCharacter({ ...newCharacter(), bonusHealth: "10" }).bonusHealth, 0);
 });
 
 test("normalizeCharacter mints a new id only when asked to", () => {
