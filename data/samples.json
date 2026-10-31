@@ -77,6 +77,7 @@
   "bonusHealth": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [],
   "coins": "",
@@ -174,6 +175,7 @@
   "bonusHealth": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [],
   "coins": "",
@@ -239,6 +241,7 @@
   "bonusHealth": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [
    {
@@ -305,6 +308,7 @@
   "bonusHealth": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [
    {
@@ -387,6 +391,7 @@
   "bonusHealth": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [
    {
@@ -576,6 +581,7 @@
   "bonusHealth": 0,
   "insanityAdjust": 0,
   "corruptionAdjust": 0,
+  "fateDice": 0,
   "expended": {},
   "inventory": [
    {

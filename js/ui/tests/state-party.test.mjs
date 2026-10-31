@@ -92,6 +92,7 @@ test("normalizeCharacter repairs a legacy character so it validates, keeping its
   assert.equal(c.insanityAdjust, 0);
   assert.equal(c.corruptionAdjust, 0);
   assert.equal(c.bonusHealth, 0);
+  assert.equal(c.fateDice, 0);
   assert.deepEqual(c.inventory.map((it) => it.qty), [3, 1, undefined]);
   assert.equal(typeof c.inventory[2].id, "string");
   assert.ok(c.inventory[2].id.length > 0);
@@ -116,6 +117,16 @@ test("normalizeCharacter mints a new id only when asked to", () => {
   assert.equal(typeof c.id, "string");
   assert.notEqual(c.id, newCharacter().id);
   assertValid(c);
+});
+
+test("normalizeCharacter keeps a fate dice count and repairs junk to a whole number ≥ 0", () => {
+  const fate = (fateDice) => normalizeCharacter({ ...newCharacter(), fateDice }).fateDice;
+  assert.equal(fate(2), 2);
+  assert.equal(fate(2.7), 2);
+  assert.equal(fate(-3), 0);
+  assert.equal(fate("2"), 0);
+  assert.equal(fate(Number.NaN), 0);
+  assert.equal(fate(null), 0);
 });
 
 // load() re-normalizes bodies applyRemote stored verbatim; any change to a

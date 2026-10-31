@@ -64,6 +64,7 @@ function playedCharacter() {
   c.damage = 4;
   c.insanityAdjust = 2;
   c.corruptionAdjust = -1;
+  c.fateDice = 2;
   c.coins = "3 gc, 14 ss, a stolen reliquary";
   c.notes = Array.from({ length: 40 }, (_, i) =>
     `Session ${i + 1}. The party crossed the marsh road at dusk — “never again,” said Syrah.\n`
@@ -206,6 +207,9 @@ test("each wrong type fails with a message naming the field", () => {
     ["bonusHealth", { bonusHealth: null }],
     ["insanityAdjust", { insanityAdjust: "2" }],
     ["corruptionAdjust", { corruptionAdjust: Number.NaN }],
+    ["fateDice", { fateDice: -1 }],
+    ["fateDice", { fateDice: 1.5 }],
+    ["fateDice", { fateDice: "2" }],
     ["expended", { expended: [] }],
     ["expended[\"a|b\"]", { expended: { "a|b": -1 } }],
     ["expended[\"a|b\"]", { expended: { "a|b": "1" } }],
@@ -255,7 +259,7 @@ test("a missing field fails, naming it", () => {
 // Rows stored before the field existed, and uploads from a tab still running
 // the older app, must keep validating once the new app is deployed.
 test("a field added after party sync shipped may be missing, and is checked when present", () => {
-  assert.deepEqual([...ADDED_LATER_KEYS], ["bonusHealth"]);
+  assert.deepEqual([...ADDED_LATER_KEYS], ["bonusHealth", "fateDice"]);
   for (const k of ADDED_LATER_KEYS) {
     assert.ok(CHARACTER_KEYS.includes(k), `${k} is a character field`);
     const c = newCharacter();
@@ -264,6 +268,8 @@ test("a field added after party sync shipped may be missing, and is checked when
   }
   assertValid(withField({ bonusHealth: 10 }));
   assertRejects(withField({ bonusHealth: -1 }), "bonusHealth");
+  assertValid(withField({ fateDice: 2 }));
+  assertRejects(withField({ fateDice: -1 }), "fateDice");
 });
 
 test("a non-object root fails", () => {

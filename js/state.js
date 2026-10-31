@@ -238,12 +238,13 @@ export function normalizeCharacter(src, { keepId = true } = {}) {
   for (const k of ["inventory", "wishlist", "exchanges", "log"]) {
     if (!Array.isArray(c[k])) c[k] = [];
   }
-  for (const k of ["damage", "bonusHealth", "level", "insanityAdjust", "corruptionAdjust"]) {
+  for (const k of ["damage", "bonusHealth", "level", "insanityAdjust", "corruptionAdjust", "fateDice"]) {
     if (!Number.isFinite(c[k])) c[k] = fresh[k];
   }
   c.level = Math.max(0, Math.min(10, Math.trunc(c.level)));
   c.damage = Math.max(0, Math.trunc(c.damage));
   c.bonusHealth = Math.max(0, Math.trunc(c.bonusHealth));
+  c.fateDice = Math.max(0, Math.trunc(c.fateDice));
   c.insanityAdjust = Math.trunc(c.insanityAdjust);
   c.corruptionAdjust = Math.trunc(c.corruptionAdjust);
   for (const k of ["name", "ancestry", "coins", "notes"]) {

@@ -31,6 +31,7 @@ export function newCharacter(name = "Unnamed Soul") {
     bonusHealth: 0,               // temporary bonus to Health (Divine Ecstasy, Bolster Health…)
     insanityAdjust: 0,            // gameplay marks beyond computed effects
     corruptionAdjust: 0,
+    fateDice: 0,                  // banked rerolls/successes the GM hands out
     expended: {},                 // spell key -> castings used
     inventory: [],                // {id, name, qty, equipped, weapon?, armor?, notes}
     coins: "",

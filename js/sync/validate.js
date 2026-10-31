@@ -306,6 +306,7 @@ const FIELDS = {
   bonusHealth: integer(0),
   insanityAdjust: integer(),
   corruptionAdjust: integer(),
+  fateDice: integer(0),
   expended: checkExpended,
   inventory: checkInventory,
   coins: string(MAX_TEXT_LENGTH),
@@ -322,7 +323,7 @@ const OPTIONAL = {
 // field existed, and uploads from a tab still running the older app, lack
 // them; normalizeCharacter() fills them in. Present, they are checked like
 // any other field. Add a field here whenever one is added to FIELDS.
-const ADDED_LATER = new Set(["bonusHealth"]);
+const ADDED_LATER = new Set(["bonusHealth", "fateDice"]);
 
 export const CHARACTER_KEYS = Object.freeze(Object.keys(FIELDS));
 export const OPTIONAL_KEYS = Object.freeze(Object.keys(OPTIONAL));
