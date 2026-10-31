@@ -259,7 +259,7 @@ test("a missing field fails, naming it", () => {
 // Rows stored before the field existed, and uploads from a tab still running
 // the older app, must keep validating once the new app is deployed.
 test("a field added after party sync shipped may be missing, and is checked when present", () => {
-  assert.deepEqual([...ADDED_LATER_KEYS], ["bonusHealth"]);
+  assert.deepEqual([...ADDED_LATER_KEYS], ["bonusHealth", "fateDice"]);
   for (const k of ADDED_LATER_KEYS) {
     assert.ok(CHARACTER_KEYS.includes(k), `${k} is a character field`);
     const c = newCharacter();
@@ -268,6 +268,8 @@ test("a field added after party sync shipped may be missing, and is checked when
   }
   assertValid(withField({ bonusHealth: 10 }));
   assertRejects(withField({ bonusHealth: -1 }), "bonusHealth");
+  assertValid(withField({ fateDice: 2 }));
+  assertRejects(withField({ fateDice: -1 }), "fateDice");
 });
 
 test("a non-object root fails", () => {
